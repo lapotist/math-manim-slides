@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q07"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Finding an interval preserved by a quadratic"
+locale = "zh-TW"
+question = 7
+source_pages = [7]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_url = "https://drive.google.com/file/d/1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M/preview"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 7, PDF page 7; public solution video 00:00-03:31"
+solution_asset_id = "youtube:xRrA7_xEStU"
+solution_url = "https://www.youtube.com/watch?v=xRrA7_xEStU"
+source_video_locator = "00:00-03:31"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "Frame inspection shows Q7 settled from 00:00 through 03:31. The 03:32 frame is an ambiguous page transition, and Q8 is settled from 03:33, so the Q7 locator ends at 03:31. The source rewrites the quadratic as (x-3)^2+3, separates the interval into three positions relative to x=3, and uses endpoint fixed-point equations in the surviving increasing-branch case. This lesson preserves that argument while making the first two exclusions visual through the global floor f(x)>=3, then delays all fixed-point algebra until the endpoint extrema have been identified on the graph. No source imagery, audio, or wording is reused."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q07/deck.py"
+scene_class = "CarloTcfs113MathQ07"
+storyboard = "lessons/tcfs_113_math_gifted/q07/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q07/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "(3, 4)"
+independent_check = "Complete the square: f(x)=(x-3)^2+3, so f(x)>=3. If a<3 and b<3, f decreases on [a,b], hence its minimum is f(b)>3>a, impossible. If a<3<=b, the interval contains x=3, hence its minimum is 3>a, also impossible. Thus a>=3. For 3<=x<y, f(y)-f(x)=(y-x)(x+y-6)>0, so f is increasing on [a,b]. Therefore the required minimum a and maximum b are f(a) and f(b), giving f(a)=a and f(b)=b. Fixed points satisfy x^2-7x+12=(x-3)(x-4)=0, so the only candidates are 3 and 4. Since a<b, (a,b)=(3,4). Finally, for 3<=x<=4, 0<=(x-3)^2<=1, so 3<=f(x)<=4; the actual range is [3,4]."
+tags = ["quadratic", "vertex-form", "interval", "extrema", "fixed-point", "range"]
+
+[[beats]]
+id = "reveal_vertex_form"
+loop = false
+
+[[beats]]
+id = "test_left_interval"
+loop = false
+
+[[beats]]
+id = "test_straddling_interval"
+loop = false
+
+[[beats]]
+id = "settle_right_branch"
+loop = false
+
+[[beats]]
+id = "connect_endpoint_extrema"
+loop = false
+
+[[beats]]
+id = "earn_fixed_endpoint_equations"
+loop = false
+
+[[beats]]
+id = "locate_fixed_points"
+loop = false
+
+[[beats]]
+id = "solve_fixed_points"
+loop = false
+
+[[beats]]
+id = "assign_ordered_endpoints"
+loop = false
+
+[[beats]]
+id = "verify_preserved_interval"
+loop = false

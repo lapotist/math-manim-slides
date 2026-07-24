@@ -59,6 +59,32 @@ located, and provenance plus rights scope are documented. PDFs can contain
 several lesson units; shell pages contain none. Consequently 4,346 is the
 audited asset denominator, not a completed-lesson count.
 
+## Problem-level review batches
+
+The first site-derived problem decompositions cover three adjacent TCFSH
+gifted-mathematics pages:
+
+| Batch | Problem units | Public worked solutions | Current limitation |
+| --- | ---: | ---: | --- |
+| ROC 112 | 14 | 14 | Independent lesson mathematics and rendering remain pending |
+| ROC 113 | 14 | 14 | Independent lesson mathematics and rendering remain pending by unit |
+| ROC 114 | 14 | 4 | Ten solution videos are members-only and remain blocked |
+| ROC 104 Chiayi science | 20 | 20 candidate mappings | Worked-content sufficiency and independent mathematics review pending |
+
+ROC 112 and ROC 113 PDFs have blank areas beneath their `解析` headings. They
+are problem-statement locators, not evidence of solution reasoning; the exact
+public video mapping in each collection supplies that evidence. Paired ROC 113
+videos are represented by two problem records pointing to one provider ID.
+Provider-level deduplication is therefore preserved while lesson-unit counts
+remain explicit.
+
+The 42 TCFSH records are a problem-level reviewed subset of the 2,489
+confirmed-public asset pool. The 20 Chiayi records add an exact one-page and
+one-numbered-video mapping, but remain `discovered` until the videos themselves
+are inspected for sufficient reasoning. Neither group implies that every
+public asset has been decomposed. The next-batch queue must still inspect each
+PDF and video rather than deriving eligibility from titles or page co-location.
+
 The separately supplied `數學-115數理資優學科能力評量答案.pdf` is outside this
 site snapshot. The public 中一中資優 archive exposed by the crawl ends at ROC
 114, so the ROC 115 collection is recorded as user supplied.

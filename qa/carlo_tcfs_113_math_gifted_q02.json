@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q02",
+  "scene_class": "CarloTcfs113MathQ02",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Let k=a3+a5, so k is 0, 1, or 2. The fixed a1=1 makes the odd-position sum 1+k, hence exactly 1+k of the three even positions must equal 1. The number in case k is C(2,k)C(3,1+k): 3, 6, and 1 respectively, for a total of 10. Exhaustive enumeration of the 32 length-six binary words beginning with 1 yields exactly the same ten words and case counts."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_six_slots",
+        "loop": false
+      },
+      {
+        "id": "separate_teams",
+        "loop": false
+      },
+      {
+        "id": "name_balance_cases",
+        "loop": false
+      },
+      {
+        "id": "own_case_zero",
+        "loop": false
+      },
+      {
+        "id": "open_case_one",
+        "loop": false
+      },
+      {
+        "id": "own_case_one",
+        "loop": false
+      },
+      {
+        "id": "own_case_two",
+        "loop": false
+      },
+      {
+        "id": "compare_three_cases",
+        "loop": false
+      },
+      {
+        "id": "compress_with_binomials",
+        "loop": false
+      },
+      {
+        "id": "reveal_total",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q02/deck.py",
+      "sha256": "292f779690174920ae196000809415300114c33c11b5149921681e4b898c4542"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q02/presenter.zh-TW.md",
+      "sha256": "973c188e1d7c7e1128a82bc3b576d56ee8b68b7e5b6aaada45bddf05ff2f478e"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q02/storyboard.md",
+      "sha256": "cc59555c186e5ec142d00733082c03f10bf062bccc8133244b37541e0ff75560"
+    }
+  }
+}

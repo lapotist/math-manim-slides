@@ -1,0 +1,183 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted"
+slug = "tcfs_113_math_gifted"
+title = "113 Academic-Year TCFSH Mathematics Gifted Placement Assessment"
+locale = "zh-TW"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_page_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_page_sha256 = "c734413eec7c3f7e049fe822dcc546f2a2b19f860660fdcdd6315ed0d3e48392"
+source_creator = "Carlo / 正哥愛數學"
+source_origin = "frozen_site_inventory"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF contains problem statements and blank solution areas. The mapped public videos are the worked-solution sources."
+expected_problem_count = 14
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q01"
+label = "Fill-in Question 1"
+source_pages = [1]
+topic = "exponential equations and positive-integer counting"
+answer = "5"
+solution_asset = "youtube:FSGAuRvRFU0"
+solution_url = "https://www.youtube.com/watch?v=FSGAuRvRFU0"
+solution_locator = "00:00-00:53"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q02"
+label = "Fill-in Question 2"
+source_pages = [2]
+topic = "binary strings and balanced position sums"
+answer = "10"
+solution_asset = "youtube:FSGAuRvRFU0"
+solution_url = "https://www.youtube.com/watch?v=FSGAuRvRFU0"
+solution_locator = "00:54-02:29"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q03"
+label = "Fill-in Question 3"
+source_pages = [3]
+topic = "median versus mean and gap counting"
+answer = "13"
+solution_asset = "youtube:W-NGUVPlcOc"
+solution_url = "https://www.youtube.com/watch?v=W-NGUVPlcOc"
+solution_locator = "00:00-02:51"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q04"
+label = "Fill-in Question 4"
+source_pages = [4]
+topic = "acute triangles with consecutive integer sides"
+answer = "33"
+solution_asset = "youtube:W-NGUVPlcOc"
+solution_url = "https://www.youtube.com/watch?v=W-NGUVPlcOc"
+solution_locator = "02:52-04:27"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q05"
+label = "Fill-in Question 5"
+source_pages = [5]
+topic = "sparse polynomial expansion and binary exponents"
+answer = "210"
+solution_asset = "youtube:Hypdc2fqjfM"
+solution_url = "https://www.youtube.com/watch?v=Hypdc2fqjfM"
+solution_locator = "00:00-01:29"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q06"
+label = "Fill-in Question 6"
+source_pages = [6]
+topic = "arithmetic and geometric progressions"
+answer = "51"
+solution_asset = "youtube:Hypdc2fqjfM"
+solution_url = "https://www.youtube.com/watch?v=Hypdc2fqjfM"
+solution_locator = "01:30-03:35"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q07"
+label = "Fill-in Question 7"
+source_pages = [7]
+topic = "quadratic fixed points and interval invariance"
+answer = "(3, 4)"
+solution_asset = "youtube:xRrA7_xEStU"
+solution_url = "https://www.youtube.com/watch?v=xRrA7_xEStU"
+solution_locator = "00:00-03:31"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q08"
+label = "Fill-in Question 8"
+source_pages = [8]
+topic = "coordinate geometry and area bisection"
+answer = "169"
+solution_asset = "youtube:xRrA7_xEStU"
+solution_url = "https://www.youtube.com/watch?v=xRrA7_xEStU"
+solution_locator = "03:33-06:17"
+eligible = true
+production_state = "planned"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q09"
+label = "Fill-in Question 9"
+source_pages = [9]
+topic = "consecutive integer sums and exhaustive bounds"
+answer = "10"
+solution_asset = "youtube:X6Cabjm94eY"
+solution_url = "https://www.youtube.com/watch?v=X6Cabjm94eY"
+solution_locator = "00:00-01:25"
+eligible = true
+production_state = "planned"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q10"
+label = "Fill-in Question 10"
+source_pages = [10]
+topic = "reflection and shortest paths"
+answer = "64/5"
+solution_asset = "youtube:X6Cabjm94eY"
+solution_url = "https://www.youtube.com/watch?v=X6Cabjm94eY"
+solution_locator = "01:26-05:50"
+eligible = true
+production_state = "planned"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q11"
+label = "Fill-in Question 11"
+source_pages = [11]
+topic = "digit indexing in concatenated square numbers"
+answer = "(1, 3)"
+solution_asset = "youtube:FxSdkChC9Z8"
+solution_url = "https://www.youtube.com/watch?v=FxSdkChC9Z8"
+solution_locator = "00:00-02:59"
+eligible = true
+production_state = "planned"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q12"
+label = "Fill-in Question 12"
+source_pages = [12]
+topic = "centroids and constrained quadratic optimization"
+answer = "(51, 33)"
+solution_asset = "youtube:FxSdkChC9Z8"
+solution_url = "https://www.youtube.com/watch?v=FxSdkChC9Z8"
+solution_locator = "03:00-04:11"
+eligible = true
+production_state = "planned"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.q13"
+label = "Fill-in Question 13"
+source_pages = [13]
+topic = "cubic bounds and integer factorization"
+answer = "(17, 18)"
+solution_asset = "youtube:zUVNQX92b64"
+solution_url = "https://www.youtube.com/watch?v=zUVNQX92b64"
+solution_locator = "00:00-01:13"
+eligible = true
+production_state = "planned"
+
+[[problems]]
+id = "carlo.tcfs_113_math_gifted.p2q01"
+label = "Proof Question 1"
+source_pages = [14, 15, 16]
+topic = "iterated angle constructions and an invariant product"
+answer = "36 degrees; 180/7 degrees; mn = 180"
+solution_asset = "youtube:rw7Z1rw7gYA"
+solution_url = "https://www.youtube.com/watch?v=rw7Z1rw7gYA"
+solution_locator = "00:00-04:34"
+eligible = true
+production_state = "planned"

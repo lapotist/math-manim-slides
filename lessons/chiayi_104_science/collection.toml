@@ -1,0 +1,215 @@
+schema_version = 1
+id = "carlo.chiayi_104_science"
+slug = "chiayi_104_science"
+title = "104 Academic-Year Chiayi Senior High Science Program Screening"
+locale = "zh-TW"
+source_asset = "104嘉中科學班初試解析.pdf"
+source_asset_id = "drive:1ePTUjWYnFX91XMFZlouPxcOpqf6J1qef"
+source_asset_sha256 = "a4e459b110d35ecd06119342bc665489f921961dfde10146a71343a7c361efaf"
+source_page_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E5%98%89%E4%B8%AD%E7%A7%91%E5%AD%B8%E7%8F%AD/104%E5%98%89%E4%B8%AD"
+source_page_sha256 = "fac6fde5925a99f3579ff2316eef45a6aca57c197c7784c7a1181cd89cb1180e"
+source_creator = "Carlo / 正哥愛數學"
+source_origin = "frozen_site_inventory"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF has one problem per page and blank solution areas. Each verified-title video maps to one numbered question; worked-content review remains pending."
+expected_problem_count = 20
+
+[[problems]]
+id = "carlo.chiayi_104_science.q01"
+label = "Fill-in Question 1"
+source_pages = [1]
+solution_asset = "youtube:W_kWhz-mRZk"
+solution_url = "https://www.youtube.com/watch?v=W_kWhz-mRZk"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q02"
+label = "Fill-in Question 2"
+source_pages = [2]
+solution_asset = "youtube:s1yOPLO3YaY"
+solution_url = "https://www.youtube.com/watch?v=s1yOPLO3YaY"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q03"
+label = "Fill-in Question 3"
+source_pages = [3]
+solution_asset = "youtube:zot-342e0MA"
+solution_url = "https://www.youtube.com/watch?v=zot-342e0MA"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q04"
+label = "Fill-in Question 4"
+source_pages = [4]
+solution_asset = "youtube:ECRtvRq9Kq8"
+solution_url = "https://www.youtube.com/watch?v=ECRtvRq9Kq8"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q05"
+label = "Fill-in Question 5"
+source_pages = [5]
+solution_asset = "youtube:y_oaSlysuNE"
+solution_url = "https://www.youtube.com/watch?v=y_oaSlysuNE"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q06"
+label = "Fill-in Question 6"
+source_pages = [6]
+solution_asset = "youtube:pRzUo1icNrc"
+solution_url = "https://www.youtube.com/watch?v=pRzUo1icNrc"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q07"
+label = "Fill-in Question 7"
+source_pages = [7]
+solution_asset = "youtube:FfW3DsDlxnw"
+solution_url = "https://www.youtube.com/watch?v=FfW3DsDlxnw"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q08"
+label = "Fill-in Question 8"
+source_pages = [8]
+solution_asset = "youtube:MXeg2E09itU"
+solution_url = "https://www.youtube.com/watch?v=MXeg2E09itU"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q09"
+label = "Fill-in Question 9"
+source_pages = [9]
+solution_asset = "youtube:o941qR1MKns"
+solution_url = "https://www.youtube.com/watch?v=o941qR1MKns"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q10"
+label = "Fill-in Question 10"
+source_pages = [10]
+solution_asset = "youtube:b6a-FaCgcw4"
+solution_url = "https://www.youtube.com/watch?v=b6a-FaCgcw4"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q11"
+label = "Fill-in Question 11"
+source_pages = [11]
+solution_asset = "youtube:DRJjJQASXds"
+solution_url = "https://www.youtube.com/watch?v=DRJjJQASXds"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q12"
+label = "Fill-in Question 12"
+source_pages = [12]
+solution_asset = "youtube:uwcROoBq2Fw"
+solution_url = "https://www.youtube.com/watch?v=uwcROoBq2Fw"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q13"
+label = "Fill-in Question 13"
+source_pages = [13]
+solution_asset = "youtube:ZPUmIli7GyY"
+solution_url = "https://www.youtube.com/watch?v=ZPUmIli7GyY"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q14"
+label = "Fill-in Question 14"
+source_pages = [14]
+solution_asset = "youtube:HcwPaLdkcpE"
+solution_url = "https://www.youtube.com/watch?v=HcwPaLdkcpE"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q15"
+label = "Fill-in Question 15"
+source_pages = [15]
+solution_asset = "youtube:OpW0cHAHIW8"
+solution_url = "https://www.youtube.com/watch?v=OpW0cHAHIW8"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q16"
+label = "Fill-in Question 16"
+source_pages = [16]
+solution_asset = "youtube:5PVm9Q6QUhs"
+solution_url = "https://www.youtube.com/watch?v=5PVm9Q6QUhs"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q17"
+label = "Fill-in Question 17"
+source_pages = [17]
+solution_asset = "youtube:WcizHiRP6F0"
+solution_url = "https://www.youtube.com/watch?v=WcizHiRP6F0"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q18"
+label = "Fill-in Question 18"
+source_pages = [18]
+solution_asset = "youtube:vmIV_qEJA4w"
+solution_url = "https://www.youtube.com/watch?v=vmIV_qEJA4w"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q19"
+label = "Fill-in Question 19"
+source_pages = [19]
+solution_asset = "youtube:Zk6h48VT6K4"
+solution_url = "https://www.youtube.com/watch?v=Zk6h48VT6K4"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"
+
+[[problems]]
+id = "carlo.chiayi_104_science.q20"
+label = "Fill-in Question 20"
+source_pages = [20]
+solution_asset = "youtube:CZOGxLjo-JI"
+solution_url = "https://www.youtube.com/watch?v=CZOGxLjo-JI"
+eligible = false
+eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
+production_state = "discovered"

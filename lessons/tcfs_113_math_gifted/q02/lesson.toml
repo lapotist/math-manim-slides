@@ -1,0 +1,66 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q02"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Balancing odd and even positions in a six-bit number"
+locale = "zh-TW"
+question = 2
+source_pages = [2]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 2, PDF page 2; public solution video 00:51-02:29"
+solution_asset_id = "youtube:FSGAuRvRFU0"
+solution_url = "https://www.youtube.com/watch?v=FSGAuRvRFU0"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "Frame inspection refines the Q2 solution span: the PDF view changes from Q1 to Q2 between 00:50.5 and 00:51.0, and Q2 continues through the 02:28.55 video endpoint. The source lists representative cases from k=2 down to k=0 and records 1+6+3=10. This lesson reverses the case order to k=0,1,2, explicitly owns every choice before introducing binomial notation, and withholds the total until the final beat."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q02/deck.py"
+scene_class = "CarloTcfs113MathQ02"
+storyboard = "lessons/tcfs_113_math_gifted/q02/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q02/presenter.zh-TW.md"
+estimated_minutes = 7
+expected_answer = "10"
+independent_check = "Let k=a3+a5, so k is 0, 1, or 2. The fixed a1=1 makes the odd-position sum 1+k, hence exactly 1+k of the three even positions must equal 1. The number in case k is C(2,k)C(3,1+k): 3, 6, and 1 respectively, for a total of 10. Exhaustive enumeration of the 32 length-six binary words beginning with 1 yields exactly the same ten words and case counts."
+tags = ["combinatorics", "binary-string", "casework", "binomial-coefficient", "invariant"]
+
+[[beats]]
+id = "meet_six_slots"
+loop = false
+
+[[beats]]
+id = "separate_teams"
+loop = false
+
+[[beats]]
+id = "name_balance_cases"
+loop = false
+
+[[beats]]
+id = "own_case_zero"
+loop = false
+
+[[beats]]
+id = "open_case_one"
+loop = false
+
+[[beats]]
+id = "own_case_one"
+loop = false
+
+[[beats]]
+id = "own_case_two"
+loop = false
+
+[[beats]]
+id = "compare_three_cases"
+loop = false
+
+[[beats]]
+id = "compress_with_binomials"
+loop = false
+
+[[beats]]
+id = "reveal_total"
+loop = false

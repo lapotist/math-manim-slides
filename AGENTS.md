@@ -98,6 +98,27 @@ evidence to begin a finished deck. When the public source does not expose the
 reasoning, keep the item `blocked` rather than reverse-engineering a solution
 and attributing it to Carlo.
 
+Treat filenames and page headings such as `解析` as labels, not content
+evidence. Inspect the actual solution region: a PDF with blank worked areas can
+locate the problem but cannot verify an argument. Conversely, one public video
+may solve several identifiable problems. In that case create one lesson record
+and one exact timestamp or chapter locator per problem while retaining a
+single provider-asset record for the shared video.
+
+Pin shared-video boundaries by inspecting frames on both sides of each problem
+change. A coarse contact sheet is useful for discovery, but it is not an exact
+locator: record the last settled source frame for one problem and the first
+settled frame for the next, and describe any transition ambiguity instead of
+inventing false precision. Store the reconciled locator in both collection and
+lesson metadata.
+
+Make the independent check genuinely independent of the source presentation
+and scene code. Prefer exhaustive enumeration for finite cases, exact rational
+coordinates for geometry, substitution for claimed roots, or symbolic bounds
+that cover the full domain. A second copy of the same handwritten derivation is
+not an independent check. Write the check before animation work when practical;
+if it fails, stop the storyboard until the discrepancy is resolved.
+
 ## Repository Contract
 
 Use a stable collection layout as the project grows:
@@ -134,7 +155,9 @@ For a site-derived lesson, `source_asset_id`, `source_asset_sha256`,
 `solution_asset_id`, and `solution_url` must reconcile against
 `catalog/source_assets.json`: the solution must be confirmed public, both
 assets must name the canonical source page, and the downloaded PDF checksum
-must match. A working URL by itself is not sufficient provenance.
+must match. Its collection must also pin `source_page_sha256` to the frozen
+record in `catalog/site_pages.json`. A working URL by itself is not sufficient
+provenance.
 
 Generated indexes must come from this metadata. Hand-edited README totals are
 not authoritative.
@@ -193,6 +216,9 @@ and its lesson metadata must report the same production state.
 - A handoff must report the exact render command, segment count, loop result,
   mathematical check, visual inspection performed, and any unresolved caveat.
   A bare claim that a deck is complete is not an evidence gate.
+- Lesson workers stop at `draft_rendered`. Only the integrating worker may set
+  `visual_verified`, after independently opening the render, reconciling the
+  collection state, and freezing a human-reviewed QA attestation.
 - Production state and rights state are independent. Rendering a lesson may
   advance its production state; it must never advance `pending_cc0_scope` or
   any other permission state without a documented rights decision.
@@ -233,6 +259,10 @@ not instructions to imitate another creator's visual style.
   pictured. Algebra should name and compress an idea, not introduce it cold.
 - Design the consolidation beat around an earned realization: the final result
   should resolve the opening question and make the route memorable.
+- Preserve uncertainty long enough for the audience to reason. Do not place the
+  final answer in an opening title, prefill it in the first diagram, or reveal
+  it during a transition. Keep a settled pre-answer frame, then make the answer
+  reveal its own deliberate event.
 - Develop an original voice, pacing, composition, and color system. Reuse
   explanatory principles, never channel-specific artwork or mannerisms.
 
@@ -389,6 +419,10 @@ half has visibly landed.
 - Inspect the complete contact sheet at presentation scale, then open every
   dense algebra, table, or multi-label frame at full 1920x1080 resolution.
   Endpoint thumbnails can hide collisions that remain obvious to an audience.
+- In addition to endpoints, generate a fixed-cadence sweep of the complete
+  movie (one frame per second is a useful default) and inspect the resulting
+  dense sheet. Then sample more tightly around any transform that crosses a
+  label, changes semantic text, or converges several moving objects.
 - Sample intermediate frames for transformations whose source and target move
   across the diagram. Settled-frame QA cannot detect a label crossing another
   object halfway through an otherwise correct animation.

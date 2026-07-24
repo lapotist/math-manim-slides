@@ -1,0 +1,66 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q05"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Finding one coefficient through binary exponent choices"
+locale = "zh-TW"
+question = 5
+source_pages = [5]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 5, PDF page 5; public solution video 00:00-01:29"
+solution_asset_id = "youtube:Hypdc2fqjfM"
+solution_url = "https://www.youtube.com/watch?v=Hypdc2fqjfM"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "Frame inspection shows Q5 through 01:29.2; the page turn begins near 01:29.3 and Q6 is visible by 01:29.5. The source directly writes 113=64+32+16+1 and multiplies 7*6*5*1. It does not explicitly justify why no other factor selection reaches exponent 113. This lesson adds a small choose/skip model and a binary-place uniqueness argument before using the source multiplication."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q05/deck.py"
+scene_class = "CarloTcfs113MathQ05"
+storyboard = "lessons/tcfs_113_math_gifted/q05/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q05/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "210"
+independent_check = "Each factor contributes exponent 0 or one of 1,2,4,8,16,32,64. Since binary subset sums are unique, exponent 113 has the sole decomposition 64+32+16+1, selecting factors 7,6,5,1. Their scalar product is 7*6*5*1=210. A direct coefficient-array expansion of all seven sparse factors has degree 127 and coefficient[113]=210; exhaustive enumeration of all 128 subsets finds exactly the index set {1,5,6,7}."
+tags = ["polynomial", "coefficient", "binary", "subset-sum", "sparse-expansion"]
+
+[[beats]]
+id = "meet_product"
+loop = false
+
+[[beats]]
+id = "make_choice_tiles"
+loop = false
+
+[[beats]]
+id = "try_target_thirteen"
+loop = false
+
+[[beats]]
+id = "complete_small_subset"
+loop = false
+
+[[beats]]
+id = "start_target_113"
+loop = false
+
+[[beats]]
+id = "complete_target_113"
+loop = false
+
+[[beats]]
+id = "prove_largest_place"
+loop = false
+
+[[beats]]
+id = "force_binary_digits"
+loop = false
+
+[[beats]]
+id = "collect_multipliers"
+loop = false
+
+[[beats]]
+id = "reveal_coefficient"
+loop = false

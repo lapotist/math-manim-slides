@@ -104,7 +104,17 @@ def load_source_asset_index() -> dict[str, dict[str, Any]]:
     return {entry["id"]: entry for entry in entries}
 
 
+def load_site_page_index() -> dict[str, dict[str, Any]]:
+    path = ROOT / "catalog" / "site_pages.json"
+    if not path.is_file():
+        return {}
+    inventory = load_json(path)
+    return {page["url"]: page for page in inventory.get("pages", [])}
+
+
 def validate_collections(
+    source_assets: dict[str, dict[str, Any]],
+    site_pages: dict[str, dict[str, Any]],
     errors: list[str],
 ) -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
     collections: dict[str, Any] = {}
@@ -121,6 +131,43 @@ def validate_collections(
             errors,
         )
         collections[collection_id] = data
+        source_page_url = data.get("source_page_url")
+        if data.get("source_origin") == "frozen_site_inventory":
+            page_record = site_pages.get(source_page_url)
+            check(
+                page_record is not None,
+                f"{collection_id}: source page is absent from site inventory",
+                errors,
+            )
+            check(
+                bool(data.get("source_page_sha256")),
+                f"{collection_id}: missing frozen source page checksum",
+                errors,
+            )
+            if page_record and data.get("source_page_sha256"):
+                check(
+                    data["source_page_sha256"] == page_record.get("page_sha256"),
+                    f"{collection_id}: source page checksum differs from inventory",
+                    errors,
+                )
+            source_asset_id = data.get("source_asset_id")
+            source_record = source_assets.get(source_asset_id)
+            check(
+                source_record is not None,
+                f"{collection_id}: source asset is absent from source registry",
+                errors,
+            )
+            if source_record:
+                check(
+                    data.get("source_asset_sha256") == source_record.get("sha256"),
+                    f"{collection_id}: source checksum differs from source registry",
+                    errors,
+                )
+                check(
+                    source_page_url in source_record.get("source_pages", []),
+                    f"{collection_id}: source asset is not linked from source page",
+                    errors,
+                )
         problems = data.get("problems", [])
         check(
             len(problems) == data.get("expected_problem_count"),
@@ -143,6 +190,12 @@ def validate_collections(
                 errors,
             )
             production_state = problem.get("production_state")
+            if problem.get("eligible") is False and production_state != "blocked":
+                check(
+                    bool(problem.get("eligibility_reason")),
+                    f"{problem_id}: ineligible review item lacks eligibility_reason",
+                    errors,
+                )
             if production_state in ANSWER_REQUIRED_STATES:
                 check(
                     bool(problem.get("answer")),
@@ -155,6 +208,34 @@ def validate_collections(
                     f"{problem_id}: blocked without blocker_reason",
                     errors,
                 )
+            solution_asset_id = problem.get("solution_asset")
+            if (
+                data.get("source_origin") == "frozen_site_inventory"
+                and solution_asset_id
+            ):
+                solution_record = source_assets.get(solution_asset_id)
+                check(
+                    solution_record is not None,
+                    f"{problem_id}: solution asset is absent from source registry",
+                    errors,
+                )
+                if solution_record:
+                    check(
+                        solution_record.get("watch_url")
+                        == problem.get("solution_url"),
+                        f"{problem_id}: solution URL differs from source registry",
+                        errors,
+                    )
+                    check(
+                        solution_record.get("access_status") == "public_stream",
+                        f"{problem_id}: mapped solution is not confirmed public",
+                        errors,
+                    )
+                    check(
+                        source_page_url in solution_record.get("source_pages", []),
+                        f"{problem_id}: solution is not linked from source page",
+                        errors,
+                    )
     check(bool(collections), "no collection metadata found", errors)
     return collections, problems_by_id
 
@@ -587,8 +668,9 @@ def validate_source_registry(errors: list[str]) -> None:
 
 def main() -> int:
     errors: list[str] = []
-    _, problems_by_id = validate_collections(errors)
     source_assets = load_source_asset_index()
+    site_pages = load_site_page_index()
+    _, problems_by_id = validate_collections(source_assets, site_pages, errors)
     lesson_count = validate_lessons(problems_by_id, source_assets, errors)
     validate_source_registry(errors)
     if errors:

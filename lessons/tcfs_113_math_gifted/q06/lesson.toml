@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q06"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Reordering three numbers into arithmetic and geometric progressions"
+locale = "zh-TW"
+question = 6
+source_pages = [6]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_url = "https://drive.google.com/file/d/1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M/preview"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 6, PDF page 6"
+solution_asset_id = "youtube:Hypdc2fqjfM"
+solution_url = "https://www.youtube.com/watch?v=Hypdc2fqjfM"
+source_video_locator = "01:30-03:35"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "Frame inspection places the Q5-to-Q6 transition near 01:29, with Q6 settled by 01:30 and continuing through the 03:35 endpoint. The source uses root sum/product signs, considers progression orderings, obtains ab=36 from the geometric middle, and reports roots 3 and 12 before p+q=51. This lesson independently delays coefficient comparison until the root pair is settled: it proves root positivity directly from the polynomial on x<=0, exhausts all three geometric-middle choices, derives the arithmetic gap relation, and finally audits all six numerical permutations. All visuals, motion, wording, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q06/deck.py"
+scene_class = "CarloTcfs113MathQ06"
+storyboard = "lessons/tcfs_113_math_gifted/q06/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q06/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "51"
+independent_check = "For x<=0 and positive p,q, every term of x^2-px+q is nonnegative and q is strictly positive, so the two real roots a,b are positive. In a three-term GP the middle square equals the product of the ends. A positive root cannot be the middle because the end product would be (-6) times the other positive root, which is negative. Therefore -6 is the middle and ab=(-6)^2=36. In an AP, -6 is the smallest term; after naming the smaller root a and larger root b, the only ascending order is -6,a,b, so a+6=b-a and b=2a+6. Combining with ab=36 gives a(2a+6)=36, or (a-3)(a+6)=0. Positivity leaves a=3 and b=12. The six permutations have exactly two AP orders, (-6,3,12) and its reverse, and exactly two GP orders, (3,-6,12) and its reverse; the remaining two satisfy neither. Finally p=a+b=15 and q=ab=36, hence p+q=51."
+tags = ["algebra", "quadratic-roots", "arithmetic-progression", "geometric-progression", "vieta", "case-analysis", "permutations"]
+
+[[beats]]
+id = "meet_three_cards"
+loop = false
+
+[[beats]]
+id = "force_positive_roots"
+loop = false
+
+[[beats]]
+id = "test_gp_middle"
+loop = false
+
+[[beats]]
+id = "lock_gp_product"
+loop = false
+
+[[beats]]
+id = "reorder_for_ap"
+loop = false
+
+[[beats]]
+id = "earn_ap_relation"
+loop = false
+
+[[beats]]
+id = "solve_root_pair"
+loop = false
+
+[[beats]]
+id = "verify_both_progressions"
+loop = false
+
+[[beats]]
+id = "audit_all_orderings"
+loop = false
+
+[[beats]]
+id = "recover_p_q"
+loop = false

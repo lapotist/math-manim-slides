@@ -1,0 +1,64 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q01"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Packing eleven exponent units into positive ordered triples"
+locale = "zh-TW"
+question = 1
+source_pages = [1]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_url = "https://drive.google.com/file/d/1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M/preview"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 1, PDF page 1"
+solution_asset_id = "youtube:FSGAuRvRFU0"
+solution_url = "https://www.youtube.com/watch?v=FSGAuRvRFU0"
+source_video_locator = "00:00-00:53"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The public solution segment identifies equal powers of 2 and counts positive cases. This lesson independently reconstructs the count as an eleven-unit exponent budget, accumulates lattice points by z-slice, and explicitly rejects the z=3 boundary before revealing the total. All visuals and wording are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q01/deck.py"
+scene_class = "CarloTcfs113MathQ01"
+storyboard = "lessons/tcfs_113_math_gifted/q01/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q01/presenter.zh-TW.md"
+estimated_minutes = 7
+expected_answer = "5"
+independent_check = "Since 4=2^2, 8=2^3, and 2048=2^11, equality is equivalent to x+2y+3z=11. For z=1, positive pairs solve x+2y=8 and are (6,1), (4,2), (2,3), giving 3. For z=2, positive pairs solve x+2y=5 and are (3,1), (1,2), giving 2. At z=3 the positive minimum is x+2y+3z=1+2+9=12>11, so no z>=3 is possible. Total: 3+2=5 ordered triples."
+tags = ["number-theory", "exponents", "linear-diophantine-equation", "positive-integers", "lattice-points", "case-splitting"]
+
+[[beats]]
+id = "meet_power_puzzle"
+loop = false
+
+[[beats]]
+id = "make_bases_equal"
+loop = false
+
+[[beats]]
+id = "build_exponent_budget"
+loop = false
+
+[[beats]]
+id = "explore_z_one"
+loop = false
+
+[[beats]]
+id = "guard_positive_endpoint"
+loop = false
+
+[[beats]]
+id = "explore_z_two"
+loop = false
+
+[[beats]]
+id = "test_z_three_boundary"
+loop = false
+
+[[beats]]
+id = "combine_slice_counts"
+loop = false
+
+[[beats]]
+id = "return_to_original"
+loop = false

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q06",
+  "scene_class": "CarloTcfs113MathQ06",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "For x<=0 and positive p,q, every term of x^2-px+q is nonnegative and q is strictly positive, so the two real roots a,b are positive. In a three-term GP the middle square equals the product of the ends. A positive root cannot be the middle because the end product would be (-6) times the other positive root, which is negative. Therefore -6 is the middle and ab=(-6)^2=36. In an AP, -6 is the smallest term; after naming the smaller root a and larger root b, the only ascending order is -6,a,b, so a+6=b-a and b=2a+6. Combining with ab=36 gives a(2a+6)=36, or (a-3)(a+6)=0. Positivity leaves a=3 and b=12. The six permutations have exactly two AP orders, (-6,3,12) and its reverse, and exactly two GP orders, (3,-6,12) and its reverse; the remaining two satisfy neither. Finally p=a+b=15 and q=ab=36, hence p+q=51."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_three_cards",
+        "loop": false
+      },
+      {
+        "id": "force_positive_roots",
+        "loop": false
+      },
+      {
+        "id": "test_gp_middle",
+        "loop": false
+      },
+      {
+        "id": "lock_gp_product",
+        "loop": false
+      },
+      {
+        "id": "reorder_for_ap",
+        "loop": false
+      },
+      {
+        "id": "earn_ap_relation",
+        "loop": false
+      },
+      {
+        "id": "solve_root_pair",
+        "loop": false
+      },
+      {
+        "id": "verify_both_progressions",
+        "loop": false
+      },
+      {
+        "id": "audit_all_orderings",
+        "loop": false
+      },
+      {
+        "id": "recover_p_q",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q06/deck.py",
+      "sha256": "e631948979e2ab81e5679e81b42af69af20da88df23386c9dd32d8fb4b7e471f"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q06/presenter.zh-TW.md",
+      "sha256": "cf42901be5e7013d386d5f56803d0177a3b882ade2c05a56385b0e3ef00e74fe"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q06/storyboard.md",
+      "sha256": "ba99d317cb983041391f7eb287d9e1b6125117bfd6b515b0d5a1303fedfac8f5"
+    }
+  }
+}

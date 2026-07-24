@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q05",
+  "scene_class": "CarloTcfs113MathQ05",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Each factor contributes exponent 0 or one of 1,2,4,8,16,32,64. Since binary subset sums are unique, exponent 113 has the sole decomposition 64+32+16+1, selecting factors 7,6,5,1. Their scalar product is 7*6*5*1=210. A direct coefficient-array expansion of all seven sparse factors has degree 127 and coefficient[113]=210; exhaustive enumeration of all 128 subsets finds exactly the index set {1,5,6,7}."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_product",
+        "loop": false
+      },
+      {
+        "id": "make_choice_tiles",
+        "loop": false
+      },
+      {
+        "id": "try_target_thirteen",
+        "loop": false
+      },
+      {
+        "id": "complete_small_subset",
+        "loop": false
+      },
+      {
+        "id": "start_target_113",
+        "loop": false
+      },
+      {
+        "id": "complete_target_113",
+        "loop": false
+      },
+      {
+        "id": "prove_largest_place",
+        "loop": false
+      },
+      {
+        "id": "force_binary_digits",
+        "loop": false
+      },
+      {
+        "id": "collect_multipliers",
+        "loop": false
+      },
+      {
+        "id": "reveal_coefficient",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q05/deck.py",
+      "sha256": "eff756dafc3ff982a119914615eb1da9d0cd5a5448ecbe5216f58a376e83e73e"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q05/presenter.zh-TW.md",
+      "sha256": "1cf340007dc855fed597b3333b55a115cdf30d0b314fb7e211ec4749e553eedf"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q05/storyboard.md",
+      "sha256": "9dddd703e8803f644d07711239e402944044f57745a515c4d1e29f0a8bb12a9e"
+    }
+  }
+}

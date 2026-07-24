@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q01",
+  "scene_class": "CarloTcfs113MathQ01",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Since 4=2^2, 8=2^3, and 2048=2^11, equality is equivalent to x+2y+3z=11. For z=1, positive pairs solve x+2y=8 and are (6,1), (4,2), (2,3), giving 3. For z=2, positive pairs solve x+2y=5 and are (3,1), (1,2), giving 2. At z=3 the positive minimum is x+2y+3z=1+2+9=12>11, so no z>=3 is possible. Total: 3+2=5 ordered triples."
+  },
+  "render": {
+    "segment_count": 9,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_power_puzzle",
+        "loop": false
+      },
+      {
+        "id": "make_bases_equal",
+        "loop": false
+      },
+      {
+        "id": "build_exponent_budget",
+        "loop": false
+      },
+      {
+        "id": "explore_z_one",
+        "loop": false
+      },
+      {
+        "id": "guard_positive_endpoint",
+        "loop": false
+      },
+      {
+        "id": "explore_z_two",
+        "loop": false
+      },
+      {
+        "id": "test_z_three_boundary",
+        "loop": false
+      },
+      {
+        "id": "combine_slice_counts",
+        "loop": false
+      },
+      {
+        "id": "return_to_original",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q01/deck.py",
+      "sha256": "ccd135609641b9224cb160b6e67200d8d931c2c13e9a51f8c44471adad142cf2"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q01/presenter.zh-TW.md",
+      "sha256": "9d17a6b82c0e9fe4e1886abc795ff801a0f23fd58ecdb240292bb54e61cd9ec7"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q01/storyboard.md",
+      "sha256": "82356f3a80417943655b5bf95c9a5573c01ee4184c1242cf61b814fd423d2e44"
+    }
+  }
+}

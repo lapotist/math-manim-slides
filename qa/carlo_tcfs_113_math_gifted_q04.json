@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q04",
+  "scene_class": "CarloTcfs113MathQ04",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Write the consecutive positive-integer side lengths as n-1, n, n+1. Triangle existence requires (n-1)+n>n+1, hence n>2 and integer n>=3. Since n+1 is the longest side, the triangle is acute exactly when (n-1)^2+n^2>(n+1)^2. This simplifies to n(n-4)>0; positivity excludes n<0, so integer n>=5. The perimeter is 3n, and 3n<=113 gives n<=37. Therefore n is any integer from 5 through 37 inclusive, a total of 37-5+1=33. Direct enumeration gives the same range and count."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_consecutive_family",
+        "loop": false
+      },
+      {
+        "id": "shrink_to_existence_edge",
+        "loop": false
+      },
+      {
+        "id": "earn_triangle_range",
+        "loop": false
+      },
+      {
+        "id": "build_square_test",
+        "loop": false
+      },
+      {
+        "id": "test_right_boundary",
+        "loop": false
+      },
+      {
+        "id": "step_into_acute",
+        "loop": false
+      },
+      {
+        "id": "generalize_acute_range",
+        "loop": false
+      },
+      {
+        "id": "add_perimeter_ceiling",
+        "loop": false
+      },
+      {
+        "id": "intersect_integer_ranges",
+        "loop": false
+      },
+      {
+        "id": "count_surviving_values",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q04/deck.py",
+      "sha256": "d868e23728fcfc42f9355c03231c9dd576603962b56aa5f95e1057e70f541fec"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q04/presenter.zh-TW.md",
+      "sha256": "c09568dfa111c451d0c41dd7bd52617ee6842f99d1b75cb4d83e890e53d1672d"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q04/storyboard.md",
+      "sha256": "8e701cdfc38d131f6bd8bad5a74f267b57542521af9a9bc02e3a0233ca7d7dca"
+    }
+  }
+}

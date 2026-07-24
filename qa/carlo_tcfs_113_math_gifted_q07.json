@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q07",
+  "scene_class": "CarloTcfs113MathQ07",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Complete the square: f(x)=(x-3)^2+3, so f(x)>=3. If a<3 and b<3, f decreases on [a,b], hence its minimum is f(b)>3>a, impossible. If a<3<=b, the interval contains x=3, hence its minimum is 3>a, also impossible. Thus a>=3. For 3<=x<y, f(y)-f(x)=(y-x)(x+y-6)>0, so f is increasing on [a,b]. Therefore the required minimum a and maximum b are f(a) and f(b), giving f(a)=a and f(b)=b. Fixed points satisfy x^2-7x+12=(x-3)(x-4)=0, so the only candidates are 3 and 4. Since a<b, (a,b)=(3,4). Finally, for 3<=x<=4, 0<=(x-3)^2<=1, so 3<=f(x)<=4; the actual range is [3,4]."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "reveal_vertex_form",
+        "loop": false
+      },
+      {
+        "id": "test_left_interval",
+        "loop": false
+      },
+      {
+        "id": "test_straddling_interval",
+        "loop": false
+      },
+      {
+        "id": "settle_right_branch",
+        "loop": false
+      },
+      {
+        "id": "connect_endpoint_extrema",
+        "loop": false
+      },
+      {
+        "id": "earn_fixed_endpoint_equations",
+        "loop": false
+      },
+      {
+        "id": "locate_fixed_points",
+        "loop": false
+      },
+      {
+        "id": "solve_fixed_points",
+        "loop": false
+      },
+      {
+        "id": "assign_ordered_endpoints",
+        "loop": false
+      },
+      {
+        "id": "verify_preserved_interval",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q07/deck.py",
+      "sha256": "7030a55c46a34efa19bd3ea3745bfd2c194e64bd41975d79a1b7352c518ff12f"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q07/presenter.zh-TW.md",
+      "sha256": "3607cc0fca2aa0eb70bebaf09f179cf87cf1c6ab9149bc27e1a6818e551bbea3"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q07/storyboard.md",
+      "sha256": "15eb8f62894b57cdc334856800135f8bab6083a63698b7d03338c37fd58a428d"
+    }
+  }
+}

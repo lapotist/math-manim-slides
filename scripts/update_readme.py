@@ -116,7 +116,14 @@ def render_lesson_table() -> str:
                 links.append(f"[source page]({collection['source_page_url']})")
             if problem.get("solution_url"):
                 links.append(f"[solution]({problem['solution_url']})")
-            topic = problem.get("topic", "solution access blocked")
+            if problem.get("topic"):
+                topic = problem["topic"]
+            elif problem["production_state"] == "blocked":
+                topic = "solution access blocked"
+            elif problem["production_state"] == "discovered":
+                topic = "problem review pending"
+            else:
+                topic = "topic review pending"
             rows.append(
                 "| "
                 f"{collection_label} · {problem['label']} | {topic} | "

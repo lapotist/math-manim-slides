@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q04"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Acute triangles with consecutive integer side lengths"
+locale = "zh-TW"
+question = 4
+source_pages = [4]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_url = "https://drive.google.com/file/d/1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M/preview"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 4, PDF page 4; public solution video 02:52-04:27"
+solution_asset_id = "youtube:W-NGUVPlcOc"
+solution_url = "https://www.youtube.com/watch?v=W-NGUVPlcOc"
+source_video_locator = "02:52-04:27"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "Frame-by-frame inspection places the Q3-to-Q4 page transition between about 02:51.3 and 02:51.6; the Q4 page is settled by 02:52 and remains through the 04:27 endpoint. The source sets the sides to x-1, x, x+1, derives x>2 from triangle existence, x<=37 2/3 from the perimeter, and x<0 or x>4 from the acute condition before rejecting the negative branch and reporting 5<=x<=37. This lesson preserves those claims but gives them an original visual order: a collapsing triangle first, square-area boundary tests at n=4 and n=5, then a visible intersection with the perimeter range."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q04/deck.py"
+scene_class = "CarloTcfs113MathQ04"
+storyboard = "lessons/tcfs_113_math_gifted/q04/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q04/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "33"
+independent_check = "Write the consecutive positive-integer side lengths as n-1, n, n+1. Triangle existence requires (n-1)+n>n+1, hence n>2 and integer n>=3. Since n+1 is the longest side, the triangle is acute exactly when (n-1)^2+n^2>(n+1)^2. This simplifies to n(n-4)>0; positivity excludes n<0, so integer n>=5. The perimeter is 3n, and 3n<=113 gives n<=37. Therefore n is any integer from 5 through 37 inclusive, a total of 37-5+1=33. Direct enumeration gives the same range and count."
+tags = ["geometry", "triangle-inequality", "acute-triangle", "pythagorean-inequality", "integer-range", "counting"]
+
+[[beats]]
+id = "meet_consecutive_family"
+loop = false
+
+[[beats]]
+id = "shrink_to_existence_edge"
+loop = false
+
+[[beats]]
+id = "earn_triangle_range"
+loop = false
+
+[[beats]]
+id = "build_square_test"
+loop = false
+
+[[beats]]
+id = "test_right_boundary"
+loop = false
+
+[[beats]]
+id = "step_into_acute"
+loop = false
+
+[[beats]]
+id = "generalize_acute_range"
+loop = false
+
+[[beats]]
+id = "add_perimeter_ceiling"
+loop = false
+
+[[beats]]
+id = "intersect_integer_ranges"
+loop = false
+
+[[beats]]
+id = "count_surviving_values"
+loop = false

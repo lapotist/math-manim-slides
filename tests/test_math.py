@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 import unittest
 from fractions import Fraction
+from itertools import combinations, product
 
 
 class Tcfs115MathChecks(unittest.TestCase):
@@ -142,6 +143,235 @@ class Tcfs115MathChecks(unittest.TestCase):
         ad_squared = ab * ac - bd * dc
         self.assertEqual(ad_squared, Fraction(100, 9))
         self.assertAlmostEqual(math.sqrt(ad_squared), float(Fraction(10, 3)))
+
+
+class Tcfs113MathChecks(unittest.TestCase):
+    def test_q01_exhaustive_positive_exponent_triples(self) -> None:
+        triples = [
+            (x, y, z)
+            for x in range(1, 12)
+            for y in range(1, 6)
+            for z in range(1, 4)
+            if x + 2 * y + 3 * z == 11
+        ]
+        self.assertEqual(
+            triples,
+            [(1, 2, 2), (2, 3, 1), (3, 1, 2), (4, 2, 1), (6, 1, 1)],
+        )
+
+    def test_q02_exhaustive_balanced_binary_digits(self) -> None:
+        balanced = []
+        for tail in product((0, 1), repeat=5):
+            digits = (1, *tail)
+            if sum(digits[::2]) == sum(digits[1::2]):
+                balanced.append(digits)
+        self.assertEqual(len(balanced), 10)
+
+    def test_q03_exhaustive_median_at_least_mean(self) -> None:
+        valid = []
+        for triple in combinations(range(2024, 2030), 3):
+            left, middle, right = triple
+            if 3 * middle >= sum(triple):
+                valid.append(triple)
+            self.assertEqual(
+                3 * middle >= sum(triple),
+                middle - left >= right - middle,
+            )
+        self.assertEqual(len(valid), 13)
+
+    def test_q04_exhaustive_acute_consecutive_triangles(self) -> None:
+        valid_middle_sides = []
+        for middle in range(2, 114):
+            sides = (middle - 1, middle, middle + 1)
+            if sum(sides) > 113:
+                continue
+            if sides[0] + sides[1] <= sides[2]:
+                continue
+            if sides[0] ** 2 + sides[1] ** 2 > sides[2] ** 2:
+                valid_middle_sides.append(middle)
+        self.assertEqual(valid_middle_sides, list(range(5, 38)))
+        self.assertEqual(len(valid_middle_sides), 33)
+
+    def test_q05_coefficient_by_subset_expansion(self) -> None:
+        coefficients = {0: 1}
+        for multiplier, exponent in enumerate((1, 2, 4, 8, 16, 32, 64), 1):
+            expanded = dict(coefficients)
+            for degree, coefficient in coefficients.items():
+                new_degree = degree + exponent
+                expanded[new_degree] = (
+                    expanded.get(new_degree, 0) + multiplier * coefficient
+                )
+            coefficients = expanded
+        self.assertEqual(coefficients[113], 210)
+
+    def test_q06_progression_orders_force_roots(self) -> None:
+        discriminant = 3**2 + 4 * 18
+        arithmetic_candidates = (
+            Fraction(-3 + math.isqrt(discriminant), 2),
+            Fraction(-3 - math.isqrt(discriminant), 2),
+        )
+        self.assertEqual(arithmetic_candidates, (Fraction(3), Fraction(-6)))
+        a = next(candidate for candidate in arithmetic_candidates if candidate > 0)
+        b = 2 * a + 6
+        self.assertEqual((a, b), (Fraction(3), Fraction(12)))
+        self.assertEqual(a * b, 36)
+        self.assertEqual((a + b) + a * b, 51)
+
+    def test_q07_interval_extrema_force_fixed_endpoints(self) -> None:
+        def quadratic(x: int) -> int:
+            return x**2 - 6 * x + 12
+
+        fixed_points = [x for x in range(-20, 21) if quadratic(x) == x]
+        self.assertEqual(fixed_points, [3, 4])
+        self.assertEqual(min(quadratic(x) for x in range(3, 5)), 3)
+        self.assertEqual(max(quadratic(x) for x in range(3, 5)), 4)
+
+    def test_q08_area_bisection_forces_minimum_integer_side(self) -> None:
+        ce_over_side = Fraction(36, 59)
+        od_over_side = Fraction(23, 13)
+        height_at_left_edge = ce_over_side * od_over_side / (
+            od_over_side + 1
+        )
+        self.assertEqual(height_at_left_edge + ce_over_side, 1)
+
+        integer_pairs = [
+            (od, side)
+            for side in range(1, 100)
+            for od in range(1, 200)
+            if Fraction(od, side) == od_over_side
+        ]
+        self.assertEqual(integer_pairs[0], (23, 13))
+        self.assertEqual(integer_pairs[0][1] ** 2, 169)
+
+    def test_q09_exhaustive_consecutive_positive_sums(self) -> None:
+        representations: list[tuple[int, int, int]] = []
+        for length in range(60, 2025):
+            minimum = length * (length + 1) // 2
+            if minimum > 2024:
+                break
+            for first in range(1, 2025):
+                total = length * (2 * first + length - 1) // 2
+                if total > 2024:
+                    break
+                representations.append((total, length, first))
+
+        self.assertEqual(
+            representations,
+            [
+                (1830, 60, 1),
+                (1890, 60, 2),
+                (1950, 60, 3),
+                (2010, 60, 4),
+                (1891, 61, 1),
+                (1952, 61, 2),
+                (2013, 61, 3),
+                (1953, 62, 1),
+                (2015, 62, 2),
+                (2016, 63, 1),
+            ],
+        )
+        self.assertEqual(len({total for total, _, _ in representations}), 10)
+
+    def test_q10_reflection_path_has_exact_minimum(self) -> None:
+        reflected_b = (Fraction(48, 5), Fraction(-24, 5))
+        q = (Fraction(48, 5), Fraction(8))
+        p = (Fraction(48, 5), Fraction(16, 5))
+        self.assertEqual(p[0] + 2 * p[1], 16)
+        self.assertTrue(0 <= q[0] <= 16)
+
+        pq = q[1] - p[1]
+        pb_squared = (16 - p[0]) ** 2 + (8 - p[1]) ** 2
+        self.assertEqual(pb_squared, 64)
+        self.assertEqual(pq + 8, Fraction(64, 5))
+        self.assertEqual(q[1] - reflected_b[1], Fraction(64, 5))
+
+    def test_q11_direct_square_digit_stream(self) -> None:
+        chunks: list[str] = []
+        integer = 1
+        while sum(map(len, chunks)) < 2024:
+            chunks.append(str(integer * integer))
+            integer += 1
+        digits = "".join(chunks)
+        self.assertEqual(digits[:15], "149162536496481")
+        self.assertEqual((digits[112], digits[2023]), ("1", "3"))
+
+    def test_q12_centroid_constraint_and_endpoint_extrema(self) -> None:
+        centroid = (
+            Fraction(1 + 7 - 2, 3),
+            Fraction(-3 - 3 + 9, 3),
+        )
+        self.assertEqual(centroid, (Fraction(2), Fraction(1)))
+
+        values = []
+        for a in (Fraction(1), Fraction(3, 2), Fraction(2)):
+            b = 9 - 2 * a
+            self.assertGreaterEqual(b, 5)
+            values.append(2 * a * a + b * b)
+        self.assertEqual(values, [51, Fraction(81, 2), 33])
+        self.assertEqual((max(values), min(values)), (51, 33))
+
+    def test_q13_cube_bounds_have_one_positive_solution(self) -> None:
+        def expression(a: int) -> int:
+            return a**3 + 7 * a**2 - 5 * a + 8
+
+        for a in range(1, 1001):
+            value = expression(a)
+            self.assertEqual(value - (a + 1) ** 3, 4 * (a - 1) ** 2 + 3)
+            self.assertEqual(value - (a + 2) ** 3, a * (a - 17))
+            self.assertEqual((a + 3) ** 3 - value, 2 * a**2 + 32 * a + 19)
+            if a < 17:
+                self.assertTrue((a + 1) ** 3 < value < (a + 2) ** 3)
+            elif a == 17:
+                self.assertEqual(value, (a + 2) ** 3)
+            else:
+                self.assertTrue((a + 2) ** 3 < value < (a + 3) ** 3)
+        self.assertEqual((17, 19 - 1), (17, 18))
+
+    def test_part2_q01_same_ray_zigzag_selects_first_closure(self) -> None:
+        def points(step_count: int, multiplier: int) -> list[tuple[float, float]]:
+            theta = multiplier * math.pi / step_count
+            sin_theta = math.sin(theta)
+            result = []
+            for step in range(step_count + 1):
+                radius = math.sin(step * theta) / sin_theta
+                if step % 2:
+                    result.append((radius, 0.0))
+                else:
+                    result.append(
+                        (radius * math.cos(theta), radius * math.sin(theta))
+                    )
+            return result
+
+        for step_count in range(3, 14, 2):
+            simple = points(step_count, 1)
+            self.assertAlmostEqual(simple[-1][0], 0.0)
+            self.assertAlmostEqual(simple[-1][1], 0.0)
+            simple_radii = [
+                math.sin(step * math.pi / step_count)
+                / math.sin(math.pi / step_count)
+                for step in range(1, step_count)
+            ]
+            self.assertTrue(all(radius > 0 for radius in simple_radii))
+            for start, end in zip(simple, simple[1:]):
+                self.assertAlmostEqual(math.dist(start, end), 1.0)
+            self.assertAlmostEqual(
+                step_count * math.degrees(math.pi / step_count),
+                180.0,
+            )
+
+            for multiplier in range(2, (step_count - 1) // 2 + 1):
+                alternative = points(step_count, multiplier)
+                self.assertAlmostEqual(alternative[-1][0], 0.0)
+                self.assertAlmostEqual(alternative[-1][1], 0.0)
+                alternative_radii = [
+                    math.sin(step * multiplier * math.pi / step_count)
+                    / math.sin(multiplier * math.pi / step_count)
+                    for step in range(1, step_count)
+                ]
+                self.assertFalse(all(radius > 0 for radius in alternative_radii))
+
+        self.assertAlmostEqual(math.degrees(math.pi / 5), 36.0)
+        self.assertAlmostEqual(math.degrees(math.pi / 7), 180 / 7)
 
 
 class Tcfs114MathChecks(unittest.TestCase):
