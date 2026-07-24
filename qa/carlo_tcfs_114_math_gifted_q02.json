@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_114_math_gifted.q02",
+  "scene_class": "CarloTcfs114MathQ02",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "An upward-opening quadratic always enters quadrants I and II. With Delta>0 it is negative between its two real roots. Their product is a+3: a negative product puts the roots on opposite sides and yields all four quadrants, while a nonnegative product keeps the negative interval on one side, including a=-3 where the roots are 0 and 3. Thus a is in [-3,-2) union (6,infinity). The target equals (a-2021)^2-10, and a=2021 is admissible, so its attained minimum is -10."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_family",
+        "loop": false
+      },
+      {
+        "id": "explore_parameter",
+        "loop": true
+      },
+      {
+        "id": "pose_three_quadrants",
+        "loop": false
+      },
+      {
+        "id": "require_negative_arc",
+        "loop": false
+      },
+      {
+        "id": "guard_y_axis",
+        "loop": false
+      },
+      {
+        "id": "explain_root_sides",
+        "loop": false
+      },
+      {
+        "id": "test_endpoint",
+        "loop": false
+      },
+      {
+        "id": "solve_discriminant",
+        "loop": false
+      },
+      {
+        "id": "intersect_ranges",
+        "loop": false
+      },
+      {
+        "id": "introduce_target",
+        "loop": false
+      },
+      {
+        "id": "complete_square",
+        "loop": false
+      },
+      {
+        "id": "locate_vertex",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": [
+      {
+        "beat_id": "explore_parameter",
+        "mean_absolute_difference": 0.009115065586419753
+      }
+    ]
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_114_math_gifted/q02/deck.py",
+      "sha256": "1441ec2ca9f7473b7c7132e8396921cab04406f3cb2526eed8786b51ae311988"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_114_math_gifted/q02/presenter.zh-TW.md",
+      "sha256": "e13085e532bbababd3c1c93d0539f18ff924a41f038e33c07994d2ddfadfcc22"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_114_math_gifted/q02/storyboard.md",
+      "sha256": "9acad846dc4823935647909e6e98d28b3781ccb8b1b86aabe7e220402d50f0a5"
+    }
+  }
+}

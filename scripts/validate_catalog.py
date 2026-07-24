@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 import re
@@ -39,6 +40,13 @@ VALID_PRODUCTION_STATES = {
 }
 RENDERED_STATES = {"draft_rendered", "visual_verified", "published"}
 VERIFIED_STATES = {"visual_verified", "published"}
+ANSWER_REQUIRED_STATES = {
+    "storyboarded",
+    "math_verified",
+    "draft_rendered",
+    "visual_verified",
+    "published",
+}
 
 
 def load_toml(path: Path) -> dict[str, Any]:
@@ -61,6 +69,39 @@ def sha256(path: Path) -> str:
 def check(condition: bool, message: str, errors: list[str]) -> None:
     if not condition:
         errors.append(message)
+
+
+def non_ascii_mathtex_lines(source: str) -> list[int]:
+    """Return calls where a literal MathTex argument contains CJK or Unicode."""
+    tree = ast.parse(source)
+    lines: list[int] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        function_name = None
+        if isinstance(node.func, ast.Name):
+            function_name = node.func.id
+        elif isinstance(node.func, ast.Attribute):
+            function_name = node.func.attr
+        if function_name != "MathTex":
+            continue
+        if any(
+            isinstance(argument, ast.Constant)
+            and isinstance(argument.value, str)
+            and not argument.value.isascii()
+            for argument in node.args
+        ):
+            lines.append(node.lineno)
+    return lines
+
+
+def load_source_asset_index() -> dict[str, dict[str, Any]]:
+    path = ROOT / "catalog" / "source_assets.json"
+    if not path.is_file():
+        return {}
+    registry = load_json(path)
+    entries = registry.get("drive_assets", []) + registry.get("youtube_assets", [])
+    return {entry["id"]: entry for entry in entries}
 
 
 def validate_collections(
@@ -101,7 +142,19 @@ def validate_collections(
                 f"{problem_id}: invalid production_state",
                 errors,
             )
-            check(bool(problem.get("answer")), f"{problem_id}: missing answer", errors)
+            production_state = problem.get("production_state")
+            if production_state in ANSWER_REQUIRED_STATES:
+                check(
+                    bool(problem.get("answer")),
+                    f"{problem_id}: missing answer",
+                    errors,
+                )
+            if production_state == "blocked":
+                check(
+                    bool(problem.get("blocker_reason")),
+                    f"{problem_id}: blocked without blocker_reason",
+                    errors,
+                )
     check(bool(collections), "no collection metadata found", errors)
     return collections, problems_by_id
 
@@ -208,7 +261,9 @@ def validate_qa_evidence(
 
 
 def validate_lessons(
-    problems_by_id: dict[str, dict[str, Any]], errors: list[str]
+    problems_by_id: dict[str, dict[str, Any]],
+    source_assets: dict[str, dict[str, Any]],
+    errors: list[str],
 ) -> int:
     lesson_ids: set[str] = set()
     scene_classes: set[str] = set()
@@ -267,6 +322,62 @@ def validate_lessons(
             errors,
         )
 
+        problem = problems_by_id.get(lesson_id, {})
+        expected_solution_id = problem.get("solution_asset")
+        if expected_solution_id:
+            solution_id = data.get("solution_asset_id")
+            check(
+                solution_id == expected_solution_id,
+                f"{lesson_id}: lesson/collection solution asset IDs differ",
+                errors,
+            )
+            check(
+                data.get("solution_url") == problem.get("solution_url"),
+                f"{lesson_id}: lesson/collection solution URLs differ",
+                errors,
+            )
+            solution_record = source_assets.get(expected_solution_id)
+            check(
+                solution_record is not None,
+                f"{lesson_id}: solution asset is absent from source registry",
+                errors,
+            )
+            if solution_record:
+                check(
+                    solution_record.get("watch_url") == data.get("solution_url"),
+                    f"{lesson_id}: solution URL differs from source registry",
+                    errors,
+                )
+                check(
+                    solution_record.get("access_status") == "public_stream",
+                    f"{lesson_id}: solution asset is not confirmed public",
+                    errors,
+                )
+                check(
+                    data.get("source_url") in solution_record.get("source_pages", []),
+                    f"{lesson_id}: solution asset is not linked from source page",
+                    errors,
+                )
+
+            source_asset_id = data.get("source_asset_id")
+            source_record = source_assets.get(source_asset_id)
+            check(
+                source_record is not None,
+                f"{lesson_id}: source asset is absent from source registry",
+                errors,
+            )
+            if source_record:
+                check(
+                    data.get("source_asset_sha256") == source_record.get("sha256"),
+                    f"{lesson_id}: source checksum differs from source registry",
+                    errors,
+                )
+                check(
+                    data.get("source_url") in source_record.get("source_pages", []),
+                    f"{lesson_id}: source PDF is not linked from source page",
+                    errors,
+                )
+
         scene_path = ROOT / data.get("scene_file", "")
         script_path = ROOT / data.get("presenter_script", "")
         storyboard_path = ROOT / data.get("storyboard", "")
@@ -288,6 +399,12 @@ def validate_lessons(
                 compile(source, str(scene_path), "exec")
             except SyntaxError as error:
                 errors.append(f"{lesson_id}: scene syntax error: {error}")
+            else:
+                for line_number in non_ascii_mathtex_lines(source):
+                    errors.append(
+                        f"{lesson_id}: MathTex contains non-ASCII text at "
+                        f"{scene_path}:{line_number}; use label/Text for CJK"
+                    )
             beat_call_ids = BEAT_CALL_RE.findall(source)
             source_ids = beat_call_ids or SOURCE_BEAT_RE.findall(source)
             check(
@@ -471,7 +588,8 @@ def validate_source_registry(errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
     _, problems_by_id = validate_collections(errors)
-    lesson_count = validate_lessons(problems_by_id, errors)
+    source_assets = load_source_asset_index()
+    lesson_count = validate_lessons(problems_by_id, source_assets, errors)
     validate_source_registry(errors)
     if errors:
         for error in errors:

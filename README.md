@@ -17,36 +17,51 @@ The reproducible 2026-07-24 site snapshot records:
 - 434 public first-party pages;
 - 4,346 unique embedded assets (326 Drive and 4,020 YouTube);
 - 2,489 confirmed public, 622 confirmed restricted, and 1,235 unresolved assets; and
-- 14 lesson units in the separately supplied ROC 115 pilot collection: 14 `visual_verified`.
+- 28 cataloged problem records across 2 collections (14 from the frozen Carlo-site inventory, 14 from the separately supplied pilot): 10 `blocked`, 18 `visual_verified`.
 
-Pages, assets, and lesson units are different denominators. Eligibility and production states are tracked separately; placeholders and blocked sources never count as finished lessons.
+Pages, assets, problem records, and completed lesson units are different denominators. Eligibility and production states are tracked separately; placeholders and blocked sources never count as finished lessons.
 <!-- catalog-summary:end -->
 
 The site-wide conversion is not complete. The site snapshot and access audit
-are complete at the boundary above, while the 2,489 confirmed-public assets
-still require problem-level extraction, mathematical review, and an exact
-rights decision. The 14-unit ROC 115 pilot is a separately supplied source and
-must not be used to imply that every Carlo asset has been converted.
+are complete at the boundary above. The 2,489 confirmed-public assets are the
+review pool; most still require problem-level extraction, mathematical review,
+and an exact rights decision. The 14-unit ROC 115 pilot is a separately
+supplied source and must not be used to imply that every Carlo asset has been
+converted.
 
-## Lesson Collection
+## Cataloged Problems
 
 <!-- lesson-table:start -->
-| Lesson | Topic | State | Source files |
+| Collection / problem | Topic | State | Source files |
 | --- | --- | --- | --- |
-| Part 1, Question 1 | angle bisectors | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q01/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q01/deck.py) / [script](lessons/tcfs_115_math_gifted/q01/presenter.zh-TW.md) |
-| Part 1, Question 2 | equal-area rectangles | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q02/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q02/deck.py) / [script](lessons/tcfs_115_math_gifted/q02/presenter.zh-TW.md) |
-| Part 1, Question 3 | quadratic functions | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q03/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q03/deck.py) / [script](lessons/tcfs_115_math_gifted/q03/presenter.zh-TW.md) |
-| Part 1, Question 4 | sequences and number-line motion | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q04/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q04/deck.py) / [script](lessons/tcfs_115_math_gifted/q04/presenter.zh-TW.md) |
-| Part 1, Question 5 | proportional sequences | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q05/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q05/deck.py) / [script](lessons/tcfs_115_math_gifted/q05/presenter.zh-TW.md) |
-| Part 1, Question 6 | integer factorization and triangles | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q06/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q06/deck.py) / [script](lessons/tcfs_115_math_gifted/q06/presenter.zh-TW.md) |
-| Part 1, Question 7 | radical conjugates | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q07/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q07/deck.py) / [script](lessons/tcfs_115_math_gifted/q07/presenter.zh-TW.md) |
-| Part 1, Question 8 | quadratic graph intersections | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q08/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q08/deck.py) / [script](lessons/tcfs_115_math_gifted/q08/presenter.zh-TW.md) |
-| Part 1, Question 9 | moving-point locus and area | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q09/lesson.toml) / [scene](question_9_slide.py) / [script](question_9_presenter_script.md) |
-| Part 1, Question 10 | inequality bounds | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q10/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q10/deck.py) / [script](lessons/tcfs_115_math_gifted/q10/presenter.zh-TW.md) |
-| Part 1, Question 11 | cube plane section | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q11/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q11/deck.py) / [script](lessons/tcfs_115_math_gifted/q11/presenter.zh-TW.md) |
-| Part 1, Question 12 | rotation and shortest path | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q12/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q12/deck.py) / [script](lessons/tcfs_115_math_gifted/q12/presenter.zh-TW.md) |
-| Part 2, Question 1 | symmetric equation systems | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/p2q01/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/p2q01/deck.py) / [script](lessons/tcfs_115_math_gifted/p2q01/presenter.zh-TW.md) |
-| Part 2, Question 2 | angle-bisector length identity | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/p2q02/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/p2q02/deck.py) / [script](lessons/tcfs_115_math_gifted/p2q02/presenter.zh-TW.md) |
+| TCFS 114 MATH GIFTED · Fill-in Question 1 | anti-diagonal number patterns | `visual_verified` | [metadata](lessons/tcfs_114_math_gifted/q01/lesson.toml) / [scene](lessons/tcfs_114_math_gifted/q01/deck.py) / [script](lessons/tcfs_114_math_gifted/q01/presenter.zh-TW.md) / [solution](https://www.youtube.com/watch?v=oRepfpw90Fg) |
+| TCFS 114 MATH GIFTED · Fill-in Question 2 | quadratic functions and quadrants | `visual_verified` | [metadata](lessons/tcfs_114_math_gifted/q02/lesson.toml) / [scene](lessons/tcfs_114_math_gifted/q02/deck.py) / [script](lessons/tcfs_114_math_gifted/q02/presenter.zh-TW.md) / [solution](https://www.youtube.com/watch?v=CeH9yZ8pnc0) |
+| TCFS 114 MATH GIFTED · Fill-in Question 3 | cube and regular-octahedron volumes | `visual_verified` | [metadata](lessons/tcfs_114_math_gifted/q03/lesson.toml) / [scene](lessons/tcfs_114_math_gifted/q03/deck.py) / [script](lessons/tcfs_114_math_gifted/q03/presenter.zh-TW.md) / [solution](https://www.youtube.com/watch?v=MUhQmAz9OvE) |
+| TCFS 114 MATH GIFTED · Fill-in Question 4 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 5 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 6 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 7 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 8 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 9 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 10 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 11 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 12 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 114 MATH GIFTED · Fill-in Question 13 | floor and fractional-part equations | `visual_verified` | [metadata](lessons/tcfs_114_math_gifted/q13/lesson.toml) / [scene](lessons/tcfs_114_math_gifted/q13/deck.py) / [script](lessons/tcfs_114_math_gifted/q13/presenter.zh-TW.md) / [solution](https://www.youtube.com/watch?v=Eq_1v5YG5bs) |
+| TCFS 114 MATH GIFTED · Fill-in Question 14 | solution access blocked | `blocked` | [source page](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87) |
+| TCFS 115 MATH GIFTED · Part 1, Question 1 | angle bisectors | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q01/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q01/deck.py) / [script](lessons/tcfs_115_math_gifted/q01/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 2 | equal-area rectangles | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q02/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q02/deck.py) / [script](lessons/tcfs_115_math_gifted/q02/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 3 | quadratic functions | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q03/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q03/deck.py) / [script](lessons/tcfs_115_math_gifted/q03/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 4 | sequences and number-line motion | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q04/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q04/deck.py) / [script](lessons/tcfs_115_math_gifted/q04/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 5 | proportional sequences | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q05/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q05/deck.py) / [script](lessons/tcfs_115_math_gifted/q05/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 6 | integer factorization and triangles | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q06/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q06/deck.py) / [script](lessons/tcfs_115_math_gifted/q06/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 7 | radical conjugates | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q07/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q07/deck.py) / [script](lessons/tcfs_115_math_gifted/q07/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 8 | quadratic graph intersections | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q08/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q08/deck.py) / [script](lessons/tcfs_115_math_gifted/q08/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 9 | moving-point locus and area | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q09/lesson.toml) / [scene](question_9_slide.py) / [script](question_9_presenter_script.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 10 | inequality bounds | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q10/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q10/deck.py) / [script](lessons/tcfs_115_math_gifted/q10/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 11 | cube plane section | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q11/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q11/deck.py) / [script](lessons/tcfs_115_math_gifted/q11/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 1, Question 12 | rotation and shortest path | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/q12/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/q12/deck.py) / [script](lessons/tcfs_115_math_gifted/q12/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 2, Question 1 | symmetric equation systems | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/p2q01/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/p2q01/deck.py) / [script](lessons/tcfs_115_math_gifted/p2q01/presenter.zh-TW.md) |
+| TCFS 115 MATH GIFTED · Part 2, Question 2 | angle-bisector length identity | `visual_verified` | [metadata](lessons/tcfs_115_math_gifted/p2q02/lesson.toml) / [scene](lessons/tcfs_115_math_gifted/p2q02/deck.py) / [script](lessons/tcfs_115_math_gifted/p2q02/presenter.zh-TW.md) |
 <!-- lesson-table:end -->
 
 ## Setup And Use

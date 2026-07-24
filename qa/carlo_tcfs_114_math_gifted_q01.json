@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_114_math_gifted.q01",
+  "scene_class": "CarloTcfs114MathQ01",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Enumerate coordinate sums s=m+n from 2 through 24, taking rows in descending order on each anti-diagonal. Sums 2 through 13 contain 1+2+...+12=78 cells; sums 14 and 15 contain 11 and 10 cells, ending at 99. The fifth cell for s=16 is (12,4),(11,5),(10,6),(9,7),(8,8), with values 100 through 104. Exhaustive generation yields each integer 1 through 144 exactly once and matches the diagram's 139 through 144 corner values."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "grid_seed",
+        "loop": false
+      },
+      {
+        "id": "follow_numbers",
+        "loop": false
+      },
+      {
+        "id": "notice_diagonals",
+        "loop": false
+      },
+      {
+        "id": "one_diagonal",
+        "loop": false
+      },
+      {
+        "id": "grow_then_shrink",
+        "loop": false
+      },
+      {
+        "id": "count_to_78",
+        "loop": false
+      },
+      {
+        "id": "step_to_99",
+        "loop": false
+      },
+      {
+        "id": "find_the_band",
+        "loop": false
+      },
+      {
+        "id": "walk_five_cells",
+        "loop": false
+      },
+      {
+        "id": "return_and_check",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_114_math_gifted/q01/deck.py",
+      "sha256": "bd6af4a64fad3438c29c741bc4739ec7f4cc31a6b3ce08cadc06d3a9054f209c"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_114_math_gifted/q01/presenter.zh-TW.md",
+      "sha256": "1f6769b9629b8208490bd197849643b3fe745d1aa68f57445358a792bdfdaee0"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_114_math_gifted/q01/storyboard.md",
+      "sha256": "96037a4536a567893d3cc48630e953d8a1d6af16ea436dbea6b32cdc7ea50d65"
+    }
+  }
+}

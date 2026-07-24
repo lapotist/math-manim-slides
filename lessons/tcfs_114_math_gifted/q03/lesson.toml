@@ -1,0 +1,66 @@
+schema_version = 1
+id = "carlo.tcfs_114_math_gifted.q03"
+collection_id = "carlo.tcfs_114_math_gifted"
+title = "A cube's face centres form a regular octahedron"
+locale = "zh-TW"
+question = 3
+source_pages = [3]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "114中一中資優班解析.pdf"
+source_asset_id = "drive:17g2ffD4VJK5Xl5qVitUH9kbNDIDxwd1J"
+source_asset_sha256 = "4fe9e6c40bf635ab1dbb3d03a45cdefd48ac01aefa5538bb36f1d5d0a7ea1f4c"
+source_locator = "Fill-in Question 3, PDF page 3; public solution video https://www.youtube.com/watch?v=MUhQmAz9OvE, 00:00-02:30"
+solution_asset_id = "youtube:MUhQmAz9OvE"
+solution_url = "https://www.youtube.com/watch?v=MUhQmAz9OvE"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The source chooses cube side 2 and computes the octahedron as two square pyramids. This lesson first makes scale invariance explicit, then reconstructs the argument with original visuals."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_114_math_gifted/q03/deck.py"
+scene_class = "CarloTcfs114MathQ03"
+storyboard = "lessons/tcfs_114_math_gifted/q03/storyboard.md"
+presenter_script = "lessons/tcfs_114_math_gifted/q03/presenter.zh-TW.md"
+estimated_minutes = 7
+expected_answer = "1/6"
+independent_check = "For cube side s, the central square has diagonals s and s, hence area s^2/2. Two pyramids of height s/2 have total volume 2(1/3)(s^2/2)(s/2)=s^3/6, while the cube has volume s^3."
+tags = ["solid-geometry", "cube", "regular-octahedron", "volume", "scale-invariance", "square-pyramid"]
+
+[[beats]]
+id = "place_face_centers"
+loop = false
+
+[[beats]]
+id = "connect_octahedron"
+loop = false
+
+[[beats]]
+id = "establish_scale_invariance"
+loop = false
+
+[[beats]]
+id = "isolate_middle_square"
+loop = false
+
+[[beats]]
+id = "turn_to_top_view"
+loop = false
+
+[[beats]]
+id = "measure_square_base"
+loop = false
+
+[[beats]]
+id = "calculate_one_pyramid"
+loop = false
+
+[[beats]]
+id = "reflect_and_double"
+loop = false
+
+[[beats]]
+id = "calculate_cube"
+loop = false
+
+[[beats]]
+id = "form_final_ratio"
+loop = false

@@ -1,0 +1,80 @@
+schema_version = 1
+id = "carlo.tcfs_114_math_gifted.q02"
+collection_id = "carlo.tcfs_114_math_gifted"
+title = "Three quadrants, one corrected endpoint, and a minimum"
+locale = "zh-TW"
+question = 2
+source_pages = [2]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "114中一中資優班解析.pdf"
+source_asset_id = "drive:17g2ffD4VJK5Xl5qVitUH9kbNDIDxwd1J"
+source_asset_url = "https://drive.google.com/file/d/17g2ffD4VJK5Xl5qVitUH9kbNDIDxwd1J/preview"
+source_asset_sha256 = "4fe9e6c40bf635ab1dbb3d03a45cdefd48ac01aefa5538bb36f1d5d0a7ea1f4c"
+source_locator = "Fill-in Question 2, PDF page 2"
+solution_asset_id = "youtube:CeH9yZ8pnc0"
+solution_url = "https://www.youtube.com/watch?v=CeH9yZ8pnc0"
+source_video_locator = "00:00-02:15"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The source video requires a+3>0 and therefore omits the valid endpoint a=-3. The exact condition is a+3>=0 together with Delta>0, giving [-3,-2) union (6,infinity). This correction does not change the requested minimum -10 at a=2021."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_114_math_gifted/q02/deck.py"
+scene_class = "CarloTcfs114MathQ02"
+storyboard = "lessons/tcfs_114_math_gifted/q02/storyboard.md"
+presenter_script = "lessons/tcfs_114_math_gifted/q02/presenter.zh-TW.md"
+estimated_minutes = 10
+expected_answer = "-10"
+independent_check = "An upward-opening quadratic always enters quadrants I and II. With Delta>0 it is negative between its two real roots. Their product is a+3: a negative product puts the roots on opposite sides and yields all four quadrants, while a nonnegative product keeps the negative interval on one side, including a=-3 where the roots are 0 and 3. Thus a is in [-3,-2) union (6,infinity). The target equals (a-2021)^2-10, and a=2021 is admissible, so its attained minimum is -10."
+tags = ["algebra", "quadratic-function", "parabola", "quadrants", "discriminant", "parameter", "optimization", "source-correction"]
+
+[[beats]]
+id = "meet_family"
+loop = false
+
+[[beats]]
+id = "explore_parameter"
+loop = true
+
+[[beats]]
+id = "pose_three_quadrants"
+loop = false
+
+[[beats]]
+id = "require_negative_arc"
+loop = false
+
+[[beats]]
+id = "guard_y_axis"
+loop = false
+
+[[beats]]
+id = "explain_root_sides"
+loop = false
+
+[[beats]]
+id = "test_endpoint"
+loop = false
+
+[[beats]]
+id = "solve_discriminant"
+loop = false
+
+[[beats]]
+id = "intersect_ranges"
+loop = false
+
+[[beats]]
+id = "introduce_target"
+loop = false
+
+[[beats]]
+id = "complete_square"
+loop = false
+
+[[beats]]
+id = "locate_vertex"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

@@ -1,4 +1,4 @@
-"""Independent checks for the current ROC 115 assessment collection."""
+"""Independent checks for the cataloged assessment lessons."""
 
 from __future__ import annotations
 
@@ -142,6 +142,83 @@ class Tcfs115MathChecks(unittest.TestCase):
         ad_squared = ab * ac - bd * dc
         self.assertEqual(ad_squared, Fraction(100, 9))
         self.assertAlmostEqual(math.sqrt(ad_squared), float(Fraction(10, 3)))
+
+
+class Tcfs114MathChecks(unittest.TestCase):
+    @staticmethod
+    def admissible_final_indices(solution_sum: int) -> list[int]:
+        doubled_sum = 2 * solution_sum
+        admissible: list[int] = []
+        for final_index in range(1, doubled_sum + 1):
+            scale = Fraction(
+                doubled_sum,
+                final_index * (final_index + 1),
+            )
+            if not 1 < scale <= 2:
+                continue
+            current_fit = all(
+                n <= scale * n < n + 1
+                for n in range(1, final_index + 1)
+            )
+            next_fails = scale * (final_index + 1) >= final_index + 2
+            if current_fit and next_fails:
+                admissible.append(final_index)
+        return admissible
+
+    def test_q01_exhaustive_antidiagonal_grid(self) -> None:
+        coordinate_by_value: dict[int, tuple[int, int]] = {}
+        value = 1
+        for coordinate_sum in range(2, 25):
+            rows = [
+                row
+                for row in range(12, 0, -1)
+                if 1 <= coordinate_sum - row <= 12
+            ]
+            for row in rows:
+                column = coordinate_sum - row
+                coordinate_by_value[value] = (row, column)
+                value += 1
+        self.assertEqual(value, 145)
+        self.assertEqual(len(set(coordinate_by_value.values())), 144)
+        self.assertEqual(coordinate_by_value[104], (8, 8))
+
+    def test_q02_corrected_quadrant_boundary_and_minimum(self) -> None:
+        def has_exactly_three_quadrants(parameter: float) -> bool:
+            discriminant = parameter**2 - 4 * (parameter + 3)
+            return parameter + 3 >= 0 and discriminant > 0
+
+        self.assertFalse(has_exactly_three_quadrants(-4))
+        self.assertTrue(has_exactly_three_quadrants(-3))
+        self.assertTrue(has_exactly_three_quadrants(-2.5))
+        self.assertFalse(has_exactly_three_quadrants(-2))
+        self.assertFalse(has_exactly_three_quadrants(6))
+        self.assertTrue(has_exactly_three_quadrants(7))
+        self.assertTrue(has_exactly_three_quadrants(2021))
+        self.assertEqual((2021 - 2025) ** 2 + 8 * (2021 - 2025) + 6, -10)
+
+    def test_q03_octahedron_volume_ratio_is_scale_free(self) -> None:
+        for side in (Fraction(1), Fraction(2), Fraction(7, 3)):
+            middle_square_area = side * side / 2
+            pyramid_height = side / 2
+            octahedron = 2 * Fraction(1, 3) * middle_square_area * pyramid_height
+            cube = side**3
+            self.assertEqual(octahedron / cube, Fraction(1, 6))
+
+    def test_q13_original_sum_is_inconsistent(self) -> None:
+        self.assertEqual(self.admissible_final_indices(345), [])
+
+    def test_q13_corrected_sum_closes_at_boundary(self) -> None:
+        self.assertEqual(self.admissible_final_indices(420), [28])
+        scale = Fraction(210, 203)
+        t = 1 - 1 / scale
+        parameter = t * (1 - t)
+        self.assertEqual(t, Fraction(1, 30))
+        self.assertEqual(parameter, Fraction(29, 900))
+        for n in range(1, 29):
+            x = scale * n
+            self.assertLess(x, n + 1)
+            self.assertEqual(n * (x - n), parameter * x * x)
+        self.assertEqual(scale * 29, 30)
 
 
 if __name__ == "__main__":

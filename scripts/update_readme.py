@@ -22,23 +22,35 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def collection_counts() -> tuple[int, Counter[str]]:
+def collection_counts() -> tuple[int, int, Counter[str], Counter[str]]:
     total = 0
+    collection_total = 0
     states: Counter[str] = Counter()
+    origins: Counter[str] = Counter()
     for path in sorted(ROOT.glob("lessons/*/collection.toml")):
         with path.open("rb") as handle:
             collection = tomllib.load(handle)
+        collection_total += 1
+        origins[collection["source_origin"]] += len(collection["problems"])
         for problem in collection["problems"]:
             total += 1
             states[problem["production_state"]] += 1
-    return total, states
+    return total, collection_total, states, origins
 
 
 def render_summary() -> str:
     audit = load_json(ROOT / "catalog" / "audit_summary.json")
-    total_lessons, states = collection_counts()
+    total_problems, collection_total, states, origins = collection_counts()
     state_text = ", ".join(
         f"{count} `{state}`" for state, count in sorted(states.items())
+    )
+    origin_labels = {
+        "frozen_site_inventory": "from the frozen Carlo-site inventory",
+        "user_supplied": "from the separately supplied pilot",
+    }
+    origin_text = ", ".join(
+        f"{count} {origin_labels.get(origin, f'from {origin}')}"
+        for origin, count in sorted(origins.items())
     )
     return "\n".join(
         (
@@ -59,15 +71,15 @@ def render_summary() -> str:
                 "assets; and"
             ),
             (
-                f"- {total_lessons} lesson units in the separately supplied "
-                f"ROC 115 pilot collection: {state_text}."
+                f"- {total_problems} cataloged problem records across "
+                f"{collection_total} collections ({origin_text}): {state_text}."
             ),
             "",
             (
-                "Pages, assets, and lesson units are different denominators. "
-                "Eligibility and production states are tracked separately; "
-                "placeholders and blocked sources never count as finished "
-                "lessons."
+                "Pages, assets, problem records, and completed lesson units "
+                "are different denominators. Eligibility and production "
+                "states are tracked separately; placeholders and blocked "
+                "sources never count as finished lessons."
             ),
             END,
         )
@@ -83,22 +95,31 @@ def render_lesson_table() -> str:
 
     rows = [
         LESSONS_START,
-        "| Lesson | Topic | State | Source files |",
+        "| Collection / problem | Topic | State | Source files |",
         "| --- | --- | --- | --- |",
     ]
     for collection_path in sorted(ROOT.glob("lessons/*/collection.toml")):
         with collection_path.open("rb") as handle:
             collection = tomllib.load(handle)
+        collection_label = collection["slug"].replace("_", " ").upper()
         for problem in collection["problems"]:
-            metadata, metadata_path = metadata_by_id[problem["id"]]
-            scene_path = ROOT / metadata["scene_file"]
-            links = [f"[metadata]({metadata_path.as_posix()})"]
-            if scene_path.is_file():
-                links.append(f"[scene]({metadata['scene_file']})")
-            links.append(f"[script]({metadata['presenter_script']})")
+            metadata_record = metadata_by_id.get(problem["id"])
+            links: list[str] = []
+            if metadata_record:
+                metadata, metadata_path = metadata_record
+                scene_path = ROOT / metadata["scene_file"]
+                links.append(f"[metadata]({metadata_path.as_posix()})")
+                if scene_path.is_file():
+                    links.append(f"[scene]({metadata['scene_file']})")
+                links.append(f"[script]({metadata['presenter_script']})")
+            else:
+                links.append(f"[source page]({collection['source_page_url']})")
+            if problem.get("solution_url"):
+                links.append(f"[solution]({problem['solution_url']})")
+            topic = problem.get("topic", "solution access blocked")
             rows.append(
                 "| "
-                f"{problem['label']} | {problem['topic']} | "
+                f"{collection_label} · {problem['label']} | {topic} | "
                 f"`{problem['production_state']}` | {' / '.join(links)} |"
             )
     rows.append(LESSONS_END)

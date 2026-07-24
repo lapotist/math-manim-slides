@@ -73,6 +73,31 @@ do not force unlike arguments into one generic animation. If the timebox and
 the catalog disagree, report the exact remaining entries and blockers; never
 change the denominator or call a partial collection complete.
 
+## Source Research Gate
+
+Research is part of lesson production, not a preliminary task that can be
+skipped once a render starts. Before storyboarding a problem:
+
+- open the canonical Carlo page and record the exact problem asset, solution
+  asset, page or timestamp range, provider IDs, access status, and checksum;
+- reconstruct the argument independently from the problem statement, including
+  domain restrictions, endpoints, degenerate cases, and the requested answer;
+- compare that reconstruction with the source solution and record any omission,
+  ambiguity, or correction in neutral language before adapting it;
+- identify the one motivating question, the concrete example the viewer can
+  manipulate, the boundary case that tests the idea, and the final realization
+  the lesson should earn; and
+- confirm what the reported permission actually covers. Keep source expression,
+  downloaded media, trademarks, and third-party embeds outside the CC0
+  allowlist unless an exact rights record brings them into scope.
+
+Put the source reconstruction and teaching rationale in `storyboard.md`; put
+the independently checkable mathematical claim in `lesson.toml`. A public
+video title, thumbnail, answer key, or plausible final answer is not enough
+evidence to begin a finished deck. When the public source does not expose the
+reasoning, keep the item `blocked` rather than reverse-engineering a solution
+and attributing it to Carlo.
+
 ## Repository Contract
 
 Use a stable collection layout as the project grows:
@@ -104,6 +129,12 @@ minimum:
   `math_verified`, `draft_rendered`, `visual_verified`, or `published`;
 - scene class, presenter-script path, and build outputs;
 - mathematical reviewer state and provenance/license scope.
+
+For a site-derived lesson, `source_asset_id`, `source_asset_sha256`,
+`solution_asset_id`, and `solution_url` must reconcile against
+`catalog/source_assets.json`: the solution must be confirmed public, both
+assets must name the canonical source page, and the downloaded PDF checksum
+must match. A working URL by itself is not sufficient provenance.
 
 Generated indexes must come from this metadata. Hand-edited README totals are
 not authoritative.
@@ -266,6 +297,12 @@ not instructions to imitate another creator's visual style.
   pinned resource cache and proves that XDV-to-SVG conversion works before
   writing `build/tex/.ready`; the Manim wrapper then enforces cached-only
   equation compilation so renders never fetch network resources.
+- Keep mathematical notation in `MathTex` and Traditional Chinese prose in the
+  project `label()`/Manim `Text` layer. The pinned math fonts do not cover CJK;
+  putting Chinese inside `\text{...}` can produce missing glyphs or fail only
+  when a small TeX font size is requested. For a mixed sentence, arrange a CJK
+  label and one or more symbolic `MathTex` objects as a group, then smoke-render
+  the smallest formula size used by the scene.
 - Prefer an existing system `dvisvgm`. On Fedora, `prepare-tex` may download and
   extract the distribution converter and AMS outline-font RPMs into ignored
   `build/` storage without `sudo`. Do not commit those packages or broaden

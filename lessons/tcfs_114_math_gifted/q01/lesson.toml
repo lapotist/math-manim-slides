@@ -1,0 +1,66 @@
+schema_version = 1
+id = "carlo.tcfs_114_math_gifted.q01"
+collection_id = "carlo.tcfs_114_math_gifted"
+title = "Finding 104 in an anti-diagonal 12 by 12 grid"
+locale = "zh-TW"
+question = 1
+source_pages = [1]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "114中一中資優班解析.pdf"
+source_asset_id = "drive:17g2ffD4VJK5Xl5qVitUH9kbNDIDxwd1J"
+source_asset_sha256 = "4fe9e6c40bf635ab1dbb3d03a45cdefd48ac01aefa5538bb36f1d5d0a7ea1f4c"
+source_locator = "Fill-in Question 1, PDF page 1; public solution video 00:00-03:56"
+solution_asset_id = "youtube:oRepfpw90Fg"
+solution_url = "https://www.youtube.com/watch?v=oRepfpw90Fg"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF diagram labels horizontal bands as 列 and vertical bands as 行. The answer is symmetric, but the lesson preserves that explicit first-index/second-index convention. The source video shows the answer from its first frame; this lesson withholds it until the fifth-cell walk."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_114_math_gifted/q01/deck.py"
+scene_class = "CarloTcfs114MathQ01"
+storyboard = "lessons/tcfs_114_math_gifted/q01/storyboard.md"
+presenter_script = "lessons/tcfs_114_math_gifted/q01/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "(8, 8)"
+independent_check = "Enumerate coordinate sums s=m+n from 2 through 24, taking rows in descending order on each anti-diagonal. Sums 2 through 13 contain 1+2+...+12=78 cells; sums 14 and 15 contain 11 and 10 cells, ending at 99. The fifth cell for s=16 is (12,4),(11,5),(10,6),(9,7),(8,8), with values 100 through 104. Exhaustive generation yields each integer 1 through 144 exactly once and matches the diagram's 139 through 144 corner values."
+tags = ["number-pattern", "anti-diagonal", "grid", "invariant", "counting"]
+
+[[beats]]
+id = "grid_seed"
+loop = false
+
+[[beats]]
+id = "follow_numbers"
+loop = false
+
+[[beats]]
+id = "notice_diagonals"
+loop = false
+
+[[beats]]
+id = "one_diagonal"
+loop = false
+
+[[beats]]
+id = "grow_then_shrink"
+loop = false
+
+[[beats]]
+id = "count_to_78"
+loop = false
+
+[[beats]]
+id = "step_to_99"
+loop = false
+
+[[beats]]
+id = "find_the_band"
+loop = false
+
+[[beats]]
+id = "walk_five_cells"
+loop = false
+
+[[beats]]
+id = "return_and_check"
+loop = false

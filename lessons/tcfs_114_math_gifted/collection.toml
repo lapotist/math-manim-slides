@@ -1,0 +1,149 @@
+schema_version = 1
+id = "carlo.tcfs_114_math_gifted"
+slug = "tcfs_114_math_gifted"
+title = "114 Academic-Year TCFSH Mathematics Gifted Placement Assessment"
+locale = "zh-TW"
+source_asset = "114中一中資優班解析.pdf"
+source_asset_id = "drive:17g2ffD4VJK5Xl5qVitUH9kbNDIDxwd1J"
+source_asset_sha256 = "4fe9e6c40bf635ab1dbb3d03a45cdefd48ac01aefa5538bb36f1d5d0a7ea1f4c"
+source_page_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/114%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_creator = "Carlo / 正哥愛數學"
+source_origin = "frozen_site_inventory"
+rights_review = "pending_cc0_scope"
+expected_problem_count = 14
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q01"
+label = "Fill-in Question 1"
+source_pages = [1]
+topic = "anti-diagonal number patterns"
+answer = "(8, 8)"
+solution_asset = "youtube:oRepfpw90Fg"
+solution_url = "https://www.youtube.com/watch?v=oRepfpw90Fg"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q02"
+label = "Fill-in Question 2"
+source_pages = [2]
+topic = "quadratic functions and quadrants"
+answer = "-10"
+answer_note = "The source omits the valid endpoint a=-3 from the parameter set; the requested minimum is unchanged."
+solution_asset = "youtube:CeH9yZ8pnc0"
+solution_url = "https://www.youtube.com/watch?v=CeH9yZ8pnc0"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q03"
+label = "Fill-in Question 3"
+source_pages = [3]
+topic = "cube and regular-octahedron volumes"
+answer = "1/6"
+solution_asset = "youtube:MUhQmAz9OvE"
+solution_url = "https://www.youtube.com/watch?v=MUhQmAz9OvE"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q04"
+label = "Fill-in Question 4"
+source_pages = [4]
+solution_locator = "Question 4 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q05"
+label = "Fill-in Question 5"
+source_pages = [5]
+solution_locator = "Question 5 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q06"
+label = "Fill-in Question 6"
+source_pages = [6]
+solution_locator = "Question 6 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q07"
+label = "Fill-in Question 7"
+source_pages = [7]
+solution_locator = "Question 7 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q08"
+label = "Fill-in Question 8"
+source_pages = [8]
+solution_locator = "Question 8 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q09"
+label = "Fill-in Question 9"
+source_pages = [9]
+solution_locator = "Question 9 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q10"
+label = "Fill-in Question 10"
+source_pages = [10]
+solution_locator = "Question 10 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q11"
+label = "Fill-in Question 11"
+source_pages = [11]
+solution_locator = "Question 11 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q12"
+label = "Fill-in Question 12"
+source_pages = [12]
+solution_locator = "Question 12 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q13"
+label = "Fill-in Question 13"
+source_pages = [13]
+topic = "floor and fractional-part equations"
+answer = "No positive a; the stated sum 345 is inconsistent"
+answer_note = "The public source video demonstrates the inconsistency, then changes to a corrected sum-420 variant whose answer is 29/900."
+solution_asset = "youtube:Eq_1v5YG5bs"
+solution_url = "https://www.youtube.com/watch?v=Eq_1v5YG5bs"
+eligible = true
+production_state = "visual_verified"
+
+[[problems]]
+id = "carlo.tcfs_114_math_gifted.q14"
+label = "Fill-in Question 14"
+source_pages = [14]
+solution_locator = "Question 14 embedded video on the canonical source page"
+eligible = false
+production_state = "blocked"
+blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
