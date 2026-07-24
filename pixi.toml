@@ -1,0 +1,29 @@
+[workspace]
+name = "manim-project"
+version = "0.1.0"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "3.13.*"
+manim = "==0.20.1"
+gh = ">=2.96.0,<3"
+
+[tasks]
+check = "manim checkhealth"
+test = "python -m unittest discover -s tests -v"
+qa-slides = "python scripts/qa_slides.py"
+inventory-site = "python scripts/inventory_site.py"
+build-source-catalog = "python scripts/build_source_catalog.py"
+import-source-access-audit = "python scripts/import_source_access_audit.py"
+import-site-taxonomy = "python scripts/import_site_taxonomy.py"
+update-readme = "python scripts/update_readme.py"
+validate-catalog = "python scripts/validate_catalog.py"
+lessons = "python scripts/build_lessons.py"
+render-q9 = "manim-slides render --quality h question_9_slide.py Question9Slide"
+present-q9 = "manim-slides present Question9Slide"
+export-q9 = "manim-slides convert --to html --one-file --offline Question9Slide question_9_slides.html"
+
+[pypi-dependencies]
+manim-slides = { version = "==5.6.0", extras = ["pyside6"] }
+carlo-math-slides = { path = ".", editable = true }

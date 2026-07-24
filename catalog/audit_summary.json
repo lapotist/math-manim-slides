@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-07-24",
+  "scope": {
+    "first_party_boundary": "public Google Site root plus all navigation paths",
+    "pages": 434,
+    "http_200_pages": 434,
+    "additional_body_link_first_party_paths": 0
+  },
+  "page_status": {
+    "with_embedded_assets": 391,
+    "text_or_links_only": 22,
+    "empty_or_shell": 21
+  },
+  "page_taxonomy": {
+    "science_class_archive": 118,
+    "gifted_class_archive": 92,
+    "topical_index": 129,
+    "competition": 37,
+    "teacher_recruitment": 16,
+    "nthu_math_program": 7,
+    "junior_high_cap": 4,
+    "curated_or_resource": 28,
+    "home_or_about": 3
+  },
+  "unique_assets": {
+    "total": 4346,
+    "google_drive": 326,
+    "youtube": 4020,
+    "pdf": 325,
+    "pptx": 1
+  },
+  "access": {
+    "confirmed_public": 2489,
+    "confirmed_restricted": 622,
+    "unresolved_bot_challenge": 1235,
+    "public_drive": 325,
+    "public_youtube": 2164,
+    "members_only_youtube": 607,
+    "private_youtube": 14,
+    "auth_required_drive": 1
+  },
+  "deduplication": {
+    "provider_ids_on_multiple_pages": 2375,
+    "extra_same_id_page_references": 2816,
+    "exact_public_drive_binary_duplicate_groups": 0,
+    "same_title_candidate_groups": 3
+  },
+  "notes": [
+    "A provider ID is ingested once while retaining every page and topic relationship.",
+    "YouTube oEmbed metadata is not evidence of anonymous playability.",
+    "The separately supplied ROC 115 TCFSH gifted-assessment PDF was not discovered in this site snapshot."
+  ]
+}

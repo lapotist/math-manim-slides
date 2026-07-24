@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "carlo-math-slides"
+version = "0.1.0"
+description = "Shared Manim components for the Carlo Math slide collection"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "CC0-1.0"
+
+[tool.setuptools.packages.find]
+where = ["src"]
