@@ -1,0 +1,73 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q08"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Counting collisions across shifted parabolas"
+locale = "zh-TW"
+question = 8
+source_pages = [4]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 8, PDF page 4"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q08/deck.py"
+scene_class = "Tcfs115Q08Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/q08/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/q08/storyboard.md"
+estimated_minutes = 9
+expected_answer = "625"
+independent_check = "At height k=t^2>0, the two hit rows are {2j-t} and {2j+t}, j=0..50. A count below 102 forces integer 1<=t<=50; overlap is 51-t, so distinct hits are 51+t=76 and t=25."
+tags = ["quadratic", "parabola", "counting", "overlap", "arithmetic-sequence"]
+
+[[beats]]
+id = "parabola_family"
+loop = false
+
+[[beats]]
+id = "sweep_horizontal_line"
+loop = true
+
+[[beats]]
+id = "count_nominal_hits"
+loop = false
+
+[[beats]]
+id = "observe_collision"
+loop = false
+
+[[beats]]
+id = "compress_to_number_line"
+loop = false
+
+[[beats]]
+id = "define_offset_t"
+loop = false
+
+[[beats]]
+id = "pose_76_count"
+loop = false
+
+[[beats]]
+id = "derive_collision_condition"
+loop = false
+
+[[beats]]
+id = "count_overlap"
+loop = false
+
+[[beats]]
+id = "solve_offset"
+loop = false
+
+[[beats]]
+id = "recover_k"
+loop = false
+
+[[beats]]
+id = "verify_full_count"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

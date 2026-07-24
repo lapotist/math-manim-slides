@@ -1,0 +1,65 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q10"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "One shared total orders four bounded variables"
+locale = "zh-TW"
+question = 10
+source_pages = [6]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 10, PDF page 6"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q10/deck.py"
+scene_class = "Tcfs115Q10Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/q10/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/q10/storyboard.md"
+estimated_minutes = 9
+expected_answer = "c > a > d > b"
+independent_check = "With k=a+b+c+d>0, the four inequalities give k/7<b<k/6, 5k/13<c<5k/12, 2k/11<d<2k/9, and 5k/21<a<5k/19. The separated endpoints k/6<2k/11, 2k/9<5k/21, and 5k/19<5k/13 prove b<d<a<c."
+tags = ["inequality", "bounds", "interval", "ordering", "normalization"]
+
+[[beats]]
+id = "meet_four_bounds"
+loop = false
+
+[[beats]]
+id = "name_shared_total"
+loop = false
+
+[[beats]]
+id = "normalize_b"
+loop = false
+
+[[beats]]
+id = "normalize_c"
+loop = false
+
+[[beats]]
+id = "normalize_d"
+loop = false
+
+[[beats]]
+id = "normalize_a"
+loop = false
+
+[[beats]]
+id = "place_four_intervals"
+loop = false
+
+[[beats]]
+id = "separate_b_d"
+loop = false
+
+[[beats]]
+id = "separate_d_a"
+loop = false
+
+[[beats]]
+id = "separate_a_c"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

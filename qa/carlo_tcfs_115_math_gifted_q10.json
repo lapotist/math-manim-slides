@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q10",
+  "scene_class": "Tcfs115Q10Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "With k=a+b+c+d>0, the four inequalities give k/7<b<k/6, 5k/13<c<5k/12, 2k/11<d<2k/9, and 5k/21<a<5k/19. The separated endpoints k/6<2k/11, 2k/9<5k/21, and 5k/19<5k/13 prove b<d<a<c."
+  },
+  "render": {
+    "segment_count": 11,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_four_bounds",
+        "loop": false
+      },
+      {
+        "id": "name_shared_total",
+        "loop": false
+      },
+      {
+        "id": "normalize_b",
+        "loop": false
+      },
+      {
+        "id": "normalize_c",
+        "loop": false
+      },
+      {
+        "id": "normalize_d",
+        "loop": false
+      },
+      {
+        "id": "normalize_a",
+        "loop": false
+      },
+      {
+        "id": "place_four_intervals",
+        "loop": false
+      },
+      {
+        "id": "separate_b_d",
+        "loop": false
+      },
+      {
+        "id": "separate_d_a",
+        "loop": false
+      },
+      {
+        "id": "separate_a_c",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q10/deck.py",
+      "sha256": "dbaf6c64f3a6509f4f7820506aaff0898f4306f37becf9c416c61eba357d1358"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q10/presenter.zh-TW.md",
+      "sha256": "13314b521c0aec31606c3be389cdf120a66a8a65c8cd794c6b2c80486c2e0dd2"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q10/storyboard.md",
+      "sha256": "de2648947628522fb9a7526d5d09dc523fc5f41bcde02d4bd3da383708f8e2c2"
+    }
+  }
+}

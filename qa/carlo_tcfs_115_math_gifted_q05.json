@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q05",
+  "scene_class": "Tcfs115Q05Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Equal the first and nth ratios; cancellation gives a_n=n*a_1. Then sum=210*a_1<2026, while 210*9=1890 and 210*10=2100."
+  },
+  "render": {
+    "segment_count": 12,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "equal_ratio_chain",
+        "loop": false
+      },
+      {
+        "id": "focus_first_ratio",
+        "loop": false
+      },
+      {
+        "id": "scale_model",
+        "loop": true
+      },
+      {
+        "id": "pose_nth_term",
+        "loop": false
+      },
+      {
+        "id": "derive_nth_term",
+        "loop": false
+      },
+      {
+        "id": "build_sequence",
+        "loop": false
+      },
+      {
+        "id": "pose_sum_limit",
+        "loop": false
+      },
+      {
+        "id": "pair_coefficients",
+        "loop": false
+      },
+      {
+        "id": "sum_coefficients",
+        "loop": false
+      },
+      {
+        "id": "bound_a1",
+        "loop": false
+      },
+      {
+        "id": "test_neighboring_integers",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": [
+      {
+        "beat_id": "scale_model",
+        "mean_absolute_difference": 1.4467592592592593e-05
+      }
+    ]
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q05/deck.py",
+      "sha256": "263cd7eb0a90b9ab223553be0b122f7a016b6a91b12880bac60aaf1f72c2ff62"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q05/presenter.zh-TW.md",
+      "sha256": "581848932f76162632eaa92a9436892d3d1be358f32e9ef29cc5ea4f07f87bd3"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q05/storyboard.md",
+      "sha256": "815bb9dee23cc4a0f3b4819c495c3741eb4174bec35bb75f454dc37934f324d7"
+    }
+  }
+}

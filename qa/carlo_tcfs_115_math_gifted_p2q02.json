@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.p2q02",
+  "scene_class": "Tcfs115Part2Q02Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "AA gives triangles ABD~AEC and ABD~CED with correspondences (A,B,D)<->(A,E,C) and (A,B,D)<->(C,E,D). Thus AB*AC=AD*AE and AD*DE=BD*DC. Since AE=AD+DE, AB*AC=AD^2+BD*DC, so AD^2=AB*AC-BD*DC; AD>0 selects the positive square root."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "build_triangle",
+        "loop": false
+      },
+      {
+        "id": "place_angle_bisector",
+        "loop": false
+      },
+      {
+        "id": "add_circle_and_e",
+        "loop": false
+      },
+      {
+        "id": "pose_hidden_similarity",
+        "loop": false
+      },
+      {
+        "id": "prove_first_similarity",
+        "loop": false
+      },
+      {
+        "id": "prove_second_similarity",
+        "loop": false
+      },
+      {
+        "id": "align_three_triangles",
+        "loop": false
+      },
+      {
+        "id": "build_first_product",
+        "loop": false
+      },
+      {
+        "id": "build_second_product",
+        "loop": false
+      },
+      {
+        "id": "split_ae",
+        "loop": false
+      },
+      {
+        "id": "isolate_ad_square",
+        "loop": false
+      },
+      {
+        "id": "take_positive_root",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/p2q02/deck.py",
+      "sha256": "fca875f3de2a62f5eb288eeec0e8dea2093b67cfd2a6297f95a8168d5e00c265"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/p2q02/presenter.zh-TW.md",
+      "sha256": "e27abe026fb57b0e6eb6ae243fe9b2896cee1179f04e140dc9845cfa57f5de86"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/p2q02/storyboard.md",
+      "sha256": "1d749104f22305adaf5cdc9c110b66a2d161fa96bd76c70cbf4b1045f9f23927"
+    }
+  }
+}

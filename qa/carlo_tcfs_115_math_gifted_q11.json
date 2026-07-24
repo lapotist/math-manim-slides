@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q11",
+  "scene_class": "Tcfs115Q11Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "For A=(0,0,0), B=(a,0,0), C=(a,a,0), D=(0,a,0), E=(0,0,a), F=(a,0,a), G=(a,a,a), H=(0,a,a), the points are P=(a/2,0,a), Q=(0,2a/5,a), R=(0,a,a/2). Their plane is 4x+5y+6z=8a. On FB, x=a and y=0, so z=2a/3; hence FN=a/3, NB=2a/3, and FN/NB=1/2."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "build_cube",
+        "loop": false
+      },
+      {
+        "id": "place_pqr",
+        "loop": false
+      },
+      {
+        "id": "trace_known_section",
+        "loop": false
+      },
+      {
+        "id": "extend_top_line",
+        "loop": false
+      },
+      {
+        "id": "extend_right_line",
+        "loop": false
+      },
+      {
+        "id": "locate_n",
+        "loop": false
+      },
+      {
+        "id": "unfold_three_faces",
+        "loop": false
+      },
+      {
+        "id": "top_left_ratio",
+        "loop": false
+      },
+      {
+        "id": "top_right_ratio",
+        "loop": false
+      },
+      {
+        "id": "right_face_ratio",
+        "loop": false
+      },
+      {
+        "id": "front_face_ratio",
+        "loop": false
+      },
+      {
+        "id": "finish_ratio",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q11/deck.py",
+      "sha256": "d1dfb8a9f8a0e63e0c00fd8123d8a73993adb2ea42571ef365da960c3a1d4766"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q11/presenter.zh-TW.md",
+      "sha256": "5e61da297d6285d80f0d78ba671736c365c67920787e9c8caf512d9394b49284"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q11/storyboard.md",
+      "sha256": "715a73d76349308bd18ed7b27404946a40cde2c04c4529b1346a5037640e4fef"
+    }
+  }
+}

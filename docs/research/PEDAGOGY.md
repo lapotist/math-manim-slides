@@ -38,6 +38,11 @@ The following official pages were reviewed as examples of explanatory order:
   makes a hidden invariant visible before using it algebraically.
 - [Windmills](https://www.3blue1brown.com/lessons/windmills/) treats deliberate
   exploration and invariant-finding as part of the proof experience.
+- [What makes a great math explanation?](https://www.youtube.com/watch?v=cDofhN-RJqg)
+  gives four explicit review criteria: motivation, clarity, novelty, and
+  memorability. Its concrete guidance includes motivating each new idea,
+  centering examples before general rules, and delaying equations until the
+  viewer already has the corresponding mental picture.
 
 Across those examples, the transferable pattern is not a visual brand. It is
 an order of attention:
@@ -54,6 +59,13 @@ an order of attention:
 This repository implements that grammar with original diagrams, wording, code,
 timing, colors, and lesson-specific arguments. It does not imitate 3Blue1Brown
 scene composition or incorporate its expressive assets.
+
+The same official talk adds a useful scale distinction. Opening motivation
+should be short and specific, while motivation inside the explanation is
+continuous: each new symbol or construction needs a reason to arrive at that
+moment. Clarity comes from keeping a concrete example visible and exposing one
+pattern at a time. Memorability is then an outcome of a resolved question and a
+satisfying realization, not decorative animation or a manufactured surprise.
 
 ## Consequences for review
 

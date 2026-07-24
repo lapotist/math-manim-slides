@@ -16,6 +16,10 @@ once, together with all source pages where it occurs.
 `source_access_audit.json` stores the corresponding status for every provider
 ID. It is deliberately snapshot-based: access can change, and a future audit
 must record a new date rather than silently rewriting historical evidence.
+`source_assets.json` derives an `asset_eligibility` and explicit blocker list
+from that evidence: confirmed-public assets still require problem/solution
+decomposition and rights review; restricted and unresolved assets remain
+blocked without guessing.
 
 `site_taxonomy.json` preserves the reviewed section, audience, exam, topic,
 content status, and asset counts for all 434 pages. Landing and shell pages

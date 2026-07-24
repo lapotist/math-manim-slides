@@ -1,0 +1,52 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q04"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "An ant walk compressed into four-step blocks"
+locale = "zh-TW"
+question = 4
+source_pages = [2]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q04/deck.py"
+scene_class = "CarloTcfs115MathQ04"
+storyboard = "lessons/tcfs_115_math_gifted/q04/storyboard.md"
+presenter_script = "lessons/tcfs_115_math_gifted/q04/presenter.zh-TW.md"
+estimated_minutes = 7
+expected_answer = "100"
+independent_check = "The position is 1^2-2^2-3^2+4^2+...+97^2-98^2-99^2+100^2. Each four-term block n^2-(n+1)^2-(n+2)^2+(n+3)^2 equals 4 for n=1,5,...,97. There are 25 blocks, so the final coordinate is 100."
+tags = ["sequence", "number-line", "squares", "grouping", "finite-difference"]
+
+[[beats]]
+id = "start_at_one"
+loop = false
+
+[[beats]]
+id = "walk_first_block"
+loop = false
+
+[[beats]]
+id = "write_signed_squares"
+loop = false
+
+[[beats]]
+id = "pair_square_gaps"
+loop = false
+
+[[beats]]
+id = "prove_generic_block"
+loop = false
+
+[[beats]]
+id = "align_last_move"
+loop = false
+
+[[beats]]
+id = "count_blocks"
+loop = false
+
+[[beats]]
+id = "arrive_at_hundred"
+loop = false

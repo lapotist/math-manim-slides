@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q04",
+  "scene_class": "CarloTcfs115MathQ04",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "The position is 1^2-2^2-3^2+4^2+...+97^2-98^2-99^2+100^2. Each four-term block n^2-(n+1)^2-(n+2)^2+(n+3)^2 equals 4 for n=1,5,...,97. There are 25 blocks, so the final coordinate is 100."
+  },
+  "render": {
+    "segment_count": 8,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "start_at_one",
+        "loop": false
+      },
+      {
+        "id": "walk_first_block",
+        "loop": false
+      },
+      {
+        "id": "write_signed_squares",
+        "loop": false
+      },
+      {
+        "id": "pair_square_gaps",
+        "loop": false
+      },
+      {
+        "id": "prove_generic_block",
+        "loop": false
+      },
+      {
+        "id": "align_last_move",
+        "loop": false
+      },
+      {
+        "id": "count_blocks",
+        "loop": false
+      },
+      {
+        "id": "arrive_at_hundred",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q04/deck.py",
+      "sha256": "3fa2d63734113d8d514f56b3bb68c5920e579d0beb27d838dabeafd3ed039859"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q04/presenter.zh-TW.md",
+      "sha256": "c8421985239a45fdc9e62694a921a56d1edbbcff3ee4d4f415c6c1c4c6894cbd"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q04/storyboard.md",
+      "sha256": "d5d4381c675a351f9a002a115d3ae08e527b5ff5137b4d79bc441292a960c941"
+    }
+  }
+}

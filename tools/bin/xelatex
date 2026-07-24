@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu
+
+project_root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
+ready_file="$project_root/build/tex/.ready"
+
+if [ ! -f "$ready_file" ]; then
+    echo "TeX cache is not prepared. Run: pixi run prepare-tex" >&2
+    exit 2
+fi
+
+output_dir=""
+input_file=""
+for argument in "$@"; do
+    case "$argument" in
+        -output-directory=*) output_dir=${argument#-output-directory=} ;;
+        *.tex) input_file=$argument ;;
+    esac
+done
+
+if [ -z "$output_dir" ] || [ -z "$input_file" ]; then
+    echo "Manim xelatex wrapper: missing output directory or input .tex file" >&2
+    exit 2
+fi
+
+exec tectonic -X compile \
+    --only-cached \
+    --outfmt xdv \
+    --keep-logs \
+    --outdir "$output_dir" \
+    "$input_file"

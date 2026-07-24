@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q08",
+  "scene_class": "Tcfs115Q08Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "At height k=t^2>0, the two hit rows are {2j-t} and {2j+t}, j=0..50. A count below 102 forces integer 1<=t<=50; overlap is 51-t, so distinct hits are 51+t=76 and t=25."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "parabola_family",
+        "loop": false
+      },
+      {
+        "id": "sweep_horizontal_line",
+        "loop": true
+      },
+      {
+        "id": "count_nominal_hits",
+        "loop": false
+      },
+      {
+        "id": "observe_collision",
+        "loop": false
+      },
+      {
+        "id": "compress_to_number_line",
+        "loop": false
+      },
+      {
+        "id": "define_offset_t",
+        "loop": false
+      },
+      {
+        "id": "pose_76_count",
+        "loop": false
+      },
+      {
+        "id": "derive_collision_condition",
+        "loop": false
+      },
+      {
+        "id": "count_overlap",
+        "loop": false
+      },
+      {
+        "id": "solve_offset",
+        "loop": false
+      },
+      {
+        "id": "recover_k",
+        "loop": false
+      },
+      {
+        "id": "verify_full_count",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": [
+      {
+        "beat_id": "sweep_horizontal_line",
+        "mean_absolute_difference": 0.00019097222222222223
+      }
+    ]
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q08/deck.py",
+      "sha256": "59805beeb36ea6a8523795047fdc53fa2b4950d88e95fb819a31664dca9b96ea"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q08/presenter.zh-TW.md",
+      "sha256": "a97eb304fad12616d7fe7f3b7153deaa4a2be917c2e1532936ddd6a8925a7dde"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q08/storyboard.md",
+      "sha256": "32c1ec6610341c3db244f7462b1a509e3a8752e2b30233dc41f70cea8c0c11b3"
+    }
+  }
+}

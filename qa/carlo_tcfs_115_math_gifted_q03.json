@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q03",
+  "scene_class": "CarloTcfs115MathQ03",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Exactly three quadrants requires Delta>0 and f(0)>=0, giving k=-1,2,3,4,5 and m=5. Integer roots require k^2-k-1 to be a square; only k=-1,2 survive, and only k=-1 has a positive integer root, so n=1."
+  },
+  "render": {
+    "segment_count": 9,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_family",
+        "loop": false
+      },
+      {
+        "id": "compare_quadrants",
+        "loop": true
+      },
+      {
+        "id": "need_two_roots",
+        "loop": false
+      },
+      {
+        "id": "guard_y_axis",
+        "loop": false
+      },
+      {
+        "id": "count_m",
+        "loop": false
+      },
+      {
+        "id": "ask_integer_root",
+        "loop": false
+      },
+      {
+        "id": "perfect_square_filter",
+        "loop": false
+      },
+      {
+        "id": "test_candidates",
+        "loop": false
+      },
+      {
+        "id": "final_pair",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": [
+      {
+        "beat_id": "compare_quadrants",
+        "mean_absolute_difference": 0.00753858024691358
+      }
+    ]
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q03/deck.py",
+      "sha256": "8b89b87f697e1e70b3662e243f8580ff4f67729c73cccd6b64a47a0e80077721"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q03/presenter.zh-TW.md",
+      "sha256": "0e1900b948e0b97a2fc9068160ccbcadc3bb5a2f7238e67c3f06e140db11161a"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q03/storyboard.md",
+      "sha256": "9cecf7f8a80c1f2b6b5698e645db4d760b2884c66f90809f6d3d4983d5a45399"
+    }
+  }
+}

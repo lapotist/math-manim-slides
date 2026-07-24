@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q01",
+  "scene_class": "CarloTcfs115MathQ01",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "AD and AE are perpendicular. In right triangle ADE, AE/AD = sqrt(3), so angle ADE = 60 degrees. Then C = 60-x, B = 120-x, A = 2x, and 4C-2B+A = 0."
+  },
+  "render": {
+    "segment_count": 9,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "build_triangle",
+        "loop": false
+      },
+      {
+        "id": "place_bisectors",
+        "loop": false
+      },
+      {
+        "id": "see_right_angle",
+        "loop": false
+      },
+      {
+        "id": "complete_special_triangle",
+        "loop": false
+      },
+      {
+        "id": "transfer_sixty",
+        "loop": false
+      },
+      {
+        "id": "derive_c",
+        "loop": false
+      },
+      {
+        "id": "derive_b_and_a",
+        "loop": false
+      },
+      {
+        "id": "cancel_expression",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q01/deck.py",
+      "sha256": "fafe618f01089e38e322310ad655b1848ffa4a7380b615ac76c0678dd67d9875"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q01/presenter.zh-TW.md",
+      "sha256": "f7e4ec758b52195b16fe3a73526f2895b84589cd42c7eec5eef2e3bebb219024"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q01/storyboard.md",
+      "sha256": "5970b1cbf2ba78ca695ccb63317972a39dc1bfaac35455b525982465825fcd32"
+    }
+  }
+}

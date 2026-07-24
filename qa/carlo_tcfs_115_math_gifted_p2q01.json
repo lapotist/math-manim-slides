@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.p2q01",
+  "scene_class": "Tcfs115Part2Q01Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Subtracting equations 1 and 2 gives (y-z)(x+y+z-3)=0. If y=z, equation 3 gives 3y^2-5y-1=0, hence y=(5+/-sqrt(37))/6; the remaining x-quadratic has discriminant y+8>0. If x+y+z=3, equations 2-3 give x=1, and equation 1 gives y^2-2y-2=0, hence y=1+/-sqrt(3), with z=2-y."
+  },
+  "render": {
+    "segment_count": 12,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_three_equations",
+        "loop": false
+      },
+      {
+        "id": "notice_twin_pair",
+        "loop": false
+      },
+      {
+        "id": "subtract_first_two",
+        "loop": false
+      },
+      {
+        "id": "split_branches",
+        "loop": false
+      },
+      {
+        "id": "enter_equal_branch",
+        "loop": false
+      },
+      {
+        "id": "solve_equal_branch",
+        "loop": false
+      },
+      {
+        "id": "enter_sum_branch",
+        "loop": false
+      },
+      {
+        "id": "derive_x_one",
+        "loop": false
+      },
+      {
+        "id": "solve_sum_branch",
+        "loop": false
+      },
+      {
+        "id": "verify_candidates",
+        "loop": false
+      },
+      {
+        "id": "correct_source_sign",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/p2q01/deck.py",
+      "sha256": "2b90957b40a8fb167cb1e9bdf76cedffa740c070a83de6fffcfd4482f3f01857"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/p2q01/presenter.zh-TW.md",
+      "sha256": "c2b68dec1e9da51bee9ea35c700f2d2d187c14c371e931ea880db79cf0f11583"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/p2q01/storyboard.md",
+      "sha256": "e91087fe6001b2310d5dc64ff5a20fc18a8d7bd761427e2f45474aafbc9cfa19"
+    }
+  }
+}

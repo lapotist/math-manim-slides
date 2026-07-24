@@ -1,0 +1,30 @@
+#!/bin/sh
+set -eu
+
+project_root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
+local_binary="$project_root/build/dvisvgm-root/usr/bin/dvisvgm"
+local_libraries="$project_root/build/dvisvgm-root/usr/lib64"
+
+if [ -x "$local_binary" ]; then
+    texmf_root="$project_root/build/dvisvgm-root/usr/share/texlive"
+    texmf_dist="$texmf_root/texmf-dist"
+    export TEXMFCNF="$project_root/build/dvisvgm-root/etc/texlive/web2c"
+    export TEXMFROOT="$texmf_root"
+    export TEXMF="$texmf_dist//"
+    if [ -n "${LD_LIBRARY_PATH:-}" ]; then
+        export LD_LIBRARY_PATH="$local_libraries:$LD_LIBRARY_PATH"
+    else
+        export LD_LIBRARY_PATH="$local_libraries"
+    fi
+    font_maps="$texmf_dist/fonts/map/dvips/amsfonts/cm.map,$texmf_dist/fonts/map/dvips/amsfonts/symbols.map"
+    exec "$local_binary" --fontmap="$font_maps" "$@"
+fi
+
+for system_binary in /usr/local/bin/dvisvgm /usr/bin/dvisvgm /bin/dvisvgm; do
+    if [ -x "$system_binary" ]; then
+        exec "$system_binary" "$@"
+    fi
+done
+
+echo "dvisvgm is not prepared. Run: pixi run prepare-tex" >&2
+exit 2

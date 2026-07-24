@@ -28,7 +28,9 @@ exact path and a completed rights review:
 - dependency code, package contents, lock-file notices, fonts, logos,
   trademarks, names, and files carrying another license or notice; and
 - generated HTML or video containing an input that is not itself covered or
-  separately compatible.
+  separately compatible; and
+- `qa/*.json` attestations derived from lesson render metadata while the
+  corresponding lesson expression remains outside the CC0 allowlist.
 
 Mathematical facts and formulas are cited for provenance, but this notice does
 not purport to grant rights that the project does not control. The project is

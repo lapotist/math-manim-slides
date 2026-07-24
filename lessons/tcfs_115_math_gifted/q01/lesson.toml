@@ -1,0 +1,58 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q01"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Angle bisectors and a hidden 30-60-90 triangle"
+locale = "zh-TW"
+question = 1
+source_pages = [1]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 1, PDF page 1"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF text layer drops the radical; the rendered page clearly states AE = sqrt(3) AD."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q01/deck.py"
+scene_class = "CarloTcfs115MathQ01"
+storyboard = "lessons/tcfs_115_math_gifted/q01/storyboard.md"
+presenter_script = "lessons/tcfs_115_math_gifted/q01/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "0 degrees"
+independent_check = "AD and AE are perpendicular. In right triangle ADE, AE/AD = sqrt(3), so angle ADE = 60 degrees. Then C = 60-x, B = 120-x, A = 2x, and 4C-2B+A = 0."
+tags = ["geometry", "angle-bisector", "right-triangle", "invariant"]
+
+[[beats]]
+id = "build_triangle"
+loop = false
+
+[[beats]]
+id = "place_bisectors"
+loop = false
+
+[[beats]]
+id = "see_right_angle"
+loop = false
+
+[[beats]]
+id = "complete_special_triangle"
+loop = false
+
+[[beats]]
+id = "transfer_sixty"
+loop = false
+
+[[beats]]
+id = "derive_c"
+loop = false
+
+[[beats]]
+id = "derive_b_and_a"
+loop = false
+
+[[beats]]
+id = "cancel_expression"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

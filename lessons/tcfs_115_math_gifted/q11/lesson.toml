@@ -1,0 +1,74 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q11"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Following one plane across three faces of a cube"
+locale = "zh-TW"
+question = 11
+source_pages = [7, 8]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 11, PDF page 7; collection source_pages preserves the catalog range [7, 8]"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The rendered solution introduces L and J only in its auxiliary diagram. This lesson defines L=PQ intersect extended FG and J=IR intersect extended CG before using them. The PDF text layer also misreads EQ as EG in one ratio."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q11/deck.py"
+scene_class = "Tcfs115Q11Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/q11/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/q11/storyboard.md"
+estimated_minutes = 11
+expected_answer = "FN/NB = 1/2"
+independent_check = "For A=(0,0,0), B=(a,0,0), C=(a,a,0), D=(0,a,0), E=(0,0,a), F=(a,0,a), G=(a,a,a), H=(0,a,a), the points are P=(a/2,0,a), Q=(0,2a/5,a), R=(0,a,a/2). Their plane is 4x+5y+6z=8a. On FB, x=a and y=0, so z=2a/3; hence FN=a/3, NB=2a/3, and FN/NB=1/2."
+tags = ["geometry", "cube", "plane-section", "similar-triangles", "spatial-reasoning"]
+
+[[beats]]
+id = "build_cube"
+loop = false
+
+[[beats]]
+id = "place_pqr"
+loop = false
+
+[[beats]]
+id = "trace_known_section"
+loop = false
+
+[[beats]]
+id = "extend_top_line"
+loop = false
+
+[[beats]]
+id = "extend_right_line"
+loop = false
+
+[[beats]]
+id = "locate_n"
+loop = false
+
+[[beats]]
+id = "unfold_three_faces"
+loop = false
+
+[[beats]]
+id = "top_left_ratio"
+loop = false
+
+[[beats]]
+id = "top_right_ratio"
+loop = false
+
+[[beats]]
+id = "right_face_ratio"
+loop = false
+
+[[beats]]
+id = "front_face_ratio"
+loop = false
+
+[[beats]]
+id = "finish_ratio"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

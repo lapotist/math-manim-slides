@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q02",
+  "scene_class": "CarloTcfs115MathQ02",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Triangle OA2B1 is half of both the first and second rectangles because it shares each rectangle's base and full perpendicular height. Repeating with triangle OA3B2 makes all three rectangle areas equal to 5*12=60; total 180."
+  },
+  "render": {
+    "segment_count": 8,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "first_rectangle",
+        "loop": false
+      },
+      {
+        "id": "shared_half",
+        "loop": false
+      },
+      {
+        "id": "grow_second",
+        "loop": false
+      },
+      {
+        "id": "equal_first_second",
+        "loop": false
+      },
+      {
+        "id": "shift_shared_half",
+        "loop": false
+      },
+      {
+        "id": "grow_third",
+        "loop": false
+      },
+      {
+        "id": "three_equal_areas",
+        "loop": false
+      },
+      {
+        "id": "sum_areas",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q02/deck.py",
+      "sha256": "cc2f78c736640262aad71d3c51c40f512b19e78e8550d7cd5f7859a77ba335ab"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q02/presenter.zh-TW.md",
+      "sha256": "fba2db951f55e3617672a779a7e9189c8043f5126927f7340d91bef99570ebf3"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q02/storyboard.md",
+      "sha256": "908683ae5a29bd2d490fb2338e3501820a016eac159e947c3ddfd732e013a163"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.p2q02"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Two similarities build the angle-bisector length identity"
+locale = "zh-TW"
+part = 2
+question = 2
+source_pages = [10]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 2, Question 2, PDF page 10"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/p2q02/deck.py"
+scene_class = "Tcfs115Part2Q02Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/p2q02/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/p2q02/storyboard.md"
+estimated_minutes = 10
+expected_answer = "AD = sqrt(AB*AC - BD*DC)"
+independent_check = "AA gives triangles ABD~AEC and ABD~CED with correspondences (A,B,D)<->(A,E,C) and (A,B,D)<->(C,E,D). Thus AB*AC=AD*AE and AD*DE=BD*DC. Since AE=AD+DE, AB*AC=AD^2+BD*DC, so AD^2=AB*AC-BD*DC; AD>0 selects the positive square root."
+tags = ["geometry", "angle-bisector", "cyclic-quadrilateral", "similar-triangles", "length-identity"]
+
+[[beats]]
+id = "build_triangle"
+loop = false
+
+[[beats]]
+id = "place_angle_bisector"
+loop = false
+
+[[beats]]
+id = "add_circle_and_e"
+loop = false
+
+[[beats]]
+id = "pose_hidden_similarity"
+loop = false
+
+[[beats]]
+id = "prove_first_similarity"
+loop = false
+
+[[beats]]
+id = "prove_second_similarity"
+loop = false
+
+[[beats]]
+id = "align_three_triangles"
+loop = false
+
+[[beats]]
+id = "build_first_product"
+loop = false
+
+[[beats]]
+id = "build_second_product"
+loop = false
+
+[[beats]]
+id = "split_ae"
+loop = false
+
+[[beats]]
+id = "isolate_ad_square"
+loop = false
+
+[[beats]]
+id = "take_positive_root"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

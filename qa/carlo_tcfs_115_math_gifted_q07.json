@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q07",
+  "scene_class": "Tcfs115Q07Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "With A=sqrt(a^2+4), B=sqrt(b^2+9), the partner product is (A-a)(B-b)=36/7. Subtracting it from (A+a)(B+b)=7 gives twice the requested cross term."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "given_product",
+        "loop": false
+      },
+      {
+        "id": "isolate_radical_pairs",
+        "loop": false
+      },
+      {
+        "id": "vary_first_pair",
+        "loop": true
+      },
+      {
+        "id": "discover_first_invariant",
+        "loop": false
+      },
+      {
+        "id": "mirror_second_pair",
+        "loop": false
+      },
+      {
+        "id": "combine_invariants",
+        "loop": false
+      },
+      {
+        "id": "pose_target",
+        "loop": false
+      },
+      {
+        "id": "build_shadow_product",
+        "loop": false
+      },
+      {
+        "id": "expand_known_product",
+        "loop": false
+      },
+      {
+        "id": "expand_shadow_product",
+        "loop": false
+      },
+      {
+        "id": "subtract_to_isolate",
+        "loop": false
+      },
+      {
+        "id": "final_value",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": [
+      {
+        "beat_id": "vary_first_pair",
+        "mean_absolute_difference": 0.35229648919753087
+      }
+    ]
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q07/deck.py",
+      "sha256": "79bf69de4ab6d7e40a9656167448b23094a9814377e7943bed043bbbe897a1bf"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q07/presenter.zh-TW.md",
+      "sha256": "a41e9de2240c2b80d719c5cacb8883727dcb45929d829ec9d723507d2c8c4927"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q07/storyboard.md",
+      "sha256": "9a07f1160e4fddceff3254038cda6c2d59fc6cda721dc65d6dcad5526080bb4d"
+    }
+  }
+}

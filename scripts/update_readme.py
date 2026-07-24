@@ -14,6 +14,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 START = "<!-- catalog-summary:start -->"
 END = "<!-- catalog-summary:end -->"
+LESSONS_START = "<!-- lesson-table:start -->"
+LESSONS_END = "<!-- lesson-table:end -->"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -72,6 +74,37 @@ def render_summary() -> str:
     )
 
 
+def render_lesson_table() -> str:
+    metadata_by_id: dict[str, tuple[dict[str, Any], Path]] = {}
+    for path in sorted(ROOT.glob("lessons/*/*/lesson.toml")):
+        with path.open("rb") as handle:
+            metadata = tomllib.load(handle)
+        metadata_by_id[metadata["id"]] = (metadata, path.relative_to(ROOT))
+
+    rows = [
+        LESSONS_START,
+        "| Lesson | Topic | State | Source files |",
+        "| --- | --- | --- | --- |",
+    ]
+    for collection_path in sorted(ROOT.glob("lessons/*/collection.toml")):
+        with collection_path.open("rb") as handle:
+            collection = tomllib.load(handle)
+        for problem in collection["problems"]:
+            metadata, metadata_path = metadata_by_id[problem["id"]]
+            scene_path = ROOT / metadata["scene_file"]
+            links = [f"[metadata]({metadata_path.as_posix()})"]
+            if scene_path.is_file():
+                links.append(f"[scene]({metadata['scene_file']})")
+            links.append(f"[script]({metadata['presenter_script']})")
+            rows.append(
+                "| "
+                f"{problem['label']} | {problem['topic']} | "
+                f"`{problem['production_state']}` | {' / '.join(links)} |"
+            )
+    rows.append(LESSONS_END)
+    return "\n".join(rows)
+
+
 def main() -> int:
     readme_path = ROOT / "README.md"
     readme = readme_path.read_text(encoding="utf-8")
@@ -82,6 +115,13 @@ def main() -> int:
     if not pattern.search(readme):
         raise ValueError("README inventory markers are missing")
     updated = pattern.sub(render_summary(), readme)
+    lesson_pattern = re.compile(
+        rf"{re.escape(LESSONS_START)}.*?{re.escape(LESSONS_END)}",
+        re.DOTALL,
+    )
+    if not lesson_pattern.search(updated):
+        raise ValueError("README lesson-table markers are missing")
+    updated = lesson_pattern.sub(render_lesson_table(), updated)
     readme_path.write_text(updated, encoding="utf-8")
     print("Updated README catalog summary.")
     return 0

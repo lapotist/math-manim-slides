@@ -1,0 +1,73 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q06"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Complete the missing factor and filter triangles"
+locale = "zh-TW"
+question = 6
+source_pages = [3]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 6, PDF page 3"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q06/deck.py"
+scene_class = "Tcfs115Q06Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/q06/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/q06/storyboard.md"
+estimated_minutes = 9
+expected_answer = "(11, 9, 3) and (9, 7, 5)"
+independent_check = "Adding 1 gives (a+1)(b+1)(c+1)=480. Enumerating ordered factor triples and applying b+c>a leaves only shifted triples (12,10,4) and (10,8,6)."
+tags = ["factorization", "integer", "triangle-inequality", "finite-cases"]
+
+[[beats]]
+id = "original_seven_terms"
+loop = false
+
+[[beats]]
+id = "missing_one"
+loop = false
+
+[[beats]]
+id = "complete_product"
+loop = false
+
+[[beats]]
+id = "shift_sides"
+loop = false
+
+[[beats]]
+id = "bound_z"
+loop = false
+
+[[beats]]
+id = "candidate_divisors"
+loop = false
+
+[[beats]]
+id = "pose_triangle_filter"
+loop = false
+
+[[beats]]
+id = "translate_triangle"
+loop = false
+
+[[beats]]
+id = "nearest_factor_pairs"
+loop = false
+
+[[beats]]
+id = "select_valid_rows"
+loop = false
+
+[[beats]]
+id = "restore_sides"
+loop = false
+
+[[beats]]
+id = "verify_triangles"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

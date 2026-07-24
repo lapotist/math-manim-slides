@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q06",
+  "scene_class": "Tcfs115Q06Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Adding 1 gives (a+1)(b+1)(c+1)=480. Enumerating ordered factor triples and applying b+c>a leaves only shifted triples (12,10,4) and (10,8,6)."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "original_seven_terms",
+        "loop": false
+      },
+      {
+        "id": "missing_one",
+        "loop": false
+      },
+      {
+        "id": "complete_product",
+        "loop": false
+      },
+      {
+        "id": "shift_sides",
+        "loop": false
+      },
+      {
+        "id": "bound_z",
+        "loop": false
+      },
+      {
+        "id": "candidate_divisors",
+        "loop": false
+      },
+      {
+        "id": "pose_triangle_filter",
+        "loop": false
+      },
+      {
+        "id": "translate_triangle",
+        "loop": false
+      },
+      {
+        "id": "nearest_factor_pairs",
+        "loop": false
+      },
+      {
+        "id": "select_valid_rows",
+        "loop": false
+      },
+      {
+        "id": "restore_sides",
+        "loop": false
+      },
+      {
+        "id": "verify_triangles",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q06/deck.py",
+      "sha256": "a8232c7918378d90fcf3e8ac040fc82fd88b0c75704720d5c0eb79c213a13a4b"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q06/presenter.zh-TW.md",
+      "sha256": "da1ceb3b989cc2b95db697b82e05c695ae1a3183e532ed83ea5138ed4139aa5b"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q06/storyboard.md",
+      "sha256": "a3009269dfc7119ee4a28c6ef049eed0aae9679b4a84c6893f57c74926ad5a22"
+    }
+  }
+}

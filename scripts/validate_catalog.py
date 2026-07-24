@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -20,6 +21,9 @@ SCRIPT_BEAT_RE = re.compile(
     re.MULTILINE,
 )
 SOURCE_BEAT_RE = re.compile(r"# Beat \d{2} ([a-z0-9_]+):")
+BEAT_CALL_RE = re.compile(
+    r"\bself\.(?:begin_beat|next_beat)\(\s*['\"]([a-z0-9_]+)['\"]"
+)
 NEXT_SLIDE_RE = re.compile(r"\bself\.next_slide\(")
 NEXT_CUE_RE = re.compile(r"\[NEXT\]")
 LOOP_CUE_RE = re.compile(r"\[LOOP[^\]]*\]")
@@ -34,6 +38,7 @@ VALID_PRODUCTION_STATES = {
     "published",
 }
 RENDERED_STATES = {"draft_rendered", "visual_verified", "published"}
+VERIFIED_STATES = {"visual_verified", "published"}
 
 
 def load_toml(path: Path) -> dict[str, Any]:
@@ -43,6 +48,14 @@ def load_toml(path: Path) -> dict[str, Any]:
 
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def check(condition: bool, message: str, errors: list[str]) -> None:
@@ -101,11 +114,6 @@ def validate_manifest(
     scene_class = metadata["scene_class"]
     manifest_path = ROOT / "slides" / f"{scene_class}.json"
     if not manifest_path.exists():
-        check(
-            metadata["production_state"] not in {"visual_verified", "published"},
-            f"{metadata['id']}: verified lesson has no Slides manifest",
-            errors,
-        )
         return
     manifest = load_json(manifest_path)
     slides = manifest.get("slides", [])
@@ -127,6 +135,76 @@ def validate_manifest(
         f"{metadata['id']}: manifest is not 1920x1080",
         errors,
     )
+
+
+def validate_qa_evidence(
+    metadata: dict[str, Any],
+    beats: list[dict[str, Any]],
+    errors: list[str],
+) -> None:
+    if metadata["production_state"] not in VERIFIED_STATES:
+        return
+    lesson_id = metadata["id"]
+    evidence_path = ROOT / "qa" / f"{lesson_id.replace('.', '_')}.json"
+    if not evidence_path.is_file():
+        errors.append(f"{lesson_id}: verified lesson has no committed QA evidence")
+        return
+    evidence = load_json(evidence_path)
+    check(evidence.get("schema_version") == 1, f"{lesson_id}: bad QA schema", errors)
+    check(evidence.get("lesson_id") == lesson_id, f"{lesson_id}: QA ID differs", errors)
+    check(
+        evidence.get("scene_class") == metadata["scene_class"],
+        f"{lesson_id}: QA scene class differs",
+        errors,
+    )
+    check(evidence.get("status") == "ok", f"{lesson_id}: QA status is not ok", errors)
+    review = evidence.get("review", {})
+    check(
+        review.get("mechanical") == "passed",
+        f"{lesson_id}: mechanical QA is not attested",
+        errors,
+    )
+    check(
+        review.get("visual") == "human_reviewed",
+        f"{lesson_id}: human visual QA is not attested",
+        errors,
+    )
+    render = evidence.get("render", {})
+    expected_beats = [
+        {"id": beat["id"], "loop": bool(beat.get("loop"))}
+        for beat in beats
+    ]
+    check(
+        render.get("segment_count") == len(beats),
+        f"{lesson_id}: QA segment count differs",
+        errors,
+    )
+    check(
+        render.get("resolution") == [1920, 1080],
+        f"{lesson_id}: QA resolution differs",
+        errors,
+    )
+    check(
+        render.get("beats") == expected_beats,
+        f"{lesson_id}: QA beat contract differs",
+        errors,
+    )
+    source_hashes = evidence.get("source_hashes", {})
+    for field in ("scene_file", "presenter_script", "storyboard"):
+        record = source_hashes.get(field, {})
+        relative_path = metadata[field]
+        path = ROOT / relative_path
+        check(
+            record.get("path") == relative_path,
+            f"{lesson_id}: QA {field} path differs",
+            errors,
+        )
+        if path.is_file():
+            check(
+                record.get("sha256") == sha256(path),
+                f"{lesson_id}: QA evidence is stale for {field}",
+                errors,
+            )
 
 
 def validate_lessons(
@@ -206,17 +284,29 @@ def validate_lessons(
 
         if scene_path.is_file():
             source = scene_path.read_text(encoding="utf-8")
-            source_ids = SOURCE_BEAT_RE.findall(source)
+            try:
+                compile(source, str(scene_path), "exec")
+            except SyntaxError as error:
+                errors.append(f"{lesson_id}: scene syntax error: {error}")
+            beat_call_ids = BEAT_CALL_RE.findall(source)
+            source_ids = beat_call_ids or SOURCE_BEAT_RE.findall(source)
             check(
                 source_ids == metadata_ids,
                 f"{lesson_id}: source/metadata beat IDs differ",
                 errors,
             )
-            check(
-                len(NEXT_SLIDE_RE.findall(source)) + 1 == len(metadata_ids),
-                f"{lesson_id}: next_slide count does not match beats",
-                errors,
-            )
+            if beat_call_ids:
+                check(
+                    len(beat_call_ids) == len(metadata_ids),
+                    f"{lesson_id}: beat API count does not match metadata",
+                    errors,
+                )
+            else:
+                check(
+                    len(NEXT_SLIDE_RE.findall(source)) + 1 == len(metadata_ids),
+                    f"{lesson_id}: next_slide count does not match beats",
+                    errors,
+                )
 
         if script_path.is_file():
             script = script_path.read_text(encoding="utf-8")
@@ -243,6 +333,7 @@ def validate_lessons(
                 errors,
             )
 
+        validate_qa_evidence(data, beats, errors)
         validate_manifest(data, beats, errors)
     check(count > 0, "no lesson metadata found", errors)
     return count
@@ -316,6 +407,34 @@ def validate_source_registry(errors: list[str]) -> None:
         dict(sorted(registry_access_counts.items()))
         == access["summary"]["access_statuses"],
         "source registry/access-audit status counts differ",
+        errors,
+    )
+    registry_eligibility_counts = Counter(
+        entry.get("asset_eligibility") for entry in registry_entries
+    )
+    check(
+        dict(sorted(registry_eligibility_counts.items()))
+        == assets["summary"].get("asset_eligibility"),
+        "source registry eligibility summary differs from asset records",
+        errors,
+    )
+    check(
+        registry_eligibility_counts
+        == Counter(
+            {
+                "review_pending": audit["access"]["confirmed_public"],
+                "blocked_access": audit["access"]["confirmed_restricted"],
+                "blocked_access_verification": audit["access"][
+                    "unresolved_bot_challenge"
+                ],
+            }
+        ),
+        "source eligibility counts do not match audited access groups",
+        errors,
+    )
+    check(
+        all(entry.get("blocker_reasons") for entry in registry_entries),
+        "source registry contains an asset without blocker/review reasons",
         errors,
     )
     check(

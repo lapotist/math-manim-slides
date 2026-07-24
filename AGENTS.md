@@ -150,6 +150,25 @@ and its lesson metadata must report the same production state.
 - Promote a helper into the shared package only after a second concrete lesson
   demonstrates the same behavior. Reuse primitives, not finished explanations.
 
+## Parallel Production
+
+- Assign one worker one problem directory at a time. A lesson worker may edit
+  that directory and its generated, ignored render outputs, but must not edit
+  the shared collection registry, README totals, licensing files, or unrelated
+  lessons.
+- The integrating worker reviews the rendered contact sheet, independently
+  reconciles the lesson state into `collection.toml`, and runs the collection
+  validator. This keeps concurrent state updates from overwriting one another.
+- A handoff must report the exact render command, segment count, loop result,
+  mathematical check, visual inspection performed, and any unresolved caveat.
+  A bare claim that a deck is complete is not an evidence gate.
+- Production state and rights state are independent. Rendering a lesson may
+  advance its production state; it must never advance `pending_cc0_scope` or
+  any other permission state without a documented rights decision.
+- Coordinate changes to shared helpers before editing them during parallel
+  production. Prefer a local lesson primitive until repeated use and integration
+  review justify promotion into `src/carlo_manim/`.
+
 ## Teaching Order
 
 Use experiential order rather than textbook order:
@@ -168,6 +187,23 @@ Use experiential order rather than textbook order:
 Do not open with a definition, theorem name, finished locus, or final formula.
 The viewer should feel that the result could have been discovered from the
 diagram.
+
+Review every explanation through four first-party 3Blue1Brown lenses:
+motivation, clarity, novelty, and memorability. These are quality questions,
+not instructions to imitate another creator's visual style.
+
+- Keep the opening motivation brief and concrete. Give the viewer a specific
+  object or puzzle to care about, not a broad promise that the topic is useful.
+- Apply motivation at the scale of every beat: a new point, construction,
+  variable, or equation must answer a question the viewer already has.
+- Keep one concrete example front and center. Let the audience play with one or
+  two cases and notice one relevant pattern at a time before stating a rule.
+- Delay equations until the corresponding visual relationship can already be
+  pictured. Algebra should name and compress an idea, not introduce it cold.
+- Design the consolidation beat around an earned realization: the final result
+  should resolve the opening question and make the route memorable.
+- Develop an original voice, pacing, composition, and color system. Reuse
+  explanatory principles, never channel-specific artwork or mannerisms.
 
 ## Motion And Proof
 
@@ -226,11 +262,30 @@ diagram.
   Slides supplies those boundaries.
 - Use the Pixi environment so rendering and presenting share the same Manim and
   plugin installation.
+- Run `pixi run prepare-tex` once after installation. It populates Tectonic's
+  pinned resource cache and proves that XDV-to-SVG conversion works before
+  writing `build/tex/.ready`; the Manim wrapper then enforces cached-only
+  equation compilation so renders never fetch network resources.
+- Prefer an existing system `dvisvgm`. On Fedora, `prepare-tex` may download and
+  extract the distribution converter and AMS outline-font RPMs into ignored
+  `build/` storage without `sudo`. Do not commit those packages or broaden
+  `LD_LIBRARY_PATH` globally. Other operating systems must install their native
+  `dvisvgm` package explicitly.
+- Do not accept a zero-exit converter probe by itself. `prepare-tex` must parse
+  the warm-up SVG and reject missing glyph definitions; a file can exist yet
+  still render every equation blank. After changing the TeX toolchain version,
+  invalidate prior TeX/partial-render caches or render once with caching
+  disabled before visual QA.
+- Give every render its own `--media_dir build/media/<lesson-id>`, especially
+  when jobs run concurrently. Manim cleans intermediate TeX files after a
+  conversion; sharing `media/Tex` lets one process delete another process's XDV
+  between compilation and `dvisvgm`. The batch runner must preserve this
+  isolation rather than relying on render timing.
 
 Suggested commands:
 
 ```bash
-pixi run manim-slides render --quality h question_9_slide.py Question9Slide
+pixi run manim-slides render --quality h --media_dir build/media/question_9 question_9_slide.py Question9Slide
 pixi run manim-slides present Question9Slide
 pixi run manim-slides convert --to html --one-file --offline Question9Slide question_9_slides.html
 ```
@@ -294,10 +349,23 @@ half has visibly landed.
 - Run `pixi run qa-slides <lesson-id>` for mechanical segment, resolution,
   nonblank-frame, and loop-endpoint checks. Treat it as a rejection gate, not a
   substitute for visual inspection.
+- Inspect the complete contact sheet at presentation scale, then open every
+  dense algebra, table, or multi-label frame at full 1920x1080 resolution.
+  Endpoint thumbnails can hide collisions that remain obvious to an audience.
+- Sample intermediate frames for transformations whose source and target move
+  across the diagram. Settled-frame QA cannot detect a label crossing another
+  object halfway through an otherwise correct animation.
+- When a semantic label changes, transform or remove the old label before the
+  replacement appears. Never leave two versions occupying the same geometry;
+  this commonly creates a visually plausible but unreadable composite string.
 - Check 1920x1080 framing for clipped text, overlapping labels, blank frames,
   illegible contrast, and unexpected layout shifts.
 - Confirm the presenter script has exactly the same ordered beats as the deck.
 - Verify the final formula independently from the animation code.
+- After all human checks pass, run `pixi run freeze-qa --human-reviewed
+  <lesson-id>`. Commit the compact `qa/` attestation, not the generated video,
+  contact sheet, or Slides manifest. Any later scene, script, or storyboard edit
+  invalidates its recorded hash and requires a new render and review.
 
 Collection-wide verification has three gates:
 
@@ -311,6 +379,12 @@ Collection-wide verification has three gates:
 Automated checks may reject a lesson but may not declare its mathematics
 correct. A catalog item reaches `verified` only after its result has been
 checked independently of the animation implementation.
+
+If a source answer conflicts with its own derivation, preserve the original
+locator and discrepancy in metadata, recompute the result independently, and
+test the corrected value by substitution or exhaustive checking where
+possible. Present the correction neutrally and never silently rewrite the
+source record.
 
 ## Provenance, Permission, And Licensing
 

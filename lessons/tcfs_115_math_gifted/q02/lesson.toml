@@ -1,0 +1,53 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q02"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Three rectangles linked by one half-area triangle"
+locale = "zh-TW"
+question = 2
+source_pages = [1]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 2, PDF page 1"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q02/deck.py"
+scene_class = "CarloTcfs115MathQ02"
+storyboard = "lessons/tcfs_115_math_gifted/q02/storyboard.md"
+presenter_script = "lessons/tcfs_115_math_gifted/q02/presenter.zh-TW.md"
+estimated_minutes = 7
+expected_answer = "180"
+independent_check = "Triangle OA2B1 is half of both the first and second rectangles because it shares each rectangle's base and full perpendicular height. Repeating with triangle OA3B2 makes all three rectangle areas equal to 5*12=60; total 180."
+tags = ["geometry", "rectangle", "area", "shared-triangle", "invariant"]
+
+[[beats]]
+id = "first_rectangle"
+loop = false
+
+[[beats]]
+id = "shared_half"
+loop = false
+
+[[beats]]
+id = "grow_second"
+loop = false
+
+[[beats]]
+id = "equal_first_second"
+loop = false
+
+[[beats]]
+id = "shift_shared_half"
+loop = false
+
+[[beats]]
+id = "grow_third"
+loop = false
+
+[[beats]]
+id = "three_equal_areas"
+loop = false
+
+[[beats]]
+id = "sum_areas"
+loop = false

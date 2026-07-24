@@ -1,0 +1,73 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q07"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "The hidden product of radical partners"
+locale = "zh-TW"
+question = 7
+source_pages = [4]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 7, PDF page 4"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q07/deck.py"
+scene_class = "Tcfs115Q07Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/q07/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/q07/storyboard.md"
+estimated_minutes = 8
+expected_answer = "13/14"
+independent_check = "With A=sqrt(a^2+4), B=sqrt(b^2+9), the partner product is (A-a)(B-b)=36/7. Subtracting it from (A+a)(B+b)=7 gives twice the requested cross term."
+tags = ["radicals", "conjugates", "invariant", "algebra"]
+
+[[beats]]
+id = "given_product"
+loop = false
+
+[[beats]]
+id = "isolate_radical_pairs"
+loop = false
+
+[[beats]]
+id = "vary_first_pair"
+loop = true
+
+[[beats]]
+id = "discover_first_invariant"
+loop = false
+
+[[beats]]
+id = "mirror_second_pair"
+loop = false
+
+[[beats]]
+id = "combine_invariants"
+loop = false
+
+[[beats]]
+id = "pose_target"
+loop = false
+
+[[beats]]
+id = "build_shadow_product"
+loop = false
+
+[[beats]]
+id = "expand_known_product"
+loop = false
+
+[[beats]]
+id = "expand_shadow_product"
+loop = false
+
+[[beats]]
+id = "subtract_to_isolate"
+loop = false
+
+[[beats]]
+id = "final_value"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

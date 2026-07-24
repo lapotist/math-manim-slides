@@ -10,6 +10,10 @@ from pathlib import Path
 from typing import Any
 
 
+PUBLIC_ACCESS = {"public", "public_stream"}
+UNRESOLVED_ACCESS = {"verification_inconclusive_bot_challenge"}
+
+
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -110,6 +114,21 @@ def build_registry(
             )
         for key, entry in registry_assets.items():
             entry.update(audit_assets[key])
+            access_status = entry["access_status"]
+            if access_status in PUBLIC_ACCESS:
+                entry["asset_eligibility"] = "review_pending"
+                entry["blocker_reasons"] = [
+                    "problem_solution_decomposition_pending",
+                    "rights_scope_pending",
+                ]
+            elif access_status in UNRESOLVED_ACCESS:
+                entry["asset_eligibility"] = "blocked_access_verification"
+                entry["blocker_reasons"] = [
+                    "anonymous_playback_verification_inconclusive",
+                ]
+            else:
+                entry["asset_eligibility"] = "blocked_access"
+                entry["blocker_reasons"] = ["source_not_anonymously_accessible"]
         registry["access_audit"] = {
             "path": "catalog/source_access_audit.json",
             "snapshot_date": access_audit["snapshot_date"],
@@ -118,6 +137,13 @@ def build_registry(
         registry["summary"]["access_statuses"] = access_audit["summary"][
             "access_statuses"
         ]
+        eligibility_counts: dict[str, int] = {}
+        for entry in registry_assets.values():
+            status = entry["asset_eligibility"]
+            eligibility_counts[status] = eligibility_counts.get(status, 0) + 1
+        registry["summary"]["asset_eligibility"] = dict(
+            sorted(eligibility_counts.items())
+        )
     return registry
 
 

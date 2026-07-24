@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q12",
+  "scene_class": "Tcfs115Q12Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Rotate P and C clockwise 90 degrees about A. Then PP'=sqrt(2)AP and C'P'=CP, so the objective is the broken path B-P-P'-C', bounded below by BC'. Equality is attainable when those four points are collinear. Coordinates A=(0,0), B=(2,-2sqrt(3)), C=(-2,-2sqrt(3)) give C'=(-2sqrt(3),2), BC'=2sqrt(6)+2sqrt(2), and the equality point P=(0,-(2sqrt(3)-2)), so AP=2sqrt(3)-2."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "build_equilateral",
+        "loop": false
+      },
+      {
+        "id": "explore_p",
+        "loop": true
+      },
+      {
+        "id": "pose_straightening",
+        "loop": false
+      },
+      {
+        "id": "rotate_copy",
+        "loop": false
+      },
+      {
+        "id": "earn_sqrt_two",
+        "loop": false
+      },
+      {
+        "id": "assemble_broken_path",
+        "loop": false
+      },
+      {
+        "id": "straighten_path",
+        "loop": false
+      },
+      {
+        "id": "measure_bc_prime",
+        "loop": false
+      },
+      {
+        "id": "compute_minimum",
+        "loop": false
+      },
+      {
+        "id": "pin_down_p",
+        "loop": false
+      },
+      {
+        "id": "read_equality_angles",
+        "loop": false
+      },
+      {
+        "id": "compute_ap",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": [
+      {
+        "beat_id": "explore_p",
+        "mean_absolute_difference": 0.20661313657407407
+      }
+    ]
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_115_math_gifted/q12/deck.py",
+      "sha256": "40ed9306c736e3d4b43c5ff41425f011990c1fbfc291ec1fca2bda28ec0b3e1c"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_115_math_gifted/q12/presenter.zh-TW.md",
+      "sha256": "804a939a10448e1dac89d4a9dc4f5adeadd24929df5972a003a23dc3a9466ad6"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q12/storyboard.md",
+      "sha256": "a8fd70e66a77597bcea95fff7ea5ff0fa333d7a841dac5a0509012a5f8375498"
+    }
+  }
+}

@@ -54,6 +54,11 @@ def output_path(lesson_id: str) -> Path:
     return ROOT / "dist" / Path(*parts).with_suffix(".html")
 
 
+def media_path(lesson_id: str) -> Path:
+    safe_id = lesson_id.replace(".", "_")
+    return ROOT / "build" / "media" / safe_id
+
+
 def action_command(
     action: str,
     lesson: dict[str, Any],
@@ -67,6 +72,8 @@ def action_command(
             "render",
             "--quality",
             quality,
+            "--media_dir",
+            str(media_path(lesson["id"])),
             scene_file,
             scene_class,
         ]

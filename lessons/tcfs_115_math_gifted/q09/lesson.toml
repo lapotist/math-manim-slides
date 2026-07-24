@@ -1,0 +1,85 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q09"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Moving-point locus and area"
+locale = "zh-TW"
+question = 9
+source_pages = [5]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 9, PDF page 5"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "question_9_slide.py"
+scene_class = "Question9Slide"
+storyboard = "lessons/tcfs_115_math_gifted/q09/storyboard.md"
+presenter_script = "question_9_presenter_script.md"
+estimated_minutes = 9
+expected_answer = "68*pi/3 + 8*sqrt(3)"
+independent_check = "300-degree radius-4 sector + side-4 equilateral triangle - radius-2 semicircle, then double"
+tags = ["geometry", "locus", "circle", "area", "symmetry"]
+
+[[beats]]
+id = "fixed_segment"
+loop = false
+
+[[beats]]
+id = "introduce_p"
+loop = false
+
+[[beats]]
+id = "explore_p"
+loop = true
+
+[[beats]]
+id = "pose_locus_question"
+loop = false
+
+[[beats]]
+id = "reveal_locus_outline"
+loop = false
+
+[[beats]]
+id = "prove_reflection_symmetry"
+loop = false
+
+[[beats]]
+id = "isolate_upper_half"
+loop = false
+
+[[beats]]
+id = "boundary_90"
+loop = false
+
+[[beats]]
+id = "boundary_30"
+loop = false
+
+[[beats]]
+id = "derive_radius_sector"
+loop = false
+
+[[beats]]
+id = "sector_area"
+loop = false
+
+[[beats]]
+id = "triangle_area"
+loop = false
+
+[[beats]]
+id = "subtract_semicircle"
+loop = false
+
+[[beats]]
+id = "upper_result"
+loop = false
+
+[[beats]]
+id = "reflect_and_double"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = true

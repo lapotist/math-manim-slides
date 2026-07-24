@@ -1,0 +1,74 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q12"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Rotate a weighted distance into one shortest path"
+locale = "zh-TW"
+question = 12
+source_pages = [8]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 12, PDF page 8"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The source states that the minimizing P lies on the equilateral triangle's symmetry axis without proving uniqueness. This lesson instead uses the equality line together with its inverse 90-degree rotation to locate P exactly."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q12/deck.py"
+scene_class = "Tcfs115Q12Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/q12/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/q12/storyboard.md"
+estimated_minutes = 11
+expected_answer = "(2*sqrt(6) + 2*sqrt(2), 2*sqrt(3) - 2)"
+independent_check = "Rotate P and C clockwise 90 degrees about A. Then PP'=sqrt(2)AP and C'P'=CP, so the objective is the broken path B-P-P'-C', bounded below by BC'. Equality is attainable when those four points are collinear. Coordinates A=(0,0), B=(2,-2sqrt(3)), C=(-2,-2sqrt(3)) give C'=(-2sqrt(3),2), BC'=2sqrt(6)+2sqrt(2), and the equality point P=(0,-(2sqrt(3)-2)), so AP=2sqrt(3)-2."
+tags = ["geometry", "rotation", "shortest-path", "equilateral-triangle", "weighted-distance"]
+
+[[beats]]
+id = "build_equilateral"
+loop = false
+
+[[beats]]
+id = "explore_p"
+loop = true
+
+[[beats]]
+id = "pose_straightening"
+loop = false
+
+[[beats]]
+id = "rotate_copy"
+loop = false
+
+[[beats]]
+id = "earn_sqrt_two"
+loop = false
+
+[[beats]]
+id = "assemble_broken_path"
+loop = false
+
+[[beats]]
+id = "straighten_path"
+loop = false
+
+[[beats]]
+id = "measure_bc_prime"
+loop = false
+
+[[beats]]
+id = "compute_minimum"
+loop = false
+
+[[beats]]
+id = "pin_down_p"
+loop = false
+
+[[beats]]
+id = "read_equality_angles"
+loop = false
+
+[[beats]]
+id = "compute_ap"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

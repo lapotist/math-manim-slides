@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_115_math_gifted.q09",
+  "scene_class": "Question9Slide",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "300-degree radius-4 sector + side-4 equilateral triangle - radius-2 semicircle, then double"
+  },
+  "render": {
+    "segment_count": 16,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "fixed_segment",
+        "loop": false
+      },
+      {
+        "id": "introduce_p",
+        "loop": false
+      },
+      {
+        "id": "explore_p",
+        "loop": true
+      },
+      {
+        "id": "pose_locus_question",
+        "loop": false
+      },
+      {
+        "id": "reveal_locus_outline",
+        "loop": false
+      },
+      {
+        "id": "prove_reflection_symmetry",
+        "loop": false
+      },
+      {
+        "id": "isolate_upper_half",
+        "loop": false
+      },
+      {
+        "id": "boundary_90",
+        "loop": false
+      },
+      {
+        "id": "boundary_30",
+        "loop": false
+      },
+      {
+        "id": "derive_radius_sector",
+        "loop": false
+      },
+      {
+        "id": "sector_area",
+        "loop": false
+      },
+      {
+        "id": "triangle_area",
+        "loop": false
+      },
+      {
+        "id": "subtract_semicircle",
+        "loop": false
+      },
+      {
+        "id": "upper_result",
+        "loop": false
+      },
+      {
+        "id": "reflect_and_double",
+        "loop": false
+      },
+      {
+        "id": "consolidate",
+        "loop": true
+      }
+    ],
+    "loop_endpoints": [
+      {
+        "beat_id": "explore_p",
+        "mean_absolute_difference": 0.1601393711419753
+      },
+      {
+        "beat_id": "consolidate",
+        "mean_absolute_difference": 0.25181568287037037
+      }
+    ]
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "question_9_slide.py",
+      "sha256": "3566d7ddebd2449527ba362d77f5903258feae958ec66daf90b12bef27a4818e"
+    },
+    "presenter_script": {
+      "path": "question_9_presenter_script.md",
+      "sha256": "e604773c7eb2045f50a9f2d8d2a86e08b3f3e18e283b159faec32d47008d2bdb"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_115_math_gifted/q09/storyboard.md",
+      "sha256": "70e455cac7c69f967d5537263ad440da41d5ea2e5c1eff9e73657a7730745ff3"
+    }
+  }
+}

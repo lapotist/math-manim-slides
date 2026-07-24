@@ -1,0 +1,71 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.p2q01"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Subtract two twin equations to reveal the branches"
+locale = "zh-TW"
+part = 2
+question = 1
+source_pages = [9]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 2, Question 1, PDF page 9"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF answer line prints (-5 +/- sqrt(37))/6. But its branch equation is 3y^2=5y+1 and the same solution line ends with (5 +/- sqrt(37))/6. The leading minus is a source typo; the independently verified roots have +5."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/p2q01/deck.py"
+scene_class = "Tcfs115Part2Q01Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/p2q01/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/p2q01/storyboard.md"
+estimated_minutes = 10
+expected_answer = "(5 +/- sqrt(37))/6 and 1 +/- sqrt(3)"
+independent_check = "Subtracting equations 1 and 2 gives (y-z)(x+y+z-3)=0. If y=z, equation 3 gives 3y^2-5y-1=0, hence y=(5+/-sqrt(37))/6; the remaining x-quadratic has discriminant y+8>0. If x+y+z=3, equations 2-3 give x=1, and equation 1 gives y^2-2y-2=0, hence y=1+/-sqrt(3), with z=2-y."
+tags = ["algebra", "equation-system", "factorization", "case-split", "source-correction"]
+
+[[beats]]
+id = "meet_three_equations"
+loop = false
+
+[[beats]]
+id = "notice_twin_pair"
+loop = false
+
+[[beats]]
+id = "subtract_first_two"
+loop = false
+
+[[beats]]
+id = "split_branches"
+loop = false
+
+[[beats]]
+id = "enter_equal_branch"
+loop = false
+
+[[beats]]
+id = "solve_equal_branch"
+loop = false
+
+[[beats]]
+id = "enter_sum_branch"
+loop = false
+
+[[beats]]
+id = "derive_x_one"
+loop = false
+
+[[beats]]
+id = "solve_sum_branch"
+loop = false
+
+[[beats]]
+id = "verify_candidates"
+loop = false
+
+[[beats]]
+id = "correct_source_sign"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false

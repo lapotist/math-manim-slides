@@ -1,5 +1,6 @@
 """Shared visual language and infrastructure for Carlo Math lessons."""
 
+from .tex import TECTONIC_TEX_TEMPLATE
 from .base import CarloSlide
 from .theme import (
     BG,
@@ -28,6 +29,7 @@ __all__ = [
     "PURPLE",
     "REGION",
     "REGION_DARK",
+    "TECTONIC_TEX_TEMPLATE",
     "WHITE",
     "label",
 ]

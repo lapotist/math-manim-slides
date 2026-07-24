@@ -1,0 +1,69 @@
+schema_version = 1
+id = "carlo.tcfs_115_math_gifted.q05"
+collection_id = "carlo.tcfs_115_math_gifted"
+title = "Scaling hidden in equal ratios"
+locale = "zh-TW"
+question = 5
+source_pages = [3]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
+source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_locator = "Part 1, Question 5, PDF page 3"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_115_math_gifted/q05/deck.py"
+scene_class = "Tcfs115Q05Slide"
+presenter_script = "lessons/tcfs_115_math_gifted/q05/presenter.zh-TW.md"
+storyboard = "lessons/tcfs_115_math_gifted/q05/storyboard.md"
+estimated_minutes = 8
+expected_answer = "9"
+independent_check = "Equal the first and nth ratios; cancellation gives a_n=n*a_1. Then sum=210*a_1<2026, while 210*9=1890 and 210*10=2100."
+tags = ["sequence", "proportion", "scaling", "inequality"]
+
+[[beats]]
+id = "equal_ratio_chain"
+loop = false
+
+[[beats]]
+id = "focus_first_ratio"
+loop = false
+
+[[beats]]
+id = "scale_model"
+loop = true
+
+[[beats]]
+id = "pose_nth_term"
+loop = false
+
+[[beats]]
+id = "derive_nth_term"
+loop = false
+
+[[beats]]
+id = "build_sequence"
+loop = false
+
+[[beats]]
+id = "pose_sum_limit"
+loop = false
+
+[[beats]]
+id = "pair_coefficients"
+loop = false
+
+[[beats]]
+id = "sum_coefficients"
+loop = false
+
+[[beats]]
+id = "bound_a1"
+loop = false
+
+[[beats]]
+id = "test_neighboring_integers"
+loop = false
+
+[[beats]]
+id = "consolidate"
+loop = false
