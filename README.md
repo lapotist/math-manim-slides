@@ -9,6 +9,11 @@ point, proves upper/lower symmetry, calculates one half, and only then doubles
 the area. The same question-first, visual-evidence-first standard applies to
 the rest of the collection.
 
+![Question 9 progression from moving point through symmetry, one-half area, and doubling](docs/previews/question-9-contact-sheet.webp)
+
+The contact sheet is a representative render preview; its source and license
+boundary are recorded in [`docs/previews/README.md`](docs/previews/README.md).
+
 ## Current Inventory
 
 <!-- catalog-summary:start -->
