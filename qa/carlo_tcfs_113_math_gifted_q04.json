@@ -118,7 +118,7 @@
   "source_hashes": {
     "lesson_metadata": {
       "path": "lessons/tcfs_113_math_gifted/q04/lesson.toml",
-      "sha256": "f684af4da2b77eb957c55c88faca1b540e1aa552f270b93e0d9b1ed86174a614"
+      "sha256": "2afe39de8ef6fb9b2bd73b3d0c202fac0b7b32c96da33551fa0cf75cc11bbbf2"
     },
     "scene_file": {
       "path": "lessons/tcfs_113_math_gifted/q04/deck.py",
@@ -130,11 +130,11 @@
     },
     "storyboard": {
       "path": "lessons/tcfs_113_math_gifted/q04/storyboard.md",
-      "sha256": "8e701cdfc38d131f6bd8bad5a74f267b57542521af9a9bc02e3a0233ca7d7dca"
+      "sha256": "da2433f757bfbd7f5af8823b29ae348de1249c9ded874ec7361195e54efa0ccb"
     }
   },
   "toolchain_hashes": {
-    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.toml": "1e9ad71fbd78731f914cbbe409ccdc92b6abc50232b4f61f81ad48017557169c",
     "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

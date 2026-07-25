@@ -30,6 +30,36 @@ def load_update_sources_module():
 
 
 class CatalogMetadataChecks(unittest.TestCase):
+    def test_collection_source_and_solution_rights_are_separate(self) -> None:
+        collections = [
+            load_toml(path)
+            for path in sorted(ROOT.glob("lessons/*/collection.toml"))
+        ]
+        self.assertEqual(len(collections), 5)
+        for collection in collections:
+            self.assertEqual(collection["source_license"], "NOASSERTION")
+            self.assertEqual(collection["source_permission_status"], "not_reviewed")
+            self.assertEqual(collection["source_use_scope"], "reference_only")
+            self.assertEqual(collection["code_license"], "MIT")
+            self.assertEqual(collection["content_license"], "CC-BY-4.0")
+            self.assertTrue((ROOT / collection["permission_reference"]).is_file())
+            if collection["source_origin"] == "frozen_site_inventory":
+                self.assertEqual(
+                    collection["solution_permission_status"], "reported"
+                )
+                self.assertEqual(collection["solution_use_scope"], "adaptation")
+                self.assertEqual(
+                    collection["permission_reference"],
+                    "docs/provenance/CARLO_PERMISSION.md",
+                )
+            else:
+                self.assertEqual(
+                    collection["solution_permission_status"], "not_reviewed"
+                )
+                self.assertEqual(
+                    collection["solution_use_scope"], "reference_only"
+                )
+
     def test_problem_review_fields_cover_every_catalog_record(self) -> None:
         problems = []
         for path in sorted(ROOT.glob("lessons/*/collection.toml")):
@@ -50,7 +80,25 @@ class CatalogMetadataChecks(unittest.TestCase):
         for problem in problems:
             self.assertEqual(problem["content_type"], "problem_solution")
             self.assertIsInstance(problem["duplicate_of"], str)
-            self.assertEqual(problem["rights_review"], "pending_cc0_scope")
+            rights_state = problem["release_rights_state"]
+            self.assertIn(
+                rights_state,
+                {"not_reviewed", "pending", "cleared", "blocked"},
+            )
+            if problem["production_state"] == "published":
+                self.assertEqual(rights_state, "cleared")
+            self.assertEqual(problem["code_license"], "MIT")
+            self.assertEqual(problem["content_license"], "CC-BY-4.0")
+            if rights_state == "cleared":
+                self.assertIn(
+                    problem["source_material_use"],
+                    {"independent_reexpression", "adapted_expression"},
+                )
+                self.assertEqual(problem["rights_reviewed_on"], "2026-07-25")
+            else:
+                self.assertEqual(problem["rights_reviewed_on"], "")
+            self.assertEqual(problem["rights_reference"], "NOTICE.md")
+            self.assertTrue((ROOT / problem["rights_reference"]).is_file())
             self.assertEqual(
                 problem["math_review_state"],
                 expected_review[problem["production_state"]],
@@ -58,6 +106,15 @@ class CatalogMetadataChecks(unittest.TestCase):
             if problem["duplicate_of"]:
                 self.assertIn(problem["duplicate_of"], ids)
                 self.assertNotEqual(problem["duplicate_of"], problem["id"])
+
+        rights_counts = {
+            state: sum(problem["release_rights_state"] == state for problem in problems)
+            for state in {"not_reviewed", "pending", "cleared", "blocked"}
+        }
+        self.assertEqual(
+            rights_counts,
+            {"not_reviewed": 30, "pending": 0, "cleared": 46, "blocked": 0},
+        )
 
     def test_supplied_pdf_checksum_and_q04_locator_are_pinned(self) -> None:
         collection_path = ROOT / "lessons/tcfs_115_math_gifted/collection.toml"
@@ -83,6 +140,21 @@ class CatalogMetadataChecks(unittest.TestCase):
         self.assertEqual(module.update_document(current, generated), current)
         lesson_count = len(list(ROOT.glob("lessons/*/*/lesson.toml")))
         self.assertEqual(count, lesson_count)
+        q9_row = next(
+            line
+            for line in generated.splitlines()
+            if "`carlo.tcfs_115_math_gifted.q09`" in line
+        )
+        self.assertIn("solution permission `not_reviewed`", q9_row)
+        self.assertIn("[source status](NOTICE.md)", q9_row)
+        self.assertNotIn("CARLO_PERMISSION.md", q9_row)
+        q112_row = next(
+            line
+            for line in generated.splitlines()
+            if "`carlo.tcfs_112_math_gifted.q01`" in line
+        )
+        self.assertIn("solution permission `reported`", q112_row)
+        self.assertIn("CARLO_PERMISSION.md", q112_row)
 
 
 if __name__ == "__main__":

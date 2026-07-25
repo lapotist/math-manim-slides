@@ -91,6 +91,32 @@ def modification_record(lesson: dict[str, Any]) -> str:
     return f"Mathematical-solution research; {summary}. Modified paths:<br>{paths}"
 
 
+def rights_record(lesson: dict[str, Any], collection: dict[str, Any]) -> str:
+    review_date = lesson.get("rights_reviewed_on")
+    review_record = f"reviewed {review_date}" if review_date else "review pending"
+    permission_status = collection.get("solution_permission_status", "not_reviewed")
+    permission_record = f"solution permission `{escape_cell(permission_status)}`"
+    permission_reference = collection.get("permission_reference")
+    if permission_reference:
+        label = (
+            "permission scope"
+            if permission_status in {"reported", "verified"}
+            else "source status"
+        )
+        permission_record += (
+            f"; [{label}]({escape_cell(permission_reference)})"
+        )
+    return (
+        f"`{escape_cell(lesson['release_rights_state'])}`; "
+        f"code `{escape_cell(lesson['code_license'])}`; "
+        f"content `{escape_cell(lesson['content_license'])}`; "
+        f"source use `{escape_cell(lesson['source_material_use'])}`; "
+        f"{review_record}; "
+        f"[rights map]({escape_cell(lesson['rights_reference'])}); "
+        f"{permission_record}"
+    )
+
+
 def render_lesson_index(root: Path = ROOT) -> tuple[str, int]:
     collections = {
         collection["id"]: collection
@@ -99,7 +125,7 @@ def render_lesson_index(root: Path = ROOT) -> tuple[str, int]:
     }
     rows = [
         START,
-        "| Lesson | Pages and exact locator | Source references | Source SHA-256 | Creator / rightsholder status | Access | Use, modifications, and affected paths | Credit | Rights / permission reference |",
+        "| Lesson | Pages and exact locator | Source references | Source SHA-256 | Creator / rightsholder status | Access | Use, modifications, and affected paths | Credit | Project output license / source use |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     count = 0
@@ -118,9 +144,15 @@ def render_lesson_index(root: Path = ROOT) -> tuple[str, int]:
             "source_locator",
             "source_asset_sha256",
             "source_credit",
-            "rights_review",
+            "release_rights_state",
+            "code_license",
+            "content_license",
+            "source_material_use",
+            "rights_reference",
         )
         missing = [field for field in required if not lesson.get(field)]
+        if "rights_reviewed_on" not in lesson:
+            missing.append("rights_reviewed_on")
         if missing:
             raise ValueError(
                 f"{lesson_id}: source index fields missing: {', '.join(missing)}"
@@ -140,8 +172,7 @@ def render_lesson_index(root: Path = ROOT) -> tuple[str, int]:
             f"{escape_cell(access_record(collection))} | "
             f"{escape_cell(modification_record(lesson))} | "
             f"{escape_cell(lesson['source_credit'])} | "
-            f"`{escape_cell(lesson['rights_review'])}`; "
-            "[permission scope](docs/provenance/CARLO_PERMISSION.md) |"
+            f"{rights_record(lesson, collection)} |"
         )
         count += 1
     rows.append(END)

@@ -49,7 +49,9 @@ def build_registry(
                     "preview_url": source["preview_url"],
                     "download_url": source["download_url"],
                     "content_review": "pending",
-                    "rights_review": "pending_cc0_scope",
+                    "source_license": "NOASSERTION",
+                    "source_permission_status": "not_reviewed",
+                    "source_use_scope": "reference_only",
                     "production_state": "discovered",
                 },
             )
@@ -75,7 +77,9 @@ def build_registry(
             "source_pages": sorted(pages),
             "watch_url": f"https://www.youtube.com/watch?v={video_id}",
             "content_review": "pending",
-            "rights_review": "pending_cc0_scope",
+            "source_license": "NOASSERTION",
+            "source_permission_status": "not_reviewed",
+            "source_use_scope": "reference_only",
             "production_state": "discovered",
         }
         for video_id, pages in sorted(video_pages.items())
@@ -95,7 +99,9 @@ def build_registry(
             "youtube_assets": len(video_entries),
             "total_assets": len(drive_entries) + len(video_entries),
             "content_review_pending": len(drive_entries) + len(video_entries),
-            "rights_review_pending": len(drive_entries) + len(video_entries),
+            "source_permission_statuses": {
+                "not_reviewed": len(drive_entries) + len(video_entries),
+            },
         },
         "drive_assets": drive_entries,
         "youtube_assets": video_entries,
@@ -119,7 +125,7 @@ def build_registry(
                 entry["asset_eligibility"] = "review_pending"
                 entry["blocker_reasons"] = [
                     "problem_solution_decomposition_pending",
-                    "rights_scope_pending",
+                    "source_permission_review_pending",
                 ]
             elif access_status in UNRESOLVED_ACCESS:
                 entry["asset_eligibility"] = "blocked_access_verification"

@@ -3,10 +3,15 @@
 Contributions should preserve the slow, visual, source-verifiable teaching
 standard in `AGENTS.md`.
 
-By submitting project-original code, text, or artwork, contributors confirm
-that they control the required rights and agree to dedicate that contribution
-under CC0-1.0. Disclose every third-party or adapted input in `SOURCES.md` and
-do not add it to the CC0 allowlist without a rights review.
+By submitting project-original material, contributors confirm that they
+control the required rights and agree to the path-based split in `NOTICE.md`:
+software contributions are licensed under MIT, while lesson prose, educational
+visual composition, documentation, and project-controlled renders are licensed
+under CC BY 4.0. Disclose every third-party or adapted input in `SOURCES.md`;
+do not mark it as project-licensed without a rights review.
+
+The contributor name recorded in Git is the attribution name for CC BY
+material unless the contribution explicitly designates another stable name.
 
 Each lesson contribution needs:
 

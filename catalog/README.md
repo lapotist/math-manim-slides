@@ -21,6 +21,16 @@ from that evidence: confirmed-public assets still require problem/solution
 decomposition and rights review; restricted and unresolved assets remain
 blocked without guessing.
 
+Source rights and project-output licenses are separate. Registry entries use
+`source_license = "NOASSERTION"`, a permission-review state, and an allowed-use
+scope; cataloging a public asset never licenses it. Collection records keep the
+primary PDF/source-asset status separate from the reported channel-video
+solution-reference permission. Problem and lesson records separately declare
+`release_rights_state`, MIT code, CC BY 4.0 content, whether source expression
+was incorporated, and the dated rights reference. `cleared` applies only to
+project-controlled output under `NOTICE.md`; `published` does not change a
+source's status.
+
 `site_taxonomy.json` preserves the reviewed section, audience, exam, topic,
 content status, and asset counts for all 434 pages. Landing and shell pages
 remain taxonomy records; they are not lesson units.

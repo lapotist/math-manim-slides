@@ -148,10 +148,19 @@ pixi run lessons export --status visual_verified --jobs 2
 The HTML exporter embeds the videos and downloads Reveal.js assets from the
 jsDelivr CDN. It therefore needs network access while exporting even though
 the resulting `--offline` file can be presented without a network connection.
+Standalone export is limited to rights-cleared lessons and appends a scoped
+CC BY attribution/source appendix. The appendix is an additional generated
+Reveal.js section outside the lesson's teaching-beat manifest. It records the
+exact source asset and locator, states the original-export/change status, and
+embeds the complete MIT notices for the pinned Reveal.js and Manim Slides
+components.
 
 Generated videos, Slides manifests, HTML, QA frames, and logs stay in ignored
 build directories. Compact source-bound QA attestations under `qa/` make the
 verified state checkable from a clean clone without committing media.
+Raw MP4 segments and Slides manifests are internal build inputs unless packaged
+with `NOTICE.md` and the relevant `SOURCES.md` entry; use the checked standalone
+HTML exporter for a self-attributing release artifact.
 
 Refresh the public source inventory and its flattened registry with:
 
@@ -161,17 +170,31 @@ pixi run build-source-catalog
 pixi run update-readme
 ```
 
-## Sources And License
+## Sources And Licenses
 
 Solution provenance is documented in `SOURCES.md`. The site-owner permission
 gate and its privacy boundary are documented in
 `docs/provenance/CARLO_PERMISSION.md`.
 
-The exact `LICENSE` file contains CC0-1.0. CC0 applies only to the project-owned
-paths explicitly listed in `NOTICE.md`; source material, dependencies, and
-unreviewed adapted expression retain their respective status. Source credit is
-required by this project's academic-integrity policy even where CC0 would not
-legally require attribution.
+The recorded 2026-07-24 permission allows Carlo's channel videos to be used as
+references for generated Manim visualizations and allows the generated work to
+be published under CC0 or an attribution license. This project chose CC BY 4.0
+for its educational content, and the owner asked to receive the finished work.
+The permission does not relicense the videos, PDFs, school questions, or
+branding themselves.
+
+This project uses a path-based split license: reusable software is MIT under
+`LICENSE`, while project-authored educational content and project-controlled
+renders are CC BY 4.0 under `LICENSE-CONTENT`. `NOTICE.md` is the authoritative
+path map and exclusion list. Source PDFs, videos, exam material, branding,
+fonts, and dependencies are not relicensed merely because they are cited or
+cataloged.
+
+CC BY reuse should credit “Carlo Math Manim Slides contributors,” link the
+license and material where practicable, retain the lesson provenance in
+`SOURCES.md`, and state whether changes were made. Carlo is credited as a
+solution-research source, not presented as the licensor of this project's
+original content.
 
 This project is independent and does not imply endorsement by Carlo, the
 schools or contests represented in source material, 3Blue1Brown, Manim, or

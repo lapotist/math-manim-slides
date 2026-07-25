@@ -10,7 +10,14 @@ source_page_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E5%98%
 source_page_sha256 = "fac6fde5925a99f3579ff2316eef45a6aca57c197c7784c7a1181cd89cb1180e"
 source_creator = "Carlo / 正哥愛數學"
 source_origin = "frozen_site_inventory"
-rights_review = "pending_cc0_scope"
+source_license = "NOASSERTION"
+source_permission_status = "not_reviewed"
+source_use_scope = "reference_only"
+solution_permission_status = "reported"
+solution_use_scope = "adaptation"
+permission_reference = "docs/provenance/CARLO_PERMISSION.md"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
 source_note = "The PDF has one problem per page and blank solution areas. Each verified-title video maps to one numbered question; worked-content review remains pending."
 expected_problem_count = 20
 
@@ -25,7 +32,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -39,7 +51,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -53,7 +70,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -67,7 +89,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -81,7 +108,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -95,7 +127,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -109,7 +146,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -123,7 +165,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -137,7 +184,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -151,7 +203,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -165,7 +222,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -179,7 +241,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -193,7 +260,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -207,7 +279,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -221,7 +298,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -235,7 +317,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -249,7 +336,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -263,7 +355,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -277,7 +374,12 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"
 
 [[problems]]
@@ -291,5 +393,10 @@ eligibility_reason = "Public problem and uniquely numbered video located; worked
 production_state = "discovered"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "not_reviewed"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "not_incorporated"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = ""
 math_review_state = "not_reviewed"

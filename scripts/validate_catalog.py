@@ -10,6 +10,7 @@ import re
 import sys
 import tomllib
 from collections import Counter
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -50,7 +51,28 @@ ANSWER_REQUIRED_STATES = {
     "published",
 }
 VALID_CONTENT_TYPES = {"problem_solution"}
-VALID_RIGHTS_REVIEW_STATES = {"pending_cc0_scope"}
+VALID_RELEASE_RIGHTS_STATES = {"not_reviewed", "pending", "cleared", "blocked"}
+VALID_SOURCE_MATERIAL_USES = {
+    "not_incorporated",
+    "independent_reexpression",
+    "adapted_expression",
+    "embedded_source_material",
+}
+VALID_SOURCE_PERMISSION_STATES = {
+    "not_reviewed",
+    "reported",
+    "verified",
+    "not_required",
+    "denied",
+}
+VALID_SOURCE_USE_SCOPES = {
+    "reference_only",
+    "adaptation",
+    "redistribution",
+    "excluded",
+}
+CODE_LICENSE = "MIT"
+CONTENT_LICENSE = "CC-BY-4.0"
 SHA256_RE = re.compile(r"[0-9a-f]{64}")
 
 
@@ -62,6 +84,23 @@ def expected_math_review_state(production_state: str | None) -> str | None:
     if production_state in VALID_PRODUCTION_STATES:
         return "pending"
     return None
+
+
+def valid_iso_date(value: object) -> bool:
+    if not isinstance(value, str) or not value:
+        return False
+    try:
+        date.fromisoformat(value)
+    except ValueError:
+        return False
+    return True
+
+
+def valid_repository_reference(value: object) -> bool:
+    if not isinstance(value, str) or not value:
+        return False
+    candidate = (ROOT / value).resolve()
+    return candidate.is_relative_to(ROOT.resolve()) and candidate.is_file()
 
 
 def load_toml(path: Path) -> dict[str, Any]:
@@ -146,6 +185,58 @@ def validate_collections(
             errors,
         )
         collections[collection_id] = data
+        check(
+            data.get("source_license") == "NOASSERTION",
+            f"{collection_id}: source license must be NOASSERTION",
+            errors,
+        )
+        permission_status = data.get("source_permission_status")
+        check(
+            permission_status in VALID_SOURCE_PERMISSION_STATES,
+            f"{collection_id}: invalid source permission status",
+            errors,
+        )
+        check(
+            data.get("source_use_scope") in VALID_SOURCE_USE_SCOPES,
+            f"{collection_id}: invalid source use scope",
+            errors,
+        )
+        solution_permission_status = data.get("solution_permission_status")
+        check(
+            solution_permission_status in VALID_SOURCE_PERMISSION_STATES,
+            f"{collection_id}: invalid solution permission status",
+            errors,
+        )
+        check(
+            data.get("solution_use_scope") in VALID_SOURCE_USE_SCOPES,
+            f"{collection_id}: invalid solution use scope",
+            errors,
+        )
+        if (
+            permission_status in {"reported", "verified"}
+            or solution_permission_status in {"reported", "verified"}
+        ):
+            check(
+                bool(data.get("permission_reference")),
+                f"{collection_id}: permission status lacks a reference",
+                errors,
+            )
+        if data.get("permission_reference"):
+            check(
+                valid_repository_reference(data["permission_reference"]),
+                f"{collection_id}: permission reference does not resolve",
+                errors,
+            )
+        check(
+            data.get("code_license") == CODE_LICENSE,
+            f"{collection_id}: code license must be {CODE_LICENSE}",
+            errors,
+        )
+        check(
+            data.get("content_license") == CONTENT_LICENSE,
+            f"{collection_id}: content license must be {CONTENT_LICENSE}",
+            errors,
+        )
         source_page_url = data.get("source_page_url")
         collection_checksum = data.get("source_asset_sha256")
         check(
@@ -223,9 +314,63 @@ def validate_collections(
                 f"{problem_id}: duplicate_of must be a string",
                 errors,
             )
+            release_rights_state = problem.get("release_rights_state")
             check(
-                problem.get("rights_review") in VALID_RIGHTS_REVIEW_STATES,
-                f"{problem_id}: missing or invalid rights_review",
+                release_rights_state in VALID_RELEASE_RIGHTS_STATES,
+                f"{problem_id}: missing or invalid release_rights_state",
+                errors,
+            )
+            if production_state == "published":
+                check(
+                    release_rights_state == "cleared",
+                    f"{problem_id}: published output is not rights-cleared",
+                    errors,
+                )
+            check(
+                problem.get("code_license") == CODE_LICENSE,
+                f"{problem_id}: code license must be {CODE_LICENSE}",
+                errors,
+            )
+            check(
+                problem.get("content_license") == CONTENT_LICENSE,
+                f"{problem_id}: content license must be {CONTENT_LICENSE}",
+                errors,
+            )
+            source_material_use = problem.get("source_material_use")
+            check(
+                source_material_use in VALID_SOURCE_MATERIAL_USES,
+                f"{problem_id}: missing or invalid source_material_use",
+                errors,
+            )
+            if release_rights_state == "cleared":
+                check(
+                    source_material_use
+                    in {"independent_reexpression", "adapted_expression"},
+                    f"{problem_id}: cleared output has invalid source material use",
+                    errors,
+                )
+                check(
+                    valid_iso_date(problem.get("rights_reviewed_on")),
+                    f"{problem_id}: cleared output lacks a valid review date",
+                    errors,
+                )
+                if source_material_use == "adapted_expression":
+                    check(
+                        solution_permission_status in {"reported", "verified"}
+                        and data.get("solution_use_scope")
+                        in {"adaptation", "redistribution"},
+                        f"{problem_id}: adapted output lacks matching permission",
+                        errors,
+                    )
+            else:
+                check(
+                    not problem.get("rights_reviewed_on"),
+                    f"{problem_id}: uncleared output must not carry a review date",
+                    errors,
+                )
+            check(
+                valid_repository_reference(problem.get("rights_reference")),
+                f"{problem_id}: rights reference does not resolve",
                 errors,
             )
             expected_review = expected_math_review_state(production_state)
@@ -519,14 +664,68 @@ def validate_lessons(
             f"{lesson_id}: missing source credit",
             errors,
         )
-        check(
-            bool(data.get("rights_review")),
-            f"{lesson_id}: missing rights review",
-            errors,
-        )
-
         problem = problems_by_id.get(lesson_id, {})
         collection = collections.get(data.get("collection_id"), {})
+        release_rights_state = data.get("release_rights_state")
+        check(
+            release_rights_state in VALID_RELEASE_RIGHTS_STATES,
+            f"{lesson_id}: missing or invalid release rights state",
+            errors,
+        )
+        if production_state == "published":
+            check(
+                release_rights_state == "cleared",
+                f"{lesson_id}: published output is not rights-cleared",
+                errors,
+            )
+        check(
+            data.get("code_license") == CODE_LICENSE,
+            f"{lesson_id}: code license must be {CODE_LICENSE}",
+            errors,
+        )
+        check(
+            data.get("content_license") == CONTENT_LICENSE,
+            f"{lesson_id}: content license must be {CONTENT_LICENSE}",
+            errors,
+        )
+        check(
+            data.get("source_material_use") in VALID_SOURCE_MATERIAL_USES,
+            f"{lesson_id}: invalid source material use",
+            errors,
+        )
+        check(
+            valid_repository_reference(data.get("rights_reference")),
+            f"{lesson_id}: rights reference does not resolve",
+            errors,
+        )
+        if release_rights_state == "cleared":
+            check(
+                data.get("source_material_use")
+                in {"independent_reexpression", "adapted_expression"},
+                f"{lesson_id}: cleared output has invalid source material use",
+                errors,
+            )
+            check(
+                valid_iso_date(data.get("rights_reviewed_on")),
+                f"{lesson_id}: cleared output lacks a valid review date",
+                errors,
+            )
+            if data.get("source_material_use") == "adapted_expression":
+                check(
+                    collection.get("solution_permission_status")
+                    in {"reported", "verified"}
+                    and collection.get("solution_use_scope")
+                    in {"adaptation", "redistribution"},
+                    f"{lesson_id}: adapted output lacks matching permission",
+                    errors,
+                )
+        else:
+            check(
+                not data.get("rights_reviewed_on"),
+                f"{lesson_id}: uncleared output must not carry a review date",
+                errors,
+            )
+
         check(
             bool(collection),
             f"{lesson_id}: lesson collection is unknown",
@@ -539,11 +738,19 @@ def validate_lessons(
                 errors,
             )
         if problem:
-            check(
-                data.get("rights_review") == problem.get("rights_review"),
-                f"{lesson_id}: lesson/problem rights reviews differ",
-                errors,
-            )
+            for field in (
+                "release_rights_state",
+                "code_license",
+                "content_license",
+                "source_material_use",
+                "rights_reference",
+                "rights_reviewed_on",
+            ):
+                check(
+                    data.get(field) == problem.get(field),
+                    f"{lesson_id}: lesson/problem {field} values differ",
+                    errors,
+                )
         expected_solution_id = problem.get("solution_asset")
         if expected_solution_id:
             solution_id = data.get("solution_asset_id")
@@ -760,6 +967,34 @@ def validate_source_registry(errors: list[str]) -> None:
         errors,
     )
     registry_entries = assets["drive_assets"] + assets["youtube_assets"]
+    check(
+        all(entry.get("source_license") == "NOASSERTION" for entry in registry_entries),
+        "source registry contains an asserted source license",
+        errors,
+    )
+    check(
+        all(
+            entry.get("source_permission_status")
+            in VALID_SOURCE_PERMISSION_STATES
+            for entry in registry_entries
+        ),
+        "source registry contains an invalid permission status",
+        errors,
+    )
+    check(
+        all(entry.get("source_use_scope") == "reference_only" for entry in registry_entries),
+        "unaudited source registry entries must remain reference-only",
+        errors,
+    )
+    permission_counts = Counter(
+        entry.get("source_permission_status") for entry in registry_entries
+    )
+    check(
+        dict(sorted(permission_counts.items()))
+        == assets["summary"].get("source_permission_statuses"),
+        "source permission summary differs from asset records",
+        errors,
+    )
     registry_ids = {entry["id"] for entry in registry_entries}
     access_ids = set(access["assets"])
     check(

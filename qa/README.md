@@ -18,3 +18,7 @@ Regenerate evidence only after rerendering and repeating human review:
 ```bash
 pixi run freeze-qa --human-reviewed carlo.tcfs_115_math_gifted.q09
 ```
+
+Project-authored review prose in these attestations is CC BY 4.0 under
+`NOTICE.md`. Hashes, paths, dimensions, and other facts are evidence rather
+than a license claim over the lesson sources or bundled dependencies.

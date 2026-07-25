@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import subprocess
 import sys
@@ -17,6 +18,17 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 LESSON_PATTERN = "lessons/*/*/lesson.toml"
 RENDERED_STATES = {"draft_rendered", "visual_verified", "published"}
+PROJECT_TITLE = "Carlo Math Manim Slides"
+CC_BY_URL = "https://creativecommons.org/licenses/by/4.0/"
+REVEAL_VERSION = "6.0.1"
+ATTRIBUTION_MARKER = 'id="carlo-project-attribution"'
+THIRD_PARTY_NOTICE_MARKER = "BEGIN CARLO THIRD-PARTY LICENSE NOTICES"
+REVEAL_CLOSING_MARKER = "\n</div>\n</div>\n\n\n"
+PLUGIN_MARKER = "<!-- To include plugins"
+THIRD_PARTY_LICENSES = (
+    ("Manim Slides 5.6.0", ROOT / "LICENSES" / "Manim-Slides-5.6.0.txt"),
+    ("Reveal.js 6.0.1", ROOT / "LICENSES" / "Reveal.js-6.0.1.txt"),
+)
 
 
 def load_lessons() -> dict[str, dict[str, Any]]:
@@ -24,7 +36,14 @@ def load_lessons() -> dict[str, dict[str, Any]]:
     for path in sorted(ROOT.glob(LESSON_PATTERN)):
         with path.open("rb") as handle:
             lesson = tomllib.load(handle)
+        collection_path = path.parents[1] / "collection.toml"
+        with collection_path.open("rb") as handle:
+            collection = tomllib.load(handle)
         lesson["metadata_path"] = str(path.relative_to(ROOT))
+        lesson["collection_source_origin"] = collection["source_origin"]
+        lesson["collection_source_context_url_role"] = collection.get(
+            "source_context_url_role", "題目與解題資料頁"
+        )
         lesson_id = lesson["id"]
         if lesson_id in lessons:
             raise ValueError(f"duplicate lesson id: {lesson_id}")
@@ -59,6 +78,82 @@ def media_path(lesson_id: str) -> Path:
     return ROOT / "build" / "media" / safe_id
 
 
+def add_export_attribution(destination: Path, lesson: dict[str, Any]) -> None:
+    document = destination.read_text(encoding="utf-8")
+    if ATTRIBUTION_MARKER in document or THIRD_PARTY_NOTICE_MARKER in document:
+        raise ValueError(f"{lesson['id']}: export already contains attribution")
+    plugin_index = document.rfind(PLUGIN_MARKER)
+    closing_index = document.rfind(REVEAL_CLOSING_MARKER, 0, plugin_index)
+    if plugin_index < 0 or closing_index < 0:
+        raise ValueError(
+            f"{lesson['id']}: unsupported Manim Slides HTML structure"
+        )
+
+    title = html.escape(str(lesson["title"]), quote=True)
+    source_credit = html.escape(str(lesson["source_credit"]), quote=True)
+    source_asset = html.escape(str(lesson["source_asset"]), quote=True)
+    source_locator = html.escape(str(lesson["source_locator"]), quote=True)
+    source_url = html.escape(str(lesson["source_url"]), quote=True)
+    source_origin = lesson.get("collection_source_origin", "")
+    source_context_role = html.escape(
+        str(lesson.get("collection_source_context_url_role", "題目與解題資料頁")),
+        quote=True,
+    )
+
+    source_asset_url = lesson.get("source_asset_url")
+    if source_asset_url:
+        escaped_asset_url = html.escape(str(source_asset_url), quote=True)
+        asset_markup = (
+            f'<a href="{escaped_asset_url}" rel="dcterms:source" '
+            f'style="color:#f2c14e;">{source_asset}</a>'
+        )
+    elif source_origin == "user_supplied":
+        asset_markup = f"{source_asset}（使用者提供；未嵌入本檔）"
+    else:
+        asset_markup = source_asset
+
+    solution_url = lesson.get("solution_url")
+    if solution_url:
+        escaped_solution_url = html.escape(str(solution_url), quote=True)
+        solution_markup = (
+            '<br/>解題參考：'
+            f'<a href="{escaped_solution_url}" rel="dcterms:source" '
+            f'style="color:#f2c14e;">{source_credit}</a>'
+        )
+    else:
+        solution_markup = f"<br/>來源署名紀錄：{source_credit}"
+
+    third_party_parts: list[str] = []
+    for component, license_path in THIRD_PARTY_LICENSES:
+        license_text = license_path.read_text(encoding="utf-8").rstrip()
+        if "--" in license_text:
+            raise ValueError(f"unsafe HTML comment text in {license_path}")
+        third_party_parts.append(f"{component}\n{license_text}")
+    third_party_notices = (
+        f"\n<!-- {THIRD_PARTY_NOTICE_MARKER}\n"
+        + "\n\n".join(third_party_parts)
+        + "\nEND CARLO THIRD-PARTY LICENSE NOTICES -->\n"
+    )
+    attribution_slide = f"""
+<section id="carlo-project-attribution" data-generated-legal-appendix="true" data-background-color="#101214" typeof="CreativeWork">
+  <div style="box-sizing:border-box;color:#f4f1e8;font-family:sans-serif;margin:0 auto;max-width:1040px;padding:54px 68px;text-align:left;">
+    <h2 style="color:#f4f1e8;font-size:39px;letter-spacing:0;margin:0 0 20px;">授權與來源</h2>
+    <p style="font-size:22px;line-height:1.45;margin:0 0 14px;"><strong>{PROJECT_TITLE}</strong><br/><span property="name">{title}</span><br/><span property="creator">Carlo Math Manim Slides contributors</span></p>
+    <p style="font-size:19px;line-height:1.45;margin:0 0 14px;">本檔為專案原始匯出；未標記後續修改。專案原創教學內容採 <a href="{CC_BY_URL}" property="license" rel="license" style="color:#59c3c3;">CC BY 4.0</a>。</p>
+    <p style="font-size:18px;line-height:1.45;margin:0 0 14px;"><strong>來源紀錄</strong><br/>素材：{asset_markup}<br/>定位：{source_locator}{solution_markup}<br/><a href="{source_url}" style="color:#f2c14e;">資料頁</a>（{source_context_role}；非來源檔授權連結）</p>
+    <p style="color:#b9bec4;font-size:15px;line-height:1.4;margin:0;">來源素材與匯出檔內的第三方軟體保留各自的權利與授權；完整的 Reveal.js 與 Manim Slides MIT 通知已內嵌於本 HTML 原始碼。來源署名不代表來源作者是本專案內容的授權人。</p>
+  </div>
+</section>"""
+    document = (
+        document[:closing_index]
+        + attribution_slide
+        + document[closing_index:plugin_index]
+        + third_party_notices
+        + document[plugin_index:]
+    )
+    destination.write_text(document, encoding="utf-8")
+
+
 def action_command(
     action: str,
     lesson: dict[str, Any],
@@ -89,6 +184,8 @@ def action_command(
             "html",
             "--one-file",
             "--offline",
+            "-c",
+            f"reveal_version={REVEAL_VERSION}",
             scene_class,
             str(destination),
         ]
@@ -125,9 +222,17 @@ def run_lesson(
         stderr=subprocess.STDOUT,
         check=False,
     )
-    log_path.write_text(completed.stdout, encoding="utf-8")
-    result["returncode"] = completed.returncode
-    result["status"] = "ok" if completed.returncode == 0 else "failed"
+    output = completed.stdout
+    returncode = completed.returncode
+    if returncode == 0 and action == "export":
+        try:
+            add_export_attribution(output_path(lesson["id"]), lesson)
+        except (OSError, ValueError) as error:
+            output += f"\nExport attribution failed: {error}\n"
+            returncode = 1
+    log_path.write_text(output, encoding="utf-8")
+    result["returncode"] = returncode
+    result["status"] = "ok" if returncode == 0 else "failed"
     result["log"] = str(log_path.relative_to(ROOT))
     return result
 
@@ -151,6 +256,10 @@ def validate_action_inputs(action: str, lessons: list[dict[str, Any]]) -> None:
         if action in {"present", "export"} and lesson["production_state"] not in RENDERED_STATES:
             errors.append(
                 f"{lesson['id']}: state {lesson['production_state']} is not rendered"
+            )
+        if action == "export" and lesson.get("release_rights_state") != "cleared":
+            errors.append(
+                f"{lesson['id']}: standalone export requires rights clearance"
             )
     if errors:
         raise ValueError("\n".join(errors))

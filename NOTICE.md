@@ -1,43 +1,97 @@
-# CC0 Scope And Exclusions
+# Split License Scope And Exclusions
 
-The exact `LICENSE` file contains the CC0 1.0 Universal legal code. CC0
-applies only to the following project-authored paths (the Covered Material):
+This repository uses a path-based split license. The licenses apply only to
+material controlled by this project's contributors; they do not relicense
+third-party source material named, linked, or described in the repository.
 
-- `AGENTS.md`
-- `catalog/README.md`
-- `scripts/`
+Repository revisions through commit `56b0cf6` used a CC0 notice for a limited
+set of project-authored paths. Nothing in this migration attempts to withdraw
+any rights that were effectively granted for those earlier revisions. The
+separate MIT and CC BY 4.0 grants below govern the current revision and later
+contributions unless a later notice says otherwise.
+
+## MIT Software
+
+The MIT License in `LICENSE` applies to the project-authored software and
+software-support files in these paths:
+
 - `src/carlo_manim/`
+- `scripts/`
 - `tests/`
 - `tools/`
-- `qa/README.md`
-- `README.md`
-- `CONTRIBUTING.md`
-- `NOTICE.md`
-- `SOURCES.md`
-- `THIRD_PARTY.md`
-- `docs/`, except a file carrying its own notice
+- `lessons/**/deck.py`
 - `.gitignore`
 - `pyproject.toml`
 - `pixi.toml`
 
-The following are not Covered Material unless a later notice identifies an
-exact path and a completed rights review:
+The Manim scene files are executable software under MIT. A render produced by
+those files is educational media covered by the content license below to the
+extent the render contains only project-controlled material.
 
-- source PDFs, PowerPoint files, scans, and downloaded website assets;
-- linked or embedded third-party material;
-- Carlo-derived lesson wording or artwork whose CC0 authorization is still
-  under review;
-- dependency code, package contents, lock-file notices, fonts, logos,
-  trademarks, names, and files carrying another license or notice; and
-- generated HTML or video containing an input that is not itself covered or
-  separately compatible;
-- rendered previews under `docs/previews/`, which are published for inspection
-  but remain outside the CC0 allowlist pending the corresponding lesson rights
-  review; and
-- `qa/*.json` attestations derived from lesson render metadata while the
-  corresponding lesson expression remains outside the CC0 allowlist.
+## CC BY 4.0 Content
 
-Mathematical facts and formulas are cited for provenance, but this notice does
-not purport to grant rights that the project does not control. The project is
-independent and is not endorsed by Carlo, 3Blue1Brown, Manim, Manim Slides,
-any school, publisher, or contest organizer.
+The Creative Commons Attribution 4.0 International license in
+`LICENSE-CONTENT` applies to the project-authored educational expression,
+documentation, selection and arrangement, and original visual composition in:
+
+- `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `NOTICE.md`, `SOURCES.md`,
+  and `THIRD_PARTY.md`;
+- `lessons/`, except `deck.py` files covered by MIT above;
+- `docs/`, including project-created render previews;
+- `catalog/` and `qa/`, to the extent their prose, review notes, or selection
+  and arrangement are protected;
+- project-authored teaching media generated under `build/media/`,
+  `slides/files/`, or `media/`, when it contains no excluded input; and
+- the project-authored lesson media and scoped attribution section in
+  `dist/**/*.html`; bundled dependency code remains excluded below.
+
+When an output is copied to another release path, distribute `NOTICE.md` and
+the relevant `SOURCES.md` entry with it. Standalone HTML exports carry their
+own generated attribution/source appendix and embedded dependency notices. Raw
+MP4 segments and Slides manifests are build inputs, not self-attributing
+standalone release artifacts; package them with `NOTICE.md` and the relevant
+`SOURCES.md` entry if they are distributed separately. No artifact-level notice
+converts bundled third-party material into CC BY content.
+
+In mixed metadata and evidence files, factual identifiers, URLs, hashes,
+mathematical facts, third-party titles, and third-party material remain outside
+the CC BY grant. The license applies only to the contributors' protectable
+contributions.
+
+When sharing CC BY material, retain this attribution in a reasonable form:
+
+> Carlo Math Manim Slides contributors, *Carlo Math Manim Slides*, licensed
+> under CC BY 4.0. Retain the lesson-specific solution provenance in
+> `SOURCES.md` and indicate whether you made changes.
+
+Also retain a link to <https://creativecommons.org/licenses/by/4.0/> and, where
+practicable, the repository or release URL from which the material was
+obtained. Lesson source credit identifies research provenance; it does not
+identify Carlo or a school as the CC BY licensor of this project's content.
+
+## Not Relicensed
+
+Neither project license covers rights the contributors do not control,
+including:
+
+- source PDFs, PowerPoint files, scans, question sheets, answer sheets,
+  downloaded website assets, source video, source audio, or source frames;
+- third-party wording, diagrams, photographs, artwork, fonts, logos,
+  trademarks, names, and publisher or school branding;
+- Carlo, 3Blue1Brown, school, contest, or other third-party material merely
+  cited, linked, cataloged, or used for research;
+- dependency code, package contents, `pixi.lock` dependency metadata, and
+  files carrying their own license or notice; and
+- Reveal.js or other dependency assets bundled into an exported HTML file.
+
+`LICENSES/` contains verbatim upstream notices for dependencies embedded by
+the standalone exporter. Those notices retain their upstream status and are
+not grants by this project's contributors.
+
+Those materials retain their original status and terms. `SOURCES.md` records
+research provenance, while `THIRD_PARTY.md` records known runtime-license
+boundaries. Public availability is not treated as permission to redistribute
+or relicense a source.
+
+The project is independent and is not endorsed by Carlo, 3Blue1Brown, Manim,
+Manim Slides, any school, publisher, or contest organizer.

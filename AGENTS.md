@@ -100,8 +100,8 @@ skipped once a render starts. Before storyboarding a problem:
   manipulate, the boundary case that tests the idea, and the final realization
   the lesson should earn; and
 - confirm what the reported permission actually covers. Keep source expression,
-  downloaded media, trademarks, and third-party embeds outside the CC0
-  allowlist unless an exact rights record brings them into scope.
+  downloaded media, trademarks, and third-party embeds outside the project
+  licenses unless an exact rights record brings them into scope.
 
 Put the source reconstruction and teaching rationale in `storyboard.md`; put
 the independently checkable mathematical claim in `lesson.toml`. A public
@@ -270,8 +270,8 @@ and its lesson metadata must report the same production state.
   `visual_verified`, after independently opening the render, reconciling the
   collection state, and freezing a human-reviewed QA attestation.
 - Production state and rights state are independent. Rendering a lesson may
-  advance its production state; it must never advance `pending_cc0_scope` or
-  any other permission state without a documented rights decision.
+  advance its production state; it must never advance `release_rights_state`
+  or any source-permission state without a documented rights decision.
 - Coordinate changes to shared helpers before editing them during parallel
   production. Prefer a local lesson primitive until repeated use and integration
   review justify promotion into `src/carlo_manim/`.
@@ -433,14 +433,19 @@ Suggested commands:
 ```bash
 pixi run manim-slides render --quality h --media_dir build/media/question_9 lessons/tcfs_115_math_gifted/q09/deck.py Question9Slide
 pixi run manim-slides present Question9Slide
-pixi run manim-slides convert --to html --one-file --offline Question9Slide question_9_slides.html
+pixi run lessons export carlo.tcfs_115_math_gifted.q09
 ```
 
 `--offline` describes the generated deck, not the conversion process. The
 Manim Slides converter downloads Reveal.js assets from its configured CDN, so
 run export with network access and then verify that the resulting one-file HTML
 opens with networking disabled. Do not report a sandbox DNS failure as a
-converter defect.
+converter defect. Use the checked batch exporter rather than calling `convert`
+directly: it pins the audited Reveal.js version, appends a legal appendix with
+exact lesson provenance, and embeds the required third-party notices. The
+generated appendix is deliberately outside the presenter-script
+beat count but remains a normal navigable section so mobile scroll mode does
+not omit it.
 
 Use `--quality h`, not the combined `-qh` flag: the Slides wrapper can interpret
 the `h` as its own help option. Collection-wide commands should be Pixi tasks
@@ -550,43 +555,50 @@ source record.
 
 ## Provenance, Permission, And Licensing
 
-- License the project's original code, original lesson text, and original
-  project artwork with `CC0-1.0` in the root `LICENSE` file.
-- Treat CC0 as applying only to an explicit path allowlist in `NOTICE.md`, not
-  as a blanket claim over the repository.
+- Use the path-based split in `NOTICE.md`: project software is MIT under
+  `LICENSE`; project-authored educational content and project-controlled
+  renders are CC BY 4.0 under `LICENSE-CONTENT`.
+- Treat both licenses as applying only to the exact project-controlled paths
+  and contributions identified in `NOTICE.md`, never as blanket claims over
+  the repository.
 - Before incorporating an input, classify it as project-original,
   Carlo-authorized, compatible third-party, reference-only, or excluded.
 - Keep `SOURCES.md` or an equivalent generated source index with one canonical
   Carlo URL and solution locator per lesson. Repeat the concise source credit in
   lesson metadata and the presenter script.
-- Keep a public permission statement that names the grantor, grantee/project,
-  material scope, allowed adaptation/publication, CC0 relicensing scope, and
-  date. State only facts supported by the permission; do not publish private
-  messages, email addresses, signatures, or other personal correspondence.
+- Keep a public permission statement that names the role of the grantor, the
+  grantee/project, material scope, allowed adaptation/publication, permitted
+  licensing model, and date. State only facts supported by the permission; do
+  not publish private messages, email addresses, signatures, or other personal
+  correspondence.
 - Permission from the site owner does not automatically establish ownership of
   third-party exam statements, logos, fonts, photographs, linked documents, or
   3Blue1Brown material. Link to those inputs and document their separate status
   unless the permission scope explicitly covers redistribution and relicensing.
-- General permission to use or adapt material is not automatically authority to
-  make an irrevocable CC0 dedication. Before release, verify that the written
-  grant directly applies CC0 or expressly authorizes the required relicensing
-  for the exact source and output paths. Unclear scope fails closed.
+- General permission to use or adapt material does not relicense the source.
+  Apply CC BY 4.0 only to the project's own expression or to an adaptation the
+  recorded permission actually authorizes. Unclear third-party scope fails
+  closed and remains excluded.
 - Do not copy web wording, diagrams, scans, images, code, audio, video, fonts,
   or logos merely because a source is cited. Independently express mathematical
   facts unless the recorded permission explicitly covers the adaptation.
 - Do not copy 3Blue1Brown code, artwork, narration, or rendered assets into the
-  CC0 project. Learn from its explanatory patterns and implement original
-  scenes.
+  project. Learn from its explanatory patterns and implement original scenes.
 - Treat `3b1b/videos` as a research reference only: its scene repository is
   licensed CC BY-NC-SA 4.0, targets 3b1b's ManimGL workflow rather than Manim
   Community, and includes version-specific code. Do not port snippets or infer
-  CC0 compatibility from the MIT license of the Manim engine itself.
-- CC0 does not require attribution, but this project requires source credit as
-  a provenance and academic-integrity rule.
-- Add an explicit exception notice for any non-CC0 input retained in the
-  repository. Never place a blanket CC0 claim over third-party material.
-- Generated HTML and video are CC0 only when every bundled input is covered or
-  separately compatible and correctly marked.
+  content-license compatibility from the MIT license of the Manim engine
+  itself.
+- CC BY attribution names this project and its contributors. Lesson-level
+  source credit separately records whose solution was researched; never
+  confuse source credit with the identity of the CC BY licensor.
+- Add an explicit exception notice for every third-party input retained in the
+  repository. Never place an MIT or CC BY claim over third-party material.
+- Generated HTML and video may be described as CC BY only when every embedded
+  input is project-controlled or separately compatible and correctly marked.
+  Exported HTML must preserve bundled dependency notices.
+- Treat raw MP4 segments and Slides manifests as internal build inputs unless a
+  release package also carries `NOTICE.md` and the lesson's `SOURCES.md` entry.
 - Never change `LICENSE`, `NOTICE.md`, `SOURCES.md`, the public permission note,
   covered paths, or release-license claims without a fresh rights audit.
 - Never imply endorsement by Carlo, 3Blue1Brown, Manim, Manim Slides, a school,
@@ -604,10 +616,9 @@ source record.
   or obtain explicit maintainer approval before rewriting history to a verified
   no-reply identity. Never expose a personal email merely because tracked file
   contents passed a secret scan.
-- Treat any lesson or collection with `rights_review = "pending_cc0_scope"` as
-  a release blocker for a blanket CC0 claim. A mixed-scope public repository
-  must preserve exact exclusions in `NOTICE.md`; promotion to `published`
-  requires the documented rights decision for that lesson.
+- Treat any lesson whose `release_rights_state` is not `cleared` as a release
+  blocker for promotion to `published`. A mixed-scope public repository must
+  preserve the exact license map and exclusions in `NOTICE.md`.
 - Use small, reviewable commits that separate inventory, infrastructure,
   lessons, and generated documentation.
 - The public README must state scope, exact catalog totals by status, build and
@@ -619,6 +630,9 @@ source record.
 - Publication is complete only when the public GitHub URL is reachable, the
   default branch contains the intended license and provenance files, and the
   documented commands work from the committed tree.
+- After publication, share the public repository URL with the Carlo site owner
+  as requested in the recorded 2026-07-24 permission exchange. This is a
+  maintainer follow-up, not a downstream CC BY condition.
 
 ## Research Basis
 

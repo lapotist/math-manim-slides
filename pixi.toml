@@ -30,7 +30,7 @@ validate-catalog = "python scripts/validate_catalog.py"
 lessons = "python scripts/build_lessons.py"
 render-q9 = "manim-slides render --quality h --media_dir build/media/question_9 lessons/tcfs_115_math_gifted/q09/deck.py Question9Slide"
 present-q9 = "manim-slides present Question9Slide"
-export-q9 = "manim-slides convert --to html --one-file --offline Question9Slide question_9_slides.html"
+export-q9 = "python scripts/build_lessons.py export carlo.tcfs_115_math_gifted.q09"
 
 [pypi-dependencies]
 manim-slides = { version = "==5.6.0", extras = ["pyside6"] }

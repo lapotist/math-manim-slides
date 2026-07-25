@@ -10,7 +10,14 @@ source_page_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%
 source_page_sha256 = "c734413eec7c3f7e049fe822dcc546f2a2b19f860660fdcdd6315ed0d3e48392"
 source_creator = "Carlo / 正哥愛數學"
 source_origin = "frozen_site_inventory"
-rights_review = "pending_cc0_scope"
+source_license = "NOASSERTION"
+source_permission_status = "not_reviewed"
+source_use_scope = "reference_only"
+solution_permission_status = "reported"
+solution_use_scope = "adaptation"
+permission_reference = "docs/provenance/CARLO_PERMISSION.md"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
 source_note = "The PDF contains problem statements and blank solution areas. The mapped public videos are the worked-solution sources."
 expected_problem_count = 14
 
@@ -27,7 +34,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -43,7 +55,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -59,7 +76,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -75,7 +97,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -91,7 +118,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -107,7 +139,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -123,7 +160,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -139,7 +181,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -155,7 +202,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -171,7 +223,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -187,7 +244,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -203,7 +265,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -219,7 +286,12 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
 
 [[problems]]
@@ -236,5 +308,10 @@ eligible = true
 production_state = "visual_verified"
 content_type = "problem_solution"
 duplicate_of = ""
-rights_review = "pending_cc0_scope"
+release_rights_state = "cleared"
+code_license = "MIT"
+content_license = "CC-BY-4.0"
+source_material_use = "independent_reexpression"
+rights_reference = "NOTICE.md"
+rights_reviewed_on = "2026-07-25"
 math_review_state = "independently_verified"
