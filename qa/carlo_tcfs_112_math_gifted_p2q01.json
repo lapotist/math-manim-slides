@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.p2q01",
+  "scene_class": "CarloTcfs112MathP2Q01",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "For (1), 3^2+4^2=5^2, so the triangle is right and its area is 3*4/2=6. For (2), scaling every side by 2 produces a similar triangle with every altitude also scaled by 2, hence area multiplier 2^2=4. For (3), along median CM_c the centroid satisfies CG:GM_c=2:1, so G has one third of C's perpendicular distance from AB; thus Delta(A,G,B)=K/3, and midpoint M_c splits it into two equal K/6 triangles, with the other four obtained cyclically. Independently, put G at the origin and let the vertex vectors be u,v,w, so u+v+w=0. The three vectors close head-to-tail and form a triangle of area K/3: its area is |u cross v|/2, whereas the original area is 3|u cross v|/2. Since AG, BG, CG are 2/3 of the corresponding medians, scaling that vector triangle by 3/2 gives the median-side triangle, whose area is (K/3)(3/2)^2=3K/4. Applying the operation twice gives 16*(3/4)^2=9. For (4), let K=Delta(a,b,c)=45 and H=Delta(h_a,h_b,h_c)=30. From K=a h_a/2 and H=h_a h'_a/2, h'_a=(H/K)a=(2/3)a; cyclically the second-altitude triangle has side lengths 2/3 of the original, so its area is 45*(2/3)^2=20."
+  },
+  "render": {
+    "segment_count": 16,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_area_notation",
+        "loop": false
+      },
+      {
+        "id": "earn_three_four_five",
+        "loop": false
+      },
+      {
+        "id": "double_one_triangle",
+        "loop": false
+      },
+      {
+        "id": "earn_scale_factor",
+        "loop": false
+      },
+      {
+        "id": "introduce_medians",
+        "loop": false
+      },
+      {
+        "id": "split_six_equal_wedges",
+        "loop": false
+      },
+      {
+        "id": "translate_centroid_vectors",
+        "loop": false
+      },
+      {
+        "id": "earn_median_area_factor",
+        "loop": false
+      },
+      {
+        "id": "apply_first_median_step",
+        "loop": false
+      },
+      {
+        "id": "reveal_second_median_step",
+        "loop": false
+      },
+      {
+        "id": "introduce_altitude_triangle",
+        "loop": false
+      },
+      {
+        "id": "compare_two_area_units",
+        "loop": false
+      },
+      {
+        "id": "derive_second_altitudes",
+        "loop": false
+      },
+      {
+        "id": "square_similarity_factor",
+        "loop": false
+      },
+      {
+        "id": "reveal_altitude_area",
+        "loop": false
+      },
+      {
+        "id": "consolidate_four_results",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/p2q01/deck.py",
+      "sha256": "4fefd1558d8b50987595ae6366265a39014d58e240845b15e1ac3364e3e23104"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/p2q01/presenter.zh-TW.md",
+      "sha256": "64a8766184e59b0b21c8bc67d13ef0973ab35eabda76cde8c6904af1af5a029b"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/p2q01/storyboard.md",
+      "sha256": "acc9aac9185e9683d92b9016637edb339fabcbc43011b8cc42931a659372c125"
+    }
+  }
+}

@@ -342,6 +342,12 @@ not instructions to imitate another creator's visual style.
   only when clearly useful.
 - Preserve object identity through transforms. Prefer transforming a copy of a
   visible shape or label when deriving a new representation.
+- If one algebraic symbol names a length, angle, or region in two diagrams,
+  make the rendered objects genuinely equal in scene coordinates and carry the
+  first into the second with `TransformFromCopy` or an explicit equality cue.
+  Never draw unequal objects with the same label and ask narration to repair
+  the contradiction. Keep their semantic color unchanged through every later
+  formula and diagram.
 - Establish symmetry with an explicit constraint-preserving map, not by saying
   that two shapes look alike. Show one arbitrary object and its reflected copy,
   show why the defining data are unchanged, and only then generalize.
@@ -502,6 +508,11 @@ half has visibly landed.
 - When a semantic label changes, transform or remove the old label before the
   replacement appears. Never leave two versions occupying the same geometry;
   this commonly creates a visually plausible but unreadable composite string.
+- Treat simultaneous `FadeOut`/`Write` or unrelated text transforms at one
+  location as high-risk transitions. Sequence the old object fully out before
+  the new one appears unless a tight multi-frame sweep proves there is no
+  overprint, hybrid glyph, or momentary ambiguity; endpoint checks are not
+  evidence for this case.
 - Check 1920x1080 framing for clipped text, overlapping labels, blank frames,
   illegible contrast, and unexpected layout shifts.
 - Confirm the presenter script has exactly the same ordered beats as the deck.

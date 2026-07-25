@@ -25,6 +25,10 @@ solution_url = "https://www.youtube.com/watch?v=FSGAuRvRFU0"
 solution_locator = "00:00-00:53"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q02"
@@ -37,6 +41,10 @@ solution_url = "https://www.youtube.com/watch?v=FSGAuRvRFU0"
 solution_locator = "00:54-02:29"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q03"
@@ -49,6 +57,10 @@ solution_url = "https://www.youtube.com/watch?v=W-NGUVPlcOc"
 solution_locator = "00:00-02:51"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q04"
@@ -61,6 +73,10 @@ solution_url = "https://www.youtube.com/watch?v=W-NGUVPlcOc"
 solution_locator = "02:52-04:27"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q05"
@@ -73,6 +89,10 @@ solution_url = "https://www.youtube.com/watch?v=Hypdc2fqjfM"
 solution_locator = "00:00-01:29"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q06"
@@ -85,6 +105,10 @@ solution_url = "https://www.youtube.com/watch?v=Hypdc2fqjfM"
 solution_locator = "01:30-03:35"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q07"
@@ -97,6 +121,10 @@ solution_url = "https://www.youtube.com/watch?v=xRrA7_xEStU"
 solution_locator = "00:00-03:31"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q08"
@@ -109,6 +137,10 @@ solution_url = "https://www.youtube.com/watch?v=xRrA7_xEStU"
 solution_locator = "03:33-06:17"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q09"
@@ -121,6 +153,10 @@ solution_url = "https://www.youtube.com/watch?v=X6Cabjm94eY"
 solution_locator = "00:00-01:25"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q10"
@@ -133,6 +169,10 @@ solution_url = "https://www.youtube.com/watch?v=X6Cabjm94eY"
 solution_locator = "01:26-05:50"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q11"
@@ -145,6 +185,10 @@ solution_url = "https://www.youtube.com/watch?v=FxSdkChC9Z8"
 solution_locator = "00:00-02:59"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q12"
@@ -157,6 +201,10 @@ solution_url = "https://www.youtube.com/watch?v=FxSdkChC9Z8"
 solution_locator = "03:00-04:11"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q13"
@@ -169,6 +217,10 @@ solution_url = "https://www.youtube.com/watch?v=zUVNQX92b64"
 solution_locator = "00:00-01:13"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.p2q01"
@@ -182,3 +234,7 @@ solution_locator = "00:00-04:34"
 solution_scope_note = "The source's mn=180 generalization follows the displayed same-ray zigzag family. If signed positions on the full lines are allowed without that configuration restriction, additional closure angles exist; the lesson must state the same-ray scope explicitly."
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"

@@ -13,6 +13,8 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from update_sources import render_lesson_index, update_document
+
 
 ROOT = Path(__file__).resolve().parents[1]
 COLLECTION_PATTERN = "lessons/*/collection.toml"
@@ -47,6 +49,19 @@ ANSWER_REQUIRED_STATES = {
     "visual_verified",
     "published",
 }
+VALID_CONTENT_TYPES = {"problem_solution"}
+VALID_RIGHTS_REVIEW_STATES = {"pending_cc0_scope"}
+SHA256_RE = re.compile(r"[0-9a-f]{64}")
+
+
+def expected_math_review_state(production_state: str | None) -> str | None:
+    if production_state in VERIFIED_STATES:
+        return "independently_verified"
+    if production_state in {"discovered", "blocked"}:
+        return "not_reviewed"
+    if production_state in VALID_PRODUCTION_STATES:
+        return "pending"
+    return None
 
 
 def load_toml(path: Path) -> dict[str, Any]:
@@ -132,6 +147,13 @@ def validate_collections(
         )
         collections[collection_id] = data
         source_page_url = data.get("source_page_url")
+        collection_checksum = data.get("source_asset_sha256")
+        check(
+            isinstance(collection_checksum, str)
+            and SHA256_RE.fullmatch(collection_checksum) is not None,
+            f"{collection_id}: missing or invalid source asset checksum",
+            errors,
+        )
         if data.get("source_origin") == "frozen_site_inventory":
             page_record = site_pages.get(source_page_url)
             check(
@@ -190,6 +212,28 @@ def validate_collections(
                 errors,
             )
             production_state = problem.get("production_state")
+            check(
+                problem.get("content_type") in VALID_CONTENT_TYPES,
+                f"{problem_id}: missing or invalid content_type",
+                errors,
+            )
+            duplicate_of = problem.get("duplicate_of")
+            check(
+                isinstance(duplicate_of, str),
+                f"{problem_id}: duplicate_of must be a string",
+                errors,
+            )
+            check(
+                problem.get("rights_review") in VALID_RIGHTS_REVIEW_STATES,
+                f"{problem_id}: missing or invalid rights_review",
+                errors,
+            )
+            expected_review = expected_math_review_state(production_state)
+            check(
+                problem.get("math_review_state") == expected_review,
+                f"{problem_id}: math_review_state does not match production state",
+                errors,
+            )
             if problem.get("eligible") is False and production_state != "blocked":
                 check(
                     bool(problem.get("eligibility_reason")),
@@ -236,6 +280,19 @@ def validate_collections(
                         f"{problem_id}: solution is not linked from source page",
                         errors,
                     )
+    for problem_id, problem in problems_by_id.items():
+        duplicate_of = problem.get("duplicate_of")
+        if duplicate_of:
+            check(
+                duplicate_of != problem_id,
+                f"{problem_id}: duplicate_of points to itself",
+                errors,
+            )
+            check(
+                duplicate_of in problems_by_id,
+                f"{problem_id}: duplicate_of target is unknown",
+                errors,
+            )
     check(bool(collections), "no collection metadata found", errors)
     return collections, problems_by_id
 
@@ -342,6 +399,7 @@ def validate_qa_evidence(
 
 
 def validate_lessons(
+    collections: dict[str, Any],
     problems_by_id: dict[str, dict[str, Any]],
     source_assets: dict[str, dict[str, Any]],
     errors: list[str],
@@ -393,6 +451,18 @@ def validate_lessons(
         )
         check(bool(data.get("source_url")), f"{lesson_id}: missing source URL", errors)
         check(
+            bool(data.get("source_locator")),
+            f"{lesson_id}: missing exact source locator",
+            errors,
+        )
+        lesson_checksum = data.get("source_asset_sha256")
+        check(
+            isinstance(lesson_checksum, str)
+            and SHA256_RE.fullmatch(lesson_checksum) is not None,
+            f"{lesson_id}: missing or invalid source asset checksum",
+            errors,
+        )
+        check(
             bool(data.get("source_credit")),
             f"{lesson_id}: missing source credit",
             errors,
@@ -404,6 +474,24 @@ def validate_lessons(
         )
 
         problem = problems_by_id.get(lesson_id, {})
+        collection = collections.get(data.get("collection_id"), {})
+        check(
+            bool(collection),
+            f"{lesson_id}: lesson collection is unknown",
+            errors,
+        )
+        if collection:
+            check(
+                lesson_checksum == collection.get("source_asset_sha256"),
+                f"{lesson_id}: lesson/collection source checksums differ",
+                errors,
+            )
+        if problem:
+            check(
+                data.get("rights_review") == problem.get("rights_review"),
+                f"{lesson_id}: lesson/problem rights reviews differ",
+                errors,
+            )
         expected_solution_id = problem.get("solution_asset")
         if expected_solution_id:
             solution_id = data.get("solution_asset_id")
@@ -535,6 +623,25 @@ def validate_lessons(
         validate_manifest(data, beats, errors)
     check(count > 0, "no lesson metadata found", errors)
     return count
+
+
+def validate_generated_source_index(errors: list[str]) -> None:
+    sources_path = ROOT / "SOURCES.md"
+    check(sources_path.is_file(), "missing SOURCES.md", errors)
+    if not sources_path.is_file():
+        return
+    current = sources_path.read_text(encoding="utf-8")
+    try:
+        generated, _ = render_lesson_index(ROOT)
+        expected = update_document(current, generated)
+    except ValueError as error:
+        errors.append(f"source index cannot be generated: {error}")
+        return
+    check(
+        current == expected,
+        "SOURCES.md lesson index is stale; run pixi run update-sources",
+        errors,
+    )
 
 
 def validate_source_registry(errors: list[str]) -> None:
@@ -670,8 +777,13 @@ def main() -> int:
     errors: list[str] = []
     source_assets = load_source_asset_index()
     site_pages = load_site_page_index()
-    _, problems_by_id = validate_collections(source_assets, site_pages, errors)
-    lesson_count = validate_lessons(problems_by_id, source_assets, errors)
+    collections, problems_by_id = validate_collections(
+        source_assets, site_pages, errors
+    )
+    lesson_count = validate_lessons(
+        collections, problems_by_id, source_assets, errors
+    )
+    validate_generated_source_index(errors)
     validate_source_registry(errors)
     if errors:
         for error in errors:

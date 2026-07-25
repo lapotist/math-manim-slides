@@ -23,6 +23,10 @@ solution_asset = "youtube:oRepfpw90Fg"
 solution_url = "https://www.youtube.com/watch?v=oRepfpw90Fg"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q02"
@@ -35,6 +39,10 @@ solution_asset = "youtube:CeH9yZ8pnc0"
 solution_url = "https://www.youtube.com/watch?v=CeH9yZ8pnc0"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q03"
@@ -46,6 +54,10 @@ solution_asset = "youtube:MUhQmAz9OvE"
 solution_url = "https://www.youtube.com/watch?v=MUhQmAz9OvE"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q04"
@@ -54,6 +66,10 @@ source_pages = [4]
 solution_locator = "Question 4 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -63,6 +79,10 @@ source_pages = [5]
 solution_locator = "Question 5 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -72,6 +92,10 @@ source_pages = [6]
 solution_locator = "Question 6 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -81,6 +105,10 @@ source_pages = [7]
 solution_locator = "Question 7 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -90,6 +118,10 @@ source_pages = [8]
 solution_locator = "Question 8 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -99,6 +131,10 @@ source_pages = [9]
 solution_locator = "Question 9 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -108,6 +144,10 @@ source_pages = [10]
 solution_locator = "Question 10 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -117,6 +157,10 @@ source_pages = [11]
 solution_locator = "Question 11 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -126,6 +170,10 @@ source_pages = [12]
 solution_locator = "Question 12 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -139,6 +187,10 @@ solution_asset = "youtube:Eq_1v5YG5bs"
 solution_url = "https://www.youtube.com/watch?v=Eq_1v5YG5bs"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q14"
@@ -147,4 +199,8 @@ source_pages = [14]
 solution_locator = "Question 14 embedded video on the canonical source page"
 eligible = false
 production_state = "blocked"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."

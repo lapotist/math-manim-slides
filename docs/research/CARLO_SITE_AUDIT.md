@@ -59,17 +59,21 @@ located, and provenance plus rights scope are documented. PDFs can contain
 several lesson units; shell pages contain none. Consequently 4,346 is the
 audited asset denominator, not a completed-lesson count.
 
-## Problem-level review batches
+## Problem-level review batches at the snapshot boundary
 
 The first site-derived problem decompositions cover three adjacent TCFSH
 gifted-mathematics pages:
 
-| Batch | Problem units | Public worked solutions | Current limitation |
+| Batch | Problem units | Public worked solutions | Limitation recorded at the 2026-07-24 freeze |
 | --- | ---: | ---: | --- |
-| ROC 112 | 14 | 14 | Independent lesson mathematics and rendering remain pending |
-| ROC 113 | 14 | 14 | Independent lesson mathematics and rendering remain pending by unit |
+| ROC 112 | 14 | 14 | Independent lesson mathematics and rendering were pending |
+| ROC 113 | 14 | 14 | Independent lesson mathematics and rendering were pending by unit |
 | ROC 114 | 14 | 4 | Ten solution videos are members-only and remain blocked |
 | ROC 104 Chiayi science | 20 | 20 candidate mappings | Worked-content sufficiency and independent mathematics review pending |
+
+Production states have advanced since this source-audit freeze. The collection
+metadata and its generated README table are authoritative for current lesson
+states.
 
 ROC 112 and ROC 113 PDFs have blank areas beneath their `解析` headings. They
 are problem-statement locators, not evidence of solution reasoning; the exact

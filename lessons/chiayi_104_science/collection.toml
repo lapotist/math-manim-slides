@@ -23,6 +23,10 @@ solution_url = "https://www.youtube.com/watch?v=W_kWhz-mRZk"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q02"
@@ -33,6 +37,10 @@ solution_url = "https://www.youtube.com/watch?v=s1yOPLO3YaY"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q03"
@@ -43,6 +51,10 @@ solution_url = "https://www.youtube.com/watch?v=zot-342e0MA"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q04"
@@ -53,6 +65,10 @@ solution_url = "https://www.youtube.com/watch?v=ECRtvRq9Kq8"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q05"
@@ -63,6 +79,10 @@ solution_url = "https://www.youtube.com/watch?v=y_oaSlysuNE"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q06"
@@ -73,6 +93,10 @@ solution_url = "https://www.youtube.com/watch?v=pRzUo1icNrc"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q07"
@@ -83,6 +107,10 @@ solution_url = "https://www.youtube.com/watch?v=FfW3DsDlxnw"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q08"
@@ -93,6 +121,10 @@ solution_url = "https://www.youtube.com/watch?v=MXeg2E09itU"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q09"
@@ -103,6 +135,10 @@ solution_url = "https://www.youtube.com/watch?v=o941qR1MKns"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q10"
@@ -113,6 +149,10 @@ solution_url = "https://www.youtube.com/watch?v=b6a-FaCgcw4"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q11"
@@ -123,6 +163,10 @@ solution_url = "https://www.youtube.com/watch?v=DRJjJQASXds"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q12"
@@ -133,6 +177,10 @@ solution_url = "https://www.youtube.com/watch?v=uwcROoBq2Fw"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q13"
@@ -143,6 +191,10 @@ solution_url = "https://www.youtube.com/watch?v=ZPUmIli7GyY"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q14"
@@ -153,6 +205,10 @@ solution_url = "https://www.youtube.com/watch?v=HcwPaLdkcpE"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q15"
@@ -163,6 +219,10 @@ solution_url = "https://www.youtube.com/watch?v=OpW0cHAHIW8"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q16"
@@ -173,6 +233,10 @@ solution_url = "https://www.youtube.com/watch?v=5PVm9Q6QUhs"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q17"
@@ -183,6 +247,10 @@ solution_url = "https://www.youtube.com/watch?v=WcizHiRP6F0"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q18"
@@ -193,6 +261,10 @@ solution_url = "https://www.youtube.com/watch?v=vmIV_qEJA4w"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q19"
@@ -203,6 +275,10 @@ solution_url = "https://www.youtube.com/watch?v=Zk6h48VT6K4"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"
 
 [[problems]]
 id = "carlo.chiayi_104_science.q20"
@@ -213,3 +289,7 @@ solution_url = "https://www.youtube.com/watch?v=CZOGxLjo-JI"
 eligible = false
 eligibility_reason = "Public problem and uniquely numbered video located; worked-solution sufficiency and independent mathematics review pending."
 production_state = "discovered"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "not_reviewed"

@@ -25,6 +25,10 @@ solution_url = "https://www.youtube.com/watch?v=GGVENizPImM"
 solution_locator = "00:00-00:45.90"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q02"
@@ -37,6 +41,10 @@ solution_url = "https://www.youtube.com/watch?v=HEkjXNCB3g8"
 solution_locator = "00:00-00:30"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q03"
@@ -49,6 +57,10 @@ solution_url = "https://www.youtube.com/watch?v=SlZg1LfjbrE"
 solution_locator = "00:00-01:32.05"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q04"
@@ -61,6 +73,10 @@ solution_url = "https://www.youtube.com/watch?v=K9kwq9apPR0"
 solution_locator = "00:00-01:48.80"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q05"
@@ -73,6 +89,10 @@ solution_url = "https://www.youtube.com/watch?v=dMXJ-FbZKxU"
 solution_locator = "00:00-03:42.52"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q06"
@@ -85,6 +105,10 @@ solution_url = "https://www.youtube.com/watch?v=t9wHX49OZPM"
 solution_locator = "00:00-01:54.75"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q07"
@@ -97,6 +121,10 @@ solution_url = "https://www.youtube.com/watch?v=RJcla7jv85g"
 solution_locator = "00:00-02:59.10"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q08"
@@ -109,6 +137,10 @@ solution_url = "https://www.youtube.com/watch?v=yxlLBTcz4kg"
 solution_locator = "00:00-04:43.80"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q09"
@@ -121,6 +153,10 @@ solution_url = "https://www.youtube.com/watch?v=E8hGcX6oQO4"
 solution_locator = "00:00-08:52.40"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q10"
@@ -133,6 +169,10 @@ solution_url = "https://www.youtube.com/watch?v=W9yrKSMoY-0"
 solution_locator = "00:00-03:39.10"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q11"
@@ -145,6 +185,10 @@ solution_url = "https://www.youtube.com/watch?v=WHaIgarL3nM"
 solution_locator = "00:00-02:46.85"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q12"
@@ -157,6 +201,10 @@ solution_url = "https://www.youtube.com/watch?v=3clUyeUgvOg"
 solution_locator = "00:00-08:23.75"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q13"
@@ -169,12 +217,23 @@ solution_url = "https://www.youtube.com/watch?v=nEbzWC6QD7g"
 solution_locator = "00:00-02:55.00"
 eligible = true
 production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.p2q01"
 label = "Proof Question 1"
 source_pages = [14, 15, 16, 17]
+topic = "triangle area under scaling, median, and altitude transformations"
+answer = "(6,4,9,20)"
 solution_asset = "youtube:JisNVawr1NM"
 solution_url = "https://www.youtube.com/watch?v=JisNVawr1NM"
+solution_locator = "00:00-07:19.25"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
+content_type = "problem_solution"
+duplicate_of = ""
+rights_review = "pending_cc0_scope"
+math_review_state = "independently_verified"

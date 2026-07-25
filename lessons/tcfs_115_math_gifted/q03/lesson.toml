@@ -7,6 +7,7 @@ question = 3
 source_pages = [2]
 source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD"
 source_asset = "數學-115數理資優學科能力評量答案.pdf"
+source_asset_sha256 = "983f12dbd22aaa7d19c914c4e88c42973faa6d09e32ae036edf15961bbeadcc2"
 source_locator = "Part 1, Question 3, PDF page 2"
 source_credit = "解題來源：正哥愛數學"
 rights_review = "pending_cc0_scope"
