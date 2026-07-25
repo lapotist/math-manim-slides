@@ -1,0 +1,72 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q06"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "Using the opening direction to choose the valid quadratic parameter"
+locale = "zh-TW"
+question = 6
+source_pages = [6]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 6, PDF page 6; public solution video 00:00-01:54.75"
+solution_asset_id = "youtube:t9wHX49OZPM"
+solution_url = "https://www.youtube.com/watch?v=t9wHX49OZPM"
+source_video_locator = "00:00-01:54.75"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page contains the two quadratic functions and a blank worked area. The public video visibly uses the existence of a maximum for f to require a<0, finds the vertex x-coordinate 1, sets 5a-3/a=2, solves the resulting quadratic in a, rejects the positive root, keeps a=-3/5, finds the vertex x-coordinate 2 for g, and evaluates its minimum as -1. The complete solution is unobstructed through 01:54.75; a device-control overlay begins by 01:54.80. The inspected 518x360 research stream is 115.472834 seconds long and has SHA-256 926e08c9dcc0bcd5b3ee22b4ebe4ce45ebdfbf9670af6540fa168518c80ffe81. This lesson independently expresses the same mathematics with original graphs, number-line motion, wording, and code."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q06/deck.py"
+scene_class = "CarloTcfs112MathQ06"
+storyboard = "lessons/tcfs_112_math_gifted/q06/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q06/presenter.zh-TW.md"
+estimated_minutes = 9
+expected_answer = "-1"
+independent_check = "Because f is a quadratic containing 3/a, a is nonzero. A finite maximum on all real x further forces a<0. Completing the square gives f(x)=a(x-1)^2+5a-3/a, so its maximum is 5a-3/a=2. Hence 5a^2-2a-3=(5a+3)(a-1)=0. The roots are -3/5 and 1, but a<0 selects the unique admissible value a=-3/5; the other root gives f(x)=(x-1)^2+2, whose value 2 is a minimum and which is unbounded above. Substitution gives f(x)=-(3/5)(x-1)^2+2, verifying the stated maximum. For the admissible parameter, g(x)=-a(x-2)^2+10a-3/a=(3/5)(x-2)^2-1, so g(x)>=-1 for every real x, with equality uniquely at x=2. Therefore the requested minimum is -1."
+tags = ["quadratic-functions", "completing-the-square", "domain", "maximum", "minimum", "parameter-selection"]
+
+[[beats]]
+id = "meet_highest_point"
+loop = false
+
+[[beats]]
+id = "decide_opening_direction"
+loop = false
+
+[[beats]]
+id = "locate_f_axis"
+loop = false
+
+[[beats]]
+id = "use_maximum_height"
+loop = false
+
+[[beats]]
+id = "solve_parameter_candidates"
+loop = false
+
+[[beats]]
+id = "reject_wrong_opening"
+loop = false
+
+[[beats]]
+id = "verify_f_in_picture"
+loop = false
+
+[[beats]]
+id = "transfer_parameter_to_g"
+loop = false
+
+[[beats]]
+id = "locate_g_axis"
+loop = false
+
+[[beats]]
+id = "settle_minimum_preanswer"
+loop = false
+
+[[beats]]
+id = "reveal_minimum"
+loop = false

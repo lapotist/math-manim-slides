@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q07"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "A complete digitwise and factor-pair search between two squares"
+locale = "zh-TW"
+question = 7
+source_pages = [7]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 7, PDF page 7; public solution video 00:00-02:59.10"
+solution_asset_id = "youtube:RJcla7jv85g"
+solution_url = "https://www.youtube.com/watch?v=RJcla7jv85g"
+source_video_locator = "00:00-02:59.10"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page states that a is a two-digit number, b is obtained by adding 5 to every decimal digit of a^2, and b is both three-digit and a square; the worked area is blank. The confirmed-public video writes a^2+555=b=m^2, factors 555=(m+a)(m-a), checks the factor allocations (185,3), (111,5), and (37,15), obtains the candidates (m,a)=(94,91),(58,53),(26,11), rejects the first two by the decimal-length condition, and concludes b=26^2=676. The complete solution remains unobstructed through 00:02:59.10; a device overlay begins by 00:02:59.15. This lesson independently justifies when the positional +555 rewrite is valid, adds the omitted positive factor pair 1*555 and its parity check, exhaustively tests every candidate, and verifies the survivor against the original digitwise operation. All digit cards, geometry, wording, motion, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q07/deck.py"
+scene_class = "CarloTcfs112MathQ07"
+storyboard = "lessons/tcfs_112_math_gifted/q07/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q07/presenter.zh-TW.md"
+estimated_minutes = 9
+expected_answer = "(11,676)"
+independent_check = "Interpret the stated digitwise operation as replacing each decimal digit d of a^2 by the single decimal digit d+5, with positions preserved and no carry or concatenation. Since b has three digits, a^2 must also have three digits and each of its digits must be at most 4; only under these necessary conditions is b=a^2+555. Exhaustively checking a=10,...,99 leaves exactly the six legal transformations (10,100,655), (11,121,676), (12,144,699), (18,324,879), (20,400,955), and (21,441,996), of which only 676 is a square. Independently, write b=m^2. The three-digit condition gives 10<=m<=31, and m^2-a^2=555 gives positive integers x=m-a<y=m+a with xy=555. The complete positive factor-pair list is (1,555),(3,185),(5,111),(15,37); all are odd-odd, so each decodes integrally to (a,m)=(277,278),(91,94),(53,58),(11,26). The constraints 10<=a<=99 and 10<=m<=31 leave only (11,26). Finally 11^2=121, digitwise addition gives 676, and 676=26^2. If one instead allows a digit plus 5 to become a two-character string or introduces carrying, the statement no longer defines the same operation; that alternative is outside the source solution and this lesson's documented domain."
+tags = ["number-theory", "decimal-digits", "perfect-squares", "difference-of-squares", "factor-pairs", "exhaustive-search"]
+
+[[beats]]
+id = "touch_each_digit"
+loop = false
+
+[[beats]]
+id = "earn_plus_555"
+loop = false
+
+[[beats]]
+id = "name_the_second_square"
+loop = false
+
+[[beats]]
+id = "rearrange_the_square_gap"
+loop = false
+
+[[beats]]
+id = "set_factor_pair_rules"
+loop = false
+
+[[beats]]
+id = "enumerate_every_factor_pair"
+loop = false
+
+[[beats]]
+id = "decode_all_candidates"
+loop = false
+
+[[beats]]
+id = "filter_by_digit_domains"
+loop = false
+
+[[beats]]
+id = "hold_before_digit_check"
+loop = false
+
+[[beats]]
+id = "reveal_the_unique_pair"
+loop = false

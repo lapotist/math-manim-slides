@@ -522,6 +522,182 @@ class Tcfs112MathChecks(unittest.TestCase):
         self.assertEqual(total_prize, 900)
         self.assertEqual(d * total_prize, 225)
 
+    def test_q04_trapezoid_division_is_shear_invariant(self) -> None:
+        def subtract(
+            left: tuple[Fraction, Fraction],
+            right: tuple[Fraction, Fraction],
+        ) -> tuple[Fraction, Fraction]:
+            return left[0] - right[0], left[1] - right[1]
+
+        def cross(
+            left: tuple[Fraction, Fraction],
+            right: tuple[Fraction, Fraction],
+        ) -> Fraction:
+            return left[0] * right[1] - left[1] * right[0]
+
+        def first_line_parameter(
+            point: tuple[Fraction, Fraction],
+            direction: tuple[Fraction, Fraction],
+            other_point: tuple[Fraction, Fraction],
+            other_direction: tuple[Fraction, Fraction],
+        ) -> Fraction:
+            denominator = cross(direction, other_direction)
+            self.assertNotEqual(denominator, 0)
+            return cross(subtract(other_point, point), other_direction) / denominator
+
+        for unit, shear, height in (
+            (Fraction(1), Fraction(-2), Fraction(3)),
+            (Fraction(2), Fraction(0), Fraction(5)),
+            (Fraction(3, 2), Fraction(7, 3), Fraction(4, 3)),
+            (Fraction(5, 3), Fraction(-1, 4), Fraction(-2)),
+        ):
+            a = (Fraction(0), Fraction(0))
+            b = (3 * unit, Fraction(0))
+            d = (shear, height)
+            c = (shear + unit, height)
+            e = ((a[0] + c[0]) / 2, (a[1] + c[1]) / 2)
+
+            af_over_ad = first_line_parameter(
+                a,
+                subtract(d, a),
+                b,
+                subtract(e, b),
+            )
+            self.assertEqual(af_over_ad, Fraction(3, 5))
+            self.assertGreater(af_over_ad, 0)
+            self.assertLess(af_over_ad, 1)
+
+            g_parameter_on_dc = first_line_parameter(
+                d,
+                subtract(c, d),
+                b,
+                subtract(e, b),
+            )
+            self.assertEqual(g_parameter_on_dc, -2)
+            self.assertEqual(abs(g_parameter_on_dc) * unit, 2 * unit)
+
+    def test_q05_integer_roots_exhaust_all_signed_factor_pairs(self) -> None:
+        signed_divisors = {
+            sign * divisor
+            for divisor in range(1, 262)
+            if 261 % divisor == 0
+            for sign in (-1, 1)
+        }
+        decoded_pairs = {
+            ((left + 6) // 5, (right + 6) // 5)
+            for left in signed_divisors
+            for right in signed_divisors
+            if left * right == 261
+            and (left + 6) % 5 == 0
+            and (right + 6) % 5 == 0
+            and (left + 6) // 5 > 0
+            and (right + 6) // 5 > 0
+        }
+        self.assertEqual(decoded_pairs, {(3, 7), (7, 3)})
+
+        alpha, beta = 3, 7
+        parameter = alpha + beta
+        self.assertEqual(parameter, 10)
+        positive_roots = {
+            x
+            for x in range(1, 100)
+            if 5 * x * x - 5 * parameter * x + 6 * parameter + 45 == 0
+        }
+        self.assertEqual(positive_roots, {alpha, beta})
+
+        def f(x: int) -> int:
+            return (x + 1) * (5 * x * x + 45)
+
+        def g(x: int) -> int:
+            return (x + 1) * (5 * x - 6)
+
+        for root in positive_roots:
+            self.assertEqual(f(root), parameter * g(root))
+
+    def test_q06_opening_direction_selects_the_quadratic_parameter(self) -> None:
+        candidates = {
+            value
+            for value in (Fraction(-3, 5), Fraction(1))
+            if 5 * value * value - 2 * value - 3 == 0
+        }
+        self.assertEqual(candidates, {Fraction(-3, 5), Fraction(1)})
+
+        def f(x: Fraction, parameter: Fraction) -> Fraction:
+            return (
+                parameter * x * x
+                - 2 * parameter * x
+                + 6 * parameter
+                - 3 / parameter
+            )
+
+        wrong = Fraction(1)
+        self.assertEqual(f(Fraction(1), wrong), 2)
+        self.assertGreater(f(Fraction(0), wrong), 2)
+
+        parameter = Fraction(-3, 5)
+        for x in (Fraction(-4), Fraction(0), Fraction(1), Fraction(7, 3)):
+            self.assertEqual(
+                f(x, parameter),
+                parameter * (x - 1) ** 2 + 2,
+            )
+            self.assertLessEqual(f(x, parameter), 2)
+
+        def g(x: Fraction) -> Fraction:
+            return (
+                -parameter * x * x
+                + 4 * parameter * x
+                + 6 * parameter
+                - 3 / parameter
+            )
+
+        for x in (Fraction(-2), Fraction(0), Fraction(2), Fraction(11, 4)):
+            self.assertEqual(g(x), Fraction(3, 5) * (x - 2) ** 2 - 1)
+            self.assertGreaterEqual(g(x), -1)
+        self.assertEqual(g(Fraction(2)), -1)
+
+    def test_q07_digitwise_shift_has_one_square_output(self) -> None:
+        factor_pairs = [
+            (left, 555 // left)
+            for left in range(1, 24)
+            if 555 % left == 0
+        ]
+        self.assertEqual(factor_pairs, [(1, 555), (3, 185), (5, 111), (15, 37)])
+        decoded = {
+            ((right - left) // 2, (right + left) // 2)
+            for left, right in factor_pairs
+            if (right - left) % 2 == 0
+        }
+        self.assertEqual(decoded, {(277, 278), (91, 94), (53, 58), (11, 26)})
+
+        def add_five_to_each_digit(value: int) -> int | None:
+            digits = [int(digit) for digit in str(value)]
+            if len(digits) != 3 or any(digit > 4 for digit in digits):
+                return None
+            return int("".join(str(digit + 5) for digit in digits))
+
+        legal_transforms = [
+            (a, a * a, transformed)
+            for a in range(10, 100)
+            if (transformed := add_five_to_each_digit(a * a)) is not None
+        ]
+        self.assertEqual(
+            legal_transforms,
+            [
+                (10, 100, 655),
+                (11, 121, 676),
+                (12, 144, 699),
+                (18, 324, 879),
+                (20, 400, 955),
+                (21, 441, 996),
+            ],
+        )
+        square_outputs = [
+            (a, transformed)
+            for a, _, transformed in legal_transforms
+            if math.isqrt(transformed) ** 2 == transformed
+        ]
+        self.assertEqual(square_outputs, [(11, 676)])
+
 
 if __name__ == "__main__":
     unittest.main()

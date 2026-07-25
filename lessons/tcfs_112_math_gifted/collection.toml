@@ -54,37 +54,49 @@ production_state = "visual_verified"
 id = "carlo.tcfs_112_math_gifted.q04"
 label = "Fill-in Question 4"
 source_pages = [4]
+topic = "trapezoid congruence and similar-triangle ratios"
+answer = "3/5"
 solution_asset = "youtube:K9kwq9apPR0"
 solution_url = "https://www.youtube.com/watch?v=K9kwq9apPR0"
+solution_locator = "00:00-01:48.80"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q05"
 label = "Fill-in Question 5"
 source_pages = [5]
+topic = "integer roots, Vieta relations, and modular factor-pair filtering"
+answer = "10"
 solution_asset = "youtube:dMXJ-FbZKxU"
 solution_url = "https://www.youtube.com/watch?v=dMXJ-FbZKxU"
+solution_locator = "00:00-03:42.52"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q06"
 label = "Fill-in Question 6"
 source_pages = [6]
+topic = "quadratic extrema, completing the square, and parameter selection"
+answer = "-1"
 solution_asset = "youtube:t9wHX49OZPM"
 solution_url = "https://www.youtube.com/watch?v=t9wHX49OZPM"
+solution_locator = "00:00-01:54.75"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q07"
 label = "Fill-in Question 7"
 source_pages = [7]
+topic = "difference of squares and digitwise square transformation"
+answer = "(11,676)"
 solution_asset = "youtube:RJcla7jv85g"
 solution_url = "https://www.youtube.com/watch?v=RJcla7jv85g"
+solution_locator = "00:00-02:59.10"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q08"

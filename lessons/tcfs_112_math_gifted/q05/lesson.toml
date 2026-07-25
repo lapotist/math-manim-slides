@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q05"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "Turning two positive integer intersections into one admissible factor pair"
+locale = "zh-TW"
+question = 5
+source_pages = [5]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 5, PDF page 5; public solution video 00:00-03:42.52"
+solution_asset_id = "youtube:dMXJ-FbZKxU"
+solution_url = "https://www.youtube.com/watch?v=dMXJ-FbZKxU"
+source_video_locator = "00:00-03:42.52"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page states f(x)=(x+1)(5x^2+45), g(x)=(x+1)(5x-6), and asks for the sum of all p for which exactly two positive integers alpha and beta satisfy f(alpha)=p*g(alpha) and f(beta)=p*g(beta); its worked area is blank and does not establish a solution. The dedicated public video visibly forms f-pg, factors out x+1, uses Vieta on the remaining quadratic, derives (5alpha-6)(5beta-6)=261, selects the factors 9 and 29, obtains alpha=3, beta=7, and concludes p=10. The complete solution remains clean through 00:03:42.525; a device overlay begins by 00:03:42.550, so the locator is conservatively recorded as 00:00-03:42.52. This lesson preserves that argument while adding a project-original balance-to-zero visualization, an area model for the +36 completion, an explicit sign and residue-class exhaustion of factor pairs, and direct substitution into the original functions. All visuals, motion, wording, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q05/deck.py"
+scene_class = "CarloTcfs112MathQ05"
+storyboard = "lessons/tcfs_112_math_gifted/q05/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q05/presenter.zh-TW.md"
+estimated_minutes = 9
+expected_answer = "10"
+independent_check = "For positive x, x+1 is nonzero, so solutions are exactly the roots of Q_p(x)=5x^2-5px+(6p+45). If its two distinct positive integer roots are alpha<beta, Vieta gives alpha+beta=p and 5alpha*beta=6p+45, hence (5alpha-6)(5beta-6)=261. Each factor is at least -1. Because their positive product is 261, both would have to share a sign; the only possible negative value is -1, which cannot pair with another value at least -1 to produce 261, so both factors are positive. The positive factor pairs of 261 are exactly (1,261), (3,87), and (9,29); requiring both factors to be congruent to 4 modulo 5 leaves only (9,29). Thus alpha=3, beta=7, and p=alpha+beta=10. Conversely Q_10(x)=5(x-3)(x-7), while the discarded common root x=-1 is not positive, so there are exactly two positive integer solutions. Directly, f(3)=360=10*g(3) and f(7)=2320=10*g(7)."
+tags = ["functions", "polynomial-roots", "vieta", "diophantine-equations", "factorization", "modular-arithmetic"]
+
+[[beats]]
+id = "meet_two_integer_hits"
+loop = false
+
+[[beats]]
+id = "turn_matches_into_zeros"
+loop = false
+
+[[beats]]
+id = "discard_common_root"
+loop = false
+
+[[beats]]
+id = "see_remaining_quadratic"
+loop = false
+
+[[beats]]
+id = "read_sum_and_product"
+loop = false
+
+[[beats]]
+id = "remove_parameter_p"
+loop = false
+
+[[beats]]
+id = "complete_factor_rectangle"
+loop = false
+
+[[beats]]
+id = "filter_factor_pairs"
+loop = false
+
+[[beats]]
+id = "decode_surviving_pair"
+loop = false
+
+[[beats]]
+id = "reveal_parameter"
+loop = false

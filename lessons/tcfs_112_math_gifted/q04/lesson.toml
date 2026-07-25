@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q04"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "An invariant side division in a three-to-one trapezoid"
+locale = "zh-TW"
+question = 4
+source_pages = [4]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 4, PDF page 4; public solution video 00:00-01:48.80"
+solution_asset_id = "youtube:K9kwq9apPR0"
+solution_url = "https://www.youtube.com/watch?v=K9kwq9apPR0"
+source_video_locator = "00:00-01:48.80"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page gives the exact trapezoid problem and leaves the worked area blank. The confirmed-public video constructs G where the extensions of BE and CD meet, uses triangle GEC congruent to triangle BEA to obtain GC=AB, subtracts CD to get GD:AB=2:3, then uses triangle GDF similar to triangle BAF to obtain DF:AF=2:3 and AF/AD=3/5. Full frame inspection found the Q4 page present from 00:00; the last unobstructed solution frame is 01:48.80 and the device overlay begins immediately afterward. This lesson reconstructs the proof with project-original geometry, wording, and motion, and explicitly excludes zero-base and zero-height degeneracies."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q04/deck.py"
+scene_class = "CarloTcfs112MathQ04"
+storyboard = "lessons/tcfs_112_math_gifted/q04/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q04/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "3/5"
+independent_check = "Normalize a nondegenerate convex trapezoid as A=(0,0), B=(3u,0), D=(d,h), C=(d+u,h), where u>0 and h is nonzero. Then E=((d+u)/2,h/2). Solving A+t(D-A)=B+s(E-B) gives s=6/5 and t=3/5, so F lies strictly inside AD and AF/AD=3/5, independent of d and h. For the source construction, the line BE reaches the top base line at G=D-2(C-D). Thus GC=3u=AB and GD=2u. The midpoint and parallel-line angles give triangle GEC congruent to triangle BEA; the vertical and corresponding angles give triangle GDF similar to triangle BAF, hence DF/AF=GD/AB=2/3 and AF/(AF+DF)=3/(3+2)=3/5. The line intersection is undefined in the collapsed h=0 case, and u=0 does not give positive trapezoid bases."
+tags = ["geometry", "trapezoid", "midpoint", "congruent-triangles", "similar-triangles", "affine-invariant", "ratio"]
+
+[[beats]]
+id = "build_given_trapezoid"
+loop = false
+
+[[beats]]
+id = "vary_shape_watch_f"
+loop = false
+
+[[beats]]
+id = "pause_on_unknown_split"
+loop = false
+
+[[beats]]
+id = "extend_lines_to_g"
+loop = false
+
+[[beats]]
+id = "earn_equal_long_segment"
+loop = false
+
+[[beats]]
+id = "split_three_units"
+loop = false
+
+[[beats]]
+id = "earn_second_similarity"
+loop = false
+
+[[beats]]
+id = "transfer_two_to_three"
+loop = false
+
+[[beats]]
+id = "hold_before_fraction"
+loop = false
+
+[[beats]]
+id = "reveal_three_fifths"
+loop = false

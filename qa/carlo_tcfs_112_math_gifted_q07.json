@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q07",
+  "scene_class": "CarloTcfs112MathQ07",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Interpret the stated digitwise operation as replacing each decimal digit d of a^2 by the single decimal digit d+5, with positions preserved and no carry or concatenation. Since b has three digits, a^2 must also have three digits and each of its digits must be at most 4; only under these necessary conditions is b=a^2+555. Exhaustively checking a=10,...,99 leaves exactly the six legal transformations (10,100,655), (11,121,676), (12,144,699), (18,324,879), (20,400,955), and (21,441,996), of which only 676 is a square. Independently, write b=m^2. The three-digit condition gives 10<=m<=31, and m^2-a^2=555 gives positive integers x=m-a<y=m+a with xy=555. The complete positive factor-pair list is (1,555),(3,185),(5,111),(15,37); all are odd-odd, so each decodes integrally to (a,m)=(277,278),(91,94),(53,58),(11,26). The constraints 10<=a<=99 and 10<=m<=31 leave only (11,26). Finally 11^2=121, digitwise addition gives 676, and 676=26^2. If one instead allows a digit plus 5 to become a two-character string or introduces carrying, the statement no longer defines the same operation; that alternative is outside the source solution and this lesson's documented domain."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "touch_each_digit",
+        "loop": false
+      },
+      {
+        "id": "earn_plus_555",
+        "loop": false
+      },
+      {
+        "id": "name_the_second_square",
+        "loop": false
+      },
+      {
+        "id": "rearrange_the_square_gap",
+        "loop": false
+      },
+      {
+        "id": "set_factor_pair_rules",
+        "loop": false
+      },
+      {
+        "id": "enumerate_every_factor_pair",
+        "loop": false
+      },
+      {
+        "id": "decode_all_candidates",
+        "loop": false
+      },
+      {
+        "id": "filter_by_digit_domains",
+        "loop": false
+      },
+      {
+        "id": "hold_before_digit_check",
+        "loop": false
+      },
+      {
+        "id": "reveal_the_unique_pair",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q07/deck.py",
+      "sha256": "7afdab354f1f82173a96d0cada1ef486e1fbb7552b62934fbf9bdb2962609872"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q07/presenter.zh-TW.md",
+      "sha256": "35a95e26b49c4d03688bf17dd341b43b9708fd163b368a63f14c4c7fd0aa1475"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q07/storyboard.md",
+      "sha256": "410b5b6da4b49ad01aeb20f51a3ded1fd2ba533b0132ef65d7b61e7829b2d615"
+    }
+  }
+}

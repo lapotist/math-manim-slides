@@ -279,6 +279,13 @@ not instructions to imitate another creator's visual style.
   variable, or equation must answer a question the viewer already has.
 - Keep one concrete example front and center. Let the audience play with one or
   two cases and notice one relevant pattern at a time before stating a rule.
+- For a growing-pattern problem, build the first few cases from the same local
+  rule, isolate exactly what one new step adds or hides, and only then write a
+  recurrence or closed form. Check that form against an exact construction for
+  the boundary case and several later cases; a plausible continuation of a
+  small diagram is not proof. Audit perimeter, area, count, and overlap as
+  separate quantities because the same added piece can change each one by a
+  different amount.
 - Delay equations until the corresponding visual relationship can already be
   pictured. Algebra should name and compress an idea, not introduce it cold.
 - Plan a two-way translation between the concrete/spatial view and the symbolic

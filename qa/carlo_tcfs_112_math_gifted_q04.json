@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q04",
+  "scene_class": "CarloTcfs112MathQ04",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Normalize a nondegenerate convex trapezoid as A=(0,0), B=(3u,0), D=(d,h), C=(d+u,h), where u>0 and h is nonzero. Then E=((d+u)/2,h/2). Solving A+t(D-A)=B+s(E-B) gives s=6/5 and t=3/5, so F lies strictly inside AD and AF/AD=3/5, independent of d and h. For the source construction, the line BE reaches the top base line at G=D-2(C-D). Thus GC=3u=AB and GD=2u. The midpoint and parallel-line angles give triangle GEC congruent to triangle BEA; the vertical and corresponding angles give triangle GDF similar to triangle BAF, hence DF/AF=GD/AB=2/3 and AF/(AF+DF)=3/(3+2)=3/5. The line intersection is undefined in the collapsed h=0 case, and u=0 does not give positive trapezoid bases."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "build_given_trapezoid",
+        "loop": false
+      },
+      {
+        "id": "vary_shape_watch_f",
+        "loop": false
+      },
+      {
+        "id": "pause_on_unknown_split",
+        "loop": false
+      },
+      {
+        "id": "extend_lines_to_g",
+        "loop": false
+      },
+      {
+        "id": "earn_equal_long_segment",
+        "loop": false
+      },
+      {
+        "id": "split_three_units",
+        "loop": false
+      },
+      {
+        "id": "earn_second_similarity",
+        "loop": false
+      },
+      {
+        "id": "transfer_two_to_three",
+        "loop": false
+      },
+      {
+        "id": "hold_before_fraction",
+        "loop": false
+      },
+      {
+        "id": "reveal_three_fifths",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q04/deck.py",
+      "sha256": "244f0778a4911ab2bbd7f750d1915d31d8c9cc0dbf76e3f8ff660d29ef7f54fc"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q04/presenter.zh-TW.md",
+      "sha256": "61e3838423ad14cc5a5395b2471441ce5163ef53d108ea840c028b1ae5d73605"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q04/storyboard.md",
+      "sha256": "98d9e5537a79d5001579ed213a5c56096e6317d0bb895a63eec29bc8a457eee3"
+    }
+  }
+}
