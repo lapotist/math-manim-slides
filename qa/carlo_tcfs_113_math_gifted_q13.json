@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q13",
+  "scene_class": "CarloTcfs113MathQ13",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Let F(a)=a^3+7a^2-5a+8 for positive integers a,b with F(a)=(b+1)^3. Exact polynomial subtraction gives F(a)-(a+1)^3=4(a-1)^2+3>0, F(a)-(a+2)^3=a(a-17), and (a+3)^3-F(a)=2a^2+32a+19>0. If 1<=a<17, then (a+1)^3<F(a)<(a+2)^3, so F(a) cannot be an integer cube. If a>17, then (a+2)^3<F(a)<(a+3)^3, again impossible. The factor a(a-17) also has a=0, and indeed F(0)=8=2^3, but a=0 is excluded by the stated positive-integer domain. At a=17, F(17)=19^3, hence b+1=19 and b=18. Therefore the unique positive-integer pair is (17,18)."
+  },
+  "render": {
+    "segment_count": 11,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_cube_rail",
+        "loop": false
+      },
+      {
+        "id": "scan_integers",
+        "loop": false
+      },
+      {
+        "id": "name_cube_corridor",
+        "loop": false
+      },
+      {
+        "id": "prove_first_floor",
+        "loop": false
+      },
+      {
+        "id": "find_switch_at_seventeen",
+        "loop": false
+      },
+      {
+        "id": "exclude_left_range",
+        "loop": false
+      },
+      {
+        "id": "prove_third_ceiling",
+        "loop": false
+      },
+      {
+        "id": "exclude_right_range",
+        "loop": false
+      },
+      {
+        "id": "isolate_boundary",
+        "loop": false
+      },
+      {
+        "id": "verify_boundary",
+        "loop": false
+      },
+      {
+        "id": "reveal_pair",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q13/deck.py",
+      "sha256": "de93bd8cc24b9b795abad8b9b4d85e14ced1d22bfbe6b9263fbe778dc6d0ad15"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q13/presenter.zh-TW.md",
+      "sha256": "9e65863b984c455824e8c23edc162238b0a5f7b0570b418bcbb470cb386e016a"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q13/storyboard.md",
+      "sha256": "8abb22b6ef7a1f74c1798bec5caee705af4c11078fc4aec26a0e2f35d6cf4d99"
+    }
+  }
+}

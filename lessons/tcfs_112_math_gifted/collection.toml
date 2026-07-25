@@ -18,10 +18,13 @@ expected_problem_count = 14
 id = "carlo.tcfs_112_math_gifted.q01"
 label = "Fill-in Question 1"
 source_pages = [1]
+topic = "arithmetic progressions and place-value optimization"
+answer = "852"
 solution_asset = "youtube:GGVENizPImM"
 solution_url = "https://www.youtube.com/watch?v=GGVENizPImM"
+solution_locator = "00:00-00:45.90"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q02"

@@ -168,7 +168,7 @@ solution_asset = "youtube:zUVNQX92b64"
 solution_url = "https://www.youtube.com/watch?v=zUVNQX92b64"
 solution_locator = "00:00-01:13"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.p2q01"
@@ -181,4 +181,4 @@ solution_url = "https://www.youtube.com/watch?v=rw7Z1rw7gYA"
 solution_locator = "00:00-04:34"
 solution_scope_note = "The source's mn=180 generalization follows the displayed same-ray zigzag family. If signed positions on the full lines are allowed without that configuration restriction, additional closure angles exist; the lesson must state the same-ray scope explicitly."
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"

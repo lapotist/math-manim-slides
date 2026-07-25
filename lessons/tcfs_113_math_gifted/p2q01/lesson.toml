@@ -1,0 +1,82 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.p2q01"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Equal-step zigzags and a scoped angle-step invariant"
+locale = "zh-TW"
+part = 2
+question = 1
+source_pages = [14, 15, 16]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_url = "https://drive.google.com/file/d/1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M/preview"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Proof Question 1, PDF pages 14-16"
+solution_asset_id = "youtube:rw7Z1rw7gYA"
+solution_url = "https://www.youtube.com/watch?v=rw7Z1rw7gYA"
+source_video_locator = "00:00-04:34"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+solution_scope_note = "The source's mn=180 generalization follows the displayed same-ray zigzag family. If signed positions on the full lines are allowed without that configuration restriction, additional closure angles exist; the lesson states the same-ray scope explicitly and does not present mn=180 as a universal theorem."
+source_note = "The public solution treats the displayed five-step and seven-step same-ray zigzags by propagating equal-step isosceles-triangle angles, then writes the odd-n generalization as theta + 2((n-1)/2)theta = 180 degrees. This lesson independently rebuilds that scoped argument and explicitly separates it from the unrestricted full-line problem. For example, n=5 and theta=72 degrees also closes with equal steps when negative signed radii on the opposite extensions are allowed, giving mn=360; that path is outside the displayed same-ray family. No PDF or video frames, handwriting, audio, or wording are incorporated."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/p2q01/deck.py"
+scene_class = "CarloTcfs113MathP2Q01"
+storyboard = "lessons/tcfs_113_math_gifted/p2q01/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/p2q01/presenter.zh-TW.md"
+estimated_minutes = 11
+expected_answer = "36 degrees; 180/7 degrees; mn = 180 within the displayed same-ray first-closure zigzag family; not universal on unrestricted full lines"
+independent_check = "For odd n, let theta=180/n degrees and h=(n-1)/2. Consecutive unit edges form isosceles triangles whose outward-half base angles satisfy alpha_1=theta and alpha_{j+1}=alpha_j+theta, so alpha_h=h theta. The outer triangle has angles theta,h theta,h theta, hence theta+2h theta=n theta=180 degrees. In coordinates, set r_k=sin(k theta)/sin(theta), put odd k at (r_k,0) and even k at r_k(cos(theta),sin(theta)); every consecutive distance is 1, r_n=0, and r_k>0 for 1<=k<n. Exact degree arithmetic gives theta=36 for n=5 and theta=180/7 for n=7. Positivity is essential: with n=5 and theta=72 degrees the same coordinate recurrence closes and keeps unit steps, but r_3 and r_4 are negative, so the path uses the opposite line extensions and mn=360."
+tags = ["geometry", "angles", "isosceles-triangle", "recurrence", "invariant", "scope"]
+
+[[beats]]
+id = "meet_two_rays"
+loop = false
+
+[[beats]]
+id = "walk_five_steps"
+loop = false
+
+[[beats]]
+id = "seed_equal_angles"
+loop = false
+
+[[beats]]
+id = "propagate_five_step_angles"
+loop = false
+
+[[beats]]
+id = "reveal_thirty_six"
+loop = false
+
+[[beats]]
+id = "walk_seven_steps"
+loop = false
+
+[[beats]]
+id = "grow_three_layers"
+loop = false
+
+[[beats]]
+id = "reveal_seven_step_angle"
+loop = false
+
+[[beats]]
+id = "name_general_scope"
+loop = false
+
+[[beats]]
+id = "build_angle_recurrence"
+loop = false
+
+[[beats]]
+id = "close_outer_triangle"
+loop = false
+
+[[beats]]
+id = "mark_scope_boundary"
+loop = false
+
+[[beats]]
+id = "consolidate_scoped_invariant"
+loop = false

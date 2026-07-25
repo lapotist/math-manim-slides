@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q01",
+  "scene_class": "CarloTcfs112MathQ01",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Any three real numbers in arithmetic progression with sum 15 can be written 5-d, 5, 5+d. Their product is 5(25-d^2)=80, hence d^2=9 and d is 3 or -3. Both signs give the same unordered set {2,5,8}; its sum is 15 and product is 80. Exhaustive permutation gives the six three-digit values 258, 285, 528, 582, 825, and 852, whose unique maximum is 852. Equivalently, swapping a larger digit leftward increases a numeral: if x<8 occupies the hundreds place while 8 has weight w in {10,1}, the gain is (8-x)(100-w)>0; after fixing 8 in the hundreds place, 5*10+2 exceeds 2*10+5 by 27."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "move_equal_spacing",
+        "loop": false
+      },
+      {
+        "id": "lock_middle_at_five",
+        "loop": false
+      },
+      {
+        "id": "compare_product_cases",
+        "loop": false
+      },
+      {
+        "id": "name_common_distance",
+        "loop": false
+      },
+      {
+        "id": "pair_symmetric_factors",
+        "loop": false
+      },
+      {
+        "id": "solve_distance_magnitude",
+        "loop": false
+      },
+      {
+        "id": "check_both_signs",
+        "loop": false
+      },
+      {
+        "id": "place_largest_hundreds",
+        "loop": false
+      },
+      {
+        "id": "settle_remaining_places",
+        "loop": false
+      },
+      {
+        "id": "reveal_maximum_number",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q01/deck.py",
+      "sha256": "d78fbeb5ad5d711fe27c49ded17f5f84a4d5575b67b195e4fd60c3d987adf083"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q01/presenter.zh-TW.md",
+      "sha256": "6fd13005a587641de62ebda6078f58e8239d97a2891b6f2acdf881562960801c"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q01/storyboard.md",
+      "sha256": "9acc7a8ecb2237c38c990710ffd348cd1b8031fb827beeb54ac5c3478edac91a"
+    }
+  }
+}

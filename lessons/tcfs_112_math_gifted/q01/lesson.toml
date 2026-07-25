@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q01"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "Centering an arithmetic progression, then ordering by place value"
+locale = "zh-TW"
+question = 1
+source_pages = [1]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 1, PDF page 1; public solution video 00:00-00:45.90"
+solution_asset_id = "youtube:GGVENizPImM"
+solution_url = "https://www.youtube.com/watch?v=GGVENizPImM"
+source_video_locator = "00:00-00:45.90"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page contains the problem statement and a blank worked area. In the public video, the complete visible Q1 argument occupies 00:00-00:45.90; the final unobstructed frame remains settled at 00:45.90 and a device overlay begins by 00:45.95. The source writes the progression as 5-d, 5, 5+d, uses the product to obtain d=3 or d=-3, identifies the values 2, 5, 8, and reports 852. It does not visibly justify why descending digit order is maximal, so this lesson adds an original place-value swap argument. All lesson visuals, motion, wording, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q01/deck.py"
+scene_class = "CarloTcfs112MathQ01"
+storyboard = "lessons/tcfs_112_math_gifted/q01/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q01/presenter.zh-TW.md"
+estimated_minutes = 8
+expected_answer = "852"
+independent_check = "Any three real numbers in arithmetic progression with sum 15 can be written 5-d, 5, 5+d. Their product is 5(25-d^2)=80, hence d^2=9 and d is 3 or -3. Both signs give the same unordered set {2,5,8}; its sum is 15 and product is 80. Exhaustive permutation gives the six three-digit values 258, 285, 528, 582, 825, and 852, whose unique maximum is 852. Equivalently, swapping a larger digit leftward increases a numeral: if x<8 occupies the hundreds place while 8 has weight w in {10,1}, the gain is (8-x)(100-w)>0; after fixing 8 in the hundreds place, 5*10+2 exceeds 2*10+5 by 27."
+tags = ["arithmetic-progression", "symmetric-parameterization", "difference-of-squares", "place-value", "permutations", "optimization"]
+
+[[beats]]
+id = "move_equal_spacing"
+loop = false
+
+[[beats]]
+id = "lock_middle_at_five"
+loop = false
+
+[[beats]]
+id = "compare_product_cases"
+loop = false
+
+[[beats]]
+id = "name_common_distance"
+loop = false
+
+[[beats]]
+id = "pair_symmetric_factors"
+loop = false
+
+[[beats]]
+id = "solve_distance_magnitude"
+loop = false
+
+[[beats]]
+id = "check_both_signs"
+loop = false
+
+[[beats]]
+id = "place_largest_hundreds"
+loop = false
+
+[[beats]]
+id = "settle_remaining_places"
+loop = false
+
+[[beats]]
+id = "reveal_maximum_number"
+loop = false

@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 import unittest
 from fractions import Fraction
-from itertools import combinations, product
+from itertools import combinations, permutations, product
 
 
 class Tcfs115MathChecks(unittest.TestCase):
@@ -449,6 +449,29 @@ class Tcfs114MathChecks(unittest.TestCase):
             self.assertLess(x, n + 1)
             self.assertEqual(n * (x - n), parameter * x * x)
         self.assertEqual(scale * 29, 30)
+
+
+class Tcfs112MathChecks(unittest.TestCase):
+    def test_q01_progression_and_unique_place_value_maximum(self) -> None:
+        distances = [
+            distance
+            for distance in range(-20, 21)
+            if (5 - distance) * 5 * (5 + distance) == 80
+        ]
+        self.assertEqual(distances, [-3, 3])
+
+        value_sets = {
+            tuple(sorted((5 - distance, 5, 5 + distance)))
+            for distance in distances
+        }
+        self.assertEqual(value_sets, {(2, 5, 8)})
+
+        numerals = sorted(
+            100 * hundreds + 10 * tens + ones
+            for hundreds, tens, ones in permutations((2, 5, 8))
+        )
+        self.assertEqual(numerals, [258, 285, 528, 582, 825, 852])
+        self.assertEqual(numerals.count(max(numerals)), 1)
 
 
 if __name__ == "__main__":

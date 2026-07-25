@@ -315,6 +315,11 @@ not instructions to imitate another creator's visual style.
   term.
 - Use opacity to focus attention while retaining useful context. Prefer dimming
   inactive construction lines to repeatedly clearing and rebuilding the scene.
+- Dimming does not make spatial overlap acceptable. Before a final
+  consolidation, either transform the existing cards, labels, or shapes into
+  their final arrangement, or remove obsolete containers completely. Never
+  stack a new answer group over a dimmed predecessor and leave duplicate values
+  or intersecting outlines in the settled frame.
 - Keep the camera stable for a 2D diagram unless a zoom reveals a relationship
   that is genuinely too small to see.
 - Avoid decorative motion, dense headers, and simultaneous unrelated changes.
