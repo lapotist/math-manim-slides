@@ -34,7 +34,6 @@ from manim import (
     Line,
     MathTex,
     Polygon,
-    ReplacementTransform,
     RightAngle,
     Rotate,
     RoundedRectangle,
@@ -218,7 +217,8 @@ class CarloTcfs112MathQ11(CarloSlide):
     @staticmethod
     def replace_title(scene: "CarloTcfs112MathQ11", old, text: str):
         new = scene.stage_title(text)
-        scene.play(ReplacementTransform(old, new), run_time=0.58)
+        scene.play(FadeOut(old), run_time=0.24)
+        scene.play(FadeIn(new), run_time=0.34)
         return new
 
     def construct(self) -> None:

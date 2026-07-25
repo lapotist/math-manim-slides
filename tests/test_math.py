@@ -856,8 +856,8 @@ class Tcfs112MathChecks(unittest.TestCase):
             self.assertTrue(condition(point))
             pa = vector(point, a)
             pb = vector(point, b)
-            self.assertLess(dot(pa, pb), 0)
-            self.assertEqual(abs(determinant(pa, pb)), -dot(pa, pb))
+            self.assertEqual(dot(pa, pb), -v)
+            self.assertEqual(determinant(pa, pb), -v)
 
         outside = (Fraction(0), Fraction(2))
         self.assertTrue(condition(outside))
@@ -872,7 +872,7 @@ class Tcfs112MathChecks(unittest.TestCase):
     def test_q12_hexagon_overlap_has_its_minimum_at_half_period(self) -> None:
         apothem = math.sqrt(3) / 2
 
-        def overlap_area(angle_degrees: float) -> float:
+        def overlap_polygon(angle_degrees: float) -> tuple[float, int]:
             constraints = []
             for offset in (0.0, math.radians(angle_degrees)):
                 for index in range(6):
@@ -899,12 +899,19 @@ class Tcfs112MathChecks(unittest.TestCase):
                 - unique[(index + 1) % len(unique)][0] * unique[index][1]
                 for index in range(len(unique))
             )
-            return abs(twice_area) / 2
+            return abs(twice_area) / 2, len(unique)
+
+        def overlap_area(angle_degrees: float) -> float:
+            return overlap_polygon(angle_degrees)[0]
 
         expected = 18 - 9 * math.sqrt(3)
         self.assertAlmostEqual(overlap_area(30), expected, places=10)
         self.assertAlmostEqual(overlap_area(0), 3 * math.sqrt(3) / 2, places=10)
+        self.assertEqual(overlap_polygon(0)[1], 6)
+        self.assertEqual(overlap_polygon(60)[1], 6)
+        self.assertEqual(overlap_polygon(30)[1], 12)
         for angle in (4, 12, 21, 30):
+            self.assertEqual(overlap_polygon(angle)[1], 12)
             analytic = 6 * apothem**2 * (
                 math.tan(math.radians(angle / 2))
                 + math.tan(math.radians((60 - angle) / 2))
