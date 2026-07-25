@@ -95,7 +95,7 @@ pixi run gh repo create OWNER/carlo-math-manim-slides \
   --public \
   --source=. \
   --remote=origin \
-  --description="Slow, intuitive Traditional Chinese math lessons built with Manim Slides"
+  --description="Intuitive Traditional Chinese math lessons built with Manim Slides"
 git remote -v
 git push --set-upstream origin main
 ```

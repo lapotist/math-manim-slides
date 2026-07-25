@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions should preserve the slow, visual, source-verifiable teaching
+Contributions should preserve the deliberate, visual, source-verifiable teaching
 standard in `AGENTS.md`.
 
 By submitting project-original material, contributors confirm that they

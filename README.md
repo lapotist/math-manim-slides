@@ -1,6 +1,6 @@
 # Carlo Math Manim Slides
 
-An independent collection of slow, intuitive Traditional Chinese mathematics
+An independent collection of intuitive Traditional Chinese mathematics
 lessons built with Manim Community and Manim Slides. Each completed lesson is
 linked to the exact solution source from [正哥愛數學](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/).
 
