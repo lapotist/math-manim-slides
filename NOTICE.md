@@ -28,7 +28,7 @@ exact path and a completed rights review:
 - dependency code, package contents, lock-file notices, fonts, logos,
   trademarks, names, and files carrying another license or notice; and
 - generated HTML or video containing an input that is not itself covered or
-  separately compatible; and
+  separately compatible;
 - rendered previews under `docs/previews/`, which are published for inspection
   but remain outside the CC0 allowlist pending the corresponding lesson rights
   review; and

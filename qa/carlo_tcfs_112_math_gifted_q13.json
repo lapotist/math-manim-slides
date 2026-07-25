@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q13",
+  "scene_class": "CarloTcfs112MathQ13",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Direct every recommendation edge from an existing recommender to the new member. Time order makes the graph acyclic; every nonfounder has indegree one and every founder has indegree zero, so it is a rooted forest. Recursive color inheritance makes each component monochromatic, while distinct founders have distinct colors; hence the color count equals the number r of roots. If d(v) is the total number of direct recruits of member v, then every nonroot is counted exactly once, so 685-r=sum_v d(v). Each d(v) is 0, 7, 14, 28, or 35, hence 685-r is divisible by 7 and r is congruent to 685, namely 6 modulo 7. Since r is positive, r>=6. Attainment is not inferred from the congruence: begin with six founders; for each of 97 sequential steps choose an existing member who has not recruited before, let that member recruit exactly seven new members, and choose one of those new members for the next step. This creates 6+97*7=685 members, exactly 97 vertices of outdegree 7, every other vertex of outdegree 0, and exactly six roots/colors, so p=6. For the other extreme, every color has a founder and founders are members, so the color count is at most 685. Taking all 685 members as initial founders gives 685 distinct colors and no edges; the conditional restriction on anyone who recruits is then vacuously satisfied. Therefore q=685 and (p,q)=(6,685)."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "grow_seven_branch",
+        "loop": false
+      },
+      {
+        "id": "pass_color_forward",
+        "loop": false
+      },
+      {
+        "id": "equate_colors_and_roots",
+        "loop": false
+      },
+      {
+        "id": "count_each_nonroot",
+        "loop": false
+      },
+      {
+        "id": "compress_recruitment_bundles",
+        "loop": false
+      },
+      {
+        "id": "earn_mod_seven",
+        "loop": false
+      },
+      {
+        "id": "pause_before_feasibility",
+        "loop": false
+      },
+      {
+        "id": "plant_six_founders",
+        "loop": false
+      },
+      {
+        "id": "repeat_ninety_seven_steps",
+        "loop": false
+      },
+      {
+        "id": "certify_minimum",
+        "loop": false
+      },
+      {
+        "id": "bound_color_count",
+        "loop": false
+      },
+      {
+        "id": "realize_all_founders",
+        "loop": false
+      },
+      {
+        "id": "reveal_extreme_pair",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q13/deck.py",
+      "sha256": "4c60b914844ee295f5d0f2b323fe11a42d72c1e86a5f1a817dc36771f91a13f9"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q13/presenter.zh-TW.md",
+      "sha256": "21df6e610d03bdb2d0b43f98803ae8318d3284611d17f3f94611e239a830fb7f"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q13/storyboard.md",
+      "sha256": "fb4ebdf39f3a3f15c1ebb7f218a993d8f91386f262dd618d482323280c341e5d"
+    }
+  }
+}

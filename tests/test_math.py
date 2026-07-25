@@ -914,6 +914,77 @@ class Tcfs112MathChecks(unittest.TestCase):
         sampled = [overlap_area(angle) for angle in range(61)]
         self.assertEqual(sampled.index(min(sampled)), 30)
 
+    def test_q13_recruitment_color_extrema_are_attained(self) -> None:
+        founders = set(range(6))
+        next_member = 6
+        current_recruiter = 0
+        parent: dict[int, int] = {}
+        outdegree: dict[int, int] = {}
+
+        for _ in range(97):
+            self.assertLess(current_recruiter, next_member)
+            self.assertNotIn(current_recruiter, outdegree)
+            children = list(range(next_member, next_member + 7))
+            for child in children:
+                parent[child] = current_recruiter
+            outdegree[current_recruiter] = 7
+            current_recruiter = children[0]
+            next_member += 7
+
+        members = set(range(next_member))
+        self.assertEqual(len(members), 685)
+        self.assertEqual(len(parent), 679)
+        self.assertEqual(sum(outdegree.values()), 679)
+        self.assertEqual(members - set(parent), founders)
+        self.assertTrue(all(degree in {7, 14, 28, 35} for degree in outdegree.values()))
+
+        def inherited_founder(member: int) -> int:
+            while member in parent:
+                member = parent[member]
+            return member
+
+        self.assertEqual({inherited_founder(member) for member in members}, founders)
+        self.assertEqual((685 - len(founders)) % 7, 0)
+
+        maximum_founders = set(range(685))
+        maximum_edges: dict[int, int] = {}
+        self.assertEqual(len(maximum_founders), 685)
+        self.assertFalse(maximum_edges)
+
+    def test_part2_q01_triangle_area_transforms(self) -> None:
+        self.assertEqual(Fraction(3 * 4, 2), 6)
+
+        base_area = Fraction(7 * 11, 2)
+        doubled_area = Fraction((2 * 7) * (2 * 11), 2)
+        self.assertEqual(doubled_area / base_area, 4)
+
+        def median_side_squares(
+            side_squares: tuple[Fraction, Fraction, Fraction],
+        ) -> tuple[Fraction, Fraction, Fraction]:
+            a2, b2, c2 = side_squares
+            return (
+                (2 * b2 + 2 * c2 - a2) / 4,
+                (2 * c2 + 2 * a2 - b2) / 4,
+                (2 * a2 + 2 * b2 - c2) / 4,
+            )
+
+        original_squares = (Fraction(16), Fraction(64), Fraction(80))
+        first_medians = median_side_squares(original_squares)
+        second_medians = median_side_squares(first_medians)
+        self.assertEqual(
+            second_medians,
+            tuple(Fraction(9, 16) * value for value in original_squares),
+        )
+        self.assertEqual(Fraction(16) * Fraction(3, 4) ** 2, 9)
+
+        original_area = Fraction(45)
+        height_triangle_area = Fraction(30)
+        for side in (Fraction(7), Fraction(11), Fraction(13)):
+            original_altitude = 2 * original_area / side
+            next_altitude = 2 * height_triangle_area / original_altitude
+            self.assertEqual(next_altitude, Fraction(2, 3) * side)
+        self.assertEqual(original_area * Fraction(2, 3) ** 2, 20)
+
 
 if __name__ == "__main__":
     unittest.main()

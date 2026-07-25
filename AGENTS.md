@@ -149,6 +149,14 @@ conditions. Likewise, never accept the last visible card merely because the
 others were crossed out. The final beat must substitute the survivor back into
 the concrete object and recheck all requested properties.
 
+For a minimum or maximum, separate the bound from attainment. A congruence,
+counting inequality, or relaxation can rule values out without showing that
+the surviving endpoint is legal. After deriving the bound, construct an exact
+witness and replay every original constraint, including order-of-arrival,
+distinctness, interiority, and conditional rules that may be vacuous at an
+extreme. Give the witness its own visual beat; do not hide existence inside the
+line that derives the bound.
+
 When a source conclusion is correct only for the displayed construction family,
 keep the result but narrow it honestly. Add a `solution_scope_note` to collection
 metadata, state the extra assumption in the storyboard and presenter script,
