@@ -379,7 +379,19 @@ def validate_collections(
                 f"{problem_id}: math_review_state does not match production state",
                 errors,
             )
-            if problem.get("eligible") is False and production_state != "blocked":
+            eligible = problem.get("eligible")
+            check(
+                isinstance(eligible, bool),
+                f"{problem_id}: eligible must be an explicit boolean",
+                errors,
+            )
+            if production_state in RENDERED_STATES:
+                check(
+                    eligible is True,
+                    f"{problem_id}: rendered output must be eligible",
+                    errors,
+                )
+            if eligible is False and production_state != "blocked":
                 check(
                     bool(problem.get("eligibility_reason")),
                     f"{problem_id}: ineligible review item lacks eligibility_reason",

@@ -162,6 +162,10 @@ Raw MP4 segments and Slides manifests are internal build inputs unless packaged
 with `NOTICE.md` and the relevant `SOURCES.md` entry; use the checked standalone
 HTML exporter for a self-attributing release artifact.
 
+The first-publication sequence, including the commit-email privacy checkpoint
+and clean-tree verification, is documented in
+[`docs/PUBLISHING.md`](docs/PUBLISHING.md).
+
 Refresh the public source inventory and its flattened registry with:
 
 ```bash

@@ -190,7 +190,8 @@ minimum:
   those fields exist;
 - canonical Carlo page URL and exact solution locator or source-asset URL;
 - content type, checksum for a downloaded source asset, and duplicate-of ID;
-- eligibility decision and reason;
+- an explicit Boolean eligibility decision and, when false outside a blocked
+  state, the review reason;
 - production state: `discovered`, `blocked`, `planned`, `storyboarded`,
   `math_verified`, `draft_rendered`, `visual_verified`, or `published`;
 - scene class, presenter-script path, and build outputs;
@@ -218,6 +219,12 @@ Production states are evidence gates, not estimates of effort:
 - `visual_verified`: manifest, loops, representative frames, and narration were
   reviewed; and
 - `published`: the verified lesson is reachable in the public release.
+
+Every problem record must carry `eligible = true` or `eligible = false`;
+absence never means "not reviewed." Rendered states require `eligible = true`.
+Use `eligible = false` plus `eligibility_reason` while public worked-content or
+mathematical review is still pending, and use the explicit `blocked` state plus
+`blocker_reason` when a named gate cannot currently be satisfied.
 
 `storyboarded` and `math_verified` records may intentionally have no scene file.
 Only `draft_rendered` or later may be treated as renderable. A collection record
@@ -633,6 +640,11 @@ source record.
 - After publication, share the public repository URL with the Carlo site owner
   as requested in the recorded 2026-07-24 permission exchange. This is a
   maintainer follow-up, not a downstream CC BY condition.
+- Follow `docs/PUBLISHING.md` for the preflight, identity decision, clean-tree
+  audit, repository creation, and post-push verification. Stop at its identity
+  checkpoint until the maintainer has chosen whether existing commit email
+  addresses may be public or has approved rewriting them to the account's
+  verified GitHub no-reply address.
 
 ## Research Basis
 

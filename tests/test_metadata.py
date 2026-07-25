@@ -80,6 +80,13 @@ class CatalogMetadataChecks(unittest.TestCase):
         for problem in problems:
             self.assertEqual(problem["content_type"], "problem_solution")
             self.assertIsInstance(problem["duplicate_of"], str)
+            self.assertIsInstance(problem["eligible"], bool)
+            if problem["production_state"] in {
+                "draft_rendered",
+                "visual_verified",
+                "published",
+            }:
+                self.assertTrue(problem["eligible"])
             rights_state = problem["release_rights_state"]
             self.assertIn(
                 rights_state,
