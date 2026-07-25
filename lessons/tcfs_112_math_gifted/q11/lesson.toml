@@ -1,0 +1,76 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q11"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "A quarter-turn that fixes an angle inside a square"
+locale = "zh-TW"
+question = 11
+source_pages = [11]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 11, PDF page 11; public solution video 00:00-02:46.85"
+solution_asset_id = "youtube:WHaIgarL3nM"
+solution_url = "https://www.youtube.com/watch?v=WHaIgarL3nM"
+source_video_locator = "00:00-02:46.85"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page states that P is interior to square ABCD, gives 2*BP^2=CP^2-AP^2, and asks for angle APB; its worked area is blank and cannot verify a solution. The confirmed-public video labels AP=a, BP=b, and CP=c, rotates P by a quarter-turn about B in the same direction that sends A to C, and calls the image point E. It uses BE=BP, CE=AP, PE=sqrt(2)*BP, the converse of Pythagoras in triangle CEP, and the 45-degree base angle of right-isosceles triangle BPE to obtain the answer. The complete result remains unobstructed through 00:02:46.85; a device overlay begins at 00:02:46.90. The inspected 208x144 research stream is 167.740952 seconds long and has SHA-256 bf297c3f85804a54ac57f951d443f492624397eb100335c12592400211cb955c. This lesson independently verifies the claim with exact coordinates and vector dot/determinant signs, tests an exact non-interior counterexample, and re-expresses the source construction with project-original geometry, motion, wording, and code. No PDF or video frames, handwriting, audio, branding, or source wording are incorporated."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q11/deck.py"
+scene_class = "CarloTcfs112MathQ11"
+storyboard = "lessons/tcfs_112_math_gifted/q11/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q11/presenter.zh-TW.md"
+estimated_minutes = 11
+expected_answer = "135 degrees"
+independent_check = "Put D=(0,0), A=(0,s), B=(s,s), C=(s,0), and P=(x,y), where 0<x,y<s. Define u=s-x and v=s-y, so the interior condition gives u>0 and v>0. Then BP^2=u^2+v^2, CP^2=u^2+(s-v)^2, and AP^2=(s-u)^2+v^2. Substitution in 2*BP^2=CP^2-AP^2 simplifies exactly to u^2+v^2=s(u-v). The vectors PA=(u-s,v) and PB=(u,v) have dot product u^2-su+v^2=-sv and determinant (u-s)v-vu=-sv. Hence PA dot PB<0 while |det(PA,PB)|=sv=-(PA dot PB)>0. For the undirected angle theta in (0,180 degrees), sin(theta)=-cos(theta)>0 and cos(theta)<0, so theta=135 degrees. The exact interior examples P=(2/5,4/5) and P=(3/5,4/5) for s=1 both satisfy the distance condition and the same dot/determinant signature. Interior is essential: with s=1 and P=(0,2), 2*BP^2=4=CP^2-AP^2 still holds, but vectors PA=(0,-1), PB=(1,-1) give angle APB=45 degrees."
+tags = ["geometry", "square", "rotation", "vectors", "dot-product", "determinant", "converse-pythagorean-theorem", "domain-restrictions"]
+
+[[beats]]
+id = "meet_square_and_inner_point"
+loop = false
+
+[[beats]]
+id = "test_two_valid_positions"
+loop = false
+
+[[beats]]
+id = "ask_for_target_angle"
+loop = false
+
+[[beats]]
+id = "rotate_point_about_b"
+loop = false
+
+[[beats]]
+id = "match_rotated_lengths"
+loop = false
+
+[[beats]]
+id = "measure_the_new_diagonal"
+loop = false
+
+[[beats]]
+id = "translate_the_condition"
+loop = false
+
+[[beats]]
+id = "earn_the_right_angle"
+loop = false
+
+[[beats]]
+id = "assemble_preanswer_angles"
+loop = false
+
+[[beats]]
+id = "reveal_the_angle"
+loop = false
+
+[[beats]]
+id = "verify_with_interior_vectors"
+loop = false
+
+[[beats]]
+id = "return_to_original_square"
+loop = false

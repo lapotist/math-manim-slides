@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q11",
+  "scene_class": "CarloTcfs112MathQ11",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Put D=(0,0), A=(0,s), B=(s,s), C=(s,0), and P=(x,y), where 0<x,y<s. Define u=s-x and v=s-y, so the interior condition gives u>0 and v>0. Then BP^2=u^2+v^2, CP^2=u^2+(s-v)^2, and AP^2=(s-u)^2+v^2. Substitution in 2*BP^2=CP^2-AP^2 simplifies exactly to u^2+v^2=s(u-v). The vectors PA=(u-s,v) and PB=(u,v) have dot product u^2-su+v^2=-sv and determinant (u-s)v-vu=-sv. Hence PA dot PB<0 while |det(PA,PB)|=sv=-(PA dot PB)>0. For the undirected angle theta in (0,180 degrees), sin(theta)=-cos(theta)>0 and cos(theta)<0, so theta=135 degrees. The exact interior examples P=(2/5,4/5) and P=(3/5,4/5) for s=1 both satisfy the distance condition and the same dot/determinant signature. Interior is essential: with s=1 and P=(0,2), 2*BP^2=4=CP^2-AP^2 still holds, but vectors PA=(0,-1), PB=(1,-1) give angle APB=45 degrees."
+  },
+  "render": {
+    "segment_count": 12,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_square_and_inner_point",
+        "loop": false
+      },
+      {
+        "id": "test_two_valid_positions",
+        "loop": false
+      },
+      {
+        "id": "ask_for_target_angle",
+        "loop": false
+      },
+      {
+        "id": "rotate_point_about_b",
+        "loop": false
+      },
+      {
+        "id": "match_rotated_lengths",
+        "loop": false
+      },
+      {
+        "id": "measure_the_new_diagonal",
+        "loop": false
+      },
+      {
+        "id": "translate_the_condition",
+        "loop": false
+      },
+      {
+        "id": "earn_the_right_angle",
+        "loop": false
+      },
+      {
+        "id": "assemble_preanswer_angles",
+        "loop": false
+      },
+      {
+        "id": "reveal_the_angle",
+        "loop": false
+      },
+      {
+        "id": "verify_with_interior_vectors",
+        "loop": false
+      },
+      {
+        "id": "return_to_original_square",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q11/deck.py",
+      "sha256": "37d1d3bc11776e1cfaf00b2799ab92e3bbe01da2878a616043d8155113c3627d"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q11/presenter.zh-TW.md",
+      "sha256": "b274e11c1300e80c183138d934f535e6610cc0fc780f5c6bc2aa8b6398b19b71"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q11/storyboard.md",
+      "sha256": "2865e8736d152ebd8baf9fc53297d560b841c8655901a553595b4e70ebea1bc5"
+    }
+  }
+}

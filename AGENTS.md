@@ -131,6 +131,15 @@ that cover the full domain. A second copy of the same handwritten derivation is
 not an independent check. Write the check before animation work when practical;
 if it fails, stop the storyboard until the discrepancy is resolved.
 
+When symmetry or periodicity reduces a moving configuration to a smaller
+parameter interval, make the reduction itself part of the proof. Name the
+motion that preserves the requested quantity, show how every original
+parameter maps into the retained interval, and audit both endpoints. At an
+endpoint, coincident support lines, merged vertices, or a lower-sided polygon
+may make a generic interior formula degenerate; verify that case directly or
+by a justified continuous limit instead of hiding it behind a symmetric
+picture.
+
 For a finite search, define the complete candidate universe before filtering
 it. At each gate, say whether the condition is necessary, sufficient, or both,
 and retain enough rejected context to show that every branch was accounted for.

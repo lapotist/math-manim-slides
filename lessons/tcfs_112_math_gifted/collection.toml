@@ -138,19 +138,25 @@ production_state = "visual_verified"
 id = "carlo.tcfs_112_math_gifted.q11"
 label = "Fill-in Question 11"
 source_pages = [11]
+topic = "square rotations, converse Pythagoras, and interior angle constraints"
+answer = "135 degrees"
 solution_asset = "youtube:WHaIgarL3nM"
 solution_url = "https://www.youtube.com/watch?v=WHaIgarL3nM"
+solution_locator = "00:00-02:46.85"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q12"
 label = "Fill-in Question 12"
 source_pages = [12]
+topic = "rotating regular hexagons, support lines, and minimum overlap"
+answer = "18-9*sqrt(3)"
 solution_asset = "youtube:3clUyeUgvOg"
 solution_url = "https://www.youtube.com/watch?v=3clUyeUgvOg"
+solution_locator = "00:00-08:23.75"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q13"

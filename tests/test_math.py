@@ -814,6 +814,106 @@ class Tcfs112MathChecks(unittest.TestCase):
         self.assertEqual(audit(3), (Fraction(6), Fraction(5, 8)))
         self.assertEqual(audit(112), (Fraction(339, 2), Fraction(337, 16)))
 
+    def test_q11_square_condition_forces_the_interior_angle_signature(self) -> None:
+        a = (Fraction(0), Fraction(1))
+        b = (Fraction(1), Fraction(1))
+        c = (Fraction(1), Fraction(0))
+
+        def vector(
+            start: tuple[Fraction, Fraction],
+            end: tuple[Fraction, Fraction],
+        ) -> tuple[Fraction, Fraction]:
+            return end[0] - start[0], end[1] - start[1]
+
+        def dot(
+            first: tuple[Fraction, Fraction],
+            second: tuple[Fraction, Fraction],
+        ) -> Fraction:
+            return first[0] * second[0] + first[1] * second[1]
+
+        def determinant(
+            first: tuple[Fraction, Fraction],
+            second: tuple[Fraction, Fraction],
+        ) -> Fraction:
+            return first[0] * second[1] - first[1] * second[0]
+
+        def squared_distance(
+            first: tuple[Fraction, Fraction],
+            second: tuple[Fraction, Fraction],
+        ) -> Fraction:
+            return dot(vector(first, second), vector(first, second))
+
+        def condition(point: tuple[Fraction, Fraction]) -> bool:
+            return 2 * squared_distance(b, point) == (
+                squared_distance(c, point) - squared_distance(a, point)
+            )
+
+        for ratio in (Fraction(1, 4), Fraction(1, 3), Fraction(2, 5)):
+            u = (1 - ratio) / (1 + ratio * ratio)
+            v = ratio * u
+            point = (1 - u, 1 - v)
+            self.assertTrue(0 < point[0] < 1 and 0 < point[1] < 1)
+            self.assertTrue(condition(point))
+            pa = vector(point, a)
+            pb = vector(point, b)
+            self.assertLess(dot(pa, pb), 0)
+            self.assertEqual(abs(determinant(pa, pb)), -dot(pa, pb))
+
+        outside = (Fraction(0), Fraction(2))
+        self.assertTrue(condition(outside))
+        outside_pa = vector(outside, a)
+        outside_pb = vector(outside, b)
+        self.assertGreater(dot(outside_pa, outside_pb), 0)
+        self.assertEqual(
+            abs(determinant(outside_pa, outside_pb)),
+            dot(outside_pa, outside_pb),
+        )
+
+    def test_q12_hexagon_overlap_has_its_minimum_at_half_period(self) -> None:
+        apothem = math.sqrt(3) / 2
+
+        def overlap_area(angle_degrees: float) -> float:
+            constraints = []
+            for offset in (0.0, math.radians(angle_degrees)):
+                for index in range(6):
+                    angle = offset + index * math.pi / 3
+                    constraints.append((math.cos(angle), math.sin(angle)))
+
+            vertices: list[tuple[float, float]] = []
+            for first, second in combinations(constraints, 2):
+                determinant = first[0] * second[1] - first[1] * second[0]
+                if abs(determinant) < 1e-10:
+                    continue
+                x = apothem * (second[1] - first[1]) / determinant
+                y = apothem * (first[0] - second[0]) / determinant
+                if all(nx * x + ny * y <= apothem + 1e-9 for nx, ny in constraints):
+                    vertices.append((x, y))
+
+            unique: list[tuple[float, float]] = []
+            for point in vertices:
+                if not any(math.dist(point, other) < 1e-8 for other in unique):
+                    unique.append(point)
+            unique.sort(key=lambda point: math.atan2(point[1], point[0]))
+            twice_area = sum(
+                unique[index][0] * unique[(index + 1) % len(unique)][1]
+                - unique[(index + 1) % len(unique)][0] * unique[index][1]
+                for index in range(len(unique))
+            )
+            return abs(twice_area) / 2
+
+        expected = 18 - 9 * math.sqrt(3)
+        self.assertAlmostEqual(overlap_area(30), expected, places=10)
+        self.assertAlmostEqual(overlap_area(0), 3 * math.sqrt(3) / 2, places=10)
+        for angle in (4, 12, 21, 30):
+            analytic = 6 * apothem**2 * (
+                math.tan(math.radians(angle / 2))
+                + math.tan(math.radians((60 - angle) / 2))
+            )
+            self.assertAlmostEqual(overlap_area(angle), analytic, places=10)
+            self.assertAlmostEqual(overlap_area(angle), overlap_area(60 - angle), places=10)
+        sampled = [overlap_area(angle) for angle in range(61)]
+        self.assertEqual(sampled.index(min(sampled)), 30)
+
 
 if __name__ == "__main__":
     unittest.main()
