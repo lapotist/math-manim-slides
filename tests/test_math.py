@@ -698,6 +698,122 @@ class Tcfs112MathChecks(unittest.TestCase):
         ]
         self.assertEqual(square_outputs, [(11, 676)])
 
+    def test_q08_transferred_ball_means_are_feasible_only_for_nine(self) -> None:
+        admissible_counts = []
+        for count_a in range(2, 25):
+            mean_a = Fraction(count_a + 59, 4)
+            mean_b = Fraction(count_a + 34, 4)
+            if count_a * mean_a + (25 - count_a) * mean_b == 325:
+                admissible_counts.append(count_a)
+        self.assertEqual(admissible_counts, [9])
+
+        basket_a = set(range(13, 22))
+        basket_b = set(range(1, 13)) | set(range(22, 26))
+        self.assertEqual(basket_a | basket_b, set(range(1, 26)))
+        self.assertFalse(basket_a & basket_b)
+        self.assertIn(15, basket_a)
+
+        old_mean_a = Fraction(sum(basket_a), len(basket_a))
+        old_mean_b = Fraction(sum(basket_b), len(basket_b))
+        basket_a.remove(15)
+        basket_b.add(15)
+        new_mean_a = Fraction(sum(basket_a), len(basket_a))
+        new_mean_b = Fraction(sum(basket_b), len(basket_b))
+        self.assertEqual(new_mean_a - old_mean_a, Fraction(1, 4))
+        self.assertEqual(new_mean_b - old_mean_b, Fraction(1, 4))
+
+    def test_q09_palindromic_square_search_is_exhaustive(self) -> None:
+        candidates = []
+        solutions = []
+        for a in range(1, 10):
+            for b in range(10):
+                for c in range(10):
+                    value = 10001 * a + 1010 * b + 100 * c
+                    digit_sum = 2 * a + 2 * b + c
+                    if digit_sum == 36:
+                        candidates.append(value)
+                    if (
+                        10 <= digit_sum <= 99
+                        and math.isqrt(digit_sum) ** 2 == digit_sum
+                        and math.isqrt(
+                            sum(int(digit) for digit in str(digit_sum))
+                        )
+                        ** 2
+                        == sum(int(digit) for digit in str(digit_sum))
+                        and math.isqrt(value) ** 2 == value
+                    ):
+                        solutions.append((digit_sum, value))
+
+        filtered_candidates = sorted(
+            value
+            for value in candidates
+            if int(str(value)[0]) in {5, 6, 9}
+        )
+        self.assertEqual(
+            filtered_candidates,
+            [59895, 68886, 69696, 95859, 96669, 97479, 98289, 99099],
+        )
+        self.assertEqual(
+            [value for value in filtered_candidates if value % 4 in {0, 1}],
+            [69696, 96669, 98289],
+        )
+        self.assertLess(310**2, 96669)
+        self.assertLess(96669, 311**2)
+        self.assertLess(313**2, 98289)
+        self.assertLess(98289, 314**2)
+        self.assertEqual(264**2, 69696)
+        self.assertEqual(solutions, [(36, 69696)])
+
+    def test_q10_translated_triangle_union_has_exact_boundary_and_area(self) -> None:
+        def union_boundary(count: int) -> list[tuple[Fraction, Fraction]]:
+            points = [(Fraction(0), Fraction(0)), (Fraction(1, 2), Fraction(1, 2))]
+            for index in range(count - 1):
+                points.extend(
+                    [
+                        (Fraction(3 + 2 * index, 4), Fraction(1, 4)),
+                        (Fraction(2 + index, 2), Fraction(1, 2)),
+                    ]
+                )
+            points.append((Fraction(count + 1, 2), Fraction(0)))
+            return points
+
+        def exact_edge_length(
+            first: tuple[Fraction, Fraction],
+            second: tuple[Fraction, Fraction],
+        ) -> Fraction:
+            dx = second[0] - first[0]
+            dy_coefficient = second[1] - first[1]
+            squared = dx * dx + 3 * dy_coefficient * dy_coefficient
+            numerator_root = math.isqrt(squared.numerator)
+            denominator_root = math.isqrt(squared.denominator)
+            self.assertEqual(numerator_root**2, squared.numerator)
+            self.assertEqual(denominator_root**2, squared.denominator)
+            return Fraction(numerator_root, denominator_root)
+
+        def audit(count: int) -> tuple[Fraction, Fraction]:
+            boundary = union_boundary(count)
+            perimeter = sum(
+                (
+                    exact_edge_length(boundary[index], boundary[(index + 1) % len(boundary)])
+                    for index in range(len(boundary))
+                ),
+                start=Fraction(0),
+            )
+            twice_area_coefficient = sum(
+                (
+                    boundary[index][0] * boundary[(index + 1) % len(boundary)][1]
+                    - boundary[(index + 1) % len(boundary)][0] * boundary[index][1]
+                    for index in range(len(boundary))
+                ),
+                start=Fraction(0),
+            )
+            return perimeter, abs(twice_area_coefficient) / 2
+
+        self.assertEqual(audit(1), (Fraction(3), Fraction(1, 4)))
+        self.assertEqual(audit(2), (Fraction(9, 2), Fraction(7, 16)))
+        self.assertEqual(audit(3), (Fraction(6), Fraction(5, 8)))
+        self.assertEqual(audit(112), (Fraction(339, 2), Fraction(337, 16)))
+
 
 if __name__ == "__main__":
     unittest.main()

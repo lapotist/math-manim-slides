@@ -1,0 +1,76 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q08"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "Accounting for one transferred ball through two rising averages"
+locale = "zh-TW"
+question = 8
+source_pages = [8]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 8, PDF page 8; public solution video 00:00-04:43.80"
+solution_asset_id = "youtube:yxlLBTcz4kg"
+solution_url = "https://www.youtube.com/watch?v=yxlLBTcz4kg"
+source_video_locator = "00:00-04:43.80"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page states that balls labelled 1 through 25 are divided between baskets A and B, ball 15 starts in A, and moving it to B raises each basket's average by 1/4; its worked area is blank and does not establish a solution. The dedicated public video visibly lets A initially contain m balls with mean x1 and B contain 25-m balls with mean x2, writes the two before-and-after sum equations, derives x1=(m+59)/4 and x2=(m+34)/4, uses the fixed total 1+...+25=325, and concludes m=9. The complete answer is clean through 00:04:43.80; a device overlay begins by 00:04:43.85. The inspected 518x360 research stream is 284.537324 seconds long and has SHA-256 23431c7e739e7ee55631ee29143d8ee6a0d16f4083041a28f0977eac31570dcf. This lesson preserves that mathematics while adding project-original deficit/surplus quarter tiles, a common-mean baseline regrouping, explicit domain bounds, and the feasible partition A={13,...,21}. All visuals, motion, wording, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q08/deck.py"
+scene_class = "CarloTcfs112MathQ08"
+storyboard = "lessons/tcfs_112_math_gifted/q08/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q08/presenter.zh-TW.md"
+estimated_minutes = 10
+expected_answer = "9"
+independent_check = "Let m be the original number of balls in A, with old means x_A and x_B. Both post-move averages must be defined and B must initially contain a ball, so 2<=m<=24. Removing 15 from A gives m*x_A-15=(m-1)(x_A+1/4), hence x_A=15+(m-1)/4=(m+59)/4. Adding 15 to B gives (25-m)*x_B+15=(26-m)(x_B+1/4), hence x_B=15-(26-m)/4=(m+34)/4. The total of labels 1 through 25 is 325. Substitution into m*x_A+(25-m)*x_B=325 yields the unique real, hence unique integer-domain, solution m=9. Feasibility is checked independently by A={13,14,15,16,17,18,19,20,21} and B={1,...,12,22,23,24,25}. Their original sums and means are 153/9=17 and 172/16=43/4. After moving 15, the means are 138/8=69/4 and 187/17=11, each exactly 1/4 above its original value."
+tags = ["averages", "weighted-mean", "linear-equations", "invariants", "finite-construction", "algebra"]
+
+[[beats]]
+id = "meet_two_baskets"
+loop = false
+
+[[beats]]
+id = "move_ball_fifteen"
+loop = false
+
+[[beats]]
+id = "measure_a_deficit"
+loop = false
+
+[[beats]]
+id = "solve_a_mean"
+loop = false
+
+[[beats]]
+id = "measure_b_surplus"
+loop = false
+
+[[beats]]
+id = "compare_old_means"
+loop = false
+
+[[beats]]
+id = "earn_total_325"
+loop = false
+
+[[beats]]
+id = "reassemble_basket_totals"
+loop = false
+
+[[beats]]
+id = "regroup_on_b_baseline"
+loop = false
+
+[[beats]]
+id = "hold_last_division"
+loop = false
+
+[[beats]]
+id = "reveal_count"
+loop = false
+
+[[beats]]
+id = "verify_real_partition"
+loop = false

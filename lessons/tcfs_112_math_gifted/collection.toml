@@ -102,28 +102,37 @@ production_state = "visual_verified"
 id = "carlo.tcfs_112_math_gifted.q08"
 label = "Fill-in Question 8"
 source_pages = [8]
+topic = "weighted averages and a transferred-element invariant"
+answer = "9"
 solution_asset = "youtube:yxlLBTcz4kg"
 solution_url = "https://www.youtube.com/watch?v=yxlLBTcz4kg"
+solution_locator = "00:00-04:43.80"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q09"
 label = "Fill-in Question 9"
 source_pages = [9]
+topic = "palindromic squares, digit constraints, and modular filtering"
+answer = "(36,69696)"
 solution_asset = "youtube:E8hGcX6oQO4"
 solution_url = "https://www.youtube.com/watch?v=E8hGcX6oQO4"
+solution_locator = "00:00-08:52.40"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q10"
 label = "Fill-in Question 10"
 source_pages = [10]
+topic = "translated equilateral-triangle unions, perimeter, and overlap area"
+answer = "(339/2,337*sqrt(3)/16)"
 solution_asset = "youtube:W9yrKSMoY-0"
 solution_url = "https://www.youtube.com/watch?v=W9yrKSMoY-0"
+solution_locator = "00:00-03:39.10"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q11"

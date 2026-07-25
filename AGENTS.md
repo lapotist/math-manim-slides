@@ -131,6 +131,15 @@ that cover the full domain. A second copy of the same handwritten derivation is
 not an independent check. Write the check before animation work when practical;
 if it fails, stop the storyboard until the discrepancy is resolved.
 
+For a finite search, define the complete candidate universe before filtering
+it. At each gate, say whether the condition is necessary, sufficient, or both,
+and retain enough rejected context to show that every branch was accounted for.
+Passing a congruence, inequality, or terminal-digit test does not prove a
+candidate works; independently test every survivor against the original
+conditions. Likewise, never accept the last visible card merely because the
+others were crossed out. The final beat must substitute the survivor back into
+the concrete object and recheck all requested properties.
+
 When a source conclusion is correct only for the displayed construction family,
 keep the result but narrow it honestly. Add a `solution_scope_note` to collection
 metadata, state the extra assumption in the storyboard and presenter script,

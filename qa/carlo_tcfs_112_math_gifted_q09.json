@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q09",
+  "scene_class": "CarloTcfs112MathQ09",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Write the five-digit palindrome as n=abcba=10001a+1010b+100c, where 1<=a<=9 and 0<=b,c<=9, so its digit sum is m=2a+2b+c. Since m is a two-digit square and m<=45, m is one of 16,25,36. Their digit sums are 7,7,9 respectively, and only 9 is a square, hence m=36. Because n is a square and ends in its nonzero leading digit a, checking square residues modulo 10 gives a in {1,4,5,6,9}. Also 2b+c<=27, so 36=2a+2b+c implies a>=5; therefore a is in {5,6,9}. Solving c=36-2a-2b with 0<=b,c<=9 gives exactly eight palindromes: 59895; 68886,69696; 95859,96669,97479,98289,99099. A square is congruent to 0 or 1 modulo 4, so the last two digits reject every candidate except 69696,96669,98289. Exact consecutive-square checks give 310^2=96100<96669<96721=311^2 and 313^2=97969<98289<98596=314^2, while 264^2=69696. Finally 6+9+6+9+6=36=6^2 and 3+6=9=3^2. Thus the unique pair is (m,n)=(36,69696). This derivation exhausts every allowed digit triple and does not assume that the modulo-4 condition is sufficient."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "mirror_three_digits",
+        "loop": false
+      },
+      {
+        "id": "fold_digit_sum",
+        "loop": false
+      },
+      {
+        "id": "find_the_digit_sum",
+        "loop": false
+      },
+      {
+        "id": "filter_outer_digit",
+        "loop": false
+      },
+      {
+        "id": "enumerate_a_nine",
+        "loop": false
+      },
+      {
+        "id": "enumerate_a_six",
+        "loop": false
+      },
+      {
+        "id": "enumerate_a_five",
+        "loop": false
+      },
+      {
+        "id": "test_mod_four",
+        "loop": false
+      },
+      {
+        "id": "isolate_three_survivors",
+        "loop": false
+      },
+      {
+        "id": "bracket_first_false",
+        "loop": false
+      },
+      {
+        "id": "bracket_second_false",
+        "loop": false
+      },
+      {
+        "id": "hold_middle_square_test",
+        "loop": false
+      },
+      {
+        "id": "reveal_and_recheck_pair",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q09/deck.py",
+      "sha256": "5e76cc62c2e91b2607c494f098367bf49157c6f0a945a8a17c081b2b6678778f"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q09/presenter.zh-TW.md",
+      "sha256": "089a2741c2770abf7a748af882d1cf587fd0377ac50ffcb4db6ecdf75524d191"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q09/storyboard.md",
+      "sha256": "7c55f7aa1428337e95ac575f7b7e4a49bcc339f244bd1c15bcc92b657ca66bd9"
+    }
+  }
+}

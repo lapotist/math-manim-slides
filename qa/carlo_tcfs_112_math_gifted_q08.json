@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q08",
+  "scene_class": "CarloTcfs112MathQ08",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Let m be the original number of balls in A, with old means x_A and x_B. Both post-move averages must be defined and B must initially contain a ball, so 2<=m<=24. Removing 15 from A gives m*x_A-15=(m-1)(x_A+1/4), hence x_A=15+(m-1)/4=(m+59)/4. Adding 15 to B gives (25-m)*x_B+15=(26-m)(x_B+1/4), hence x_B=15-(26-m)/4=(m+34)/4. The total of labels 1 through 25 is 325. Substitution into m*x_A+(25-m)*x_B=325 yields the unique real, hence unique integer-domain, solution m=9. Feasibility is checked independently by A={13,14,15,16,17,18,19,20,21} and B={1,...,12,22,23,24,25}. Their original sums and means are 153/9=17 and 172/16=43/4. After moving 15, the means are 138/8=69/4 and 187/17=11, each exactly 1/4 above its original value."
+  },
+  "render": {
+    "segment_count": 12,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_two_baskets",
+        "loop": false
+      },
+      {
+        "id": "move_ball_fifteen",
+        "loop": false
+      },
+      {
+        "id": "measure_a_deficit",
+        "loop": false
+      },
+      {
+        "id": "solve_a_mean",
+        "loop": false
+      },
+      {
+        "id": "measure_b_surplus",
+        "loop": false
+      },
+      {
+        "id": "compare_old_means",
+        "loop": false
+      },
+      {
+        "id": "earn_total_325",
+        "loop": false
+      },
+      {
+        "id": "reassemble_basket_totals",
+        "loop": false
+      },
+      {
+        "id": "regroup_on_b_baseline",
+        "loop": false
+      },
+      {
+        "id": "hold_last_division",
+        "loop": false
+      },
+      {
+        "id": "reveal_count",
+        "loop": false
+      },
+      {
+        "id": "verify_real_partition",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q08/deck.py",
+      "sha256": "0160a86c88db63d2fe44678f14a50c11265c77775d5df92f35918c28b2e4b7bc"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q08/presenter.zh-TW.md",
+      "sha256": "a450d7d2b1daee4443c5f35952fc34c4c0d3d5a383b5c6b5d8c1767e02a0efd0"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q08/storyboard.md",
+      "sha256": "6121c0f21779616011bcf6613f2ae4179e3846001964d02a7a4f7e28328a0b0d"
+    }
+  }
+}

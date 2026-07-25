@@ -1,0 +1,80 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q10"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "Perimeter and area of half-side translated equilateral triangles"
+locale = "zh-TW"
+question = 10
+source_pages = [10]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 10, PDF page 10; public solution video 00:00-03:39.10"
+solution_asset_id = "youtube:W9yrKSMoY-0"
+solution_url = "https://www.youtube.com/watch?v=W9yrKSMoY-0"
+source_video_locator = "00:00-03:39.10"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page states that three unit equilateral triangles are placed according to Figure 2 and traced to form Figure 3, four are placed by the same rule to form Figure 4, and the process is extended to 112 triangles; it asks for the perimeter r and area s of the traced union. The raster diagram shows successive congruent triangles translated horizontally by half a side. The confirmed-public video annotates the half-side subdivision, colors the exposed slanted and bottom boundary pieces, obtains perimeter 169.5=339/2, partitions a unit triangle into four equilateral triangles of side 1/2, and counts 4+3*111 such small area units to obtain 337*sqrt(3)/16. Its unobstructed solution remains visible through 00:03:39.10; a device overlay appears by 00:03:39.15. The inspected 518x360 research stream is 219.800091 seconds long and has SHA-256 a3454d70b9ad45225cacbb1a27c71ec36f7b06711a644a5fea00b5f31bcf1a8d. This lesson independently reconstructs exact coordinates, proves the boundary count, verifies every adjacent overlap and the absence of positive-area triple overlap, and audits the n=1,2,3 union polygons. All geometry, wording, motion, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q10/deck.py"
+scene_class = "CarloTcfs112MathQ10"
+storyboard = "lessons/tcfs_112_math_gifted/q10/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q10/presenter.zh-TW.md"
+estimated_minutes = 11
+expected_answer = "(339/2,337*sqrt(3)/16)"
+independent_check = "Place triangle T_i at vertices (i/2,0), (i/2+1,0), and (i/2+1/2,sqrt(3)/2), for i=0,...,n-1; this is exactly a horizontal half-side translation. The union boundary starts at (0,0), rises along one full outer side, alternates between adjacent apexes through valleys at height sqrt(3)/4 using 2(n-1) half-side slants, descends along one full outer side, and closes along a bottom segment of length (n+1)/2. Hence the slanted boundary is 2+2(n-1)/2=n+1 and r_n=3(n+1)/2, giving r_112=339/2. One triangle has area sqrt(3)/4. Exact convex-polygon intersection shows that T_i and T_(i+1) overlap in an equilateral triangle of side 1/2 and area sqrt(3)/16; T_i and T_j for |i-j|=2 meet only at one point, and those farther apart are disjoint. Any three distinct indices contain two whose difference is at least 2, so no triple intersection has positive area. Therefore s_n=n*sqrt(3)/4-(n-1)*sqrt(3)/16=(3n+1)*sqrt(3)/16, giving s_112=337*sqrt(3)/16. An exact shoelace and edge-length audit of the explicit union polygons gives (r_1,s_1)=(3,sqrt(3)/4), (r_2,s_2)=(9/2,7*sqrt(3)/16), and (r_3,s_3)=(6,5*sqrt(3)/8), agreeing with both general formulas."
+tags = ["geometry", "equilateral-triangles", "translated-unions", "perimeter", "area", "inclusion-exclusion", "exact-coordinates"]
+
+[[beats]]
+id = "meet_one_unit_triangle"
+loop = false
+
+[[beats]]
+id = "slide_the_second_half_side"
+loop = false
+
+[[beats]]
+id = "add_the_third_and_trace"
+loop = false
+
+[[beats]]
+id = "measure_one_perimeter_increment"
+loop = false
+
+[[beats]]
+id = "generalize_the_perimeter"
+loop = false
+
+[[beats]]
+id = "measure_one_triangle_area"
+loop = false
+
+[[beats]]
+id = "measure_one_adjacent_overlap"
+loop = false
+
+[[beats]]
+id = "rule_out_hidden_triple_overlap"
+loop = false
+
+[[beats]]
+id = "audit_small_areas_and_generalize"
+loop = false
+
+[[beats]]
+id = "hold_before_both_values"
+loop = false
+
+[[beats]]
+id = "reveal_the_perimeter"
+loop = false
+
+[[beats]]
+id = "reveal_the_area"
+loop = false
+
+[[beats]]
+id = "return_to_the_traced_union"
+loop = false

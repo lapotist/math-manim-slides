@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q10",
+  "scene_class": "CarloTcfs112MathQ10",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Place triangle T_i at vertices (i/2,0), (i/2+1,0), and (i/2+1/2,sqrt(3)/2), for i=0,...,n-1; this is exactly a horizontal half-side translation. The union boundary starts at (0,0), rises along one full outer side, alternates between adjacent apexes through valleys at height sqrt(3)/4 using 2(n-1) half-side slants, descends along one full outer side, and closes along a bottom segment of length (n+1)/2. Hence the slanted boundary is 2+2(n-1)/2=n+1 and r_n=3(n+1)/2, giving r_112=339/2. One triangle has area sqrt(3)/4. Exact convex-polygon intersection shows that T_i and T_(i+1) overlap in an equilateral triangle of side 1/2 and area sqrt(3)/16; T_i and T_j for |i-j|=2 meet only at one point, and those farther apart are disjoint. Any three distinct indices contain two whose difference is at least 2, so no triple intersection has positive area. Therefore s_n=n*sqrt(3)/4-(n-1)*sqrt(3)/16=(3n+1)*sqrt(3)/16, giving s_112=337*sqrt(3)/16. An exact shoelace and edge-length audit of the explicit union polygons gives (r_1,s_1)=(3,sqrt(3)/4), (r_2,s_2)=(9/2,7*sqrt(3)/16), and (r_3,s_3)=(6,5*sqrt(3)/8), agreeing with both general formulas."
+  },
+  "render": {
+    "segment_count": 13,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_one_unit_triangle",
+        "loop": false
+      },
+      {
+        "id": "slide_the_second_half_side",
+        "loop": false
+      },
+      {
+        "id": "add_the_third_and_trace",
+        "loop": false
+      },
+      {
+        "id": "measure_one_perimeter_increment",
+        "loop": false
+      },
+      {
+        "id": "generalize_the_perimeter",
+        "loop": false
+      },
+      {
+        "id": "measure_one_triangle_area",
+        "loop": false
+      },
+      {
+        "id": "measure_one_adjacent_overlap",
+        "loop": false
+      },
+      {
+        "id": "rule_out_hidden_triple_overlap",
+        "loop": false
+      },
+      {
+        "id": "audit_small_areas_and_generalize",
+        "loop": false
+      },
+      {
+        "id": "hold_before_both_values",
+        "loop": false
+      },
+      {
+        "id": "reveal_the_perimeter",
+        "loop": false
+      },
+      {
+        "id": "reveal_the_area",
+        "loop": false
+      },
+      {
+        "id": "return_to_the_traced_union",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q10/deck.py",
+      "sha256": "abfedf3cd1d9353b9f52cb6c12a9c47567207e77f921ad4dfcaa02f96c2e83f9"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q10/presenter.zh-TW.md",
+      "sha256": "85805b58d67964a28fefdf0e30d3ff768978c0ee7603c590c6344a0029010143"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q10/storyboard.md",
+      "sha256": "e55b349c547c7cf9ada789f00bcbe43b21dddb4fa33958f6da74dfdf7219bad1"
+    }
+  }
+}

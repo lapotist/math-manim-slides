@@ -1,0 +1,80 @@
+schema_version = 1
+id = "carlo.tcfs_112_math_gifted.q09"
+collection_id = "carlo.tcfs_112_math_gifted"
+title = "A complete digit-structure search for a five-digit palindromic square"
+locale = "zh-TW"
+question = 9
+source_pages = [9]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/112%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "112中一中資優班解析.pdf"
+source_asset_id = "drive:1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H"
+source_asset_url = "https://drive.google.com/file/d/1wZiSE5cZZI9Fr_YJovGP_H3aWoFXxc_H/preview"
+source_asset_sha256 = "277e49efb3aca44666e17c2c4135b6047922f25adee58952560416996140acbd"
+source_locator = "Fill-in Question 9, PDF page 9; public solution video 00:00-08:52.40"
+solution_asset_id = "youtube:E8hGcX6oQO4"
+solution_url = "https://www.youtube.com/watch?v=E8hGcX6oQO4"
+source_video_locator = "00:00-08:52.40"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "The PDF page states the four conditions on a five-digit palindromic square but leaves the worked area blank. The confirmed-public video writes n=abcba=y^2, restricts the common first/last digit using possible terminal digits of a square, writes m=2a+2b+c=x^2<45, checks the two-digit square candidates 16, 25, and 36 by their own digit sums, and keeps m=36. It then uses 2b+c<=27 to retain a=5,6,9, enumerates eight palindromes, applies the fact that a square is congruent to 0 or 1 modulo 4 to reject five, and marks 69696 as the answer. The source displays the final pair in its margin before the derivation is complete. The complete working is unobstructed through 08:52.40; a device-control overlay begins by 08:52.45. The inspected 518x360 research stream is 533.153379 seconds long and has SHA-256 876802b78b7197c47e2c984fc31dc71f0591d70fe704bfceab0803dbebc17ff3. This lesson delays the answer, independently proves that the eight-case list is exhaustive, proves the modulo-4 filter, and adds exact neighboring-square checks for every survivor. All digit cards, number lines, wording, motion, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_112_math_gifted/q09/deck.py"
+scene_class = "CarloTcfs112MathQ09"
+storyboard = "lessons/tcfs_112_math_gifted/q09/storyboard.md"
+presenter_script = "lessons/tcfs_112_math_gifted/q09/presenter.zh-TW.md"
+estimated_minutes = 12
+expected_answer = "(36,69696)"
+independent_check = "Write the five-digit palindrome as n=abcba=10001a+1010b+100c, where 1<=a<=9 and 0<=b,c<=9, so its digit sum is m=2a+2b+c. Since m is a two-digit square and m<=45, m is one of 16,25,36. Their digit sums are 7,7,9 respectively, and only 9 is a square, hence m=36. Because n is a square and ends in its nonzero leading digit a, checking square residues modulo 10 gives a in {1,4,5,6,9}. Also 2b+c<=27, so 36=2a+2b+c implies a>=5; therefore a is in {5,6,9}. Solving c=36-2a-2b with 0<=b,c<=9 gives exactly eight palindromes: 59895; 68886,69696; 95859,96669,97479,98289,99099. A square is congruent to 0 or 1 modulo 4, so the last two digits reject every candidate except 69696,96669,98289. Exact consecutive-square checks give 310^2=96100<96669<96721=311^2 and 313^2=97969<98289<98596=314^2, while 264^2=69696. Finally 6+9+6+9+6=36=6^2 and 3+6=9=3^2. Thus the unique pair is (m,n)=(36,69696). This derivation exhausts every allowed digit triple and does not assume that the modulo-4 condition is sufficient."
+tags = ["number-theory", "palindromes", "perfect-squares", "decimal-digits", "modular-arithmetic", "exhaustive-search"]
+
+[[beats]]
+id = "mirror_three_digits"
+loop = false
+
+[[beats]]
+id = "fold_digit_sum"
+loop = false
+
+[[beats]]
+id = "find_the_digit_sum"
+loop = false
+
+[[beats]]
+id = "filter_outer_digit"
+loop = false
+
+[[beats]]
+id = "enumerate_a_nine"
+loop = false
+
+[[beats]]
+id = "enumerate_a_six"
+loop = false
+
+[[beats]]
+id = "enumerate_a_five"
+loop = false
+
+[[beats]]
+id = "test_mod_four"
+loop = false
+
+[[beats]]
+id = "isolate_three_survivors"
+loop = false
+
+[[beats]]
+id = "bracket_first_false"
+loop = false
+
+[[beats]]
+id = "bracket_second_false"
+loop = false
+
+[[beats]]
+id = "hold_middle_square_test"
+loop = false
+
+[[beats]]
+id = "reveal_and_recheck_pair"
+loop = false
