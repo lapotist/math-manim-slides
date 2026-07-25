@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q12",
+  "scene_class": "CarloTcfs113MathQ12",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "The centroid of A=(1,-3), B=(7,-3), C=(-2,9) is G=(2,1). Since G lies on ax+by=9, 2a+b=9 and b=9-2a. The restrictions a>=1 and b>=5 give 1<=a<=2. Therefore f(a)=2a^2+(9-2a)^2=6a^2-36a+81=6(a-3)^2+27. On [1,2], the distance 3-a is positive and strictly decreases, so f strictly decreases. Equivalently, for 1<=u<v<=2, f(v)-f(u)=6(v-u)(u+v-6)<0. Thus M=f(1)=51 and m=f(2)=33, so (M,m)=(51,33)."
+  },
+  "render": {
+    "segment_count": 11,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_triangle",
+        "loop": false
+      },
+      {
+        "id": "locate_centroid",
+        "loop": false
+      },
+      {
+        "id": "pivot_line_family",
+        "loop": false
+      },
+      {
+        "id": "earn_coefficient_constraint",
+        "loop": false
+      },
+      {
+        "id": "carve_allowed_segment",
+        "loop": false
+      },
+      {
+        "id": "watch_weighted_squares",
+        "loop": false
+      },
+      {
+        "id": "compress_objective",
+        "loop": false
+      },
+      {
+        "id": "prove_decreasing",
+        "loop": false
+      },
+      {
+        "id": "evaluate_endpoints",
+        "loop": false
+      },
+      {
+        "id": "hold_ordered_pair",
+        "loop": false
+      },
+      {
+        "id": "reveal_ordered_pair",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q12/deck.py",
+      "sha256": "cfda5d7a4fe807a88f66088b703ec1bd3c4d05a725188c30f5bca5abcc68b6e8"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q12/presenter.zh-TW.md",
+      "sha256": "7aae6c762a183fe0c77cc6a5200fef914195902dbb4c4989c3962226f1c9ce72"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q12/storyboard.md",
+      "sha256": "6905a09296f9030aa9859a8048460961d6aeccf7c940cec556df8b19aec1652a"
+    }
+  }
+}

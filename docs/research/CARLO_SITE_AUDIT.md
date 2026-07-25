@@ -78,6 +78,13 @@ videos are represented by two problem records pointing to one provider ID.
 Provider-level deduplication is therefore preserved while lesson-unit counts
 remain explicit.
 
+Independent reconstruction of the ROC 113 proof unit also found a scope
+boundary in its final generalization. The reported invariant `mn = 180` follows
+the same-ray zigzag family drawn and extended in the public solution. Treating
+the two supporting lines as unrestricted signed coordinates admits additional
+closure angles, so a finished lesson must name the displayed same-ray
+assumption rather than claim the invariant for every possible walk.
+
 The 42 TCFSH records are a problem-level reviewed subset of the 2,489
 confirmed-public asset pool. The 20 Chiayi records add an exact one-page and
 one-numbered-video mapping, but remain `discovered` until the videos themselves

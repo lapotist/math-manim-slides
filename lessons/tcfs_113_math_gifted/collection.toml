@@ -108,7 +108,7 @@ solution_asset = "youtube:xRrA7_xEStU"
 solution_url = "https://www.youtube.com/watch?v=xRrA7_xEStU"
 solution_locator = "03:33-06:17"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q09"
@@ -120,7 +120,7 @@ solution_asset = "youtube:X6Cabjm94eY"
 solution_url = "https://www.youtube.com/watch?v=X6Cabjm94eY"
 solution_locator = "00:00-01:25"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q10"
@@ -132,7 +132,7 @@ solution_asset = "youtube:X6Cabjm94eY"
 solution_url = "https://www.youtube.com/watch?v=X6Cabjm94eY"
 solution_locator = "01:26-05:50"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q11"
@@ -144,7 +144,7 @@ solution_asset = "youtube:FxSdkChC9Z8"
 solution_url = "https://www.youtube.com/watch?v=FxSdkChC9Z8"
 solution_locator = "00:00-02:59"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q12"
@@ -156,7 +156,7 @@ solution_asset = "youtube:FxSdkChC9Z8"
 solution_url = "https://www.youtube.com/watch?v=FxSdkChC9Z8"
 solution_locator = "03:00-04:11"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_113_math_gifted.q13"
@@ -179,5 +179,6 @@ answer = "36 degrees; 180/7 degrees; mn = 180"
 solution_asset = "youtube:rw7Z1rw7gYA"
 solution_url = "https://www.youtube.com/watch?v=rw7Z1rw7gYA"
 solution_locator = "00:00-04:34"
+solution_scope_note = "The source's mn=180 generalization follows the displayed same-ray zigzag family. If signed positions on the full lines are allowed without that configuration restriction, additional closure angles exist; the lesson must state the same-ray scope explicitly."
 eligible = true
 production_state = "planned"

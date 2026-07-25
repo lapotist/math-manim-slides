@@ -1,0 +1,72 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q09"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Counting distinct totals of long consecutive-positive-integer sums"
+locale = "zh-TW"
+question = 9
+source_pages = [9]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_url = "https://drive.google.com/file/d/1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M/preview"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 9, PDF page 9"
+solution_asset_id = "youtube:X6Cabjm94eY"
+solution_url = "https://www.youtube.com/watch?v=X6Cabjm94eY"
+source_video_locator = "00:00-01:25"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "Frame inspection confirms that Q9 is settled from 00:00 through 01:25 and Q10 is settled by 01:26. The source names the first term x and length m, applies the arithmetic-series bound for m=60,61,62,63, rejects m=64, and reports 4+3+2+1=10. This lesson preserves those mathematical claims but independently rebuilds the argument around an original shifting-row experiment, a delayed general formula, explicit length lanes, and a distinct-total audit. No source frames, handwriting, audio, or wording are incorporated."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q09/deck.py"
+scene_class = "CarloTcfs113MathQ09"
+storyboard = "lessons/tcfs_113_math_gifted/q09/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q09/presenter.zh-TW.md"
+estimated_minutes = 9
+expected_answer = "10"
+independent_check = "Exhaustively enumerate every length k>=60 and first term x>=1 using the literal Python sum of range(x,x+k), stopping a length once its minimum exceeds 2024 and stopping each row once its total exceeds 2024. The complete representation list is (1830,60,1), (1890,60,2), (1950,60,3), (2010,60,4), (1891,61,1), (1952,61,2), (2013,61,3), (1953,62,1), (2015,62,2), and (2016,63,1). Their ten totals are pairwise distinct. The minimum for k=64 is 1+...+64=2080>2024, and minima strictly increase with k, so no longer length is possible."
+tags = ["number-theory", "arithmetic-series", "consecutive-integers", "positive-integers", "exhaustive-bounds", "distinct-counting"]
+
+[[beats]]
+id = "meet_sixty_term_row"
+loop = false
+
+[[beats]]
+id = "pair_to_1830"
+loop = false
+
+[[beats]]
+id = "shift_by_sixty"
+loop = false
+
+[[beats]]
+id = "cross_2024_boundary"
+loop = false
+
+[[beats]]
+id = "name_general_sum"
+loop = false
+
+[[beats]]
+id = "open_length_61_lane"
+loop = false
+
+[[beats]]
+id = "complete_length_lanes"
+loop = false
+
+[[beats]]
+id = "stop_at_length_64"
+loop = false
+
+[[beats]]
+id = "verify_distinct_totals"
+loop = false
+
+[[beats]]
+id = "hold_count_expression"
+loop = false
+
+[[beats]]
+id = "reveal_total_count"
+loop = false

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q09",
+  "scene_class": "CarloTcfs113MathQ09",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Exhaustively enumerate every length k>=60 and first term x>=1 using the literal Python sum of range(x,x+k), stopping a length once its minimum exceeds 2024 and stopping each row once its total exceeds 2024. The complete representation list is (1830,60,1), (1890,60,2), (1950,60,3), (2010,60,4), (1891,61,1), (1952,61,2), (2013,61,3), (1953,62,1), (2015,62,2), and (2016,63,1). Their ten totals are pairwise distinct. The minimum for k=64 is 1+...+64=2080>2024, and minima strictly increase with k, so no longer length is possible."
+  },
+  "render": {
+    "segment_count": 11,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_sixty_term_row",
+        "loop": false
+      },
+      {
+        "id": "pair_to_1830",
+        "loop": false
+      },
+      {
+        "id": "shift_by_sixty",
+        "loop": false
+      },
+      {
+        "id": "cross_2024_boundary",
+        "loop": false
+      },
+      {
+        "id": "name_general_sum",
+        "loop": false
+      },
+      {
+        "id": "open_length_61_lane",
+        "loop": false
+      },
+      {
+        "id": "complete_length_lanes",
+        "loop": false
+      },
+      {
+        "id": "stop_at_length_64",
+        "loop": false
+      },
+      {
+        "id": "verify_distinct_totals",
+        "loop": false
+      },
+      {
+        "id": "hold_count_expression",
+        "loop": false
+      },
+      {
+        "id": "reveal_total_count",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q09/deck.py",
+      "sha256": "29608e8964d66a7c7f793e1babde27907b6824b1c1bedb734f4b00070a13852b"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q09/presenter.zh-TW.md",
+      "sha256": "41d7bee6f65b5d0d818b13b69070caf0acfa99bb3f7360090ea853e48c8b09dd"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q09/storyboard.md",
+      "sha256": "d4f2bec87b8b53759a622373e738a36757442b0d76ae07bbda6bfd00eb44734d"
+    }
+  }
+}

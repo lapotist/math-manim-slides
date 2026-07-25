@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q08",
+  "scene_class": "CarloTcfs113MathQ08",
+  "verified_at": "2026-07-24",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Let the square side be s>0 and let F=OE intersect AD. Since CE/BE=36/23 and CE+BE=s, CE=36s/59 and BE=23s/59. The region DCEF below OE is a trapezoid with parallel sides DF and CE separated by distance s. It is half the square, so ((DF+CE)/2)s=s^2/2, hence DF+CE=s and DF=23s/59. Right triangles ODF and OCE are similar because OD and OC are collinear, OF and OE are collinear, and both have a right angle. Thus OD/(OD+s)=OD/OC=DF/CE=23/36. Cross multiplication gives 13OD=23s, so OD:s=23:13. Since OD and s are positive integers and gcd(23,13)=1, OD=23t and s=13t for a positive integer t. The least side is 13 at t=1, so the least area is 13^2=169. At OD=23 and s=13, CE=36s/59, BE=DF=23s/59, the given ratio is 36/23, DF+CE=s gives exactly half the square, and both required lengths are positive integers."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "explore_moving_cut",
+        "loop": false
+      },
+      {
+        "id": "settle_equal_halves",
+        "loop": false
+      },
+      {
+        "id": "resolve_right_side_ratio",
+        "loop": false
+      },
+      {
+        "id": "isolate_half_trapezoid",
+        "loop": false
+      },
+      {
+        "id": "earn_left_height",
+        "loop": false
+      },
+      {
+        "id": "see_similar_triangles",
+        "loop": false
+      },
+      {
+        "id": "derive_base_ratio",
+        "loop": false
+      },
+      {
+        "id": "enforce_integer_scale",
+        "loop": false
+      },
+      {
+        "id": "verify_minimal_configuration",
+        "loop": false
+      },
+      {
+        "id": "reveal_minimum_area",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q08/deck.py",
+      "sha256": "7fc6f07d0a3d129e18389490aeaf4ba82f24685539be644629abca94041a27db"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q08/presenter.zh-TW.md",
+      "sha256": "727311cb36384edb0fa2089d329ae3a06988ae487c57fff1f97af61e801e0459"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q08/storyboard.md",
+      "sha256": "a894904d4dab0e50085d453744aea41cfbb1201c71c06e9afb7757a41e478aa2"
+    }
+  }
+}

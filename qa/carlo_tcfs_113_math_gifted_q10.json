@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_113_math_gifted.q10",
+  "scene_class": "CarloTcfs113MathQ10",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Use D=(0,0), C=(16,0), B=(16,8), A=(0,8), so AC has equation x+2y=16. Reflecting B across this line gives B'=(48/5,-24/5). For P on AC, PB=PB', hence PQ+PB=PQ+PB'>=QB'. The shortest segment from B' to line AB is perpendicular to AB, with foot Q=(48/5,8), and 0<48/5<16 verifies Q lies on segment AB. The vertical QB' meets AC at P=(48/5,16/5); since 8>16/5>-24/5, Q,P,B' are aligned in the required order and P lies on segment AC. Thus equality is attainable. Finally QB'=8-(-24/5)=64/5."
+  },
+  "render": {
+    "segment_count": 11,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_broken_path",
+        "loop": false
+      },
+      {
+        "id": "explore_two_movers",
+        "loop": false
+      },
+      {
+        "id": "reflect_b_across_diagonal",
+        "loop": false
+      },
+      {
+        "id": "replace_equal_leg",
+        "loop": false
+      },
+      {
+        "id": "straighten_reflected_path",
+        "loop": false
+      },
+      {
+        "id": "slide_q_along_top_edge",
+        "loop": false
+      },
+      {
+        "id": "settle_perpendicular_foot",
+        "loop": false
+      },
+      {
+        "id": "introduce_coordinates",
+        "loop": false
+      },
+      {
+        "id": "compute_reflected_point",
+        "loop": false
+      },
+      {
+        "id": "verify_attainable_configuration",
+        "loop": false
+      },
+      {
+        "id": "reveal_minimum_length",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_113_math_gifted/q10/deck.py",
+      "sha256": "d374d84a1122cd2818ab01f33abec391ee699f1bc0a69edc3d65680c36a7fa9b"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_113_math_gifted/q10/presenter.zh-TW.md",
+      "sha256": "ceb813e33831684bfe03b2db0ab1e23ac130296706232f9f2110cb9ffb22891b"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_113_math_gifted/q10/storyboard.md",
+      "sha256": "9843a5af959f04fd03df4d76be5350e4e601b567f98d359b22699916874d3e0c"
+    }
+  }
+}

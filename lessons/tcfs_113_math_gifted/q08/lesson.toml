@@ -1,0 +1,68 @@
+schema_version = 1
+id = "carlo.tcfs_113_math_gifted.q08"
+collection_id = "carlo.tcfs_113_math_gifted"
+title = "Minimizing a square cut into equal areas"
+locale = "zh-TW"
+question = 8
+source_pages = [8]
+source_url = "https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87%E5%84%AA%E7%8F%AD/113%E4%B8%AD%E4%B8%80%E4%B8%AD%E8%B3%87"
+source_asset = "113中一中資優班解析.pdf"
+source_asset_id = "drive:1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M"
+source_asset_url = "https://drive.google.com/file/d/1QQhuf8PqZMVyCdF9s9LHR8Q3y8RmAk3M/preview"
+source_asset_sha256 = "c4c5c0d834f7ef8f423d21265c6a69cadcaedfc5f2de290a79d0bc61b3844273"
+source_locator = "Fill-in Question 8, PDF page 8; public solution video 03:33-06:17"
+solution_asset_id = "youtube:xRrA7_xEStU"
+solution_url = "https://www.youtube.com/watch?v=xRrA7_xEStU"
+source_video_locator = "03:33-06:17"
+source_credit = "解題來源：正哥愛數學"
+rights_review = "pending_cc0_scope"
+source_note = "Frame inspection shows Q7 still visible at 03:31 and an ambiguous page transition at 03:32; Q8 is fully settled at 03:33 and continues through the 06:17 endpoint. The source writes CE=36k and BE=23k, hence the square side is 59k, uses the equal-area center together with similar triangles, and applies the positive-integer conditions on OD and the side to obtain the minimum side 13 and area 169. This lesson independently avoids assuming that k is integral: it names the side s, proves the left intersection height from the half-area trapezoid, reduces OD:s to 23:13, and only then proves that the common scale t is a positive integer. All visuals, motion, wording, and code are project-original."
+production_state = "visual_verified"
+scene_file = "lessons/tcfs_113_math_gifted/q08/deck.py"
+scene_class = "CarloTcfs113MathQ08"
+storyboard = "lessons/tcfs_113_math_gifted/q08/storyboard.md"
+presenter_script = "lessons/tcfs_113_math_gifted/q08/presenter.zh-TW.md"
+estimated_minutes = 9
+expected_answer = "169"
+independent_check = "Let the square side be s>0 and let F=OE intersect AD. Since CE/BE=36/23 and CE+BE=s, CE=36s/59 and BE=23s/59. The region DCEF below OE is a trapezoid with parallel sides DF and CE separated by distance s. It is half the square, so ((DF+CE)/2)s=s^2/2, hence DF+CE=s and DF=23s/59. Right triangles ODF and OCE are similar because OD and OC are collinear, OF and OE are collinear, and both have a right angle. Thus OD/(OD+s)=OD/OC=DF/CE=23/36. Cross multiplication gives 13OD=23s, so OD:s=23:13. Since OD and s are positive integers and gcd(23,13)=1, OD=23t and s=13t for a positive integer t. The least side is 13 at t=1, so the least area is 13^2=169. At OD=23 and s=13, CE=36s/59, BE=DF=23s/59, the given ratio is 36/23, DF+CE=s gives exactly half the square, and both required lengths are positive integers."
+tags = ["geometry", "square", "area-bisection", "trapezoid", "similar-triangles", "integer-ratio", "minimum"]
+
+[[beats]]
+id = "explore_moving_cut"
+loop = false
+
+[[beats]]
+id = "settle_equal_halves"
+loop = false
+
+[[beats]]
+id = "resolve_right_side_ratio"
+loop = false
+
+[[beats]]
+id = "isolate_half_trapezoid"
+loop = false
+
+[[beats]]
+id = "earn_left_height"
+loop = false
+
+[[beats]]
+id = "see_similar_triangles"
+loop = false
+
+[[beats]]
+id = "derive_base_ratio"
+loop = false
+
+[[beats]]
+id = "enforce_integer_scale"
+loop = false
+
+[[beats]]
+id = "verify_minimal_configuration"
+loop = false
+
+[[beats]]
+id = "reveal_minimum_area"
+loop = false

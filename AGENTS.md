@@ -82,6 +82,11 @@ skipped once a render starts. Before storyboarding a problem:
   asset, page or timestamp range, provider IDs, access status, and checksum;
 - reconstruct the argument independently from the problem statement, including
   domain restrictions, endpoints, degenerate cases, and the requested answer;
+- separate restrictions stated by the problem from conventions suggested only
+  by its picture, such as same-ray placement, point order, positive lengths,
+  orientation, or convexity. Try at least one exact counterexample outside the
+  pictured configuration before turning a construction-specific observation
+  into a universal claim;
 - compare that reconstruction with the source solution and record any omission,
   ambiguity, or correction in neutral language before adapting it;
 - identify the one motivating question, the concrete example the viewer can
@@ -118,6 +123,13 @@ coordinates for geometry, substitution for claimed roots, or symbolic bounds
 that cover the full domain. A second copy of the same handwritten derivation is
 not an independent check. Write the check before animation work when practical;
 if it fails, stop the storyboard until the discrepancy is resolved.
+
+When a source conclusion is correct only for the displayed construction family,
+keep the result but narrow it honestly. Add a `solution_scope_note` to collection
+metadata, state the extra assumption in the storyboard and presenter script,
+and make that assumption visible before the conclusion. Do not silently promote
+a same-ray, same-side, ordered, or positive-length result to an unrestricted
+theorem.
 
 ## Repository Contract
 
@@ -213,6 +225,11 @@ and its lesson metadata must report the same production state.
 - The integrating worker reviews the rendered contact sheet, independently
   reconciles the lesson state into `collection.toml`, and runs the collection
   validator. This keeps concurrent state updates from overwriting one another.
+- When several problem records share one solution asset, anchor every
+  collection edit on the stable problem `id`, not the repeated provider ID or
+  URL. Re-open the exact edited block before freezing QA; a syntactically valid
+  patch can otherwise promote the neighboring problem and attach the wrong
+  timestamp without producing a TOML error.
 - A handoff must report the exact render command, segment count, loop result,
   mathematical check, visual inspection performed, and any unresolved caveat.
   A bare claim that a deck is complete is not an evidence gate.
@@ -283,6 +300,10 @@ not instructions to imitate another creator's visual style.
   show why the defining data are unchanged, and only then generalize.
 - A visual argument must remain mathematically exact. Animation may motivate a
   claim, but must not conceal a missing boundary case or unjustified equality.
+- Distinguish a point's drawn position from its permitted domain. If signed
+  coordinates, directed lengths, opposite rays, or alternate orientations are
+  mathematically possible, either test them or state the construction rule that
+  excludes them before asserting uniqueness, minimality, or closure.
 - Repetition must add evidence: for example, generic case, extreme case,
   reflected case, then a final replay. Do not repeat motion decoratively.
 
