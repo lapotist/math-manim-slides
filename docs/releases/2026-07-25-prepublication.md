@@ -1,11 +1,11 @@
 # Prepublication Audit: 2026-07-25
 
-Status: passed for the committed source candidate; GitHub identity and remote
-publication remain pending.
+Status: passed for the committed source candidate; GitHub remote publication
+remains pending.
 
 ## Candidate
 
-- Commit: `c283eb3a935b1fba0b39755eea26b9c132e32e27`
+- Commit: `d14cd2a7cc2c46f1494a2fe3cc13b5d1f044c8ce`
 - Tree: `edcc95a14bf571d04f5ae2c4728f7bb32a61aafc`
 - Isolation: `git archive HEAD` extracted into a new ignored directory, with no
   working-tree media or environment copied into it
@@ -59,12 +59,15 @@ outputs and are not part of the public source commit.
 
 ## Remaining Publication Gates
 
-1. Decide whether the existing reachable commit email is intentionally public
-   or approve rewriting all local commits to the authenticated account's
-   verified GitHub no-reply address.
-2. Authenticate the pinned GitHub CLI through the maintainer's browser.
-3. Create the public remote, push `main`, verify its visible contents and
+The maintainer approved rewriting all 20 commits to the authenticated GitHub
+account's ID-based no-reply address. Author and committer dates, messages, and
+trees were preserved. A verified complete bundle of the pre-rewrite history is
+stored under ignored `build/backups/` storage; the temporary old-history Git
+reference was removed, so only the rewritten `main` is reachable.
+
+1. Authenticate the pinned GitHub CLI through the maintainer's browser.
+2. Create the public remote, push `main`, verify its visible contents and
    default branch, then share the URL with the Carlo site owner.
 
-Follow `docs/PUBLISHING.md`; do not push before the identity checkpoint is
-resolved.
+The identity checkpoint is resolved. Continue with the authentication and
+post-push verification steps in `docs/PUBLISHING.md`.
