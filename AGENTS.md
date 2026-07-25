@@ -599,6 +599,15 @@ source record.
 - Scan staged paths for secrets, private permission correspondence, local
   absolute paths, oversized binaries, and generated caches before every public
   push.
+- Before the first public push, inspect every reachable commit's author and
+  committer identity. Confirm that each email address is intentionally public,
+  or obtain explicit maintainer approval before rewriting history to a verified
+  no-reply identity. Never expose a personal email merely because tracked file
+  contents passed a secret scan.
+- Treat any lesson or collection with `rights_review = "pending_cc0_scope"` as
+  a release blocker for a blanket CC0 claim. A mixed-scope public repository
+  must preserve exact exclusions in `NOTICE.md`; promotion to `published`
+  requires the documented rights decision for that lesson.
 - Use small, reviewable commits that separate inventory, infrastructure,
   lessons, and generated documentation.
 - The public README must state scope, exact catalog totals by status, build and
