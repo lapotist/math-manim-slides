@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q02",
+  "scene_class": "CarloTcfs112MathQ02",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Weekdays form a cycle of length 7. Since 2024=7*289+1, 2024 is congruent to 1 modulo 7, hence 2024^112 is congruent to 1^112=1 modulo 7. Exact integer modular exponentiation independently gives pow(2024,112,7)=1; 2024^112 has 371 decimal digits and (2024^112-1) is divisible by 7. Using the convention that 0 days after Wednesday is Wednesday, adding the remainder gives weekday index (3+1) mod 7=4, namely Thursday. Boundary checks agree: 1 day gives Thursday, 7 days gives Wednesday, and 8 and 15 days both give Thursday."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_week_wheel",
+        "loop": false
+      },
+      {
+        "id": "walk_one_week",
+        "loop": false
+      },
+      {
+        "id": "compare_same_remainder",
+        "loop": false
+      },
+      {
+        "id": "ask_for_remainder",
+        "loop": false
+      },
+      {
+        "id": "split_base_into_weeks",
+        "loop": false
+      },
+      {
+        "id": "multiply_remainders",
+        "loop": false
+      },
+      {
+        "id": "compress_modular_result",
+        "loop": false
+      },
+      {
+        "id": "read_full_weeks_plus_one",
+        "loop": false
+      },
+      {
+        "id": "land_on_unknown_day",
+        "loop": false
+      },
+      {
+        "id": "reveal_thursday",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q02/deck.py",
+      "sha256": "21966de60deff890a67d8d7fdd823a79aa3eee1e79f6df4845abb8a52737bc34"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q02/presenter.zh-TW.md",
+      "sha256": "2aeaf8cf50f7bab0e97b20bbe6bb4896cbfc28beb007a1d2c5fe38a32547d755"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q02/storyboard.md",
+      "sha256": "6608d57799f723561e3af1d3c45e6cbc551b46d64e3a7f17d21b5f31582e7764"
+    }
+  }
+}

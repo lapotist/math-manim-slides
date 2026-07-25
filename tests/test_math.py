@@ -473,6 +473,55 @@ class Tcfs112MathChecks(unittest.TestCase):
         self.assertEqual(numerals, [258, 285, 528, 582, 825, 852])
         self.assertEqual(numerals.count(max(numerals)), 1)
 
+    def test_q02_weekday_cycle_and_large_power_remainder(self) -> None:
+        weekday_names = (
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+        )
+        wednesday = weekday_names.index("Wednesday")
+
+        expected_examples = {
+            0: "Wednesday",
+            1: "Thursday",
+            7: "Wednesday",
+            8: "Thursday",
+            15: "Thursday",
+        }
+        for days, expected in expected_examples.items():
+            self.assertEqual(weekday_names[(wednesday + days) % 7], expected)
+
+        self.assertEqual(2024, 7 * 289 + 1)
+        remainder = pow(2024, 112, 7)
+        self.assertEqual(remainder, 1)
+        self.assertEqual(weekday_names[(wednesday + remainder) % 7], "Thursday")
+
+    def test_q03_overlapping_shares_and_prize_scale(self) -> None:
+        solutions = [
+            (a, b, c, d)
+            for a in range(101)
+            for b in range(101 - a)
+            for c in range(101 - a - b)
+            for d in [100 - a - b - c]
+            if a + b == 40 and a + c == 60 and a + d == 50
+        ]
+        self.assertEqual(solutions, [(25, 15, 35, 25)])
+
+        a, b, c, d = (Fraction(share, 100) for share in solutions[0])
+        self.assertEqual(a + b + c + d, 1)
+        self.assertEqual(
+            (a + b, a + c, a + d),
+            (Fraction(2, 5), Fraction(3, 5), Fraction(1, 2)),
+        )
+
+        total_prize = Fraction(315, 1) / c
+        self.assertEqual(total_prize, 900)
+        self.assertEqual(d * total_prize, 225)
+
 
 if __name__ == "__main__":
     unittest.main()

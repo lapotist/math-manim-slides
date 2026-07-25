@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "lesson_id": "carlo.tcfs_112_math_gifted.q03",
+  "scene_class": "CarloTcfs112MathQ03",
+  "verified_at": "2026-07-25",
+  "status": "ok",
+  "review": {
+    "mechanical": "passed",
+    "visual": "human_reviewed",
+    "mathematics": "Let total prize money be T>0 and let A,B,C,D be the four awards. Normalize by T: a=A/T, b=B/T, c=C/T, d=D/T. The clues are a+b=2/5, a+c=3/5, a+d=1/2, and a+b+c+d=1. Adding the three pair clues gives 3a+b+c+d=3/2; subtracting the total equation gives 2a=1/2, so a=1/4. Therefore b=3/20, c=7/20, and d=1/4. Every share is positive, all four sum to 1, and the three pair equations check exactly, so the solution is admissible and unique. Since C=315=(7/20)T, T=900. Thus D=(1/4)T=225. Equivalently, d/c=(1/4)/(7/20)=5/7 and 315*5/7=225."
+  },
+  "render": {
+    "segment_count": 10,
+    "resolution": [
+      1920,
+      1080
+    ],
+    "beats": [
+      {
+        "id": "meet_shared_pool",
+        "loop": false
+      },
+      {
+        "id": "reveal_pair_clues",
+        "loop": false
+      },
+      {
+        "id": "stack_three_clues",
+        "loop": false
+      },
+      {
+        "id": "remove_one_whole_pool",
+        "loop": false
+      },
+      {
+        "id": "split_fifty_between_two_a",
+        "loop": false
+      },
+      {
+        "id": "recover_four_shares",
+        "loop": false
+      },
+      {
+        "id": "anchor_known_money",
+        "loop": false
+      },
+      {
+        "id": "group_into_five_percent_units",
+        "loop": false
+      },
+      {
+        "id": "settle_unit_value_preanswer",
+        "loop": false
+      },
+      {
+        "id": "reveal_xiaopu_award",
+        "loop": false
+      }
+    ],
+    "loop_endpoints": []
+  },
+  "source_hashes": {
+    "scene_file": {
+      "path": "lessons/tcfs_112_math_gifted/q03/deck.py",
+      "sha256": "25ccb8b05950387f1e65e7f87259ddb034abc80028c00be891318d3e7921a8ed"
+    },
+    "presenter_script": {
+      "path": "lessons/tcfs_112_math_gifted/q03/presenter.zh-TW.md",
+      "sha256": "3515b8114d5d5cb13bd0caffefac57c01b44bea006cf27211a81ec674822f416"
+    },
+    "storyboard": {
+      "path": "lessons/tcfs_112_math_gifted/q03/storyboard.md",
+      "sha256": "23be8c24f7d60d4904ddae2423fa0605d88aad0ae204f94f828166f328868329"
+    }
+  }
+}

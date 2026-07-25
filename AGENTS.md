@@ -5,6 +5,13 @@ Manim Slides. The intended audience is a Traditional Chinese-speaking student
 preparing for selective mathematics assessments. Explanations must be correct,
 calm, concrete, and possible to follow at presentation speed.
 
+Treat this as a teacher-led worked-example genre for that specific audience,
+not a learner diary, research-news summary, or general-interest spectacle.
+Before storyboarding, record the prerequisite knowledge and the likely first
+misconception. Let those facts determine vocabulary, pause length, and how much
+intermediate structure remains visible; do not inherit pacing from a creator in
+a different explanatory genre merely because its animation style is appealing.
+
 ## Mission And Scope
 
 The project is a public, reproducible collection of lessons derived from
@@ -274,6 +281,10 @@ not instructions to imitate another creator's visual style.
   two cases and notice one relevant pattern at a time before stating a rule.
 - Delay equations until the corresponding visual relationship can already be
   pictured. Algebra should name and compress an idea, not introduce it cold.
+- Plan a two-way translation between the concrete/spatial view and the symbolic
+  or numerical view. After an equation compresses the picture, return its terms
+  to the visible objects and use the original setup to check the result. A
+  one-way replacement of a diagram by algebra is not visual explanation.
 - Design the consolidation beat around an earned realization: the final result
   should resolve the opening question and make the route memorable.
 - Preserve uncertainty long enough for the audience to reason. Do not place the
@@ -286,6 +297,9 @@ not instructions to imitate another creator's visual style.
 ## Motion And Proof
 
 - Every movement must answer the same question as the narration at that moment.
+- Give every planned movement a one-sentence purpose in the storyboard. If the
+  purpose cannot be named, remove the movement; moving text or equations merely
+  to keep the screen active competes with the presenter rather than teaching.
 - Choose motion states deliberately: generic, canonical, boundary/extreme, and
   mirrored states. Undirected roaming is not evidence.
 - Freeze all variables except the one currently under study.
@@ -512,6 +526,10 @@ source record.
 - Do not copy 3Blue1Brown code, artwork, narration, or rendered assets into the
   CC0 project. Learn from its explanatory patterns and implement original
   scenes.
+- Treat `3b1b/videos` as a research reference only: its scene repository is
+  licensed CC BY-NC-SA 4.0, targets 3b1b's ManimGL workflow rather than Manim
+  Community, and includes version-specific code. Do not port snippets or infer
+  CC0 compatibility from the MIT license of the Manim engine itself.
 - CC0 does not require attribution, but this project requires source credit as
   a provenance and academic-integrity rule.
 - Add an explicit exception notice for any non-CC0 input retained in the
@@ -552,6 +570,8 @@ sources without copying their artwork, narration, or scene implementation:
   https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/
 - 3Blue1Brown's official exposition advice:
   https://www.3blue1brown.com/about/
+- A concrete geometric view translated back and forth with coordinates:
+  https://www.3blue1brown.com/lessons/vectors/
 - The concrete-to-general circle-area lesson:
   https://www.3blue1brown.com/lessons/essence-of-calculus/
 - The fixed-points/variable-point problem-solving lesson:
@@ -564,5 +584,10 @@ sources without copying their artwork, narration, or scene implementation:
   https://www.3blue1brown.com/lessons/dandelin-spheres/
 - Deliberate exploration and invariant discovery:
   https://www.3blue1brown.com/lessons/windmills/
+- The checkpoint-oriented ManimGL production workflow, used only as workflow
+  research rather than Community Edition code:
+  https://www.3blue1brown.com/lessons/manim-demo/
+- The separate license and compatibility boundary of 3Blue1Brown's scene code:
+  https://github.com/3b1b/videos
 - Manim Slides official documentation:
   https://manim-slides.eertmans.be/latest/

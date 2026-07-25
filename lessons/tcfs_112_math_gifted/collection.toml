@@ -30,19 +30,25 @@ production_state = "visual_verified"
 id = "carlo.tcfs_112_math_gifted.q02"
 label = "Fill-in Question 2"
 source_pages = [2]
+topic = "weekday cycles and modular exponentiation"
+answer = "星期四"
 solution_asset = "youtube:HEkjXNCB3g8"
 solution_url = "https://www.youtube.com/watch?v=HEkjXNCB3g8"
+solution_locator = "00:00-00:30"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q03"
 label = "Fill-in Question 3"
 source_pages = [3]
+topic = "overlapping percentage sums and unit-rate scaling"
+answer = "225"
 solution_asset = "youtube:SlZg1LfjbrE"
 solution_url = "https://www.youtube.com/watch?v=SlZg1LfjbrE"
+solution_locator = "00:00-01:32.05"
 eligible = true
-production_state = "planned"
+production_state = "visual_verified"
 
 [[problems]]
 id = "carlo.tcfs_112_math_gifted.q04"
