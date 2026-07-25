@@ -10,5 +10,9 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
 
+[project.urls]
+Homepage = "https://github.com/lapotist/carlo-math-manim-slides"
+Repository = "https://github.com/lapotist/carlo-math-manim-slides"
+
 [tool.setuptools.packages.find]
 where = ["src"]

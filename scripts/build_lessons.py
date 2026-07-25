@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LESSON_PATTERN = "lessons/*/*/lesson.toml"
 RENDERED_STATES = {"draft_rendered", "visual_verified", "published"}
 PROJECT_TITLE = "Carlo Math Manim Slides"
+PROJECT_URL = "https://github.com/lapotist/carlo-math-manim-slides"
 CC_BY_URL = "https://creativecommons.org/licenses/by/4.0/"
 REVEAL_VERSION = "6.0.1"
 ATTRIBUTION_MARKER = 'id="carlo-project-attribution"'
@@ -138,7 +139,7 @@ def add_export_attribution(destination: Path, lesson: dict[str, Any]) -> None:
 <section id="carlo-project-attribution" data-generated-legal-appendix="true" data-background-color="#101214" typeof="CreativeWork">
   <div style="box-sizing:border-box;color:#f4f1e8;font-family:sans-serif;margin:0 auto;max-width:1040px;padding:54px 68px;text-align:left;">
     <h2 style="color:#f4f1e8;font-size:39px;letter-spacing:0;margin:0 0 20px;">授權與來源</h2>
-    <p style="font-size:22px;line-height:1.45;margin:0 0 14px;"><strong>{PROJECT_TITLE}</strong><br/><span property="name">{title}</span><br/><span property="creator">Carlo Math Manim Slides contributors</span></p>
+    <p style="font-size:22px;line-height:1.45;margin:0 0 14px;"><strong><a href="{PROJECT_URL}" property="url" style="color:#f4f1e8;">{PROJECT_TITLE}</a></strong><br/><span property="name">{title}</span><br/><span property="creator">Carlo Math Manim Slides contributors</span></p>
     <p style="font-size:19px;line-height:1.45;margin:0 0 14px;">本檔為專案原始匯出；未標記後續修改。專案原創教學內容採 <a href="{CC_BY_URL}" property="license" rel="license" style="color:#59c3c3;">CC BY 4.0</a>。</p>
     <p style="font-size:18px;line-height:1.45;margin:0 0 14px;"><strong>來源紀錄</strong><br/>素材：{asset_markup}<br/>定位：{source_locator}{solution_markup}<br/><a href="{source_url}" style="color:#f2c14e;">資料頁</a>（{source_context_role}；非來源檔授權連結）</p>
     <p style="color:#b9bec4;font-size:15px;line-height:1.4;margin:0;">來源素材與匯出檔內的第三方軟體保留各自的權利與授權；完整的 Reveal.js 與 Manim Slides MIT 通知已內嵌於本 HTML 原始碼。來源署名不代表來源作者是本專案內容的授權人。</p>

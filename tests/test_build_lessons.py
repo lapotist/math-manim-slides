@@ -50,6 +50,10 @@ class ExportAttributionChecks(unittest.TestCase):
         self.assertIn('rel="license"', result)
         self.assertIn("CC BY 4.0", result)
         self.assertIn("Carlo Math Manim Slides contributors", result)
+        self.assertIn(
+            'href="https://github.com/lapotist/carlo-math-manim-slides" property="url"',
+            result,
+        )
         self.assertIn("A &lt; B", result)
         self.assertIn("a=1&amp;b=2", result)
         self.assertIn("解題來源：正哥愛數學", result)
