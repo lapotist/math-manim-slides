@@ -10,12 +10,17 @@ any rights that were effectively granted for those earlier revisions. The
 separate MIT and CC BY 4.0 grants below govern the current revision and later
 contributions unless a later notice says otherwise.
 
+The project is now named *Math Manim Slides*. Earlier revisions and existing
+render metadata may identify it as *Carlo Math Manim Slides*; both names refer
+to the same contributor project, not to Carlo or any source owner as licensor.
+
 ## MIT Software
 
 The MIT License in `LICENSE` applies to the project-authored software and
 software-support files in these paths:
 
-- `src/carlo_manim/`
+- `src/math_manim/`
+- `src/carlo_manim/` (QA-bound compatibility API)
 - `scripts/`
 - `tests/`
 - `tools/`
@@ -60,7 +65,7 @@ contributions.
 
 When sharing CC BY material, retain this attribution in a reasonable form:
 
-> Carlo Math Manim Slides contributors, *Carlo Math Manim Slides*, licensed
+> Math Manim Slides contributors, *Math Manim Slides*, licensed
 > under CC BY 4.0. Retain the lesson-specific solution provenance in
 > `SOURCES.md` and indicate whether you made changes.
 

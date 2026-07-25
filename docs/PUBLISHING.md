@@ -63,10 +63,12 @@ pixi run prepare-tex
 pixi run lessons render carlo.tcfs_115_math_gifted.q09 --quality l
 ```
 
-Question 9 exercises the single shared `CarloSlide` base, CJK text, TeX,
-updaters, a loop, geometry, and the Manim Slides manifest path. Inspect its
-generated manifest and first/last frames. If a new base/template family is
-introduced, add one representative clean-tree render for that family.
+Question 9 exercises the QA-bound `CarloSlide` compatibility API, CJK text,
+TeX, updaters, a loop, geometry, and the Manim Slides manifest path. A separate
+import test confirms that the neutral `math_manim.MathSlide` API builds on the
+same stable base. Inspect the generated manifest and first/last frames. If a new
+base/template family is introduced, add one representative clean-tree render
+for that family.
 
 Record the commit ID, tool versions, commands, and results under
 `docs/releases/` before publication. Do not commit the temporary environment or
@@ -91,7 +93,7 @@ tracked file, shell history, chat, or command argument.
 Choose the final owner and repository name. From the audited local repository:
 
 ```bash
-pixi run gh repo create OWNER/carlo-math-manim-slides \
+pixi run gh repo create OWNER/math-manim-slides \
   --public \
   --source=. \
   --remote=origin \
@@ -108,7 +110,7 @@ current command reference is <https://cli.github.com/manual/gh_repo_create>.
 ## 6. Verify The Public Result
 
 ```bash
-pixi run gh repo view OWNER/carlo-math-manim-slides --json nameWithOwner,url,visibility,defaultBranchRef
+pixi run gh repo view OWNER/math-manim-slides --json nameWithOwner,url,visibility,defaultBranchRef
 git ls-remote --heads origin main
 ```
 

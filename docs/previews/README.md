@@ -7,7 +7,7 @@ scene `Question9Slide`. It was generated from
 
 The preview contains the project's original visual reconstruction and no
 source scan or downloaded third-party artwork. It is educational content under
-CC BY 4.0 as mapped in `NOTICE.md`: credit “Carlo Math Manim Slides
+CC BY 4.0 as mapped in `NOTICE.md`: credit “Math Manim Slides
 contributors,” retain the lesson provenance in `SOURCES.md`, link the license,
 and indicate changes. The separately supplied PDF itself is excluded and is
 not relicensed by this notice.

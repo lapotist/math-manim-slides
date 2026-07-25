@@ -46,12 +46,12 @@ class ExportAttributionChecks(unittest.TestCase):
             module.add_export_attribution(destination, lesson)
             result = destination.read_text(encoding="utf-8")
 
-        self.assertIn('id="carlo-project-attribution"', result)
+        self.assertIn('id="math-project-attribution"', result)
         self.assertIn('rel="license"', result)
         self.assertIn("CC BY 4.0", result)
-        self.assertIn("Carlo Math Manim Slides contributors", result)
+        self.assertIn("Math Manim Slides contributors", result)
         self.assertIn(
-            'href="https://github.com/lapotist/carlo-math-manim-slides" property="url"',
+            'href="https://github.com/lapotist/math-manim-slides" property="url"',
             result,
         )
         self.assertIn("A &lt; B", result)
@@ -63,7 +63,7 @@ class ExportAttributionChecks(unittest.TestCase):
         self.assertNotIn('data-visibility="uncounted"', result)
         self.assertNotIn('rel="dcterms:source"', result)
         self.assertEqual(result.count("<section"), source.count("<section") + 1)
-        self.assertIn("BEGIN CARLO THIRD-PARTY LICENSE NOTICES", result)
+        self.assertIn("BEGIN MATH PROJECT THIRD-PARTY LICENSE NOTICES", result)
         self.assertIn("Copyright (c) 2022-2024 Jérome Eertmans", result)
         self.assertIn("Copyright (C) 2011-2026 Hakim El Hattab", result)
 

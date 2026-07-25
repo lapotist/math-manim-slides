@@ -55,7 +55,7 @@ def render_summary() -> str:
     return "\n".join(
         (
             START,
-            "The reproducible 2026-07-24 site snapshot records:",
+            "The reproducible 2026-07-24 Carlo-site snapshot records:",
             "",
             f"- {audit['scope']['pages']:,} public first-party pages;",
             (

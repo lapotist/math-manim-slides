@@ -1,8 +1,11 @@
-# Carlo Math Manim Slides
+# Math Manim Slides
 
 An independent collection of intuitive Traditional Chinese mathematics
-lessons built with Manim Community and Manim Slides. Each completed lesson is
-linked to the exact solution source from [正哥愛數學](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/).
+lessons built with Manim Community and Manim Slides. Every completed lesson is
+linked to its exact problem and solution sources. The current catalog begins
+with a cohort researched from [正哥愛數學](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/)
+and a separately supplied ROC 115 pilot; future source cohorts keep their own
+provenance and permission records in the same repository.
 
 Question 9 is the reference implementation: it first explores the moving
 point, proves upper/lower symmetry, calculates one half, and only then doubles
@@ -17,7 +20,7 @@ boundary are recorded in [`docs/previews/README.md`](docs/previews/README.md).
 ## Current Inventory
 
 <!-- catalog-summary:start -->
-The reproducible 2026-07-24 site snapshot records:
+The reproducible 2026-07-24 Carlo-site snapshot records:
 
 - 434 public first-party pages;
 - 4,346 unique embedded assets (326 Drive and 4,020 YouTube);
@@ -27,7 +30,7 @@ The reproducible 2026-07-24 site snapshot records:
 Pages, assets, problem records, and completed lesson units are different denominators. Eligibility and production states are tracked separately; placeholders and blocked sources never count as finished lessons.
 <!-- catalog-summary:end -->
 
-The site-wide conversion is not complete. The site snapshot and access audit
+The Carlo-site conversion is not complete. Its site snapshot and access audit
 are complete at the boundary above. The 2,489 confirmed-public assets are the
 review pool; most still require problem-level extraction, mathematical review,
 and an exact rights decision. The 14-unit ROC 115 pilot is a separately
@@ -128,6 +131,13 @@ pixi run render-q9
 pixi run present-q9
 ```
 
+New lessons should import `MathSlide` and shared helpers from `math_manim`.
+The verified Carlo-source decks retain their original `carlo_manim` imports
+through a compatibility API because changing those 46 scene files, or the
+locked editable distribution identifier, would invalidate their human-reviewed
+QA attestations. Those legacy identifiers are not the project name and may be
+retired only with a complete rerender and renewed visual review.
+
 `prepare-tex` downloads the resource bundle pinned by Tectonic 0.16.9 during
 setup, verifies an actual XDV-to-SVG conversion, and then keeps equation
 rendering network-free. It uses an existing `dvisvgm` when available. On
@@ -194,7 +204,7 @@ path map and exclusion list. Source PDFs, videos, exam material, branding,
 fonts, and dependencies are not relicensed merely because they are cited or
 cataloged.
 
-CC BY reuse should credit “Carlo Math Manim Slides contributors,” link the
+CC BY reuse should credit “Math Manim Slides contributors,” link the
 license and material where practicable, retain the lesson provenance in
 `SOURCES.md`, and state whether changes were made. Carlo is credited as a
 solution-research source, not presented as the licensor of this project's

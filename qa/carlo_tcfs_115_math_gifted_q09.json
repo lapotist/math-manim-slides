@@ -17,7 +17,7 @@
     ],
     "manifest": {
       "path": "slides/Question9Slide.json",
-      "sha256": "a238deeecfcafcb11850db47cfb7ae608c8292113cb605809808448720711977"
+      "sha256": "c3d36940671c5cfd1c8518e4d8e70a643c565f9c584ab7d20e7add8b396b2093"
     },
     "segments": [
       {
@@ -27,47 +27,47 @@
       },
       {
         "beat_id": "introduce_p",
-        "path": "slides/files/Question9Slide/c67d4250f7b18f744b3a3222c5f2393118a0b0de7184385ebd60fc4fbd90f93b.mp4",
+        "path": "slides/files/Question9Slide/ab2ecfe361cf1e523e1ccc4b27cf2f9b8d5fcd022c1ff597d195015b33348c43.mp4",
         "sha256": "f7912d03e24faa358fc9d958b4c3b7284423b4cba4b26fd8b8414d4459309b3f"
       },
       {
         "beat_id": "explore_p",
-        "path": "slides/files/Question9Slide/77e84272a259521a269ddc3f1b2b97aef5af7a4e44f1c40a4a0a3762aec1ec29.mp4",
+        "path": "slides/files/Question9Slide/d9fc6470002c23332e22c2d601da723579ba41217e8b4d18dc3ff834c7e1e3cd.mp4",
         "sha256": "4552e8747860aaf63c6b08f376c463eaa075e30f795dc8f007681702f3ba90b8"
       },
       {
         "beat_id": "pose_locus_question",
-        "path": "slides/files/Question9Slide/fc80cfa2cd9cd03f70bdb622dd3860a27be989495527353e712ec97cb181fef9.mp4",
+        "path": "slides/files/Question9Slide/ab21e4a85b91ec55cabd908100c246cf68f9f93a5493fd4428f3310f9ec4210b.mp4",
         "sha256": "8ceae7992ee9e138f0e1ae35b2b4de215f7682088d6e72a23f2d47278c4b1844"
       },
       {
         "beat_id": "reveal_locus_outline",
-        "path": "slides/files/Question9Slide/2e8f126517f72ea13f5bfe5bb353ccb66fed230b2afc6a9c8e290457e9b56902.mp4",
+        "path": "slides/files/Question9Slide/f09a0c4823742096a9ecc8ccd1d9ebb07d793c71805f0fc5833f554365ccd20e.mp4",
         "sha256": "407fa1e41b774875b61e3fc40c08e2b5a5aa7879bb9d0da4b1c683cc9a924f3e"
       },
       {
         "beat_id": "prove_reflection_symmetry",
-        "path": "slides/files/Question9Slide/ec362ee44f42621da9f7224f04d9c3f03ca7be6f15fa2899902692391d0e3693.mp4",
+        "path": "slides/files/Question9Slide/841eee717214f4d64f87e7b2e3a093a44ebf485bcf80424023a47e9c485fd64e.mp4",
         "sha256": "75a8dc1ae0298f596e8f381e4a602ffd9100b45db2e336e93620cc5db01c85d8"
       },
       {
         "beat_id": "isolate_upper_half",
-        "path": "slides/files/Question9Slide/e14fc648e38d9b6a294ea213a706b64f55f3ede652c01f68352d9eb767aa1738.mp4",
+        "path": "slides/files/Question9Slide/3825cee0396a6855dd1b4efb08bef114ebb78af0a97b6bb200009885620742f1.mp4",
         "sha256": "88fabb0e4de03264d4c7223df32fe20cc88a95bcee79c6debcf96d4d47da8741"
       },
       {
         "beat_id": "boundary_90",
-        "path": "slides/files/Question9Slide/042d2b7a209ef28515805075c5604eb9eaf5df4833ca1199e0e6f0a37565564f.mp4",
+        "path": "slides/files/Question9Slide/543c36ee10ca9c294c9116e245a2c6486dbab1791a89eeec6d99aa9a806551d6.mp4",
         "sha256": "0c983089adae2ea1566d380cd7323b9713f912f1d623ef984306bd0cd8cb1318"
       },
       {
         "beat_id": "boundary_30",
-        "path": "slides/files/Question9Slide/c11c6db04c822b7d0fcfbd54723556acbdaef574b6c4d50d54228838faaf49b4.mp4",
+        "path": "slides/files/Question9Slide/88e6d408b16a11185f818eefa6e062d4a56e734f31aa291c88d1554f7866eb22.mp4",
         "sha256": "10d161e878cecb860fe2f5e1a1dcad5d7e35c860947aa9919f678bcb53bcb2d7"
       },
       {
         "beat_id": "derive_radius_sector",
-        "path": "slides/files/Question9Slide/774daf568c225c8a7781e00df43b9ea2d77afef9e5da520d68d50ce28d3176c9.mp4",
+        "path": "slides/files/Question9Slide/021baabc9987cef7f2bc3c639cc3924eb65c51358d3d7f2fc47e4493824e5100.mp4",
         "sha256": "365543b235eeb865e597e00b992afa9e0a3aff73500607885d05a06b536c0244"
       },
       {
@@ -92,12 +92,12 @@
       },
       {
         "beat_id": "reflect_and_double",
-        "path": "slides/files/Question9Slide/b504b0ebadb75766cb32cc90d2029ebb38affcc151c6a9e72eb229a9a8f0e8e2.mp4",
+        "path": "slides/files/Question9Slide/ff67f3af37be23c2df6c0830ded75ce14564aabde1d83fb6669ddedca9803cec.mp4",
         "sha256": "ec4f2237bfab9359c34ca50f67a991e4905e5cc53c17315beafc3551b11cc894"
       },
       {
         "beat_id": "consolidate",
-        "path": "slides/files/Question9Slide/10deb065a154a9a1e6258b3d327360eaf6e78095a419399b4236f354933d8373.mp4",
+        "path": "slides/files/Question9Slide/2142f7d041e844041697ada68b2e270af1b895757792cf73a27dc31a843b43dd.mp4",
         "sha256": "7751a93fc4d95e16b10a85c610bc482fd19922a5b89801bac40726c9f5a6d7a1"
       }
     ],

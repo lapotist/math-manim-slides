@@ -14,15 +14,17 @@ a different explanatory genre merely because its animation style is appealing.
 
 ## Mission And Scope
 
-The project is a public, reproducible collection of lessons derived from
-eligible solution material on Carlo's Math site. The canonical production unit
-is one identifiable problem and its solution, not one navigation page, PDF, or
-exam year.
+The project is a public, reproducible, multi-source collection of visual
+mathematics lessons. Each source cohort must have its own provenance,
+permission, and rights record. The canonical production unit is one
+identifiable problem and its solution, not one navigation page, PDF, video,
+creator, or exam year.
 
-"All" must be measured from the catalog, never inferred from the files that
-happen to exist in the repository. Keep three counts separate:
+"All" must name a source boundary and be measured from the catalog, never
+inferred from the files that happen to exist in the repository. For a
+site-derived cohort, keep three counts separate:
 
-- a **page** is part of Carlo's first-party information architecture;
+- a **page** is part of that source's first-party information architecture;
 - an **asset** is one unique embedded Drive or YouTube provider ID; and
 - a **lesson unit** is one identifiable problem together with enough solution
   reasoning to build and verify a deck.
@@ -31,12 +33,14 @@ One asset can contain several lesson units, and one asset can appear on several
 archive or topic pages. Never equate page count, asset count, and lesson count.
 Ingest a provider ID once and retain all of its page/topic relationships.
 
-The frozen 2026-07-24 discovery boundary is the public Google Site root plus
-every path in its navigation data: 434 fetched pages, all HTTP 200, with no
-additional first-party content path found in page-body links. Those pages
+### Current Carlo Source Cohort
+
+The frozen 2026-07-24 Carlo discovery boundary is the public Google Site root
+plus every path in its navigation data: 434 fetched pages, all HTTP 200, with
+no additional first-party content path found in page-body links. Those pages
 contain 4,346 unique embedded provider IDs: 326 Drive assets and 4,020 YouTube
-videos. This is the source-asset denominator, not a claim that 4,346 decks are
-complete or even eligible.
+videos. This is that cohort's source-asset denominator, not a claim that 4,346
+decks are complete or even eligible, and not a denominator for future cohorts.
 
 The access audit found 2,489 confirmed public assets, 622 confirmed restricted
 assets, and 1,235 YouTube assets whose status is unresolved because an
@@ -46,16 +50,17 @@ unresolved records as tombstones.
 
 A source item is eligible only when:
 
-- it is publicly reachable from Carlo's site;
+- its provenance and access path are documented and publicly verifiable, or a
+  supplied-source record explains the controlled review boundary;
 - the problem and solution can be identified without guessing;
 - the available solution contains enough reasoning to verify a lesson; and
 - its permission and provenance can be documented honestly.
 
 Broken, private, member-only, duplicated, answer-only, unresolved-access, or
-legally unclear items remain in the catalog with an explicit exclusion or
-blocker reason. YouTube oEmbed metadata is not proof that a video is playable.
-Never silently omit a record and never represent generated placeholders as
-finished lessons.
+legally unclear items remain in their source cohort with an explicit exclusion
+or blocker reason. YouTube oEmbed metadata is not proof that a video is
+playable. Never silently omit a record and never represent generated
+placeholders as finished lessons.
 
 The user-supplied `數學-115數理資優學科能力評量答案.pdf` is a separate source.
 It was not discovered among the 326 Drive assets on the frozen Carlo crawl,
@@ -85,8 +90,9 @@ change the denominator or call a partial collection complete.
 Research is part of lesson production, not a preliminary task that can be
 skipped once a render starts. Before storyboarding a problem:
 
-- open the canonical Carlo page and record the exact problem asset, solution
-  asset, page or timestamp range, provider IDs, access status, and checksum;
+- open the canonical source record and record the exact problem asset,
+  solution asset, page or timestamp range, provider IDs, access status, and
+  checksum;
 - reconstruct the argument independently from the problem statement, including
   domain restrictions, endpoints, degenerate cases, and the requested answer;
 - separate restrictions stated by the problem from conventions suggested only
@@ -108,7 +114,7 @@ the independently checkable mathematical claim in `lesson.toml`. A public
 video title, thumbnail, answer key, or plausible final answer is not enough
 evidence to begin a finished deck. When the public source does not expose the
 reasoning, keep the item `blocked` rather than reverse-engineering a solution
-and attributing it to Carlo.
+and attributing it to a source creator.
 
 Treat filenames and page headings such as `解析` as labels, not content
 evidence. Inspect the actual solution region: a PDF with blank worked areas can
@@ -171,7 +177,10 @@ Use a stable collection layout as the project grows:
 - `catalog/`: the source-of-truth inventory and generated indexes;
 - `lessons/<source-id>/<problem-id>/`: scene, presenter script, and lesson
   metadata for one problem;
-- `src/carlo_manim/`: shared visual language, geometry helpers, and templates;
+- `src/math_manim/`: neutral public API for shared visual language, geometry
+  helpers, and templates;
+- `src/carlo_manim/`: QA-bound compatibility implementation for existing
+  verified Carlo-source decks;
 - `scripts/`: inventory, validation, rendering, exporting, and index tooling;
 - `tests/`: metadata, mathematics, manifest, and smoke checks;
 - `docs/`: methodology, permission statement, provenance, and publication
@@ -188,7 +197,7 @@ minimum:
 
 - title, topic, source collection, school/exam, year, and question number when
   those fields exist;
-- canonical Carlo page URL and exact solution locator or source-asset URL;
+- canonical source page URL and exact solution locator or source-asset URL;
 - content type, checksum for a downloaded source asset, and duplicate-of ID;
 - an explicit Boolean eligibility decision and, when false outside a blocked
   state, the review reason;
@@ -197,7 +206,7 @@ minimum:
 - scene class, presenter-script path, and build outputs;
 - mathematical reviewer state and provenance/license scope.
 
-For a site-derived lesson, `source_asset_id`, `source_asset_sha256`,
+For a Carlo-site-derived lesson, `source_asset_id`, `source_asset_sha256`,
 `solution_asset_id`, and `solution_url` must reconcile against
 `catalog/source_assets.json`: the solution must be confirmed public, both
 assets must name the canonical source page, and the downloaded PDF checksum
@@ -253,7 +262,7 @@ and its lesson metadata must report the same production state.
   render.
 - Display strings may use Traditional Chinese; identifiers, filenames, and
   infrastructure code remain ASCII.
-- Promote a helper into the shared package only after a second concrete lesson
+- Promote a helper into `math_manim` only after a second concrete lesson
   demonstrates the same behavior. Reuse primitives, not finished explanations.
 
 ## Parallel Production
@@ -281,7 +290,12 @@ and its lesson metadata must report the same production state.
   or any source-permission state without a documented rights decision.
 - Coordinate changes to shared helpers before editing them during parallel
   production. Prefer a local lesson primitive until repeated use and integration
-  review justify promotion into `src/carlo_manim/`.
+  review justify promotion into `src/math_manim/`.
+- Existing verified decks keep `carlo_manim` and `CarloSlide` until every
+  affected deck is rerendered and visually reviewed. New decks use
+  `math_manim` and `MathSlide`. The locked `carlo-math-slides` distribution
+  identifier remains only because `pixi.toml` and `pixi.lock` are bound into
+  every current QA attestation; changing it requires the same complete review.
 
 ## Teaching Order
 
@@ -569,19 +583,20 @@ source record.
   and contributions identified in `NOTICE.md`, never as blanket claims over
   the repository.
 - Before incorporating an input, classify it as project-original,
-  Carlo-authorized, compatible third-party, reference-only, or excluded.
+  source-authorized, compatible third-party, reference-only, or excluded.
 - Keep `SOURCES.md` or an equivalent generated source index with one canonical
-  Carlo URL and solution locator per lesson. Repeat the concise source credit in
-  lesson metadata and the presenter script.
+  source URL and solution locator per lesson. Repeat the concise source credit
+  in lesson metadata and the presenter script.
 - Keep a public permission statement that names the role of the grantor, the
   grantee/project, material scope, allowed adaptation/publication, permitted
   licensing model, and date. State only facts supported by the permission; do
   not publish private messages, email addresses, signatures, or other personal
   correspondence.
-- Permission from the site owner does not automatically establish ownership of
-  third-party exam statements, logos, fonts, photographs, linked documents, or
-  3Blue1Brown material. Link to those inputs and document their separate status
-  unless the permission scope explicitly covers redistribution and relicensing.
+- Permission from a site or channel owner does not automatically establish
+  ownership of third-party exam statements, logos, fonts, photographs, linked
+  documents, or 3Blue1Brown material. Link to those inputs and document their
+  separate status unless the permission scope explicitly covers redistribution
+  and relicensing.
 - General permission to use or adapt material does not relicense the source.
   Apply CC BY 4.0 only to the project's own expression or to an adaptation the
   recorded permission actually authorizes. Unclear third-party scope fails
