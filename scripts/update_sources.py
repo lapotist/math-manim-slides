@@ -69,6 +69,28 @@ def source_references(
     return " / ".join(references)
 
 
+def access_record(collection: dict[str, Any]) -> str:
+    if collection.get("source_origin") == "frozen_site_inventory":
+        return "2026-07-24 frozen site snapshot"
+    return "User-supplied local source; exact intake date not recorded"
+
+
+def creator_record(collection: dict[str, Any]) -> str:
+    creator = collection.get("source_creator", "creator not recorded")
+    return f"{creator}; third-party rightsholder boundaries unresolved"
+
+
+def modification_record(lesson: dict[str, Any]) -> str:
+    paths = "<br>".join(
+        f"`{lesson[field]}`"
+        for field in ("scene_file", "presenter_script", "storyboard")
+    )
+    summary = "Original Manim reconstruction, visual sequencing, and narration"
+    if lesson.get("source_note"):
+        summary += "; source-specific additions or corrections are recorded in lesson metadata"
+    return f"Mathematical-solution research; {summary}. Modified paths:<br>{paths}"
+
+
 def render_lesson_index(root: Path = ROOT) -> tuple[str, int]:
     collections = {
         collection["id"]: collection
@@ -77,8 +99,8 @@ def render_lesson_index(root: Path = ROOT) -> tuple[str, int]:
     }
     rows = [
         START,
-        "| Lesson | Pages and exact locator | Source references | Source SHA-256 | Credit | Rights |",
-        "| --- | --- | --- | --- | --- | --- |",
+        "| Lesson | Pages and exact locator | Source references | Source SHA-256 | Creator / rightsholder status | Access | Use, modifications, and affected paths | Credit | Rights / permission reference |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     count = 0
     for path in sorted(root.glob(LESSON_PATTERN)):
@@ -114,8 +136,12 @@ def render_lesson_index(root: Path = ROOT) -> tuple[str, int]:
             "| "
             f"`{escape_cell(lesson_id)}` | {escape_cell(locator)} | "
             f"{references} | `{checksum}` | "
+            f"{escape_cell(creator_record(collection))} | "
+            f"{escape_cell(access_record(collection))} | "
+            f"{escape_cell(modification_record(lesson))} | "
             f"{escape_cell(lesson['source_credit'])} | "
-            f"`{escape_cell(lesson['rights_review'])}` |"
+            f"`{escape_cell(lesson['rights_review'])}`; "
+            "[permission scope](docs/provenance/CARLO_PERMISSION.md) |"
         )
         count += 1
     rows.append(END)
