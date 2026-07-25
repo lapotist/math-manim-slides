@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_115_math_gifted.p2q02",
   "scene_class": "Tcfs115Part2Q02Slide",
-  "verified_at": "2026-07-24",
+  "verified_at": "2026-07-25",
   "status": "ok",
   "review": {
     "mechanical": "passed",
@@ -14,6 +14,77 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/Tcfs115Part2Q02Slide.json",
+      "sha256": "19f7f15d9ba211fb35b5a26d2e4f257ca90d66a81108dedac76e914c571e6bfa"
+    },
+    "segments": [
+      {
+        "beat_id": "build_triangle",
+        "path": "slides/files/Tcfs115Part2Q02Slide/7a8b4802f0a0889d30e77bcaf7d6d03ce4834089c028115116fae47e91a512ed.mp4",
+        "sha256": "2696ba3ee247930856586e818d9b0018a996ba6204c92545232a654f60786334"
+      },
+      {
+        "beat_id": "place_angle_bisector",
+        "path": "slides/files/Tcfs115Part2Q02Slide/eceea58ffce97406db3d9b3888578d4fedfe3d187dfab0ad38387ee3c4bb9f7a.mp4",
+        "sha256": "0157b7f6b7253a3f187ae7450c9600c72bfcc415d4c3290a51cecfdb12483716"
+      },
+      {
+        "beat_id": "add_circle_and_e",
+        "path": "slides/files/Tcfs115Part2Q02Slide/18a0a882389bf9ba2a11f4224ead34875a66f3d1a43322f933f5b2f214faa12f.mp4",
+        "sha256": "f329d0b96bb5ef3edbd0cda4b2b5a3ed4abc12a47789cea6338ebf64c0991c77"
+      },
+      {
+        "beat_id": "pose_hidden_similarity",
+        "path": "slides/files/Tcfs115Part2Q02Slide/8725409b2fe348557f6fdd708fa84bdd0ddb87fd15b18f1bf1471c4dc2db125b.mp4",
+        "sha256": "a20a63aa03cca98b23ea40210f525916c8da167d7950a6dcdf671c95da36b9e0"
+      },
+      {
+        "beat_id": "prove_first_similarity",
+        "path": "slides/files/Tcfs115Part2Q02Slide/37139084fb66086487206694c7eb75e6c17e3527b8670e9799bd5600a8dae1fc.mp4",
+        "sha256": "6e75e2022f7d40214b6d64f31cbf9cb5f61a91f281280208f5952e8b0a46e5f5"
+      },
+      {
+        "beat_id": "prove_second_similarity",
+        "path": "slides/files/Tcfs115Part2Q02Slide/a3b9978d9f647bb675b3520655c9390b10e7e44c1420b9a2b111964abc1c84c0.mp4",
+        "sha256": "ca673f81283d60132d95a652da8b445678efb9b82650eeaf26a7a602d19e32f5"
+      },
+      {
+        "beat_id": "align_three_triangles",
+        "path": "slides/files/Tcfs115Part2Q02Slide/fe12954df160d72036cd8fc865e67e70d9a27db7042cd90c501626673bf1d4df.mp4",
+        "sha256": "bb54d0b433ffbee8715decc091a7b6c5a7213f9cd3c24306ce226194c4d62012"
+      },
+      {
+        "beat_id": "build_first_product",
+        "path": "slides/files/Tcfs115Part2Q02Slide/f71ba9675aff9cb46751373af31caedbb88f81ebf2a5702be6257eed69b0738d.mp4",
+        "sha256": "4cfbe1b3f99960a2fad48efb2f2ef82857436a88665451bf73dfa36bb69e6066"
+      },
+      {
+        "beat_id": "build_second_product",
+        "path": "slides/files/Tcfs115Part2Q02Slide/54b8f89e66dca51c281ca3d14eaf2f1c1345030adf98e108f32fae8f4ea083c6.mp4",
+        "sha256": "c5c594a59b7ee6c19b7f6c718889b709cdc4273f78df24de6ba806ad651fd70b"
+      },
+      {
+        "beat_id": "split_ae",
+        "path": "slides/files/Tcfs115Part2Q02Slide/39bf3e88c64dd054972b12d2e416d267bc41f965f76ce1bff105abe38cc771ed.mp4",
+        "sha256": "6a13950ed01fb69ad58aaffdeb2e38e016d913e4323f76d1674dc9038ab2345e"
+      },
+      {
+        "beat_id": "isolate_ad_square",
+        "path": "slides/files/Tcfs115Part2Q02Slide/135b43f08b11ca657c664475f548ad91657e45d8ec01b98d94eda9b95adb6e11.mp4",
+        "sha256": "0377c09ba1338931375a1303a47338a76346082af41fcf66b54085c8f3eedea0"
+      },
+      {
+        "beat_id": "take_positive_root",
+        "path": "slides/files/Tcfs115Part2Q02Slide/b09ac69c80b87c26720cf6b40c4959231488f3586a5a9de8e6f3f6262831df0e.mp4",
+        "sha256": "31ba958b08314b13b065d16740608d430e3c4e09d1fb66a98d1a8098daefb997"
+      },
+      {
+        "beat_id": "consolidate",
+        "path": "slides/files/Tcfs115Part2Q02Slide/65a8d09948960c28e5722b2c3096ae7cdd722e08f0b90a23ff2fa4f69ec6ca45.mp4",
+        "sha256": "2b62a92a938bece7c222a2450c65e8a43ae6bddc00faa957c9656c840a3eb3ec"
+      }
     ],
     "beats": [
       {
@@ -72,6 +143,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_115_math_gifted/p2q02/lesson.toml",
+      "sha256": "3ba0ef6add895743fc4b92324abbcc7d4b46942d01dfbaa3a85f55340449d31e"
+    },
     "scene_file": {
       "path": "lessons/tcfs_115_math_gifted/p2q02/deck.py",
       "sha256": "fca875f3de2a62f5eb288eeec0e8dea2093b67cfd2a6297f95a8168d5e00c265"
@@ -84,5 +159,9 @@
       "path": "lessons/tcfs_115_math_gifted/p2q02/storyboard.md",
       "sha256": "1d749104f22305adaf5cdc9c110b66a2d161fa96bd76c70cbf4b1045f9f23927"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

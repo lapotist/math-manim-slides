@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_113_math_gifted.q09",
   "scene_class": "CarloTcfs113MathQ09",
   "verified_at": "2026-07-25",
@@ -14,6 +14,67 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs113MathQ09.json",
+      "sha256": "0bfe7caaf79796b9113ca4ccee8741646172821d01fa19c363f96dd2f52af0b9"
+    },
+    "segments": [
+      {
+        "beat_id": "meet_sixty_term_row",
+        "path": "slides/files/CarloTcfs113MathQ09/dd884152421d7a901e6b59ca1f2d6bb4ff50be1a9d9fd9636aaefb0202f74a00.mp4",
+        "sha256": "94ba6518e7c1997a239d2143865bd01106da60be8e4eb247c24443e8f8763997"
+      },
+      {
+        "beat_id": "pair_to_1830",
+        "path": "slides/files/CarloTcfs113MathQ09/cdca2d11a4b8d2e464c4fd51ab5217c5c0c2506f02e94116991138d9bb98defe.mp4",
+        "sha256": "5c5fb1daea9e95efab9ee62b9811555ac1c08352e6e726e175f717e0f0b192dd"
+      },
+      {
+        "beat_id": "shift_by_sixty",
+        "path": "slides/files/CarloTcfs113MathQ09/fb9cf267331a497cad45997fbe0765e97130cb9834b50dd805059a8b2f106262.mp4",
+        "sha256": "ff437b66ed7cb87d8ba480926b8e3b37f2118b96c90972934631bf8eead1152a"
+      },
+      {
+        "beat_id": "cross_2024_boundary",
+        "path": "slides/files/CarloTcfs113MathQ09/5c3fa1bfea3770f31df5302a53e77b072a4be168859a9310d856c6cc2421a2f0.mp4",
+        "sha256": "c2568b707bbce3084145294097803a70be21d8bd83d7e005d93c33f66fdcfdca"
+      },
+      {
+        "beat_id": "name_general_sum",
+        "path": "slides/files/CarloTcfs113MathQ09/8b34dc0ec17575cbec3cb9db4473b16cbee4b201e1fb5e23fb0ac8f53993b8bd.mp4",
+        "sha256": "be31d44340fcfb60d46b866aba97a9511584e38ed6304f0a779eae42044d83d3"
+      },
+      {
+        "beat_id": "open_length_61_lane",
+        "path": "slides/files/CarloTcfs113MathQ09/92b19d49ec18cd01e9834c441754f3a5f923563a3d1aaf624cffb5b1214f4ba7.mp4",
+        "sha256": "2cd7a19293d89baf59fbaff5e4893d8067355df2c8d6c3ecd4f7f8276bb54d7a"
+      },
+      {
+        "beat_id": "complete_length_lanes",
+        "path": "slides/files/CarloTcfs113MathQ09/bed1520660fbf1071130474145a5b72205e2fd4ebef9321f77a1314a718baf4f.mp4",
+        "sha256": "7f6da25c7d200b0640f0354cedc73facbca519ca08a9f907f68d74d0f2f802a7"
+      },
+      {
+        "beat_id": "stop_at_length_64",
+        "path": "slides/files/CarloTcfs113MathQ09/62b3db493e83f409f4934963e10d3b5efcf21a50a2da06c2a8016bb07b5ca0bc.mp4",
+        "sha256": "5f6f21c288ab9b07e9f479297e1f65df974b5fab7d9096d598ae764d829c890c"
+      },
+      {
+        "beat_id": "verify_distinct_totals",
+        "path": "slides/files/CarloTcfs113MathQ09/75e34ea5e271e37503cf082abe168d3736c093a050a98fb1cf643a6af1ff12b0.mp4",
+        "sha256": "e046ccaa05d911157c26c90656c3af136d83705a67aa3056627d75ac4545ceac"
+      },
+      {
+        "beat_id": "hold_count_expression",
+        "path": "slides/files/CarloTcfs113MathQ09/106ee70347c9c9c90b2ec31c10dd6e57c7b11956d56308d57edbee2f0e67e234.mp4",
+        "sha256": "2ccbc3de1d7400a1de1d372d4134369fccc1add710854c0211d5ec0666244118"
+      },
+      {
+        "beat_id": "reveal_total_count",
+        "path": "slides/files/CarloTcfs113MathQ09/b6d075d30c2142790aadd4345e5f55fdbed6607a8f3752ef475fa793bc34e991.mp4",
+        "sha256": "54ec91011670cba1fad55d73655a5587b1b77b5edc30e8a2c560e8b911b0c000"
+      }
     ],
     "beats": [
       {
@@ -64,6 +125,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_113_math_gifted/q09/lesson.toml",
+      "sha256": "5491f856e53ff2083454e56293512c301a40c06051d82479cf6b08bc3c66db6d"
+    },
     "scene_file": {
       "path": "lessons/tcfs_113_math_gifted/q09/deck.py",
       "sha256": "29608e8964d66a7c7f793e1babde27907b6824b1c1bedb734f4b00070a13852b"
@@ -76,5 +141,9 @@
       "path": "lessons/tcfs_113_math_gifted/q09/storyboard.md",
       "sha256": "d4f2bec87b8b53759a622373e738a36757442b0d76ae07bbda6bfd00eb44734d"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_112_math_gifted.q13",
   "scene_class": "CarloTcfs112MathQ13",
   "verified_at": "2026-07-25",
@@ -14,6 +14,77 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs112MathQ13.json",
+      "sha256": "29379ad331ad4cc0d36b1b3c6d669376c1c1bb09b93c7b0d0332328900cdc080"
+    },
+    "segments": [
+      {
+        "beat_id": "grow_seven_branch",
+        "path": "slides/files/CarloTcfs112MathQ13/7584de8f625243d2b64ec134417bf38673144cfd09ac38c6a01060ecbc1c4adc.mp4",
+        "sha256": "d6640af49acf4909eaff41032d3d806b9ba8e5a604e68886e8e588a2996ad38a"
+      },
+      {
+        "beat_id": "pass_color_forward",
+        "path": "slides/files/CarloTcfs112MathQ13/9f5b6a69ff98c5eaf0040836171082225152713dad35328122b5ef40c3c07a3d.mp4",
+        "sha256": "21ea96d9914eadfabf3291e9d7e362541607500a8ad176181ef70e07c5d647dd"
+      },
+      {
+        "beat_id": "equate_colors_and_roots",
+        "path": "slides/files/CarloTcfs112MathQ13/443bfe86428c785b39d42b5643308392421260bf2dc70373ae39699444534742.mp4",
+        "sha256": "ede97246ff09c46208f6c92fa0c35abd069900677b9d0ee901ab510a68ebd0da"
+      },
+      {
+        "beat_id": "count_each_nonroot",
+        "path": "slides/files/CarloTcfs112MathQ13/49de83e750ae8146f354b647aa8db7b87f648d5b114062144fec17846c4e0ba9.mp4",
+        "sha256": "0045e4f31be364923d55f969881211fdca3cb01165a152a65aa85494edf84871"
+      },
+      {
+        "beat_id": "compress_recruitment_bundles",
+        "path": "slides/files/CarloTcfs112MathQ13/7692e23a478073d05b959c760ae611982e2f4257090ce244050221f82a37e68c.mp4",
+        "sha256": "450ff98a9dd6a9af3e4be8ea7ac94b971857f9ad1824ab34f22f246618072527"
+      },
+      {
+        "beat_id": "earn_mod_seven",
+        "path": "slides/files/CarloTcfs112MathQ13/76265e5b515a7bbe4246644dcac6f8e23444aea9965effade187127a5592f870.mp4",
+        "sha256": "fb50d16e5891d0fc548ad041efa3fb41d8c082b32b2583a6e8e61d5953bf966a"
+      },
+      {
+        "beat_id": "pause_before_feasibility",
+        "path": "slides/files/CarloTcfs112MathQ13/d10ace67d75cc09db2fa0e5bb1699060bd1b9c4ac11894197f20cd774ef1aa17.mp4",
+        "sha256": "922ffe28afa250ee2c463a0c71b5d7512ca044e5dff18274e363420d7904a332"
+      },
+      {
+        "beat_id": "plant_six_founders",
+        "path": "slides/files/CarloTcfs112MathQ13/891880b55efe7b22ae865faaa80d842c3fe424a0381de90c37b93bd93af4d36d.mp4",
+        "sha256": "99f382b011c8ff8252a5968ee50600e43d4eb19666932650492580a5811044c9"
+      },
+      {
+        "beat_id": "repeat_ninety_seven_steps",
+        "path": "slides/files/CarloTcfs112MathQ13/f0439cf081a75c127e6ac0480c442fdb8645b08d8128e72f61244ed2ea033afa.mp4",
+        "sha256": "323ae84877e4ce48527a69333e865fa818d57e6564ad891d86e07140e495347d"
+      },
+      {
+        "beat_id": "certify_minimum",
+        "path": "slides/files/CarloTcfs112MathQ13/10f0ef4d34e0094e433527e5a98e42cdd32605fb3b9df4a642b04b6eb5eea852.mp4",
+        "sha256": "b2a71f993ab36a5f3d32f30e6f66395dfb9ce7a5812fa8d8b74cf900c94b77b5"
+      },
+      {
+        "beat_id": "bound_color_count",
+        "path": "slides/files/CarloTcfs112MathQ13/65e809d07b73831264856e7951d6a72a5d2c099bcdf3aca82060e480732b7938.mp4",
+        "sha256": "64b3f9ab792bb10ee7d3463c1466688c2972cb4d616d83f47beb7076d199e1f2"
+      },
+      {
+        "beat_id": "realize_all_founders",
+        "path": "slides/files/CarloTcfs112MathQ13/131bc5eb16f53462e2137bdbfa59bd492fef6f52d282d3a453fd5e6bbec96efe.mp4",
+        "sha256": "18f8d62cb5fced295072de3cf215cbe300b725f3e90c0ea12f046fbf3db01b71"
+      },
+      {
+        "beat_id": "reveal_extreme_pair",
+        "path": "slides/files/CarloTcfs112MathQ13/5130035d128a3a07b511138469616aeb1d35c4b3c3e8f65836c08bbb23407ce3.mp4",
+        "sha256": "047a73fe986fc47b288adc5fddec7d79a90e2c41d2ffd75b1f590055b73b604f"
+      }
     ],
     "beats": [
       {
@@ -72,6 +143,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_112_math_gifted/q13/lesson.toml",
+      "sha256": "92e3ab87f6ca68b0c11b56570a53ea97a1d3ac2481a1fddda0ff007e70d044cb"
+    },
     "scene_file": {
       "path": "lessons/tcfs_112_math_gifted/q13/deck.py",
       "sha256": "4c60b914844ee295f5d0f2b323fe11a42d72c1e86a5f1a817dc36771f91a13f9"
@@ -84,5 +159,9 @@
       "path": "lessons/tcfs_112_math_gifted/q13/storyboard.md",
       "sha256": "fb4ebdf39f3a3f15c1ebb7f218a993d8f91386f262dd618d482323280c341e5d"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

@@ -431,10 +431,16 @@ not instructions to imitate another creator's visual style.
 Suggested commands:
 
 ```bash
-pixi run manim-slides render --quality h --media_dir build/media/question_9 question_9_slide.py Question9Slide
+pixi run manim-slides render --quality h --media_dir build/media/question_9 lessons/tcfs_115_math_gifted/q09/deck.py Question9Slide
 pixi run manim-slides present Question9Slide
 pixi run manim-slides convert --to html --one-file --offline Question9Slide question_9_slides.html
 ```
+
+`--offline` describes the generated deck, not the conversion process. The
+Manim Slides converter downloads Reveal.js assets from its configured CDN, so
+run export with network access and then verify that the resulting one-file HTML
+opens with networking disabled. Do not report a sandbox DNS failure as a
+converter defect.
 
 Use `--quality h`, not the combined `-qh` flag: the Slides wrapper can interpret
 the `h` as its own help option. Collection-wide commands should be Pixi tasks
@@ -464,7 +470,8 @@ pixi run lessons export --status visual_verified
 
 ## Reference Implementation: Question 9
 
-For the moving-point locus in `question_9_slide.py`, preserve this order:
+For the moving-point locus in
+`lessons/tcfs_115_math_gifted/q09/deck.py`, preserve this order:
 
 1. Show only the fixed segment `AB = 4`.
 2. Introduce the same point `P` that will remain throughout the lesson.

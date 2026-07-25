@@ -8,6 +8,8 @@ applies only to the following project-authored paths (the Covered Material):
 - `scripts/`
 - `src/carlo_manim/`
 - `tests/`
+- `tools/`
+- `qa/README.md`
 - `README.md`
 - `CONTRIBUTING.md`
 - `NOTICE.md`

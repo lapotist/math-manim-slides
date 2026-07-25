@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_113_math_gifted.q01",
   "scene_class": "CarloTcfs113MathQ01",
-  "verified_at": "2026-07-24",
+  "verified_at": "2026-07-25",
   "status": "ok",
   "review": {
     "mechanical": "passed",
@@ -14,6 +14,57 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs113MathQ01.json",
+      "sha256": "2fb8344fea0d55e772980984eda747ee154edf014bcbf611cb273687c2035074"
+    },
+    "segments": [
+      {
+        "beat_id": "meet_power_puzzle",
+        "path": "slides/files/CarloTcfs113MathQ01/85ca2e6be9c7927aa78cce5c710028b9cc174f3d6232f44e33a578a1eb96b46f.mp4",
+        "sha256": "ae3199f8f7c3f657ec664db81247c9a035f34afeb49a3aae049b37ef23687415"
+      },
+      {
+        "beat_id": "make_bases_equal",
+        "path": "slides/files/CarloTcfs113MathQ01/f0f139e251320f9bc10d8eb7c83219c93ae09ee9a9ac67a5c35fa1000c2bc965.mp4",
+        "sha256": "a704ff4ac21d6e6dd89e786dbf5caa1ef37d9fde8675d5f6c7430669d4565376"
+      },
+      {
+        "beat_id": "build_exponent_budget",
+        "path": "slides/files/CarloTcfs113MathQ01/e92661f9aec01de37913bb8a897894358016401f417b156801a1ceeb47f0598e.mp4",
+        "sha256": "9d37d76fae94a3b9dd94d4ccc255c0d63d2ff490376ed7eb9f1c5445f9f41b9b"
+      },
+      {
+        "beat_id": "explore_z_one",
+        "path": "slides/files/CarloTcfs113MathQ01/ae24e316fcd9dfb0a0f4b6f24c695bec794d0a23b2828c1ef2243dce56018d89.mp4",
+        "sha256": "493da9a193b00bbc9367d212e9662e8daa157033434776a9beefaa227065e921"
+      },
+      {
+        "beat_id": "guard_positive_endpoint",
+        "path": "slides/files/CarloTcfs113MathQ01/e6ecb8e9ff7625144db41afd64dff6b6b79d66d465a5e45763d0a8f6f79e81b5.mp4",
+        "sha256": "343473dd681899384a3cdb8ebf5834b27e9860f7b1761bfc608435247e89e6cb"
+      },
+      {
+        "beat_id": "explore_z_two",
+        "path": "slides/files/CarloTcfs113MathQ01/88f12f0f3db7cbbb4c6c65db609c24e8c1177d8fc012f847d10f024f3c9cc2ee.mp4",
+        "sha256": "62bd7a58d45b184b701b0a26156943b30859a9ccf2824ffac40982aac2112d41"
+      },
+      {
+        "beat_id": "test_z_three_boundary",
+        "path": "slides/files/CarloTcfs113MathQ01/a02d3d030e9158b57aeeeccd6c28bd8569de5a7000e17e87d54377f1629c172c.mp4",
+        "sha256": "76918d7c708ea05f5078b296bae462d791d0059c104f4e65f2253a21bd7f6c12"
+      },
+      {
+        "beat_id": "combine_slice_counts",
+        "path": "slides/files/CarloTcfs113MathQ01/a152d19530430464ad418781f457633961b1a4fdea599c30fc6ccddb9590d854.mp4",
+        "sha256": "c70f65ade5c1d1a0b6b38ce165a4472d7f36f62356c889489f80473b887f8cfd"
+      },
+      {
+        "beat_id": "return_to_original",
+        "path": "slides/files/CarloTcfs113MathQ01/b6f79e73b5f9bfaa3e0db6cb6e21951ec25ed5c27146d5a94db0e8e66cac4e97.mp4",
+        "sha256": "5ee63e3eceead348a506f038b5453841c8ff938552cb40055d635d7d9f6249e5"
+      }
     ],
     "beats": [
       {
@@ -56,6 +107,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_113_math_gifted/q01/lesson.toml",
+      "sha256": "37e727d4aba3b59b813d88cc85bb919d5c9a9a1845cc2d63decb7ba95c516031"
+    },
     "scene_file": {
       "path": "lessons/tcfs_113_math_gifted/q01/deck.py",
       "sha256": "ccd135609641b9224cb160b6e67200d8d931c2c13e9a51f8c44471adad142cf2"
@@ -68,5 +123,9 @@
       "path": "lessons/tcfs_113_math_gifted/q01/storyboard.md",
       "sha256": "82356f3a80417943655b5bf95c9a5573c01ee4184c1242cf61b814fd423d2e44"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

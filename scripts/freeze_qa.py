@@ -79,6 +79,10 @@ def freeze_lesson(lesson: dict[str, Any], human_reviewed: bool) -> Path:
 
     source_fields = ("scene_file", "presenter_script", "storyboard")
     source_hashes: dict[str, dict[str, str]] = {}
+    source_hashes["lesson_metadata"] = {
+        "path": str(lesson["metadata_path"].relative_to(ROOT)),
+        "sha256": sha256(lesson["metadata_path"]),
+    }
     for field in source_fields:
         relative_path = lesson[field]
         path = ROOT / relative_path
@@ -99,8 +103,25 @@ def freeze_lesson(lesson: dict[str, Any], human_reviewed: bool) -> Path:
         for segment in segments
         if segment.get("loop")
     ]
+    manifest_path = ROOT / "slides" / f"{lesson['scene_class']}.json"
+    if not manifest_path.is_file():
+        raise ValueError(f"{lesson_id}: missing Slides manifest {manifest_path}")
+    rendered_segments = []
+    for segment in segments:
+        relative_path = segment["file"]
+        path = ROOT / relative_path
+        if not path.is_file():
+            raise ValueError(f"{lesson_id}: missing rendered segment {path}")
+        rendered_segments.append(
+            {
+                "beat_id": segment["beat_id"],
+                "path": relative_path,
+                "sha256": sha256(path),
+            }
+        )
+
     evidence = {
-        "schema_version": 1,
+        "schema_version": 2,
         "lesson_id": lesson_id,
         "scene_class": lesson["scene_class"],
         "verified_at": datetime.now(UTC).date().isoformat(),
@@ -113,6 +134,11 @@ def freeze_lesson(lesson: dict[str, Any], human_reviewed: bool) -> Path:
         "render": {
             "segment_count": len(segments),
             "resolution": [1920, 1080],
+            "manifest": {
+                "path": str(manifest_path.relative_to(ROOT)),
+                "sha256": sha256(manifest_path),
+            },
+            "segments": rendered_segments,
             "beats": [
                 {"id": beat_id, "loop": loop}
                 for beat_id, loop in zip(expected_ids, expected_loops, strict=True)
@@ -120,6 +146,10 @@ def freeze_lesson(lesson: dict[str, Any], human_reviewed: bool) -> Path:
             "loop_endpoints": loop_endpoints,
         },
         "source_hashes": source_hashes,
+        "toolchain_hashes": {
+            relative_path: sha256(ROOT / relative_path)
+            for relative_path in ("pixi.toml", "pixi.lock")
+        },
     }
     output_dir = ROOT / "qa"
     output_dir.mkdir(parents=True, exist_ok=True)

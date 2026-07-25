@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_112_math_gifted.q11",
   "scene_class": "CarloTcfs112MathQ11",
   "verified_at": "2026-07-25",
@@ -14,6 +14,72 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs112MathQ11.json",
+      "sha256": "0eddaaabd8caf669978acfa94b01f51ab3fc75a4192a37b46595a9257cc11d49"
+    },
+    "segments": [
+      {
+        "beat_id": "meet_square_and_inner_point",
+        "path": "slides/files/CarloTcfs112MathQ11/b9a02ba11340b9b89f0d64a7a7b22279dfa6b894cc90a431449e8965cd85274b.mp4",
+        "sha256": "424b502ad7ba42004ef4f66d96da6c908653cd227fd4592a5a2ce647db41f2ca"
+      },
+      {
+        "beat_id": "test_two_valid_positions",
+        "path": "slides/files/CarloTcfs112MathQ11/2d409f750731f5f37631d3d9ef9fbea8d0e7827088319285b9bdf1afdb154e30.mp4",
+        "sha256": "8c1bd47bbab2f759440ca8de10191642d8c768f5b1815bb3b280c6255155a646"
+      },
+      {
+        "beat_id": "ask_for_target_angle",
+        "path": "slides/files/CarloTcfs112MathQ11/4ab583ed64ca015a63620294f921ab49b98ebf0a49cdc637f6eaea6b0c32bfdd.mp4",
+        "sha256": "e25940642a28af6a56a5039fd03412dc3c815bb8f4ee8a799ce825817874dde6"
+      },
+      {
+        "beat_id": "rotate_point_about_b",
+        "path": "slides/files/CarloTcfs112MathQ11/259652246aa2cf7dd997bd929f6c0c3756b5359882970a292b4e1b8f2ebbab06.mp4",
+        "sha256": "2be8b4193e6e8fce689e9051f37777556a05d72e302b318a4ed71fbc125a93d2"
+      },
+      {
+        "beat_id": "match_rotated_lengths",
+        "path": "slides/files/CarloTcfs112MathQ11/d606d34e6ea6ab97fc90976b08d6d4c24669b21358b7f09fd6de9f2525c8a967.mp4",
+        "sha256": "7789a83362c54a373c304d12ac4f6e1079df13878ec1e6f0ae5acffb7f5e61b3"
+      },
+      {
+        "beat_id": "measure_the_new_diagonal",
+        "path": "slides/files/CarloTcfs112MathQ11/b9229f04854dafddcba843c4b6e35bb393744ebf910c58a2ff1dc239f441144a.mp4",
+        "sha256": "e68d8dfda133b69ca4f24a8e9cf116fea9bae8f592eeda2737f823c011a9fc10"
+      },
+      {
+        "beat_id": "translate_the_condition",
+        "path": "slides/files/CarloTcfs112MathQ11/e53ed846a0a146afaed85ebdc35bbc6342fff276bb6712bc332d7dc28248b124.mp4",
+        "sha256": "98de15e42585c309daac81975f640481a7afe2cd9b3ed0d822643332b457a0cb"
+      },
+      {
+        "beat_id": "earn_the_right_angle",
+        "path": "slides/files/CarloTcfs112MathQ11/b58e6977667f353da1248cdd1aa27ee6a4318be4e5d8705a9d4f1c77630e038a.mp4",
+        "sha256": "f5f7bef0068cfb77544cc5942787a8494908d9eb2efb1cd06101bd321fc868a0"
+      },
+      {
+        "beat_id": "assemble_preanswer_angles",
+        "path": "slides/files/CarloTcfs112MathQ11/3b56c6f83a3b363f8a2c349e0b47463fb221cd51c11c27813891140ad0023907.mp4",
+        "sha256": "c1ac7194215d08fab413baae228c4ff007a45d404aa82bd62422a5a5b8ab7075"
+      },
+      {
+        "beat_id": "reveal_the_angle",
+        "path": "slides/files/CarloTcfs112MathQ11/c509508d64e843134db974bc219697b85923e75146163c9f09183fe085d6ac33.mp4",
+        "sha256": "e989767bebbe20917f7cd5be55b96874c9496598545cb6f860b8ccb3ff90498f"
+      },
+      {
+        "beat_id": "verify_with_interior_vectors",
+        "path": "slides/files/CarloTcfs112MathQ11/29430c1580892f9cc9232b7c960eb25ced62bb647b45d3b20170fbd5079319ef.mp4",
+        "sha256": "f456ef3afcd9e778bc4a64c9516c6bc5fb5c9d37a3dd05f6c18d8b5a3f02ae36"
+      },
+      {
+        "beat_id": "return_to_original_square",
+        "path": "slides/files/CarloTcfs112MathQ11/9d8af45e6d066fa9372b716c3227bb48f78b170e045860a8f904e80b0815a3ba.mp4",
+        "sha256": "0a567ac5b42de883123bb870fde4420b084d261861eff5af60a658dfecbedf39"
+      }
     ],
     "beats": [
       {
@@ -68,6 +134,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_112_math_gifted/q11/lesson.toml",
+      "sha256": "d457ecf9c2370d77cdc432bfbb2623f1c7f0f3b2f959cbcfb56c5594bd905afc"
+    },
     "scene_file": {
       "path": "lessons/tcfs_112_math_gifted/q11/deck.py",
       "sha256": "a0a54b51aae348a4a67cb44ec5ea32d81ef91253f4326c50005621909df5dd24"
@@ -80,5 +150,9 @@
       "path": "lessons/tcfs_112_math_gifted/q11/storyboard.md",
       "sha256": "2865e8736d152ebd8baf9fc53297d560b841c8655901a553595b4e70ebea1bc5"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

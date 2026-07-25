@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_112_math_gifted.q12",
   "scene_class": "CarloTcfs112MathQ12",
   "verified_at": "2026-07-25",
@@ -14,6 +14,77 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs112MathQ12.json",
+      "sha256": "eefe2dd378be45e4bbea66155a106c7bd342fa66ab27b2ad578b69ac7ced1fe9"
+    },
+    "segments": [
+      {
+        "beat_id": "meet_unit_hexagon",
+        "path": "slides/files/CarloTcfs112MathQ12/bc4151533bf9a601149628b36ddcbdf0297fa4eeb879e82a8b61fce4f4cb2cbc.mp4",
+        "sha256": "2399d89c6281bb47efb826349de62de8bdbb384349d5819eba67af73eb39835c"
+      },
+      {
+        "beat_id": "rotate_and_watch_overlap",
+        "path": "slides/files/CarloTcfs112MathQ12/c500f4100991d27aee6098f50f93aa39923ebf984a3144982ddefdadf23414cc.mp4",
+        "sha256": "3e51096a03c70063b73175c04598f7527d8710e609fb4674a9179384d7e9fa7b"
+      },
+      {
+        "beat_id": "reduce_one_period_by_reflection",
+        "path": "slides/files/CarloTcfs112MathQ12/5b0a590f5762ef2ae565193f8b79bf8d766d9d19a8f26b538b808ff42115084c.mp4",
+        "sha256": "eedacec79006be4b7db1572a3c25d16ef3dfc3c9f2dc1477aef1a43637b47411"
+      },
+      {
+        "beat_id": "find_common_incircle",
+        "path": "slides/files/CarloTcfs112MathQ12/c6ce8512e44dc8bc5a2d9b697d53d744ab5694614ae4baa351c7fba612aad0e7.mp4",
+        "sha256": "eb85c973fb126f5b40ab22aac8871cea237a60c0c719afce19b18b8feef4fed0"
+      },
+      {
+        "beat_id": "read_alternating_normal_gaps",
+        "path": "slides/files/CarloTcfs112MathQ12/3ee5882b276dd9cf0365a37798431763ef2cf496ced2083ad2806431d879e29d.mp4",
+        "sha256": "fe0d8df243f2b3f358f6e622ae48cb9c42a0d386d9d224fe61887d8391ebffc6"
+      },
+      {
+        "beat_id": "balance_the_gaps",
+        "path": "slides/files/CarloTcfs112MathQ12/b5c91527a0de01d28553cb54d66e9343e20f71b3cd5ba88ed4db731930c15d37.mp4",
+        "sha256": "942718f82970f90cd09e0d51c4775ae6f71283afccced7114177909bc3d55f39"
+      },
+      {
+        "beat_id": "measure_one_tangent_corner",
+        "path": "slides/files/CarloTcfs112MathQ12/76cf839c96326be43df12124deb99c6d79d871d98ea3ab7ad75f6da770e5689f.mp4",
+        "sha256": "1b0c65b8f24db3e7faac91d03b2c16dac6e9603f1e39a724bb865be7c7edc781"
+      },
+      {
+        "beat_id": "assemble_overlap_area",
+        "path": "slides/files/CarloTcfs112MathQ12/413e67027bf4bd0bbf1d18c0c5ab4bae270d08a5913cc791ea182edd4b945363.mp4",
+        "sha256": "2b04c110950610640f6c1157f0949cfbb43923acaca6ab0f60e235a1ea6f780d"
+      },
+      {
+        "beat_id": "prove_equal_gaps_minimize",
+        "path": "slides/files/CarloTcfs112MathQ12/5c926bc677134e3e45a77eb0fb8ce5098047fb1b02469673208c08bd041128cd.mp4",
+        "sha256": "f470b06c2ae106a27ab6203083e08f171b7405d3d637cea64e6bb9e7119abe2e"
+      },
+      {
+        "beat_id": "substitute_half_period",
+        "path": "slides/files/CarloTcfs112MathQ12/b3effd43e452d05e67fbe7a0ec86f63aa9944760e6d01bacc5b1884967a1cbe5.mp4",
+        "sha256": "07031d864e1a85c3f6b00a8ccd3859ec9d9e12b2e8da87923d49ea432cc5d1f4"
+      },
+      {
+        "beat_id": "calculate_tan_fifteen",
+        "path": "slides/files/CarloTcfs112MathQ12/0dc43b9716c26da02680ad42b24a9636541db807cee71cf113c5a12e1853aecb.mp4",
+        "sha256": "cc502c48c820e40354c516a555a411bd5458b78588a79e48a810521ac864337f"
+      },
+      {
+        "beat_id": "hold_before_expansion",
+        "path": "slides/files/CarloTcfs112MathQ12/b67a84cc4e1ba24d7aba300ed689982cf46617f189ab1c7afecee160abdf378a.mp4",
+        "sha256": "d7b8d4de1895b6be43d1089e847fb8e7b0e992c5b1245a6722d0b1bfdf868e25"
+      },
+      {
+        "beat_id": "reveal_and_return_to_rotation",
+        "path": "slides/files/CarloTcfs112MathQ12/d8e6d9a776a8f4bda5e9e901aa0f17ec45f1162dfa6da61c5530fcdd2d58a00a.mp4",
+        "sha256": "aa23118a6df6fb0d398cf2ab995dcd1399daa82a5a915371bce21513f8c1c01c"
+      }
     ],
     "beats": [
       {
@@ -72,6 +143,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_112_math_gifted/q12/lesson.toml",
+      "sha256": "c987af139cea417095ff17f2422e45eab1ba6b1ff668455af610ea80ce945b5d"
+    },
     "scene_file": {
       "path": "lessons/tcfs_112_math_gifted/q12/deck.py",
       "sha256": "5f0c0f7fe8aa0f8551fa4a8a8ad31875081658cca2a8ff0db70786361d9e693b"
@@ -84,5 +159,9 @@
       "path": "lessons/tcfs_112_math_gifted/q12/storyboard.md",
       "sha256": "ebc39d9596ad7cc167ef8161c9441f1dae747fe1aeb402cc932b28492b791cf9"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

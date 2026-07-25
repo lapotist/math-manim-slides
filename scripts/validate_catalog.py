@@ -341,7 +341,7 @@ def validate_qa_evidence(
         errors.append(f"{lesson_id}: verified lesson has no committed QA evidence")
         return
     evidence = load_json(evidence_path)
-    check(evidence.get("schema_version") == 1, f"{lesson_id}: bad QA schema", errors)
+    check(evidence.get("schema_version") == 2, f"{lesson_id}: bad QA schema", errors)
     check(evidence.get("lesson_id") == lesson_id, f"{lesson_id}: QA ID differs", errors)
     check(
         evidence.get("scene_class") == metadata["scene_class"],
@@ -381,6 +381,20 @@ def validate_qa_evidence(
         errors,
     )
     source_hashes = evidence.get("source_hashes", {})
+    metadata_record = source_hashes.get("lesson_metadata", {})
+    metadata_path = metadata["metadata_path"]
+    check(
+        metadata_record.get("path") == metadata_path,
+        f"{lesson_id}: QA lesson metadata path differs",
+        errors,
+    )
+    metadata_file = ROOT / metadata_path
+    if metadata_file.is_file():
+        check(
+            metadata_record.get("sha256") == sha256(metadata_file),
+            f"{lesson_id}: QA evidence is stale for lesson metadata",
+            errors,
+        )
     for field in ("scene_file", "presenter_script", "storyboard"):
         record = source_hashes.get(field, {})
         relative_path = metadata[field]
@@ -396,6 +410,43 @@ def validate_qa_evidence(
                 f"{lesson_id}: QA evidence is stale for {field}",
                 errors,
             )
+    manifest_record = render.get("manifest", {})
+    expected_manifest = f"slides/{metadata['scene_class']}.json"
+    check(
+        manifest_record.get("path") == expected_manifest,
+        f"{lesson_id}: QA manifest path differs",
+        errors,
+    )
+    manifest_path = ROOT / expected_manifest
+    if manifest_path.is_file():
+        check(
+            manifest_record.get("sha256") == sha256(manifest_path),
+            f"{lesson_id}: QA evidence is stale for Slides manifest",
+            errors,
+        )
+    rendered_segments = render.get("segments", [])
+    check(
+        [segment.get("beat_id") for segment in rendered_segments]
+        == [beat["id"] for beat in beats],
+        f"{lesson_id}: QA rendered segment IDs differ",
+        errors,
+    )
+    for segment in rendered_segments:
+        segment_path = ROOT / segment.get("path", "")
+        if segment_path.is_file():
+            check(
+                segment.get("sha256") == sha256(segment_path),
+                f"{lesson_id}: QA evidence is stale for rendered segment "
+                f"{segment.get('beat_id')}",
+                errors,
+            )
+    toolchain_hashes = evidence.get("toolchain_hashes", {})
+    for relative_path in ("pixi.toml", "pixi.lock"):
+        check(
+            toolchain_hashes.get(relative_path) == sha256(ROOT / relative_path),
+            f"{lesson_id}: QA evidence is stale for {relative_path}",
+            errors,
+        )
 
 
 def validate_lessons(
@@ -410,6 +461,7 @@ def validate_lessons(
     for path in sorted(ROOT.glob(LESSON_PATTERN)):
         count += 1
         data = load_toml(path)
+        data["metadata_path"] = str(path.relative_to(ROOT))
         lesson_id = data.get("id")
         check(
             lesson_id in problems_by_id,
@@ -550,6 +602,16 @@ def validate_lessons(
         scene_path = ROOT / data.get("scene_file", "")
         script_path = ROOT / data.get("presenter_script", "")
         storyboard_path = ROOT / data.get("storyboard", "")
+        for field, asset_path in (
+            ("scene_file", scene_path),
+            ("presenter_script", script_path),
+            ("storyboard", storyboard_path),
+        ):
+            check(
+                asset_path.parent == path.parent,
+                f"{lesson_id}: {field} must be colocated with lesson.toml",
+                errors,
+            )
         if production_state in RENDERED_STATES:
             check(scene_path.is_file(), f"{lesson_id}: missing scene file", errors)
         check(script_path.is_file(), f"{lesson_id}: missing presenter script", errors)

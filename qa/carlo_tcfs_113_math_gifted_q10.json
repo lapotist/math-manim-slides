@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_113_math_gifted.q10",
   "scene_class": "CarloTcfs113MathQ10",
   "verified_at": "2026-07-25",
@@ -14,6 +14,67 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs113MathQ10.json",
+      "sha256": "8558ad49519dfd01dfe4acf20a0f7aa4b2bf259830d4baf1750601f4eee65f9d"
+    },
+    "segments": [
+      {
+        "beat_id": "meet_broken_path",
+        "path": "slides/files/CarloTcfs113MathQ10/ce8d7b88f412134b87d1d6fb1ec30a21ae73dfa16d4983d3d7f79191f52d128c.mp4",
+        "sha256": "902e336c7cfd20a7074b9a26f4e15789e34a11208eb56fc29c97afe95e34261f"
+      },
+      {
+        "beat_id": "explore_two_movers",
+        "path": "slides/files/CarloTcfs113MathQ10/d8f5d14e5c4c8cfe058cc0f8d19e076f230d27c8527f249efe643f0de27619c0.mp4",
+        "sha256": "dfcfdfcd95c79292ca0b00dc77108a6a2bf50c6b93c95893116ae39b3e2d8409"
+      },
+      {
+        "beat_id": "reflect_b_across_diagonal",
+        "path": "slides/files/CarloTcfs113MathQ10/1962f4836fed73706bf1bfeb2d9e269c06dec213d64a196130b0eaaf09af2129.mp4",
+        "sha256": "1cba0254ab7d15387fb81ccac124bb31010d4160ae5ee0a33f3a55ca7b9665cd"
+      },
+      {
+        "beat_id": "replace_equal_leg",
+        "path": "slides/files/CarloTcfs113MathQ10/ede41a5cebdbe6154d41284c58263153e7faa27ad04f8947424f7c2403b79d89.mp4",
+        "sha256": "9b4f0782391a69ee528256a7ea8a25ba21b83c02ed0a90ba9d6199a7a0262dc7"
+      },
+      {
+        "beat_id": "straighten_reflected_path",
+        "path": "slides/files/CarloTcfs113MathQ10/fd3a85914e84ea6bfe13a551735232dc0ab8caca45476da1c50d7f5dc049e9bb.mp4",
+        "sha256": "eaaf959ff7533a69bea02ad5b5648a8f6aa304cc9c62ec49c4b988d58f436b50"
+      },
+      {
+        "beat_id": "slide_q_along_top_edge",
+        "path": "slides/files/CarloTcfs113MathQ10/75f0dbcc767792a735026f33d1a0d60b4a98f1210c3c8ca65658202995ccc92d.mp4",
+        "sha256": "afc00843eb39f9e9ffad30ccbe0cdf550247cc5f558f8066af6d3d07bc910146"
+      },
+      {
+        "beat_id": "settle_perpendicular_foot",
+        "path": "slides/files/CarloTcfs113MathQ10/99cc5753420199bac3fbb86e26c9a3fe6bc6b3e3b99c11bd2defc720e04d92b2.mp4",
+        "sha256": "44120b61d6ecc05ec8dc21b47e95a4b09ca15e63f9b83a06a6b825b0693a912e"
+      },
+      {
+        "beat_id": "introduce_coordinates",
+        "path": "slides/files/CarloTcfs113MathQ10/8dbd50d7ebbf4712c12752542e9e9ce46f86e267cdc4488f6cf2f17d437a9eb7.mp4",
+        "sha256": "40f3ad94178268f65a8f24f6f85781abd0e4987f8def550e1dbc5d2a74ee4c9b"
+      },
+      {
+        "beat_id": "compute_reflected_point",
+        "path": "slides/files/CarloTcfs113MathQ10/f9194e99fcc7ff060ef2ae5f0dfb2a40afe6add94360641e1971cfceb74a4ee9.mp4",
+        "sha256": "18025069dc7d5cd300300cc7fd5a7869cb1832faa32723b48bfa023083d6eb45"
+      },
+      {
+        "beat_id": "verify_attainable_configuration",
+        "path": "slides/files/CarloTcfs113MathQ10/f15eef9c7a932dd4592d2609d0503fdcda95185392e995745b6bd3ce7b0381b4.mp4",
+        "sha256": "eabcc851a66b2edfc862cbdc228d0cc473e4364aad7bd20b67eace3fe77fc610"
+      },
+      {
+        "beat_id": "reveal_minimum_length",
+        "path": "slides/files/CarloTcfs113MathQ10/d7f6d2d276a536b3a5291da54245fc7386cdaf977c86f96dcea2ddfff19dd7aa.mp4",
+        "sha256": "082df4e61399e7fd3b2a3f69ac890444a2f9ba764245a6a342a868d15a325772"
+      }
     ],
     "beats": [
       {
@@ -64,6 +125,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_113_math_gifted/q10/lesson.toml",
+      "sha256": "d6845152acf93d963c3f631e1876b4ccee1602eced0b452e0d703776e60678b6"
+    },
     "scene_file": {
       "path": "lessons/tcfs_113_math_gifted/q10/deck.py",
       "sha256": "d374d84a1122cd2818ab01f33abec391ee699f1bc0a69edc3d65680c36a7fa9b"
@@ -76,5 +141,9 @@
       "path": "lessons/tcfs_113_math_gifted/q10/storyboard.md",
       "sha256": "9843a5af959f04fd03df4d76be5350e4e601b567f98d359b22699916874d3e0c"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

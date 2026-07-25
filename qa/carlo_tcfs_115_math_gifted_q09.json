@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_115_math_gifted.q09",
   "scene_class": "Question9Slide",
-  "verified_at": "2026-07-24",
+  "verified_at": "2026-07-25",
   "status": "ok",
   "review": {
     "mechanical": "passed",
@@ -14,6 +14,92 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/Question9Slide.json",
+      "sha256": "a238deeecfcafcb11850db47cfb7ae608c8292113cb605809808448720711977"
+    },
+    "segments": [
+      {
+        "beat_id": "fixed_segment",
+        "path": "slides/files/Question9Slide/2a3222827bd04377724b6fd2c955ba6d503b96fba785998ed47b49bf160bf41d.mp4",
+        "sha256": "420e8eec62d9ea9f9f743396e8c0fafb1e625a413bf0ce578f77e803e83e4e17"
+      },
+      {
+        "beat_id": "introduce_p",
+        "path": "slides/files/Question9Slide/c67d4250f7b18f744b3a3222c5f2393118a0b0de7184385ebd60fc4fbd90f93b.mp4",
+        "sha256": "f7912d03e24faa358fc9d958b4c3b7284423b4cba4b26fd8b8414d4459309b3f"
+      },
+      {
+        "beat_id": "explore_p",
+        "path": "slides/files/Question9Slide/77e84272a259521a269ddc3f1b2b97aef5af7a4e44f1c40a4a0a3762aec1ec29.mp4",
+        "sha256": "4552e8747860aaf63c6b08f376c463eaa075e30f795dc8f007681702f3ba90b8"
+      },
+      {
+        "beat_id": "pose_locus_question",
+        "path": "slides/files/Question9Slide/fc80cfa2cd9cd03f70bdb622dd3860a27be989495527353e712ec97cb181fef9.mp4",
+        "sha256": "8ceae7992ee9e138f0e1ae35b2b4de215f7682088d6e72a23f2d47278c4b1844"
+      },
+      {
+        "beat_id": "reveal_locus_outline",
+        "path": "slides/files/Question9Slide/2e8f126517f72ea13f5bfe5bb353ccb66fed230b2afc6a9c8e290457e9b56902.mp4",
+        "sha256": "407fa1e41b774875b61e3fc40c08e2b5a5aa7879bb9d0da4b1c683cc9a924f3e"
+      },
+      {
+        "beat_id": "prove_reflection_symmetry",
+        "path": "slides/files/Question9Slide/ec362ee44f42621da9f7224f04d9c3f03ca7be6f15fa2899902692391d0e3693.mp4",
+        "sha256": "75a8dc1ae0298f596e8f381e4a602ffd9100b45db2e336e93620cc5db01c85d8"
+      },
+      {
+        "beat_id": "isolate_upper_half",
+        "path": "slides/files/Question9Slide/e14fc648e38d9b6a294ea213a706b64f55f3ede652c01f68352d9eb767aa1738.mp4",
+        "sha256": "88fabb0e4de03264d4c7223df32fe20cc88a95bcee79c6debcf96d4d47da8741"
+      },
+      {
+        "beat_id": "boundary_90",
+        "path": "slides/files/Question9Slide/042d2b7a209ef28515805075c5604eb9eaf5df4833ca1199e0e6f0a37565564f.mp4",
+        "sha256": "0c983089adae2ea1566d380cd7323b9713f912f1d623ef984306bd0cd8cb1318"
+      },
+      {
+        "beat_id": "boundary_30",
+        "path": "slides/files/Question9Slide/c11c6db04c822b7d0fcfbd54723556acbdaef574b6c4d50d54228838faaf49b4.mp4",
+        "sha256": "10d161e878cecb860fe2f5e1a1dcad5d7e35c860947aa9919f678bcb53bcb2d7"
+      },
+      {
+        "beat_id": "derive_radius_sector",
+        "path": "slides/files/Question9Slide/774daf568c225c8a7781e00df43b9ea2d77afef9e5da520d68d50ce28d3176c9.mp4",
+        "sha256": "365543b235eeb865e597e00b992afa9e0a3aff73500607885d05a06b536c0244"
+      },
+      {
+        "beat_id": "sector_area",
+        "path": "slides/files/Question9Slide/e9652e72f31852122d0c3e942ea111d6a75c6325ec8d995d504cd9a1a7be2a27.mp4",
+        "sha256": "628cc342eb0170b26f7ee5cf9f0a1a35da1602724644423e5a6be83ca7635acb"
+      },
+      {
+        "beat_id": "triangle_area",
+        "path": "slides/files/Question9Slide/944b01cea0aa025e68486658db9c40b7d7b056014bcbf84cef2d644350b76b4e.mp4",
+        "sha256": "a8ba1510976d21a9e16e84ece2241f5e0e5aea905d02e5b46189587e8992932c"
+      },
+      {
+        "beat_id": "subtract_semicircle",
+        "path": "slides/files/Question9Slide/b817d49e977d0dbae66ecaaa041cb2f290e7b2b79aa2b68cbb839deab47d1922.mp4",
+        "sha256": "82f85cd432d4ce07a45b6c961bb118bdc5f6cec1f224b0a178f39714f3dc628f"
+      },
+      {
+        "beat_id": "upper_result",
+        "path": "slides/files/Question9Slide/5dc60ba0e4a4b4423199993f9a016401add45ec9f477893912389052c5d46dfe.mp4",
+        "sha256": "9d23e3ccaa4919e73513b91876f4460a6bc61f040eee9c2b01e34239c6d1d7d2"
+      },
+      {
+        "beat_id": "reflect_and_double",
+        "path": "slides/files/Question9Slide/b504b0ebadb75766cb32cc90d2029ebb38affcc151c6a9e72eb229a9a8f0e8e2.mp4",
+        "sha256": "ec4f2237bfab9359c34ca50f67a991e4905e5cc53c17315beafc3551b11cc894"
+      },
+      {
+        "beat_id": "consolidate",
+        "path": "slides/files/Question9Slide/10deb065a154a9a1e6258b3d327360eaf6e78095a419399b4236f354933d8373.mp4",
+        "sha256": "7751a93fc4d95e16b10a85c610bc482fd19922a5b89801bac40726c9f5a6d7a1"
+      }
     ],
     "beats": [
       {
@@ -93,17 +179,25 @@
     ]
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_115_math_gifted/q09/lesson.toml",
+      "sha256": "2870d021bee578498fbb178edfe64de2a0b0ad8f6d149693a8a1323a3adb8371"
+    },
     "scene_file": {
-      "path": "question_9_slide.py",
+      "path": "lessons/tcfs_115_math_gifted/q09/deck.py",
       "sha256": "3566d7ddebd2449527ba362d77f5903258feae958ec66daf90b12bef27a4818e"
     },
     "presenter_script": {
-      "path": "question_9_presenter_script.md",
+      "path": "lessons/tcfs_115_math_gifted/q09/presenter.zh-TW.md",
       "sha256": "e604773c7eb2045f50a9f2d8d2a86e08b3f3e18e283b159faec32d47008d2bdb"
     },
     "storyboard": {
       "path": "lessons/tcfs_115_math_gifted/q09/storyboard.md",
       "sha256": "70e455cac7c69f967d5537263ad440da41d5ea2e5c1eff9e73657a7730745ff3"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

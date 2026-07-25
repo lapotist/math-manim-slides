@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_114_math_gifted.q13",
   "scene_class": "CarloTcfs114MathQ13",
-  "verified_at": "2026-07-24",
+  "verified_at": "2026-07-25",
   "status": "ok",
   "review": {
     "mechanical": "passed",
@@ -14,6 +14,67 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs114MathQ13.json",
+      "sha256": "e391aa31730056a77a2c308432fef1801e1b1e60ffdf5c3ff9ab57d593d35995"
+    },
+    "segments": [
+      {
+        "beat_id": "meet_claim",
+        "path": "slides/files/CarloTcfs114MathQ13/c36e10190fd2b21f7b5fb0223ee6dc8892e77eb2b5c60d208fcb5ffe4d5a80a5.mp4",
+        "sha256": "20c993d8e98c93c3f546308c4ab75cbf21d5215c1b0d1b0199d229e423b4f6fb"
+      },
+      {
+        "beat_id": "split_number",
+        "path": "slides/files/CarloTcfs114MathQ13/a9d063067689b74881560f31a29708e7fb91b200ac9fa06da902e6e67542f234.mp4",
+        "sha256": "21117b6c9c34f3d070c9a9912f70026803120d487e896191b689a2f9dfc73290"
+      },
+      {
+        "beat_id": "sign_filter",
+        "path": "slides/files/CarloTcfs114MathQ13/a5c4d443a6e180e6fb259febb58a9fffe8976b40280808b1f0d1b00b0b322583.mp4",
+        "sha256": "ac6d94981eb0cc7176703954c2a8c31f594edc001ec65cf0f558a5d835852411"
+      },
+      {
+        "beat_id": "normalize_strip",
+        "path": "slides/files/CarloTcfs114MathQ13/34bdfbc9f9236b0ccf501cc28ffad644fae6e822c6bd493620e1fe269fa223a4.mp4",
+        "sha256": "1e55fb2854b8c44b6626d20c58afd529eb83e7ba685248bc5a15824f7304cc16"
+      },
+      {
+        "beat_id": "choose_branch",
+        "path": "slides/files/CarloTcfs114MathQ13/a04111044d148da1d8ac4bbbd06e9d15b8b2a604b7717b61c330496a677b2d84.mp4",
+        "sha256": "a46a4369a216920b08a43b468c62775fee2ceae4556ecf2a8528aee3691b05fa"
+      },
+      {
+        "beat_id": "march_candidates",
+        "path": "slides/files/CarloTcfs114MathQ13/1bb61f6c1e9647ce3e6a8f182ed069d7967228c87d407d03a97e4815202a2ea2.mp4",
+        "sha256": "907785f38869d5fb6b7bd8d0a387b933ecb49689a3b1e3d97498ee5c449fea24"
+      },
+      {
+        "beat_id": "sum_candidates",
+        "path": "slides/files/CarloTcfs114MathQ13/9242e68863c0fb929edb8017de03d62a7764af3a2c44685aa12120eb3108bd0c.mp4",
+        "sha256": "15b0370fdfa2f88846baf475bd73917163fb96b4e6ffc7d83e6ddc2660280dd1"
+      },
+      {
+        "beat_id": "build_two_bounds",
+        "path": "slides/files/CarloTcfs114MathQ13/21acc89b100af8c97d9b669858a433de6b987077c088a6d6ba239eeb6aa3c5d3.mp4",
+        "sha256": "9fe5bc41972dc542135aaefb2bfaa20c2e603cfd5a6aab8e99fb3b0bcad9629a"
+      },
+      {
+        "beat_id": "meet_contradiction",
+        "path": "slides/files/CarloTcfs114MathQ13/c31ae2b0f162c4f2bd7a5fad4df8e4b80a07283e4242eb36d8f119e5aded8ac7.mp4",
+        "sha256": "a6f12bb8c8fadc3d6d01f97c632c2c22dea584ae19f6bdc2bbce97b05a5c1a80"
+      },
+      {
+        "beat_id": "separate_correction",
+        "path": "slides/files/CarloTcfs114MathQ13/7241acb537d71dbbdec3752f19896f891e0c6031441df0099b4b0d16a5d4ad99.mp4",
+        "sha256": "1ddcb42386d7937f9e67bb9cedba62547d1617ec8c6d9d772ed29b64de8c6465"
+      },
+      {
+        "beat_id": "solve_corrected",
+        "path": "slides/files/CarloTcfs114MathQ13/2cb7df0c0135c439c874f8d5384df7e0f610531d5c346b5717e86b609c08fce0.mp4",
+        "sha256": "e3ba4380d0f765a20ba90a2b4d66500ed824795552198ad6d3b271fc3c69a932"
+      }
     ],
     "beats": [
       {
@@ -64,6 +125,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_114_math_gifted/q13/lesson.toml",
+      "sha256": "4f77794bcd25a45b34e1b33d9d0a39ee90522d9cc66d31a8e4f2f9a2dd1cb7f8"
+    },
     "scene_file": {
       "path": "lessons/tcfs_114_math_gifted/q13/deck.py",
       "sha256": "980850c7724b1a39ebced75980fc78fb3e39985e6c3645859559075daabe1fff"
@@ -76,5 +141,9 @@
       "path": "lessons/tcfs_114_math_gifted/q13/storyboard.md",
       "sha256": "9b32e2f0ffe4deb7f772c88dd160e38f04e0495c53bd1c81a9e07f1113d01ac5"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }

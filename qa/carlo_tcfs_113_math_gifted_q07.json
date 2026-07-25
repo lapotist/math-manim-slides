@@ -1,8 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "lesson_id": "carlo.tcfs_113_math_gifted.q07",
   "scene_class": "CarloTcfs113MathQ07",
-  "verified_at": "2026-07-24",
+  "verified_at": "2026-07-25",
   "status": "ok",
   "review": {
     "mechanical": "passed",
@@ -14,6 +14,62 @@
     "resolution": [
       1920,
       1080
+    ],
+    "manifest": {
+      "path": "slides/CarloTcfs113MathQ07.json",
+      "sha256": "3458d21aaaa4b8e89850a728ff07f55c66dfa202c66ad7bcd56b9206e1dd2994"
+    },
+    "segments": [
+      {
+        "beat_id": "reveal_vertex_form",
+        "path": "slides/files/CarloTcfs113MathQ07/295864fcdc2cfa148e533d335bb5f689f09da6df248c2c6e86cd0150a196c722.mp4",
+        "sha256": "925b790ebcbde8de00197421a68a7132680f720819d8fe9e51b201a11907463f"
+      },
+      {
+        "beat_id": "test_left_interval",
+        "path": "slides/files/CarloTcfs113MathQ07/5eadacf18d661d872c3e16bcf77154ee824917dd54b61de70566a6ee3a1ff11b.mp4",
+        "sha256": "6d1e773c4a2e29da999c1ee2d3b159164cf2319f34ed188fe148669273d74a05"
+      },
+      {
+        "beat_id": "test_straddling_interval",
+        "path": "slides/files/CarloTcfs113MathQ07/7a35d70ecb09d4cb204b9e8a1be291417f6e49e2e7b90568d56692535e796646.mp4",
+        "sha256": "c3b4eb957a5e59e30668f5804f61004c929835c59b7615b0c7ca72078ac75d72"
+      },
+      {
+        "beat_id": "settle_right_branch",
+        "path": "slides/files/CarloTcfs113MathQ07/4a421df9225c94990138e901fa9e4ea05a04c4610d46e411395c68894beb2aeb.mp4",
+        "sha256": "657d16f49a6a9cfdf75503f59bb7ee2bfd08289eed2807af89bebf3f47f701de"
+      },
+      {
+        "beat_id": "connect_endpoint_extrema",
+        "path": "slides/files/CarloTcfs113MathQ07/2497e0d2879d48fc6c6de8bea4e1181bf434eb9746e1dbd33916eff1292ea8db.mp4",
+        "sha256": "98c2f9cdf38d1d0de3ef5531347e8ad6bec0178f8a88ce954a61b8a69fd1a280"
+      },
+      {
+        "beat_id": "earn_fixed_endpoint_equations",
+        "path": "slides/files/CarloTcfs113MathQ07/d2c3a73f2fb179d2b5aca664dea8c98d9fc2578c181463f574154e1345cdb9f5.mp4",
+        "sha256": "5ce13a7acde12fe2b364ac25119b726511c39497ac55afb27b592e578a024d7e"
+      },
+      {
+        "beat_id": "locate_fixed_points",
+        "path": "slides/files/CarloTcfs113MathQ07/4a48172392a4507bbb59a7cb2300a931ae17ab54d1af3b8b26c1cc63b45440ea.mp4",
+        "sha256": "06cb807d41b18fd3c66fbb52824dc143d391ad172dcda7a555a897532cc666fc"
+      },
+      {
+        "beat_id": "solve_fixed_points",
+        "path": "slides/files/CarloTcfs113MathQ07/f540416ab51a6e67e634daeb142337c6951436c6355bb289f4086c58695c8130.mp4",
+        "sha256": "1d4cd065d4e261eb08eecfbd0cd5f8f954e9d023f76ec4f332fc519732046bfc"
+      },
+      {
+        "beat_id": "assign_ordered_endpoints",
+        "path": "slides/files/CarloTcfs113MathQ07/7bcae6f2e766e896ef439d277d6e7487420936ea66a027101b922deef6a8b6b5.mp4",
+        "sha256": "01b7e6ea51632c6451cf2cd842c0c537beaa7f8f2e00167169c8335d106df7fa"
+      },
+      {
+        "beat_id": "verify_preserved_interval",
+        "path": "slides/files/CarloTcfs113MathQ07/b4f33cacbf4b5ffdbb94372b9aa7da8fb080c693ea1ae71becf41d8bc6967986.mp4",
+        "sha256": "5230c153ca29b4790ac6c7b98161b1092c7a63d9471d886b7e74e3678c862ab6"
+      }
     ],
     "beats": [
       {
@@ -60,6 +116,10 @@
     "loop_endpoints": []
   },
   "source_hashes": {
+    "lesson_metadata": {
+      "path": "lessons/tcfs_113_math_gifted/q07/lesson.toml",
+      "sha256": "7b0b2eeab2f48008fe0bccc1216476cf85b7ac96dc63fe9d8d59c28c854f449f"
+    },
     "scene_file": {
       "path": "lessons/tcfs_113_math_gifted/q07/deck.py",
       "sha256": "7030a55c46a34efa19bd3ea3745bfd2c194e64bd41975d79a1b7352c518ff12f"
@@ -72,5 +132,9 @@
       "path": "lessons/tcfs_113_math_gifted/q07/storyboard.md",
       "sha256": "15eb8f62894b57cdc334856800135f8bab6083a63698b7d03338c37fd58a428d"
     }
+  },
+  "toolchain_hashes": {
+    "pixi.toml": "b7e7fe1e81febff738952bc6e1c60bc357ef8f8468ef71a6ee62964558b636a2",
+    "pixi.lock": "debb31af2d0a81d2db7ef69f033032086994c5044da5026c7fd792cf3e514d6f"
   }
 }
