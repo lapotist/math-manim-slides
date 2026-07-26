@@ -7,15 +7,39 @@ with a cohort researched from [正哥愛數學](https://sites.google.com/chjs.nt
 and a separately supplied ROC 115 pilot; future source cohorts keep their own
 provenance and permission records in the same repository.
 
-Question 9 is the reference implementation: it first explores the moving
-point, proves upper/lower symmetry, calculates one half, and only then doubles
-the area. The same question-first, visual-evidence-first standard applies to
-the rest of the collection.
+Lessons begin with a concrete object or question, keep the relevant structure
+visible while it changes, and introduce notation only after the corresponding
+relationship can be seen. Each deck is a teacher-led worked example with a
+Traditional Chinese presenter script, independently checked mathematics, and
+source-bound metadata.
 
-![Question 9 progression from moving point through symmetry, one-half area, and doubling](docs/previews/question-9-contact-sheet.webp)
+## Lesson Examples
 
-The contact sheet is a representative render preview; its source and license
-boundary are recorded in [`docs/previews/README.md`](docs/previews/README.md).
+These settled frames show three of the collection's visual approaches. Open an
+image to inspect the full 1280x720 preview.
+
+<table>
+  <tr>
+    <td width="33%">
+      <a href="docs/previews/growing-pattern-perimeter.webp"><img src="docs/previews/growing-pattern-perimeter.webp" alt="Two overlapping equilateral-triangle constructions compared to expose one perimeter increment" /></a>
+    </td>
+    <td width="33%">
+      <a href="docs/previews/balanced-binary-cases.webp"><img src="docs/previews/balanced-binary-cases.webp" alt="Six binary positions split into balanced odd and even teams and enumerated case by case" /></a>
+    </td>
+    <td width="33%">
+      <a href="docs/previews/octahedron-volume.webp"><img src="docs/previews/octahedron-volume.webp" alt="A colored octahedron inside a cube split into two pyramids for a volume calculation" /></a>
+    </td>
+  </tr>
+  <tr>
+    <td><strong><a href="lessons/tcfs_112_math_gifted/q10/lesson.toml">Growing patterns</a></strong><br />Compare consecutive constructions before naming the increment.</td>
+    <td><strong><a href="lessons/tcfs_113_math_gifted/q02/lesson.toml">Finite counting</a></strong><br />Enumerate complete cases before compressing them into a formula.</td>
+    <td><strong><a href="lessons/tcfs_114_math_gifted/q03/lesson.toml">Solid geometry</a></strong><br />Keep the decomposition visible while each volume term is built.</td>
+  </tr>
+</table>
+
+These are project-rendered screenshots rather than source scans. Their exact
+lesson provenance and license boundary are recorded in
+[`docs/previews/README.md`](docs/previews/README.md).
 
 ## Current Inventory
 
@@ -122,59 +146,209 @@ converted.
 
 ## Setup And Use
 
-Install [Pixi](https://pixi.sh/), then run:
+### 1. Check The Requirements
+
+The locked Pixi workspace currently targets x86_64 Linux (`linux-64`). It has
+not been locked for native macOS, Windows, or ARM Linux. You need:
+
+- [Pixi](https://pixi.sh/) to create the pinned project environment;
+- Git to clone the repository;
+- the `Noto Sans CJK TC` system font for Traditional Chinese text;
+- `dvisvgm` for equation conversion; and
+- a graphical desktop session only when using the native presenter.
+
+Pixi supplies the pinned Python, Manim, Manim Slides, Tectonic, FFmpeg, Cairo,
+and Pango packages. Do not create a separate virtual environment or install the
+project with global `pip`.
+
+Install the host packages for a common distribution with one of these commands:
 
 ```bash
-pixi install
-pixi run prepare-tex
-pixi run render-q9
-pixi run present-q9
+# Fedora: prepare-tex can fetch dvisvgm into the ignored build directory.
+sudo dnf install git dnf-plugins-core bsdtar \
+  google-noto-sans-cjk-vf-fonts ImageMagick
+
+# Debian or Ubuntu: install the native dvisvgm package.
+sudo apt update
+sudo apt install git dvisvgm fonts-noto-cjk imagemagick
 ```
 
-New lessons should import `MathSlide` and shared helpers from `math_manim`.
-The verified Carlo-source decks retain their original `carlo_manim` imports
-through a compatibility API because changing those 46 scene files, or the
-locked editable distribution identifier, would invalidate their human-reviewed
-QA attestations. Those legacy identifiers are not the project name and may be
-retired only with a complete rerender and renewed visual review.
+ImageMagick is needed for QA contact sheets, not for a basic render. On another
+non-Fedora Linux distribution, install its native `dvisvgm`, Noto CJK font, and
+ImageMagick packages.
 
-`prepare-tex` downloads the resource bundle pinned by Tectonic 0.16.9 during
-setup, verifies an actual XDV-to-SVG conversion, and then keeps equation
-rendering network-free. It uses an existing `dvisvgm` when available. On
-Fedora, if `dvisvgm` is absent, it downloads and extracts the distribution's
-`dvisvgm` and AMS outline-font RPMs into ignored `build/` storage without
-`sudo`; other systems ask for the native package before continuing. Setup
-fails closed if the generated SVG contains missing glyph definitions.
+### 2. Install The Project Environment
 
-List, render, present, and export cataloged lessons with:
+Install Pixi using its
+[official installation instructions](https://pixi.sh/latest/installation/),
+restart the shell if necessary, and verify that `pixi --version` works. Then
+clone and enter the repository:
+
+```bash
+git clone https://github.com/lapotist/math-manim-slides.git
+cd math-manim-slides
+pixi --version
+pixi install --locked
+```
+
+If you already have a checkout, enter its root and begin with
+`pixi install --locked`. The lock check prevents setup from silently resolving
+a different dependency set.
+
+The lesson typography expects the font query below to include
+`Noto Sans CJK TC`:
+
+```bash
+fc-match -f '%{family}\n' 'Noto Sans CJK TC'
+```
+
+### 3. Prepare The Equation Toolchain
+
+Run the TeX preparation once after installation:
+
+```bash
+pixi run prepare-tex
+```
+
+The first run needs network access. It warms the resource bundle pinned by
+Tectonic 0.16.9, converts a real XDV file to SVG, rejects missing glyph paths,
+and writes `build/tex/.ready` only after the probe passes. Later equation
+renders use the cache and do not fetch network resources.
+
+Always run project commands through `pixi run`. The Pixi activation script adds
+the repository's checked TeX wrappers to `PATH`; invoking Manim from an
+unrelated shell environment bypasses that setup.
+
+### 4. Verify The Checkout
+
+These checks do not render every lesson, but they verify the code, metadata,
+catalog reconciliation, and generated source index:
+
+```bash
+pixi run test
+pixi run validate-catalog
+pixi run check-sources
+```
+
+`prepare-tex` is the authoritative equation-toolchain check for this project.
+The generic Manim health check looks for a conventional `latex` executable and
+does not understand the pinned Tectonic-backed wrapper.
+
+## Run Lessons
+
+### Render And Present One Lesson
+
+First list the catalog IDs, states, scene classes, and titles:
 
 ```bash
 pixi run lessons list
-pixi run lessons render --status visual_verified --jobs 2 --quality l
-pixi run lessons present carlo.tcfs_115_math_gifted.q09
-pixi run lessons export --status visual_verified --jobs 2
 ```
 
-The HTML exporter embeds the videos and downloads Reveal.js assets from the
-jsDelivr CDN. It therefore needs network access while exporting even though
-the resulting `--offline` file can be presented without a network connection.
-Standalone export is limited to rights-cleared lessons and appends a scoped
-CC BY attribution/source appendix. The appendix is an additional generated
-Reveal.js section outside the lesson's teaching-beat manifest. It records the
-exact source asset and locator, states the original-export/change status, and
-embeds the complete MIT notices for the pinned Reveal.js and Manim Slides
-components.
+Choose one ID from that output. The following verified solid-geometry lesson is
+a copy-pasteable example:
 
-Generated videos, Slides manifests, HTML, QA frames, and logs stay in ignored
-build directories. Compact source-bound QA attestations under `qa/` make the
-verified state checkable from a clean clone without committing media.
-Raw MP4 segments and Slides manifests are internal build inputs unless packaged
-with `NOTICE.md` and the relevant `SOURCES.md` entry; use the checked standalone
-HTML exporter for a self-attributing release artifact.
+```bash
+LESSON_ID=carlo.tcfs_114_math_gifted.q03
+pixi run lessons render "$LESSON_ID" --quality l
+pixi run lessons present "$LESSON_ID"
+```
+
+Rendering must finish before presentation because it creates both the video and
+the Manim Slides manifest. `--quality l` is the fast preview setting; use the
+long form `--quality h` for a final 1920x1080 render. The presenter accepts
+exactly one lesson ID and requires a working graphical Qt session.
+
+### Render A Batch
+
+Preview the selected commands without running them:
+
+```bash
+pixi run lessons render --status visual_verified --quality l --dry-run
+```
+
+Then render all visually verified lessons with isolated media directories:
+
+```bash
+pixi run lessons render --status visual_verified --jobs 2 --quality l
+```
+
+Start with `--jobs 1` on a machine with limited memory. A failed lesson makes
+the command nonzero and is recorded in the machine-readable render report.
+
+### Check A Render
+
+Run the mechanical Slides checks after rendering a lesson:
+
+```bash
+pixi run qa-slides "$LESSON_ID"
+```
+
+This validates segments, dimensions, nonblank frames, and loop endpoints, then
+generates representative frames and a contact sheet under `build/qa/`.
+Maintainers should run `pixi run freeze-qa --human-reviewed "$LESSON_ID"` only
+after the separate mathematical, presenter-script, and full-resolution visual
+reviews have passed.
+
+### Export Standalone HTML
+
+Export a rendered, rights-cleared lesson with:
+
+```bash
+pixi run lessons export "$LESSON_ID"
+```
+
+The converter needs network access while it downloads the pinned Reveal.js
+assets. The resulting one-file HTML works offline and is written beneath
+`dist/` using the lesson ID as directories, for example
+`dist/carlo/tcfs_114_math_gifted/q03.html`.
+
+Standalone export rejects lessons without a Slides manifest, a rendered
+production state, or cleared release rights. It appends a scoped CC BY source
+appendix and embeds the required Manim Slides and Reveal.js MIT notices.
+
+### Find Build Outputs
+
+Generated files are intentionally ignored by Git:
+
+| Output | Location |
+| --- | --- |
+| Rendered media and Manim intermediates | `build/media/<lesson-id-with-underscores>/` |
+| Manim Slides manifests | `slides/` |
+| Per-lesson command logs | `build/logs/` |
+| Machine-readable batch reports | `build/reports/` |
+| QA frames and contact sheets | `build/qa/` |
+| Standalone HTML decks | `dist/` |
+
+Compact source-bound attestations under `qa/` are committed; bulk media and QA
+frames are not. Raw MP4 segments and Slides manifests are internal build inputs
+unless packaged with `NOTICE.md` and the relevant `SOURCES.md` entry.
+
+### Troubleshooting
+
+- **`dvisvgm is required`:** install the native package, or on Fedora install
+  `dnf-plugins-core` and `bsdtar` so `prepare-tex` can extract a local copy.
+- **Chinese text is missing or uses the wrong font:** install Noto CJK, run
+  `fc-cache -f`, and repeat the `fc-match` check above.
+- **The render reports that TeX is not ready:** rerun `pixi run prepare-tex`;
+  do not create `build/tex/.ready` manually.
+- **Presentation or export reports no Slides manifest:** render that exact
+  lesson ID first.
+- **The presenter reports a Qt display error:** run it in a graphical desktop
+  session rather than a headless shell.
+- **HTML export reports a DNS or CDN failure:** restore network access for the
+  conversion step; the completed HTML itself is offline.
+
+New lessons should import `MathSlide` and shared helpers from `math_manim`.
+The verified Carlo-source decks retain their original `carlo_manim` imports
+through a compatibility API because changing those scene files or the locked
+editable distribution identifier would invalidate their human-reviewed QA
+attestations.
 
 The first-publication sequence, including the commit-email privacy checkpoint
 and clean-tree verification, is documented in
 [`docs/PUBLISHING.md`](docs/PUBLISHING.md).
+
+## Maintain The Source Index
 
 Refresh the public source inventory and its flattened registry with:
 
