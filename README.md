@@ -14,6 +14,8 @@ source-bound metadata.
 The repo is made to provide a environment for AI agents to generate manim presentations with reasonable quality, the current lessons are not yet humanly verified, using it as context is not recommended yet.
 Generated content should be used for educational purposes, though it's recommended to ask for further permissions to be used for public teaching. The problems and solutions are still intellectual property of its respective authors, though the repo is released under relatively free licenses, but the permission could be revoked at their will.
 
+The problems currently used are not under copyright according to [著作權法第九條第一項第五款](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0070017&flno=9) and should be for public use.
+
 ## Lesson Examples
 
 These settled frames show three of the collection's visual approaches. Open an
