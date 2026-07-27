@@ -2,7 +2,7 @@
 
 An independent collection of intuitive Traditional Chinese mathematics
 lessons built with Manim Community and Manim Slides. Every completed lesson is
-linked to its exact problem and solution sources. The current lessons are sourced for from [正哥愛數學](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/); Future sources keep their own
+linked to its exact problem and solution sources. The current lessons are sourced from [正哥愛數學](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/); Future sources keep their own
 provenance and permission records in the same repository.
 
 Lessons begin with a concrete object or question, keep the relevant structure
