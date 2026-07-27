@@ -2,9 +2,7 @@
 
 An independent collection of intuitive Traditional Chinese mathematics
 lessons built with Manim Community and Manim Slides. Every completed lesson is
-linked to its exact problem and solution sources. The current catalog begins
-with a cohort researched from [正哥愛數學](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/)
-and a separately supplied ROC 115 pilot; future source cohorts keep their own
+linked to its exact problem and solution sources. The current lessons are sourced for from [正哥愛數學](https://sites.google.com/chjs.ntpc.edu.tw/carlovemath/); Future sources keep their own
 provenance and permission records in the same repository.
 
 Lessons begin with a concrete object or question, keep the relevant structure
@@ -12,6 +10,9 @@ visible while it changes, and introduce notation only after the corresponding
 relationship can be seen. Each deck is a teacher-led worked example with a
 Traditional Chinese presenter script, independently checked mathematics, and
 source-bound metadata.
+
+The repo is made to provide a environment for AI agents to generate manim presentations with reasonable quality, the current lessons are not yet humanly verified, using it as context is not recommended yet.
+Generated content should be used for educational purposes, though it's recommended to ask for further permissions to be used for public teaching. The problems and solutions are still intellectual property of its respective authors, though the repo is released under relatively free licenses, but the permission could be revoked at their will.
 
 ## Lesson Examples
 
