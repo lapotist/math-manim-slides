@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame inspection shows Q7 still visible at 03:31 and an ambiguous page transition at 03:32; Q8 is fully settled at 03:33 and continues through the 06:17 endpoint. The source writes CE=36k and BE=23k, hence the square side is 59k, uses the equal-area center together with similar triangles, and applies the positive-integer conditions on OD and the side to obtain the minimum side 13 and area 169. This lesson independently avoids assuming that k is integral: it names the side s, proves the left intersection height from the half-area trapezoid, reduces OD:s to 23:13, and only then proves that the common scale t is a positive integer. All visuals, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q08/deck.py"
 scene_class = "CarloTcfs113MathQ08"
 storyboard = "lessons/tcfs_113_math_gifted/q08/storyboard.md"
@@ -31,6 +31,11 @@ estimated_minutes = 9
 expected_answer = "169"
 independent_check = "Let the square side be s>0 and let F=OE intersect AD. Since CE/BE=36/23 and CE+BE=s, CE=36s/59 and BE=23s/59. The region DCEF below OE is a trapezoid with parallel sides DF and CE separated by distance s. It is half the square, so ((DF+CE)/2)s=s^2/2, hence DF+CE=s and DF=23s/59. Right triangles ODF and OCE are similar because OD and OC are collinear, OF and OE are collinear, and both have a right angle. Thus OD/(OD+s)=OD/OC=DF/CE=23/36. Cross multiplication gives 13OD=23s, so OD:s=23:13. Since OD and s are positive integers and gcd(23,13)=1, OD=23t and s=13t for a positive integer t. The least side is 13 at t=1, so the least area is 13^2=169. At OD=23 and s=13, CE=36s/59, BE=DF=23s/59, the given ratio is 36/23, DF+CE=s gives exactly half the square, and both required lengths are positive integers."
 tags = ["geometry", "square", "area-bisection", "trapezoid", "similar-triangles", "integer-ratio", "minimum"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "正方形 ABCD 的底邊 DC 在 x 軸上，原點 O 位於 D 的左側。點 E 在線段 BC 上，直線 OE 將正方形面積平分。若 OD、AD 都是正整數且 CE:BE=36:23，求正方形面積的最小值。"
 
 [[beats]]
 id = "explore_moving_cut"
@@ -42,6 +47,10 @@ loop = false
 
 [[beats]]
 id = "resolve_right_side_ratio"
+loop = false
+
+[[beats]]
+id = "state_right_side_lengths"
 loop = false
 
 [[beats]]
@@ -61,6 +70,10 @@ id = "derive_base_ratio"
 loop = false
 
 [[beats]]
+id = "reduce_base_ratio"
+loop = false
+
+[[beats]]
 id = "enforce_integer_scale"
 loop = false
 
@@ -69,5 +82,13 @@ id = "verify_minimal_configuration"
 loop = false
 
 [[beats]]
+id = "recheck_ratio_and_area"
+loop = false
+
+[[beats]]
 id = "reveal_minimum_area"
+loop = false
+
+[[beats]]
+id = "frame_minimum_area"
 loop = false

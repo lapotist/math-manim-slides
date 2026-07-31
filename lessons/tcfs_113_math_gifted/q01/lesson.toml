@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The public solution segment identifies equal powers of 2 and counts positive cases. This lesson independently reconstructs the count as an eleven-unit exponent budget, accumulates lattice points by z-slice, and explicitly rejects the z=3 boundary before revealing the total. All visuals and wording are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q01/deck.py"
 scene_class = "CarloTcfs113MathQ01"
 storyboard = "lessons/tcfs_113_math_gifted/q01/storyboard.md"
@@ -31,6 +31,11 @@ estimated_minutes = 7
 expected_answer = "5"
 independent_check = "Since 4=2^2, 8=2^3, and 2048=2^11, equality is equivalent to x+2y+3z=11. For z=1, positive pairs solve x+2y=8 and are (6,1), (4,2), (2,3), giving 3. For z=2, positive pairs solve x+2y=5 and are (3,1), (1,2), giving 2. At z=3 the positive minimum is x+2y+3z=1+2+9=12>11, so no z>=3 is possible. Total: 3+2=5 ordered triples."
 tags = ["number-theory", "exponents", "linear-diophantine-equation", "positive-integers", "lattice-points", "case-splitting"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "正整數 x、y、z 滿足 2^x × 4^y × 8^z = 2048。求符合條件的有序三元組 (x,y,z) 共有多少組。"
 
 [[beats]]
 id = "meet_power_puzzle"
@@ -49,11 +54,19 @@ id = "explore_z_one"
 loop = false
 
 [[beats]]
+id = "continue_z_one_slice"
+loop = false
+
+[[beats]]
 id = "guard_positive_endpoint"
 loop = false
 
 [[beats]]
 id = "explore_z_two"
+loop = false
+
+[[beats]]
+id = "complete_z_two_slice"
 loop = false
 
 [[beats]]
@@ -65,5 +78,17 @@ id = "combine_slice_counts"
 loop = false
 
 [[beats]]
+id = "reveal_slice_total"
+loop = false
+
+[[beats]]
 id = "return_to_original"
+loop = false
+
+[[beats]]
+id = "reveal_remaining_solution_tuples"
+loop = false
+
+[[beats]]
+id = "verify_solution_total"
 loop = false

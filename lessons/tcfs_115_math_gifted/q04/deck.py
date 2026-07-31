@@ -135,7 +135,6 @@ class CarloTcfs115MathQ04(CarloSlide):
         source = label("解題來源：正哥愛數學", 18, MUTED, "MEDIUM")
         source.to_corner(DOWN + RIGHT, buff=0.28)
 
-        # Beat 01 start_at_one: make positive direction concrete on a number line.
         number_line = NumberLine(
             x_range=[-13, 5, 1],
             length=12.7,
@@ -173,6 +172,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         direction_note = label("向右記作正", 23, REGION, "MEDIUM")
         direction_note.next_to(first_prompt, DOWN, buff=0.18)
 
+        # Beat 01 start_at_one: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), Create(number_line), run_time=1.0)
         self.play(FadeIn(number_labels), FadeIn(ant), FadeIn(ant_label), run_time=0.7)
         self.play(
@@ -184,7 +184,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         )
         self.play(FadeIn(first_move), FadeIn(first_prompt), FadeIn(direction_note))
 
-        # Beat 02 walk_first_block: walk the remaining three real displacements.
+        # Beat 02 walk_first_block: settled semantic step.
         self.next_slide()
 
         self.play(FadeOut(first_prompt), FadeOut(direction_note), run_time=0.45)
@@ -197,8 +197,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         move_arrows = VGroup(first_arrow)
         move_labels = VGroup(first_move)
         move_captions = VGroup()
-        current = 1
-        for index, (start, end, tex, color, height) in enumerate(move_specs, start=2):
+        def prepare_move(index, start, end, tex, color, height, current):
             y_level = number_line.get_y() + height
             arrow = Arrow(
                 np.array([number_line.n2p(start)[0], y_level, 0]),
@@ -232,21 +231,58 @@ class CarloTcfs115MathQ04(CarloSlide):
                 t2c={"→": color},
             ).move_to(UP * 2.8)
             move_captions.add(caption)
+            return arrow, guide_start, guide_end, move_label, caption
 
-            if index > 2:
-                self.play(FadeOut(move_captions[-2]), run_time=0.25)
-            self.play(FadeIn(caption), Create(guide_start), run_time=0.35)
-            self.play(
-                GrowArrow(arrow),
-                ant.animate.move_to(number_line.n2p(end)),
-                ant_label.animate.next_to(number_line.n2p(end), DOWN, buff=0.5),
-                run_time=1.35 if index < 4 else 1.7,
-                rate_func=rate_functions.ease_in_out_sine,
-            )
-            self.play(Create(guide_end), FadeIn(move_label), run_time=0.4)
-            move_arrows.add(arrow, guide_start, guide_end)
-            move_labels.add(move_label)
-            current = end
+        arrow, guide_start, guide_end, move_label, caption = prepare_move(
+            2, *move_specs[0], 1
+        )
+        self.play(FadeIn(caption), Create(guide_start), run_time=0.35)
+        self.play(
+            GrowArrow(arrow),
+            ant.animate.move_to(number_line.n2p(-3)),
+            ant_label.animate.next_to(number_line.n2p(-3), DOWN, buff=0.5),
+            run_time=1.35,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
+        self.play(Create(guide_end), FadeIn(move_label), run_time=0.4)
+        move_arrows.add(arrow, guide_start, guide_end)
+        move_labels.add(move_label)
+
+        # Beat 03 continue_first_block: settled semantic step.
+        self.next_slide()
+        arrow, guide_start, guide_end, move_label, caption = prepare_move(
+            3, *move_specs[1], -3
+        )
+        self.play(FadeOut(move_captions[-2]), run_time=0.25)
+        self.play(FadeIn(caption), Create(guide_start), run_time=0.35)
+        self.play(
+            GrowArrow(arrow),
+            ant.animate.move_to(number_line.n2p(-12)),
+            ant_label.animate.next_to(number_line.n2p(-12), DOWN, buff=0.5),
+            run_time=1.35,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
+        self.play(Create(guide_end), FadeIn(move_label), run_time=0.4)
+        move_arrows.add(arrow, guide_start, guide_end)
+        move_labels.add(move_label)
+
+        # Beat 04 finish_first_block: settled semantic step.
+        self.next_slide()
+        arrow, guide_start, guide_end, move_label, caption = prepare_move(
+            4, *move_specs[2], -12
+        )
+        self.play(FadeOut(move_captions[-2]), run_time=0.25)
+        self.play(FadeIn(caption), Create(guide_start), run_time=0.35)
+        self.play(
+            GrowArrow(arrow),
+            ant.animate.move_to(number_line.n2p(4)),
+            ant_label.animate.next_to(number_line.n2p(4), DOWN, buff=0.5),
+            run_time=1.7,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
+        self.play(Create(guide_end), FadeIn(move_label), run_time=0.4)
+        move_arrows.add(arrow, guide_start, guide_end)
+        move_labels.add(move_label)
 
         net_move = label(
             "走了很遠，但一整組只從 0 到 4",
@@ -262,6 +298,9 @@ class CarloTcfs115MathQ04(CarloSlide):
             "BOLD",
             t2c={"1²": REGION, "2²": CORAL, "3²": CORAL, "4²": REGION},
         ).move_to(UP * 2.15)
+
+        # Beat 05 sum_first_block: settled semantic step.
+        self.next_slide()
         self.play(
             FadeOut(move_captions[-1]),
             FadeIn(net_move),
@@ -269,7 +308,7 @@ class CarloTcfs115MathQ04(CarloSlide):
             run_time=0.8,
         )
 
-        # Beat 03 write_signed_squares: switch to equal-width symbolic blocks.
+        # Beat 06 write_signed_squares: settled semantic step.
         self.next_slide()
 
         group_one = self.term_group((1, 2, 3, 4)).scale(0.82)
@@ -324,7 +363,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         self.play(FadeIn(group_two, shift=DOWN * 0.12), run_time=0.8)
         self.play(FadeIn(ellipsis_one), FadeIn(group_last, shift=DOWN * 0.12), run_time=0.9)
 
-        # Beat 04 pair_square_gaps: see the first block as two square gaps.
+        # Beat 07 pair_square_gaps: settled semantic step.
         self.next_slide()
 
         pair_title = label("第一組：把相鄰的平方配在一起", 32, INK, "BOLD")
@@ -378,10 +417,12 @@ class CarloTcfs115MathQ04(CarloSlide):
             run_time=1.25,
         )
         self.play(FadeIn(gap_large[0]), FadeIn(gap_small[0]), run_time=0.75)
+        # Beat 08 compare_paired_gaps: settled semantic step.
+        self.next_slide()
         self.play(Write(large_value), Write(small_value), run_time=0.8)
         self.play(Write(gap_result), Create(result_box), run_time=0.65)
 
-        # Beat 05 prove_generic_block: retain the pairing and prove every block.
+        # Beat 09 prove_generic_block: settled semantic step.
         self.next_slide()
 
         generic_title = label("不是第一組碰巧：任一組都一樣", 32, INK, "BOLD")
@@ -433,6 +474,8 @@ class CarloTcfs115MathQ04(CarloSlide):
         self.play(FadeOut(old_pair), FadeIn(generic_title), Write(generic), FadeIn(n_note), run_time=1.0)
         self.play(Write(paired), run_time=1.1)
         self.play(Write(gaps), run_time=0.85)
+        # Beat 10 state_generic_block_total: settled semantic step.
+        self.next_slide()
         self.play(
             Circumscribe(gaps, color=BLUE, fade_out=True),
             ReplacementTransform(gaps, cancellation),
@@ -440,7 +483,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         )
         self.play(Write(always_four), Create(four_box), run_time=0.7)
 
-        # Beat 06 align_last_move: verify that move 100 closes a full block.
+        # Beat 11 align_last_move: settled semantic step.
         self.next_slide()
 
         overview_title = label("最後一次，剛好落在完整一組的末端", 32, INK, "BOLD")
@@ -504,7 +547,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         self.play(Write(n_values), run_time=0.7)
         self.play(Create(last_highlight), FadeIn(closing_note), run_time=0.8)
 
-        # Beat 07 count_blocks: compress all four-step groups into +4 bricks.
+        # Beat 12 count_blocks: settled semantic step.
         self.next_slide()
 
         count_title = label("100 步，每 4 步壓成一塊", 32, INK, "BOLD")
@@ -541,10 +584,12 @@ class CarloTcfs115MathQ04(CarloSlide):
             LaggedStart(*(FadeIn(brick, shift=UP * 0.08) for brick in bricks[2:]), lag_ratio=0.035),
             run_time=1.8,
         )
+        # Beat 13 sum_complete_blocks: settled semantic step.
+        self.next_slide()
         self.play(Write(group_count), run_time=0.75)
         self.play(Write(total_move), Create(total_box), run_time=0.75)
 
-        # Beat 08 arrive_at_hundred: return the compressed displacement to a line.
+        # Beat 14 arrive_at_hundred: settled semantic step.
         self.next_slide()
 
         final_title = label("把 25 塊 +4 接回數線", 32, INK, "BOLD")
@@ -607,6 +652,8 @@ class CarloTcfs115MathQ04(CarloSlide):
             run_time=2.2,
         )
         self.play(FadeIn(first_block_note), Circumscribe(strip_segments[0], color=REGION), run_time=0.8)
+        # Beat 15 reveal_hundredth_term: settled semantic step.
+        self.next_slide()
         self.play(
             final_ant.animate.move_to(final_line.n2p(100)),
             FadeOut(first_block_note),

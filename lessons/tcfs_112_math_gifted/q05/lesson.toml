@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page states f(x)=(x+1)(5x^2+45), g(x)=(x+1)(5x-6), and asks for the sum of all p for which exactly two positive integers alpha and beta satisfy f(alpha)=p*g(alpha) and f(beta)=p*g(beta); its worked area is blank and does not establish a solution. The dedicated public video visibly forms f-pg, factors out x+1, uses Vieta on the remaining quadratic, derives (5alpha-6)(5beta-6)=261, selects the factors 9 and 29, obtains alpha=3, beta=7, and concludes p=10. The complete solution remains clean through 00:03:42.525; a device overlay begins by 00:03:42.550, so the locator is conservatively recorded as 00:00-03:42.52. This lesson preserves that argument while adding a project-original balance-to-zero visualization, an area model for the +36 completion, an explicit sign and residue-class exhaustion of factor pairs, and direct substitution into the original functions. All visuals, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q05/deck.py"
 scene_class = "CarloTcfs112MathQ05"
 storyboard = "lessons/tcfs_112_math_gifted/q05/storyboard.md"
@@ -32,12 +32,29 @@ expected_answer = "10"
 independent_check = "For positive x, x+1 is nonzero, so solutions are exactly the roots of Q_p(x)=5x^2-5px+(6p+45). If its two distinct positive integer roots are alpha<beta, Vieta gives alpha+beta=p and 5alpha*beta=6p+45, hence (5alpha-6)(5beta-6)=261. Each factor is at least -1. Because their positive product is 261, both would have to share a sign; the only possible negative value is -1, which cannot pair with another value at least -1 to produce 261, so both factors are positive. The positive factor pairs of 261 are exactly (1,261), (3,87), and (9,29); requiring both factors to be congruent to 4 modulo 5 leaves only (9,29). Thus alpha=3, beta=7, and p=alpha+beta=10. Conversely Q_10(x)=5(x-3)(x-7), while the discarded common root x=-1 is not positive, so there are exactly two positive integer solutions. Directly, f(3)=360=10*g(3) and f(7)=2320=10*g(7)."
 tags = ["functions", "polynomial-roots", "vieta", "diophantine-equations", "factorization", "modular-arithmetic"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "定義 f(x)=(x+1)(5x²+45) 與 g(x)=(x+1)(5x-6)。求所有使方程 f(x)=p·g(x) 恰有兩個不同正整數解的參數 p 之總和。"
+
+[[beats]]
+id = "show_two_integer_tests"
+loop = false
+
 [[beats]]
 id = "meet_two_integer_hits"
 loop = false
 
 [[beats]]
 id = "turn_matches_into_zeros"
+loop = false
+
+[[beats]]
+id = "place_two_positive_roots"
+loop = false
+
+[[beats]]
+id = "factor_common_root"
 loop = false
 
 [[beats]]
@@ -49,7 +66,19 @@ id = "see_remaining_quadratic"
 loop = false
 
 [[beats]]
+id = "write_two_quadratic_forms"
+loop = false
+
+[[beats]]
+id = "picture_root_sum_and_product"
+loop = false
+
+[[beats]]
 id = "read_sum_and_product"
+loop = false
+
+[[beats]]
+id = "substitute_root_sum_for_p"
 loop = false
 
 [[beats]]
@@ -57,11 +86,31 @@ id = "remove_parameter_p"
 loop = false
 
 [[beats]]
+id = "subtract_rectangle_strips"
+loop = false
+
+[[beats]]
+id = "restore_overlap_corner"
+loop = false
+
+[[beats]]
 id = "complete_factor_rectangle"
 loop = false
 
 [[beats]]
-id = "filter_factor_pairs"
+id = "close_negative_factor_case"
+loop = false
+
+[[beats]]
+id = "test_first_factor_pair"
+loop = false
+
+[[beats]]
+id = "test_second_factor_pair"
+loop = false
+
+[[beats]]
+id = "accept_third_factor_pair"
 loop = false
 
 [[beats]]
@@ -69,5 +118,13 @@ id = "decode_surviving_pair"
 loop = false
 
 [[beats]]
+id = "hold_parameter_sum"
+loop = false
+
+[[beats]]
 id = "reveal_parameter"
+loop = false
+
+[[beats]]
+id = "verify_parameter_in_original_equations"
 loop = false

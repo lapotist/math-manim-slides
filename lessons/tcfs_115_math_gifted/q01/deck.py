@@ -135,7 +135,7 @@ class CarloTcfs115MathQ01(CarloSlide):
         opening_prompt = label("先讀圖，不急著算", 30, INK, "BOLD")
         opening_prompt.move_to([3.45, -1.05, 0])
 
-        # Beat 01 build_triangle: establish only the triangle and the target.
+        # Beat 01 build_triangle: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), Create(base_bc), run_time=0.8)
         self.play(
             LaggedStart(Create(side_ab), Create(side_ac), lag_ratio=0.18),
@@ -153,9 +153,9 @@ class CarloTcfs115MathQ01(CarloSlide):
         self.play(FadeIn(given), FadeIn(target_caption), Write(target), run_time=0.8)
         self.play(FadeIn(opening_prompt), run_time=0.45)
 
+        # Beat 02 place_bisectors: settled semantic step.
         self.next_slide()
 
-        # Beat 02 place_bisectors: mark equal interior and exterior half-angles.
         interior_left = Arc(
             radius=0.38,
             start_angle=ab_direction,
@@ -243,6 +243,8 @@ class CarloTcfs115MathQ01(CarloSlide):
             run_time=0.8,
         )
         self.play(Create(extension_eb), Create(line_ae), run_time=0.9)
+        # Beat 03 mark_bisected_angles: settled semantic step.
+        self.next_slide()
         self.play(
             GrowFromCenter(dot_e),
             FadeIn(label_e),
@@ -255,9 +257,9 @@ class CarloTcfs115MathQ01(CarloSlide):
         )
         self.play(FadeIn(bisector_note), FadeIn(point_order), run_time=0.5)
 
+        # Beat 04 see_right_angle: settled semantic step.
         self.next_slide()
 
-        # Beat 03 see_right_angle: assemble the four half-angles into 180 degrees.
         straight_prompt = label("沿同一個平角：x、x、y、y", 28, INK, "BOLD")
         straight_prompt.move_to([3.45, -1.05, 0])
         straight_equation = MathTex(
@@ -306,20 +308,23 @@ class CarloTcfs115MathQ01(CarloSlide):
             FadeIn(straight_prompt),
             run_time=0.45,
         )
-        for angle_arc in (
-            interior_right,
-            interior_left,
-            exterior_lower,
-            exterior_upper,
-        ):
-            self.play(Indicate(angle_arc, color=angle_arc.get_color()), run_time=0.42)
+        self.play(Indicate(interior_right, color=interior_right.get_color()), run_time=0.42)
+        self.play(Indicate(interior_left, color=interior_left.get_color()), run_time=0.42)
+
+        # Beat 05 inspect_exterior_bisectors: settled semantic step.
+        self.next_slide()
+        self.play(Indicate(exterior_lower, color=exterior_lower.get_color()), run_time=0.42)
+        self.play(Indicate(exterior_upper, color=exterior_upper.get_color()), run_time=0.42)
         self.play(Write(straight_equation), run_time=0.75)
+
+        # Beat 06 derive_perpendicular_bisectors: settled semantic step.
+        self.next_slide()
         self.play(TransformFromCopy(straight_equation, perpendicular_equation), run_time=0.8)
         self.play(Create(right_marker), FadeIn(perpendicular_note), run_time=0.75)
 
+        # Beat 07 complete_special_triangle: settled semantic step.
         self.next_slide()
 
-        # Beat 04 complete_special_triangle: derive 1:sqrt(3):2 before naming 60 degrees.
         line_ed_focus = Line(point_e, point_d, color=INK, stroke_width=4)
         triangle_ade = Polygon(
             point_a,
@@ -415,14 +420,18 @@ class CarloTcfs115MathQ01(CarloSlide):
         self.play(FadeOut(remove_for_focus), Create(line_ed_focus), FadeIn(triangle_ade))
         self.play(FadeIn(ad_length), FadeIn(ae_length), FadeIn(pythagoras_title))
         self.play(Write(pythagoras_1), run_time=0.9)
+        # Beat 08 measure_special_triangle: settled semantic step.
+        self.next_slide()
         self.play(TransformFromCopy(pythagoras_1, pythagoras_2), run_time=0.75)
         self.play(Write(de_result), Write(half_hypotenuse), run_time=0.75)
+        # Beat 09 name_sixty_degree_angle: settled semantic step.
+        self.next_slide()
         self.play(Create(angle_30), FadeIn(angle_30_label), run_time=0.55)
         self.play(Create(angle_60), FadeIn(angle_60_label), run_time=0.65)
 
+        # Beat 10 transfer_sixty: settled semantic step.
         self.next_slide()
 
-        # Beat 05 transfer_sixty: reuse the same leftward ray, then take a linear pair.
         isolated_calculation = VGroup(
             triangle_ade,
             line_ed_focus,
@@ -487,12 +496,14 @@ class CarloTcfs115MathQ01(CarloSlide):
             Write(transferred),
             run_time=0.85,
         )
+        # Beat 11 transfer_sixty_to_base: settled semantic step.
+        self.next_slide()
         self.play(FadeOut(same_ray), Create(angle_120), FadeIn(angle_120_label))
         self.play(Write(linear_pair), run_time=0.8)
 
+        # Beat 12 derive_c: settled semantic step.
         self.next_slide()
 
-        # Beat 06 derive_c: isolate triangle ACD and express C using the same x.
         focus_acd = Polygon(
             point_a,
             point_c,
@@ -554,9 +565,9 @@ class CarloTcfs115MathQ01(CarloSlide):
         self.play(Write(c_sum), run_time=0.8)
         self.play(TransformFromCopy(c_sum, c_result), run_time=0.8)
 
+        # Beat 13 derive_b_and_a: settled semantic step.
         self.next_slide()
 
-        # Beat 07 derive_b_and_a: derive B, then combine the two apex halves.
         focus_abd = Polygon(
             point_a,
             point_b,
@@ -631,6 +642,8 @@ class CarloTcfs115MathQ01(CarloSlide):
             run_time=0.8,
         )
         self.play(Write(b_sum), run_time=0.7)
+        # Beat 14 solve_segment_lengths: settled semantic step.
+        self.next_slide()
         self.play(TransformFromCopy(b_sum, b_result), run_time=0.75)
         self.play(
             Indicate(VGroup(interior_left, interior_right), color=POINT),
@@ -638,9 +651,9 @@ class CarloTcfs115MathQ01(CarloSlide):
             run_time=0.85,
         )
 
+        # Beat 15 cancel_expression: settled semantic step.
         self.next_slide()
 
-        # Beat 08 cancel_expression: substitute visible results, then cancel by role.
         diagram_strokes = VGroup(
             side_ab,
             side_ac,
@@ -768,17 +781,23 @@ class CarloTcfs115MathQ01(CarloSlide):
             TransformFromCopy(a_result[4], substitution[8]),
             run_time=1.05,
         )
+        # Beat 16 substitute_length_relations: settled semantic step.
+        self.next_slide()
         self.play(FadeOut(c_result), FadeOut(b_result), FadeOut(a_result), run_time=0.4)
         self.play(TransformFromCopy(substitution, expanded), run_time=0.95)
         self.play(Create(constant_box), Write(constants_cancel), run_time=0.7)
+        # Beat 17 cancel_common_terms: settled semantic step.
+        self.next_slide()
         self.play(FadeOut(constant_box), run_time=0.25)
         self.play(Create(variable_box), Write(variables_cancel), run_time=0.7)
+        # Beat 18 simplify_target_expression: settled semantic step.
+        self.next_slide()
         self.play(FadeOut(variable_box), run_time=0.25)
         self.play(Write(answer), Create(answer_box), run_time=0.9)
 
+        # Beat 19 consolidate: settled semantic step.
         self.next_slide()
 
-        # Beat 09 consolidate: return to the diagram and replay only the three keys.
         calculation = VGroup(
             central_goal,
             substitution,
@@ -831,6 +850,8 @@ class CarloTcfs115MathQ01(CarloSlide):
             FadeIn(recap_perpendicular),
             run_time=0.75,
         )
+        # Beat 20 reveal_final_value: settled semantic step.
+        self.next_slide()
         self.play(
             Circumscribe(VGroup(angle_60, angle_60_label), color=REGION),
             FadeIn(recap_sixty),

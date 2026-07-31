@@ -351,6 +351,8 @@ class CarloTcfs113MathQ02(CarloSlide):
         beat_title = next_title
         self.play(Circumscribe(teams[0][0], color=POINT), run_time=0.9)
         self.play(FadeIn(k_definition), FadeIn(right_need), run_time=0.8)
+
+        self.next_beat("list_balance_cases")
         self.play(
             LaggedStart(
                 *(FadeIn(marker, shift=UP * 0.08) for marker in case_markers),
@@ -396,6 +398,8 @@ class CarloTcfs113MathQ02(CarloSlide):
         beat_title = next_title
         teams = case_zero_teams
         self.play(FadeIn(case_zero_math), run_time=0.6)
+
+        self.next_beat("enumerate_case_zero")
         self.play(
             LaggedStart(
                 *(FadeIn(word, shift=UP * 0.10) for word in case_zero_words),
@@ -445,6 +449,8 @@ class CarloTcfs113MathQ02(CarloSlide):
         beat_title = next_title
         teams = case_one_teams
         self.play(FadeIn(case_one_math), run_time=0.55)
+
+        self.next_beat("open_case_one_choices")
         self.play(
             FadeIn(pair_caption),
             LaggedStart(*(GrowFromCenter(choice) for choice in pair_choices), lag_ratio=0.28),
@@ -509,6 +515,8 @@ class CarloTcfs113MathQ02(CarloSlide):
         )
         beat_title = next_title
         self.play(FadeIn(axis_labels), FadeIn(even_headers), FadeIn(odd_headers), run_time=0.7)
+
+        self.next_beat("enumerate_case_one")
         self.play(
             LaggedStart(
                 *(FadeIn(word, shift=UP * 0.08) for word in case_one_words),
@@ -550,6 +558,8 @@ class CarloTcfs113MathQ02(CarloSlide):
         beat_title = next_title
         teams = case_two_teams
         self.play(FadeIn(case_two_math), run_time=0.55)
+
+        self.next_beat("complete_case_two")
         self.play(GrowFromCenter(unique_word), run_time=0.65)
         self.play(FadeIn(unique_count), run_time=0.5)
 
@@ -666,6 +676,8 @@ class CarloTcfs113MathQ02(CarloSlide):
         beat_title = next_title
         self.play(FadeIn(odd_selector), run_time=0.65)
         self.play(FadeIn(even_selector), FadeIn(selector_times), run_time=0.65)
+
+        self.next_beat("apply_binomial_cases")
         self.play(
             LaggedStart(
                 *(
@@ -736,6 +748,8 @@ class CarloTcfs113MathQ02(CarloSlide):
             LaggedStart(*(FadeIn(case, shift=UP * 0.08) for case in case_counts), lag_ratio=0.2),
             run_time=0.8,
         )
+
+        self.next_beat("sum_disjoint_cases")
         self.play(FadeIn(completeness), run_time=0.45)
         self.play(
             TransformFromCopy(case_counts[0][1], final_sum[0]),
@@ -746,6 +760,8 @@ class CarloTcfs113MathQ02(CarloSlide):
             Write(final_sum[5]),
             run_time=1.0,
         )
+
+        self.next_beat("reveal_total_answer")
         self.play(FadeIn(final_sum[6]), Create(answer_box), run_time=0.7)
         self.play(Indicate(final_sum[6], color=POINT), run_time=0.7)
         self.wait(0.65)

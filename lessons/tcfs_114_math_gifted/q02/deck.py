@@ -259,6 +259,9 @@ class CarloTcfs114MathQ02(CarloSlide):
         self.play(Create(axes), FadeIn(x_label), FadeIn(y_label), FadeIn(quadrant_labels))
         self.play(Create(curve), FadeIn(y_intercept), run_time=1.0)
         self.add(negative_curve, roots)
+
+        # Name the family only after its common upward-opening shape is visible.
+        self.next_beat("identify_fixed_quadrants")
         self.play(Write(family), FadeIn(a_display), FadeIn(state_note), run_time=0.85)
         self.play(*quadrant_animations({0, 1}), FadeIn(opening_hint), run_time=0.65)
 
@@ -349,6 +352,9 @@ class CarloTcfs114MathQ02(CarloSlide):
             run_time=0.65,
         )
         self.play(Create(root_rings), run_time=0.7)
+
+        # Test the equality boundary before turning the picture into a condition.
+        self.next_beat("test_tangent_boundary")
         self.play(
             a_tracker.animate.set_value(-2),
             Transform(a_display, badges[-2]),
@@ -358,6 +364,8 @@ class CarloTcfs114MathQ02(CarloSlide):
             run_time=1.1,
         )
         self.play(GrowFromCenter(tangent_dot), FadeIn(tangent_note), run_time=0.6)
+
+        self.next_beat("state_discriminant_condition")
         self.play(
             a_tracker.animate.set_value(-2.5),
             Transform(
@@ -407,6 +415,8 @@ class CarloTcfs114MathQ02(CarloSlide):
             run_time=1.2,
         )
         self.play(Indicate(y_intercept, color=BLUE), FadeIn(near_points), run_time=0.7)
+
+        self.next_beat("state_axis_guard")
         self.play(
             a_tracker.animate.set_value(-2.5),
             Transform(a_display, badges[-2.5]),
@@ -555,6 +565,8 @@ class CarloTcfs114MathQ02(CarloSlide):
         self.play(FadeOut(graph_group), FadeOut(endpoint_group), FadeIn(algebra_title))
         self.play(Write(delta_1), run_time=0.8)
         self.play(TransformFromCopy(delta_1, delta_2), run_time=0.75)
+
+        self.next_beat("factor_discriminant")
         self.play(TransformFromCopy(delta_2, delta_3), run_time=0.75)
         self.play(Write(delta_solution), run_time=0.75)
 
@@ -650,6 +662,8 @@ class CarloTcfs114MathQ02(CarloSlide):
         self.play(FadeOut(algebra_group), FadeIn(lines), FadeIn(line_labels), run_time=0.7)
         self.play(Create(delta_rays), run_time=0.9)
         self.play(Create(guard_ray), run_time=0.8)
+
+        self.next_beat("read_parameter_intersection")
         self.play(
             Create(intersection),
             FadeIn(endpoint_labels),
@@ -721,6 +735,8 @@ class CarloTcfs114MathQ02(CarloSlide):
         )
         self.play(TransformFromCopy(objective, square_0), run_time=0.75)
         self.play(TransformFromCopy(square_0, square_1), FadeIn(half_note), run_time=0.8)
+
+        self.next_beat("return_to_parameter")
         self.play(TransformFromCopy(square_1, square_2), run_time=0.75)
         self.play(TransformFromCopy(square_2, square_3), run_time=0.85)
 
@@ -784,8 +800,14 @@ class CarloTcfs114MathQ02(CarloSlide):
             FadeIn(vertex_label),
             run_time=0.75,
         )
+
+        self.next_beat("translate_vertex_parameter")
         self.play(Write(equality), run_time=0.7)
+
+        self.next_beat("verify_vertex_is_admissible")
         self.play(Write(admissible), FadeIn(admissible_note), run_time=0.7)
+
+        self.next_beat("reveal_minimum")
         self.play(Write(minimum), Circumscribe(vertex, color=CORAL), run_time=0.8)
 
         # Beat 13 consolidate: retain the correction and the attained minimum together.
@@ -843,6 +865,8 @@ class CarloTcfs114MathQ02(CarloSlide):
             run_time=1.15,
         )
         self.play(FadeIn(left_note), LaggedStart(*(Write(item) for item in right_steps)))
+
+        self.next_beat("close_with_source_correction")
         self.play(Write(final_answer), Create(final_box), run_time=0.85)
         self.play(FadeIn(correction_recap), run_time=0.55)
         self.wait(0.3)

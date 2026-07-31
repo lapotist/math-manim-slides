@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page gives the exact trapezoid problem and leaves the worked area blank. The confirmed-public video constructs G where the extensions of BE and CD meet, uses triangle GEC congruent to triangle BEA to obtain GC=AB, subtracts CD to get GD:AB=2:3, then uses triangle GDF similar to triangle BAF to obtain DF:AF=2:3 and AF/AD=3/5. Full frame inspection found the Q4 page present from 00:00; the last unobstructed solution frame is 01:48.80 and the device overlay begins immediately afterward. This lesson reconstructs the proof with project-original geometry, wording, and motion, and explicitly excludes zero-base and zero-height degeneracies."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q04/deck.py"
 scene_class = "CarloTcfs112MathQ04"
 storyboard = "lessons/tcfs_112_math_gifted/q04/storyboard.md"
@@ -32,8 +32,21 @@ expected_answer = "3/5"
 independent_check = "Normalize a nondegenerate convex trapezoid as A=(0,0), B=(3u,0), D=(d,h), C=(d+u,h), where u>0 and h is nonzero. Then E=((d+u)/2,h/2). Solving A+t(D-A)=B+s(E-B) gives s=6/5 and t=3/5, so F lies strictly inside AD and AF/AD=3/5, independent of d and h. For the source construction, the line BE reaches the top base line at G=D-2(C-D). Thus GC=3u=AB and GD=2u. The midpoint and parallel-line angles give triangle GEC congruent to triangle BEA; the vertical and corresponding angles give triangle GDF similar to triangle BAF, hence DF/AF=GD/AB=2/3 and AF/(AF+DF)=3/(3+2)=3/5. The line intersection is undefined in the collapsed h=0 case, and u=0 does not give positive trapezoid bases."
 tags = ["geometry", "trapezoid", "midpoint", "congruent-triangles", "similar-triangles", "affine-invariant", "ratio"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "在非退化凸梯形 ABCD 中，AB∥CD，且 AB 的長度是 CD 的三倍。令 E 為對角線 AC 的中點，直線 BE 與邊 AD 交於 F，求 AF/AD。"
+
 [[beats]]
-id = "build_given_trapezoid"
+id = "build_trapezoid_shape"
+loop = false
+
+[[beats]]
+id = "mark_trapezoid_givens"
+loop = false
+
+[[beats]]
+id = "test_tall_shape"
 loop = false
 
 [[beats]]
@@ -49,11 +62,23 @@ id = "extend_lines_to_g"
 loop = false
 
 [[beats]]
+id = "match_extension_angles"
+loop = false
+
+[[beats]]
 id = "earn_equal_long_segment"
 loop = false
 
 [[beats]]
+id = "measure_gc_and_dc"
+loop = false
+
+[[beats]]
 id = "split_three_units"
+loop = false
+
+[[beats]]
+id = "match_second_triangle_angles"
 loop = false
 
 [[beats]]
@@ -65,9 +90,17 @@ id = "transfer_two_to_three"
 loop = false
 
 [[beats]]
+id = "build_five_unit_bar"
+loop = false
+
+[[beats]]
 id = "hold_before_fraction"
 loop = false
 
 [[beats]]
 id = "reveal_three_fifths"
+loop = false
+
+[[beats]]
+id = "return_to_moving_point"
 loop = false

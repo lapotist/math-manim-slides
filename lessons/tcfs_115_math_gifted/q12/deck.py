@@ -173,7 +173,7 @@ class Tcfs115Q12Slide(CarloSlide):
             objective, UP, buff=0.30
         )
 
-        # Beat 01 build_equilateral: establish the fixed triangle and three distances.
+        # Beat 01 build_equilateral: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), run_time=0.45)
         self.play(Create(edge_bc), run_time=0.65)
         self.play(Create(edge_ab), Create(edge_ca), run_time=0.85)
@@ -184,6 +184,9 @@ class Tcfs115Q12Slide(CarloSlide):
             FadeIn(side_note),
             run_time=0.80,
         )
+
+        # Beat 02 introduce_interior_point: settled semantic step.
+        self.next_slide()
         self.play(GrowFromCenter(p_dot), FadeIn(p_label), run_time=0.55)
         self.play(
             LaggedStart(Create(ap_line), Create(bp_line), Create(cp_line), lag_ratio=0.18),
@@ -236,7 +239,7 @@ class Tcfs115Q12Slide(CarloSlide):
             t2c={"P": BLUE, "三項": POINT},
         ).move_to([3.65, -2.30, 0])
 
-        # Beat 02 explore_p: loop through deliberate interior states and return exactly.
+        # Beat 03 explore_p: settled semantic step.
         self.next_slide(loop=True)
         self.add(bar_guides, bar_labels, contribution_bars, explore_note)
         self.wait(0.35)
@@ -287,7 +290,7 @@ class Tcfs115Q12Slide(CarloSlide):
             t2c={"第一項": BLUE},
         ).move_to([3.65, 2.65, 0])
 
-        # Beat 03 pose_straightening: isolate the one term that cannot yet form a path.
+        # Beat 04 pose_straightening: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(bar_guides),
@@ -298,6 +301,9 @@ class Tcfs115Q12Slide(CarloSlide):
             run_time=0.60,
         )
         self.play(FadeIn(straightening_prompt), run_time=0.55)
+
+        # Beat 05 isolate_weighted_term: settled semantic step.
+        self.next_slide()
         self.play(Create(schematic_bp), FadeIn(schematic_labels[0]), run_time=0.55)
         self.play(FadeIn(missing_box), FadeIn(missing_term), FadeIn(missing_note), run_time=0.65)
         self.play(Create(schematic_cp), FadeIn(schematic_labels[1]), run_time=0.55)
@@ -352,7 +358,7 @@ class Tcfs115Q12Slide(CarloSlide):
         rotation_facts[2][0].set_color(PURPLE)
         rotation_facts[2][2].set_color(PURPLE)
 
-        # Beat 04 rotate_copy: perform the distance-preserving 90-degree map visibly.
+        # Beat 06 rotate_copy: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(VGroup(schematic_bp, schematic_cp, schematic_labels, missing_box, missing_term, missing_note)),
@@ -366,6 +372,9 @@ class Tcfs115Q12Slide(CarloSlide):
             run_time=1.80,
             rate_func=rate_functions.ease_in_out_sine,
         )
+
+        # Beat 07 record_rotation_invariants: settled semantic step.
+        self.next_slide()
         self.play(
             rotating_copy[0].animate.set_opacity(0.14),
             rotating_copy[1].animate.set_opacity(0.14),
@@ -421,7 +430,7 @@ class Tcfs115Q12Slide(CarloSlide):
             DOWN, buff=0.30, aligned_edge=LEFT
         ).move_to([3.52, 0.22, 0])
 
-        # Beat 05 earn_sqrt_two: earn the weighted segment from visible right-triangle data.
+        # Beat 08 earn_sqrt_two: settled semantic step.
         self.next_slide()
         self.play(FadeOut(rotation_facts), FadeIn(right_triangle_fill), run_time=0.55)
         self.play(
@@ -430,6 +439,9 @@ class Tcfs115Q12Slide(CarloSlide):
             run_time=0.75,
         )
         self.play(Create(pp_line), run_time=0.70)
+
+        # Beat 09 derive_weighted_segment: settled semantic step.
+        self.next_slide()
         self.play(TransformFromCopy(VGroup(ap_line, rotating_copy[3]), pythagoras), run_time=0.90)
         self.play(Write(pythagoras_two), run_time=0.70)
         self.play(Write(pp_relation), run_time=0.70)
@@ -461,7 +473,7 @@ class Tcfs115Q12Slide(CarloSlide):
             "BOLD",
         ).move_to([3.62, -0.58, 0])
 
-        # Beat 06 assemble_broken_path: connect the three preserved lengths in order.
+        # Beat 10 assemble_broken_path: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(pythagoras),
@@ -474,6 +486,9 @@ class Tcfs115Q12Slide(CarloSlide):
         )
         self.play(Create(path_bp), TransformFromCopy(path_bp, path_equation[2]), run_time=0.60)
         self.play(Create(path_pp), TransformFromCopy(path_pp, path_equation[4]), run_time=0.60)
+
+        # Beat 11 complete_broken_path: settled semantic step.
+        self.next_slide()
         self.play(Create(path_pc_prime), TransformFromCopy(path_pc_prime, path_equation[6]), run_time=0.65)
         self.play(FadeIn(path_equation[0:2]), FadeIn(path_equation[3]), FadeIn(path_equation[5]), run_time=0.55)
         self.play(FadeIn(path_caption), run_time=0.45)
@@ -507,7 +522,7 @@ class Tcfs115Q12Slide(CarloSlide):
         )
         minimum_line[0].set_color(POINT)
 
-        # Beat 07 straighten_path: show the lower bound and then attain it exactly.
+        # Beat 12 straighten_path: settled semantic step.
         self.next_slide()
         self.add(generic_ghost)
         self.play(
@@ -519,6 +534,9 @@ class Tcfs115Q12Slide(CarloSlide):
             run_time=0.90,
         )
         self.play(FadeIn(equality_note), run_time=0.45)
+
+        # Beat 13 attain_straight_path: settled semantic step.
+        self.next_slide()
         self.play(
             Transform(path_bp, Line(point_b, point_p_equal, color=POINT, stroke_width=6.0)),
             Transform(path_pp, Line(point_p_equal, point_p_prime_equal, color=PURPLE, stroke_width=6.0)),
@@ -610,7 +628,7 @@ class Tcfs115Q12Slide(CarloSlide):
             t2c={"B ─ A ─ D": POINT},
         ).move_to([3.48, -1.78, 0])
 
-        # Beat 08 measure_bc_prime: measure the straight endpoint distance geometrically.
+        # Beat 14 measure_bc_prime: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(objective),
@@ -640,6 +658,9 @@ class Tcfs115Q12Slide(CarloSlide):
             run_time=0.85,
         )
         self.play(FadeIn(measure_c_prime_dot), FadeIn(measure_c_prime_label), Create(ac_prime), run_time=0.70)
+
+        # Beat 15 derive_endpoint_angle: settled semantic step.
+        self.next_slide()
         self.play(Create(arc_60), FadeIn(angle_facts[0]), run_time=0.55)
         self.play(Create(arc_90), FadeIn(angle_facts[1]), run_time=0.55)
         self.play(
@@ -649,6 +670,9 @@ class Tcfs115Q12Slide(CarloSlide):
             FadeIn(angle_facts[2]),
             run_time=0.65,
         )
+
+        # Beat 16 measure_thirty_sixty_triangle: settled semantic step.
+        self.next_slide()
         self.play(Create(extended_bd), FadeIn(d_dot), FadeIn(d_label), run_time=0.65)
         self.play(Create(cd_line), Create(right_mark_d), run_time=0.65)
         self.play(Create(arc_30), FadeIn(angle_30_label), run_time=0.50)
@@ -707,7 +731,7 @@ class Tcfs115Q12Slide(CarloSlide):
             minimum_result, DOWN, buff=0.18
         )
 
-        # Beat 09 compute_minimum: square, recognize the radical, and take the positive root.
+        # Beat 17 compute_minimum: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(angle_facts),
@@ -718,6 +742,9 @@ class Tcfs115Q12Slide(CarloSlide):
         )
         self.play(Write(bc_substitution), run_time=0.70)
         self.play(Write(bc_expanded), run_time=0.60)
+
+        # Beat 18 recognize_positive_radical: settled semantic step.
+        self.next_slide()
         self.play(Write(candidate_square), run_time=0.75)
         self.play(Write(candidate_match), run_time=0.55)
         self.play(Write(minimum_result), FadeIn(positive_note), run_time=0.75)
@@ -768,7 +795,7 @@ class Tcfs115Q12Slide(CarloSlide):
             [3.50, -1.67, 0]
         )
 
-        # Beat 10 pin_down_p: inverse-rotate the equality line and take its unique intersection.
+        # Beat 19 pin_down_p: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(VGroup(*minimum_derivation, positive_note)),
@@ -797,6 +824,9 @@ class Tcfs115Q12Slide(CarloSlide):
             run_time=1.50,
             rate_func=rate_functions.ease_in_out_sine,
         )
+
+        # Beat 20 intersect_equality_lines: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(constraints[2]), run_time=0.55)
         self.play(Create(intersection_ring), FadeIn(uniqueness_note), run_time=0.65)
         self.play(Create(symmetry_axis), FadeIn(axis_note), run_time=0.65)
@@ -847,7 +877,7 @@ class Tcfs115Q12Slide(CarloSlide):
             t2c={"P": BLUE, "E": POINT},
         ).move_to([3.50, -0.82, 0])
 
-        # Beat 11 read_equality_angles: read 45 degrees from the rotated triangle.
+        # Beat 21 read_equality_angles: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(constraints),
@@ -861,6 +891,9 @@ class Tcfs115Q12Slide(CarloSlide):
         )
         self.play(Create(ap_equal), Create(ap_prime_equal), Create(pp_equal), run_time=0.75)
         self.play(Create(base_angle_45), FadeIn(angle_45_label), FadeIn(angle_receipt[0]), run_time=0.65)
+
+        # Beat 22 derive_straight_line_angle: settled semantic step.
+        self.next_slide()
         self.play(Create(bp_equal), Create(angle_apb), FadeIn(angle_135_label), FadeIn(angle_receipt[1]), run_time=0.75)
         self.play(
             FadeIn(point_e_dot),
@@ -908,7 +941,7 @@ class Tcfs115Q12Slide(CarloSlide):
         ap_calculation[5][2].set_color(BLUE)
         ap_calculation[5][6].set_color(BLUE)
 
-        # Beat 12 compute_ap: use the visible 45-degree triangle and equilateral altitude.
+        # Beat 23 compute_ap: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(angle_receipt),
@@ -923,9 +956,15 @@ class Tcfs115Q12Slide(CarloSlide):
         )
         self.play(Create(pe_line), Create(be_line), Create(right_mark_e), run_time=0.65)
         self.play(Create(angle_bpe), FadeIn(bpe_45_label), run_time=0.50)
+
+        # Beat 24 read_half_base: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(ap_calculation[0]), run_time=0.55)
         self.play(FadeIn(ap_calculation[1]), run_time=0.55)
         self.play(FadeIn(ap_calculation[2]), run_time=0.55)
+
+        # Beat 25 calculate_altitude_and_ap: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(ap_calculation[3]), run_time=0.60)
         self.play(FadeIn(ap_calculation[4]), run_time=0.50)
         self.play(FadeIn(ap_calculation[5]), run_time=0.65)
@@ -958,7 +997,7 @@ class Tcfs115Q12Slide(CarloSlide):
             stroke_width=2.5,
         )
 
-        # Beat 13 consolidate: reconnect rotation, straightening, equality, and both values.
+        # Beat 26 consolidate: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(ap_calculation),

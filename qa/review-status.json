@@ -1,0 +1,420 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-31T06:40:57+00:00",
+  "lessons": [
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.p2q01",
+      "review_binding_digest": "1bf79cdd024ddd4f58abe86288f0e6b96974e41739a020106ca56e67eea388b3",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 29,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q01",
+      "review_binding_digest": "a3da6e7de7cdd61ba87ff0a965ce430e5d41009b178360708d3003db0133f451",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 5,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q02",
+      "review_binding_digest": "683acb46d427a409b94bf7a1c70dc9b087c1c14745a1d4c240e23fb340777d33",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 14,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q03",
+      "review_binding_digest": "7b70aae8315770be9f487a8b59fe1a50b78c467b377ad0eeb24e5a60f5ca0590",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 19,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q04",
+      "review_binding_digest": "a214a5791a8953c1540ee5317abf3e62c5f3be5226887a81b7cbcd4dda7739ac",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 17,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q05",
+      "review_binding_digest": "30b4896b65acc8997ceb032562828370d22ee8f4e18d322874ac682a3354f2e3",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 23,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q06",
+      "review_binding_digest": "a7628f6a92fc843ab6dccdda772b8537fa32b5fb26d755004ebda151cdc52b44",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 20,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q07",
+      "review_binding_digest": "0c12cd1f8ee2238757f00750b1a1ead38e94939a7ff6ddf8af5b51070368542c",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 19,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q08",
+      "review_binding_digest": "73f9f843a8aacb205e77b8b6a712776031b5392c39581de83c1712b40c7a2de9",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 23,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q09",
+      "review_binding_digest": "e08772697905bc3c99a0c1437dbc3761d1e03274dc0c3e84a514662ea4ac63ba",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 28,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q10",
+      "review_binding_digest": "2ec5e16e210e650dc7b5738ee0e77e61bf5ca4ca76d8abaaf81c21d728a4df13",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 24,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q11",
+      "review_binding_digest": "67c232faf69f11b93ba709d1ac5473841f3791700aafb395ac8de4f3aa3767a3",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 20,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q12",
+      "review_binding_digest": "4c18ae2bc2a5f074d57c9904787e9820da8af821d7c069301a6cb4d9a1d5b3c6",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 23,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_112_math_gifted.q13",
+      "review_binding_digest": "8ee4f533dfc3f42006f2e1ebe85946a76367b5840923817d84eed5eec7f07ad2",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 25,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.p2q01",
+      "review_binding_digest": "e86057297ab4626530a4c2e7f37cd7a6c48ed7f0e596dc0a0010c99eadf513a8",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 26,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q01",
+      "review_binding_digest": "e06c790ed5b619e678094550eca1ead97e520a90771b236f971c81265a847ae2",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 14,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q02",
+      "review_binding_digest": "c3d0d1ed5405aa1816bbdd5e5bc58935ce47b52561f0ee9f2f5eff02d02cda35",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 18,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q03",
+      "review_binding_digest": "754e5785355981a2337e31a5b82317e45face5e4354aed861c31b39eb48fac8d",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 13,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q04",
+      "review_binding_digest": "606d640bc88d7fb2fd5d9075d14ff3395448555417323210f37d0db7511109bf",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 17,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q05",
+      "review_binding_digest": "8298f5dd12da3a4d7ccf3043f79d602fe899c03d6e86de377ba04c2a29a8d2f8",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 23,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q06",
+      "review_binding_digest": "ac6b5030a6d122f6923970585d9c5396583ce42cc77c587dba25d85a504bf387",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 17,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q07",
+      "review_binding_digest": "944c69e89d433e0a6d8580e24837a3f1de3433dbae8073de0d81066c4147b59e",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 16,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q08",
+      "review_binding_digest": "cd24bbcd5f80386b3e7db6bb35dc642e782af41641156b26ea261b3a56b81e31",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 14,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q09",
+      "review_binding_digest": "065ac4fe9c793fa371e540338948c6d781b80032f503db658b0f96e22607d294",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 16,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q10",
+      "review_binding_digest": "3028c09496e89e4ffe58e50279fa056a8a863701aa74f21c244dba833ee408da",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 17,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q11",
+      "review_binding_digest": "3df56a35207ac475cc0b816eec8c57edc35cabf50238866263edd009059d4b96",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 14,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q12",
+      "review_binding_digest": "4e2be70bf285b8b0d4aab813d15ad46901cf3f4ea053a1553dcd0817158cfbf5",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 19,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_113_math_gifted.q13",
+      "review_binding_digest": "b8f2eaa4208054780a6bdc3463b9bdea9c6106e1aab48eea601118923210de24",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 21,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_114_math_gifted.q01",
+      "review_binding_digest": "ccfcb971d30c12ffa0e0c4d03c15523cf76649cd8a15befed7d5dfd40c899696",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 19,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_114_math_gifted.q02",
+      "review_binding_digest": "a0f33da4b05f872ee8aeeb3447d3b8619e763fce12df5d78f2783268ca0a1449",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 24,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_114_math_gifted.q03",
+      "review_binding_digest": "d0c7374c873e14d5b76f04b91321cf7f095d5e7369a070148fa28ce2b50acf1e",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 19,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_114_math_gifted.q13",
+      "review_binding_digest": "ecda63379a1e3c3ade35fb3435e64af04a0eae745d94fdeab198ec5d2ac04ccd",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 14,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.p2q01",
+      "review_binding_digest": "383bbef17561719d3eba031648cdb833568602c460a5a4f9554a9caaea9854c2",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 23,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.p2q02",
+      "review_binding_digest": "93bd1692c17afdd5aa3ec7e664628470935acfc5196159da2e6405a4b006d383",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 17,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q01",
+      "review_binding_digest": "75eba7de3140ddcd40d8d7c1cc6bd84e29dc691e5839a317a20dbcc29a79fa71",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 20,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q02",
+      "review_binding_digest": "75e95a25790a1e66458c559c4cc8f8758c776ad2a41e7a8a2f22afca32e8794a",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 13,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q03",
+      "review_binding_digest": "f7ad4e6bb7a8d7b1c1e12eb1a430bf7439939ae438cf0efa202097f815df2ee2",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 17,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q04",
+      "review_binding_digest": "cf8e160c4dabd33f5fc40b1dd3e9ff42f1dcd709cc8417d2630c182ce3592bad",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 15,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q05",
+      "review_binding_digest": "40fc745a4af72268f4712db493ccc28ba171a0b7f647eb53374e6977578c1111",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 13,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q06",
+      "review_binding_digest": "9546a7bfe29f18a2cf639bccbe4df0d40298472af3bbc7603541c0e62e790b47",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 24,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q07",
+      "review_binding_digest": "d4e4f318aa458e0e1e52763fed69e2c4dfa47a0543afbef1e3eb3891e80192b9",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 23,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q08",
+      "review_binding_digest": "9876ef5d4413337452258d3c6d4d42730ad80273f6a1091a33a158063b93ec5a",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 22,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q09",
+      "review_binding_digest": "f7758d65acf2828fd5a6d4b4c81bc3b55031c7ef94f94bcda0b499772d04c5b7",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 18,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q10",
+      "review_binding_digest": "2669bef0444579d695c8c88ec5bbcc7e7edb23a51d9060c5492aace97c2b38f9",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 18,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q11",
+      "review_binding_digest": "21eef9d445c91e1190047b8b5a55720c73b7e150325e52b7d73082820e3db36c",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 24,
+      "updated_at": null
+    },
+    {
+      "lesson_id": "carlo.tcfs_115_math_gifted.q12",
+      "review_binding_digest": "289563913027c888432635893ef812f1eb12e64a66de6d8cb66d14bca4574750",
+      "status": "not_started",
+      "passed_segments": 0,
+      "issue_segments": 0,
+      "segment_count": 26,
+      "updated_at": null
+    }
+  ]
+}

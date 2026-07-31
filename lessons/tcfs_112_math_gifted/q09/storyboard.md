@@ -103,94 +103,180 @@ triples `(a,b,c)` gives this same single solution.
 - No source scan, handwriting, channel artwork, logo, or video frame appears in
   the lesson.
 
-## Beat map and motion purposes
+## Beat map
 
 ### 01 mirror_three_digits
 
-Reveal `a,b,c` from left to center, then copy `b` and `a` into their reflected
-positions. The copying motion answers why a five-digit palindrome has only
-three independent digits. End with `n=abcba`, but no numerical candidate.
+先不要急著猜五位數。
 
-### 02 fold_digit_sum
+動作目的：讓「五個位置，其實只有三個選擇」在穩定畫面上單獨成立，再進入下一步。
 
-Highlight the two `a` cards, the two `b` cards, and the center `c` card in
-sequence. Copy those groups into `m=2a+2b+c`, then reveal the three conditions
-on `m`. The motion translates the same object from positions to contributions.
+### 02 fold_outer_digit_pair
 
-### 03 find_the_digit_sum
+先看兩張黃色的 `a`，它們對數字和貢獻 `2a`。
 
-Place `m` on the visible interval from 10 to 45 and reveal only the square
-stops `16,25,36`. Open each two-digit card into its own digit sum; cross the two
-sevens and retain `9=3^2`. Only after that check settles, state `m=36`.
+動作目的：讓「先把最外側兩個 a 合成 2a」在穩定畫面上單獨成立，再進入下一步。
 
-### 04 filter_outer_digit
+### 03 fold_inner_digit_pairs
 
-Return to the palindrome and highlight its shared leading/trailing digit.
-Generate the possible nonzero terminal digits of a square. Then fill the inner
-three positions to their maximum `9+9+9=27`; the visible capacity bound forces
-`a>=5`, crossing `1,4` and retaining `5,6,9`.
+兩張藍色的 `b` 貢獻 `2b`。中央綠色的 `c` 只出現一次。所以五位數的數字和是
 
-### 05 enumerate_a_nine
+動作目的：讓「再合成 2b 與中央 c」在穩定畫面上單獨成立，再進入下一步。
 
-Freeze `a=9` and vary only `b,c` while `2b+c=18` remains fixed. Each deliberate
-state `(5,8),(6,6),(7,4),(8,2),(9,0)` creates its corresponding five-card
-palindrome. The motion shows where all five candidates come from.
+### 04 state_digit_sum_constraints
 
-### 06 enumerate_a_six
+題目對這個 `m` 給了三道限制：它是兩位數、它是完全平方數，而且它自己的兩個數字相加後，仍然是完全平方數。
 
-Dim the first branch, freeze `a=6`, and vary the only two valid inner states
-`(8,8),(9,6)` under `2b+c=24`. Keep both new palindromes visible beside the
-first branch.
+動作目的：讓「列出數字和的三道限制」在穩定畫面上單獨成立，再進入下一步。
 
-### 07 enumerate_a_five
+### 05 list_digit_sum_squares
 
-Freeze `a=5`; only `(b,c)=(9,8)` satisfies `2b+c=26`. Create `59895`, then
-rearrange the three branches into one settled eight-card search set. The
-rearrangement answers the completeness question, not a new arithmetic step.
+五個數字最多都是 9，所以 `m` 不會超過 45；題目又說它是兩位數。
 
-### 08 test_mod_four
+動作目的：讓「列出範圍內平方並先測十六」在穩定畫面上單獨成立，再進入下一步。
 
-Prove the two square residues using even and odd roots. Highlight the final two
-digits on every candidate, attach its actual remainder, and cross only those
-with remainder 2 or 3. Keep all rejected cards dimly visible until the three
-survivors have been accounted for.
+### 06 find_the_digit_sum
 
-### 09 isolate_three_survivors
+`2+5=7`，也不行。
 
-Move `96669`, `69696`, and `98289` into three large test positions. Restore the
-condition `n` is a square and explicitly label modulo 4 as only a first gate.
-No survivor is selected yet.
+動作目的：讓「排除二十五並留下三十六」在穩定畫面上單獨成立，再進入下一步。
 
-### 10 bracket_first_false
+### 07 list_terminal_square_digits
 
-Place `96669` on a number line between `310^2=96100` and `311^2=96721`.
-Its position strictly between consecutive squares visibly rejects it.
+回到最外面的黃色數字。它既是最高位，也是整個平方數的個位數。
 
-### 11 bracket_second_false
+動作目的：讓「先列平方數可能的末位」在穩定畫面上單獨成立，再進入下一步。
 
-Apply the same exact construction to `98289`, between `313^2=97969` and
-`314^2=98596`. Reusing the construction adds a second proof case rather than
-decorative repetition.
+### 08 derive_outer_digit_bound
 
-### 12 hold_middle_square_test
+再看中央三格。即使 `b` 和 `c` 都放到最大，它們的貢獻也只有
 
-Return to the three candidate cards with the two false ones crossed. Place
-`264^2 ? 69696` beneath the untouched middle card and stop on a settled frame.
-The equality and requested pair are not yet shown.
+動作目的：讓「用中央三格上限推出 a 至少為五」在穩定畫面上單獨成立，再進入下一步。
 
-### 13 reveal_and_recheck_pair
+### 09 retain_outer_digit_branches
 
-Compute `264^2=69696` in the pre-answer position, clear the completed test, then
-rebuild the surviving number as five colored digits beside the fixed equality.
-Pair the mirrored digits to recover `36`, check `36=6^2` and `3+6=9=3^2`, and
-only after every check lands reveal `(m,n)=(36,69696)`.
+總和必須到 36，因此外側兩個 `a` 至少要補足 9。因為 `a` 是整數，得到 `a\ge5`。
+
+動作目的：讓「只留下五、六、九三個分支」在穩定畫面上單獨成立，再進入下一步。
+
+### 10 establish_a_nine_compensation
+
+先從 `a=9` 開始。外側已經貢獻 18，所以中央必須滿足 `2b+c=18`。
+
+動作目的：讓「先用第一個候選建立補償規則」在穩定畫面上單獨成立，再進入下一步。
+
+### 11 enumerate_a_nine
+
+先依序得到 `(6,6)、(7,4)`，讓同一個補償規則只推進兩次。
+
+動作目的：讓「沿同一規則列完 a 等於九」在穩定畫面上單獨成立，再進入下一步。
+
+### 12 finish_a_nine_candidates
+
+再得到 `(8,2)、(9,0)`，完成 `a=9` 的全部五個候選並停在完整清單。
+
+### 13 set_up_a_six_branch
+
+現在把 `a` 固定為 6。外側貢獻 12，所以中央需要 `2b+c=24`。
+
+動作目的：讓「把 a 等於六的方程放到清單旁」在穩定畫面上單獨成立，再進入下一步。
+
+### 14 enumerate_a_six
+
+能成立的只有 `(b,c)=(8,8)` 與 `(9,6)`，分別給出 68886 和 69696。
+
+動作目的：讓「列出兩個合法中央配置」在穩定畫面上單獨成立，再進入下一步。
+
+### 15 set_up_a_five_branch
+
+最後固定 `a=5`。中央需要 `2b+c=26`。
+
+動作目的：讓「建立 a 等於五的最後分支」在穩定畫面上單獨成立，再進入下一步。
+
+### 16 enumerate_a_five
+
+只有 `b=9、c=8` 合法，因此得到 59895。
+
+動作目的：讓「讀出這個分支的唯一候選」在穩定畫面上單獨成立，再進入下一步。
+
+### 17 assemble_eight_candidates
+
+把三個分支排在一起：五個、兩個、一個，總共八個候選。
+
+動作目的：讓「把三個分支整理成八張卡」在穩定畫面上單獨成立，再進入下一步。
+
+### 18 prove_square_residues_mod_four
+
+任何整數不是偶數就是奇數。
+
+動作目的：讓「先證明平方除以四只餘零或一」在穩定畫面上單獨成立，再進入下一步。
+
+### 19 test_mod_four
+
+判斷除以 4 的餘數，只要看最後兩位。現在逐張看標亮的尾端。
+
+動作目的：讓「再替八張卡標餘數並篩選」在穩定畫面上單獨成立，再進入下一步。
+
+### 20 isolate_three_survivors
+
+把三個倖存者單獨放大。
+
+動作目的：讓「必要條件通過後，還要真的驗平方」在穩定畫面上單獨成立，再進入下一步。
+
+### 21 place_first_square_bracket
+
+`310` 的平方是 96100，`311` 的平方是 96721。
+
+動作目的：讓「先放出相鄰平方的兩端」在穩定畫面上單獨成立，再進入下一步。
+
+### 22 bracket_first_false
+
+相鄰整數之間沒有別的整數，所以相鄰平方之間也不可能藏著另一個整數平方。
+
+動作目的：讓「用嚴格夾住排除九六六六九」在穩定畫面上單獨成立，再進入下一步。
+
+### 23 place_second_square_bracket
+
+同樣檢查 98289。
+
+動作目的：讓「先放出第二組相鄰平方」在穩定畫面上單獨成立，再進入下一步。
+
+### 24 bracket_second_false
+
+98289 也嚴格落在兩個相鄰平方之間，所以它不是完全平方數。
+
+動作目的：讓「用嚴格夾住排除九八二八九」在穩定畫面上單獨成立，再進入下一步。
+
+### 25 hold_middle_square_test
+
+中央候選是 69696。最接近的平方根候選是 264。
+
+動作目的：讓「先停在最後一個等號前」在穩定畫面上單獨成立，再進入下一步。
+
+### 26 reveal_square_equality
+
+乘法完成：`264^2=69696`。這一張確實是完全平方數。
+
+動作目的：讓「先確認二六四的平方」在穩定畫面上單獨成立，再進入下一步。
+
+### 27 recheck_palindrome
+
+把它重新展開成五張卡。從右讀回來仍然是 69696，所以它是回文數。
+
+動作目的：讓「把數字展開並核對回文」在穩定畫面上單獨成立，再進入下一步。
+
+### 28 reveal_and_recheck_pair
+
+五個數字相加是
+
+動作目的：讓「核對兩層數字和並寫出數對」在穩定畫面上單獨成立，再進入下一步。
 
 ## Build constraints
 
 - Edit only `lessons/tcfs_112_math_gifted/q09/`; generated media stays in the
   lesson's ignored build directories.
 - Scene class: `CarloTcfs112MathQ09`.
-- Thirteen beats, all `loop=false`.
+- Twenty-seven beats, all `loop=false`.
 - Traditional Chinese uses `label()`; `MathTex` contains ASCII mathematics.
 - Render in an isolated media directory through the lesson runner, first at low
   quality and then at `--quality h`.

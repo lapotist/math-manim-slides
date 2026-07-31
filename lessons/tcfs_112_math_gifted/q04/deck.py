@@ -390,8 +390,8 @@ class CarloTcfs112MathQ04(CarloSlide):
         source.to_corner(DOWN + RIGHT, buff=0.22)
         self.add(heading, source)
 
-        # Beat 01: establish only the given trapezoid and its two constructions.
-        self.begin_beat("build_given_trapezoid")
+        # Beat 01 build_trapezoid_shape: establish only the given trapezoid and its two constructions.
+        self.begin_beat("build_trapezoid_shape")
         beat_title = label("先把題目的每一個點放回圖上", 35, INK, "BOLD")
         beat_title.move_to([0, 3.28, 0])
         model = self.diagram(-4.15, 3.05)
@@ -412,24 +412,33 @@ class CarloTcfs112MathQ04(CarloSlide):
             run_time=1.0,
         )
         self.play(Create(model[5]), FadeIn(model[6]), run_time=0.7)
+
+        # Beat 02 mark_trapezoid_givens: continue at a settled semantic boundary.
+        self.next_beat("mark_trapezoid_givens")
         self.play(FadeIn(given_title), Write(parallel), Write(base_ratio), run_time=0.75)
         self.play(FadeIn(strip), Write(midpoint), run_time=0.7)
         self.wait(0.30)
 
-        # Beat 02: vary only the trapezoid while F remains the actual intersection.
-        self.next_beat("vary_shape_watch_f")
+        # Beat 03 test_tall_shape: test one deliberately tall trapezoid first.
+        self.next_beat("test_tall_shape")
         next_title = label("梯形換個樣子，交點 F 會怎麼移動？", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         observation = label("每一次都重新取 AC 中點，再畫直線 BE", 26, MUTED, "MEDIUM")
         observation.move_to([4.10, -2.72, 0])
         self.play(self.title_change(beat_title, next_title), FadeIn(observation), run_time=0.6)
         beat_title = next_title
-        for d_x, height in ((-3.05, 3.75), (-4.72, 3.26), (-3.62, 3.48)):
-            self.play(Transform(model, self.diagram(d_x, height)), run_time=1.05)
-            self.play(Indicate(model[3][5], color=POINT), run_time=0.38)
+        self.play(Transform(model, self.diagram(-3.05, 3.75)), run_time=1.05)
+        self.play(Indicate(model[3][5], color=POINT), run_time=0.38)
+
+        # Beat 04 vary_shape_watch_f: test the opposite shear and return to the generic shape.
+        self.next_beat("vary_shape_watch_f")
+        self.play(Transform(model, self.diagram(-4.72, 3.26)), run_time=1.05)
+        self.play(Indicate(model[3][5], color=POINT), run_time=0.38)
+        self.play(Transform(model, self.diagram(-3.62, 3.48)), run_time=1.05)
+        self.play(Indicate(model[3][5], color=POINT), run_time=0.38)
         self.wait(0.30)
 
-        # Beat 03: ask for the split before introducing any auxiliary point.
+        # Beat 05 pause_on_unknown_split: ask for the split before introducing any auxiliary point.
         self.next_beat("pause_on_unknown_split")
         next_title = label("F 把整條 AD 分成哪個比例？", 35, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -449,7 +458,7 @@ class CarloTcfs112MathQ04(CarloSlide):
         self.play(Write(ratio_question), FadeIn(prompt), run_time=0.65)
         self.wait(0.45)
 
-        # Beat 04: extend the two already-visible lines until they meet at G.
+        # Beat 06 extend_lines_to_g: extend the two already-visible lines until they meet at G.
         self.next_beat("extend_lines_to_g")
         next_title = label("把兩條延長線接起來，製造一個新交點", 35, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -473,8 +482,8 @@ class CarloTcfs112MathQ04(CarloSlide):
         self.play(FadeIn(dot_g), FadeIn(name_g), Write(construction_note), FadeIn(collinear_note), run_time=0.7)
         self.wait(0.30)
 
-        # Beat 05: earn GC = AB from midpoint, vertical angles, and parallel bases.
-        self.next_beat("earn_equal_long_segment")
+        # Beat 07 match_extension_angles: earn GC = AB from midpoint, vertical angles, and parallel bases.
+        self.next_beat("match_extension_angles")
         next_title = label("先比對 E 兩側的三角形", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         triangle_gec = Polygon(
@@ -508,13 +517,16 @@ class CarloTcfs112MathQ04(CarloSlide):
         beat_title = next_title
         self.play(Create(vertical_gec), Create(vertical_bea), Write(first_angle), run_time=0.70)
         self.play(Create(parallel_gce), Create(parallel_bae), Write(second_angle), run_time=0.70)
+
+        # Beat 08 earn_equal_long_segment: continue at a settled semantic boundary.
+        self.next_beat("earn_equal_long_segment")
         self.play(Create(equal_ae), Create(equal_ec), Write(equal_half), run_time=0.65)
         self.play(Write(congruent), run_time=0.65)
         self.play(Write(equal_long), run_time=0.65)
         self.wait(0.30)
 
-        # Beat 06: turn the given three units into the visible two-plus-one split.
-        self.next_beat("split_three_units")
+        # Beat 09 measure_gc_and_dc: turn the given three units into the visible two-plus-one split.
+        self.next_beat("measure_gc_and_dc")
         next_title = label("三份長度，扣掉一份，延長段剩兩份", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         gd_segment = Line(g, d, color=CORAL, stroke_width=7.0).set_z_index(8)
@@ -550,12 +562,15 @@ class CarloTcfs112MathQ04(CarloSlide):
         beat_title = next_title
         self.play(Create(whole_gc), FadeIn(whole_gc_label), Write(gc_equals), run_time=0.70)
         self.play(Create(dc_segment), FadeIn(dc_label), Write(cd_unit), run_time=0.60)
+
+        # Beat 10 split_three_units: continue at a settled semantic boundary.
+        self.next_beat("split_three_units")
         self.play(Create(gd_segment), FadeIn(gd_label), Write(subtract), run_time=0.65)
         self.play(Write(base_split), run_time=0.60)
         self.wait(0.30)
 
-        # Beat 07: use the same two intersecting lines to earn a second similarity.
-        self.next_beat("earn_second_similarity")
+        # Beat 11 match_second_triangle_angles: use the same two intersecting lines to earn a second similarity.
+        self.next_beat("match_second_triangle_angles")
         next_title = label("再看 F 周圍，第二組三角形有同樣的角", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         triangle_gdf = Polygon(
@@ -594,11 +609,14 @@ class CarloTcfs112MathQ04(CarloSlide):
         beat_title = next_title
         self.play(Create(vertical_gfd), Create(vertical_bfa), Write(f_angles), run_time=0.70)
         self.play(Create(parallel_gdf), Create(parallel_baf), Write(base_angles), run_time=0.70)
+
+        # Beat 12 earn_second_similarity: continue at a settled semantic boundary.
+        self.next_beat("earn_second_similarity")
         self.play(Write(similar), run_time=0.65)
         self.play(Write(correspondence), run_time=0.65)
         self.wait(0.30)
 
-        # Beat 08: transfer the visible base ratio onto side AD.
+        # Beat 13 transfer_two_to_three: transfer the visible base ratio onto side AD.
         self.next_beat("transfer_two_to_three")
         next_title = label("相似把上方的 2 比 3 搬到側邊", 35, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -632,8 +650,8 @@ class CarloTcfs112MathQ04(CarloSlide):
         self.play(FadeIn(df_label), FadeIn(af_label), Write(side_lengths), run_time=0.65)
         self.wait(0.30)
 
-        # Beat 09: hold on a two-plus-three bar with no evaluated answer visible.
-        self.next_beat("hold_before_fraction")
+        # Beat 14 build_five_unit_bar: hold on a two-plus-three bar with no evaluated answer visible.
+        self.next_beat("build_five_unit_bar")
         next_title = label("分子是三份；分母要數整條 AD", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         units, upper_braces, lower_brace, brace_labels = self.five_part_bar()
@@ -655,11 +673,14 @@ class CarloTcfs112MathQ04(CarloSlide):
             run_time=0.85,
         )
         self.play(Create(upper_braces[0]), Create(upper_braces[1]), FadeIn(brace_labels), run_time=0.65)
+
+        # Beat 15 hold_before_fraction: continue at a settled semantic boundary.
+        self.next_beat("hold_before_fraction")
         self.play(Create(lower_brace[0]), FadeIn(VGroup(*lower_brace[1:])), run_time=0.65)
         self.play(Write(final_question), FadeIn(pause_note), run_time=0.55)
         self.wait(0.55)
 
-        # Beat 10: count the whole only after the reflected partition has settled.
+        # Beat 16 reveal_three_fifths: count the whole only after the reflected partition has settled.
         self.next_beat("reveal_three_fifths")
         next_title = label("把五份數完，比例才真正落定", 35, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -685,6 +706,9 @@ class CarloTcfs112MathQ04(CarloSlide):
         self.play(FadeIn(whole_length), run_time=0.65)
         self.play(Write(fraction_build), run_time=0.80)
         self.play(Write(final_equals), Create(answer_frame), run_time=0.70)
+
+        # Beat 17 return_to_moving_point: continue at a settled semantic boundary.
+        self.next_beat("return_to_moving_point")
         self.play(
             *self.model_focus(model, 0.60, 0.028),
             Indicate(af_segment, color=POINT),

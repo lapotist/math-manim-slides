@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The source video requires a+3>0 and therefore omits the valid endpoint a=-3. The exact condition is a+3>=0 together with Delta>0, giving [-3,-2) union (6,infinity). This correction does not change the requested minimum -10 at a=2021."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_114_math_gifted/q02/deck.py"
 scene_class = "CarloTcfs114MathQ02"
 storyboard = "lessons/tcfs_114_math_gifted/q02/storyboard.md"
@@ -32,8 +32,17 @@ expected_answer = "-10"
 independent_check = "An upward-opening quadratic always enters quadrants I and II. With Delta>0 it is negative between its two real roots. Their product is a+3: a negative product puts the roots on opposite sides and yields all four quadrants, while a nonnegative product keeps the negative interval on one side, including a=-3 where the roots are 0 and 3. Thus a is in [-3,-2) union (6,infinity). The target equals (a-2021)^2-10, and a=2021 is admissible, so its attained minimum is -10."
 tags = ["algebra", "quadratic-function", "parabola", "quadrants", "discriminant", "parameter", "optimization", "source-correction"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "對實數 a，考慮函數 fₐ(x)=x²+ax+(a+3)。若其圖形恰好經過四個象限中的三個，求 (a-2025)²+8(a-2025)+6 的最小值。"
+
 [[beats]]
 id = "meet_family"
+loop = false
+
+[[beats]]
+id = "identify_fixed_quadrants"
 loop = false
 
 [[beats]]
@@ -49,7 +58,19 @@ id = "require_negative_arc"
 loop = false
 
 [[beats]]
+id = "test_tangent_boundary"
+loop = false
+
+[[beats]]
+id = "state_discriminant_condition"
+loop = false
+
+[[beats]]
 id = "guard_y_axis"
+loop = false
+
+[[beats]]
+id = "state_axis_guard"
 loop = false
 
 [[beats]]
@@ -65,7 +86,15 @@ id = "solve_discriminant"
 loop = false
 
 [[beats]]
+id = "factor_discriminant"
+loop = false
+
+[[beats]]
 id = "intersect_ranges"
+loop = false
+
+[[beats]]
+id = "read_parameter_intersection"
 loop = false
 
 [[beats]]
@@ -77,9 +106,29 @@ id = "complete_square"
 loop = false
 
 [[beats]]
+id = "return_to_parameter"
+loop = false
+
+[[beats]]
 id = "locate_vertex"
 loop = false
 
 [[beats]]
+id = "translate_vertex_parameter"
+loop = false
+
+[[beats]]
+id = "verify_vertex_is_admissible"
+loop = false
+
+[[beats]]
+id = "reveal_minimum"
+loop = false
+
+[[beats]]
 id = "consolidate"
+loop = false
+
+[[beats]]
+id = "close_with_source_correction"
 loop = false

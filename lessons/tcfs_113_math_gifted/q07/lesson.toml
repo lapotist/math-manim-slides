@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame inspection shows Q7 settled from 00:00 through 03:31. The 03:32 frame is an ambiguous page transition, and Q8 is settled from 03:33, so the Q7 locator ends at 03:31. The source rewrites the quadratic as (x-3)^2+3, separates the interval into three positions relative to x=3, and uses endpoint fixed-point equations in the surviving increasing-branch case. This lesson preserves that argument while making the first two exclusions visual through the global floor f(x)>=3, then delays all fixed-point algebra until the endpoint extrema have been identified on the graph. No source imagery, audio, or wording is reused."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q07/deck.py"
 scene_class = "CarloTcfs113MathQ07"
 storyboard = "lessons/tcfs_113_math_gifted/q07/storyboard.md"
@@ -32,12 +32,25 @@ expected_answer = "(3, 4)"
 independent_check = "Complete the square: f(x)=(x-3)^2+3, so f(x)>=3. If a<3 and b<3, f decreases on [a,b], hence its minimum is f(b)>3>a, impossible. If a<3<=b, the interval contains x=3, hence its minimum is 3>a, also impossible. Thus a>=3. For 3<=x<y, f(y)-f(x)=(y-x)(x+y-6)>0, so f is increasing on [a,b]. Therefore the required minimum a and maximum b are f(a) and f(b), giving f(a)=a and f(b)=b. Fixed points satisfy x^2-7x+12=(x-3)(x-4)=0, so the only candidates are 3 and 4. Since a<b, (a,b)=(3,4). Finally, for 3<=x<=4, 0<=(x-3)^2<=1, so 3<=f(x)<=4; the actual range is [3,4]."
 tags = ["quadratic", "vertex-form", "interval", "extrema", "fixed-point", "range"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "設 0<a<b，函數 f(x)=x²-6x+12 在區間 [a,b] 上的最小值恰為 a、最大值恰為 b。求有序數對 (a,b)。"
+
 [[beats]]
 id = "reveal_vertex_form"
 loop = false
 
 [[beats]]
+id = "introduce_interval_goal"
+loop = false
+
+[[beats]]
 id = "test_left_interval"
+loop = false
+
+[[beats]]
+id = "reject_left_interval"
 loop = false
 
 [[beats]]
@@ -65,9 +78,25 @@ id = "solve_fixed_points"
 loop = false
 
 [[beats]]
+id = "factor_fixed_point_equation"
+loop = false
+
+[[beats]]
 id = "assign_ordered_endpoints"
 loop = false
 
 [[beats]]
+id = "state_ordered_pair"
+loop = false
+
+[[beats]]
 id = "verify_preserved_interval"
+loop = false
+
+[[beats]]
+id = "propagate_interval_bounds"
+loop = false
+
+[[beats]]
+id = "confirm_preserved_interval"
 loop = false

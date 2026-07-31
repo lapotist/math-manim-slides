@@ -8,7 +8,7 @@
 
 結尾不以有序數對停住。區間回到 `[3,4]`，並直接由 `0 <= (x-3)^2 <= 1` 檢查整段值域確為 `[3,4]`。這讓最後答案重新連回開場的區間問題，而不是只驗兩個端點。
 
-預估 8 分鐘。十個 beat 全部為非循環頁；每個停點都留下可慢慢指認的完整構圖。
+預估 8 分鐘。十六個 beat 全部為非循環頁；每個停點都留下可慢慢指認的完整構圖。
 
 ## Source and provenance
 
@@ -75,48 +75,72 @@ x^2-6x+12=x
 
 ### 01 reveal_vertex_form
 
-先畫座標軸與拋物線，再顯示 `y=(x-3)^2+3`。水平線與頂點共同建立全域下界 `f(x)>=3`。右側只列題目要求的區間和極值名稱，停在「區間可以放在哪裡？」
+先畫座標軸與拋物線，再顯示 `y=(x-3)^2+3`。水平線、頂點與平方非負共同建立全域下界。
 
-### 02 test_left_interval
+### 02 introduce_interval_goal
 
-把同一個 `[a,b]` 放在 `x=3` 左側，沿區間加亮下降的曲線。右端高度 `f(b)` 是最低值，卻仍大於 3，而 `a<3`；以 `f(b) != a` 排除。
+由平方非負寫出 `f(x)>=3`，再列題目要求的正數區間、極值名稱與「區間可以放在哪裡？」
 
-### 03 test_straddling_interval
+### 03 test_left_interval
+
+把同一個 `[a,b]` 放在 `x=3` 左側，沿區間加亮下降曲線，停在 `0<a<b<3` 與下降方向。
+
+### 04 reject_left_interval
+
+右端高度 `f(b)` 是最低值，卻仍大於 3，而 `a<3`；以 `f(b) != a` 排除。
+
+### 05 test_straddling_interval
 
 將區間平滑移動並拉長，使 `a<3<=b`。最低點 `(3,3)` 落在區間中，實際最低值為 3，但 `a<3`，再次不符。
 
-### 04 settle_right_branch
+### 06 settle_right_branch
 
 區間移到右側。把前兩類 `a<3` 位置劃掉，留下 `3<=a<b`，再單獨顯示已經得到的必要條件 `a>=3`。
 
-### 05 connect_endpoint_extrema
+### 07 connect_endpoint_extrema
 
 從 `a`、`b` 各自作垂直輔助線到曲線，顯示右支一路上升。先只命名實際最低值 `f(a)` 與實際最大值 `f(b)`，不寫固定點方程式。
 
-### 06 earn_fixed_endpoint_equations
+### 08 earn_fixed_endpoint_equations
 
 將圖上的實際極值名稱和題目指定的名稱並排。兩組名稱各自合併為 `f(a)=a`、`f(b)=b`，以物件連續性說明方程式從哪裡來。
 
-### 07 locate_fixed_points
+### 09 locate_fixed_points
 
 區間降彩度，加入紫色直線 `y=x`。兩個交點逐一亮起，但暫時不標數值；畫面只問哪些橫座標能使輸入與輸出相同。
 
-### 08 solve_fixed_points
+### 10 solve_fixed_points
 
-右側逐行寫出固定點方程式、移項與因式分解。最後得到候選集合 `{3,4}`，同時在左圖的兩個交點標上座標。
+右側逐行寫出固定點方程式並移項，停在 `x^2-7x+12=0`。
 
-### 09 assign_ordered_endpoints
+### 11 factor_fixed_point_equation
 
-把候選值 3、4 分成兩個可移動籌碼。條件 `a<b` 先出現，再把 3 配給 `a`、4 配給 `b`，得到有序數對。
+因式分解為 `(x-3)(x-4)=0`，得到候選集合 `{3,4}`，同時在左圖交點標上座標。
 
-### 10 verify_preserved_interval
+### 12 assign_ordered_endpoints
 
-移除固定點直線，讓區間精確落在 `[3,4]`。加亮從 `(3,3)` 到 `(4,4)` 的整段拋物線，逐行建立平方範圍，得到 `3<=f(x)<=4`，最後確認最低值與最大值都符合原條件。
+把候選值 3、4 分成兩個可移動籌碼。條件 `a<b` 先出現，再把 3 配給 `a`、4 配給 `b`。
+
+### 13 state_ordered_pair
+
+由兩個已分配端點寫出有序數對 `(a,b)=(3,4)`。
+
+### 14 verify_preserved_interval
+
+移除固定點直線，讓區間精確落在 `[3,4]`，標出端點高度並寫出 `3<=x<=4`。
+
+### 15 propagate_interval_bounds
+
+逐行將範圍送入 `x-3`、平方與 `f(x)`，得到 `3<=f(x)<=4`，確認兩個極值名稱。
+
+### 16 confirm_preserved_interval
+
+在完整區間檢查旁重寫 `(a,b)=(3,4)` 並框選，收束原條件驗證。
 
 ## Technical contract
 
-- 場景類別為 `CarloTcfs113MathQ07(CarloSlide)`，透過 Manim Slides 產生十段非循環 segment。
-- beat ID、`lesson.toml` 順序與講者稿標題必須完全一致；講者稿有九個 `[NEXT]`，沒有 `[LOOP]`。
+- 場景類別為 `CarloTcfs113MathQ07(CarloSlide)`，透過 Manim Slides 產生十六段非循環 segment。
+- beat ID、`lesson.toml` 順序與講者稿標題必須完全一致；講者稿有十五個 `[NEXT]`，沒有 `[LOOP]`。
 - 繁體中文只使用專案 `label()` / `Text` 層；`MathTex` 字串僅含 ASCII LaTeX。
 - 固定 16:9、1920x1080、30 fps。渲染必須使用專屬 `build/media/carlo_tcfs_113_math_gifted_q07`，避免平行工作共用 TeX 暫存。
 - 只可編輯 `lessons/tcfs_113_math_gifted/q07/` 內的四個來源檔；collection、共享元件、測試與 QA attestation 由整合者處理。

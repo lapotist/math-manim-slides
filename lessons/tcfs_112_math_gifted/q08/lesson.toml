@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page states that balls labelled 1 through 25 are divided between baskets A and B, ball 15 starts in A, and moving it to B raises each basket's average by 1/4; its worked area is blank and does not establish a solution. The dedicated public video visibly lets A initially contain m balls with mean x1 and B contain 25-m balls with mean x2, writes the two before-and-after sum equations, derives x1=(m+59)/4 and x2=(m+34)/4, uses the fixed total 1+...+25=325, and concludes m=9. The complete answer is clean through 00:04:43.80; a device overlay begins by 00:04:43.85. The inspected 518x360 research stream is 284.537324 seconds long and has SHA-256 23431c7e739e7ee55631ee29143d8ee6a0d16f4083041a28f0977eac31570dcf. This lesson preserves that mathematics while adding project-original deficit/surplus quarter tiles, a common-mean baseline regrouping, explicit domain bounds, and the feasible partition A={13,...,21}. All visuals, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q08/deck.py"
 scene_class = "CarloTcfs112MathQ08"
 storyboard = "lessons/tcfs_112_math_gifted/q08/storyboard.md"
@@ -31,6 +31,15 @@ estimated_minutes = 10
 expected_answer = "9"
 independent_check = "Let m be the original number of balls in A, with old means x_A and x_B. Both post-move averages must be defined and B must initially contain a ball, so 2<=m<=24. Removing 15 from A gives m*x_A-15=(m-1)(x_A+1/4), hence x_A=15+(m-1)/4=(m+59)/4. Adding 15 to B gives (25-m)*x_B+15=(26-m)(x_B+1/4), hence x_B=15-(26-m)/4=(m+34)/4. The total of labels 1 through 25 is 325. Substitution into m*x_A+(25-m)*x_B=325 yields the unique real, hence unique integer-domain, solution m=9. Feasibility is checked independently by A={13,14,15,16,17,18,19,20,21} and B={1,...,12,22,23,24,25}. Their original sums and means are 153/9=17 and 172/16=43/4. After moving 15, the means are 138/8=69/4 and 187/17=11, each exactly 1/4 above its original value."
 tags = ["averages", "weighted-mean", "linear-equations", "invariants", "finite-construction", "algebra"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "編號 1 至 25 的球恰好分放在籃子 A、B 中，15 號球原本在 A。把 15 號球移到 B 後，兩個籃子的號碼平均數都比移動前增加 1/4。求 A 原有幾顆球。"
+
+[[beats]]
+id = "build_two_baskets"
+loop = false
 
 [[beats]]
 id = "meet_two_baskets"
@@ -41,7 +50,19 @@ id = "move_ball_fifteen"
 loop = false
 
 [[beats]]
+id = "show_new_mean_gauges"
+loop = false
+
+[[beats]]
 id = "measure_a_deficit"
+loop = false
+
+[[beats]]
+id = "balance_a_mean_change"
+loop = false
+
+[[beats]]
+id = "derive_a_mean"
 loop = false
 
 [[beats]]
@@ -53,7 +74,19 @@ id = "measure_b_surplus"
 loop = false
 
 [[beats]]
+id = "balance_b_mean_change"
+loop = false
+
+[[beats]]
+id = "place_old_means_on_axis"
+loop = false
+
+[[beats]]
 id = "compare_old_means"
+loop = false
+
+[[beats]]
+id = "pair_numbers_around_fifteen"
 loop = false
 
 [[beats]]
@@ -65,7 +98,19 @@ id = "reassemble_basket_totals"
 loop = false
 
 [[beats]]
+id = "merge_basket_totals"
+loop = false
+
+[[beats]]
+id = "build_b_baseline"
+loop = false
+
+[[beats]]
 id = "regroup_on_b_baseline"
+loop = false
+
+[[beats]]
+id = "derive_last_division"
 loop = false
 
 [[beats]]
@@ -74,6 +119,10 @@ loop = false
 
 [[beats]]
 id = "reveal_count"
+loop = false
+
+[[beats]]
+id = "build_candidate_partition"
 loop = false
 
 [[beats]]

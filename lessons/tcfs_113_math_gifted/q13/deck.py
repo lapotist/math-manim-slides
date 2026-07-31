@@ -254,6 +254,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.play(FadeIn(stage_title), Write(definition), run_time=0.85)
         self.play(Write(target), FadeIn(domain), run_time=0.75)
         self.play(FadeIn(sample_caption), Create(rail), run_time=0.70)
+
+        self.next_beat("place_sample_value")
         self.play(FadeIn(labels_4), GrowFromCenter(value_dot), FadeIn(value_label), run_time=0.80)
         self.play(FadeIn(gap_note), Indicate(value_dot, color=POINT), run_time=0.65)
         self.wait(0.35)
@@ -281,6 +283,7 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.play(FadeIn(labels_16), FadeIn(value_16), run_time=0.42)
         self.wait(0.20)
 
+        self.next_beat("scan_past_seventeen")
         self.play(FadeOut(labels_16), FadeOut(value_16), run_time=0.32)
         labels_18 = self.numeric_cube_labels(18)
         value_label = self.numeric_value_label(18)
@@ -293,6 +296,8 @@ class CarloTcfs113MathQ13(CarloSlide):
             rate_func=rate_functions.ease_in_out_sine,
         )
         self.play(FadeIn(labels_18), FadeIn(value_label), run_time=0.42)
+
+        self.next_beat("ask_cube_landing_question")
         self.play(FadeIn(scan_question), run_time=0.45)
         self.wait(0.40)
 
@@ -339,6 +344,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.play(Write(first_line), run_time=0.55)
         self.play(Write(first_expand), run_time=0.55)
         self.play(Write(first_positive), run_time=0.65)
+
+        self.next_beat("state_first_floor_bound")
         self.play(
             Write(first_bound),
             value_dot.animate.move_to([-4.18, self.RAIL_Y, 0]),
@@ -410,6 +417,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         )
         self.play(Create(negative_segment), Create(positive_segment), run_time=0.65)
         self.play(FadeIn(zero_open), GrowFromCenter(seventeen_dot), FadeIn(sign_labels), run_time=0.65)
+
+        self.next_beat("classify_switch_ranges")
         self.play(Write(middle_identity), run_time=0.75)
         self.play(LaggedStart(*(Write(row) for row in middle_cases), lag_ratio=0.22), run_time=1.10)
         self.play(FadeIn(domain_note), Indicate(zero_open, color=CORAL), run_time=0.65)
@@ -502,6 +511,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         )
         self.play(LaggedStart(*(FadeIn(item) for item in positive_tiles), lag_ratio=0.12), run_time=0.85)
         self.play(FadeIn(positive_caption), Write(upper_identity), run_time=0.70)
+
+        self.next_beat("state_third_ceiling")
         self.play(Write(upper_positive), run_time=0.55)
         self.play(Write(upper_bound), run_time=0.55)
         self.wait(0.38)
@@ -541,6 +552,8 @@ class CarloTcfs113MathQ13(CarloSlide):
             run_time=0.65,
         )
         self.play(Write(right_case), run_time=0.45)
+
+        self.next_beat("trap_right_range")
         self.play(Write(right_trap), Create(right_gap), run_time=0.72)
         self.play(FadeIn(right_impossible), Indicate(value_dot, color=CORAL), run_time=0.65)
         self.wait(0.38)
@@ -587,6 +600,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         )
         self.play(FadeIn(excluded_zero), Create(boundary_arrow), GrowFromCenter(boundary_dot), run_time=0.70)
         self.play(FadeIn(boundary_label), FadeIn(boundary_note), run_time=0.52)
+
+        self.next_beat("compare_remaining_cases")
         self.play(LaggedStart(*(FadeIn(row) for row in case_rows), lag_ratio=0.22), run_time=0.95)
         self.play(Circumscribe(case_rows[1], color=POINT), run_time=0.70)
         self.wait(0.38)
@@ -626,6 +641,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.play(Write(boundary_a), run_time=0.42)
         self.play(Write(difference_zero), run_time=0.72)
         self.play(Write(exact_cube), run_time=0.60)
+
+        self.next_beat("match_cube_root")
         self.play(Write(equation_match), run_time=0.60)
         self.play(Write(root_match), run_time=0.52)
         self.play(FadeIn(last_question), run_time=0.52)
@@ -658,6 +675,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.play(Create(rail), FadeIn(labels_17), run_time=0.68)
         self.play(GrowFromCenter(final_dot), FadeIn(final_value), run_time=0.62)
         self.play(FadeIn(landing_note), Indicate(final_dot, color=POINT), run_time=0.62)
+
+        self.next_beat("reveal_ordered_pair")
         self.play(Write(b_result), run_time=0.45)
         self.play(FadeIn(answer_box), Write(final_answer), run_time=0.72)
         self.play(FadeIn(uniqueness), Circumscribe(final_answer, color=POINT), run_time=0.72)

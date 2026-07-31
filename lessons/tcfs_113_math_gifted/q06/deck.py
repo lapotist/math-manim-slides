@@ -187,7 +187,7 @@ class CarloTcfs113MathQ06(CarloSlide):
 
     @staticmethod
     def replace_title(scene: "CarloTcfs113MathQ06", old, new) -> None:
-        scene.play(FadeOut(old), FadeIn(new), run_time=0.55)
+        scene.play(Succession(FadeOut(old), FadeIn(new)), run_time=0.55)
 
     def routed_swap(
         self,
@@ -307,6 +307,8 @@ class CarloTcfs113MathQ06(CarloSlide):
         self.play(FadeOut(givens), FadeOut(two_modes), polynomial.animate.scale(0.78).move_to([0, 2.2, 0]), run_time=0.65)
         self.play(Create(sign_line), Create(negative_half), FadeIn(zero_tick), FadeIn(zero_label), FadeIn(side_labels), run_time=0.75)
         self.play(Write(sign_terms), run_time=0.85)
+
+        self.next_beat("exclude_nonpositive_roots")
         self.play(Write(no_negative_root), run_time=0.75)
         self.play(
             card_neg.animate.move_to([-4.5, 0.42, 0]),
@@ -357,6 +359,7 @@ class CarloTcfs113MathQ06(CarloSlide):
         a_record = VGroup(a_requirement, a_signs, a_cross)
         self.play(a_record.animate.scale(0.68).move_to([-3.35, -1.72, 0]), run_time=0.55)
 
+        self.next_beat("move_b_to_gp_middle")
         self.play(
             card_a.animate.shift(UP * 0.78),
             card_neg.animate.shift(DOWN * 0.78),
@@ -373,6 +376,8 @@ class CarloTcfs113MathQ06(CarloSlide):
             card_neg.animate.move_to([self.MAIN_X[2], 0.42, 0]),
             run_time=0.32,
         )
+
+        self.next_beat("reject_b_as_gp_middle")
         b_requirement = MathTex("b^2", "=", "a(-6)", font_size=39, color=INK)
         b_requirement[0].set_color(REGION)
         b_requirement[2].set_color(CORAL)
@@ -417,7 +422,8 @@ class CarloTcfs113MathQ06(CarloSlide):
         product_badge[0].set_color(BLUE)
         product_badge[2].set_color(REGION)
         product_badge.move_to(gp_equation)
-        self.play(Transform(gp_equation, product_badge), run_time=0.7)
+        self.play(Succession(FadeOut(gp_equation), FadeIn(product_badge)), run_time=0.7)
+        gp_equation = product_badge
         self.play(Circumscribe(gp_equation, color=POINT), run_time=0.55)
         self.wait(0.35)
 
@@ -485,7 +491,7 @@ class CarloTcfs113MathQ06(CarloSlide):
             TransformFromCopy(gap_right[3], ap_equation[2]),
             run_time=0.85,
         )
-        self.play(TransformFromCopy(ap_equation, linear_relation), run_time=0.8)
+        self.play(FadeIn(linear_relation), run_time=0.8)
         self.wait(0.4)
 
         # Beat 07: combine the two earned relations and keep only the positive root.
@@ -499,12 +505,19 @@ class CarloTcfs113MathQ06(CarloSlide):
 
         self.replace_title(self, beat_title, next_title)
         beat_title = next_title
-        self.play(FadeOut(ap_equation), Transform(linear_relation, substitution), run_time=0.7)
+        self.play(
+            Succession(
+                FadeOut(VGroup(ap_equation, linear_relation)),
+                FadeIn(substitution),
+            ),
+            run_time=0.7,
+        )
         quadratic = MathTex("a^2+3a-18", "=", "0", font_size=44, color=INK).move_to(substitution)
-        self.play(Transform(linear_relation, quadratic), run_time=0.65)
+        self.play(Succession(FadeOut(substitution), FadeIn(quadratic)), run_time=0.65)
         factorization = MathTex("(a-3)(a+6)", "=", "0", font_size=44, color=INK).move_to(substitution)
-        self.play(Transform(linear_relation, factorization), run_time=0.65)
+        self.play(Succession(FadeOut(quadratic), FadeIn(factorization)), run_time=0.65)
 
+        self.next_beat("choose_positive_root")
         positive_candidate = MathTex("a", "=", "3", font_size=39, color=INK)
         positive_candidate[0].set_color(BLUE)
         positive_candidate[2].set_color(BLUE)
@@ -517,15 +530,22 @@ class CarloTcfs113MathQ06(CarloSlide):
         rejected = Cross(negative_candidate, stroke_color=CORAL, stroke_width=5)
         self.play(Create(rejected), Indicate(positive_candidate, color=REGION), run_time=0.65)
 
+        self.next_beat("settle_root_pair")
         numeric_left_gap = self.gap_bar(self.MAIN_X[0], self.MAIN_X[1], 1.30, "9", BLUE)
         numeric_right_gap = self.gap_bar(self.MAIN_X[1], self.MAIN_X[2], 1.30, "9", REGION)
+        numeric_card_a = self.value_card("3", BLUE).move_to(card_a)
+        numeric_card_b = self.value_card("12", REGION).move_to(card_b)
         self.play(
-            Transform(card_a, self.value_card("3", BLUE).move_to(card_a)),
-            Transform(card_b, self.value_card("12", REGION).move_to(card_b)),
-            Transform(gap_left, numeric_left_gap),
-            Transform(gap_right, numeric_right_gap),
+            Succession(FadeOut(card_a[1]), FadeIn(numeric_card_a[1])),
+            Succession(FadeOut(card_b[1]), FadeIn(numeric_card_b[1])),
+            Succession(FadeOut(gap_left[3]), FadeIn(numeric_left_gap[3])),
+            Succession(FadeOut(gap_right[3]), FadeIn(numeric_right_gap[3])),
             run_time=0.9,
         )
+        card_a = VGroup(card_a[0], numeric_card_a[1])
+        card_b = VGroup(card_b[0], numeric_card_b[1])
+        gap_left = VGroup(gap_left[0], gap_left[1], gap_left[2], numeric_left_gap[3])
+        gap_right = VGroup(gap_right[0], gap_right[1], gap_right[2], numeric_right_gap[3])
         root_pair = MathTex(r"\{a,b\}", "=", r"\{3,12\}", font_size=39, color=INK)
         root_pair[0].set_color(BLUE)
         root_pair[2].set_color(REGION)
@@ -580,7 +600,7 @@ class CarloTcfs113MathQ06(CarloSlide):
         self.play(
             FadeOut(order_rule),
             FadeOut(gp_equation),
-            FadeOut(linear_relation),
+            FadeOut(factorization),
             FadeOut(candidates),
             FadeOut(rejected),
             FadeOut(root_pair),
@@ -716,8 +736,12 @@ class CarloTcfs113MathQ06(CarloSlide):
         self.play(FadeIn(roots_note), FadeIn(neg_note), FadeIn(card_a), FadeIn(card_b), FadeIn(card_neg), run_time=0.7)
         self.play(Write(root_equation), run_time=0.85)
         self.play(TransformFromCopy(root_equation[-1], expansion[0]), Write(VGroup(*expansion[1:])), run_time=0.85)
+
+        self.next_beat("read_original_coefficients")
         self.play(FadeIn(coefficients), run_time=0.65)
         self.wait(0.35)
+
+        self.next_beat("reveal_p_q_sum")
         self.play(Write(final_sum), run_time=0.8)
         self.play(Circumscribe(final_sum[-1], color=POINT), run_time=0.65)
         self.wait(0.5)

@@ -211,6 +211,8 @@ class CarloTcfs115MathQ02(CarloSlide):
         )
         self.play(FadeIn(other_half_one), FadeIn(shared_triangle), run_time=0.65)
         self.play(Indicate(other_half_one, color=BLUE), run_time=0.65)
+        # Smaller step: compare_shared_region.
+        self.next_beat("compare_shared_region")
         self.play(Indicate(shared_triangle, color=POINT), run_time=0.65)
         self.play(FadeOut(other_half_one), Write(half_r1), run_time=0.75)
 
@@ -233,6 +235,8 @@ class CarloTcfs115MathQ02(CarloSlide):
             run_time=1.45,
         )
         self.play(Create(far_edge_r2), FadeIn(b1_note), run_time=0.7)
+        # Smaller step: finish_second_rectangle.
+        self.next_beat("finish_second_rectangle")
         self.play(Indicate(dot_b1, color=POINT), run_time=0.65)
         self.play(FadeOut(far_edge_r2), run_time=0.35)
 
@@ -334,6 +338,8 @@ class CarloTcfs115MathQ02(CarloSlide):
         )
         shared_triangle = next_shared_triangle
         self.play(Indicate(companion_two, color=CORAL), run_time=0.55)
+        # Smaller step: align_third_overlap.
+        self.next_beat("align_third_overlap")
         self.play(Indicate(shared_triangle, color=POINT), run_time=0.55)
         self.play(FadeOut(companion_two), Write(half_r2), run_time=0.7)
 
@@ -382,6 +388,8 @@ class CarloTcfs115MathQ02(CarloSlide):
         )
         self.play(Create(base_two), Create(height_two), Indicate(dot_b2, color=POINT))
         self.play(TransformFromCopy(shared_triangle, bridge_two[2]), run_time=0.7)
+        # Smaller step: finish_third_rectangle.
+        self.next_beat("finish_third_rectangle")
         self.play(Write(bridge_two[0:2]), Write(bridge_two[3:5]), run_time=0.8)
         self.play(Write(equality_23), run_time=0.6)
 
@@ -479,6 +487,8 @@ class CarloTcfs115MathQ02(CarloSlide):
             run_time=1.1,
         )
         self.play(Create(answer_box), Circumscribe(total[6], color=POINT), run_time=0.8)
+        # Smaller step: reveal_total_area.
+        self.next_beat("reveal_total_area")
         self.play(FadeIn(bridge_flash_one), FadeIn(bridge_flash_two), run_time=0.45)
         self.play(
             Indicate(bridge_flash_one, color=POINT),

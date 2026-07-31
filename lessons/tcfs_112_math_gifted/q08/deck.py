@@ -244,8 +244,8 @@ class CarloTcfs112MathQ08(CarloSlide):
         )
         source.to_corner(DOWN + RIGHT, buff=0.22)
 
-        # Beat 01 meet_two_baskets: establish counts before doing arithmetic.
-        self.begin_beat("meet_two_baskets")
+        # Beat 01 build_two_baskets: establish counts before doing arithmetic.
+        self.begin_beat("build_two_baskets")
         stage_title = self.stage_title("25 顆編號球，被分進兩個籃子")
         shelf_items = VGroup(
             self.ball(1, MUTED, 0.24),
@@ -286,11 +286,14 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(FadeIn(stage_title), run_time=0.48)
         self.play(LaggedStart(*(FadeIn(item) for item in shelf_items), lag_ratio=0.09), FadeIn(shelf_note), run_time=0.86)
         self.play(Create(basket_a), Create(basket_b), run_time=0.72)
+
+        # Beat 02 meet_two_baskets: continue at a settled semantic boundary.
+        self.next_beat("meet_two_baskets")
         self.play(FadeIn(a_dots), FadeIn(b_dots), GrowFromCenter(ball_fifteen), run_time=0.62)
         self.play(FadeIn(a_count), FadeIn(b_count), FadeIn(count_note), run_time=0.58)
         self.wait(0.40)
 
-        # Beat 02 move_ball_fifteen: preserve the ball while both mean gauges rise.
+        # Beat 03 move_ball_fifteen: preserve the ball while both mean gauges rise.
         self.next_beat("move_ball_fifteen")
         next_title = self.stage_title("把同一顆 15 號球從 A 移到 B")
         a_after_count = self.count_card("m-1", BLUE).move_to(a_count)
@@ -319,16 +322,21 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(Create(transfer_arrow), run_time=0.42)
         self.play(
             MoveAlongPath(ball_fifteen, transfer_path),
-            Transform(a_count, a_after_count),
-            Transform(b_count, b_after_count),
+            self.title_change(a_count[1], a_after_count[1]),
+            self.title_change(b_count[1], b_after_count[1]),
             run_time=1.10,
         )
+        a_count = VGroup(a_count[0], a_after_count[1])
+        b_count = VGroup(b_count[0], b_after_count[1])
+
+        # Beat 04 show_new_mean_gauges: continue at a settled semantic boundary.
+        self.next_beat("show_new_mean_gauges")
         self.play(FadeOut(count_note), FadeIn(gauge_a[0:2], gauge_b[0:2]), run_time=0.48)
         self.play(Create(gauge_a[3]), FadeIn(gauge_a[2], gauge_a[4:]), Create(gauge_b[3]), FadeIn(gauge_b[2], gauge_b[4:]), run_time=0.70)
         self.play(FadeIn(surprise), FadeIn(domain_note), run_time=0.52)
         self.wait(0.48)
 
-        # Beat 03 measure_a_deficit: the removed ball's deficit funds the lift.
+        # Beat 05 measure_a_deficit: the removed ball's deficit funds the lift.
         self.next_beat("measure_a_deficit")
         next_title = self.stage_title("A：拿走低於平均的 15，剩下每份抬高 1/4", 29)
         a_level = Line([-4.10, -1.15, 0], [-4.10, 1.35, 0], color=MUTED, stroke_width=3)
@@ -359,12 +367,15 @@ class CarloTcfs112MathQ08(CarloSlide):
         )
         self.play(Create(a_level), GrowFromCenter(fifteen_dot), FadeIn(fifteen_label), run_time=0.55)
         self.play(GrowFromCenter(mean_a_dot), FadeIn(mean_a_label), Create(deficit_brace), FadeIn(deficit_label), run_time=0.62)
+
+        # Beat 06 balance_a_mean_change: continue at a settled semantic boundary.
+        self.next_beat("balance_a_mean_change")
         self.play(LaggedStart(*(FadeIn(item) for item in quarter_a[0]), lag_ratio=0.12), Create(quarter_a[1]), FadeIn(quarter_a[2]), run_time=0.78)
         self.play(Write(a_balance), FadeIn(a_reason), run_time=0.72)
         self.wait(0.45)
 
-        # Beat 04 solve_a_mean: reconstruct the old A mean from the visible gap.
-        self.next_beat("solve_a_mean")
+        # Beat 07 derive_a_mean: reconstruct the old A mean from the visible gap.
+        self.next_beat("derive_a_mean")
         next_title = self.stage_title("把缺口加回 15，就得到 A 的原平均")
         a_base = Rectangle(
             width=3.10,
@@ -408,10 +419,13 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(Create(divider), FadeIn(a_mean_bar), Create(a_bar_brace), FadeIn(a_bar_name), run_time=0.70)
         self.play(Write(a_steps[0]), run_time=0.68)
         self.play(Write(a_steps[1]), Indicate(a_mean_visual, color=BLUE), run_time=0.72)
+
+        # Beat 08 solve_a_mean: continue at a settled semantic boundary.
+        self.next_beat("solve_a_mean")
         self.play(FadeIn(a_steps[2]), run_time=0.42)
         self.wait(0.45)
 
-        # Beat 05 measure_b_surplus: the added ball's surplus funds the lift.
+        # Beat 09 measure_b_surplus: the added ball's surplus funds the lift.
         self.next_beat("measure_b_surplus")
         next_title = self.stage_title("B：加入高於平均的 15，所有新份額抬高 1/4", 29)
         b_level = Line([-4.10, -1.15, 0], [-4.10, 1.35, 0], color=MUTED, stroke_width=3)
@@ -437,12 +451,15 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(FadeOut(a_mean_visual), FadeOut(a_steps), FadeOut(divider), run_time=0.50)
         self.play(Create(b_level), GrowFromCenter(mean_b_dot), FadeIn(mean_b_label), run_time=0.52)
         self.play(GrowFromCenter(b_fifteen_dot), FadeIn(b_fifteen_label), Create(surplus_brace), FadeIn(surplus_label), run_time=0.62)
+
+        # Beat 10 balance_b_mean_change: continue at a settled semantic boundary.
+        self.next_beat("balance_b_mean_change")
         self.play(LaggedStart(*(FadeIn(item) for item in quarter_b[0]), lag_ratio=0.12), Create(quarter_b[1]), FadeIn(quarter_b[2]), run_time=0.78)
         self.play(Write(b_balance), FadeIn(b_reason), run_time=0.72)
         self.wait(0.45)
 
-        # Beat 06 compare_old_means: solve B and notice a fixed separation.
-        self.next_beat("compare_old_means")
+        # Beat 11 place_old_means_on_axis: solve B and notice a fixed separation.
+        self.next_beat("place_old_means_on_axis")
         next_title = self.stage_title("兩個原平均的距離，竟然與 m 無關")
         mean_axis = Line([-4.05, -1.35, 0], [-4.05, 1.45, 0], color=MUTED, stroke_width=3)
         b_mark = Dot([-4.05, -0.95, 0], radius=0.13, color=PURPLE)
@@ -476,14 +493,17 @@ class CarloTcfs112MathQ08(CarloSlide):
         stage_title = next_title
         self.play(Create(mean_axis), GrowFromCenter(b_mark), GrowFromCenter(fifteen_mark), GrowFromCenter(a_mark), run_time=0.62)
         self.play(FadeIn(b_mark_label), FadeIn(fifteen_mark_label), FadeIn(a_mark_label), run_time=0.42)
+
+        # Beat 12 compare_old_means: continue at a settled semantic boundary.
+        self.next_beat("compare_old_means")
         self.play(Write(mean_steps[0]), run_time=0.62)
         self.play(Write(mean_steps[1]), run_time=0.62)
         self.play(Create(gap_brace), FadeIn(gap_label), Write(mean_steps[2]), run_time=0.74)
         self.play(FadeIn(mean_steps[3]), run_time=0.42)
         self.wait(0.45)
 
-        # Beat 07 earn_total_325: pair endpoint labels before using the total.
-        self.next_beat("earn_total_325")
+        # Beat 13 pair_numbers_around_fifteen: pair endpoint labels before using the total.
+        self.next_beat("pair_numbers_around_fifteen")
         next_title = self.stage_title("把 1 到 25 兩端配對，先算出全部總和")
         pair_cards = VGroup(
             self.pair_card("1+25"),
@@ -505,11 +525,14 @@ class CarloTcfs112MathQ08(CarloSlide):
         stage_title = next_title
         self.play(LaggedStart(*(FadeIn(card) for card in pair_cards), lag_ratio=0.12), run_time=0.92)
         self.play(GrowFromCenter(center_ball), FadeIn(center_note), run_time=0.48)
+
+        # Beat 14 earn_total_325: continue at a settled semantic boundary.
+        self.next_beat("earn_total_325")
         self.play(Write(total_formula), run_time=0.76)
         self.play(FadeIn(total_note), run_time=0.40)
         self.wait(0.45)
 
-        # Beat 08 reassemble_basket_totals: counts times means recover each sum.
+        # Beat 15 reassemble_basket_totals: counts times means recover each sum.
         self.next_beat("reassemble_basket_totals")
         next_title = self.stage_title("兩籃總和相加，仍然必須是 325")
         a_total_frame = RoundedRectangle(
@@ -559,12 +582,15 @@ class CarloTcfs112MathQ08(CarloSlide):
         stage_title = next_title
         self.play(Create(a_total_frame), FadeIn(a_total_title), Create(b_total_frame), FadeIn(b_total_title), run_time=0.62)
         self.play(FadeIn(a_total_math), FadeIn(b_total_math), run_time=0.66)
+
+        # Beat 16 merge_basket_totals: continue at a settled semantic boundary.
+        self.next_beat("merge_basket_totals")
         self.play(Create(merge_left), Create(merge_right), GrowFromCenter(total_325), run_time=0.62)
         self.play(Write(basket_equation), run_time=0.72)
         self.wait(0.45)
 
-        # Beat 09 regroup_on_b_baseline: visualize the cancellation before algebra.
-        self.next_beat("regroup_on_b_baseline")
+        # Beat 17 build_b_baseline: visualize the cancellation before algebra.
+        self.next_beat("build_b_baseline")
         next_title = self.stage_title("先鋪滿 25 份 B 平均，再補上 A 與 B 的差")
         baseline = Rectangle(
             width=8.80,
@@ -605,12 +631,15 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(FadeOut(a_total_group), FadeOut(b_total_group), FadeOut(merge_left), FadeOut(merge_right), FadeOut(total_325), FadeOut(basket_equation), run_time=0.52)
         self.play(Create(baseline), FadeIn(baseline_label), Create(baseline_brace), FadeIn(baseline_note), run_time=0.62)
         self.play(Create(extra), FadeIn(extra_label), run_time=0.58)
+
+        # Beat 18 regroup_on_b_baseline: continue at a settled semantic boundary.
+        self.next_beat("regroup_on_b_baseline")
         self.play(Write(regroup_formula), run_time=0.72)
         self.play(Write(known_gap), Indicate(extra, color=REGION), run_time=0.68)
         self.wait(0.45)
 
-        # Beat 10 hold_last_division: settle one step before the answer.
-        self.next_beat("hold_last_division")
+        # Beat 19 derive_last_division: settle one step before the answer.
+        self.next_beat("derive_last_division")
         next_title = self.stage_title("代入 B 的平均，只剩最後一次除法")
         solve_steps = VGroup(
             MathTex(r"13=\frac{m+34}{4}+\frac{m}{4}", font_size=46, color=INK),
@@ -637,11 +666,14 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(Write(solve_steps[0]), run_time=0.66)
         self.play(Write(solve_steps[1]), run_time=0.60)
         self.play(Write(solve_steps[2]), run_time=0.56)
+
+        # Beat 20 hold_last_division: continue at a settled semantic boundary.
+        self.next_beat("hold_last_division")
         self.play(Write(solve_steps[3]), run_time=0.62)
         self.play(FadeIn(solve_steps[4]), run_time=0.42)
         self.wait(0.72)
 
-        # Beat 11 reveal_count: reveal only after the settled division prompt.
+        # Beat 21 reveal_count: reveal only after the settled division prompt.
         self.next_beat("reveal_count")
         next_title = self.stage_title("原來 A 籃一開始有 9 顆球")
         answer = MathTex("m=9", font_size=82, color=POINT)
@@ -662,8 +694,8 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(FadeIn(reveal_note), run_time=0.46)
         self.wait(0.48)
 
-        # Beat 12 verify_real_partition: construct a partition and replay the move.
-        self.next_beat("verify_real_partition")
+        # Beat 22 build_candidate_partition: construct a partition and replay the move.
+        self.next_beat("build_candidate_partition")
         next_title = self.stage_title("用一組真的分法，回到開場核對兩次上升")
         a_partition_label = MathTex(r"A=", font_size=35, color=BLUE)
         a_partition_balls = VGroup(
@@ -703,6 +735,9 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(FadeIn(a_partition_label), LaggedStart(*(GrowFromCenter(ball) for ball in a_partition_balls), lag_ratio=0.07), run_time=0.92)
         self.play(Write(b_partition), FadeIn(b_plus), Create(b_target), run_time=0.58)
         self.play(Create(stats_divider), FadeIn(a_stats[0:2]), FadeIn(b_stats[0:2]), run_time=0.62)
+
+        # Beat 23 verify_real_partition: continue at a settled semantic boundary.
+        self.next_beat("verify_real_partition")
         self.play(MoveAlongPath(moving_verify_ball, verify_path), run_time=1.00)
         self.play(FadeOut(b_target), FadeOut(b_plus), FadeIn(a_stats[2:]), FadeIn(b_stats[2:]), run_time=0.78)
         self.play(FadeIn(verified), run_time=0.50)

@@ -12,13 +12,17 @@
 
 既然 `a`、`b` 看起來都能變，為什麼這個目標還可能有唯一的值？
 
+[NEXT]
+
+## 02 expand_given_product｜不知道 a、b，為何仍有答案（下一步）
+
 [PAUSE]
 
 答案藏在每個根式旁邊的一個夥伴。
 
 [NEXT]
 
-## 02 isolate_radical_pairs｜先把兩組根式縮短
+## 03 isolate_radical_pairs｜先把兩組根式縮短
 
 為了看清結構，先記 `A=sqrt(a^2+4)`，`B=sqrt(b^2+9)`。
 
@@ -30,9 +34,7 @@
 
 [NEXT]
 
-## 03 vary_first_pair｜外形在變，面積呢
-
-[LOOP]
+## 04 vary_first_pair｜外形在變，面積呢
 
 先讓 `a=-3/2`。這時 `A=5/2`，兩個夥伴是 1 和 4。
 
@@ -44,25 +46,39 @@
 
 [PAUSE]
 
+[LOOP]
+
 [NEXT]
 
-## 04 discover_first_invariant｜第一個固定乘積
+## 05 discover_first_invariant｜第一個固定乘積
 
 現在把剛才的觀察寫精確。
 
 `(A+a)(A-a)` 是平方差，等於 `A^2-a^2`。
 
+[NEXT]
+
+## 06 compare_first_pair｜第一個固定乘積（下一步）
+
 而 `A^2` 就是 `a^2+4`，所以兩個 `a^2` 消去，只留下 4。
+
+[NEXT]
+
+## 07 state_first_invariant｜第一個固定乘積（下一步）
 
 難怪矩形不論變得多瘦或多扁，面積都固定是 4。
 
 [NEXT]
 
-## 05 mirror_second_pair｜第二組固定為 9
+## 08 mirror_second_pair｜第二組固定為 9
 
 同樣的結構可以直接搬到第二組。
 
 `(B+b)(B-b)=B^2-b^2`。
+
+[NEXT]
+
+## 09 state_second_invariant｜第二組固定為 9（下一步）
 
 因為 `B^2=b^2+9`，變數部分再次消去，留下 9。
 
@@ -70,17 +86,21 @@
 
 [NEXT]
 
-## 06 combine_invariants｜四個夥伴合起來是 36
+## 10 combine_invariants｜四個夥伴合起來是 36
 
 把兩個不變量相乘，四個因子的總乘積就是 `4x9=36`。
 
 其中亮色的兩個加號因子，正是題目已知的那一組；淡色的兩個減號因子，則是我們還不知道的一組。
 
+[NEXT]
+
+## 11 collect_invariant_sum｜四個夥伴合起來是 36（下一步）
+
 總量 36 已經固定，而其中一組等於 7。
 
 [NEXT]
 
-## 07 pose_target｜目標會混在哪些項裡
+## 12 pose_target｜目標會混在哪些項裡
 
 再看一次題目要的 `aB+bA`。
 
@@ -94,11 +114,15 @@
 
 [NEXT]
 
-## 08 build_shadow_product｜已知 7 就能找到影子乘積
+## 13 build_shadow_product｜已知 7 就能找到影子乘積
 
 就是剛才的兩個減號夥伴。
 
 四個因子的總乘積是 36，加號那組是 7，所以減號那組必定是 `36/7`。
+
+[NEXT]
+
+## 14 name_shadow_product｜已知 7 就能找到影子乘積（下一步）
 
 也就是 `(A-a)(B-b)=36/7`。
 
@@ -106,11 +130,15 @@
 
 [NEXT]
 
-## 09 expand_known_product｜上式出現正的目標
+## 15 expand_known_product｜上式出現正的目標
 
 先展開已知的加號乘積。
 
 四項是 `AB`、`Ab`、`aB`、`ab`。
+
+[NEXT]
+
+## 16 collect_known_terms｜上式出現正的目標（下一步）
 
 中間兩個交叉項 `Ab+aB`，就是 `bA+aB`，正好是題目所求。先把它整組記成 `T`。
 
@@ -118,11 +146,15 @@
 
 [NEXT]
 
-## 10 expand_shadow_product｜下式出現負的目標
+## 17 expand_shadow_product｜下式出現負的目標
 
 再以完全相同的位置展開減號乘積。
 
 `AB` 和 `ab` 的符號仍然是正的，所以共通部分仍是 `AB+ab`。
+
+[NEXT]
+
+## 18 collect_shadow_terms｜下式出現負的目標（下一步）
 
 兩個交叉項則一起變成負號。
 
@@ -130,11 +162,15 @@
 
 [NEXT]
 
-## 11 subtract_to_isolate｜相減只留下交叉項
+## 19 subtract_to_isolate｜相減只留下交叉項
 
 現在用上式減下式。
 
 兩邊相同的灰色部分 `AB+ab` 完全消去；右邊的 `T-(-T)` 變成 `2T`。
+
+[NEXT]
+
+## 20 isolate_requested_product｜相減只留下交叉項（下一步）
 
 所以 `7-36/7=2T`。
 
@@ -142,11 +178,15 @@
 
 [NEXT]
 
-## 12 final_value｜算完最後一小步
+## 21 final_value｜算完最後一小步
 
 把 7 寫成 `49/7`。
 
 於是 `2T=(49-36)/7=13/7`。
+
+[NEXT]
+
+## 22 reveal_product_value｜算完最後一小步（下一步）
 
 兩邊再除以 2，得到 `T=13/14`。
 
@@ -154,7 +194,7 @@
 
 [NEXT]
 
-## 13 consolidate｜不是求變數，而是找不變量
+## 23 consolidate｜不是求變數，而是找不變量
 
 這題的關鍵不是先求 `a` 和 `b`。
 

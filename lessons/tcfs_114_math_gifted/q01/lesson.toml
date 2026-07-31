@@ -20,7 +20,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF diagram labels horizontal bands as 列 and vertical bands as 行. The answer is symmetric, but the lesson preserves that explicit first-index/second-index convention. The source video shows the answer from its first frame; this lesson withholds it until the fifth-cell walk."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_114_math_gifted/q01/deck.py"
 scene_class = "CarloTcfs114MathQ01"
 storyboard = "lessons/tcfs_114_math_gifted/q01/storyboard.md"
@@ -29,6 +29,11 @@ estimated_minutes = 8
 expected_answer = "(8, 8)"
 independent_check = "Enumerate coordinate sums s=m+n from 2 through 24, taking rows in descending order on each anti-diagonal. Sums 2 through 13 contain 1+2+...+12=78 cells; sums 14 and 15 contain 11 and 10 cells, ending at 99. The fifth cell for s=16 is (12,4),(11,5),(10,6),(9,7),(8,8), with values 100 through 104. Exhaustive generation yields each integer 1 through 144 exactly once and matches the diagram's 139 through 144 corner values."
 tags = ["number-pattern", "anti-diagonal", "grid", "invariant", "counting"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "在一個 12×12 方格中，座標 (m,n) 的第一個數由上往下、第二個數由左往右，各編為 1 至 12。由左上角開始，依 m+n 由小到大逐條斜線填入 1 至 144；同一斜線按 m 由大到小填數。求 104 所在的座標。"
 
 [[beats]]
 id = "grid_seed"
@@ -39,7 +44,27 @@ id = "follow_numbers"
 loop = false
 
 [[beats]]
+id = "follow_four_to_six"
+loop = false
+
+[[beats]]
+id = "follow_seven_to_ten"
+loop = false
+
+[[beats]]
+id = "ask_for_diagonal_groups"
+loop = false
+
+[[beats]]
 id = "notice_diagonals"
+loop = false
+
+[[beats]]
+id = "group_longer_diagonals"
+loop = false
+
+[[beats]]
+id = "name_diagonal_direction"
 loop = false
 
 [[beats]]
@@ -55,6 +80,10 @@ id = "count_to_78"
 loop = false
 
 [[beats]]
+id = "confirm_seventy_eight"
+loop = false
+
+[[beats]]
 id = "step_to_99"
 loop = false
 
@@ -67,5 +96,17 @@ id = "walk_five_cells"
 loop = false
 
 [[beats]]
-id = "return_and_check"
+id = "finish_five_cell_walk"
+loop = false
+
+[[beats]]
+id = "restore_full_grid"
+loop = false
+
+[[beats]]
+id = "check_target_coordinates"
+loop = false
+
+[[beats]]
+id = "consolidate_grid_location"
 loop = false

@@ -284,8 +284,8 @@ class CarloTcfs112MathQ07(CarloSlide):
         )
         source.to_corner(DOWN + RIGHT, buff=0.22)
 
-        # Beat 01: make the digit operation tangible before introducing 555.
-        self.begin_beat("touch_each_digit")
+        # Beat 01 show_three_input_digits: make the digit operation tangible before introducing 555.
+        self.begin_beat("show_three_input_digits")
         title = label("先看「每位數字加 5」真的改了哪裡", 32, INK, "BOLD")
         title.move_to([0, 3.08, 0])
         example_note = label("先只看一個三位數例子", 23, MUTED, "MEDIUM")
@@ -325,13 +325,16 @@ class CarloTcfs112MathQ07(CarloSlide):
         self.play(FadeIn(title), FadeIn(example_note), run_time=0.55)
         self.play(LaggedStart(*(FadeIn(card) for card in input_row), lag_ratio=0.18), run_time=0.75)
         self.play(FadeIn(place_names), run_time=0.42)
+
+        # Beat 02 touch_each_digit: continue at a settled semantic boundary.
+        self.next_beat("touch_each_digit")
         self.play(Create(arrows), FadeIn(plus_fives), run_time=0.72)
         self.play(LaggedStart(*(FadeIn(card) for card in output_row), lag_ratio=0.18), run_time=0.78)
         self.play(FadeIn(one_digit_note), run_time=0.55)
         self.wait(0.40)
 
-        # Beat 02: convert the three visible place changes into +555.
-        self.next_beat("earn_plus_555")
+        # Beat 03 build_symbolic_digit_shift: convert the three visible place changes into +555.
+        self.next_beat("build_symbolic_digit_shift")
         new_title = label("三張卡仍是三張卡，位置也沒有改變", 32, INK, "BOLD")
         new_title.move_to(title)
         self.play(
@@ -397,12 +400,15 @@ class CarloTcfs112MathQ07(CarloSlide):
         self.play(Create(divider), FadeIn(symbolic_input), FadeIn(input_name), run_time=0.65)
         self.play(Create(symbolic_arrows), FadeIn(place_effects), run_time=0.72)
         self.play(FadeIn(symbolic_output), FadeIn(output_name), run_time=0.65)
+
+        # Beat 04 earn_plus_555: continue at a settled semantic boundary.
+        self.next_beat("earn_plus_555")
         self.play(Write(position_sum), run_time=0.65)
         self.play(Write(shift_equation), run_time=0.62)
         self.play(FadeIn(domain_note), run_time=0.58)
         self.wait(0.38)
 
-        # Beat 03: name the second square and expose a difference of squares.
+        # Beat 05 name_the_second_square: name the second square and expose a difference of squares.
         self.next_beat("name_the_second_square")
         new_title = label("b 也是平方數，先替它取一個平方根", 32, INK, "BOLD")
         new_title.move_to(title)
@@ -434,12 +440,15 @@ class CarloTcfs112MathQ07(CarloSlide):
         self.play(FadeIn(square_name), FadeIn(root_range), run_time=0.62)
         self.play(Write(substituted), run_time=0.75)
         self.play(Write(difference), run_time=0.72)
+
+        # Beat 06 order_the_square_roots: continue at a settled semantic boundary.
+        self.next_beat("order_the_square_roots")
         self.play(FadeIn(order), run_time=0.52)
         self.play(FadeIn(prompt), run_time=0.50)
         self.wait(0.42)
 
-        # Beat 04: geometrically rearrange the square difference into a rectangle.
-        self.next_beat("rearrange_the_square_gap")
+        # Beat 07 build_square_difference_pieces: geometrically rearrange the square difference into a rectangle.
+        self.next_beat("build_square_difference_pieces")
         new_title = label("把缺角搬過去，平方差就成了長方形", 32, INK, "BOLD")
         new_title.move_to(title)
         self.play(
@@ -526,13 +535,16 @@ class CarloTcfs112MathQ07(CarloSlide):
             TransformFromCopy(side_piece, target_right),
             run_time=0.90,
         )
+
+        # Beat 08 rearrange_the_square_gap: continue at a settled semantic boundary.
+        self.next_beat("rearrange_the_square_gap")
         self.play(Create(width_brace), FadeIn(width_label), Create(height_brace), FadeIn(height_label), run_time=0.65)
         self.play(Write(factorization), run_time=0.70)
         self.play(FadeIn(useful_note), run_time=0.48)
         self.wait(0.38)
 
-        # Beat 05: establish positivity, order, and the parity gate.
-        self.next_beat("set_factor_pair_rules")
+        # Beat 09 set_positive_parity_rules: establish positivity, order, and the parity gate.
+        self.next_beat("set_positive_parity_rules")
         new_title = label("因數對還要通過順序與奇偶", 32, INK, "BOLD")
         new_title.move_to(title)
         self.play(
@@ -574,12 +586,15 @@ class CarloTcfs112MathQ07(CarloSlide):
         self.play(FadeIn(x_token), FadeIn(y_token), Write(product), run_time=0.68)
         self.play(Write(positive_rule), FadeIn(inverse), run_time=0.70)
         self.play(FadeIn(parity_rule), run_time=0.48)
+
+        # Beat 10 set_factor_pair_rules: continue at a settled semantic boundary.
+        self.next_beat("set_factor_pair_rules")
         self.play(Write(odd_factorization), run_time=0.70)
         self.play(FadeIn(list_rule), run_time=0.46)
         self.wait(0.38)
 
-        # Beat 06: visibly enumerate every positive factor pair.
-        self.next_beat("enumerate_every_factor_pair")
+        # Beat 11 list_odd_divisors: visibly enumerate every positive factor pair.
+        self.next_beat("list_odd_divisors")
         new_title = label("從最外到最內，四組正因數一組也不漏", 32, INK, "BOLD")
         new_title.move_to(title)
         self.play(
@@ -615,12 +630,15 @@ class CarloTcfs112MathQ07(CarloSlide):
         complete_note = label("小因數超過 23 後，只會把同一組倒過來", 23, MUTED, "MEDIUM")
         complete_note.move_to([0, -2.95, 0])
         self.play(FadeIn(divisor_note), Write(divisors), run_time=0.68)
+
+        # Beat 12 enumerate_every_factor_pair: continue at a settled semantic boundary.
+        self.next_beat("enumerate_every_factor_pair")
         self.play(FadeIn(headers), run_time=0.42)
         self.play(LaggedStart(*(FadeIn(row) for row in factor_rows), lag_ratio=0.18), run_time=1.20)
         self.play(FadeIn(complete_note), run_time=0.48)
         self.wait(0.40)
 
-        # Beat 07: decode all four pairs without filtering any candidate early.
+        # Beat 13 decode_all_candidates: decode all four pairs without filtering any candidate early.
         self.next_beat("decode_all_candidates")
         new_title = label("每一組都還原成 a 與 m", 32, INK, "BOLD")
         new_title.move_to(title)
@@ -657,8 +675,8 @@ class CarloTcfs112MathQ07(CarloSlide):
         self.play(FadeIn(not_finished), run_time=0.48)
         self.wait(0.38)
 
-        # Beat 08: apply both decimal-length gates to every candidate.
-        self.next_beat("filter_by_digit_domains")
+        # Beat 14 apply_digit_domain_gate: apply both decimal-length gates to every candidate.
+        self.next_beat("apply_digit_domain_gate")
         new_title = label("先用兩個位數範圍，逐列淘汰", 32, INK, "BOLD")
         new_title.move_to(title)
         self.play(
@@ -690,6 +708,9 @@ class CarloTcfs112MathQ07(CarloSlide):
         gate_note.move_to([0, -2.88, 0])
         self.play(FadeIn(gate_explanation), FadeIn(gate_headers), run_time=0.62)
         self.play(LaggedStart(*(FadeIn(row) for row in gate_rows), lag_ratio=0.22), run_time=1.30)
+
+        # Beat 15 filter_by_digit_domains: continue at a settled semantic boundary.
+        self.next_beat("filter_by_digit_domains")
         self.play(
             gate_rows[0].animate.set_opacity(0.42),
             gate_rows[1].animate.set_opacity(0.42),
@@ -700,8 +721,8 @@ class CarloTcfs112MathQ07(CarloSlide):
         self.play(FadeIn(gate_note), run_time=0.48)
         self.wait(0.40)
 
-        # Beat 09: hold before calculating the surviving digit cards.
-        self.next_beat("hold_before_digit_check")
+        # Beat 16 rebuild_surviving_digit_rule: hold before calculating the surviving digit cards.
+        self.next_beat("rebuild_surviving_digit_rule")
         new_title = label("只剩一組，最後回到題目原來的操作", 32, INK, "BOLD")
         new_title.move_to(title)
         self.play(
@@ -750,12 +771,15 @@ class CarloTcfs112MathQ07(CarloSlide):
         self.play(FadeIn(survivor), run_time=0.58)
         self.play(Create(pre_divider), FadeIn(input_frames), FadeIn(eleven_square), run_time=0.62)
         self.play(Create(pre_arrows), FadeIn(pre_plus), FadeIn(output_frames), run_time=0.70)
+
+        # Beat 17 hold_before_digit_check: continue at a settled semantic boundary.
+        self.next_beat("hold_before_digit_check")
         self.play(FadeIn(other_square), run_time=0.58)
         self.play(FadeIn(pre_question), FadeIn(pause_note), run_time=0.52)
         self.wait(0.72)
 
-        # Beat 10: reveal the cards, verify the second square, then state the pair.
-        self.next_beat("reveal_the_unique_pair")
+        # Beat 18 verify_shifted_square: reveal the cards, verify the second square, then state the pair.
+        self.next_beat("verify_shifted_square")
         new_title = label("數字卡與平方同時對上，答案才落定", 32, INK, "BOLD")
         new_title.move_to(title)
         self.play(
@@ -798,6 +822,9 @@ class CarloTcfs112MathQ07(CarloSlide):
             run_time=1.15,
         )
         self.play(FadeIn(verified_square), FadeIn(same_value), run_time=0.68)
+
+        # Beat 19 reveal_the_unique_pair: continue at a settled semantic boundary.
+        self.next_beat("reveal_the_unique_pair")
         self.play(FadeIn(b_value), Circumscribe(output_frames, color=REGION), run_time=0.65)
         self.play(Write(answer), Create(answer_frame), run_time=0.75)
         self.play(FadeIn(conclusion), run_time=0.48)

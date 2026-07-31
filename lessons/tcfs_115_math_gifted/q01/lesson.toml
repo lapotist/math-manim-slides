@@ -17,7 +17,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF text layer drops the radical; the rendered page clearly states AE = sqrt(3) AD."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q01/deck.py"
 scene_class = "CarloTcfs115MathQ01"
 storyboard = "lessons/tcfs_115_math_gifted/q01/storyboard.md"
@@ -26,6 +26,11 @@ estimated_minutes = 8
 expected_answer = "0 degrees"
 independent_check = "AD and AE are perpendicular. In right triangle ADE, AE/AD = sqrt(3), so angle ADE = 60 degrees. Then C = 60-x, B = 120-x, A = 2x, and 4C-2B+A = 0."
 tags = ["geometry", "angle-bisector", "right-triangle", "invariant"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "在三角形 ABC 中，∠B>∠C。AD 是 ∠A 的內角平分線並交 BC 於 D；AE 是 ∠A 的外角平分線，交 BC 在 B 外側的延長線於 E。若 AE=√3·AD，求 4∠C-2∠B+∠A。"
 
 [[beats]]
 id = "build_triangle"
@@ -36,7 +41,19 @@ id = "place_bisectors"
 loop = false
 
 [[beats]]
+id = "mark_bisected_angles"
+loop = false
+
+[[beats]]
 id = "see_right_angle"
+loop = false
+
+[[beats]]
+id = "inspect_exterior_bisectors"
+loop = false
+
+[[beats]]
+id = "derive_perpendicular_bisectors"
 loop = false
 
 [[beats]]
@@ -44,7 +61,19 @@ id = "complete_special_triangle"
 loop = false
 
 [[beats]]
+id = "measure_special_triangle"
+loop = false
+
+[[beats]]
+id = "name_sixty_degree_angle"
+loop = false
+
+[[beats]]
 id = "transfer_sixty"
+loop = false
+
+[[beats]]
+id = "transfer_sixty_to_base"
 loop = false
 
 [[beats]]
@@ -56,9 +85,29 @@ id = "derive_b_and_a"
 loop = false
 
 [[beats]]
+id = "solve_segment_lengths"
+loop = false
+
+[[beats]]
 id = "cancel_expression"
 loop = false
 
 [[beats]]
+id = "substitute_length_relations"
+loop = false
+
+[[beats]]
+id = "cancel_common_terms"
+loop = false
+
+[[beats]]
+id = "simplify_target_expression"
+loop = false
+
+[[beats]]
 id = "consolidate"
+loop = false
+
+[[beats]]
+id = "reveal_final_value"
 loop = false

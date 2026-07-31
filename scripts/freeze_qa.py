@@ -11,6 +11,21 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+try:
+    from scripts.review_site import (
+        REVIEW_ROOT,
+        ReviewSiteError,
+        load_reviewable_lesson,
+        read_review_state,
+    )
+except ModuleNotFoundError:  # Direct execution puts scripts/ on sys.path.
+    from review_site import (  # type: ignore[no-redef]
+        REVIEW_ROOT,
+        ReviewSiteError,
+        load_reviewable_lesson,
+        read_review_state,
+    )
+
 
 ROOT = Path(__file__).resolve().parents[1]
 LESSON_PATTERN = "lessons/*/*/lesson.toml"
@@ -42,6 +57,24 @@ def safe_id(lesson_id: str) -> str:
     return lesson_id.replace(".", "_")
 
 
+def require_ready_review(lesson: dict[str, Any]) -> None:
+    review_lesson = {
+        **lesson,
+        "metadata_path": str(lesson["metadata_path"].relative_to(ROOT)),
+    }
+    try:
+        record = load_reviewable_lesson(review_lesson, {})
+        state = read_review_state(record, REVIEW_ROOT)
+    except ReviewSiteError as error:
+        raise ValueError(
+            f"{lesson['id']}: local review evidence is invalid: {error}"
+        ) from error
+    if state.get("stale") or not state.get("review", {}).get("ready"):
+        raise ValueError(
+            f"{lesson['id']}: complete the current local review before freezing QA"
+        )
+
+
 def freeze_lesson(lesson: dict[str, Any], human_reviewed: bool) -> Path:
     lesson_id = lesson["id"]
     if lesson["production_state"] not in VERIFIED_STATES:
@@ -52,6 +85,7 @@ def freeze_lesson(lesson: dict[str, Any], human_reviewed: bool) -> Path:
         raise ValueError(
             "refusing to attest visual QA without --human-reviewed"
         )
+    require_ready_review(lesson)
 
     report_path = ROOT / "build" / "qa" / f"{safe_id(lesson_id)}.json"
     if not report_path.is_file():
@@ -117,6 +151,7 @@ def freeze_lesson(lesson: dict[str, Any], human_reviewed: bool) -> Path:
                 "beat_id": segment["beat_id"],
                 "path": relative_path,
                 "sha256": sha256(path),
+                "duration": float(segment["duration"]),
             }
         )
 

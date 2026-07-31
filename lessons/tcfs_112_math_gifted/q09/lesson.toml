@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page states the four conditions on a five-digit palindromic square but leaves the worked area blank. The confirmed-public video writes n=abcba=y^2, restricts the common first/last digit using possible terminal digits of a square, writes m=2a+2b+c=x^2<45, checks the two-digit square candidates 16, 25, and 36 by their own digit sums, and keeps m=36. It then uses 2b+c<=27 to retain a=5,6,9, enumerates eight palindromes, applies the fact that a square is congruent to 0 or 1 modulo 4 to reject five, and marks 69696 as the answer. The source displays the final pair in its margin before the derivation is complete. The complete working is unobstructed through 08:52.40; a device-control overlay begins by 08:52.45. The inspected 518x360 research stream is 533.153379 seconds long and has SHA-256 876802b78b7197c47e2c984fc31dc71f0591d70fe704bfceab0803dbebc17ff3. This lesson delays the answer, independently proves that the eight-case list is exhaustive, proves the modulo-4 filter, and adds exact neighboring-square checks for every survivor. All digit cards, number lines, wording, motion, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q09/deck.py"
 scene_class = "CarloTcfs112MathQ09"
 storyboard = "lessons/tcfs_112_math_gifted/q09/storyboard.md"
@@ -32,12 +32,29 @@ expected_answer = "(36,69696)"
 independent_check = "Write the five-digit palindrome as n=abcba=10001a+1010b+100c, where 1<=a<=9 and 0<=b,c<=9, so its digit sum is m=2a+2b+c. Since m is a two-digit square and m<=45, m is one of 16,25,36. Their digit sums are 7,7,9 respectively, and only 9 is a square, hence m=36. Because n is a square and ends in its nonzero leading digit a, checking square residues modulo 10 gives a in {1,4,5,6,9}. Also 2b+c<=27, so 36=2a+2b+c implies a>=5; therefore a is in {5,6,9}. Solving c=36-2a-2b with 0<=b,c<=9 gives exactly eight palindromes: 59895; 68886,69696; 95859,96669,97479,98289,99099. A square is congruent to 0 or 1 modulo 4, so the last two digits reject every candidate except 69696,96669,98289. Exact consecutive-square checks give 310^2=96100<96669<96721=311^2 and 313^2=97969<98289<98596=314^2, while 264^2=69696. Finally 6+9+6+9+6=36=6^2 and 3+6=9=3^2. Thus the unique pair is (m,n)=(36,69696). This derivation exhausts every allowed digit triple and does not assume that the modulo-4 condition is sufficient."
 tags = ["number-theory", "palindromes", "perfect-squares", "decimal-digits", "modular-arithmetic", "exhaustive-search"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "五位正整數 n 同時是回文數與完全平方數。令 m 為 n 的各位數字和；已知 m 是二位完全平方數，而且 m 的兩位數字和也為完全平方數，求 (m,n)。"
+
 [[beats]]
 id = "mirror_three_digits"
 loop = false
 
 [[beats]]
-id = "fold_digit_sum"
+id = "fold_outer_digit_pair"
+loop = false
+
+[[beats]]
+id = "fold_inner_digit_pairs"
+loop = false
+
+[[beats]]
+id = "state_digit_sum_constraints"
+loop = false
+
+[[beats]]
+id = "list_digit_sum_squares"
 loop = false
 
 [[beats]]
@@ -45,7 +62,19 @@ id = "find_the_digit_sum"
 loop = false
 
 [[beats]]
-id = "filter_outer_digit"
+id = "list_terminal_square_digits"
+loop = false
+
+[[beats]]
+id = "derive_outer_digit_bound"
+loop = false
+
+[[beats]]
+id = "retain_outer_digit_branches"
+loop = false
+
+[[beats]]
+id = "establish_a_nine_compensation"
 loop = false
 
 [[beats]]
@@ -53,11 +82,31 @@ id = "enumerate_a_nine"
 loop = false
 
 [[beats]]
+id = "finish_a_nine_candidates"
+loop = false
+
+[[beats]]
+id = "set_up_a_six_branch"
+loop = false
+
+[[beats]]
 id = "enumerate_a_six"
 loop = false
 
 [[beats]]
+id = "set_up_a_five_branch"
+loop = false
+
+[[beats]]
 id = "enumerate_a_five"
+loop = false
+
+[[beats]]
+id = "assemble_eight_candidates"
+loop = false
+
+[[beats]]
+id = "prove_square_residues_mod_four"
 loop = false
 
 [[beats]]
@@ -69,7 +118,15 @@ id = "isolate_three_survivors"
 loop = false
 
 [[beats]]
+id = "place_first_square_bracket"
+loop = false
+
+[[beats]]
 id = "bracket_first_false"
+loop = false
+
+[[beats]]
+id = "place_second_square_bracket"
 loop = false
 
 [[beats]]
@@ -78,6 +135,14 @@ loop = false
 
 [[beats]]
 id = "hold_middle_square_test"
+loop = false
+
+[[beats]]
+id = "reveal_square_equality"
+loop = false
+
+[[beats]]
+id = "recheck_palindrome"
 loop = false
 
 [[beats]]

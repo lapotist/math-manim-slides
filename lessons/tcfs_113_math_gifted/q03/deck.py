@@ -403,6 +403,7 @@ class CarloTcfs113MathQ03(CarloSlide):
         self.play(FadeIn(boundary_note), Circumscribe(relation, color=POINT), run_time=0.7)
         self.wait(0.3)
 
+        self.next_beat("cross_into_valid_side")
         valid_relation = self.relation(">").move_to(relation)
         valid_note = label("b 已經在平均數右邊", 25, REGION, "BOLD")
         valid_note.move_to(boundary_note)
@@ -447,6 +448,8 @@ class CarloTcfs113MathQ03(CarloSlide):
             FadeOut(mean),
             run_time=0.65,
         )
+
+        self.next_beat("derive_gap_inequality")
         distance_formula = MathTex("b-a", r"\ge", "c-b", font_size=45, color=INK)
         distance_formula[0].set_color(BLUE)
         distance_formula[2].set_color(CORAL)
@@ -654,6 +657,8 @@ class CarloTcfs113MathQ03(CarloSlide):
         plus_signs = VGroup(*(summary[index] for index in (1, 3, 5, 7, 9)))
         self.play(FadeOut(source_digits), Write(plus_signs), run_time=0.8)
         self.wait(0.35)
+
+        self.next_beat("reveal_translation_total")
         self.play(Write(VGroup(summary[11], summary[12])), run_time=0.6)
         self.play(Circumscribe(summary[12], color=POINT), run_time=0.65)
         self.wait(0.4)

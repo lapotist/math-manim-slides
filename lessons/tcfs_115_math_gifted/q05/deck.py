@@ -317,6 +317,9 @@ class Tcfs115Q05Slide(CarloSlide):
         self.play(TransformFromCopy(given, cross), run_time=0.9)
         self.play(Write(expanded), run_time=0.9)
         self.play(Create(cancel_left), Create(cancel_right), run_time=0.6)
+
+        # Beat 06: finish the cancellation only after the shared term is visible.
+        self.next_beat("solve_scale_relation")
         self.play(TransformFromCopy(expanded, reduced), run_time=0.75)
         self.play(TransformFromCopy(reduced, nth_result), FadeIn(rigorous_note), run_time=0.8)
         self.wait(0.30)

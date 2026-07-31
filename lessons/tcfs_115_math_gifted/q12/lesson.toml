@@ -17,18 +17,27 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The source states that the minimizing P lies on the equilateral triangle's symmetry axis without proving uniqueness. This lesson instead uses the equality line together with its inverse 90-degree rotation to locate P exactly."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q12/deck.py"
 scene_class = "Tcfs115Q12Slide"
 presenter_script = "lessons/tcfs_115_math_gifted/q12/presenter.zh-TW.md"
 storyboard = "lessons/tcfs_115_math_gifted/q12/storyboard.md"
-estimated_minutes = 11
+estimated_minutes = 13
 expected_answer = "(2*sqrt(6) + 2*sqrt(2), 2*sqrt(3) - 2)"
 independent_check = "Rotate P and C clockwise 90 degrees about A. Then PP'=sqrt(2)AP and C'P'=CP, so the objective is the broken path B-P-P'-C', bounded below by BC'. Equality is attainable when those four points are collinear. Coordinates A=(0,0), B=(2,-2sqrt(3)), C=(-2,-2sqrt(3)) give C'=(-2sqrt(3),2), BC'=2sqrt(6)+2sqrt(2), and the equality point P=(0,-(2sqrt(3)-2)), so AP=2sqrt(3)-2."
 tags = ["geometry", "rotation", "shortest-path", "equilateral-triangle", "weighted-distance"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "ABC 是邊長 4 的正三角形，P 為其內部一點。若 √2·AP+BP+CP 的最小值為 p，且取得最小值時 AP=q，求 (p,q)。"
+
 [[beats]]
 id = "build_equilateral"
+loop = false
+
+[[beats]]
+id = "introduce_interior_point"
 loop = false
 
 [[beats]]
@@ -40,7 +49,15 @@ id = "pose_straightening"
 loop = false
 
 [[beats]]
+id = "isolate_weighted_term"
+loop = false
+
+[[beats]]
 id = "rotate_copy"
+loop = false
+
+[[beats]]
+id = "record_rotation_invariants"
 loop = false
 
 [[beats]]
@@ -48,7 +65,15 @@ id = "earn_sqrt_two"
 loop = false
 
 [[beats]]
+id = "derive_weighted_segment"
+loop = false
+
+[[beats]]
 id = "assemble_broken_path"
+loop = false
+
+[[beats]]
+id = "complete_broken_path"
 loop = false
 
 [[beats]]
@@ -56,7 +81,19 @@ id = "straighten_path"
 loop = false
 
 [[beats]]
+id = "attain_straight_path"
+loop = false
+
+[[beats]]
 id = "measure_bc_prime"
+loop = false
+
+[[beats]]
+id = "derive_endpoint_angle"
+loop = false
+
+[[beats]]
+id = "measure_thirty_sixty_triangle"
 loop = false
 
 [[beats]]
@@ -64,7 +101,15 @@ id = "compute_minimum"
 loop = false
 
 [[beats]]
+id = "recognize_positive_radical"
+loop = false
+
+[[beats]]
 id = "pin_down_p"
+loop = false
+
+[[beats]]
+id = "intersect_equality_lines"
 loop = false
 
 [[beats]]
@@ -72,7 +117,19 @@ id = "read_equality_angles"
 loop = false
 
 [[beats]]
+id = "derive_straight_line_angle"
+loop = false
+
+[[beats]]
 id = "compute_ap"
+loop = false
+
+[[beats]]
+id = "read_half_base"
+loop = false
+
+[[beats]]
+id = "calculate_altitude_and_ap"
 loop = false
 
 [[beats]]

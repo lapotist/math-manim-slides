@@ -12,34 +12,44 @@
 
 ## Beat plan
 
-## 01 build_triangle (0:40, loop=false)
+## 01 build_triangle (0:25, loop=false)
 
 - Settled visual: 建立一般的不等邊三角形 `ABC`，不先畫圓或任何輔助線。
 - Prompt: 「若想量從 `A` 到對邊的一條特殊線，哪些局部形狀可能把它和三邊長連起來？」
 - Boundary: 只保留三角形與頂點名稱，公式隱藏。
 
-## 02 place_angle_bisector (0:45, loop=false)
+## 02 place_angle_bisector (0:25, loop=false)
 
 - Animation: 從 `A` 畫角平分線交 `BC` 於 `D`。
 - Evidence: `angle BAD` 與 `angle DAC` 的兩個等角弧依序出現，`D` 在 `BC` 上的共線關係清楚。
 - Question: 顯示目標線段 `AD`，但不顯示待證公式。
 - Boundary: 角平分線的定義已被圖形確認。
 
-## 03 add_circle_and_e (0:50, loop=false)
+## 03 add_circle_and_e (0:25, loop=false)
 
 - Animation: 作過 `A,B,C` 的外接圓，再沿同一條射線延長 `AD`，與圓第二次交於 `E`。
 - Add chord: 連接 `CE`；保留 `A-D-E` 與 `B-D-C` 的交叉結構。
 - Discovery prompt: 「新增的點 `E` 不是為了多一條線；它讓哪些角由同一段圓弧鎖定？」
 - Boundary: 完整構形穩定，三個待比較三角形只以淡色輪廓提示。
 
-## 04 pose_hidden_similarity (0:45, loop=false)
+## 04 pose_hidden_similarity (0:25, loop=false)
 
 - Animation: 依次著色三角形 `ABD`、`AEC`、`CED`，一次一個，其餘降透明度。
 - Prompt: 「這三個大小不同、方向不同的三角形，會不會其實有相同形狀？」
 - Pause: 在角標位置留空，不先寫 `AA`。
 - Boundary: 三個候選同時以輪廓保留。
 
-## 05 prove_first_similarity (0:55, loop=false)
+## 05 inspect_second_triangle (0:20, loop=false)
+
+- Focus: 在第一個候選落定後，單獨加入 `AEC`，讓方向差異可以被辨認。
+- Boundary: 兩個候選保持可見，尚不標相似。
+
+## 06 inspect_third_triangle (0:20, loop=false)
+
+- Focus: 最後加入 `CED`，完成三個候選的逐一檢視。
+- Boundary: 三個候選全數落定，下一步才開始 AA 證明。
+
+## 07 prove_first_similarity (0:25, loop=false)
 
 - First angle: 因 `A,D,E` 共線且 `AD` 平分 `angle BAC`，從兩個原等角弧轉移得到 `angle BAD=angle CAE`。
 - Second angle: `angle ABD=angle ABC`；`angle ABC` 與 `angle AEC` 同對弧 `AC`，所以 `angle ABD=angle AEC`。弧 `AC` 在圓上亮起後才標等角。
@@ -47,7 +57,11 @@
 - Correspondence: 頂點配對 `A<->A, B<->E, D<->C` 保留在小表中。
 - Boundary: 第一組相似得到黃色勾號。
 
-## 06 prove_second_similarity (0:55, loop=false)
+## 08 record_first_similarity_ratio (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 09 prove_second_similarity (0:25, loop=false)
 
 - First angle: `angle BAD=angle BAE`，而 `angle BAE` 與 `angle BCE` 同對弧 `BE`，所以 `angle BAD=angle BCE`。
 - Second angle: 直線 `AE` 與 `BC` 在 `D` 相交，`angle ADB` 與 `angle CDE` 是對頂角。
@@ -55,7 +69,7 @@
 - Correspondence: 頂點配對 `A<->C, B<->E, D<->D`。
 - Boundary: 第二組相似得到綠色勾號；兩組證明並列。
 
-## 07 align_three_triangles (0:55, loop=false)
+## 10 align_three_triangles (0:25, loop=false)
 
 - Object continuity: 從原圖各複製 `ABD`、`AEC`、`CED`，旋轉與縮放後排成相同方向；原圓圖淡化保留。
 - Match: 每一對對應角疊上同色弧；對應邊依配對表上色。
@@ -63,7 +77,7 @@
 - Prompt: 「哪一個相似比能產生 `AB*AC`？哪一個能產生 `BD*DC`？」
 - Boundary: 三角形與兩個空白乘積框並列。
 
-## 08 build_first_product (0:50, loop=false)
+## 11 build_first_product (0:25, loop=false)
 
 - Focus: 只亮 `ABD~AEC`。
 - Ratio: 從對應邊複製得到 `AB/AE=AD/AC`。
@@ -71,7 +85,7 @@
 - Meaning: 左邊正是目標根號中的第一個乘積；右邊含有要研究的 `AD`。
 - Boundary: 藍色第一張收據固定。
 
-## 09 build_second_product (0:50, loop=false)
+## 12 build_second_product (0:25, loop=false)
 
 - Focus: 轉到 `ABD~CED`。
 - Ratio: 由配對邊得到 `AD/CD=BD/DE`。
@@ -79,28 +93,32 @@
 - Teaching point: 這個乘積也可視為交弦關係，但此處已直接由第 (1) 小題的相似三角形得到。
 - Boundary: 綠色第二張收據固定在第一張下方。
 
-## 10 split_ae (0:50, loop=false)
+## 13 split_ae (0:25, loop=false)
 
 - Return to geometry: 點亮共線順序 `A-D-E`，將整段 `AE` 拆成藍色 `AD` 與綠色 `DE`。
 - Transform: 第一張收據中的 `AE` 由線段複本展開成 `AD+DE`。
 - Build one term at a time: `AB*AC=AD(AD+DE)=AD^2+AD*DE`。
 - Boundary: `AD*DE` 以綠框等待第二張收據代入。
 
-## 11 isolate_ad_square (0:50, loop=false)
+## 14 combine_ae_parts (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 15 isolate_ad_square (0:25, loop=false)
 
 - Substitution: 將第二張收據的 `BD*DC` 移入綠框，取代 `AD*DE`。
 - Equation: `AB*AC=AD^2+BD*DC`。
 - Rearrangement: 把 `BD*DC` 作為同一物件移到左側並改變符號，得到 `AD^2=AB*AC-BD*DC`。
 - Boundary: 平方形式落定，尚未取根號。
 
-## 12 take_positive_root (0:40, loop=false)
+## 16 take_positive_root (0:25, loop=false)
 
 - Positivity: 回到圖上的實際線段 `AD`，標明 `AD>0`。
 - Root: 對平方式取根時只保留正根，得到 `AD=sqrt(AB*AC-BD*DC)`。
 - Rigor: 根號內非負性不是額外假設，而由左側本來就是 `AD^2` 得到。
 - Boundary: 完整待證式第一次顯示。
 
-## 13 consolidate (0:50, loop=false)
+## 17 consolidate (0:25, loop=false)
 
 - Recap: 角平分線與弧給第一組相似；弧與對頂角給第二組相似；兩組各交出一個乘積。
 - Assembly: `AE=AD+DE` 把兩張乘積收據接在一起，留下 `AD^2`。

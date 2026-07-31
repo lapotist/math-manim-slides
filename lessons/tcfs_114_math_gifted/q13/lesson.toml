@@ -20,7 +20,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The public source video shows that the stated sum 345 is inconsistent, then changes to the original sum-420 variant. This lesson keeps those as two explicitly separated claims."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_114_math_gifted/q13/deck.py"
 scene_class = "CarloTcfs114MathQ13"
 storyboard = "lessons/tcfs_114_math_gifted/q13/storyboard.md"
@@ -29,6 +29,11 @@ estimated_minutes = 11
 expected_answer = "No positive a; the stated sum 345 is inconsistent"
 independent_check = "For a>0, every nonzero solution is positive with n=floor(x)>=1. Writing a=t(1-t), 0<t<=1/2, only x_n=n/(1-t)=cn can lie in [n,n+1). If the solutions are n=1,...,N and sum to 345, then c=690/[N(N+1)]. Since c>1, N<=25; validity of x_N requires 690<(N+1)^2, impossible because (N+1)^2<=676. For the corrected sum 420, N=28, c=210/203, t=1/30, and a=29/900; x_29=30 verifies that the next index is excluded."
 tags = ["algebra", "floor-function", "fractional-part", "parameter", "contradiction", "source-correction"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "設 a>0，且 {x}=x-floor(x) 表示 x 的小數部分。若方程 floor(x){x}=ax² 的所有實數解為 x₁,x₂,…,xₘ，並滿足 x₁+x₂+⋯+xₘ=345，求 a。"
 
 [[beats]]
 id = "meet_claim"
@@ -40,6 +45,10 @@ loop = false
 
 [[beats]]
 id = "sign_filter"
+loop = false
+
+[[beats]]
+id = "test_sign_cases"
 loop = false
 
 [[beats]]
@@ -72,4 +81,12 @@ loop = false
 
 [[beats]]
 id = "solve_corrected"
+loop = false
+
+[[beats]]
+id = "derive_corrected_parameter"
+loop = false
+
+[[beats]]
+id = "separate_final_results"
 loop = false

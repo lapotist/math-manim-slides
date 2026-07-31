@@ -159,61 +159,133 @@ BP^2=2,\quad CP^2=5,\quad AP^2=1,
 - 第 9 段的穩定畫面只出現 `90+45` 與問號，沒有 `135`。第 10 段才用獨立動畫揭示答案並把角標示送回原來的 `P`。
 - 座標核對採新的兩欄版面，不疊在旋轉證明上。先突出 `u>0,v>0`，再出現內積與行列式，避免兩套論證在同一畫面互相競爭。
 
-## Beat map and motion purposes
+## Beat map
 
 ### 01 meet_square_and_inner_point
 
-依序建立固定正方形、內點 `P`、三段 `AP`、`BP`、`CP`；動作只回答題目有哪些物件，不出現條件、輔助點或角度答案。
+這是一個正方形 `ABCD`。黃色的 `P` 確定在正方形內部。
+
+動作目的：讓「先只看固定圖形」在穩定畫面上單獨成立，再進入下一步。
 
 ### 02 test_two_valid_positions
 
-條件式出現後，`P` 與三段相依線沿精確條件路徑移到第二個合法位置，再回到代表位置；動作只提供「不是單一特例」的證據，不畫完整軌跡。
+題目給的距離關係現在出現：
+
+動作目的：讓「同一條件不只一個位置」在穩定畫面上單獨成立，再進入下一步。
 
 ### 03 ask_for_target_angle
 
-在原點 `P` 長出珊瑚色角弧與問號，其他線段略暗；動作把注意力從三個平方距離收束到唯一待求量。
+題目要找的是 `P` 點的這個珊瑚色角，也就是 `\angle APB`。
 
-### 04 rotate_point_about_b
+動作目的：讓「真正要找的是這個角」在穩定畫面上單獨成立，再進入下一步。
 
-先讓 `BA` 的副本繞 `B` 轉到 `BC`，再讓整個三角形 `ABP` 的彩色副本做同一個四分之一圈並落成 `BCE`；動作說明輔助點 `E` 為何自然出現。
+### 04 demonstrate_quarter_turn
 
-### 05 match_rotated_lengths
+從 `B` 指向 `A` 的邊，繞 `B` 轉九十度，正好落在 `BC`。
 
-相同顏色與刻痕依序連起 `AP=CE`、`BP=BE`，最後顯示 `\angle APB=\angle CEB`；動作只記錄旋轉保留的資料，不先做角度加法。
+動作目的：讓「先用探針確認四分之一圈」在穩定畫面上單獨成立，再進入下一步。
 
-### 06 measure_the_new_diagonal
+### 05 rotate_point_about_b
 
-在 `B` 落下直角記號，連接 `P,E`，再由兩條相等直角邊逐項建立 `PE^2=PB^2+BE^2=2BP^2`；動作讓係數 2 變成一條可見線段。
+現在讓三角形 `ABP` 的副本做完全相同的旋轉。`A` 落到 `C`；同一個 `P` 的副本落到正方形外的新點 `E`。
 
-### 07 translate_the_condition
+動作目的：讓「再把整個三角形旋轉到 E」在穩定畫面上單獨成立，再進入下一步。
 
-由原條件移項得到 `CP^2=AP^2+2BP^2`，先依序突出同色的旋轉像與新斜邊，再寫出 `CP^2=CE^2+PE^2`；顏色連結讓每項都能回讀到已可見的線段。
+### 06 match_rotated_lengths
 
-### 08 earn_the_right_angle
+藍色的 `AP` 旋轉後就是藍色的 `CE`，所以兩段一樣長。
 
-只保留三角形 `CEP` 為亮色，等式落定後才在 `E` 顯示直角；動作回答逆畢氏定理在圖上究竟給了哪一個角。
+動作目的：讓「旋轉保留哪些資料」在穩定畫面上單獨成立，再進入下一步。
 
-### 09 assemble_preanswer_angles
+### 07 construct_rotated_diagonal
 
-恢復三角形 `BPE`，先標 `\angle PEB=45` 度，再把它與 `\angle CEP=90` 度拼成 `\angle CEB=90+45`；最後把旋轉保角關係寫成帶問號的目標式並停頓。
+`BP` 轉到 `BE`，所以它們互相垂直，而且長度相等。三角形 `BPE` 是直角等腰三角形。
 
-### 10 reveal_the_angle
+動作目的：讓「先作出旋轉後的新斜邊」在穩定畫面上單獨成立，再進入下一步。
 
-問號單獨變成 `135` 度，珊瑚色角弧由 `E` 的合角對應回原來的 `P`；這是全課第一個出現答案數值的事件。
+### 08 measure_the_new_diagonal
 
-### 11 verify_with_interior_vectors
+由畢氏定理，
 
-旋轉證明退場，換成座標正方形、`u,v` 內部距離與從 `P` 出發的兩支向量。內積與行列式分兩行落下，先用負號判斷鈍角，再用等大關係核對 `135` 度。
+動作目的：讓「用等腰直角關係量出斜邊」在穩定畫面上單獨成立，再進入下一步。
 
-### 12 return_to_original_square
+### 09 match_condition_lengths
 
-回到原正方形與同一個 `P`，以三個短句卡重新對應「四分之一圈、`2BP^2=PE^2`、直角加 `45` 度」，最後保留原目標角和答案；動作只做整體鞏固，不引入新結論。
+先把題目的式子移項：
+
+動作目的：讓「把原條件中的長度搬到新圖」在穩定畫面上單獨成立，再進入下一步。
+
+### 10 translate_the_condition
+
+所以同一個條件變成
+
+動作目的：讓「寫成新三角形的畢氏關係」在穩定畫面上單獨成立，再進入下一步。
+
+### 11 earn_the_right_angle
+
+先只看三角形 `CEP`。`CP` 的平方等於另外兩邊平方和。
+
+動作目的：讓「逆畢氏定理落在哪一點」在穩定畫面上單獨成立，再進入下一步。
+
+### 12 show_forty_five_and_ninety
+
+再把黃色的直角等腰三角形 `BPE` 放回來。
+
+動作目的：讓「先並列四十五度與九十度」在穩定畫面上單獨成立，再進入下一步。
+
+### 13 assemble_preanswer_angles
+
+旋轉又告訴我們 `\angle APB=\angle CEB`。畫面先停在最後一次加法；請在心裡完成它。
+
+動作目的：讓「把兩角接成答案前的合角」在穩定畫面上單獨成立，再進入下一步。
+
+### 14 reveal_the_angle
+
+現在才揭示相加的結果。
+
+動作目的：讓「揭示合角並送回原來的 P」在穩定畫面上單獨成立，再進入下一步。
+
+### 15 name_quarter_turn_insight
+
+關鍵不是先猜這個鈍角，而是先把係數二看成旋轉後的斜邊平方。
+
+動作目的：讓「留下四分之一圈的關鍵提示」在穩定畫面上單獨成立，再進入下一步。
+
+### 16 set_up_interior_vectors
+
+再用另一套方法核對一次，而且這次不使用剛才的旋轉證明。
+
+動作目的：讓「建立內點座標與兩支向量」在穩定畫面上單獨成立，再進入下一步。
+
+### 17 derive_negative_dot_product
+
+從 `P` 指向 `A`、`B` 的向量分別是 `(u-s,v)` 與 `(u,v)`。用上方的關係整理，內積是 `-sv`。
+
+動作目的：讓「算出負內積並鎖定鈍角」在穩定畫面上單獨成立，再進入下一步。
+
+### 18 verify_with_interior_vectors
+
+行列式的絕對值是 `sv`。`-sv<0` 先證明夾角是鈍角；兩個絕對值相等，再說明正弦等於負餘弦。鈍角範圍內只有剛才的 `135` 度。
+
+動作目的：讓「比較行列式後核對一百三十五度」在穩定畫面上單獨成立，再進入下一步。
+
+### 19 return_to_original_square
+
+最後回到同一個正方形與同一個內點 `P`。
+
+動作目的：讓「回到原正方形並標回答案」在穩定畫面上單獨成立，再進入下一步。
+
+### 20 summarize_quarter_turn_route
+
+第一個畫面：正方形的直角讓 `ABP` 轉四分之一圈。
+
+動作目的：讓「依序重播三個關鍵畫面」在穩定畫面上單獨成立，再進入下一步。
 
 ## Build constraints
 
 - 只編輯 `lessons/tcfs_112_math_gifted/q11/`；渲染媒體寫入專屬 ignored build 目錄。
-- 場景類別為 `CarloTcfs112MathQ11`，十二個 beat 全部 `loop=false`。
+- 場景類別為 `CarloTcfs112MathQ11`，共 20 個 beat，全部 `loop=false`。
 - 中文只使用 `label()`；`MathTex` 只放 ASCII 數學內容。
 - 先做 Python compile/import 與低畫質 smoke，再以 `--quality h` 隔離渲染。
-- 必須檢查十二個 endpoint、完整每秒 sweep，以及第 2 段條件移動、第 4 段旋轉、第 7 段式子替換、第 9 段答案前停點、第 10 段答案揭示與第 11 段向量式的中間影格。
+- 必須檢查 20 個 endpoint、完整每秒 sweep，以及 `test_two_valid_positions` 的條件移動、`rotate_point_about_b` 的旋轉、`translate_the_condition` 的式子替換、`assemble_preanswer_angles` 的答案前停點、`reveal_the_angle` 的答案揭示與向量核對的中間影格。
 - lesson worker 停在 `draft_rendered`，不執行 `freeze-qa`，不建立 human-reviewed attestation，也不修改 collection state。

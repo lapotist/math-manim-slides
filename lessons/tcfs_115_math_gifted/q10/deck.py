@@ -17,6 +17,7 @@ from carlo_manim import (
     label,
 )
 from manim import (
+    AnimationGroup,
     Arrow,
     Circle,
     Circumscribe,
@@ -228,7 +229,6 @@ class Tcfs115Q10Slide(CarloSlide):
         source = label("解題來源：正哥愛數學｜PDF 第 6 頁", 16, MUTED, "MEDIUM")
         source.to_corner(DOWN + RIGHT, buff=0.24)
 
-        # Beat 01 meet_four_bounds: notice the repeated structure before naming k.
         title_1 = label("先看四列：每一列都夾住一個主角", 34, INK, "BOLD")
         title_1.move_to(UP * 3.05)
         raw_rows = VGroup(
@@ -251,6 +251,7 @@ class Tcfs115Q10Slide(CarloSlide):
             t2c={"共同整體": POINT},
         ).move_to(DOWN * 2.72)
 
+        # Beat 01 meet_four_bounds: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), FadeIn(title_1), run_time=0.75)
         self.play(
             LaggedStart(
@@ -273,7 +274,7 @@ class Tcfs115Q10Slide(CarloSlide):
         self.play(FadeIn(prompt_1), run_time=0.55)
         self.wait(0.25)
 
-        # Beat 02 name_shared_total: assemble k and visibly add the missing three terms.
+        # Beat 02 name_shared_total: settled semantic step.
         self.next_slide()
         title_2 = label("把四個正數裝進同一個總量", 34, INK, "BOLD")
         title_2.move_to(title_1)
@@ -362,6 +363,8 @@ class Tcfs115Q10Slide(CarloSlide):
             Create(add_arrows),
             run_time=0.9,
         )
+        # Beat 03 write_shared_total: settled semantic step.
+        self.next_slide()
         self.play(
             TransformFromCopy(VGroup(first_row, add_terms, total_formula[0]), added_row),
             run_time=1.1,
@@ -369,7 +372,7 @@ class Tcfs115Q10Slide(CarloSlide):
         self.play(Create(k_box), FadeIn(completion_note), run_time=0.65)
         self.wait(0.3)
 
-        # Beat 03 normalize_b: simplify the first completed row all the way to one interval.
+        # Beat 04 normalize_b: settled semantic step.
         self.next_slide()
         title_3 = label("先把第一列完整走完", 34, INK, "BOLD").move_to(title_2)
         summary_header = label("已得到的比例範圍", 24, MUTED, "BOLD")
@@ -422,6 +425,8 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.play(FadeIn(simplify_note), ReplacementTransform(added_row, coefficient_b), run_time=0.9)
         self.play(FadeIn(divide_note_b), run_time=0.45)
+        # Beat 05 finish_b_normalization: settled semantic step.
+        self.next_slide()
         self.play(Write(normalized_b), run_time=0.9)
         self.play(TransformFromCopy(normalized_b, b_summary), run_time=0.65)
         self.play(
@@ -432,7 +437,7 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.wait(0.3)
 
-        # Beat 04 normalize_c: repeat the same completion for the second row.
+        # Beat 06 normalize_c: settled semantic step.
         self.next_slide()
         title_4 = label("第二列也只是在補齊 k", 34, INK, "BOLD").move_to(title_3)
         raw_c = self.raw_row(r"\frac75c-a-d", "b", r"\frac85c-a-d", B_COLOR, size=34)
@@ -476,6 +481,8 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.play(FadeIn(action_c), run_time=0.55)
         self.play(Write(coefficient_c), run_time=0.85)
+        # Beat 07 finish_c_normalization: settled semantic step.
+        self.next_slide()
         self.play(Write(normalized_c), run_time=0.85)
         self.play(TransformFromCopy(normalized_c, c_summary), run_time=0.65)
         self.play(
@@ -486,7 +493,7 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.wait(0.3)
 
-        # Beat 05 normalize_d: track the coefficient increase before isolating d.
+        # Beat 08 normalize_d: settled semantic step.
         self.next_slide()
         title_5 = label("第三列：d 的係數各增加 1", 34, INK, "BOLD").move_to(title_4)
         raw_d = self.raw_row(r"\frac72d-a-b", "c", r"\frac92d-a-b", C_COLOR, size=34)
@@ -530,6 +537,8 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.play(FadeIn(action_d), run_time=0.55)
         self.play(Write(coefficient_d), run_time=0.85)
+        # Beat 09 finish_d_normalization: settled semantic step.
+        self.next_slide()
         self.play(Write(normalized_d), run_time=0.85)
         self.play(TransformFromCopy(normalized_d, d_summary), run_time=0.65)
         self.play(
@@ -540,7 +549,7 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.wait(0.3)
 
-        # Beat 06 normalize_a: finish the fourth interval on the same positive scale.
+        # Beat 10 normalize_a: settled semantic step.
         self.next_slide()
         title_6 = label("最後一列完成同一個模式", 34, INK, "BOLD").move_to(title_5)
         raw_a = self.raw_row(
@@ -590,6 +599,8 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.play(FadeIn(action_a), run_time=0.55)
         self.play(Write(coefficient_a), run_time=0.85)
+        # Beat 11 finish_a_normalization: settled semantic step.
+        self.next_slide()
         self.play(Write(normalized_a), run_time=0.85)
         self.play(TransformFromCopy(normalized_a, a_summary), run_time=0.65)
         self.play(
@@ -600,7 +611,7 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.wait(0.3)
 
-        # Beat 07 place_four_intervals: place every open interval on one exact k-scale.
+        # Beat 12 place_four_intervals: settled semantic step.
         self.next_slide()
         title_7 = label("同一把尺上，四段範圍落在哪裡？", 34, INK, "BOLD").move_to(title_6)
         coordinate_note = VGroup(
@@ -661,17 +672,41 @@ class Tcfs115Q10Slide(CarloSlide):
             run_time=0.85,
         )
         self.play(FadeOut(summaries), FadeIn(coordinate_note), run_time=0.55)
-        for band in bands:
-            self.play(
-                FadeIn(VGroup(*band[0:5], band[7])),
-                TransformFromCopy(band[3], band[5]),
-                TransformFromCopy(band[4], band[6]),
-                run_time=0.65,
-            )
+        self.play(
+            LaggedStart(
+                *(
+                    AnimationGroup(
+                        FadeIn(VGroup(*band[0:5], band[7])),
+                        TransformFromCopy(band[3], band[5]),
+                        TransformFromCopy(band[4], band[6]),
+                    )
+                    for band in bands[:2]
+                ),
+                lag_ratio=0.3,
+            ),
+            run_time=1.1,
+        )
+
+        # Beat 13 finish_interval_bands: settled semantic step.
+        self.next_slide()
+        self.play(
+            LaggedStart(
+                *(
+                    AnimationGroup(
+                        FadeIn(VGroup(*band[0:5], band[7])),
+                        TransformFromCopy(band[3], band[5]),
+                        TransformFromCopy(band[4], band[6]),
+                    )
+                    for band in bands[2:]
+                ),
+                lag_ratio=0.3,
+            ),
+            run_time=1.1,
+        )
         self.play(FadeIn(prompt_7), run_time=0.5)
         self.wait(0.3)
 
-        # Beat 08 separate_b_d: compare b's upper endpoint with d's lower endpoint.
+        # Beat 14 separate_b_d: settled semantic step.
         self.next_slide()
         title_8 = label("第一個空隙：b 的右端仍小於 d 的左端", 32, INK, "BOLD")
         title_8.move_to(title_7)
@@ -731,7 +766,7 @@ class Tcfs115Q10Slide(CarloSlide):
         self.play(Write(chain_8), run_time=0.85)
         self.wait(0.3)
 
-        # Beat 09 separate_d_a: compare d's upper endpoint with a's lower endpoint.
+        # Beat 15 separate_d_a: settled semantic step.
         self.next_slide()
         title_9 = label("第二個空隙：d 的右端仍小於 a 的左端", 32, INK, "BOLD")
         title_9.move_to(title_8)
@@ -797,7 +832,7 @@ class Tcfs115Q10Slide(CarloSlide):
         self.play(Write(chain_9), run_time=0.85)
         self.wait(0.3)
 
-        # Beat 10 separate_a_c: compare the final equal-numerator endpoint pair.
+        # Beat 16 separate_a_c: settled semantic step.
         self.next_slide()
         title_10 = label("最後一個空隙：共同正分子下比較分母", 32, INK, "BOLD")
         title_10.move_to(title_9)
@@ -870,6 +905,8 @@ class Tcfs115Q10Slide(CarloSlide):
             run_time=0.75,
         )
         self.play(Write(compare_10), FadeIn(gap_10), FadeIn(gap_label_10), run_time=0.9)
+        # Beat 17 compare_a_and_c: settled semantic step.
+        self.next_slide()
         self.play(Write(chain_10), run_time=0.8)
         self.play(
             ReplacementTransform(chain_10, ascending),
@@ -878,7 +915,7 @@ class Tcfs115Q10Slide(CarloSlide):
         )
         self.wait(0.3)
 
-        # Beat 11 consolidate: reconnect the shared scale to the descending answer.
+        # Beat 18 consolidate: settled semantic step.
         self.next_slide()
         title_11 = label("同一把尺，讓順序自己排開", 34, INK, "BOLD").move_to(title_10)
         final_answer = MathTex(

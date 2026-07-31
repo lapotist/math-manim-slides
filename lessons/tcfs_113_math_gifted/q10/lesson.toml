@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame inspection confirms that Q10 is settled from 01:26 through 05:50. The source reflects B across AC, changes PB to PB', straightens the resulting broken path, and then computes the perpendicular distance geometrically with area and ratio relations. This lesson preserves the reflection and straightening argument but independently introduces coordinates only near the end so that the reflected point, the perpendicular foot on segment AB, and the attainable equality point on segment AC are all checked explicitly. No source frames, handwriting, audio, or wording are incorporated."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q10/deck.py"
 scene_class = "CarloTcfs113MathQ10"
 storyboard = "lessons/tcfs_113_math_gifted/q10/storyboard.md"
@@ -32,12 +32,25 @@ expected_answer = "64/5"
 independent_check = "Use D=(0,0), C=(16,0), B=(16,8), A=(0,8), so AC has equation x+2y=16. Reflecting B across this line gives B'=(48/5,-24/5). For P on AC, PB=PB', hence PQ+PB=PQ+PB'>=QB'. The shortest segment from B' to line AB is perpendicular to AB, with foot Q=(48/5,8), and 0<48/5<16 verifies Q lies on segment AB. The vertical QB' meets AC at P=(48/5,16/5); since 8>16/5>-24/5, Q,P,B' are aligned in the required order and P lies on segment AC. Thus equality is attainable. Finally QB'=8-(-24/5)=64/5."
 tags = ["geometry", "reflection", "shortest-path", "triangle-inequality", "rectangle", "coordinates"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "長方形 ABCD 中，AB=16、BC=8。點 P 在線段 AC 上，點 Q 在線段 AB 上，求 PQ+PB 的最小值。"
+
 [[beats]]
 id = "meet_broken_path"
 loop = false
 
 [[beats]]
+id = "state_path_objective"
+loop = false
+
+[[beats]]
 id = "explore_two_movers"
+loop = false
+
+[[beats]]
+id = "move_q_along_top_edge"
 loop = false
 
 [[beats]]
@@ -50,6 +63,10 @@ loop = false
 
 [[beats]]
 id = "straighten_reflected_path"
+loop = false
+
+[[beats]]
+id = "attain_straight_path"
 loop = false
 
 [[beats]]
@@ -69,9 +86,21 @@ id = "compute_reflected_point"
 loop = false
 
 [[beats]]
+id = "apply_reflection_formula"
+loop = false
+
+[[beats]]
 id = "verify_attainable_configuration"
 loop = false
 
 [[beats]]
+id = "verify_collinear_order"
+loop = false
+
+[[beats]]
 id = "reveal_minimum_length"
+loop = false
+
+[[beats]]
+id = "state_minimum_length"
 loop = false

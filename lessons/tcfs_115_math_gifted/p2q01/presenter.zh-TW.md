@@ -23,13 +23,17 @@
 
 兩邊都有同一個 `x^2`，右側也都有係數 3。
 
+[NEXT]
+
+## 03 align_twin_equations｜第一式與第二式共用一個模具（下一步）
+
 第一式把 `y` 放進 `xy`、`y^2` 和 `x+y`；第二式在完全相同的位置放入 `z`。
 
 也就是說，第二式只是把第一式的伙伴從 `y` 換成 `z`。
 
 [NEXT]
 
-## 03 subtract_first_two｜差式自己長出共同因子
+## 04 subtract_first_two｜差式自己長出共同因子
 
 做第一式減第二式。
 
@@ -37,13 +41,17 @@
 
 平方差 `y^2-z^2` 可寫成 `(y-z)(y+z)`。
 
+[NEXT]
+
+## 05 isolate_first_difference｜差式自己長出共同因子（下一步）
+
 現在兩項都有 `y-z`，所以得到 `(y-z)(x+y+z)=3(y-z)`。
 
 移到同一側，就是 `(y-z)(x+y+z-3)=0`。
 
 [NEXT]
 
-## 04 split_branches｜零乘積打開兩條路
+## 06 split_branches｜零乘積打開兩條路
 
 兩個因子的乘積是零，至少有一個因子為零。
 
@@ -55,11 +63,15 @@
 
 [NEXT]
 
-## 05 enter_equal_branch｜先走 y 等於 z
+## 07 enter_equal_branch｜先走 y 等於 z
 
 先進入左邊這一支。
 
 把 `z=y` 放進第三式。左邊三項都變成 `y^2`，所以是 `3y^2`；右邊變成 `5y+1`。
+
+[NEXT]
+
+## 08 compare_equal_branch｜先走 y 等於 z（下一步）
 
 整理後得到 `3y^2-5y-1=0`。
 
@@ -67,21 +79,29 @@
 
 [NEXT]
 
-## 06 solve_equal_branch｜第一組根的分子是正 5
+## 09 solve_equal_branch｜第一組根的分子是正 5
 
 在 `3y^2-5y-1=0` 中，二次、一次、常數係數分別是 3、負 5、負 1。
 
 二次公式分子先放入負的 `B`，所以是正 5。
 
+[NEXT]
+
+## 10 derive_equal_branch_sum｜第一組根的分子是正 5（下一步）
+
 判別式是 `25+12=37`，分母是 6。
 
 因此這一支得到 `y=(5 plus/minus sqrt(37))/6`。
+
+[NEXT]
+
+## 11 test_equal_branch_values｜第一組根的分子是正 5（下一步）
 
 請先記住分子是正 5；稍後會用它核對來源中的符號。
 
 [NEXT]
 
-## 07 enter_sum_branch｜回到分岔點走另一支
+## 12 enter_sum_branch｜回到分岔點走另一支
 
 現在回到剛才的兩條路，改走 `x+y+z=3`。
 
@@ -91,21 +111,29 @@
 
 [NEXT]
 
-## 08 derive_x_one｜總和 3 把 x 固定下來
+## 13 derive_x_one｜總和 3 把 x 固定下來
 
 第二式減第三式，左側可整理成 `S(x-y)`。
 
 右側整理成 `(5/2)(x-y)+(1/2)(x+z)-1`。
 
+[NEXT]
+
+## 14 factor_x_one_relation｜總和 3 把 x 固定下來（下一步）
+
 代入 `S=3`，又因 `x+z=3-y`，得到
 
 `3(x-y)=(5/2)(x-y)+(1/2)(3-y)-1`。
+
+[NEXT]
+
+## 15 solve_x_one_relation｜總和 3 把 x 固定下來（下一步）
 
 兩邊同乘 2 後，所有 `y` 項恰好消去，最後只留下 `x=1`。
 
 [NEXT]
 
-## 09 solve_sum_branch｜第二組根
+## 16 solve_sum_branch｜第二組根
 
 把 `x=1` 放回第一式。
 
@@ -113,29 +141,45 @@
 
 所以 `y=1 plus/minus sqrt(3)`。
 
+[NEXT]
+
+## 17 derive_sum_branch_values｜第二組根（下一步）
+
 同時由總和 3，`z=2-y`，也就是與 `y` 相反選號的 `1 minus/plus sqrt(3)`。
 
 右支也產生兩個候選值。
 
 [NEXT]
 
-## 10 verify_candidates｜候選要能回到原系統
+## 18 verify_candidates｜候選要能回到原系統
 
 先看右支。取 `x=1`，並讓 `y,z` 分別是 `1 plus/minus sqrt(3)` 與相反選號，三條原式都成立。
 
 左支取 `z=y`。剩下的第一式是關於 `x` 的二次方程，它的判別式可化成 `y+8`。
 
+[NEXT]
+
+## 19 test_first_candidates｜候選要能回到原系統（下一步）
+
 對剛才兩個 `y`，這個判別式都大於零，所以確實存在實數 `x`；第二式又與第一式相同。
+
+[NEXT]
+
+## 20 test_remaining_candidates｜候選要能回到原系統（下一步）
 
 因此四個 `y` 都不是多出來的候選，而是真的可達解。
 
 [NEXT]
 
-## 11 correct_source_sign｜公開核對來源的負號
+## 21 correct_source_sign｜公開核對來源的負號
 
 這裡需要記錄一個來源誤植。
 
 來源答案欄把第一組寫成分子負 5，但同頁的分支方程是 `3y^2-5y-1=0`。
+
+[NEXT]
+
+## 22 state_corrected_sign｜公開核對來源的負號（下一步）
 
 由根與係數，兩根的和應是 `5/3`。正 5 的兩個根相加確實是 `5/3`；若改成負 5，根和會變成負 `5/3`，不可能符合原式。
 
@@ -143,7 +187,7 @@
 
 [NEXT]
 
-## 12 consolidate｜兩條分支合成完整答案
+## 23 consolidate｜兩條分支合成完整答案
 
 最後回顧主幹。
 

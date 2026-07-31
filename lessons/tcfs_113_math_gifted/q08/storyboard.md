@@ -12,9 +12,9 @@
 \frac{OD}{OD+s}=\frac{DF}{CE}=\frac{23}{36},
 \]
 
-因此 (OD:s=23:13)。整數條件只在比例已約成最簡整數比後使用：因 (23,13) 互質，所有正整數解必為 ((OD,s)=(23t,13t))，其中 (t) 是正整數。畫面先列出幾組尺度，讓觀眾選出最小邊長；再把 (OD=23,s=13) 放回原圖，逐項核對面積平分、線段比與整數條件。這個完整核對畫面不出現面積答案。最後一個 beat 才計算 (13^2=169)。
+因此 (OD:s=23:13)。整數條件只在比例已約成最簡整數比後使用：因 (23,13) 互質，所有正整數解必為 ((OD,s)=(23t,13t))，其中 (t) 是正整數。畫面先列出幾組尺度，讓觀眾選出最小邊長；再把 (OD=23,s=13) 放回原圖，逐項核對面積平分、線段比與整數條件。這個完整核對畫面不出現面積答案。第十三個 beat 才計算 (13^2=169)，最後一頁框選並收束理由。
 
-全課十個 beat，皆不循環，預估 9 分鐘。
+全課十四個 beat，皆不循環，預估 9 分鐘。
 
 ## Source and verification
 
@@ -109,7 +109,7 @@ BE=DF=\frac{23}{59}\cdot13,
 - (DF)、(BE) 與小三角形 (ODF) 使用藍色，讓數值 23 的角色在圖與公式間一致。
 - 面積探索只保留短暫的上下移動，不留下軌跡。相等位置落定後，所有動態物件停止再進入代數。
 - 右側比例、梯形平均、相似比例與整數尺度依序出現；後一步不得提前洩漏前一步的結果。
-- 第 9 個 beat 是完整的答案前停點：顯示最小可行邊長 13 並核對全部原條件，但不顯示 169。第 10 個 beat 才揭示面積。
+- 第 12 個 beat 是完整的答案前停點：顯示最小可行邊長 13 並核對全部原條件，但不顯示 169。第 13 個 beat 才揭示面積，第 14 個 beat 只框選並收束。
 
 ## Beat map
 
@@ -123,40 +123,56 @@ BE=DF=\frac{23}{59}\cdot13,
 
 ### 03 resolve_right_side_ratio
 
-突出 (CE) 與 (BE)，引入邊長 (s)。從 (36:23) 的 59 份直接得到 (CE=36s/59) 與 (BE=23s/59)，不使用也不限制任意比例參數 (k)。
+突出 (CE) 與 (BE)，引入邊長 (s)，先建立 (CE:BE=36:23) 與 (CE+BE=s)。
 
-### 04 isolate_half_trapezoid
+### 04 state_right_side_lengths
+
+由 59 份寫出 (CE=36s/59) 與 (BE=23s/59)，不假設任意比例參數為整數。
+
+### 05 isolate_half_trapezoid
 
 淡化上半部，只留下下方梯形 (DCEF)。顯示兩條平行高度 (DF,CE)、間距 (s) 與梯形面積，同時保留它等於半個正方形的事實。
 
-### 05 earn_left_height
+### 06 earn_left_height
 
 把半面積改寫成兩個高度的平均為 (s/2)，依序得到 (DF+CE=s) 與 (DF=23s/59)。
 
-### 06 see_similar_triangles
+### 07 see_similar_triangles
 
 恢復完整脈絡，分別描出三角形 (ODF) 與 (OCE)。標示兩個直角與 (O) 點的共同銳角，只在此時說明兩三角形相似。
 
-### 07 derive_base_ratio
+### 08 derive_base_ratio
 
-從可見對應邊建立 (OD/(OD+s)=DF/CE=23/36)，逐步交叉相乘並約成 (OD:s=23:13)。
+從可見對應邊建立 (OD/(OD+s)=DF/CE=23/36)，再交叉相乘。
 
-### 08 enforce_integer_scale
+### 09 reduce_base_ratio
+
+整理交叉相乘式為 (13OD=23s)，再約成最簡整數比 (OD:s=23:13)。
+
+### 10 enforce_integer_scale
 
 顯示 (23,13) 互質，推出 ((OD,s)=(23t,13t)) 且 (t) 為正整數。列出 (t=1,2,3) 的前三組尺度，停在「哪一組最小？」的問題上。
 
-### 09 verify_minimal_configuration
+### 11 verify_minimal_configuration
 
-選取 (t=1)，把 (OD=23,s=13) 放回原圖。逐項驗證兩個整數條件、右側比值與梯形半面積。這是答案前停點，不顯示面積值。
+選取 (t=1)，把 (OD=23,s=13) 放回原圖，先確認兩個長度是正整數。
 
-### 10 reveal_minimum_area
+### 12 recheck_ratio_and_area
 
-由畫面上的邊長 13 複製出正方形面積式，最後才顯示 (13^2=169)，並把結果留在完整可行圖旁。
+逐項驗證右側比值與梯形半面積。這是答案前停點，不顯示面積值。
+
+### 13 reveal_minimum_area
+
+由畫面上的邊長 13 複製出正方形面積式，最後才顯示 (13^2=169)。
+
+### 14 frame_minimum_area
+
+框住 169 並補上最小面積標籤，把結果留在完整可行圖旁。
 
 ## Build constraints
 
 - 只可在 `lessons/tcfs_113_math_gifted/q08/` 編輯來源檔；媒體使用專屬 ignored `build/media/carlo_tcfs_113_math_gifted_q08`。
 - 所有中文由 `label()` 建立，`MathTex` 只含 ASCII 數字、拉丁字母與數學符號。
-- 十個 beat、TOML、講者稿與 Slides manifest 必須同序，全部 `loop=false`。
+- 十四個 beat、TOML、講者稿與 Slides manifest 必須同序，全部 `loop=false`。
 - 必須在完整 contact sheet 之外檢查每秒影格，並加密抽查動點、面積讀數、比例式轉換、相似三角形重疊與最後答案變換。
 - 不執行 `freeze-qa`；lesson worker 只交付 `draft_rendered`。

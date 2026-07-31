@@ -20,8 +20,8 @@
 之字路徑。原題文字允許完整直線上的任意方向；若不加這個構形限制，會有其他
 閉合角。因此本課不得把 \(mn=180\) 稱為完整直線問題的普遍定理。
 
-預估 11 分鐘。十三個 beat 全部不循環；每一個停點都落在靜止且可朗讀的
-構圖。第 12 beat 只用一個反例標示適用範圍，隨即在第 13 beat 回到主線，
+預估 11 分鐘。二十三個 beat 全部不循環；每一個停點都落在靜止且可朗讀的
+構圖。`mark_scope_boundary` 與 `verify_full_line_counterexample` 只用一個反例標示適用範圍，隨即在 `consolidate_scoped_invariant` 回到主線，
 避免範圍校正淹沒原本的等腰三角形發現過程。
 
 ## Source and provenance
@@ -55,8 +55,9 @@
 交替落在從 \(O\) 出發的兩條指定射線上、每個相鄰距離皆相等，而且在第
 \(n\) 步之前不回到 \(O\)。
 
-這句話必須在第 1、9、11、13 beat 可見，講者稿也必須同步朗讀。第 12 beat
-顯示完整直線反例後，必須明說它不屬於這個定義。
+這句話必須在 `meet_two_rays`、`name_general_scope`、`state_scoped_product`、
+`restate_scoped_results` 可見，講者稿也必須同步朗讀。顯示完整直線反例後，
+必須明說它不屬於這個定義。
 
 ## Independent mathematics check
 
@@ -115,7 +116,7 @@ r_k^2+r_{k-1}^2-2r_kr_{k-1}\cos\theta=1
   後出現。
 - 一般化時保留內部路徑作低透明度背景，隔離最外三角形後才建立
   \(n\theta=180^\circ\)。
-- 第 12 beat 的負半徑點必須畫在 \(O\) 背後的延長線上，並以珊瑚色標成
+- `verify_full_line_counterexample` 的負半徑點必須畫在 \(O\) 背後的延長線上，並以珊瑚色標成
   「範圍外」；不得把它和前面的綠色合法家族混為一圖。
 - 所有中文使用 `label()`；`MathTex` 只放 ASCII 字元與數學符號。
 
@@ -123,81 +124,115 @@ r_k^2+r_{k-1}^2-2r_kr_{k-1}\cos\theta=1
 
 ### 01 meet_two_rays
 
-只畫從 \(O\) 出發的兩條射線、夾角 \(\theta\) 與一段步長尺。顯示範圍條：
-非 \(O\) 落點只在兩條指定射線上。尚未畫閉合路徑。
+只畫兩條指定射線、夾角與步長尺，先固定同射線的構形範圍。
 
 ### 02 walk_five_steps
 
-同一個黃色點依序走 \(O\to A\to B\to C\to D\to O\)，計數器從 0 到 5，
-每一段藍線保留。停點只問 \(\theta\)。
+黃色點先走前兩個等步長，步數與落點同時落定。
 
-### 03 seed_equal_angles
+### 03 finish_five_step_walk
 
-淡化後三步，只保留 \(OA=AB\) 的第一個等腰三角形。先顯示等長記號，再把
-\(O\) 點已知的 \(\theta\) 複製到 \(B\) 點底角。
+再走第三到第五步並首次回到 \(O\)，停在只問 \(\theta\) 的完整路徑。
 
-### 04 propagate_five_step_angles
+### 04 seed_equal_angles
 
-恢復下一個等腰三角形，利用同射線上的平角把出發端推來的外層底角變成
-\(2\theta\)。再從閉合終點反向做同一個等腰三角形傳遞，獨立得到另一個
-\(2\theta\)。兩邊都成立後才隔離外三角形 \(OBC\)，標出
-\(\theta,2\theta,2\theta\)，但不先顯示數值答案。
+隔離第一個等腰三角形，先把已知角複製到對應底角。
 
-### 05 reveal_thirty_six
+### 05 mark_first_equal_sides
 
-由可見三角建立 \(\theta+2\theta+2\theta=180^\circ\)，化成
-\(5\theta=180^\circ\)，最後才揭示 \(\theta=36^\circ\)。
+補上第一組等長記號，讓等角的理由在圖上保持可查。
 
-### 06 walk_seven_steps
+### 06 propagate_five_step_angles
 
-清除五步圖，使用同一規則讓黃色點走完七步並回到 \(O\)。同射線範圍條保留。
+沿出發端的相鄰等腰三角形傳遞角度，得到一側的 \(2\theta\)。
 
-### 07 grow_three_layers
+### 07 complete_five_step_propagation
 
-從出發端依序高亮前三個等腰三角形，右側角度梯顯示
-\(\theta\to2\theta\to3\theta\)。再從閉合終點反向套用同一傳遞，得到另一個
-\(3\theta\)，最後停在最外三角形的 \(\theta,3\theta,3\theta\)。
+從閉合端反向完成同一傳遞，停在外三角形的 \(\theta,2\theta,2\theta\)。
 
-### 08 reveal_seven_step_angle
+### 08 reveal_thirty_six
 
-建立 \(\theta+3\theta+3\theta=180^\circ\)，得到
-\(7\theta=180^\circ\) 與 \(\theta=180^\circ/7\)。
+由外三角形建立 \(\theta+2\theta+2\theta=180^\circ\)，先化成 \(5\theta=180^\circ\)。
 
-### 09 name_general_scope
+### 09 solve_five_step_angle
+
+最後才解出並揭示 \(\theta=36^\circ\)。
+
+### 10 walk_seven_steps
+
+清除五步圖，使用同一規則先走七步構形的前兩步。同射線範圍條保留。
+
+### 11 continue_seven_step_walk
+
+走第三到第五步，停在尚未閉合的中間構形。
+
+### 12 finish_seven_step_walk
+
+走完第六、七步並回到 \(O\)，再顯示七段等長記號。
+
+### 13 grow_three_layers
+
+從出發端依序建立第一、第二層，停在 \(\theta,2\theta\) 的具體增長。
+
+### 14 complete_three_layer_growth
+
+完成第三層並從終點反向傳遞，停在外三角形的 \(\theta,3\theta,3\theta\)。
+
+### 15 reveal_seven_step_angle
+
+由可見三角建立 \(\theta+3\theta+3\theta=180^\circ\)，先得到 \(7\theta=180^\circ\)。
+
+### 16 solve_seven_step_angle
+
+將七步關係解成 \(\theta=180^\circ/7\)。
+
+### 17 name_general_scope
 
 以九步圖作一般奇數的代表，明示 \(n=2h+1\)、\(h=(n-1)/2\)，並再次完整
 顯示「同射線、首次閉合」範圍。
 
-### 10 build_angle_recurrence
+### 18 build_angle_recurrence
 
-同一個高亮三角形逐層向外移動，建立
-\(\alpha_1=\theta\)、\(\alpha_{j+1}=\alpha_j+\theta\)，所以
-\(\alpha_h=h\theta\)。
+先建立 \(\alpha_1=\theta\) 與逐層增加 \(\theta\) 的遞迴。
 
-### 11 close_outer_triangle
+### 19 propagate_general_angles
 
-淡化內部路徑，保留最外三角形與三角
-\(\theta,h\theta,h\theta\)。逐行建立 \(n\theta=180^\circ\) 與
-限定構形內的 \(mn=180\)。
+先讓代表三角形走過第二、第三層，具體呈現逐層增加 \(\theta\)。
 
-### 12 mark_scope_boundary
+### 20 complete_general_propagation
 
-改畫兩條完整直線與 \(n=5,\theta=72^\circ\) 的閉合等步長路徑。標出
-\(r_3,r_4<0\)、\(mn=360\)，只用一句話指出它是完整直線反例、不屬於本課
-圖族。
+走到代表圖最外層，才一般化為第 \(h\) 層的 \(h\theta\)。
 
-### 13 consolidate_scoped_invariant
+### 21 close_outer_triangle
 
-回到綠色同射線九步圖。右側依序回顧
-\(5\mapsto36^\circ\)、\(7\mapsto180^\circ/7\)、一般奇數
-\(n\mapsto mn=180\)，最下方永久保留限定範圍。
+淡化內部路徑，只保留最外三角形及三個已知角。
+
+### 22 state_scoped_product
+
+由外三角形逐行建立 \(n\theta=180^\circ\) 與限定構形內的 \(mn=180\)。
+
+### 23 mark_scope_boundary
+
+切換到兩條完整直線，先明示這已越出同射線構形的適用範圍。
+
+### 24 verify_full_line_counterexample
+
+顯示負半徑落點與 \(n=5,\theta=72^\circ\) 的閉合例，核對其乘積為 360。
+
+### 25 consolidate_scoped_invariant
+
+回到同射線九步圖與原先的限定敘述，重新取得主線脈絡。
+
+### 26 restate_scoped_results
+
+依序重述五步、七步與一般奇數的結果，最下方永久保留限定範圍。
 
 ## Build constraints
 
 - 只可在 `lessons/tcfs_113_math_gifted/p2q01/` 編輯來源檔；媒體輸出使用專屬
   ignored `build/media/carlo_tcfs_113_math_gifted_p2q01`。
-- 十三個 beat、TOML、講者稿與 Slides manifest 必須完全同序，全部
-  `loop=false`；講者稿必須有 12 個 `[NEXT]`、0 個 `[LOOP]`。
+- 二十三個 beat、TOML、講者稿與 Slides manifest 必須完全同序，全部
+  `loop=false`；講者稿必須有 22 個 `[NEXT]`、0 個 `[LOOP]`。
 - 匯入期必須檢查角度和、同射線正半徑、每步等長、首次閉合，以及完整直線
   反例的負半徑與乘積 360。
 - 必須以 1920x1080 原尺寸檢查五步移動、第一個等腰三角形、五步外三角形、

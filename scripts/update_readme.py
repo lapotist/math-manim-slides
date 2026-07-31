@@ -86,6 +86,13 @@ def render_summary() -> str:
     )
 
 
+def include_in_public_lesson_table(problem: dict[str, Any]) -> bool:
+    return not (
+        problem["production_state"] == "blocked"
+        and problem.get("blocker_category") == "access"
+    )
+
+
 def render_lesson_table() -> str:
     metadata_by_id: dict[str, tuple[dict[str, Any], Path]] = {}
     for path in sorted(ROOT.glob("lessons/*/*/lesson.toml")):
@@ -103,6 +110,8 @@ def render_lesson_table() -> str:
             collection = tomllib.load(handle)
         collection_label = collection["slug"].replace("_", " ").upper()
         for problem in collection["problems"]:
+            if not include_in_public_lesson_table(problem):
+                continue
             metadata_record = metadata_by_id.get(problem["id"])
             links: list[str] = []
             if metadata_record:
@@ -119,7 +128,8 @@ def render_lesson_table() -> str:
             if problem.get("topic"):
                 topic = problem["topic"]
             elif problem["production_state"] == "blocked":
-                topic = "solution access blocked"
+                category = problem.get("blocker_category", "general")
+                topic = f"{category} review blocked"
             elif problem["production_state"] == "discovered":
                 topic = "problem review pending"
             else:

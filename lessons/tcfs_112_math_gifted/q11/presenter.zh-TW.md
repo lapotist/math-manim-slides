@@ -35,15 +35,17 @@
 
 先看頂點 `B` 周圍的直角。 [PAUSE] [NEXT]
 
-## 04 rotate_point_about_b｜跟著正方形轉四分之一圈
+## 04 demonstrate_quarter_turn｜先用探針確認四分之一圈
 
-從 `B` 指向 `A` 的邊，繞 `B` 轉九十度，正好落在 `BC`。
+從 `B` 指向 `A` 的邊，繞 `B` 轉九十度，正好落在 `BC`。 [PAUSE] [NEXT]
+
+## 05 rotate_point_about_b｜再把整個三角形旋轉到 E
 
 現在讓三角形 `ABP` 的副本做完全相同的旋轉。`A` 落到 `C`；同一個 `P` 的副本落到正方形外的新點 `E`。
 
 這不是任意補一個點。`E` 的位置由「中心是 `B`、旋轉九十度」唯一決定。原三角形仍在淡色背景裡，可以直接和旋轉後的三角形比較。 [PAUSE] [NEXT]
 
-## 05 match_rotated_lengths｜旋轉保留哪些資料
+## 06 match_rotated_lengths｜旋轉保留哪些資料
 
 藍色的 `AP` 旋轉後就是藍色的 `CE`，所以兩段一樣長。
 
@@ -53,11 +55,16 @@
 
 因此我們可以先求 `E` 點的合角，最後再把結果送回原來的 `P`。 [PAUSE] [NEXT]
 
-## 06 measure_the_new_diagonal｜係數二變成一條新線
+## 07 construct_rotated_diagonal｜先作出旋轉後的新斜邊
 
 `BP` 轉到 `BE`，所以它們互相垂直，而且長度相等。三角形 `BPE` 是直角等腰三角形。
 
 現在連接 `P` 和 `E`。由畢氏定理，
+下一張再把兩條直角邊寫進平方關係。 [PAUSE] [NEXT]
+
+## 08 measure_the_new_diagonal｜用等腰直角關係量出斜邊
+
+由畢氏定理，
 
 \[
 PE^2=PB^2+BE^2.
@@ -71,7 +78,7 @@ PE^2=2BP^2.
 
 題目裡原本抽象的係數二，現在成為綠色線段 `PE` 的平方。 [PAUSE] [NEXT]
 
-## 07 translate_the_condition｜把原條件搬進同一個三角形
+## 09 match_condition_lengths｜把原條件中的長度搬到新圖
 
 先把題目的式子移項：
 
@@ -79,7 +86,9 @@ PE^2=2BP^2.
 CP^2=AP^2+2BP^2.
 \]
 
-藍色的 `AP` 可以換成旋轉後的 `CE`；`2BP^2` 可以換成剛才得到的 `PE^2`。
+藍色的 `AP` 可以換成旋轉後的 `CE`；`2BP^2` 可以換成剛才得到的 `PE^2`。 [PAUSE] [NEXT]
+
+## 10 translate_the_condition｜寫成新三角形的畢氏關係
 
 所以同一個條件變成
 
@@ -89,7 +98,7 @@ CP^2=CE^2+PE^2.
 
 現在三段長全部屬於畫面中的三角形 `CEP`。等式終於可以直接在圖上讀。 [PAUSE] [NEXT]
 
-## 08 earn_the_right_angle｜逆畢氏定理落在哪一點
+## 11 earn_the_right_angle｜逆畢氏定理落在哪一點
 
 先只看三角形 `CEP`。`CP` 的平方等於另外兩邊平方和。
 
@@ -103,13 +112,15 @@ CP^2=CE^2+PE^2.
 
 這個九十度是由題目條件推得，不是因為原圖看起來接近直角。 [PAUSE] [NEXT]
 
-## 09 assemble_preanswer_angles｜先把兩塊角拼好
+## 12 show_forty_five_and_ninety｜先並列四十五度與九十度
 
 再把黃色的直角等腰三角形 `BPE` 放回來。
 
 它的兩個底角相等，而頂角是九十度，所以 `E` 點這一小塊是四十五度。
 
-從 `EC` 轉到 `EB`，先經過綠色的九十度，再經過黃色的四十五度。因此
+從 `EC` 轉到 `EB`，先經過綠色的九十度，再經過黃色的四十五度。因此 [PAUSE] [NEXT]
+
+## 13 assemble_preanswer_angles｜把兩角接成答案前的合角
 
 \[
 \angle CEB=90\text{ degrees}+45\text{ degrees}.
@@ -117,13 +128,15 @@ CP^2=CE^2+PE^2.
 
 旋轉又告訴我們 `\angle APB=\angle CEB`。畫面先停在最後一次加法；請在心裡完成它。 [PAUSE] [NEXT]
 
-## 10 reveal_the_angle｜把合角送回原來的 P
+## 14 reveal_the_angle｜揭示合角並送回原來的 P
 
 現在才揭示相加的結果。
 
 `E` 點的合角是 `135` 度。因為整個角是由 `\angle APB` 旋轉過來，原來 `P` 點的珊瑚色角也完全相同。
 
-因此
+因此 [PAUSE] [NEXT]
+
+## 15 name_quarter_turn_insight｜留下四分之一圈的關鍵提示
 
 \[
 \angle APB=135\text{ degrees}.
@@ -131,27 +144,35 @@ CP^2=CE^2+PE^2.
 
 關鍵不是先猜這個鈍角，而是先把係數二看成旋轉後的斜邊平方。 [PAUSE] [NEXT]
 
-## 11 verify_with_interior_vectors｜用內部條件獨立核對
+## 16 set_up_interior_vectors｜建立內點座標與兩支向量
 
 再用另一套方法核對一次，而且這次不使用剛才的旋轉證明。
 
 令正方形邊長是 `s`。`u` 是 `P` 到右邊界的水平距離，`v` 是 `P` 到上邊界的垂直距離。因為 `P` 在內部，所以 `u>0`、`v>0`。
 
-代入三段距離後，題設化成
+代入三段距離後，題設化成 [PAUSE] [NEXT]
+
+## 17 derive_negative_dot_product｜算出負內積並鎖定鈍角
 
 \[
 u^2+v^2=s(u-v).
 \]
 
-從 `P` 指向 `A`、`B` 的向量分別是 `(u-s,v)` 與 `(u,v)`。用上方的關係整理，內積是 `-sv`，行列式的絕對值是 `sv`。
+從 `P` 指向 `A`、`B` 的向量分別是 `(u-s,v)` 與 `(u,v)`。用上方的關係整理，內積是 `-sv`。 [PAUSE] [NEXT]
 
-`-sv<0` 先證明夾角是鈍角；兩個絕對值相等，再說明正弦等於負餘弦。鈍角範圍內只有剛才的 `135` 度。
+## 18 verify_with_interior_vectors｜比較行列式後核對一百三十五度
+
+行列式的絕對值是 `sv`。`-sv<0` 先證明夾角是鈍角；兩個絕對值相等，再說明正弦等於負餘弦。鈍角範圍內只有剛才的 `135` 度。
 
 這裡也看見「內部」的重要性：正是 `u,v` 都為正，才鎖定鈍角象限。 [PAUSE] [NEXT]
 
-## 12 return_to_original_square｜回到原題記住三個畫面
+## 19 return_to_original_square｜回到原正方形並標回答案
 
 最後回到同一個正方形與同一個內點 `P`。
+
+先把原正方形與答案重新放回同一個畫面。下一張再依序重播三個關鍵步驟。 [PAUSE] [NEXT]
+
+## 20 summarize_quarter_turn_route｜依序重播三個關鍵畫面
 
 第一個畫面：正方形的直角讓 `ABP` 轉四分之一圈。
 

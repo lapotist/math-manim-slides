@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame-by-frame inspection places the Q3-to-Q4 page transition between about 02:51.3 and 02:51.6; the Q4 page is settled by 02:52 and remains through the 04:27 endpoint. The source sets the sides to x-1, x, x+1, derives x>2 from triangle existence, x<=37 2/3 from the perimeter, and x<0 or x>4 from the acute condition before rejecting the negative branch and reporting 5<=x<=37. This lesson preserves those claims but gives them an original visual order: a collapsing triangle first, square-area boundary tests at n=4 and n=5, then a visible intersection with the perimeter range."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q04/deck.py"
 scene_class = "CarloTcfs113MathQ04"
 storyboard = "lessons/tcfs_113_math_gifted/q04/storyboard.md"
@@ -32,8 +32,17 @@ expected_answer = "33"
 independent_check = "Write the consecutive positive-integer side lengths as n-1, n, n+1. Triangle existence requires (n-1)+n>n+1, hence n>2 and integer n>=3. Since n+1 is the longest side, the triangle is acute exactly when (n-1)^2+n^2>(n+1)^2. This simplifies to n(n-4)>0; positivity excludes n<0, so integer n>=5. The perimeter is 3n, and 3n<=113 gives n<=37. Therefore n is any integer from 5 through 37 inclusive, a total of 37-5+1=33. Direct enumeration gives the same range and count."
 tags = ["geometry", "triangle-inequality", "acute-triangle", "pythagorean-inequality", "integer-range", "counting"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "一個三角形的三邊長是連續正整數，且周長不超過 113。求其中銳角三角形共有多少個。"
+
 [[beats]]
 id = "meet_consecutive_family"
+loop = false
+
+[[beats]]
+id = "ask_family_question"
 loop = false
 
 [[beats]]
@@ -41,7 +50,15 @@ id = "shrink_to_existence_edge"
 loop = false
 
 [[beats]]
+id = "collapse_to_degenerate_triangle"
+loop = false
+
+[[beats]]
 id = "earn_triangle_range"
+loop = false
+
+[[beats]]
+id = "derive_triangle_existence"
 loop = false
 
 [[beats]]
@@ -61,7 +78,15 @@ id = "generalize_acute_range"
 loop = false
 
 [[beats]]
+id = "apply_positive_integer_domain"
+loop = false
+
+[[beats]]
 id = "add_perimeter_ceiling"
+loop = false
+
+[[beats]]
+id = "test_perimeter_boundary"
 loop = false
 
 [[beats]]
@@ -69,5 +94,13 @@ id = "intersect_integer_ranges"
 loop = false
 
 [[beats]]
+id = "form_range_intersection"
+loop = false
+
+[[beats]]
 id = "count_surviving_values"
+loop = false
+
+[[beats]]
+id = "reveal_surviving_count"
 loop = false

@@ -11,6 +11,7 @@ Start from a clean branch and confirm the generated indexes and catalog agree:
 ```bash
 git status --short --branch
 pixi run test
+pixi run check-slide-density
 pixi run validate-catalog
 pixi run check-sources
 pixi run lessons list
@@ -57,6 +58,7 @@ git archive HEAD | tar -x -C "$release_audit_dir"
 cd "$release_audit_dir"
 pixi install --frozen
 pixi run test
+pixi run check-slide-density
 pixi run validate-catalog
 pixi run check-sources
 pixi run prepare-tex
@@ -122,3 +124,34 @@ videos, HTML, credentials, and build directories are absent.
 Finally, send the repository URL to the Carlo site owner, as requested in the
 recorded permission exchange. Sharing the link is a courtesy and project
 follow-up, not a CC BY condition.
+
+## 7. Deploy The Math Lesson Library
+
+In the GitHub repository, set **Settings > Pages > Build and deployment >
+Source** to **GitHub Actions**. Then start the manual, QA-gated deployment from
+the Actions tab or with GitHub CLI:
+
+```bash
+pixi run gh workflow run deploy-slides.yml --ref main
+pixi run gh run list --workflow deploy-slides.yml --limit 1
+```
+
+The workflow renders and exports from the selected commit; it does not publish
+ignored files from a maintainer's working directory. `draft_rendered` lessons
+must pass fresh 1920x1080 mechanical QA and appear with a clearly distinct
+review-progress badge. Only `visual_verified` and `published` lessons may use
+the verified badge backed by committed source-bound QA. A render, catalog,
+rights, export, QA, or 950 MiB site-budget failure stops the deployment.
+The rendering container, CJK font, and TeX converter packages are pinned to the
+versions used by the current attestations. After the `deploy` job succeeds, use
+the `github-pages` environment URL shown in the workflow run to check the problem
+list, native segment player, chapter navigation, project-authored problem
+restatements, source links, and status badges. The site packages the QA-bound
+segment MP4s rather than duplicating every standalone deck.
+
+Local review saves update only the sanitized `qa/review-status.json` feed. The
+public player can observe that file after it is committed and pushed, and it
+ignores any row whose stable evidence digest differs from the deployed lesson.
+No reviewer notes or issue text belong in the public feed, and local
+`review_complete` status is not a substitute for a committed human-reviewed QA
+attestation.

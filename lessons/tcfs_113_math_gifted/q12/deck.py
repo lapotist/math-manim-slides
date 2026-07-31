@@ -256,6 +256,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.play(FadeOut(opening_panel), FadeIn(midpoint_dots), run_time=0.55)
         self.play(LaggedStart(*(Create(line) for line in medians), lag_ratio=0.18), run_time=1.25)
         self.play(GrowFromCenter(g_dot), FadeIn(g_label), run_time=0.6)
+
+        self.next_beat("compute_centroid_coordinates")
         self.play(Write(centroid_x), run_time=0.8)
         self.play(Write(centroid_y), run_time=0.8)
         self.play(TransformFromCopy(VGroup(centroid_x, centroid_y), centroid_result), run_time=0.75)
@@ -319,6 +321,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.play(a_tracker.animate.set_value(1.5), run_time=1.25, rate_func=rate_functions.ease_in_out_sine)
         self.play(a_tracker.animate.set_value(2.0), run_time=1.25, rate_func=rate_functions.ease_in_out_sine)
         self.play(a_tracker.animate.set_value(1.5), run_time=1.05, rate_func=rate_functions.ease_in_out_sine)
+
+        self.next_beat("mark_fixed_centroid")
         self.play(FadeIn(fixed_point_note), Indicate(g_dot, color=REGION), run_time=0.75)
         self.wait(0.4)
 
@@ -357,6 +361,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.play(FadeOut(VGroup(a_readout, b_readout, fixed_point_note)), run_time=0.45)
         self.play(FadeIn(constraint_panel[0]), run_time=0.4)
         self.play(TransformFromCopy(VGroup(moving_equation, constraint_panel[0]), substitution), run_time=0.8)
+
+        self.next_beat("solve_coefficient_constraint")
         self.play(FadeOut(moving_equation), Write(coefficient_constraint), run_time=0.7)
         self.play(ReplacementTransform(coefficient_constraint.copy(), solved_b), run_time=0.75)
         self.play(FadeIn(constraint_note), run_time=0.45)
@@ -470,6 +476,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.play(Create(coefficient_line), Write(allowed_panel[0]), run_time=0.75)
         self.play(Create(boundary_a), Write(a_bound), run_time=0.65)
         self.play(Create(boundary_b), Write(b_bound), run_time=0.65)
+
+        self.next_beat("form_allowed_interval")
         self.play(Write(derived_bound), run_time=0.8)
         self.play(Create(valid_segment), FadeIn(endpoint_dots), FadeIn(endpoint_labels), run_time=0.85)
         self.play(Write(allowed_interval), Circumscribe(valid_segment, color=REGION), run_time=0.8)
@@ -598,6 +606,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         )
         self.play(GrowFromCenter(large_square), GrowFromCenter(first_small_square), GrowFromCenter(second_small_square), run_time=0.9)
         self.play(FadeIn(number_dot), LaggedStart(*(FadeIn(item) for item in square_panel), lag_ratio=0.12), run_time=0.8)
+
+        self.next_beat("explore_weighted_squares")
         self.play(square_a_tracker.animate.set_value(1.5), run_time=1.3, rate_func=rate_functions.ease_in_out_sine)
         self.play(square_a_tracker.animate.set_value(2.0), run_time=1.3, rate_func=rate_functions.ease_in_out_sine)
         self.play(square_a_tracker.animate.set_value(1.5), run_time=1.15, rate_func=rate_functions.ease_in_out_sine)
@@ -627,6 +637,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.play(FadeOut(VGroup(square_panel, number_dot)), run_time=0.45)
         self.play(TransformFromCopy(VGroup(first_small_square, second_small_square, large_square), formula_one), run_time=0.9)
         self.play(Write(formula_two), run_time=0.8)
+
+        self.next_beat("finish_objective_compression")
         self.play(Write(formula_three), run_time=0.75)
         self.play(Write(formula_four), run_time=0.85)
         self.play(FadeIn(algebra_note), Circumscribe(formula_four, color=REGION), run_time=0.8)
@@ -724,6 +736,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.play(Create(parabola), FadeIn(vertex_dot), FadeIn(vertex_graph_label), run_time=0.8)
         self.play(Create(allowed_curve), FadeIn(graph_dot), FadeIn(distance_bar), FadeIn(distance_label), run_time=0.75)
         self.play(LaggedStart(*(FadeIn(item) for item in graph_panel), lag_ratio=0.14), run_time=0.9)
+
+        self.next_beat("trace_decreasing_interval")
         self.play(graph_a_tracker.animate.set_value(1.5), run_time=1.25, rate_func=rate_functions.ease_in_out_sine)
         self.play(graph_a_tracker.animate.set_value(2.0), run_time=1.25, rate_func=rate_functions.ease_in_out_sine)
         self.play(Indicate(allowed_curve, color=REGION), run_time=0.65)
@@ -802,6 +816,8 @@ class CarloTcfs113MathQ12(CarloSlide):
         )
         self.play(FadeIn(left_caption), Write(left_state), run_time=0.6)
         self.play(Write(left_calculation), run_time=0.75)
+
+        self.next_beat("evaluate_right_endpoint")
         self.play(FadeIn(right_caption), Write(right_state), run_time=0.6)
         self.play(Write(right_calculation), run_time=0.75)
         self.wait(0.4)

@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Local frame inspection confirms that the 73.194-second public clip contains Q13 throughout. The completed Q13 work remains settled through about 01:12.4; an operating-system overlay begins near 01:12.6, and no adjacent problem appears before the clip ends. The source places F(a) between a^3 and (a+3)^3, reduces the candidate cube roots to a+1 or a+2, rejects the first case by its quadratic discriminant, and factors the second case as a(a-17)=0. This lesson independently reorganizes the argument as three exact consecutive-cube comparisons, with original cube-rail, sign-line, and positive-term visuals. The excluded root a=0 is shown explicitly because the problem requires positive integers. No PDF or video frames, handwriting, audio, or wording are incorporated."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q13/deck.py"
 scene_class = "CarloTcfs113MathQ13"
 storyboard = "lessons/tcfs_113_math_gifted/q13/storyboard.md"
@@ -32,12 +32,29 @@ expected_answer = "(17, 18)"
 independent_check = "Let F(a)=a^3+7a^2-5a+8 for positive integers a,b with F(a)=(b+1)^3. Exact polynomial subtraction gives F(a)-(a+1)^3=4(a-1)^2+3>0, F(a)-(a+2)^3=a(a-17), and (a+3)^3-F(a)=2a^2+32a+19>0. If 1<=a<17, then (a+1)^3<F(a)<(a+2)^3, so F(a) cannot be an integer cube. If a>17, then (a+2)^3<F(a)<(a+3)^3, again impossible. The factor a(a-17) also has a=0, and indeed F(0)=8=2^3, but a=0 is excluded by the stated positive-integer domain. At a=17, F(17)=19^3, hence b+1=19 and b=18. Therefore the unique positive-integer pair is (17,18)."
 tags = ["number-theory", "polynomial", "perfect-cube", "inequalities", "factorization", "integer-domain"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "正整數 a、b 滿足 a³+7a²-5a+8=(b+1)³。求有序數對 (a,b)。"
+
 [[beats]]
 id = "meet_cube_rail"
 loop = false
 
 [[beats]]
+id = "place_sample_value"
+loop = false
+
+[[beats]]
 id = "scan_integers"
+loop = false
+
+[[beats]]
+id = "scan_past_seventeen"
+loop = false
+
+[[beats]]
+id = "ask_cube_landing_question"
 loop = false
 
 [[beats]]
@@ -49,7 +66,15 @@ id = "prove_first_floor"
 loop = false
 
 [[beats]]
+id = "state_first_floor_bound"
+loop = false
+
+[[beats]]
 id = "find_switch_at_seventeen"
+loop = false
+
+[[beats]]
+id = "classify_switch_ranges"
 loop = false
 
 [[beats]]
@@ -61,7 +86,15 @@ id = "prove_third_ceiling"
 loop = false
 
 [[beats]]
+id = "state_third_ceiling"
+loop = false
+
+[[beats]]
 id = "exclude_right_range"
+loop = false
+
+[[beats]]
+id = "trap_right_range"
 loop = false
 
 [[beats]]
@@ -69,9 +102,21 @@ id = "isolate_boundary"
 loop = false
 
 [[beats]]
+id = "compare_remaining_cases"
+loop = false
+
+[[beats]]
 id = "verify_boundary"
 loop = false
 
 [[beats]]
+id = "match_cube_root"
+loop = false
+
+[[beats]]
 id = "reveal_pair"
+loop = false
+
+[[beats]]
+id = "reveal_ordered_pair"
 loop = false

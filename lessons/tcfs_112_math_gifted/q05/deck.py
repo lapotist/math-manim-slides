@@ -196,8 +196,8 @@ class CarloTcfs112MathQ05(CarloSlide):
         )
         source.to_corner(DOWN + RIGHT, buff=0.22)
 
-        # Beat 01 meet_two_integer_hits: make the shared-parameter condition tangible.
-        self.begin_beat("meet_two_integer_hits")
+        # Beat 01 show_two_integer_tests: make the shared-parameter condition tangible.
+        self.begin_beat("show_two_integer_tests")
         stage_title = label("同一個 p，要在兩個正整數輸入上同時平衡", 32, INK, "BOLD")
         stage_title.move_to([0, 3.03, 0])
         f_definition = MathTex(
@@ -232,11 +232,14 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(FadeIn(definitions), run_time=0.62)
         self.play(Create(alpha_row[1]), GrowFromCenter(alpha_row[0]), FadeIn(alpha_row[2:]), run_time=0.75)
         self.play(Create(beta_row[1]), GrowFromCenter(beta_row[0]), FadeIn(beta_row[2:]), run_time=0.75)
+
+        # Beat 02 meet_two_integer_hits: continue at a settled semantic boundary.
+        self.next_beat("meet_two_integer_hits")
         self.play(Create(shared_brace), FadeIn(shared_note), run_time=0.55)
         self.play(FadeIn(bottom_prompt), run_time=0.58)
         self.wait(0.42)
 
-        # Beat 02 turn_matches_into_zeros: one difference records both balances.
+        # Beat 03 turn_matches_into_zeros: one difference records both balances.
         self.next_beat("turn_matches_into_zeros")
         next_title = label("兩次相等，可以看成同一個差值的兩個零點", 32, INK, "BOLD")
         next_title.move_to(stage_title)
@@ -283,12 +286,15 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(Write(difference), run_time=0.58)
         self.play(Write(alpha_zero), run_time=0.68)
         self.play(Write(beta_zero), run_time=0.68)
+
+        # Beat 04 place_two_positive_roots: continue at a settled semantic boundary.
+        self.next_beat("place_two_positive_roots")
         self.play(Create(root_line), GrowFromCenter(alpha_dot), GrowFromCenter(beta_dot), run_time=0.62)
         self.play(FadeIn(alpha_tag), FadeIn(beta_tag), FadeIn(root_note), run_time=0.50)
         self.wait(0.42)
 
-        # Beat 03 discard_common_root: factor first, then enforce the domain.
-        self.next_beat("discard_common_root")
+        # Beat 05 factor_common_root: factor first, then enforce the domain.
+        self.next_beat("factor_common_root")
         next_title = label("先提出共同因子，再把不合題意的零點排除", 32, INK, "BOLD")
         next_title.move_to(stage_title)
         factorization = MathTex(
@@ -341,11 +347,14 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(Write(factorization), run_time=0.82)
         self.play(Create(number_line), Create(positive_segment), FadeIn(domain_label), run_time=0.68)
         self.play(GrowFromCenter(minus_one), Write(rejected[0]), run_time=0.52)
+
+        # Beat 06 discard_common_root: continue at a settled semantic boundary.
+        self.next_beat("discard_common_root")
         self.play(Write(rejected[1]), Create(invalid_cross), FadeIn(rejected[2]), run_time=0.60)
         self.play(Write(surviving_quadratic), run_time=0.70)
         self.wait(0.42)
 
-        # Beat 04 see_remaining_quadratic: turn the algebra back into two roots.
+        # Beat 07 see_remaining_quadratic: turn the algebra back into two roots.
         self.next_beat("see_remaining_quadratic")
         next_title = label("剩下的二次式，必須剛好穿過 α 與 β", 32, INK, "BOLD")
         next_title.move_to(stage_title)
@@ -396,13 +405,16 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(Create(axes), Create(curve), run_time=1.00)
         self.play(GrowFromCenter(alpha_root), GrowFromCenter(beta_root), run_time=0.48)
         self.play(FadeIn(alpha_root_label), FadeIn(beta_root_label), FadeIn(plot_note), run_time=0.48)
+
+        # Beat 08 write_two_quadratic_forms: continue at a settled semantic boundary.
+        self.next_beat("write_two_quadratic_forms")
         self.play(Write(quadratic_panel[0]), run_time=0.62)
         self.play(Write(quadratic_panel[1]), run_time=0.66)
         self.play(FadeIn(quadratic_panel[2]), FadeIn(quadratic_panel[3]), run_time=0.54)
         self.wait(0.42)
 
-        # Beat 05 read_sum_and_product: attach Vieta relations to visible objects.
-        self.next_beat("read_sum_and_product")
+        # Beat 09 picture_root_sum_and_product: attach Vieta relations to visible objects.
+        self.next_beat("picture_root_sum_and_product")
         next_title = label("根的和與積，把 α、β 和 p 接在一起", 32, INK, "BOLD")
         next_title.move_to(stage_title)
         alpha_block = Rectangle(
@@ -455,14 +467,17 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(FadeOut(plot_group), FadeOut(quadratic_panel), run_time=0.45)
         self.play(FadeIn(sum_bar), Create(sum_brace), FadeIn(sum_name), run_time=0.65)
         self.play(Create(product_rectangle), FadeIn(product_area), FadeIn(product_alpha), FadeIn(product_beta), run_time=0.68)
+
+        # Beat 10 read_sum_and_product: continue at a settled semantic boundary.
+        self.next_beat("read_sum_and_product")
         self.play(Write(coefficient_panel[0]), run_time=0.54)
         self.play(Write(coefficient_panel[1]), run_time=0.74)
         self.play(FadeIn(coefficient_panel[2]), Indicate(sum_visual, color=BLUE), run_time=0.62)
         self.play(FadeIn(coefficient_panel[3]), Indicate(product_visual, color=PURPLE), run_time=0.62)
         self.wait(0.42)
 
-        # Beat 06 remove_parameter_p: substitute the visible sum for p.
-        self.next_beat("remove_parameter_p")
+        # Beat 11 substitute_root_sum_for_p: substitute the visible sum for p.
+        self.next_beat("substitute_root_sum_for_p")
         next_title = label("用 p=α+β，把參數從乘積式中移走", 32, INK, "BOLD")
         next_title.move_to(stage_title)
         p_token = self.token("p", BLUE, width=1.32)
@@ -498,12 +513,15 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(GrowFromCenter(p_token), Create(replacement_arrow), GrowFromCenter(replacement_token), run_time=0.68)
         self.play(Write(eliminate_steps[0]), run_time=0.58)
         self.play(Write(eliminate_steps[1]), Indicate(replacement_token, color=POINT), run_time=0.72)
+
+        # Beat 12 remove_parameter_p: continue at a settled semantic boundary.
+        self.next_beat("remove_parameter_p")
         self.play(Write(eliminate_steps[2]), run_time=0.72)
         self.play(FadeIn(elimination_note), run_time=0.45)
         self.wait(0.42)
 
-        # Beat 07 complete_factor_rectangle: make the +36 factorization visible.
-        self.next_beat("complete_factor_rectangle")
+        # Beat 13 subtract_rectangle_strips: make the +36 factorization visible.
+        self.next_beat("subtract_rectangle_strips")
         next_title = label("補回重複扣掉的 36，剩餘長方形面積是 261", 31, INK, "BOLD")
         next_title.move_to(stage_title)
         big_rect = Rectangle(
@@ -585,15 +603,21 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(Create(big_rect), FadeIn(full_width), FadeIn(full_height), run_time=0.62)
         self.play(FadeIn(vertical_strip), FadeIn(strip_width), run_time=0.50)
         self.play(FadeIn(horizontal_strip), FadeIn(strip_height), run_time=0.50)
+
+        # Beat 14 restore_overlap_corner: continue at a settled semantic boundary.
+        self.next_beat("restore_overlap_corner")
         self.play(FadeIn(corner), FadeIn(corner_area), run_time=0.48)
         self.play(Create(remainder_rect), FadeIn(remaining_area), run_time=0.58)
+
+        # Beat 15 complete_factor_rectangle: continue at a settled semantic boundary.
+        self.next_beat("complete_factor_rectangle")
         self.play(Write(factor_steps[0]), run_time=0.66)
         self.play(Write(factor_steps[1]), FadeIn(factor_steps[3]), run_time=0.72)
         self.play(Write(factor_steps[2]), Indicate(remainder_rect, color=REGION), run_time=0.72)
         self.wait(0.42)
 
-        # Beat 08 filter_factor_pairs: close the sign edge case, then exhaust divisors.
-        self.next_beat("filter_factor_pairs")
+        # Beat 16 close_negative_factor_case: close the sign edge case, then exhaust divisors.
+        self.next_beat("close_negative_factor_case")
         next_title = label("先排除負因數，再篩選 261 的三組正因數對", 31, INK, "BOLD")
         next_title.move_to(stage_title)
         sign_floor = MathTex(
@@ -638,16 +662,25 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(FadeOut(area_picture), FadeOut(factor_steps), FadeOut(divider), run_time=0.48)
         self.play(FadeIn(sign_floor), FadeIn(sign_product), run_time=0.52)
         self.play(FadeIn(sign_arrow), FadeIn(sign_conclusion), run_time=0.42)
+
+        # Beat 17 test_first_factor_pair: continue at a settled semantic boundary.
+        self.next_beat("test_first_factor_pair")
         self.play(Write(prime_factorization), FadeIn(residue_gate), run_time=0.68)
         self.play(FadeIn(first_pair), run_time=0.48)
         self.play(FadeIn(rejected_one), run_time=0.35)
+
+        # Beat 18 test_second_factor_pair: continue at a settled semantic boundary.
+        self.next_beat("test_second_factor_pair")
         self.play(FadeIn(second_pair), run_time=0.48)
         self.play(FadeIn(rejected_two), run_time=0.35)
+
+        # Beat 19 accept_third_factor_pair: continue at a settled semantic boundary.
+        self.next_beat("accept_third_factor_pair")
         self.play(FadeIn(third_pair), run_time=0.48)
         self.play(Create(accepted_box), FadeIn(accepted), run_time=0.60)
         self.wait(0.48)
 
-        # Beat 09 decode_surviving_pair: settle every value except the final sum.
+        # Beat 20 decode_surviving_pair: settle every value except the final sum.
         self.next_beat("decode_surviving_pair")
         next_title = label("把唯一因數對解碼回 α、β，先停在最後一加", 31, INK, "BOLD")
         next_title.move_to(stage_title)
@@ -697,12 +730,15 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(FadeIn(surviving_pair), run_time=0.52)
         self.play(Write(alpha_decode), run_time=0.68)
         self.play(Write(beta_decode), run_time=0.68)
+
+        # Beat 21 hold_parameter_sum: continue at a settled semantic boundary.
+        self.next_beat("hold_parameter_sum")
         self.play(FadeIn(preanswer[0]), run_time=0.42)
         self.play(Write(preanswer[1]), run_time=0.55)
         self.play(FadeIn(preanswer[2]), run_time=0.42)
         self.wait(0.72)
 
-        # Beat 10 reveal_parameter: calculate only after the settled pre-answer pause.
+        # Beat 22 reveal_parameter: calculate only after the settled pre-answer pause.
         self.next_beat("reveal_parameter")
         next_title = label("唯一可能的參數是 10，回到原式核對兩個輸入", 31, INK, "BOLD")
         next_title.move_to(stage_title)
@@ -732,6 +768,9 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.play(FadeOut(surviving_pair), FadeOut(decode_rows), FadeOut(preanswer), run_time=0.42)
         self.play(GrowFromCenter(answer), Create(answer_box), Create(final_divider), run_time=0.70)
         self.play(Write(exact_factorization), FadeIn(root_check), run_time=0.70)
+
+        # Beat 23 verify_parameter_in_original_equations: continue at a settled semantic boundary.
+        self.next_beat("verify_parameter_in_original_equations")
         self.play(Write(direct_checks[0]), run_time=0.58)
         self.play(Write(direct_checks[1]), run_time=0.58)
         self.play(FadeIn(direct_checks[2]), run_time=0.40)

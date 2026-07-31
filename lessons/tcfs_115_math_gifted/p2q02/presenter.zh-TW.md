@@ -48,7 +48,23 @@
 
 [NEXT]
 
-## 05 prove_first_similarity｜ABD 與 AEC
+## 05 inspect_second_triangle｜把第二個候選單獨看清楚
+
+第一個三角形先留在畫面上，現在加入方向不同的 `AEC`。
+
+只比較形狀與角的位置，不急著寫相似結論。
+
+[NEXT]
+
+## 06 inspect_third_triangle｜再加入第三個候選
+
+最後加入 `CED`。三個三角形現在都已經被逐一辨認，而不是同時閃過。
+
+下一步才開始檢查第一組相似所需的兩對角。
+
+[NEXT]
+
+## 07 prove_first_similarity｜ABD 與 AEC
 
 先比較 `ABD` 和 `AEC`。
 
@@ -56,13 +72,17 @@
 
 接著，`angle ABD` 就是原三角形的 `angle ABC`。`angle ABC` 與 `angle AEC` 都對著同一段弧 `AC`，所以兩角相等。
 
+[NEXT]
+
+## 08 record_first_similarity_ratio｜ABD 與 AEC（下一步）
+
 有兩組角分別相等，因此 `triangle ABD` 相似於 `triangle AEC`。
 
 頂點依序配對為 `A` 對 `A`、`B` 對 `E`、`D` 對 `C`。
 
 [NEXT]
 
-## 06 prove_second_similarity｜ABD 與 CED
+## 09 prove_second_similarity｜ABD 與 CED
 
 再比較 `ABD` 和 `CED`。
 
@@ -76,7 +96,7 @@
 
 [NEXT]
 
-## 07 align_three_triangles｜把相同形狀排在一起
+## 10 align_three_triangles｜把相同形狀排在一起
 
 把三個三角形從原圖各複製一份，旋轉並縮放到相同方向。
 
@@ -88,7 +108,7 @@
 
 [NEXT]
 
-## 08 build_first_product｜第一組相似交出 AB 乘 AC
+## 11 build_first_product｜第一組相似交出 AB 乘 AC
 
 從 `ABD` 相似 `AEC`，依照剛才的頂點配對，得到
 
@@ -100,7 +120,7 @@
 
 [NEXT]
 
-## 09 build_second_product｜第二組相似交出 BD 乘 DC
+## 12 build_second_product｜第二組相似交出 BD 乘 DC
 
 從 `ABD` 相似 `CED`，得到
 
@@ -112,7 +132,7 @@
 
 [NEXT]
 
-## 10 split_ae｜把兩張乘積關係接起來
+## 13 split_ae｜把兩張乘積關係接起來
 
 回到共線的 `A、D、E`。
 
@@ -120,13 +140,17 @@
 
 所以第一個關係變成
 
+[NEXT]
+
+## 14 combine_ae_parts｜把兩張乘積關係接起來（下一步）
+
 `AB*AC=AD(AD+DE)=AD^2+AD*DE`。
 
 最後一項，正好可以用第二個相似關係替換。
 
 [NEXT]
 
-## 11 isolate_ad_square｜留下角平分線的平方
+## 15 isolate_ad_square｜留下角平分線的平方
 
 把 `AD*DE` 換成 `BD*DC`。
 
@@ -140,7 +164,7 @@
 
 [NEXT]
 
-## 12 take_positive_root｜長度只取正根
+## 16 take_positive_root｜長度只取正根
 
 最後從平方回到線段長度。
 
@@ -152,7 +176,7 @@
 
 [NEXT]
 
-## 13 consolidate｜兩組相似，各提供一塊
+## 17 consolidate｜兩組相似，各提供一塊
 
 最後回看證明的結構。
 

@@ -175,7 +175,6 @@ class Tcfs115Q07Slide(CarloSlide):
         source = label("解題來源：正哥愛數學", 17, MUTED, "MEDIUM")
         source.to_corner(DOWN + RIGHT, buff=0.24)
 
-        # Beat 01 given_product: expose the known product and the unresolved target.
         opening_prompt = label(
             "不知道 a、b，目標為什麼仍可能固定？",
             34,
@@ -214,13 +213,16 @@ class Tcfs115Q07Slide(CarloSlide):
         original_target[0:3].set_color(PURPLE)
         original_target[4].set_color(POINT)
 
+        # Beat 01 given_product: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), FadeIn(opening_prompt), run_time=0.8)
         self.play(Write(given), run_time=1.25)
         self.play(Create(first_factor_box), Create(second_factor_box), run_time=0.65)
+        # Beat 02 expand_given_product: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(target_caption), Write(original_target), run_time=1.0)
         self.play(Circumscribe(original_target[0:3], color=PURPLE), run_time=0.8)
 
-        # Beat 02 isolate_radical_pairs: abbreviate, prove positivity, and expose a partner.
+        # Beat 03 isolate_radical_pairs: settled semantic step.
         self.next_slide()
 
         definitions = VGroup(
@@ -285,7 +287,7 @@ class Tcfs115Q07Slide(CarloSlide):
         self.play(FadeOut(setup_group), FadeIn(loop_prompt), FadeIn(first_pair), run_time=0.95)
         self.wait(0.3)
 
-        # Beat 03 vary_first_pair: loop through exact area-preserving states.
+        # Beat 04 vary_first_pair: settled semantic step.
         self.next_slide(loop=True)
 
         square_state = self.pair_state(
@@ -331,7 +333,7 @@ class Tcfs115Q07Slide(CarloSlide):
             rate_func=rate_functions.ease_in_out_sine,
         )
 
-        # Beat 04 discover_first_invariant: prove the observed area is always four.
+        # Beat 05 discover_first_invariant: settled semantic step.
         self.next_slide()
 
         proof_title = label("為什麼面積總是 4？", 33, INK, "BOLD")
@@ -369,12 +371,16 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=1.0,
         )
         self.play(FadeIn(area_four), Write(proof_lines[0]), run_time=0.7)
+        # Beat 06 compare_first_pair: settled semantic step.
+        self.next_slide()
         self.play(Write(proof_lines[1]), run_time=0.65)
         self.play(Write(proof_lines[2]), run_time=0.75)
+        # Beat 07 state_first_invariant: settled semantic step.
+        self.next_slide()
         self.play(Write(proof_lines[3]), Circumscribe(area_four, color=POINT), run_time=0.75)
         self.play(TransformFromCopy(proof_lines[0], a_equation[0]), FadeIn(a_equation[1:]), run_time=0.7)
 
-        # Beat 05 mirror_second_pair: transfer the invariant structure to B and b.
+        # Beat 08 mirror_second_pair: settled semantic step.
         self.next_slide()
 
         mirror_title = label("同一個結構，第二組留下 9", 33, INK, "BOLD")
@@ -421,10 +427,12 @@ class Tcfs115Q07Slide(CarloSlide):
             LaggedStart(*(Write(part) for part in b_derivation), lag_ratio=0.12),
             run_time=1.5,
         )
+        # Beat 09 state_second_invariant: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(area_nine), Circumscribe(b_derivation[6], color=POINT), run_time=0.7)
         self.play(TransformFromCopy(b_derivation[0], b_equation[0]), FadeIn(b_equation[1:]), run_time=0.65)
 
-        # Beat 06 combine_invariants: multiply the two fixed areas and preserve grouping.
+        # Beat 10 combine_invariants: settled semantic step.
         self.next_slide()
 
         combine_title = label("兩個固定乘積合起來", 33, INK, "BOLD")
@@ -497,6 +505,8 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=0.8,
         )
         self.play(Write(area_product[4]), run_time=0.5)
+        # Beat 11 collect_invariant_sum: settled semantic step.
+        self.next_slide()
         self.play(
             LaggedStart(*(Write(part) for part in combined), lag_ratio=0.1),
             FadeOut(VGroup(*invariant_context[:6])),
@@ -511,7 +521,7 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=0.8,
         )
 
-        # Beat 07 pose_target: locate the target cells before expanding anything else.
+        # Beat 12 pose_target: settled semantic step.
         self.next_slide()
 
         target_title = label("目標藏在乘法表的交叉位置", 33, INK, "BOLD")
@@ -585,7 +595,7 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=0.95,
         )
 
-        # Beat 08 build_shadow_product: divide the total by the known plus product.
+        # Beat 13 build_shadow_product: settled semantic step.
         self.next_slide()
 
         shadow_title = label("從總乘積 36 除去已知的 7", 33, INK, "BOLD")
@@ -639,6 +649,8 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=0.85,
         )
         self.play(Write(division[4]), run_time=0.55)
+        # Beat 14 name_shadow_product: settled semantic step.
+        self.next_slide()
         self.play(
             TransformFromCopy(VGroup(combined[2], combined[3]), shadow_equation[0:2]),
             FadeIn(shadow_equation[2]),
@@ -648,7 +660,7 @@ class Tcfs115Q07Slide(CarloSlide):
         self.play(Create(shadow_box), FadeIn(shadow_note), run_time=0.6)
         self.play(combined_context.animate.set_opacity(0.28), run_time=0.45)
 
-        # Beat 09 expand_known_product: build the plus expansion one contribution at a time.
+        # Beat 15 expand_known_product: settled semantic step.
         self.next_slide()
 
         known_title = label("先展開已知的加號乘積", 33, INK, "BOLD")
@@ -696,6 +708,8 @@ class Tcfs115Q07Slide(CarloSlide):
             LaggedStart(*(Write(part) for part in known_expanded), lag_ratio=0.09),
             run_time=1.4,
         )
+        # Beat 16 collect_known_terms: settled semantic step.
+        self.next_slide()
         self.play(
             Indicate(VGroup(known_expanded[2], known_expanded[8]), color=MUTED),
             Indicate(VGroup(known_expanded[4], known_expanded[6]), color=PURPLE),
@@ -715,7 +729,7 @@ class Tcfs115Q07Slide(CarloSlide):
         self.play(FadeOut(VGroup(known_factor, known_expanded)), run_time=0.45)
         self.wait(0.3)
 
-        # Beat 10 expand_shadow_product: align the minus expansion under the plus row.
+        # Beat 17 expand_shadow_product: settled semantic step.
         self.next_slide()
 
         shadow_expand_title = label("同一位置展開影子乘積", 33, INK, "BOLD")
@@ -760,6 +774,8 @@ class Tcfs115Q07Slide(CarloSlide):
             LaggedStart(*(Write(part) for part in shadow_expanded), lag_ratio=0.09),
             run_time=1.4,
         )
+        # Beat 18 collect_shadow_terms: settled semantic step.
+        self.next_slide()
         self.play(
             TransformFromCopy(shadow_expanded[0], shadow_row[0]),
             FadeIn(shadow_row[1]),
@@ -772,7 +788,7 @@ class Tcfs115Q07Slide(CarloSlide):
         self.play(FadeOut(VGroup(shadow_factor, shadow_expanded)), run_time=0.4)
         self.wait(0.3)
 
-        # Beat 11 subtract_to_isolate: cancel the aligned common terms and keep 2T.
+        # Beat 19 subtract_to_isolate: settled semantic step.
         self.next_slide()
 
         subtract_title = label("上式減下式：共通項消失", 33, INK, "BOLD")
@@ -820,6 +836,8 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=0.7,
         )
         self.play(Create(known_common_cross), Create(shadow_common_cross), run_time=0.65)
+        # Beat 20 isolate_requested_product: settled semantic step.
+        self.next_slide()
         self.play(
             TransformFromCopy(known_row[0], isolation[0]),
             FadeIn(isolation[1]),
@@ -835,7 +853,7 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=0.55,
         )
 
-        # Beat 12 final_value: finish the arithmetic and restore the original target.
+        # Beat 21 final_value: settled semantic step.
         self.next_slide()
 
         final_title = label("最後只剩一小步", 33, INK, "BOLD")
@@ -893,11 +911,13 @@ class Tcfs115Q07Slide(CarloSlide):
         )
         self.play(TransformMatchingTex(step_one, step_two), run_time=0.9)
         self.play(TransformMatchingTex(step_two, step_three), run_time=0.8)
+        # Beat 22 reveal_product_value: settled semantic step.
+        self.next_slide()
         self.play(TransformFromCopy(step_three, target_value), run_time=0.75)
         self.play(TransformFromCopy(target_value, full_target), run_time=1.0)
         self.play(Create(answer_box), Circumscribe(full_target[0], color=PURPLE), run_time=0.75)
 
-        # Beat 13 consolidate: reconnect the fixed products, shadow product, and answer.
+        # Beat 23 consolidate: settled semantic step.
         self.next_slide()
 
         recap_title = label("不是求變數，而是找不變量", 34, INK, "BOLD")

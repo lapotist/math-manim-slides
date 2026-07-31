@@ -16,7 +16,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q08/deck.py"
 scene_class = "Tcfs115Q08Slide"
 presenter_script = "lessons/tcfs_115_math_gifted/q08/presenter.zh-TW.md"
@@ -25,6 +25,11 @@ estimated_minutes = 9
 expected_answer = "625"
 independent_check = "At height k=t^2>0, the two hit rows are {2j-t} and {2j+t}, j=0..50. A count below 102 forces integer 1<=t<=50; overlap is 51-t, so distinct hits are 51+t=76 and t=25."
 tags = ["quadratic", "parabola", "counting", "overlap", "arithmetic-sequence"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "考慮 51 條拋物線 y=(x-2j)²，其中 j=0,1,…,50。若水平直線 y=k 與這些拋物線共有 76 個相異交點，求實數 k。"
 
 [[beats]]
 id = "parabola_family"
@@ -40,6 +45,14 @@ loop = false
 
 [[beats]]
 id = "observe_collision"
+loop = false
+
+[[beats]]
+id = "compare_collision_times"
+loop = false
+
+[[beats]]
+id = "name_first_collision"
 loop = false
 
 [[beats]]
@@ -59,7 +72,19 @@ id = "derive_collision_condition"
 loop = false
 
 [[beats]]
+id = "solve_collision_congruence"
+loop = false
+
+[[beats]]
+id = "state_collision_period"
+loop = false
+
+[[beats]]
 id = "count_overlap"
+loop = false
+
+[[beats]]
+id = "count_shared_positions"
 loop = false
 
 [[beats]]
@@ -71,9 +96,25 @@ id = "recover_k"
 loop = false
 
 [[beats]]
+id = "substitute_overlap_count"
+loop = false
+
+[[beats]]
+id = "solve_for_k"
+loop = false
+
+[[beats]]
 id = "verify_full_count"
 loop = false
 
 [[beats]]
+id = "recheck_union_count"
+loop = false
+
+[[beats]]
 id = "consolidate"
+loop = false
+
+[[beats]]
+id = "reveal_k_value"
 loop = false

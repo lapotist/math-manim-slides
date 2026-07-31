@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page states that a is a two-digit number, b is obtained by adding 5 to every decimal digit of a^2, and b is both three-digit and a square; the worked area is blank. The confirmed-public video writes a^2+555=b=m^2, factors 555=(m+a)(m-a), checks the factor allocations (185,3), (111,5), and (37,15), obtains the candidates (m,a)=(94,91),(58,53),(26,11), rejects the first two by the decimal-length condition, and concludes b=26^2=676. The complete solution remains unobstructed through 00:02:59.10; a device overlay begins by 00:02:59.15. This lesson independently justifies when the positional +555 rewrite is valid, adds the omitted positive factor pair 1*555 and its parity check, exhaustively tests every candidate, and verifies the survivor against the original digitwise operation. All digit cards, geometry, wording, motion, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q07/deck.py"
 scene_class = "CarloTcfs112MathQ07"
 storyboard = "lessons/tcfs_112_math_gifted/q07/storyboard.md"
@@ -32,8 +32,21 @@ expected_answer = "(11,676)"
 independent_check = "Interpret the stated digitwise operation as replacing each decimal digit d of a^2 by the single decimal digit d+5, with positions preserved and no carry or concatenation. Since b has three digits, a^2 must also have three digits and each of its digits must be at most 4; only under these necessary conditions is b=a^2+555. Exhaustively checking a=10,...,99 leaves exactly the six legal transformations (10,100,655), (11,121,676), (12,144,699), (18,324,879), (20,400,955), and (21,441,996), of which only 676 is a square. Independently, write b=m^2. The three-digit condition gives 10<=m<=31, and m^2-a^2=555 gives positive integers x=m-a<y=m+a with xy=555. The complete positive factor-pair list is (1,555),(3,185),(5,111),(15,37); all are odd-odd, so each decodes integrally to (a,m)=(277,278),(91,94),(53,58),(11,26). The constraints 10<=a<=99 and 10<=m<=31 leave only (11,26). Finally 11^2=121, digitwise addition gives 676, and 676=26^2. If one instead allows a digit plus 5 to become a two-character string or introduces carrying, the statement no longer defines the same operation; that alternative is outside the source solution and this lesson's documented domain."
 tags = ["number-theory", "decimal-digits", "perfect-squares", "difference-of-squares", "factor-pairs", "exhaustive-search"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "設 a 為二位正整數。將 a² 十進位表示中的每個數字 d 原位換成 d+5，不進位也不串接，且每個新數字仍須是單一位數；所得三位數記為 b。若 b 是完全平方數，求數對 (a,b)。"
+
+[[beats]]
+id = "show_three_input_digits"
+loop = false
+
 [[beats]]
 id = "touch_each_digit"
+loop = false
+
+[[beats]]
+id = "build_symbolic_digit_shift"
 loop = false
 
 [[beats]]
@@ -45,11 +58,27 @@ id = "name_the_second_square"
 loop = false
 
 [[beats]]
+id = "order_the_square_roots"
+loop = false
+
+[[beats]]
+id = "build_square_difference_pieces"
+loop = false
+
+[[beats]]
 id = "rearrange_the_square_gap"
 loop = false
 
 [[beats]]
+id = "set_positive_parity_rules"
+loop = false
+
+[[beats]]
 id = "set_factor_pair_rules"
+loop = false
+
+[[beats]]
+id = "list_odd_divisors"
 loop = false
 
 [[beats]]
@@ -61,11 +90,23 @@ id = "decode_all_candidates"
 loop = false
 
 [[beats]]
+id = "apply_digit_domain_gate"
+loop = false
+
+[[beats]]
 id = "filter_by_digit_domains"
 loop = false
 
 [[beats]]
+id = "rebuild_surviving_digit_rule"
+loop = false
+
+[[beats]]
 id = "hold_before_digit_check"
+loop = false
+
+[[beats]]
+id = "verify_shifted_square"
 loop = false
 
 [[beats]]

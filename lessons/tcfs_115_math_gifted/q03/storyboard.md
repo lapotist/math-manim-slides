@@ -22,22 +22,27 @@
 
 ## Beat map
 
-### 01 meet_family
+### 01 meet_family (0:25, loop=false)
 
 建立固定坐標系，顯示 \(f_k(x)=x^2+2kx+(k+1)\) 與整數範圍 \(|k|\le5\)。先放 \(k=0\)，讓拋物線出現；四個象限只作淡背景，不先下判斷。
 
-### 02 compare_quadrants
+### 02 compare_quadrants (0:25, loop=true)
 
-循環依序切換 \(k=0,-2,-1,3\)，再回到 0。每次曲線連續變形，同步亮起它經過的象限與 \(y\) 軸截點：
+第一個循環只比較 \(k=0,3\)，再回到相同的開場畫面。每次曲線連續變形，同步亮起它經過的象限與 \(y\) 軸截點：
 
 - \(k=0\)：只過第一、二象限。
+- \(k=3\)：負值只在左半面，恰三象限。
+
+### 03 compare_negative_quadrants (0:25, loop=true)
+
+第二個循環從同一開場畫面出發，只比較兩個負參數，再完整回復：
+
 - \(k=-2\)：負值區間跨過 \(y\) 軸，四象限都過。
 - \(k=-1\)：一個根在原點，負值只在右半面，恰三象限。
-- \(k=3\)：負值只在左半面，恰三象限。
 
 不在循環中顯示一般條件；先讓觀眾說出差異。
 
-### 03 need_two_roots
+### 04 need_two_roots (0:25, loop=false)
 
 暫停在一個恰三象限例子。把低於 (x) 軸的紅色弧段描粗，指出若沒有這段，只有上方兩象限；若只有相切也不會進入下方。因此先需要兩個相異實根：
 
@@ -45,15 +50,27 @@
 \Delta=4(k^2-k-1)>0.
 \]
 
-### 04 guard_y_axis
+### 05 guard_y_axis (0:25, loop=false)
 
 將藍點 \((0,f(0))\) 上下移動作局部示意。若 \(f(0)<0\)，原點左右附近都在 \(x\) 軸下方，第三、四象限會同時出現，總共四象限。要只出現其中一個下方象限，必須 \(f(0)\ge0\)，即 \(k+1\ge0\)。
 
-### 05 count_m
+### 06 derive_y_axis_guard (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 07 count_m (0:25, loop=false)
 
 在數線上列出整數 \(-5\) 到 5。先用 \(\Delta>0\) 保留 \(k\le-1\) 或 \(k\ge2\)，再用 \(k\ge-1\) 交集篩選，最後只亮 \(-1,2,3,4,5\)。一個一個計數，得到 \(m=5\)。
 
-### 06 ask_integer_root
+### 08 intersect_parameter_conditions (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 09 count_valid_parameters (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 10 ask_integer_root (0:25, loop=false)
 
 清除象限填色，保留方程 \(f_k(x)=0\)。平方完成或公式推導根：
 
@@ -61,19 +78,33 @@
 x=-k\pm\sqrt{k^2-k-1}.
 \]
 
+### 11 derive_root_formula (0:25, loop=false)
+
 因 \(k,x\) 都是整數，根號部分必須是整數。明確命名 \(\sqrt{k^2-k-1}=s\ge0\)，避免和題目的計數 \(n\) 混用。
 
-### 07 perfect_square_filter
+### 12 perfect_square_filter (0:25, loop=false)
 
 由左到右建立兩列表格：上列 \(k=-5\) 到 5，下列為 \(29,19,11,5,1,-1,-1,1,5,11,19\)。先灰掉負數，再灰掉非完全平方，只留下 \(k=-1\) 與 \(k=2\) 下方的 1。
 
-### 08 test_candidates
+### 13 bound_square_candidates (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 14 test_candidates (0:25, loop=false)
 
 將兩候選移到左右兩個小坐標圖。左側 \(k=-1\)：\(x^2-2x=x(x-2)\)，根為 0、2，亮起正整數根 2。右側 \(k=2\)：\(x^2+4x+3=(x+1)(x+3)\)，根為 \(-1,-3\)，沒有正根。故 \(n=1\)。
 
-### 09 final_pair
+### 15 verify_integer_roots (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 16 final_pair (0:25, loop=false)
 
 把兩條推理並列：三象限的五個 \(k\) 匯入 \(m=5\)，正整數根的唯一 \(k\) 匯入 \(n=1\)。最後合成 \((m,n)=(5,1)\)，並保留兩個核心篩選圖像：下方弧段位置與完全平方表。
+
+### 17 reveal_ordered_pair (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
 
 ## Build constraints
 

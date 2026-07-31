@@ -213,7 +213,7 @@ class CarloTcfs112MathQ03(CarloSlide):
         )
         source.to_corner(DOWN + RIGHT, buff=0.22)
 
-        # Beat 01: establish one shared prize pool and the known/unknown money roles.
+        # Beat 01 meet_shared_pool: establish one shared prize pool and the known/unknown money roles.
         self.begin_beat("meet_shared_pool")
         beat_title = label("同一筆 100% 獎金，分給四個人", 35, INK, "BOLD")
         beat_title.move_to([0, 3.12, 0])
@@ -248,8 +248,8 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(TransformFromCopy(roster[2], known_c), TransformFromCopy(roster[3], ask_d), run_time=0.75)
         self.wait(0.35)
 
-        # Beat 02: reveal the three overlapping pair clues one at a time.
-        self.next_beat("reveal_pair_clues")
+        # Beat 02 reveal_first_pair_clues: reveal the three overlapping pair clues one at a time.
+        self.next_beat("reveal_first_pair_clues")
         next_title = label("三條線索，都重複出現小公", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         row_ab = self.pair_row("b", 40, 1.45)
@@ -264,6 +264,9 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(FadeOut(pool), FadeOut(pool_label), FadeOut(roster), FadeOut(unknowns), FadeOut(known_c), FadeOut(ask_d), run_time=0.55)
         self.play(FadeIn(row_ab), run_time=0.6)
         self.play(FadeIn(row_ac), run_time=0.6)
+
+        # Beat 03 reveal_pair_clues: continue at a settled semantic boundary.
+        self.next_beat("reveal_pair_clues")
         self.play(FadeIn(row_ad), run_time=0.6)
         self.play(
             Circumscribe(row_ab[0], color=POINT),
@@ -274,7 +277,7 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(FadeIn(repeat_note), run_time=0.45)
         self.wait(0.35)
 
-        # Beat 03: turn visible occurrence counts into one aggregate equation.
+        # Beat 04 stack_three_clues: turn visible occurrence counts into one aggregate equation.
         self.next_beat("stack_three_clues")
         next_title = label("把三條雙人比例一起相加", 35, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -299,13 +302,16 @@ class CarloTcfs112MathQ03(CarloSlide):
         beat_title = next_title
         self.play(FadeOut(repeat_note), run_time=0.4)
         self.play(Transform(pair_rows, compact_pair_rows), run_time=0.65)
+
+        # Beat 05 count_repeated_shares: continue at a settled semantic boundary.
+        self.next_beat("count_repeated_shares")
         self.play(FadeIn(occurrence_note), Write(rhs_sum), run_time=0.65)
         self.play(Write(aggregate), run_time=0.9)
         self.play(Indicate(aggregate[0], color=POINT), Indicate(aggregate[8], color=CORAL), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 04: subtract one complete pool at the token level first.
-        self.next_beat("remove_one_whole_pool")
+        # Beat 06 stack_counted_and_whole_pools: subtract one complete pool at the token level first.
+        self.next_beat("stack_counted_and_whole_pools")
         next_title = label("移去一整池，只剩兩份小公", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         counted_tokens = VGroup(
@@ -334,6 +340,9 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(FadeOut(pair_rows), FadeOut(rhs_sum), FadeOut(occurrence_note), FadeOut(aggregate), run_time=0.55)
         self.play(FadeIn(counted_tokens), Write(counted_total), run_time=0.65)
         self.play(FadeIn(whole_tokens), Write(minus), Write(whole_total), Create(subtract_line), run_time=0.7)
+
+        # Beat 07 remove_one_whole_pool: continue at a settled semantic boundary.
+        self.next_beat("remove_one_whole_pool")
         self.play(
             Transform(counted_tokens[0], result_tokens[0]),
             Transform(counted_tokens[1], result_tokens[1]),
@@ -349,7 +358,7 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(Write(result_equation), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 05: split the remaining 50 percent equally between two a tokens.
+        # Beat 08 split_fifty_between_two_a: split the remaining 50 percent equally between two a tokens.
         self.next_beat("split_fifty_between_two_a")
         next_title = label("兩份相同的小公，平分 50%", 35, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -380,12 +389,15 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(FadeOut(result_equation), run_time=0.4)
         self.play(Transform(remaining_a[0], split_tokens[0]), Transform(remaining_a[1], split_tokens[1]), run_time=0.75)
         self.play(Create(half_left), Create(half_right), Create(split_line), run_time=0.7)
+
+        # Beat 09 solve_a_share: continue at a settled semantic boundary.
+        self.next_beat("solve_a_share")
         self.play(Write(half_labels), run_time=0.55)
         self.play(Write(a_result), run_time=0.6)
         self.wait(0.35)
 
-        # Beat 06: recover and check all four positive shares.
-        self.next_beat("recover_four_shares")
+        # Beat 10 recover_first_two_shares: recover and check all four positive shares.
+        self.next_beat("recover_first_two_shares")
         next_title = label("回代三條線索，四段剛好拼成 100%", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         share_cards = VGroup(
@@ -421,13 +433,16 @@ class CarloTcfs112MathQ03(CarloSlide):
         )
         self.play(FadeIn(share_cards[0]), run_time=0.45)
         self.play(FadeIn(share_cards[1]), run_time=0.45)
+
+        # Beat 11 recover_four_shares: continue at a settled semantic boundary.
+        self.next_beat("recover_four_shares")
         self.play(FadeIn(share_cards[2]), run_time=0.45)
         self.play(FadeIn(share_cards[3]), run_time=0.45)
         self.play(LaggedStart(*(FadeIn(segment) for segment in segments), lag_ratio=0.14), run_time=0.85)
         self.play(Write(sum_check), run_time=0.7)
         self.wait(0.35)
 
-        # Beat 07: anchor the percentage scale to the known 315 dollars.
+        # Beat 12 anchor_known_money: anchor the percentage scale to the known 315 dollars.
         self.next_beat("anchor_known_money")
         next_title = label("小勤的 35% 是 315 元", 35, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -440,12 +455,15 @@ class CarloTcfs112MathQ03(CarloSlide):
         beat_title = next_title
         self.play(FadeOut(share_cards), FadeOut(sum_check), run_time=0.45)
         self.play(TransformFromCopy(segments[2], c_strip), TransformFromCopy(segments[3], d_strip), FadeOut(segments), run_time=0.85)
+
+        # Beat 13 compare_known_and_unknown_strips: continue at a settled semantic boundary.
+        self.next_beat("compare_known_and_unknown_strips")
         self.play(FadeIn(scale_question), run_time=0.5)
         self.play(Indicate(c_strip[3], color=CORAL), Indicate(d_strip[1], color=PURPLE), run_time=0.6)
         self.wait(0.35)
 
-        # Beat 08: decompose both percentages into equal five-percent units.
-        self.next_beat("group_into_five_percent_units")
+        # Beat 14 build_known_percent_units: decompose both percentages into equal five-percent units.
+        self.next_beat("build_known_percent_units")
         next_title = label("把兩段都切成 5% 等份", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         c_units = self.unit_row(7, REGION, r"5\%", 0.78)
@@ -464,12 +482,15 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(FadeOut(c_strip), FadeOut(d_strip), FadeOut(scale_question), run_time=0.5)
         self.play(FadeIn(c_name), FadeIn(d_name), FadeIn(c_known), FadeIn(d_unknown), run_time=0.45)
         self.play(LaggedStart(*(FadeIn(unit) for unit in c_units), lag_ratio=0.10), run_time=0.8)
+
+        # Beat 15 group_into_five_percent_units: continue at a settled semantic boundary.
+        self.next_beat("group_into_five_percent_units")
         self.play(LaggedStart(*(FadeIn(unit) for unit in d_units), lag_ratio=0.10), run_time=0.7)
         self.play(Write(unit_equations), run_time=0.75)
         self.wait(0.35)
 
-        # Beat 09: find one unit, then settle five equal values without multiplying.
-        self.next_beat("settle_unit_value_preanswer")
+        # Beat 16 price_five_percent_unit: find one unit, then settle five equal values without multiplying.
+        self.next_beat("price_five_percent_unit")
         next_title = label("每一個 5% 方塊值 45 元", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         c_units_money = self.unit_row(7, REGION, "45", 0.78)
@@ -486,13 +507,16 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(FadeOut(unit_equations), run_time=0.4)
         self.play(Write(unit_value), run_time=0.65)
         self.play(Transform(c_units, c_units_money), run_time=0.8)
+
+        # Beat 17 settle_unit_value_preanswer: continue at a settled semantic boundary.
+        self.next_beat("settle_unit_value_preanswer")
         self.play(Transform(d_units, d_units_money), FadeOut(d_unknown), run_time=0.8)
         self.play(Write(preanswer), run_time=0.55)
         self.play(Indicate(d_units, color=PURPLE), run_time=0.55)
         self.wait(0.45)
 
-        # Beat 10: only now multiply the five settled unit values.
-        self.next_beat("reveal_xiaopu_award")
+        # Beat 18 gather_xiaopu_units: only now multiply the five settled unit values.
+        self.next_beat("gather_xiaopu_units")
         next_title = label("五個等份收成小樸的獎金", 35, INK, "BOLD")
         next_title.move_to(beat_title)
         final_units = self.unit_row(5, PURPLE, "45", 0.65, scale=1.12)
@@ -522,6 +546,9 @@ class CarloTcfs112MathQ03(CarloSlide):
         )
         self.play(Transform(d_units, final_units), run_time=0.9)
         self.play(Create(final_frame), FadeIn(final_label), run_time=0.55)
+
+        # Beat 19 reveal_xiaopu_award: continue at a settled semantic boundary.
+        self.next_beat("reveal_xiaopu_award")
         self.play(Write(answer), run_time=0.7)
         self.play(Write(check), Circumscribe(answer[4], color=CORAL), run_time=0.75)
         self.wait(0.45)

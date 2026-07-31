@@ -20,7 +20,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame inspection shows Q5 through 01:29.2; the page turn begins near 01:29.3 and Q6 is visible by 01:29.5. The source directly writes 113=64+32+16+1 and multiplies 7*6*5*1. It does not explicitly justify why no other factor selection reaches exponent 113. This lesson adds a small choose/skip model and a binary-place uniqueness argument before using the source multiplication."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q05/deck.py"
 scene_class = "CarloTcfs113MathQ05"
 storyboard = "lessons/tcfs_113_math_gifted/q05/storyboard.md"
@@ -29,6 +29,11 @@ estimated_minutes = 8
 expected_answer = "210"
 independent_check = "Each factor contributes exponent 0 or one of 1,2,4,8,16,32,64. Since binary subset sums are unique, exponent 113 has the sole decomposition 64+32+16+1, selecting factors 7,6,5,1. Their scalar product is 7*6*5*1=210. A direct coefficient-array expansion of all seven sparse factors has degree 127 and coefficient[113]=210; exhaustive enumeration of all 128 subsets finds exactly the index set {1,5,6,7}."
 tags = ["polynomial", "coefficient", "binary", "subset-sum", "sparse-expansion"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "求多項式 (1+x)(1+2x²)(1+3x⁴)(1+4x⁸)(1+5x¹⁶)(1+6x³²)(1+7x⁶⁴) 中 x¹¹³ 的係數。"
 
 [[beats]]
 id = "meet_product"
@@ -43,7 +48,19 @@ id = "try_target_thirteen"
 loop = false
 
 [[beats]]
+id = "build_thirteen_to_twelve"
+loop = false
+
+[[beats]]
+id = "ask_about_weight_two"
+loop = false
+
+[[beats]]
 id = "complete_small_subset"
+loop = false
+
+[[beats]]
+id = "finish_thirteen_subset"
 loop = false
 
 [[beats]]
@@ -51,7 +68,19 @@ id = "start_target_113"
 loop = false
 
 [[beats]]
+id = "choose_largest_target_weights"
+loop = false
+
+[[beats]]
 id = "complete_target_113"
+loop = false
+
+[[beats]]
+id = "assemble_target_sum"
+loop = false
+
+[[beats]]
+id = "finish_target_sum"
 loop = false
 
 [[beats]]
@@ -59,7 +88,23 @@ id = "prove_largest_place"
 loop = false
 
 [[beats]]
+id = "sum_first_smaller_places"
+loop = false
+
+[[beats]]
+id = "sum_remaining_smaller_places"
+loop = false
+
+[[beats]]
+id = "compare_smaller_sum"
+loop = false
+
+[[beats]]
 id = "force_binary_digits"
+loop = false
+
+[[beats]]
+id = "apply_forcing_digits"
 loop = false
 
 [[beats]]
@@ -67,5 +112,17 @@ id = "collect_multipliers"
 loop = false
 
 [[beats]]
+id = "collect_selected_scalars"
+loop = false
+
+[[beats]]
 id = "reveal_coefficient"
+loop = false
+
+[[beats]]
+id = "separate_product_roles"
+loop = false
+
+[[beats]]
+id = "reveal_coefficient_value"
 loop = false

@@ -22,37 +22,57 @@
 
 ## Beat map
 
-### 01 first_rectangle
+### 01 first_rectangle (0:25, loop=false)
 
 從共同頂點 \(O\) 長出互相垂直的 \(OA_1=5\) 與 \(OB_1=12\)，補成第一個長方形 \(OA_1A_2B_1\)。用兩邊相乘得到面積 60，數字留在圖形中央。
 
-### 02 shared_half
+### 02 shared_half (0:25, loop=false)
 
 畫對角線 \(OA_2\)。第一個長方形的兩半交替淡亮，再停在三角形 \(OA_2B_1\)。顯示 \([OA_2B_1]=\tfrac12R_1=30\)，並留下共享三角形的黃色填色。
 
-### 03 grow_second
+### 03 compare_shared_region (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 04 grow_second (0:25, loop=false)
 
 以 \(OA_2\) 為第二個長方形的一邊，從 \(O\) 長出垂直的新邊，再畫與 \(OA_2\) 平行、且通過 \(B_1\) 的遠側邊，補成 \(R_2\)。生長過程保持黃色三角形不動，讓觀眾看見 \(B_1\) 正在新長方形的對邊上。
 
-### 04 equal_first_second
+### 05 finish_second_rectangle (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 06 equal_first_second (0:25, loop=false)
 
 在黃色三角形上放一條相對 \(OA_2\) 的虛線高。此高正是 \(R_2\) 的完整高度，因此三角形是 \(R_2\) 的一半。依序顯示 \([\triangle]=\tfrac12R_1\) 與 \([\triangle]=\tfrac12R_2\)，最後合成 \(R_1=R_2=60\)。
 
-### 05 shift_shared_half
+### 07 shift_shared_half (0:25, loop=false)
 
 淡化第一個長方形，強調第二個。畫第二個長方形的對角線 \(OA_3\)，把黃色填色連續變形成三角形 \(OA_3B_2\)。用短暫的兩半交替亮起，重申它佔 \(R_2\) 一半。
 
-### 06 grow_third
+### 08 align_third_overlap (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 09 grow_third (0:25, loop=false)
 
 以 \(OA_3\) 為邊長出第三個長方形 \(R_3\)，其對邊通過 \(B_2\)。重複虛線高的視覺，但不重複完整代數；讓同一黃色三角形顯示為 \(R_3\) 的一半。
 
-### 07 three_equal_areas
+### 10 finish_third_rectangle (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+### 11 three_equal_areas (0:25, loop=false)
 
 把三個長方形拉回同時可見但輪廓分色的狀態。先亮 \(R_1=R_2\)，再亮 \(R_2=R_3\)，最後三塊中央依序出現 60。畫面下方簡潔顯示 \(R_1=R_2=R_3=60\)。
 
-### 08 sum_areas
+### 12 sum_areas (0:25, loop=false)
 
 三塊面積標籤沿路徑移到下方算式，組成 \(60+60+60=180\)。最後只把答案框起來，並以共享三角形短脈衝一次回顧等面積的原因。
+
+### 13 reveal_total_area (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
 
 ## Build constraints
 

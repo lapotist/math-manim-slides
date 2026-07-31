@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page states that P is interior to square ABCD, gives 2*BP^2=CP^2-AP^2, and asks for angle APB; its worked area is blank and cannot verify a solution. The confirmed-public video labels AP=a, BP=b, and CP=c, rotates P by a quarter-turn about B in the same direction that sends A to C, and calls the image point E. It uses BE=BP, CE=AP, PE=sqrt(2)*BP, the converse of Pythagoras in triangle CEP, and the 45-degree base angle of right-isosceles triangle BPE to obtain the answer. The complete result remains unobstructed through 00:02:46.85; a device overlay begins at 00:02:46.90. The inspected 208x144 research stream is 167.740952 seconds long and has SHA-256 bf297c3f85804a54ac57f951d443f492624397eb100335c12592400211cb955c. This lesson independently verifies the claim with exact coordinates and vector dot/determinant signs, tests an exact non-interior counterexample, and re-expresses the source construction with project-original geometry, motion, wording, and code. No PDF or video frames, handwriting, audio, branding, or source wording are incorporated."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q11/deck.py"
 scene_class = "CarloTcfs112MathQ11"
 storyboard = "lessons/tcfs_112_math_gifted/q11/storyboard.md"
@@ -31,6 +31,11 @@ estimated_minutes = 11
 expected_answer = "135 degrees"
 independent_check = "Put D=(0,0), A=(0,s), B=(s,s), C=(s,0), and P=(x,y), where 0<x,y<s. Define u=s-x and v=s-y, so the interior condition gives u>0 and v>0. Then BP^2=u^2+v^2, CP^2=u^2+(s-v)^2, and AP^2=(s-u)^2+v^2. Substitution in 2*BP^2=CP^2-AP^2 simplifies exactly to u^2+v^2=s(u-v). The vectors PA=(u-s,v) and PB=(u,v) have dot product u^2-su+v^2=-sv and determinant (u-s)v-vu=-sv. Hence PA dot PB<0 while |det(PA,PB)|=sv=-(PA dot PB)>0. For the undirected angle theta in (0,180 degrees), sin(theta)=-cos(theta)>0 and cos(theta)<0, so theta=135 degrees. The exact interior examples P=(2/5,4/5) and P=(3/5,4/5) for s=1 both satisfy the distance condition and the same dot/determinant signature. Interior is essential: with s=1 and P=(0,2), 2*BP^2=4=CP^2-AP^2 still holds, but vectors PA=(0,-1), PB=(1,-1) give angle APB=45 degrees."
 tags = ["geometry", "square", "rotation", "vectors", "dot-product", "determinant", "converse-pythagorean-theorem", "domain-restrictions"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "點 P 位於正方形 ABCD 的內部，且 2BP²=CP²-AP²。求 ∠APB。"
 
 [[beats]]
 id = "meet_square_and_inner_point"
@@ -45,6 +50,10 @@ id = "ask_for_target_angle"
 loop = false
 
 [[beats]]
+id = "demonstrate_quarter_turn"
+loop = false
+
+[[beats]]
 id = "rotate_point_about_b"
 loop = false
 
@@ -53,7 +62,15 @@ id = "match_rotated_lengths"
 loop = false
 
 [[beats]]
+id = "construct_rotated_diagonal"
+loop = false
+
+[[beats]]
 id = "measure_the_new_diagonal"
+loop = false
+
+[[beats]]
+id = "match_condition_lengths"
 loop = false
 
 [[beats]]
@@ -65,6 +82,10 @@ id = "earn_the_right_angle"
 loop = false
 
 [[beats]]
+id = "show_forty_five_and_ninety"
+loop = false
+
+[[beats]]
 id = "assemble_preanswer_angles"
 loop = false
 
@@ -73,9 +94,25 @@ id = "reveal_the_angle"
 loop = false
 
 [[beats]]
+id = "name_quarter_turn_insight"
+loop = false
+
+[[beats]]
+id = "set_up_interior_vectors"
+loop = false
+
+[[beats]]
+id = "derive_negative_dot_product"
+loop = false
+
+[[beats]]
 id = "verify_with_interior_vectors"
 loop = false
 
 [[beats]]
 id = "return_to_original_square"
+loop = false
+
+[[beats]]
+id = "summarize_quarter_turn_route"
 loop = false

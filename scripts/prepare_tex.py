@@ -16,6 +16,12 @@ OUTPUT = ROOT / "build" / "tex"
 DVISVGM_RPMS = ROOT / "build" / "dvisvgm-rpm"
 DVISVGM_ROOT = ROOT / "build" / "dvisvgm-root"
 READY = OUTPUT / ".ready"
+DVISVGM_PACKAGE = os.environ.get(
+    "MATH_MANIM_DVISVGM_PACKAGE", "texlive-dvisvgm"
+)
+AMSFONTS_PACKAGE = os.environ.get(
+    "MATH_MANIM_AMSFONTS_PACKAGE", "texlive-amsfonts"
+)
 
 
 def command_succeeds(command: list[str]) -> bool:
@@ -55,8 +61,8 @@ def ensure_dvisvgm() -> None:
             "--resolve",
             "--destdir",
             str(DVISVGM_RPMS),
-            "texlive-dvisvgm",
-            "texlive-amsfonts",
+            DVISVGM_PACKAGE,
+            AMSFONTS_PACKAGE,
         ],
         cwd=ROOT,
         check=True,

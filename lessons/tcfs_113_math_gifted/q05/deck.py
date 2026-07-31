@@ -318,8 +318,12 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.60,
         )
         beat_title = next_title
+
+        self.next_beat("build_thirteen_to_twelve")
         self.play(Create(marker_eight), run_time=0.55)
         self.play(Create(marker_four), Write(partial_sum), run_time=0.75)
+
+        self.next_beat("ask_about_weight_two")
         self.play(FadeIn(remainder), FadeIn(two_question), run_time=0.55)
         self.play(Circumscribe(small_tiles[1], color=CORAL), run_time=0.8)
         self.wait(0.25)
@@ -348,6 +352,8 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.45,
         )
         beat_title = next_title
+
+        self.next_beat("finish_thirteen_subset")
         self.play(Create(marker_skip_two), run_time=0.55)
         self.play(Create(marker_one), run_time=0.55)
         self.play(Write(small_result), run_time=0.75)
@@ -388,6 +394,8 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.62,
         )
         beat_title = next_title
+
+        self.next_beat("choose_largest_target_weights")
         self.play(Create(marker_sixty_four), Write(first_remainder), run_time=0.75)
         self.play(Create(marker_thirty_two), Write(second_remainder), run_time=0.75)
         self.wait(0.25)
@@ -435,6 +443,8 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.85,
         )
         self.play(Create(marker_final_one), run_time=0.5)
+
+        self.next_beat("assemble_target_sum")
         self.play(
             TransformFromCopy(VGroup(*target_tiles[6][4][0][1:]), target_sum[0]),
             run_time=0.40,
@@ -449,6 +459,8 @@ class CarloTcfs113MathQ05(CarloSlide):
             TransformFromCopy(VGroup(*target_tiles[4][4][0][1:]), target_sum[4]),
             run_time=0.40,
         )
+
+        self.next_beat("finish_target_sum")
         self.play(
             Write(target_sum[5]),
             TransformFromCopy(VGroup(*target_tiles[0][4][0][1:]), target_sum[6]),
@@ -543,14 +555,26 @@ class CarloTcfs113MathQ05(CarloSlide):
         )
         beat_title = next_title
         self.play(Create(small_bracket_line), Create(small_ticks), run_time=0.55)
+
+        self.next_beat("sum_first_smaller_places")
         self.play(TransformFromCopy(smaller_chips[0][1], all_smaller_sum[0]), run_time=0.28)
-        for index in range(1, len(smaller_chips)):
+        for index in (1, 2):
+            self.play(
+                Write(all_smaller_sum[2 * index - 1]),
+                TransformFromCopy(smaller_chips[index][1], all_smaller_sum[2 * index]),
+                run_time=0.28,
+            )
+
+        self.next_beat("sum_remaining_smaller_places")
+        for index in (3, 4, 5):
             self.play(
                 Write(all_smaller_sum[2 * index - 1]),
                 TransformFromCopy(smaller_chips[index][1], all_smaller_sum[2 * index]),
                 run_time=0.28,
             )
         self.play(Write(all_smaller_sum[11]), Write(all_smaller_sum[12]), run_time=0.38)
+
+        self.next_beat("compare_smaller_sum")
         self.play(Write(comparison), FadeIn(forced_note), run_time=0.7)
         self.wait(0.25)
 
@@ -610,6 +634,8 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.48,
         )
         beat_title = next_title
+
+        self.next_beat("apply_forcing_digits")
         self.play(
             LaggedStart(*(FadeIn(column, shift=UP * 0.08) for column in place_columns), lag_ratio=0.10),
             run_time=1.05,
@@ -688,6 +714,8 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.62,
         )
         beat_title = next_title
+
+        self.next_beat("collect_selected_scalars")
         self.play(
             LaggedStart(*(GrowFromCenter(badge) for badge in coefficient_badges), lag_ratio=0.18),
             FadeIn(skip_note),
@@ -762,9 +790,13 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.62,
         )
         beat_title = next_title
+
+        self.next_beat("separate_product_roles")
         self.play(TransformFromCopy(term_product, separated_product), run_time=0.85)
         self.play(FadeIn(exponent_check), run_time=0.55)
         self.play(FadeIn(scalar_check), run_time=0.55)
+
+        self.next_beat("reveal_coefficient_value")
         self.play(FadeIn(final_term), run_time=0.7)
         self.play(FadeIn(answer), Circumscribe(final_term[0], color=REGION), run_time=0.75)
         self.play(Indicate(answer[1], color=REGION), run_time=0.65)

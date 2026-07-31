@@ -2,6 +2,7 @@ schema_version = 1
 id = "carlo.tcfs_115_math_gifted"
 slug = "tcfs_115_math_gifted"
 title = "115 Academic-Year TCFSH Mathematics Gifted Placement Assessment"
+display_title_zh_tw = "115 學年度中一中數學資優班甄選"
 locale = "zh-TW"
 source_asset = "數學-115數理資優學科能力評量答案.pdf"
 source_asset_sha256 = "983f12dbd22aaa7d19c914c4e88c42973faa6d09e32ae036edf15961bbeadcc2"
@@ -26,7 +27,7 @@ source_pages = [1]
 topic = "angle bisectors"
 answer = "0 degrees"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -35,7 +36,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q02"
@@ -44,7 +45,7 @@ source_pages = [1]
 topic = "equal-area rectangles"
 answer = "180"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -53,7 +54,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q03"
@@ -62,7 +63,7 @@ source_pages = [2]
 topic = "quadratic functions"
 answer = "(5, 1)"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -71,7 +72,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q04"
@@ -80,7 +81,7 @@ source_pages = [2]
 topic = "sequences and number-line motion"
 answer = "100"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -89,7 +90,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q05"
@@ -98,7 +99,7 @@ source_pages = [3]
 topic = "proportional sequences"
 answer = "9"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -107,7 +108,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q06"
@@ -116,7 +117,7 @@ source_pages = [3]
 topic = "integer factorization and triangles"
 answer = "(11, 9, 3) and (9, 7, 5)"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -125,7 +126,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q07"
@@ -134,7 +135,7 @@ source_pages = [4]
 topic = "radical conjugates"
 answer = "13/14"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -143,7 +144,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q08"
@@ -152,7 +153,7 @@ source_pages = [4]
 topic = "quadratic graph intersections"
 answer = "625"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -161,7 +162,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q09"
@@ -170,7 +171,7 @@ source_pages = [5]
 topic = "moving-point locus and area"
 answer = "68*pi/3 + 8*sqrt(3)"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -179,7 +180,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q10"
@@ -188,7 +189,7 @@ source_pages = [6]
 topic = "inequality bounds"
 answer = "c > a > d > b"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -197,7 +198,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q11"
@@ -206,7 +207,7 @@ source_pages = [7, 8]
 topic = "cube plane section"
 answer = "FN/NB = 1/2"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -215,7 +216,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.q12"
@@ -224,7 +225,7 @@ source_pages = [8]
 topic = "rotation and shortest path"
 answer = "(2*sqrt(6) + 2*sqrt(2), 2*sqrt(3) - 2)"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -233,7 +234,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.p2q01"
@@ -243,7 +244,7 @@ topic = "symmetric equation systems"
 answer = "(5 +/- sqrt(37))/6 and 1 +/- sqrt(3)"
 answer_correction_note = "The PDF answer line has -5, but its branch equation 3y^2-5y-1=0 and independent substitution require +5."
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -252,7 +253,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_115_math_gifted.p2q02"
@@ -261,7 +262,7 @@ source_pages = [10]
 topic = "angle-bisector length identity"
 answer = "AD = sqrt(AB*AC - BD*DC)"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -270,4 +271,4 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"

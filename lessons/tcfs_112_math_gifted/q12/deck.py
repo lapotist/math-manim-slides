@@ -351,7 +351,7 @@ class CarloTcfs112MathQ12(CarloSlide):
         diagram_center = np.array([-3.65, -0.35, 0.0])
         diagram_scale = 2.55
 
-        # Beat 01: establish the one concrete object and its unit side.
+        # Beat 01 meet_unit_hexagon: establish the one concrete object and its unit side.
         self.begin_beat("meet_unit_hexagon")
         stage_title = self.stage_title("先固定一個邊長 1 的正六邊形")
         fixed_hex = self.hexagon(0.0, diagram_center, diagram_scale, POINT, fill_opacity=0.08)
@@ -373,8 +373,8 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(FadeIn(opening_question), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 02: move only the second hexagon through deliberate states.
-        self.next_beat("rotate_and_watch_overlap")
+        # Beat 02 rotate_to_half_period: watch the overlap shrink to the period midpoint.
+        self.next_beat("rotate_to_half_period")
         next_title = self.stage_title("只轉動第二個六邊形")
         angle_tracker = ValueTracker(0.0)
         moving_hex = always_redraw(
@@ -406,13 +406,21 @@ class CarloTcfs112MathQ12(CarloSlide):
         stage_title = next_title
         self.add(moving_overlap, moving_hex, angle_display)
         self.play(FadeIn(overlap_note), run_time=0.40)
-        for angle in (12.0, 30.0, 48.0, 60.0):
-            self.play(angle_tracker.animate.set_value(angle), run_time=0.82)
-            self.wait(0.18)
+        self.play(angle_tracker.animate.set_value(12.0), run_time=0.82)
+        self.wait(0.18)
+        self.play(angle_tracker.animate.set_value(30.0), run_time=0.82)
+        self.wait(0.18)
+
+        # Beat 03 rotate_and_watch_overlap: watch the overlap grow back to full coincidence.
+        self.next_beat("rotate_and_watch_overlap")
+        self.play(angle_tracker.animate.set_value(48.0), run_time=0.82)
+        self.wait(0.18)
+        self.play(angle_tracker.animate.set_value(60.0), run_time=0.82)
+        self.wait(0.18)
         self.wait(0.25)
 
-        # Beat 03: prove the 60-degree period and reflection reduction.
-        self.next_beat("reduce_one_period_by_reflection")
+        # Beat 04 reflect_half_period: prove the 60-degree period and reflection reduction.
+        self.next_beat("reflect_half_period")
         next_title = self.stage_title("一個週期，只需看前半段")
         left_center = np.array([-3.25, 0.10, 0.0])
         right_center = np.array([3.25, 0.10, 0.0])
@@ -454,12 +462,15 @@ class CarloTcfs112MathQ12(CarloSlide):
             FadeIn(right_angle),
             run_time=0.9,
         )
+
+        # Beat 05 reduce_one_period_by_reflection: continue at a settled semantic boundary.
+        self.next_beat("reduce_one_period_by_reflection")
         self.play(Write(reflection_formula), run_time=0.60)
         self.play(TransformFromCopy(reflection_formula, reduced_domain), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 04: reveal the common incircle and earn the apothem.
-        self.next_beat("find_common_incircle")
+        # Beat 06 construct_common_incircle: reveal the common incircle and earn the apothem.
+        self.next_beat("construct_common_incircle")
         next_title = self.stage_title("所有邊都碰到同一個圓")
         generic_angle = 18.0
         generic_fixed = self.hexagon(0.0, diagram_center, diagram_scale, POINT, fill_opacity=0.0)
@@ -511,12 +522,15 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(Create(incircle), run_time=0.75)
         self.play(Create(radius_line), FadeIn(radius_label), run_time=0.50)
         self.play(Create(right_triangle), FadeIn(half_label, one_label, r_label, right_mark), run_time=0.75)
+
+        # Beat 07 find_common_incircle: continue at a settled semantic boundary.
+        self.next_beat("find_common_incircle")
         self.play(Write(r_derivation[0]), run_time=0.55)
         self.play(TransformFromCopy(r_derivation[0], r_derivation[1]), run_time=0.60)
         self.wait(0.35)
 
-        # Beat 05: expose the alternating normal gaps that define the overlap.
-        self.next_beat("read_alternating_normal_gaps")
+        # Beat 08 draw_alternating_normal_gaps: expose the alternating normal gaps that define the overlap.
+        self.next_beat("draw_alternating_normal_gaps")
         next_title = self.stage_title("十二條邊，間隔一小一大")
         spokes = self.support_spokes(generic_angle, diagram_center, diagram_scale)
         arc_short = Arc(
@@ -559,11 +573,14 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(LaggedStart(*(Create(line) for line in spokes), lag_ratio=0.05), run_time=0.95)
         self.play(Create(arc_short), FadeIn(short_label), run_time=0.45)
         self.play(Create(arc_long), FadeIn(long_label), run_time=0.55)
+
+        # Beat 09 read_alternating_normal_gaps: continue at a settled semantic boundary.
+        self.next_beat("read_alternating_normal_gaps")
         self.play(LaggedStart(*(FadeIn(chip) for chip in gap_chips), lag_ratio=0.18), run_time=0.70)
         self.play(Write(gap_formula), run_time=0.75)
         self.wait(0.30)
 
-        # Beat 06: visually balance the two gap types at the half-period.
+        # Beat 10 balance_the_gaps: visually balance the two gap types at the half-period.
         self.next_beat("balance_the_gaps")
         next_title = self.stage_title("把一大一小，調成一樣")
         balanced_overlap = self.overlap(30.0, diagram_center, diagram_scale)
@@ -594,8 +611,8 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(FadeIn(equal_chips), run_time=0.65)
         self.wait(0.40)
 
-        # Beat 07: isolate and calculate one tangent-corner contribution.
-        self.next_beat("measure_one_tangent_corner")
+        # Beat 11 construct_tangent_corner: isolate and calculate one tangent-corner contribution.
+        self.next_beat("construct_tangent_corner")
         next_title = self.stage_title("先量一個相鄰切線形成的角落")
         wedge_origin = np.array([-3.50, -2.08, 0.0])
         wedge_radius = 2.30
@@ -683,13 +700,16 @@ class CarloTcfs112MathQ12(CarloSlide):
             FadeIn(delta_label, radius_mark, right_angle, wedge_point_labels),
             run_time=0.55,
         )
+
+        # Beat 12 measure_one_tangent_corner: continue at a settled semantic boundary.
+        self.next_beat("measure_one_tangent_corner")
         self.play(FadeIn(tangent_mark), Write(wedge_formula[0]), run_time=0.65)
         self.play(Write(wedge_formula[1]), Write(wedge_formula[2]), run_time=0.75)
         self.play(TransformFromCopy(wedge_formula[2], wedge_formula[3]), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 08: tile the overlap with six corners of each gap type.
-        self.next_beat("assemble_overlap_area")
+        # Beat 13 collect_small_overlap_wedges: tile the overlap with six corners of each gap type.
+        self.next_beat("collect_small_overlap_wedges")
         next_title = self.stage_title("十二個角落，拼回整個重疊區")
         generic_overlap = self.overlap(generic_angle, diagram_center, diagram_scale, fill_opacity=0.08)
         generic_fixed = self.hexagon(0.0, diagram_center, diagram_scale, POINT, fill_opacity=0.0)
@@ -736,6 +756,9 @@ class CarloTcfs112MathQ12(CarloSlide):
             run_time=0.45,
         )
         self.play(FadeIn(area_term_small, shift=RIGHT * 0.10), run_time=0.45)
+
+        # Beat 14 assemble_overlap_area: continue at a settled semantic boundary.
+        self.next_beat("assemble_overlap_area")
         self.play(
             Indicate(VGroup(*wedges[1::2]), color=BLUE, scale_factor=1.015),
             run_time=0.45,
@@ -752,8 +775,8 @@ class CarloTcfs112MathQ12(CarloSlide):
         )
         self.wait(0.35)
 
-        # Beat 09: prove, without guessing, that equal gaps minimize the sum.
-        self.next_beat("prove_equal_gaps_minimize")
+        # Beat 15 derive_equal_gap_bound: prove, without guessing, that equal gaps minimize the sum.
+        self.next_beat("derive_equal_gap_bound")
         next_title = self.stage_title("固定總角度時，兩個間隔越平均越小")
         angle_origin = np.array([-3.55, -1.48, 0.0])
         angle_radius = 2.35
@@ -847,6 +870,9 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(Write(proof_lines[0]), run_time=0.72)
         self.play(Write(proof_lines[1]), run_time=0.65)
         self.play(Write(proof_lines[2]), FadeIn(minimum_note), run_time=0.70)
+
+        # Beat 16 prove_equal_gaps_minimize: continue at a settled semantic boundary.
+        self.next_beat("prove_equal_gaps_minimize")
         self.play(
             Transform(split_ray, equality_ray),
             FadeOut(x_arc, y_arc, x_label, y_label),
@@ -855,8 +881,8 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(FadeIn(proof_lines[3]), run_time=0.55)
         self.wait(0.35)
 
-        # Beat 10: substitute the half-period and the earned apothem.
-        self.next_beat("substitute_half_period")
+        # Beat 17 substitute_equal_half_period: substitute the half-period and the earned apothem.
+        self.next_beat("substitute_equal_half_period")
         next_title = self.stage_title("回到十二個完全相同的角落")
         min_center = np.array([-3.65, -0.40, 0.0])
         min_scale = 2.45
@@ -889,12 +915,15 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(LaggedStart(*(FadeIn(wedge) for wedge in min_wedges), lag_ratio=0.04), run_time=0.85)
         self.play(Write(substitution[0]), run_time=0.55)
         self.play(Write(substitution[1]), run_time=0.65)
+
+        # Beat 18 substitute_half_period: continue at a settled semantic boundary.
+        self.next_beat("substitute_half_period")
         self.play(TransformFromCopy(substitution[1], substitution[2]), run_time=0.60)
         self.play(TransformFromCopy(substitution[2], substitution[3]), run_time=0.55)
         self.wait(0.35)
 
-        # Beat 11: calculate tan(15 degrees) only after the angle is visible.
-        self.next_beat("calculate_tan_fifteen")
+        # Beat 19 construct_fifteen_degree_difference: calculate tan(15 degrees) only after the angle is visible.
+        self.next_beat("construct_fifteen_degree_difference")
         next_title = self.stage_title("最後只差十五度的正切值")
         angle_origin = np.array([-4.55, -1.70, 0.0])
         ray_length = 3.15
@@ -955,13 +984,16 @@ class CarloTcfs112MathQ12(CarloSlide):
         stage_title = next_title
         self.play(Create(base_ray), Create(ray_30), Create(ray_45), run_time=0.65)
         self.play(Create(arc_30), Create(arc_15), FadeIn(angle_labels), run_time=0.60)
+
+        # Beat 20 calculate_tan_fifteen: continue at a settled semantic boundary.
+        self.next_beat("calculate_tan_fifteen")
         self.play(Write(tangent_derivation[0]), run_time=0.45)
         self.play(Write(tangent_derivation[1]), run_time=0.70)
         self.play(Write(tangent_derivation[2]), run_time=0.55)
         self.play(TransformFromCopy(tangent_derivation[2], tangent_derivation[3]), run_time=0.60)
         self.wait(0.35)
 
-        # Beat 12: settle immediately before expanding the exact answer.
+        # Beat 21 hold_before_expansion: settle immediately before expanding the exact answer.
         self.next_beat("hold_before_expansion")
         next_title = self.stage_title("所有幾何都已經回到同一行")
         hold_center = np.array([-3.45, -0.35, 0.0])
@@ -1002,8 +1034,8 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(Write(hold_formula), Create(hold_box), run_time=0.85)
         self.wait(0.80)
 
-        # Beat 13: expand the answer and reconnect it to the rotation.
-        self.next_beat("reveal_and_return_to_rotation")
+        # Beat 22 reveal_minimum_overlap: expand the answer and reconnect it to the rotation.
+        self.next_beat("reveal_minimum_overlap")
         next_title = self.stage_title("每個週期的中點，重疊面積最小")
         final_formula = MathTex(
             r"A_{\min}=18-9\sqrt3",
@@ -1028,6 +1060,9 @@ class CarloTcfs112MathQ12(CarloSlide):
         stage_title = next_title
         self.play(FadeOut(hold_formula, hold_box), run_time=0.28)
         self.play(Write(final_formula), Create(final_box), run_time=0.82)
+
+        # Beat 23 reveal_and_return_to_rotation: continue at a settled semantic boundary.
+        self.next_beat("reveal_and_return_to_rotation")
         self.play(Indicate(hold_overlap, color=REGION, scale_factor=1.04), run_time=0.55)
         self.play(FadeIn(route), run_time=0.65)
         self.play(FadeIn(final_note), run_time=0.50)

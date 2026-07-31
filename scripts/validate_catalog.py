@@ -14,6 +14,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+from slide_density import MAX_PLAY_CALLS_PER_SEGMENT, segment_play_counts
 from update_sources import render_lesson_index, update_document
 
 
@@ -41,6 +42,7 @@ VALID_PRODUCTION_STATES = {
     "visual_verified",
     "published",
 }
+VALID_BLOCKER_CATEGORIES = {"access", "content", "provenance", "rights"}
 RENDERED_STATES = {"draft_rendered", "visual_verified", "published"}
 VERIFIED_STATES = {"visual_verified", "published"}
 ANSWER_REQUIRED_STATES = {
@@ -405,6 +407,11 @@ def validate_collections(
                 )
             if production_state == "blocked":
                 check(
+                    problem.get("blocker_category") in VALID_BLOCKER_CATEGORIES,
+                    f"{problem_id}: blocked without a valid blocker_category",
+                    errors,
+                )
+                check(
                     bool(problem.get("blocker_reason")),
                     f"{problem_id}: blocked without blocker_reason",
                     errors,
@@ -658,6 +665,29 @@ def validate_lessons(
             f"{lesson_id}: missing independent_check",
             errors,
         )
+        problem_display = data.get("problem_display")
+        check(
+            isinstance(problem_display, dict),
+            f"{lesson_id}: missing problem_display",
+            errors,
+        )
+        if isinstance(problem_display, dict):
+            check(
+                problem_display.get("kind") == "project_restatement",
+                f"{lesson_id}: problem_display kind must be project_restatement",
+                errors,
+            )
+            check(
+                problem_display.get("locale") == "zh-TW",
+                f"{lesson_id}: problem_display locale must be zh-TW",
+                errors,
+            )
+            check(
+                isinstance(problem_display.get("text"), str)
+                and bool(problem_display["text"].strip()),
+                f"{lesson_id}: problem_display text is missing",
+                errors,
+            )
         check(bool(data.get("source_url")), f"{lesson_id}: missing source URL", errors)
         check(
             bool(data.get("source_locator")),
@@ -874,6 +904,21 @@ def validate_lessons(
                     f"{lesson_id}: next_slide count does not match beats",
                     errors,
                 )
+            try:
+                play_counts = segment_play_counts(source)
+            except ValueError as error:
+                errors.append(f"{lesson_id}: invalid slide boundaries: {error}")
+            else:
+                if len(play_counts) == len(metadata_ids):
+                    for beat_id, play_count in zip(
+                        metadata_ids, play_counts, strict=True
+                    ):
+                        check(
+                            play_count <= MAX_PLAY_CALLS_PER_SEGMENT,
+                            f"{lesson_id}: beat {beat_id} has {play_count} play "
+                            f"phases; maximum is {MAX_PLAY_CALLS_PER_SEGMENT}",
+                            errors,
+                        )
 
         if script_path.is_file():
             script = script_path.read_text(encoding="utf-8")

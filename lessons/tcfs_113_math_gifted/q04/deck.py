@@ -370,6 +370,8 @@ class CarloTcfs113MathQ04(CarloSlide):
         )
         self.play(LaggedStart(*(FadeIn(item) for item in triangle[4:]), lag_ratio=0.18), run_time=0.8)
         self.play(TransformFromCopy(VGroup(*triangle[4:]), triplet), FadeIn(growth_note), run_time=0.8)
+
+        self.next_beat("ask_family_question")
         self.play(FadeIn(family), FadeIn(opening_question), run_time=0.65)
         self.wait(0.35)
 
@@ -396,7 +398,7 @@ class CarloTcfs113MathQ04(CarloSlide):
             run_time=0.65,
         )
         beat_title = next_title
-        for n in (4, 3, 2):
+        for n in (4, 3):
             target_triangle = self.triangle_model(n)
             target_triplet = self.colored_triplet(n).move_to(triplet)
             target_n = MathTex(rf"n={n}", font_size=44, color=CORAL if n == 2 else POINT)
@@ -407,6 +409,19 @@ class CarloTcfs113MathQ04(CarloSlide):
                 Transform(n_label, target_n),
                 run_time=0.85,
             )
+
+        self.next_beat("collapse_to_degenerate_triangle")
+        n = 2
+        target_triangle = self.triangle_model(n)
+        target_triplet = self.colored_triplet(n).move_to(triplet)
+        target_n = MathTex(rf"n={n}", font_size=44, color=CORAL)
+        target_n.move_to(n_label)
+        self.play(
+            Transform(triangle, target_triangle),
+            Transform(triplet, target_triplet),
+            Transform(n_label, target_n),
+            run_time=0.85,
+        )
         self.play(Write(collapse_equation), FadeIn(collapse_note), run_time=0.7)
         self.play(Circumscribe(triangle, color=CORAL), run_time=0.8)
         self.wait(0.35)
@@ -452,6 +467,8 @@ class CarloTcfs113MathQ04(CarloSlide):
         beat_title = next_title
         self.play(FadeIn(panel_two), run_time=0.75)
         self.play(FadeIn(panel_three), Create(separator), run_time=0.75)
+
+        self.next_beat("derive_triangle_existence")
         self.play(Write(general_inequality), run_time=0.8)
         self.play(Write(simplify_existence), run_time=0.45)
         self.play(Write(integer_existence), FadeIn(existence_note), run_time=0.75)
@@ -637,6 +654,8 @@ class CarloTcfs113MathQ04(CarloSlide):
         self.play(Write(generic_acute), run_time=0.8)
         self.play(Write(expanded_acute), run_time=0.65)
         self.play(Write(factored_acute), run_time=0.65)
+
+        self.next_beat("apply_positive_integer_domain")
         self.play(FadeIn(branches), run_time=0.55)
         self.play(Create(negative_cross), Indicate(positive_branch, color=POINT), run_time=0.8)
         self.play(Write(final_acute), Create(acute_box), run_time=0.75)
@@ -719,6 +738,8 @@ class CarloTcfs113MathQ04(CarloSlide):
         beat_title = next_title
         self.play(Write(perimeter_sum), run_time=0.85)
         self.play(Write(perimeter_limit), run_time=0.6)
+
+        self.next_beat("test_perimeter_boundary")
         self.play(Create(perimeter_axis), Create(cap_line), FadeIn(cap_label), run_time=0.9)
         self.play(FadeIn(dot_111), Write(test_37), run_time=0.65)
         self.play(FadeIn(dot_114), Write(test_38), run_time=0.65)
@@ -777,6 +798,8 @@ class CarloTcfs113MathQ04(CarloSlide):
         beat_title = next_title
         self.play(FadeIn(acute_row), run_time=0.75)
         self.play(FadeIn(perimeter_row), run_time=0.75)
+
+        self.next_beat("form_range_intersection")
         self.play(TransformFromCopy(VGroup(acute_row[3], perimeter_row[3]), intersection_row), run_time=0.9)
         self.play(FadeIn(boundary_numbers), Write(intersection_formula), run_time=0.75)
         self.play(FadeIn(range_question), run_time=0.45)
@@ -842,6 +865,8 @@ class CarloTcfs113MathQ04(CarloSlide):
         self.play(FadeIn(mini_triangle), FadeIn(mini_caption), FadeIn(inclusive_note), run_time=0.8)
         self.play(Write(partial_count), run_time=0.8)
         self.wait(0.65)
+
+        self.next_beat("reveal_surviving_count")
         self.play(Write(final_tail), Create(answer_box), run_time=0.7)
         self.play(FadeIn(final_note), Indicate(final_tail[1], color=POINT), run_time=0.8)
         self.wait(0.65)

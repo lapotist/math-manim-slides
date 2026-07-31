@@ -33,43 +33,79 @@
 
 ### 01 place_face_centers
 
-建立一個中性的斜視立方體。依序亮起左右、前後、上下三對面心，最後才顯示 (2+2+2=6)。不連線、不命名八面體。
+建立一個中性的斜視立方體，只提出「三對相對的面」作為找點順序。不連線、不命名八面體。
 
-### 02 connect_octahedron
+### 02 place_opposite_side_centers
 
-先連中間四點，再連上方四邊、下方四邊。以立方體旋轉對稱說明所有相鄰面心距離相同，最後才命名正八面體。
+依序亮起左右、前後兩對側面中心，讓中間四點先成為一個可辨認的群組。
 
-### 03 establish_scale_invariance
+### 03 complete_six_face_centers
 
-讓內外兩個立體一起縮小、放大、回到原尺寸。動作完成後才顯示 (a,b) 同乘 (k^3)，因此 (a/b) 不變。選擇立方體邊長 2，讓半邊長成為 1。
+補上上下兩個面心，最後才顯示 (2+2+2=6)。
 
-### 04 isolate_middle_square
+### 04 connect_octahedron
+
+先連中間四點，停在共同的正方形輪廓，不同時連接上下頂點。
+
+### 05 connect_upper_and_lower_apices
+
+依序連上方四邊、下方四邊，讓十二條候選邊完整出現。
+
+### 06 name_regular_octahedron
+
+以立方體旋轉對稱說明所有相鄰面心距離相同，最後才命名正八面體。
+
+### 07 establish_scale_invariance
+
+讓內外兩個立體一起縮小、放大、回到原尺寸，停在同步縮放的具體觀察。
+
+### 08 confirm_scale_invariance
+
+顯示 (a,b) 同乘 (k^3)，因此 (a/b) 不變。選擇立方體邊長 2，讓半邊長成為 1。
+
+### 09 isolate_middle_square
 
 淡化立方體與上下八條邊，只保留四個側面中心及其藍色四邊形。提出「它究竟是什麼形狀？」而不立即回答。
 
-### 05 turn_to_top_view
+### 10 turn_to_top_view
 
 連續轉為正上方視角。上下頂點與垂直邊淡出，外框落成正方形；四個側面中心落在四邊中點。顯示一個直角記號，確認藍色圖形是正方形。
 
-### 06 measure_square_base
+### 11 measure_square_base
 
-在外框左下角隔出兩股為 1 的直角三角形。先得到藍邊 (d=\sqrt2)，再得到底面積 (B=2)。只保留這一個局部測量，不同時標四邊。
+在外框左下角隔出兩股為 1 的直角三角形，先讓局部圖形與兩股長度落定，不立即顯示畢氏定理。
 
-### 07 calculate_one_pyramid
+### 12 derive_square_base_area
 
-移除俯視測量，將同一組點轉回斜視圖。下半部保持極淡，只填上方四個三角面。顯示底面積 2 與高度 1，逐項建立 (V_1=\frac13\times2\times1=\frac23)。
+先得到藍邊 (d=\sqrt2)，再得到底面積 (B=2)。只保留這一個局部測量，不同時標四邊。
 
-### 08 reflect_and_double
+### 13 calculate_one_pyramid
+
+移除俯視測量，將同一組點轉回斜視圖。下半部保持極淡，只填上方四個三角面，顯示底面積 2 與高度 1。
+
+### 14 calculate_upper_pyramid_volume
+
+由已經可見的底與高逐項建立 (V_1=\frac13\times2\times1=\frac23)，停在單一正方錐的穩定結果。
+
+### 15 reflect_and_double
 
 以中間正方形為固定面，把上方正方錐的面與高度線映到下方。鏡射動畫完全落地後，才顯示兩半相等並計算 (a=2\times\frac23=\frac43)。
 
-### 09 calculate_cube
+### 16 calculate_cube
 
 重新亮起立方體外框與邊長 2。保留已得的 (a=4/3)，另建立 (b=2^3=8)。不在本頁提前顯示答案比值。
 
-### 10 form_final_ratio
+### 17 form_final_ratio
+
+清理右側並只寫出 (a/b=)，保留兩個來源數值在原位，不提前化簡。
+
+### 18 substitute_visible_volumes
 
 從畫面上的 (4/3) 與 8 各複製一份到比值式，化簡為 (1/6)。最後同時保留完整內外立體與一句口語結論，回扣開場的六個面心。
+
+### 19 consolidate_volume_ratio
+
+圈出完整八面體並停在「面心八面體占立方體六分之一」的口語回顧，不增加新推導。
 
 ## Build constraints
 

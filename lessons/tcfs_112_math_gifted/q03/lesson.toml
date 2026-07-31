@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page contains the four-person prize-allocation statement and a blank worked area. The public video visibly sets percentage shares a,b,c,d; writes a+b=40, a+c=60, a+d=50; adds them to obtain 3a+b+c+d=150; compares this with a+b+c+d=100 to get 2a=50; recovers shares 25,15,35,25; and scales the known 315 for the 35-percent share to the 25-percent share, reporting 225. The complete result remains unobstructed through 01:32.05, while a device overlay begins by 01:32.10. This lesson preserves that reasoning, makes the subtraction of one whole prize pool concrete, and adds an original 5-percent unit-bar scaling. All visuals, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q03/deck.py"
 scene_class = "CarloTcfs112MathQ03"
 storyboard = "lessons/tcfs_112_math_gifted/q03/storyboard.md"
@@ -32,8 +32,17 @@ expected_answer = "225"
 independent_check = "Let total prize money be T>0 and let A,B,C,D be the four awards. Normalize by T: a=A/T, b=B/T, c=C/T, d=D/T. The clues are a+b=2/5, a+c=3/5, a+d=1/2, and a+b+c+d=1. Adding the three pair clues gives 3a+b+c+d=3/2; subtracting the total equation gives 2a=1/2, so a=1/4. Therefore b=3/20, c=7/20, and d=1/4. Every share is positive, all four sum to 1, and the three pair equations check exactly, so the solution is admissible and unique. Since C=315=(7/20)T, T=900. Thus D=(1/4)T=225. Equivalently, d/c=(1/4)/(7/20)=5/7 and 315*5/7=225."
 tags = ["linear-equations", "percentages", "overlapping-sums", "invariant", "unit-rate", "ratio"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "甲、乙、丙、丁四人分完同一筆獎金；甲與乙合得總額的 40%，甲與丙合得 60%，甲與丁合得 50%。若丙分得 315 元，求丁分得的金額。"
+
 [[beats]]
 id = "meet_shared_pool"
+loop = false
+
+[[beats]]
+id = "reveal_first_pair_clues"
 loop = false
 
 [[beats]]
@@ -45,11 +54,27 @@ id = "stack_three_clues"
 loop = false
 
 [[beats]]
+id = "count_repeated_shares"
+loop = false
+
+[[beats]]
+id = "stack_counted_and_whole_pools"
+loop = false
+
+[[beats]]
 id = "remove_one_whole_pool"
 loop = false
 
 [[beats]]
 id = "split_fifty_between_two_a"
+loop = false
+
+[[beats]]
+id = "solve_a_share"
+loop = false
+
+[[beats]]
+id = "recover_first_two_shares"
 loop = false
 
 [[beats]]
@@ -61,11 +86,27 @@ id = "anchor_known_money"
 loop = false
 
 [[beats]]
+id = "compare_known_and_unknown_strips"
+loop = false
+
+[[beats]]
+id = "build_known_percent_units"
+loop = false
+
+[[beats]]
 id = "group_into_five_percent_units"
 loop = false
 
 [[beats]]
+id = "price_five_percent_unit"
+loop = false
+
+[[beats]]
 id = "settle_unit_value_preanswer"
+loop = false
+
+[[beats]]
+id = "gather_xiaopu_units"
 loop = false
 
 [[beats]]

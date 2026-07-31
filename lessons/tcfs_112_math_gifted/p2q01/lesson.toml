@@ -24,7 +24,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The four PDF pages define T(a,b,c) by its three side lengths and Delta(a,b,c) as its area, then ask for Delta(3,4,5), the area multiplier when all sides double, the area after applying the median-side-triangle operation twice to area 16, and the area after applying the altitude-side-triangle operation twice when the first two areas are 45 and 30. All four worked regions in the PDF are blank. The confirmed-public video writes the first two answers as 6 and 4, constructs the median triangle and applies its 3/4 area factor twice to obtain 9, then compares paired base-height area formulas to obtain the cyclic 3:2 side ratio and final area 20. Reconciled settled subquestion ranges are 00:00-00:20.90, 00:21.50-00:34.70, 00:35.10-03:39.70, and 03:40.30-07:19.25; intervening page-swipe frames are excluded. The complete result remains unobstructed through 00:07:19.25 and a device overlay begins at 00:07:19.30. The inspected 518x360 stream is 439.994921 seconds long and has SHA-256 a074ecdb1ba38ad6d706d2bd66a028035511b85f3f974255beac892bbbbd230e. This lesson independently derives the median factor with centroid vectors and verifies every numerical identity exactly. No PDF/video frames, handwriting, audio, branding, or source wording are incorporated."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/p2q01/deck.py"
 scene_class = "CarloTcfs112MathP2Q01"
 storyboard = "lessons/tcfs_112_math_gifted/p2q01/storyboard.md"
@@ -34,12 +34,29 @@ expected_answer = "(6,4,9,20)"
 independent_check = "For (1), 3^2+4^2=5^2, so the triangle is right and its area is 3*4/2=6. For (2), scaling every side by 2 produces a similar triangle with every altitude also scaled by 2, hence area multiplier 2^2=4. For (3), along median CM_c the centroid satisfies CG:GM_c=2:1, so G has one third of C's perpendicular distance from AB; thus Delta(A,G,B)=K/3, and midpoint M_c splits it into two equal K/6 triangles, with the other four obtained cyclically. Independently, put G at the origin and let the vertex vectors be u,v,w, so u+v+w=0. The three vectors close head-to-tail and form a triangle of area K/3: its area is |u cross v|/2, whereas the original area is 3|u cross v|/2. Since AG, BG, CG are 2/3 of the corresponding medians, scaling that vector triangle by 3/2 gives the median-side triangle, whose area is (K/3)(3/2)^2=3K/4. Applying the operation twice gives 16*(3/4)^2=9. For (4), let K=Delta(a,b,c)=45 and H=Delta(h_a,h_b,h_c)=30. From K=a h_a/2 and H=h_a h'_a/2, h'_a=(H/K)a=(2/3)a; cyclically the second-altitude triangle has side lengths 2/3 of the original, so its area is 45*(2/3)^2=20."
 tags = ["geometry", "triangle-area", "similarity", "medians", "centroid", "altitudes", "iteration"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "以 T(a,b,c) 表示三邊長為 a、b、c 的三角形，並以 Δ(a,b,c) 表示其面積。依序求：(1) Δ(3,4,5)；(2) Δ(2a,2b,2c)=kΔ(a,b,c) 中的 k；(3) 從面積為 16 的三角形開始，連續兩次以三條中線長作為新三角形的三邊後，所得面積；(4) 原三角形面積為 45，第一次以三條高長作為新三角形三邊所得面積為 30，再做一次相同操作後的面積。"
+
+[[beats]]
+id = "introduce_area_notation"
+loop = false
+
 [[beats]]
 id = "meet_area_notation"
 loop = false
 
 [[beats]]
+id = "derive_three_four_five_area"
+loop = false
+
+[[beats]]
 id = "earn_three_four_five"
+loop = false
+
+[[beats]]
+id = "build_doubled_triangle"
 loop = false
 
 [[beats]]
@@ -55,7 +72,15 @@ id = "introduce_medians"
 loop = false
 
 [[beats]]
+id = "derive_one_third_centroid_area"
+loop = false
+
+[[beats]]
 id = "split_six_equal_wedges"
+loop = false
+
+[[beats]]
+id = "start_centroid_vector_chain"
 loop = false
 
 [[beats]]
@@ -63,7 +88,15 @@ id = "translate_centroid_vectors"
 loop = false
 
 [[beats]]
+id = "scale_centroid_triangle_to_medians"
+loop = false
+
+[[beats]]
 id = "earn_median_area_factor"
+loop = false
+
+[[beats]]
+id = "set_up_first_median_step"
 loop = false
 
 [[beats]]
@@ -71,7 +104,15 @@ id = "apply_first_median_step"
 loop = false
 
 [[beats]]
+id = "hold_second_median_step"
+loop = false
+
+[[beats]]
 id = "reveal_second_median_step"
+loop = false
+
+[[beats]]
+id = "construct_side_altitude_pair"
 loop = false
 
 [[beats]]
@@ -79,7 +120,15 @@ id = "introduce_altitude_triangle"
 loop = false
 
 [[beats]]
+id = "construct_second_altitude"
+loop = false
+
+[[beats]]
 id = "compare_two_area_units"
+loop = false
+
+[[beats]]
+id = "derive_one_second_altitude"
 loop = false
 
 [[beats]]
@@ -87,11 +136,19 @@ id = "derive_second_altitudes"
 loop = false
 
 [[beats]]
-id = "square_similarity_factor"
+id = "build_second_altitude_similarity"
+loop = false
+
+[[beats]]
+id = "hold_altitude_area_preanswer"
 loop = false
 
 [[beats]]
 id = "reveal_altitude_area"
+loop = false
+
+[[beats]]
+id = "collect_four_area_results"
 loop = false
 
 [[beats]]

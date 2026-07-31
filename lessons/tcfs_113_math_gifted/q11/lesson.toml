@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame inspection shows the complete Q11 work from 00:00 through 02:59, while Q12 is fully settled at 03:00. The source groups consecutive squares by digit width, obtains cumulative boundaries 81 and 1438, computes offsets 113-81=32 and 2024-1438=586, and reads the fourth digits of 39^2=1521 and 414^2=171396 to report (1,3). This lesson preserves that argument but makes the 1-index convention and boundary transitions 81/82 and 1438/1439 explicit. In particular, it writes 32=7*4+4 rather than silently interpreting a zero division remainder, so the target is visibly the fourth digit of the eighth four-digit square. All visuals, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q11/deck.py"
 scene_class = "CarloTcfs113MathQ11"
 storyboard = "lessons/tcfs_113_math_gifted/q11/storyboard.md"
@@ -32,8 +32,17 @@ expected_answer = "(1, 3)"
 independent_check = "Concatenate str(n^2) for n=1,2,... until the stream has at least 2024 digits. Direct 1-indexed lookup gives stream[112]='1' and stream[2023]='3'. Symbolically, one-digit squares n=1..3 contribute 3 digits (cumulative 3); two-digit squares n=4..9 contribute 6*2=12 (cumulative 15); three-digit squares n=10..31 contribute 22*3=66 (cumulative 81); four-digit squares n=32..99 contribute 68*4=272 (cumulative 353); five-digit squares n=100..316 contribute 217*5=1085 (cumulative 1438); six-digit squares begin at n=317. Position 113 has offset 32 after position 81. Since 32=7*4+4, seven complete four-digit squares precede the target and it is digit 4 of n=32+7=39; 39^2=1521 gives 1. Position 2024 has offset 586 after position 1438. Since 586=97*6+4, 97 complete six-digit squares precede the target and it is digit 4 of n=317+97=414; 414^2=171396 gives 3. Boundary checks identify position 81 as the last digit of 31^2, 82 as the first digit of 32^2, 1438 as the last digit of 316^2, and 1439 as the first digit of 317^2, eliminating off-by-one alternatives."
 tags = ["number-patterns", "perfect-squares", "digit-stream", "indexing", "place-value", "quotient-remainder", "boundary-cases"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "依序把 1²、2²、3²、… 的十進位數字首尾相接，並從第 1 位開始編號。若第 113 位與第 2024 位數字分別為 a、b，求 (a,b)。"
+
 [[beats]]
 id = "move_cursor_on_tape"
+loop = false
+
+[[beats]]
+id = "read_short_tape_example"
 loop = false
 
 [[beats]]
@@ -49,7 +58,15 @@ id = "resolve_113_square"
 loop = false
 
 [[beats]]
+id = "identify_square_39"
+loop = false
+
+[[beats]]
 id = "read_digit_a"
+loop = false
+
+[[beats]]
+id = "select_fourth_digit_a"
 loop = false
 
 [[beats]]
@@ -70,4 +87,8 @@ loop = false
 
 [[beats]]
 id = "assemble_ordered_pair"
+loop = false
+
+[[beats]]
+id = "reveal_ordered_pair_digits"
 loop = false

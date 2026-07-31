@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page states that today is Wednesday and asks for the weekday after 2024^112 days, but its worked area is blank and does not establish a solution. The dedicated public video visibly writes 2024=7*289+1, reduces 2024^112 to 1^112 modulo 7, obtains remainder 1, and reports Thursday. The answer remains settled and unobstructed through 00:29.90; a device overlay begins at 00:30.00, so the full problem locator is recorded as 00:00-00:30 with that boundary caveat. This lesson preserves the source argument, earns the congruence from a project-original week wheel and full-week bundles, and adds explicit 0-, 1-, and 7-day boundary checks against an off-by-one error. All visuals, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q02/deck.py"
 scene_class = "CarloTcfs112MathQ02"
 storyboard = "lessons/tcfs_112_math_gifted/q02/storyboard.md"
@@ -32,12 +32,21 @@ expected_answer = "星期四"
 independent_check = "Weekdays form a cycle of length 7. Since 2024=7*289+1, 2024 is congruent to 1 modulo 7, hence 2024^112 is congruent to 1^112=1 modulo 7. Exact integer modular exponentiation independently gives pow(2024,112,7)=1; 2024^112 has 371 decimal digits and (2024^112-1) is divisible by 7. Using the convention that 0 days after Wednesday is Wednesday, adding the remainder gives weekday index (3+1) mod 7=4, namely Thursday. Boundary checks agree: 1 day gives Thursday, 7 days gives Wednesday, and 8 and 15 days both give Thursday."
 tags = ["modular-arithmetic", "weekday-cycle", "remainders", "exponentiation", "periodicity"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "今天是星期三。經過 2024¹¹² 天後是星期幾？"
+
 [[beats]]
 id = "meet_week_wheel"
 loop = false
 
 [[beats]]
 id = "walk_one_week"
+loop = false
+
+[[beats]]
+id = "compare_week_multiples"
 loop = false
 
 [[beats]]
@@ -49,7 +58,15 @@ id = "ask_for_remainder"
 loop = false
 
 [[beats]]
+id = "separate_full_week_bundles"
+loop = false
+
+[[beats]]
 id = "split_base_into_weeks"
+loop = false
+
+[[beats]]
+id = "reduce_each_factor_mod_seven"
 loop = false
 
 [[beats]]
@@ -62,6 +79,10 @@ loop = false
 
 [[beats]]
 id = "read_full_weeks_plus_one"
+loop = false
+
+[[beats]]
+id = "return_to_week_wheel"
 loop = false
 
 [[beats]]

@@ -16,7 +16,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q05/deck.py"
 scene_class = "Tcfs115Q05Slide"
 presenter_script = "lessons/tcfs_115_math_gifted/q05/presenter.zh-TW.md"
@@ -25,6 +25,11 @@ estimated_minutes = 8
 expected_answer = "9"
 independent_check = "Equal the first and nth ratios; cancellation gives a_n=n*a_1. Then sum=210*a_1<2026, while 210*9=1890 and 210*10=2100."
 tags = ["sequence", "proportion", "scaling", "inequality"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "設 a₁ 為正整數，a₂,…,a₂₀ 為實數，且各分母均不為 0。若 a₁/(a₁+2)=a₂/(a₂+4)=⋯=a₂₀/(a₂₀+40)，並且 a₁+a₂+⋯+a₂₀<2026，求 a₁ 的最大值。"
 
 [[beats]]
 id = "equal_ratio_chain"
@@ -44,6 +49,10 @@ loop = false
 
 [[beats]]
 id = "derive_nth_term"
+loop = false
+
+[[beats]]
+id = "solve_scale_relation"
 loop = false
 
 [[beats]]

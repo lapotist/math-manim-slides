@@ -40,55 +40,60 @@
 - Pause: 保留空白答案位置，讓觀眾先說出 `n a_1`。
 - Boundary: 猜想 `a_n ?= n a_1` 尚未蓋章。
 
-## 05 derive_nth_term (0:55, loop=false)
+## 05 derive_nth_term (0:30, loop=false)
 
 - Animation: 停止所有長條運動，從兩個原分式各複製一份進入交叉相乘。
-- Algebra staged one cancellation at a time:
-  `a_1(a_n+2n)=a_n(a_1+2)`, then cancel the common `a_1a_n`, then obtain `2na_1=2a_n`.
+- Algebra stages the cross multiplication and expansion:
+  `a_1(a_n+2n)=a_n(a_1+2)`, then visibly marks the common `a_1a_n` terms.
+- Boundary: stop with both common terms crossed out before simplifying what remains.
+
+## 06 solve_scale_relation (0:25, loop=false)
+
+- Animation: transform the remaining terms into `2na_1=2a_n` only after the cancellation has settled.
 - Conclusion: `a_n=na_1` 落回第 `n` 個藍段，「待證」改成勾號。
 - Rigor note: 這個推導不預先假設 `a_n` 的正負，因此也補足前面的示意模型。
 
-## 06 build_sequence (0:40, loop=false)
+## 07 build_sequence (0:40, loop=false)
 
 - Animation: 同一個 `a_1` 方塊被複製成 1、2、3 組，最後快速但有節制地延伸到 20 組。
 - On-screen sequence: `a_1, 2a_1, 3a_1, ..., 20a_1`。
 - Teaching point: 原來 20 個未知數只有一個自由量。
 - Boundary: 整列保持可掃讀，中央項可用省略號壓縮。
 
-## 07 pose_sum_limit (0:35, loop=false)
+## 08 pose_sum_limit (0:35, loop=false)
 
 - Animation: 此時才把 `a_1+...+a_20<2026` 帶入，20 組方塊垂直收攏成一個總量容器。
 - Prompt: 問「現在只差哪一個係數總和？」
 - Pause: 不立刻顯示 210。
 - Boundary: `a_1(1+2+...+20)<2026` 可讀且靜止。
 
-## 08 pair_coefficients (0:50, loop=false)
+## 09 pair_coefficients (0:50, loop=false)
 
 - Animation: 係數首尾配對：`1+20`, `2+19`, ...；每一對移成同高的 21 方塊列。
 - Evidence: 明確顯示共有 10 對，每對 21，而不是直接引用公式。
 - Teaching point: 三角數 210 從可見配對得到。
 - Boundary: 十列 `21` 與原係數列同時保留。
 
-## 09 sum_coefficients (0:30, loop=false)
+## 10 sum_coefficients (0:30, loop=false)
 
 - Animation: 十列 21 合併成 `10 x 21 = 210`，再由係數區複製到不等式。
 - Result: `210a_1<2026`。
 - Boundary: 只保留一行不等式與旁邊縮小的配對圖。
 
-## 10 bound_a1 (0:40, loop=false)
+## 11 bound_a1 (0:40, loop=false)
 
 - Animation: 數線先標出 `2026/210` 位於 9 與 10 之間，再顯示 `a_1<2026/210`。
 - Teaching point: 嚴格小於號不能在除法後消失。
 - Prompt: 問「正整數最大能站在哪一格？」
 - Boundary: 9 亮起，10 暫不打叉。
 
-## 11 test_neighboring_integers (0:45, loop=false)
+## 12 test_neighboring_integers (0:45, loop=false)
 
 - Animation: 將 9、10 分別代入總和；`210x9=1890<2026` 顯示通過，`210x10=2100>2026` 顯示不通過。
 - Proof obligation: 同時證明 9 可行與更大的下一個整數不可行，完成「最大值」而非只有上界。
 - Boundary: 9 保持藍色，10 變成灰色並劃除。
 
-## 12 consolidate (0:45, loop=false)
+## 13 consolidate (0:45, loop=false)
 
 - Return: 從比例鏈到 `a_n=na_1`，再到 `210a_1<2026`，用三個定格畫面依序回顧。
 - Final reveal: `a_1` 的最大值 `9` 最後才出現。

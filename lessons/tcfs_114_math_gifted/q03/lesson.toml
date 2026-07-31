@@ -20,7 +20,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The source chooses cube side 2 and computes the octahedron as two square pyramids. This lesson first makes scale invariance explicit, then reconstructs the argument with original visuals."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_114_math_gifted/q03/deck.py"
 scene_class = "CarloTcfs114MathQ03"
 storyboard = "lessons/tcfs_114_math_gifted/q03/storyboard.md"
@@ -30,8 +30,21 @@ expected_answer = "1/6"
 independent_check = "For cube side s, the central square has diagonals s and s, hence area s^2/2. Two pyramids of height s/2 have total volume 2(1/3)(s^2/2)(s/2)=s^3/6, while the cube has volume s^3."
 tags = ["solid-geometry", "cube", "regular-octahedron", "volume", "scale-invariance", "square-pyramid"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "取一個立方體六個面的中心，連接位於相鄰面上的中心，形成正八面體。若此正八面體與原立方體的體積分別為 a、b，求 a/b。"
+
 [[beats]]
 id = "place_face_centers"
+loop = false
+
+[[beats]]
+id = "place_opposite_side_centers"
+loop = false
+
+[[beats]]
+id = "complete_six_face_centers"
 loop = false
 
 [[beats]]
@@ -39,7 +52,19 @@ id = "connect_octahedron"
 loop = false
 
 [[beats]]
+id = "connect_upper_and_lower_apices"
+loop = false
+
+[[beats]]
+id = "name_regular_octahedron"
+loop = false
+
+[[beats]]
 id = "establish_scale_invariance"
+loop = false
+
+[[beats]]
+id = "confirm_scale_invariance"
 loop = false
 
 [[beats]]
@@ -55,7 +80,15 @@ id = "measure_square_base"
 loop = false
 
 [[beats]]
+id = "derive_square_base_area"
+loop = false
+
+[[beats]]
 id = "calculate_one_pyramid"
+loop = false
+
+[[beats]]
+id = "calculate_upper_pyramid_volume"
 loop = false
 
 [[beats]]
@@ -68,4 +101,12 @@ loop = false
 
 [[beats]]
 id = "form_final_ratio"
+loop = false
+
+[[beats]]
+id = "substitute_visible_volumes"
+loop = false
+
+[[beats]]
+id = "consolidate_volume_ratio"
 loop = false

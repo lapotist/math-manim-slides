@@ -154,7 +154,7 @@ class Tcfs115Q08Slide(CarloSlide):
             t2c={"每條": POINT},
         ).move_to(UP * 3.05)
 
-        # Beat 01 parabola_family: build one five-curve model by equal translations.
+        # Beat 01 parabola_family: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), Create(axes), run_time=0.9)
         self.play(
             LaggedStart(
@@ -230,7 +230,7 @@ class Tcfs115Q08Slide(CarloSlide):
             t2c={"左 1 點": BLUE, "右 1 點": REGION},
         ).move_to(UP * 3.04)
 
-        # Beat 02 sweep_horizontal_line: loop through generic, non-collision heights.
+        # Beat 02 sweep_horizontal_line: settled semantic step.
         self.next_slide(loop=True)
         self.remove(family_prompt)
         self.add(horizontal_line, dynamic_dots, two_each)
@@ -248,7 +248,7 @@ class Tcfs115Q08Slide(CarloSlide):
         )
         self.wait(0.35)
 
-        # Beat 03 count_nominal_hits: separate boundary counts from nominal labels.
+        # Beat 03 count_nominal_hits: settled semantic step.
         self.next_slide()
         plot_static = VGroup(axes, curves, vertices, vertex_labels)
         self.play(
@@ -285,7 +285,7 @@ class Tcfs115Q08Slide(CarloSlide):
         )
         self.play(FadeIn(nominal), FadeIn(missing_prompt), run_time=0.9)
 
-        # Beat 04 observe_collision: show two source markers sharing one position.
+        # Beat 04 observe_collision: settled semantic step.
         self.next_slide()
         self.play(FadeOut(cases), FadeOut(separators), FadeOut(nominal), FadeOut(missing_prompt))
         t_tracker.set_value(0.48)
@@ -299,6 +299,8 @@ class Tcfs115Q08Slide(CarloSlide):
             "把水平距離調成 1", 31, INK, "BOLD", t2c={"1": POINT}
         ).move_to(UP * 3.05)
         self.play(FadeIn(collision_title), run_time=0.45)
+        # Beat 05 compare_collision_times: settled semantic step.
+        self.next_slide()
         self.play(
             t_tracker.animate.set_value(1.0),
             run_time=1.7,
@@ -337,11 +339,13 @@ class Tcfs115Q08Slide(CarloSlide):
             FadeIn(guide_labels),
             run_time=1.1,
         )
+        # Beat 06 name_first_collision: settled semantic step.
+        self.next_slide()
         self.play(ReplacementTransform(collision_title, collision_count), run_time=0.65)
         self.play(Circumscribe(collision_rings[1], color=PURPLE), run_time=0.8)
         self.wait(0.3)
 
-        # Beat 05 compress_to_number_line: retain only the two horizontal-coordinate rows.
+        # Beat 07 compress_to_number_line: settled semantic step.
         self.next_slide()
         horizontal_line.clear_updaters()
         for dot in (*left_dots, *right_dots):
@@ -432,7 +436,7 @@ class Tcfs115Q08Slide(CarloSlide):
             right_dots,
         )
 
-        # Beat 06 define_offset_t: derive the two row formulas from visible distance t.
+        # Beat 08 define_offset_t: settled semantic step.
         self.next_slide()
         self.play(FadeOut(align_guides), FadeOut(same_x_note), FadeOut(compression_title))
         definition_title = label(
@@ -471,7 +475,7 @@ class Tcfs115Q08Slide(CarloSlide):
             run_time=1.15,
         )
 
-        # Beat 07 pose_76_count: turn the deficit into a concrete overlap question.
+        # Beat 09 pose_76_count: settled semantic step.
         self.next_slide()
         formula_group = VGroup(
             definition_title,
@@ -506,7 +510,7 @@ class Tcfs115Q08Slide(CarloSlide):
         self.play(Write(deficit), run_time=0.9)
         self.play(FadeIn(deficit_note), FadeIn(overlap_question), run_time=0.75)
 
-        # Beat 08 derive_collision_condition: an arbitrary collision forces integer t.
+        # Beat 10 derive_collision_condition: settled semantic step.
         self.next_slide()
         self.play(
             FadeOut(deficit),
@@ -584,12 +588,16 @@ class Tcfs115Q08Slide(CarloSlide):
             run_time=1.0,
         )
         self.play(Write(derivation[0]), run_time=0.65)
+        # Beat 11 solve_collision_congruence: settled semantic step.
+        self.next_slide()
         self.play(Write(derivation[1]), run_time=0.55)
         self.play(Write(derivation[2]), run_time=0.7)
+        # Beat 12 state_collision_period: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(noninteger_note), Create(integer_line), FadeIn(integer_labels))
         self.play(FadeIn(valid_range), run_time=0.55)
 
-        # Beat 09 count_overlap: align all 51 row entries and count their intersection.
+        # Beat 13 count_overlap: settled semantic step.
         self.next_slide()
         condition_group = VGroup(
             condition_title,
@@ -660,6 +668,8 @@ class Tcfs115Q08Slide(CarloSlide):
         ).move_to(DOWN * 2.42)
         union_formula.set_color_by_tex("51-t", PURPLE)
         union_formula.set_color_by_tex("51+t", POINT)
+        # Beat 14 count_shared_positions: settled semantic step.
+        self.next_slide()
         self.play(
             LaggedStart(
                 *(Create(line) for line in demonstration_connectors), lag_ratio=0.012
@@ -670,7 +680,7 @@ class Tcfs115Q08Slide(CarloSlide):
         )
         self.play(Write(union_formula), run_time=1.05)
 
-        # Beat 10 solve_offset: let the row offset settle at the required t=25.
+        # Beat 15 solve_offset: settled semantic step.
         self.next_slide()
         solved_t = 25
         solved_connectors = self.overlap_connectors(
@@ -728,7 +738,7 @@ class Tcfs115Q08Slide(CarloSlide):
             distance_note,
         )
 
-        # Beat 11 recover_k: turn the visible horizontal offset back into height.
+        # Beat 16 recover_k: settled semantic step.
         self.next_slide()
         self.play(FadeOut(dense_scene), run_time=0.65)
         height_axes = Axes(
@@ -781,9 +791,13 @@ class Tcfs115Q08Slide(CarloSlide):
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.24).move_to([3.2, -0.05, 0])
         self.play(FadeIn(recover_title), Create(height_axes), Create(height_curve), run_time=1.0)
         self.play(Create(height_line), FadeIn(height_points), FadeIn(offset_labels), run_time=0.8)
+        # Beat 17 substitute_overlap_count: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(curve_name), FadeIn(height_name), Write(recovery[0]), run_time=0.65)
         self.play(Write(recovery[1]), run_time=0.55)
         self.play(Write(recovery[2]), run_time=0.55)
+        # Beat 18 solve_for_k: settled semantic step.
+        self.next_slide()
         self.play(Write(recovery[3]), run_time=0.65)
         self.play(
             ReplacementTransform(height_name, solved_height_name),
@@ -801,7 +815,7 @@ class Tcfs115Q08Slide(CarloSlide):
             recovery,
         )
 
-        # Beat 12 verify_full_count: recover all 76 positions and one geometric collision.
+        # Beat 19 verify_full_count: settled semantic step.
         self.next_slide()
         self.play(FadeOut(height_scene), run_time=0.65)
         compact_start = -6.2
@@ -892,6 +906,8 @@ class Tcfs115Q08Slide(CarloSlide):
             run_time=1.0,
         )
         self.play(Write(overlap_check), Write(exact_count), FadeIn(edge_note), run_time=0.95)
+        # Beat 20 recheck_union_count: settled semantic step.
+        self.next_slide()
         self.play(
             Create(verify_axes),
             Create(first_parabola),
@@ -925,7 +941,7 @@ class Tcfs115Q08Slide(CarloSlide):
             parabola_names,
         )
 
-        # Beat 13 consolidate: connect the curve collision, row overlap, and answer.
+        # Beat 21 consolidate: settled semantic step.
         self.next_slide()
         self.play(FadeOut(verification_scene), run_time=0.65)
         final_title = label(
@@ -1004,6 +1020,8 @@ class Tcfs115Q08Slide(CarloSlide):
         final_answer.move_to([4.65, -2.25, 0])
         self.play(FadeIn(final_title), FadeIn(collision_icon), run_time=0.8)
         self.play(Create(flow_arrows[0]), FadeIn(union_icon), run_time=0.75)
+        # Beat 22 reveal_k_value: settled semantic step.
+        self.next_slide()
         self.play(Create(flow_arrows[1]), run_time=0.45)
         self.play(
             LaggedStart(*(Write(line) for line in final_chain), lag_ratio=0.2),

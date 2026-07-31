@@ -20,7 +20,7 @@
 縮短，因此函數嚴格下降。最後只計算兩端，先停在
 \(M=51,m=33,(M,m)=?\)，下一頁才顯示有序數對 \((51,33)\)。
 
-預估 9 分鐘。十一個 beat 全部不循環；每個停點都落在靜止、可朗讀的畫面。
+預估 9 分鐘。十九個 beat 全部不循環；每個停點都落在靜止、可朗讀的畫面。
 
 ## Source and verification
 
@@ -93,8 +93,8 @@ f(1)=2+49=51,\qquad f(2)=8+25=33.
 - 係數允許區間必須先在 \((a,b)\) 平面被切出，才可寫 \(1\le a\le2\)。
 - 正方形必須使用同一長度比例，讓 \(a^2\) 與 \(b^2\) 的面積比較有意義。
   動態物件完全停止後才顯示代數展開。
-- 第 10 beat 是完整 pre-answer 畫面，只顯示 \(M=51,m=33,(M,m)=?\)；
-  \((51,33)\) 只能在第 11 beat 出現。
+- `hold_ordered_pair` 是完整 pre-answer 畫面，只顯示 \(M=51,m=33,(M,m)=?\)；
+  \((51,33)\) 只能在 `reveal_ordered_pair` 出現。
 - 所有中文使用 `label()`；`MathTex` 只放 ASCII 字元與數學符號。
 
 ## Beat map
@@ -106,50 +106,75 @@ f(1)=2+49=51,\qquad f(2)=8+25=33.
 
 ### 02 locate_centroid
 
-標出三邊中點並畫三條中線，揭示交點 \(G\)。逐座標建立平均式，得到
-\(G=(2,1)\)。
+標出三邊中點並畫三條中線，只揭示交點 \(G\)。
 
-### 03 pivot_line_family
+### 03 compute_centroid_coordinates
+
+逐座標建立平均式，得到 \(G=(2,1)\)。
+
+### 04 pivot_line_family
 
 同一條 \(ax+by=9\) 依序走過 \((1,7),(3/2,6),(2,5)\)，線段繞著固定
 \(G\) 轉動。只強調不變交點，不先寫係數約束。
 
-### 04 earn_coefficient_constraint
+### 05 mark_fixed_centroid
 
-把可見的 \(G=(2,1)\) 代入直線，逐步建立 \(2a+b=9\) 與
-\(b=9-2a\)。
+在直線完成三個方向後，明確標出每一個方向都通過同一個 \(G\)。
 
-### 05 carve_allowed_segment
+### 06 earn_coefficient_constraint
 
-切換到係數平面，依序放入 \(a\ge1\) 與 \(b\ge5\) 的邊界，只亮起從
-\((1,7)\) 到 \((2,5)\) 的允許線段，再寫 \(1\le a\le2\)。
+把可見的 \(G=(2,1)\) 複製到直線，停在代入式。
 
-### 06 watch_weighted_squares
+### 07 solve_coefficient_constraint
+
+由代入式逐步建立 \(2a+b=9\) 與 \(b=9-2a\)。
+
+### 08 carve_allowed_segment
+
+切換到係數平面，依序放入 \(a\ge1\) 與 \(b\ge5\) 的兩條邊界。
+
+### 09 form_allowed_interval
+
+亮起從 \((1,7)\) 到 \((2,5)\) 的共同線段，再寫 \(1\le a\le2\)。
+
+### 10 watch_weighted_squares
 
 用兩個同尺度的藍色 \(a\) 正方形與一個紫色 \(b\) 正方形呈現
-\(2a^2+b^2\)。讓 \(a\) 在 1、3/2、2 間刻意移動，\(b=9-2a\) 同步更新；
-不顯示端點函數值。
+\(2a^2+b^2\)，先固定三塊面積與係數數線。
 
-### 07 compress_objective
+### 11 explore_weighted_squares
 
-停止動態幾何，從三個可見面積建立 \(f(a)=2a^2+b^2\)，代入、展開並配方
-成 \(6(a-3)^2+27\)。
+讓 \(a\) 在 1、3/2、2 間刻意移動，\(b=9-2a\) 同步更新；不顯示端點函數值。
 
-### 08 prove_decreasing
+### 12 compress_objective
 
-畫完整拋物線與頂點 \(a=3\)，高亮 \(a\in[1,2]\) 的曲線段。函數點從
-1 走到 2 時，到 3 的水平距離縮短、函數高度下降，據此證明區間內嚴格遞減。
+停止動態幾何，從可見面積建立 \(f(a)=2a^2+b^2\)，並代入 \(b=9-2a\)。
 
-### 09 evaluate_endpoints
+### 13 finish_objective_compression
 
-分別代入 \((a,b)=(1,7)\) 與 \((2,5)\)，得到 51 與 33。只算值，尚不顯示
-最後有序數對。
+將一變數式展開並配方成 \(6(a-3)^2+27\)。
 
-### 10 hold_ordered_pair
+### 14 prove_decreasing
+
+畫完整拋物線與頂點 \(a=3\)，高亮 \(a\in[1,2]\) 的曲線段。
+
+### 15 trace_decreasing_interval
+
+讓函數點從 1 走到 2，以到頂點距離縮短證明區間內嚴格遞減。
+
+### 16 evaluate_endpoints
+
+只代入左端 \((a,b)=(1,7)\)，得到 51。
+
+### 17 evaluate_right_endpoint
+
+再代入右端 \((a,b)=(2,5)\)，得到 33；尚不顯示最後有序數對。
+
+### 18 hold_ordered_pair
 
 由遞減性指定 \(M=51\)、\(m=33\)，停在 \((M,m)=?\) 讓觀眾確認順序。
 
-### 11 reveal_ordered_pair
+### 19 reveal_ordered_pair
 
 揭示 \((M,m)=(51,33)\)，並把兩個端點值連回原三角形中穿過重心的兩條
 邊界直線。
@@ -158,8 +183,8 @@ f(1)=2+49=51,\qquad f(2)=8+25=33.
 
 - 只可在 `lessons/tcfs_113_math_gifted/q12/` 編輯來源檔；媒體輸出使用專屬
   ignored `build/media/carlo_tcfs_113_math_gifted_q12`。
-- 十一個 beat、TOML、講者稿與 Slides manifest 必須完全同序，全部
-  `loop=false`；講者稿必須有 10 個 `[NEXT]`、0 個 `[LOOP]`。
+- 十九個 beat、TOML、講者稿與 Slides manifest 必須完全同序，全部
+  `loop=false`；講者稿必須有 18 個 `[NEXT]`、0 個 `[LOOP]`。
 - 匯入期必須以有理數核對重心、約束式、範圍、代表值、嚴格遞減與答案。
 - 必須以 1920x1080 原尺寸檢查重心公式、旋轉直線、係數線段、正方形極端
   狀態、配方、拋物線移動、pre-answer 與答案畫面；另以固定頻率抽查完整影片，

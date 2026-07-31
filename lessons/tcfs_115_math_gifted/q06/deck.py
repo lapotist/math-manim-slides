@@ -284,7 +284,7 @@ class Tcfs115Q06Slide(CarloSlide):
             t2c={"七項": POINT, "乘積": PURPLE},
         ).move_to([0, 3.0, 0])
 
-        # Beat 01 original_seven_terms: arrange the seven terms by multiplicative degree.
+        # Beat 01 original_seven_terms: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), FadeIn(prompt), run_time=0.8)
         self.play(
             LaggedStart(*(FadeIn(term, shift=UP * 0.12) for term in terms), lag_ratio=0.11),
@@ -294,7 +294,7 @@ class Tcfs115Q06Slide(CarloSlide):
         self.play(Create(missing_slot), FadeIn(missing_question), run_time=0.7)
         self.wait(0.3)
 
-        # Beat 02 missing_one: reveal the eighth binary choice and add one to both sides.
+        # Beat 02 missing_one: settled semantic step.
         self.next_slide()
         switches = VGroup(
             self.choice_switch("a", BLUE),
@@ -371,6 +371,8 @@ class Tcfs115Q06Slide(CarloSlide):
         )
         self.wait(0.25)
         self.play(FadeIn(all_one_choice), GrowArrow(all_one_arrow), run_time=0.65)
+        # Beat 03 identify_missing_side: settled semantic step.
+        self.next_slide()
         self.play(
             FadeOut(empty_mark),
             ReplacementTransform(empty_result, missing_one[0]),
@@ -380,7 +382,7 @@ class Tcfs115Q06Slide(CarloSlide):
         self.play(Write(full_sum), FadeIn(both_sides), run_time=0.95)
         self.wait(0.3)
 
-        # Beat 03 complete_product: collect the eight choices into three factors.
+        # Beat 04 complete_product: settled semantic step.
         self.next_slide()
         completed_product = MathTex(
             r"(a+1)",
@@ -419,7 +421,7 @@ class Tcfs115Q06Slide(CarloSlide):
         self.play(FadeIn(right_change, shift=UP * 0.1), run_time=0.6)
         self.wait(0.3)
 
-        # Beat 04 shift_sides: shift every side by one while preserving its order.
+        # Beat 05 shift_sides: settled semantic step.
         self.next_slide()
         shift_line = NumberLine(
             x_range=[0, 8, 1],
@@ -505,7 +507,7 @@ class Tcfs115Q06Slide(CarloSlide):
             run_time=1.1,
         )
 
-        # Beat 05 bound_z: compare every factor with the smallest one z.
+        # Beat 06 bound_z: settled semantic step.
         self.next_slide()
         shift_scene = VGroup(
             shift_line,
@@ -581,6 +583,8 @@ class Tcfs115Q06Slide(CarloSlide):
             run_time=1.0,
         )
         self.play(Create(z_level), FadeIn(z_level_label), FadeIn(comparisons), run_time=0.75)
+        # Beat 07 list_bounded_candidates: settled semantic step.
+        self.next_slide()
         self.play(
             LaggedStart(*(Write(step) for step in bound_steps), lag_ratio=0.35),
             run_time=1.55,
@@ -592,7 +596,7 @@ class Tcfs115Q06Slide(CarloSlide):
             run_time=0.75,
         )
 
-        # Beat 06 candidate_divisors: use z divides 480 to remove the remaining 7.
+        # Beat 08 candidate_divisors: settled semantic step.
         self.next_slide()
         bound_scene = VGroup(
             bars,
@@ -648,7 +652,7 @@ class Tcfs115Q06Slide(CarloSlide):
         self.play(Create(seven_cross), candidate_cards[-1].animate.set_opacity(0.34), run_time=0.65)
         self.play(FadeIn(exact_candidates), FadeIn(clarification), run_time=0.7)
 
-        # Beat 07 pose_triangle_filter: contrast a flat boundary with a closing triangle.
+        # Beat 09 pose_triangle_filter: settled semantic step.
         self.next_slide()
         divisor_scene = VGroup(
             divisor_title,
@@ -706,10 +710,12 @@ class Tcfs115Q06Slide(CarloSlide):
         self.play(Create(divider), Create(flat_base), Create(flat_b), Create(flat_c), FadeIn(flat_labels), run_time=0.9)
         self.play(FadeIn(flat_caption), run_time=0.55)
         self.wait(0.35)
+        # Beat 10 state_triangle_filter: settled semantic step.
+        self.next_slide()
         self.play(Create(valid_base), Create(valid_b), Create(valid_c), FadeIn(valid_labels), run_time=0.9)
         self.play(FadeIn(valid_caption), run_time=0.55)
 
-        # Beat 08 translate_triangle: translate the geometric condition into a factor gap.
+        # Beat 11 translate_triangle: settled semantic step.
         self.next_slide()
         triangle_scene = VGroup(
             triangle_title,
@@ -756,6 +762,8 @@ class Tcfs115Q06Slide(CarloSlide):
         self.play(FadeOut(triangle_scene), FadeIn(translate_title), FadeIn(retained_triangle), run_time=0.75)
         self.play(TransformFromCopy(retained_triangle, triangle_rule), run_time=0.65)
         self.play(Write(substitution), run_time=0.8)
+        # Beat 12 factor_triangle_condition: settled semantic step.
+        self.next_slide()
         self.play(TransformMatchingTex(substitution.copy(), gap_rule), run_time=0.85)
         self.play(FadeIn(gap_meaning), run_time=0.45)
         self.play(
@@ -763,7 +771,7 @@ class Tcfs115Q06Slide(CarloSlide):
             run_time=1.0,
         )
 
-        # Beat 09 nearest_factor_pairs: minimize each gap with the closest factor pair.
+        # Beat 13 nearest_factor_pairs: settled semantic step.
         self.next_slide()
         translate_scene = VGroup(
             translate_title,
@@ -857,6 +865,8 @@ class Tcfs115Q06Slide(CarloSlide):
         self.play(FadeOut(translate_scene), FadeIn(method_title), FadeIn(fixed_product), run_time=0.75)
         self.play(Create(square_like), FadeIn(square_sides), run_time=0.65)
         self.play(Create(thin_like), FadeIn(thin_sides), FadeIn(same_area), run_time=0.7)
+        # Beat 14 test_near_factor_pairs: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(rectangle_conclusion), Indicate(square_like, color=PURPLE), run_time=0.65)
         rectangle_demo = VGroup(
             fixed_product,
@@ -869,13 +879,15 @@ class Tcfs115Q06Slide(CarloSlide):
         )
         self.play(FadeOut(rectangle_demo), run_time=0.55)
         self.play(FadeIn(gap_highlight), FadeIn(table_headers), Create(header_line), run_time=0.65)
+        # Beat 15 test_far_factor_pairs: settled semantic step.
+        self.next_slide()
         self.play(
             LaggedStart(*(FadeIn(row, shift=RIGHT * 0.12) for row in table_rows), lag_ratio=0.16),
             run_time=1.55,
         )
         self.play(FadeIn(completeness_note), run_time=0.55)
 
-        # Beat 10 select_valid_rows: apply every strict threshold and retain exactly two rows.
+        # Beat 16 select_valid_rows: settled semantic step.
         self.next_slide()
         factor_table_scene = VGroup(
             method_title,
@@ -933,8 +945,25 @@ class Tcfs115Q06Slide(CarloSlide):
         )
         self.play(FadeOut(factor_table_scene), FadeIn(filter_title), run_time=0.65)
         self.play(FadeIn(comparison_headers), Create(comparison_line), run_time=0.55)
-        for row in comparison_rows:
-            self.play(FadeIn(row, shift=RIGHT * 0.1), run_time=0.42)
+        # Beat 17 test_candidate_rows: settled semantic step.
+        self.next_slide()
+        self.play(
+            LaggedStart(
+                *(FadeIn(row, shift=RIGHT * 0.1) for row in comparison_rows[:3]),
+                lag_ratio=0.18,
+            ),
+            run_time=0.9,
+        )
+
+        # Beat 18 retain_valid_rows: settled semantic step.
+        self.next_slide()
+        self.play(
+            LaggedStart(
+                *(FadeIn(row, shift=RIGHT * 0.1) for row in comparison_rows[3:]),
+                lag_ratio=0.22,
+            ),
+            run_time=0.7,
+        )
         self.play(FadeIn(survivors), Create(survivor_boxes), run_time=0.7)
         self.play(
             Circumscribe(comparison_rows[2], color=REGION, time_width=0.55),
@@ -943,7 +972,7 @@ class Tcfs115Q06Slide(CarloSlide):
         )
         self.wait(0.3)
 
-        # Beat 11 restore_sides: subtract one from every surviving shifted factor.
+        # Beat 19 restore_sides: settled semantic step.
         self.next_slide()
         filter_scene = VGroup(
             filter_title,
@@ -1008,6 +1037,8 @@ class Tcfs115Q06Slide(CarloSlide):
             FadeIn(VGroup(minus_arrows[0][1], minus_arrows[1][1])),
             run_time=0.65,
         )
+        # Beat 20 reconstruct_side_triples: settled semantic step.
+        self.next_slide()
         self.play(
             TransformFromCopy(shifted_tuples[0], restored_tuples[0]),
             TransformFromCopy(shifted_tuples[1], restored_tuples[1]),
@@ -1016,7 +1047,7 @@ class Tcfs115Q06Slide(CarloSlide):
         )
         self.play(FadeIn(restore_equations), run_time=0.6)
 
-        # Beat 12 verify_triangles: check order, closure, and the original equation.
+        # Beat 21 verify_triangles: settled semantic step.
         self.next_slide()
         restore_scene = VGroup(
             restore_title,
@@ -1064,6 +1095,8 @@ class Tcfs115Q06Slide(CarloSlide):
             LaggedStart(*(FadeIn(row, shift=RIGHT * 0.08) for row in first_checks), lag_ratio=0.17),
             run_time=1.15,
         )
+        # Beat 22 check_triangle_witnesses: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(second_name), Create(second_triangle), run_time=0.9)
         self.play(
             LaggedStart(*(FadeIn(row, shift=RIGHT * 0.08) for row in second_checks), lag_ratio=0.17),
@@ -1076,7 +1109,7 @@ class Tcfs115Q06Slide(CarloSlide):
         )
         self.wait(0.3)
 
-        # Beat 13 consolidate: reconnect the completion and exhaustive filter to both answers.
+        # Beat 23 consolidate: settled semantic step.
         self.next_slide()
         verification_scene = VGroup(
             verify_title,
@@ -1151,6 +1184,8 @@ class Tcfs115Q06Slide(CarloSlide):
             run_time=1.35,
         )
         self.play(FadeIn(factor_links), run_time=0.55)
+        # Beat 24 reveal_triangle_count: settled semantic step.
+        self.next_slide()
         self.play(
             GrowArrow(answer_arrows[0]),
             GrowArrow(answer_arrows[1]),

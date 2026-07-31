@@ -17,7 +17,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The source uses n both for the requested count and for an integer square root. This lesson keeps n for the count and calls the square root s."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q03/deck.py"
 scene_class = "CarloTcfs115MathQ03"
 storyboard = "lessons/tcfs_115_math_gifted/q03/storyboard.md"
@@ -27,12 +27,21 @@ expected_answer = "(5, 1)"
 independent_check = "Exactly three quadrants requires Delta>0 and f(0)>=0, giving k=-1,2,3,4,5 and m=5. Integer roots require k^2-k-1 to be a square; only k=-1,2 survive, and only k=-1 has a positive integer root, so n=1."
 tags = ["algebra", "parabola", "quadrants", "discriminant", "integer-root", "parameter"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "對整數 k，-5≤k≤5，令 fₖ(x)=x²+2kx+(k+1)。圖形恰好經過三個象限的 k 共有 m 個；方程 fₖ(x)=0 有正整數解的 k 共有 n 個。求 (m,n)。"
+
 [[beats]]
 id = "meet_family"
 loop = false
 
 [[beats]]
 id = "compare_quadrants"
+loop = true
+
+[[beats]]
+id = "compare_negative_quadrants"
 loop = true
 
 [[beats]]
@@ -44,7 +53,19 @@ id = "guard_y_axis"
 loop = false
 
 [[beats]]
+id = "derive_y_axis_guard"
+loop = false
+
+[[beats]]
 id = "count_m"
+loop = false
+
+[[beats]]
+id = "intersect_parameter_conditions"
+loop = false
+
+[[beats]]
+id = "count_valid_parameters"
 loop = false
 
 [[beats]]
@@ -52,7 +73,15 @@ id = "ask_integer_root"
 loop = false
 
 [[beats]]
+id = "derive_root_formula"
+loop = false
+
+[[beats]]
 id = "perfect_square_filter"
+loop = false
+
+[[beats]]
+id = "bound_square_candidates"
 loop = false
 
 [[beats]]
@@ -60,5 +89,13 @@ id = "test_candidates"
 loop = false
 
 [[beats]]
+id = "verify_integer_roots"
+loop = false
+
+[[beats]]
 id = "final_pair"
+loop = false
+
+[[beats]]
+id = "reveal_ordered_pair"
 loop = false

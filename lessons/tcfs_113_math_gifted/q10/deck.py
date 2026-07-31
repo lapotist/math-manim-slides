@@ -279,6 +279,8 @@ class CarloTcfs113MathQ10(CarloSlide):
             Create(pb_leg),
             run_time=0.9,
         )
+
+        self.next_beat("state_path_objective")
         self.play(LaggedStart(*(FadeIn(item) for item in opening_panel), lag_ratio=0.16), run_time=0.9)
         self.wait(0.4)
 
@@ -306,6 +308,8 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.play(p_tracker.animate.set_value(0.24), run_time=1.0)
         self.play(p_tracker.animate.set_value(0.76), run_time=1.15)
         self.play(p_tracker.animate.set_value(0.47), run_time=0.9)
+
+        self.next_beat("move_q_along_top_edge")
         self.play(FadeIn(moving_q), run_time=0.45)
         self.play(q_tracker.animate.set_value(0.79), run_time=1.0)
         self.play(q_tracker.animate.set_value(0.16), run_time=1.15)
@@ -422,6 +426,8 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.play(FadeOut(rewrite_panel), Create(direct_qb_prime), run_time=0.75)
         self.play(Write(triangle_bound), run_time=0.75)
         self.play(p_tracker.animate.set_value(56 / 135), run_time=1.25)
+
+        self.next_beat("attain_straight_path")
         self.play(FadeIn(equality_condition), run_time=0.55)
         self.play(Write(equality_equation), Circumscribe(equality_equation, color=REGION), run_time=0.85)
         self.wait(0.4)
@@ -568,6 +574,8 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.play(FadeOut(coordinate_panel), Create(normal_arrow), FadeIn(normal_label), run_time=0.65)
         self.play(Write(line_function), Write(normal_data), run_time=0.7)
         self.play(Write(at_b), run_time=0.45)
+
+        self.next_beat("apply_reflection_formula")
         self.play(Write(reflect_formula), run_time=0.7)
         self.play(Write(substitution), run_time=0.65)
         self.play(
@@ -627,6 +635,8 @@ class CarloTcfs113MathQ10(CarloSlide):
         )
         self.play(Write(q_coordinate), Write(q_inside), run_time=0.7)
         self.play(Write(p_coordinate), Write(p_on_line), run_time=0.75)
+
+        self.next_beat("verify_collinear_order")
         self.play(Write(vertical_order), run_time=0.55)
         self.play(Write(unsimplified_distance), run_time=0.7)
         self.play(Circumscribe(unsimplified_distance, color=POINT), run_time=0.8)
@@ -661,6 +671,8 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.play(FadeOut(feasibility_panel), run_time=0.45)
         self.play(Write(arithmetic_one), run_time=0.75)
         self.play(Write(arithmetic_two), run_time=0.55)
+
+        self.next_beat("state_minimum_length")
         self.play(Write(final_answer), Create(final_box), run_time=0.85)
         self.play(
             Indicate(final_qp, color=PURPLE),

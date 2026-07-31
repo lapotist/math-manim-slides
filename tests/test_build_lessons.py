@@ -22,6 +22,23 @@ def load_build_lessons_module():
 
 
 class ExportAttributionChecks(unittest.TestCase):
+    def test_selection_accepts_multiple_production_states(self) -> None:
+        module = load_build_lessons_module()
+        lessons = {
+            "example.q01": {"id": "example.q01", "production_state": "visual_verified"},
+            "example.q02": {"id": "example.q02", "production_state": "published"},
+            "example.q03": {"id": "example.q03", "production_state": "draft_rendered"},
+        }
+
+        selected = module.select_lessons(
+            lessons, [], "visual_verified,published"
+        )
+
+        self.assertEqual(
+            [lesson["id"] for lesson in selected],
+            ["example.q01", "example.q02"],
+        )
+
     def test_standalone_export_gets_license_and_source_slide(self) -> None:
         module = load_build_lessons_module()
         source = (

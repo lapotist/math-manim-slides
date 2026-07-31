@@ -2,6 +2,7 @@ schema_version = 1
 id = "carlo.tcfs_114_math_gifted"
 slug = "tcfs_114_math_gifted"
 title = "114 Academic-Year TCFSH Mathematics Gifted Placement Assessment"
+display_title_zh_tw = "114 學年度中一中數學資優班甄選"
 locale = "zh-TW"
 source_asset = "114中一中資優班解析.pdf"
 source_asset_id = "drive:17g2ffD4VJK5Xl5qVitUH9kbNDIDxwd1J"
@@ -29,7 +30,7 @@ answer = "(8, 8)"
 solution_asset = "youtube:oRepfpw90Fg"
 solution_url = "https://www.youtube.com/watch?v=oRepfpw90Fg"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -38,7 +39,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q02"
@@ -50,7 +51,7 @@ answer_note = "The source omits the valid endpoint a=-3 from the parameter set; 
 solution_asset = "youtube:CeH9yZ8pnc0"
 solution_url = "https://www.youtube.com/watch?v=CeH9yZ8pnc0"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -59,7 +60,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q03"
@@ -70,7 +71,7 @@ answer = "1/6"
 solution_asset = "youtube:MUhQmAz9OvE"
 solution_url = "https://www.youtube.com/watch?v=MUhQmAz9OvE"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -79,7 +80,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q04"
@@ -97,6 +98,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -115,6 +117,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -133,6 +136,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -151,6 +155,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -169,6 +174,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -187,6 +193,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -205,6 +212,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -223,6 +231,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -241,6 +250,7 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."
 
 [[problems]]
@@ -253,7 +263,7 @@ answer_note = "The public source video demonstrates the inconsistency, then chan
 solution_asset = "youtube:Eq_1v5YG5bs"
 solution_url = "https://www.youtube.com/watch?v=Eq_1v5YG5bs"
 eligible = true
-production_state = "visual_verified"
+production_state = "draft_rendered"
 content_type = "problem_solution"
 duplicate_of = ""
 release_rights_state = "cleared"
@@ -262,7 +272,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-math_review_state = "independently_verified"
+math_review_state = "pending"
 
 [[problems]]
 id = "carlo.tcfs_114_math_gifted.q14"
@@ -280,4 +290,5 @@ source_material_use = "not_incorporated"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = ""
 math_review_state = "not_reviewed"
+blocker_category = "access"
 blocker_reason = "The solution video is members-only; no public solution reasoning is available for verification."

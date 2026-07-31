@@ -244,6 +244,9 @@ class CarloTcfs113MathQ07(CarloSlide):
         self.play(Create(parabola), FadeIn(curve_formula), run_time=1.25)
         self.play(Create(floor), GrowFromCenter(vertex), FadeIn(vertex_label), run_time=0.75)
         self.play(Write(square_nonnegative), run_time=0.55)
+
+        # The global floor is a complete observation before the interval task appears.
+        self.next_beat("introduce_interval_goal")
         self.play(TransformFromCopy(square_nonnegative, global_floor), run_time=0.65)
         self.play(
             LaggedStart(
@@ -289,6 +292,9 @@ class CarloTcfs113MathQ07(CarloSlide):
             run_time=1.0,
         )
         self.play(FadeIn(left_condition), FadeIn(left_motion), run_time=0.6)
+
+        # Pause on the geometric case before deriving its contradiction.
+        self.next_beat("reject_left_interval")
         self.play(Write(left_minimum), run_time=0.75)
         self.play(FadeIn(left_failure), Circumscribe(left_failure, color=CORAL), run_time=0.75)
         self.wait(0.35)
@@ -545,6 +551,9 @@ class CarloTcfs113MathQ07(CarloSlide):
         self.play(Write(equation_zero), run_time=0.45)
         self.play(Write(equation_one), run_time=0.65)
         self.play(Write(equation_two), run_time=0.65)
+
+        # The standard-form equation is settled; factor it on the next step.
+        self.next_beat("factor_fixed_point_equation")
         self.play(Write(equation_three), run_time=0.65)
         self.play(Write(equation_four), run_time=0.55)
         self.play(
@@ -614,6 +623,8 @@ class CarloTcfs113MathQ07(CarloSlide):
             TransformFromCopy(four_chip[1], assign_b),
             run_time=0.85,
         )
+
+        self.next_beat("state_ordered_pair")
         self.play(Write(ordered_pair), run_time=0.65)
         self.play(Circumscribe(ordered_pair, color=REGION), run_time=0.8)
         self.wait(0.35)
@@ -667,10 +678,14 @@ class CarloTcfs113MathQ07(CarloSlide):
         self.play(FadeIn(exact_interval), run_time=0.65)
         self.play(FadeIn(f3_label), FadeIn(f4_label), run_time=0.55)
         self.play(Write(check_zero), run_time=0.45)
+
+        self.next_beat("propagate_interval_bounds")
         self.play(Write(check_one), run_time=0.55)
         self.play(Write(check_two), run_time=0.60)
         self.play(Write(check_three), run_time=0.55)
         self.play(FadeIn(extrema_check), run_time=0.55)
+
+        self.next_beat("confirm_preserved_interval")
         self.play(Write(final_answer), run_time=0.7)
         self.play(Circumscribe(final_answer, color=REGION), run_time=0.8)
         self.wait(0.45)

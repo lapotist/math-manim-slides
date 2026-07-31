@@ -229,8 +229,8 @@ class CarloTcfs112MathQ06(CarloSlide):
             f_vertex_dot, UP + RIGHT, buff=0.13
         )
 
-        # Beat 01: turn the stated maximum into a concrete ceiling first.
-        self.begin_beat("meet_highest_point")
+        # Beat 01 show_highest_point_graph: turn the stated maximum into a concrete ceiling first.
+        self.begin_beat("show_highest_point_graph")
         stage_title = self.stage_title("先看圖：最高只能到 2")
         f_formula = MathTex(
             r"f(x)=ax^2-2ax+6a-\frac3a",
@@ -251,11 +251,14 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(FadeIn(stage_title), Create(axes), FadeIn(axis_labels), run_time=0.9)
         self.play(Create(f_curve), FadeIn(f_tag), run_time=1.0)
         self.play(Create(ceiling), FadeIn(y_two, f_vertex_dot, highest_note), run_time=0.75)
+
+        # Beat 02 meet_highest_point: continue at a settled semantic boundary.
+        self.next_beat("meet_highest_point")
         self.play(Write(f_formula), run_time=0.75)
         self.play(LaggedStart(*(FadeIn(item) for item in opening_panel), lag_ratio=0.16), run_time=0.9)
         self.wait(0.35)
 
-        # Beat 02: flip one trial curve to test which sign can have a maximum.
+        # Beat 03 decide_opening_direction: flip one trial curve to test which sign can have a maximum.
         self.next_beat("decide_opening_direction")
         next_title = self.stage_title("先檢查開口方向")
         upward_trial = axes.plot(
@@ -296,8 +299,8 @@ class CarloTcfs112MathQ06(CarloSlide):
         )
         self.wait(0.35)
 
-        # Beat 03: complete the x expression and draw the axis it names.
-        self.next_beat("locate_f_axis")
+        # Beat 04 complete_square_for_f: complete the x expression and draw the axis it names.
+        self.next_beat("complete_square_for_f")
         next_title = self.stage_title("最高點的中心藏在 (x-1)^2")
         square_identity_f = MathTex(
             r"x^2-2x=(x-1)^2-1",
@@ -334,11 +337,14 @@ class CarloTcfs112MathQ06(CarloSlide):
             run_time=0.7,
         )
         self.play(TransformFromCopy(square_identity_f, completed_f), run_time=0.8)
+
+        # Beat 05 locate_f_axis: continue at a settled semantic boundary.
+        self.next_beat("locate_f_axis")
         self.play(Create(f_axis), FadeIn(x_one, f_vertex_unknown), run_time=0.7)
         self.play(FadeIn(axis_note), Circumscribe(f_vertex_dot, color=REGION), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 04: turn the visible vertex height into one parameter equation.
+        # Beat 06 use_maximum_height: turn the visible vertex height into one parameter equation.
         self.next_beat("use_maximum_height")
         next_title = self.stage_title("在 x=1，平方項剛好歸零")
         zero_at_one = MathTex(
@@ -367,8 +373,8 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(Indicate(y_two, color=POINT), Indicate(height_equation, color=POINT), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 05: solve the height equation without yet accepting either root.
-        self.next_beat("solve_parameter_candidates")
+        # Beat 07 derive_parameter_polynomial: solve the height equation without yet accepting either root.
+        self.next_beat("derive_parameter_polynomial")
         next_title = self.stage_title("代數先給兩個候選")
         height_equation_top = height_equation.copy().move_to([3.58, 1.42, 0])
         multiply_guard = label("已知 a<0，所以可以乘以 a", 22, MUTED, "MEDIUM")
@@ -407,11 +413,14 @@ class CarloTcfs112MathQ06(CarloSlide):
         )
         self.play(TransformFromCopy(height_equation, parameter_polynomial), run_time=0.75)
         self.play(TransformFromCopy(parameter_polynomial, parameter_factor), run_time=0.7)
+
+        # Beat 08 solve_parameter_candidates: continue at a settled semantic boundary.
+        self.next_beat("solve_parameter_candidates")
         self.play(FadeIn(negative_card), FadeIn(positive_card), run_time=0.6)
         self.wait(0.35)
 
-        # Beat 06: send both algebraic candidates back to the same graph.
-        self.next_beat("reject_wrong_opening")
+        # Beat 09 reject_positive_opening: send both algebraic candidates back to the same graph.
+        self.next_beat("reject_positive_opening")
         next_title = self.stage_title("把兩個候選真的放回圖上")
         positive_equation = MathTex(
             r"a=1:\quad f(x)=(x-1)^2+2",
@@ -446,6 +455,9 @@ class CarloTcfs112MathQ06(CarloSlide):
             stroke_width=5.0,
         ).set_z_index(10)
         self.play(Create(wrong_slash), Circumscribe(f_vertex_dot, color=CORAL), run_time=0.6)
+
+        # Beat 10 reject_wrong_opening: continue at a settled semantic boundary.
+        self.next_beat("reject_wrong_opening")
         self.play(FadeOut(positive_equation, positive_verdict, minimum_word), run_time=0.35)
         negative_equation = MathTex(
             r"a=-\frac35:\quad f(x)=-\frac35(x-1)^2+2",
@@ -467,8 +479,8 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(Write(chosen_parameter), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 07: translate the selected square form back into visible graph facts.
-        self.next_beat("verify_f_in_picture")
+        # Beat 11 verify_f_algebraically: translate the selected square form back into visible graph facts.
+        self.next_beat("verify_f_algebraically")
         next_title = self.stage_title("回到原圖，確認最高值真的成立")
         f_exact = MathTex(
             r"f(x)=-\frac35(x-1)^2+2",
@@ -523,6 +535,9 @@ class CarloTcfs112MathQ06(CarloSlide):
         )
         self.play(TransformFromCopy(chosen_parameter, f_exact), run_time=0.75)
         self.play(Write(f_bound), Write(f_equality), run_time=0.85)
+
+        # Beat 12 verify_f_in_picture: continue at a settled semantic boundary.
+        self.next_beat("verify_f_in_picture")
         self.play(
             FadeIn(symmetric_dots, symmetric_labels),
             Create(symmetric_join),
@@ -532,8 +547,8 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(Circumscribe(f_vertex_dot, color=POINT), run_time=0.6)
         self.wait(0.35)
 
-        # Beat 08: carry the verified parameter into the second quadratic.
-        self.next_beat("transfer_parameter_to_g")
+        # Beat 13 write_g_with_chosen_parameter: carry the verified parameter into the second quadratic.
+        self.next_beat("write_g_with_chosen_parameter")
         next_title = self.stage_title("同一個 a，換到第二條拋物線")
         g_formula = MathTex(
             r"g(x)=-ax^2+4ax+6a-\frac3a",
@@ -579,6 +594,9 @@ class CarloTcfs112MathQ06(CarloSlide):
             run_time=0.55,
         )
         self.play(Write(g_formula), run_time=0.65)
+
+        # Beat 14 transfer_parameter_to_g: continue at a settled semantic boundary.
+        self.next_beat("transfer_parameter_to_g")
         self.play(
             FadeOut(chosen_parameter),
             FadeIn(copied_parameter),
@@ -588,8 +606,8 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(Create(g_curve), FadeIn(g_tag, g_vertex_dot, g_vertex_question, g_prompt), run_time=1.0)
         self.wait(0.35)
 
-        # Beat 09: complete the second square and mark its unknown vertex.
-        self.next_beat("locate_g_axis")
+        # Beat 15 complete_square_for_g: complete the second square and mark its unknown vertex.
+        self.next_beat("complete_square_for_g")
         next_title = self.stage_title("最低點的中心藏在 (x-2)^2")
         square_identity_g = MathTex(
             r"x^2-4x=(x-2)^2-4",
@@ -628,6 +646,9 @@ class CarloTcfs112MathQ06(CarloSlide):
             run_time=0.65,
         )
         self.play(Write(completed_g), run_time=0.8)
+
+        # Beat 16 locate_g_axis: continue at a settled semantic boundary.
+        self.next_beat("locate_g_axis")
         self.play(
             Create(g_axis),
             FadeIn(x_two),
@@ -638,8 +659,8 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(Write(minimum_rule), Circumscribe(g_vertex_dot, color=REGION), run_time=0.7)
         self.wait(0.35)
 
-        # Beat 10: settle on two traceable contributions without summing them.
-        self.next_beat("settle_minimum_preanswer")
+        # Beat 17 substitute_g_vertex: settle on two traceable contributions without summing them.
+        self.next_beat("substitute_g_vertex")
         next_title = self.stage_title("先算兩份貢獻，不急著相加")
         at_vertex = MathTex(
             r"g(2)=10a-\frac3a",
@@ -666,13 +687,16 @@ class CarloTcfs112MathQ06(CarloSlide):
         )
         self.play(Write(at_vertex), run_time=0.70)
         self.play(Write(substitution), run_time=0.75)
+
+        # Beat 18 settle_minimum_preanswer: continue at a settled semantic boundary.
+        self.next_beat("settle_minimum_preanswer")
         self.play(FadeIn(negative_term), FadeIn(positive_term), run_time=0.65)
         self.play(Write(unsummed), run_time=0.65)
         self.play(Indicate(negative_term, color=BLUE), Indicate(positive_term, color=REGION), run_time=0.6)
         self.wait(0.45)
 
-        # Beat 11: move five units on a number line, then return the result to g.
-        self.next_beat("reveal_minimum")
+        # Beat 19 walk_signed_value_line: move five units on a number line, then return the result to g.
+        self.next_beat("walk_signed_value_line")
         next_title = self.stage_title("向右補 5 格，落在真正的最低值")
         value_line = NumberLine(
             x_range=[-7, 1, 1],
@@ -723,6 +747,9 @@ class CarloTcfs112MathQ06(CarloSlide):
         )
         self.play(Create(five_step), FadeIn(five_label), run_time=0.85)
         self.play(FadeIn(end_dot, end_label), run_time=0.45)
+
+        # Beat 20 reveal_minimum: continue at a settled semantic boundary.
+        self.next_beat("reveal_minimum")
         self.play(
             FadeOut(unsummed),
             Write(sum_result),

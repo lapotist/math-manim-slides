@@ -358,6 +358,8 @@ class CarloTcfs113MathQ08(CarloSlide):
         )
         self.play(Write(ratio), run_time=0.65)
         self.play(TransformFromCopy(ratio, whole_side), run_time=0.55)
+
+        self.next_beat("state_right_side_lengths")
         self.play(FadeIn(partition_values), run_time=0.7)
         self.wait(0.4)
 
@@ -564,6 +566,8 @@ class CarloTcfs113MathQ08(CarloSlide):
         )
         self.play(Write(proportion), run_time=0.8)
         self.play(TransformFromCopy(proportion, cross_multiply), run_time=0.7)
+
+        self.next_beat("reduce_base_ratio")
         self.play(Transform(cross_multiply, reduced), run_time=0.6)
         self.play(TransformFromCopy(reduced, final_ratio), run_time=0.7)
         self.play(Circumscribe(final_ratio, color=POINT), run_time=0.55)
@@ -703,6 +707,8 @@ class CarloTcfs113MathQ08(CarloSlide):
             run_time=0.8,
         )
         self.play(GrowFromCenter(od_brace), FadeIn(od_label), Transform(side_label, numeric_side), run_time=0.7)
+
+        self.next_beat("recheck_ratio_and_area")
         self.play(LaggedStart(*(FadeIn(check) for check in checks), lag_ratio=0.18), run_time=1.0)
         self.play(FadeIn(check_note), run_time=0.55)
         self.wait(0.5)
@@ -756,6 +762,8 @@ class CarloTcfs113MathQ08(CarloSlide):
             Write(VGroup(*area_value[2:])),
             run_time=0.8,
         )
+
+        self.next_beat("frame_minimum_area")
         self.play(Create(final_frame), FadeIn(final_note), run_time=0.65)
         self.play(Circumscribe(area_value[-1], color=REGION), run_time=0.6)
         self.wait(0.5)

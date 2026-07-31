@@ -16,7 +16,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q07/deck.py"
 scene_class = "Tcfs115Q07Slide"
 presenter_script = "lessons/tcfs_115_math_gifted/q07/presenter.zh-TW.md"
@@ -26,8 +26,17 @@ expected_answer = "13/14"
 independent_check = "With A=sqrt(a^2+4), B=sqrt(b^2+9), the partner product is (A-a)(B-b)=36/7. Subtracting it from (A+a)(B+b)=7 gives twice the requested cross term."
 tags = ["radicals", "conjugates", "invariant", "algebra"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "設 a、b 為實數，且 (√(a²+4)+a)(√(b²+9)+b)=7。求 a√(b²+9)+b√(a²+4)。"
+
 [[beats]]
 id = "given_product"
+loop = false
+
+[[beats]]
+id = "expand_given_product"
 loop = false
 
 [[beats]]
@@ -43,11 +52,27 @@ id = "discover_first_invariant"
 loop = false
 
 [[beats]]
+id = "compare_first_pair"
+loop = false
+
+[[beats]]
+id = "state_first_invariant"
+loop = false
+
+[[beats]]
 id = "mirror_second_pair"
 loop = false
 
 [[beats]]
+id = "state_second_invariant"
+loop = false
+
+[[beats]]
 id = "combine_invariants"
+loop = false
+
+[[beats]]
+id = "collect_invariant_sum"
 loop = false
 
 [[beats]]
@@ -59,7 +84,15 @@ id = "build_shadow_product"
 loop = false
 
 [[beats]]
+id = "name_shadow_product"
+loop = false
+
+[[beats]]
 id = "expand_known_product"
+loop = false
+
+[[beats]]
+id = "collect_known_terms"
 loop = false
 
 [[beats]]
@@ -67,11 +100,23 @@ id = "expand_shadow_product"
 loop = false
 
 [[beats]]
+id = "collect_shadow_terms"
+loop = false
+
+[[beats]]
 id = "subtract_to_isolate"
 loop = false
 
 [[beats]]
+id = "isolate_requested_product"
+loop = false
+
+[[beats]]
 id = "final_value"
+loop = false
+
+[[beats]]
+id = "reveal_product_value"
 loop = false
 
 [[beats]]

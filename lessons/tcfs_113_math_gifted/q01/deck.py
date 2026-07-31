@@ -402,6 +402,8 @@ class CarloTcfs113MathQ01(CarloSlide):
         z_one_dots.add(first_dot)
         self.play(GrowFromCenter(first_dot), run_time=0.45)
         self.play(FadeIn(change_note), run_time=0.4)
+
+        self.next_beat("continue_z_one_slice")
         for x, y in ((4, 2), (2, 3)):
             next_readout = self.tuple_readout(x, y, 1).move_to(config_readout)
             dot = Dot(axes.c2p(y, x), radius=0.09, color=POINT).set_z_index(6)
@@ -496,6 +498,8 @@ class CarloTcfs113MathQ01(CarloSlide):
         fourth_dot = Dot(axes.c2p(1, 3), radius=0.09, color=POINT).set_z_index(6)
         z_two_dots.add(fourth_dot)
         self.play(GrowFromCenter(fourth_dot), run_time=0.4)
+
+        self.next_beat("complete_z_two_slice")
         second_two_readout = self.tuple_readout(1, 2, 2).move_to(config_readout)
         fifth_dot = Dot(axes.c2p(2, 1), radius=0.09, color=POINT).set_z_index(6)
         self.play(
@@ -652,6 +656,8 @@ class CarloTcfs113MathQ01(CarloSlide):
         beat_title = next_title
         self.play(Write(final_sum[0:5]), run_time=0.65)
         self.wait(0.35)
+
+        self.next_beat("reveal_slice_total")
         self.play(Write(final_sum[5:7]), Create(result_box), run_time=0.7)
         self.play(FadeIn(result_note), run_time=0.45)
         self.wait(0.3)
@@ -708,8 +714,22 @@ class CarloTcfs113MathQ01(CarloSlide):
             run_time=0.9,
         )
         beat_title = next_title
-        for point, tuple_object in zip(all_points, tuple_objects, strict=True):
+        for point, tuple_object in zip(
+            (all_points[0], all_points[1]),
+            (tuple_objects[0], tuple_objects[1]),
+            strict=True,
+        ):
             self.play(Indicate(point, color=POINT), FadeIn(tuple_object), run_time=0.38)
+
+        self.next_beat("reveal_remaining_solution_tuples")
+        for point, tuple_object in zip(
+            (all_points[2], all_points[3], all_points[4]),
+            (tuple_objects[2], tuple_objects[3], tuple_objects[4]),
+            strict=True,
+        ):
+            self.play(Indicate(point, color=POINT), FadeIn(tuple_object), run_time=0.38)
+
+        self.next_beat("verify_solution_total")
         self.play(Write(verification), run_time=0.65)
         self.play(FadeIn(final_note), Circumscribe(result_box, color=POINT), run_time=0.7)
         self.wait(0.4)

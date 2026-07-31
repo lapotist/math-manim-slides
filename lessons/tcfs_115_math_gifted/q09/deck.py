@@ -129,7 +129,6 @@ class Question9Slide(CarloSlide):
             stroke_width=5,
         ).set_z_index(1)
 
-        # Beat 01 fixed_segment: the fixed segment is the only idea on screen.
         segment_ab = Line([-2.1, 0, 0], [2.1, 0, 0], color=INK, stroke_width=7)
         dot_a = Dot(segment_ab.get_start(), radius=0.085, color=WHITE)
         dot_b = Dot(segment_ab.get_end(), radius=0.085, color=WHITE)
@@ -141,6 +140,7 @@ class Question9Slide(CarloSlide):
             buff=0.25,
         )
 
+        # Beat 01 fixed_segment: settled semantic step.
         self.play(Create(segment_ab), run_time=1.0)
         self.play(
             LaggedStart(
@@ -154,9 +154,9 @@ class Question9Slide(CarloSlide):
             run_time=0.9,
         )
 
+        # Beat 02 introduce_p: settled semantic step.
         self.next_slide()
 
-        # Beat 02 introduce_p: introduce P and show only the given condition.
         final_segment = Line(point_a, point_b, color=INK, stroke_width=6)
         final_dot_a = Dot(point_a, radius=0.065, color=WHITE)
         final_dot_b = Dot(point_b, radius=0.065, color=WHITE)
@@ -243,7 +243,7 @@ class Question9Slide(CarloSlide):
             run_time=1.0,
         )
 
-        # Beat 03 explore_p: P returns to the same starting position.
+        # Beat 03 explore_p: settled semantic step.
         self.next_slide(loop=True)
 
         p_90 = point(0, 2)
@@ -255,6 +255,11 @@ class Question9Slide(CarloSlide):
         self.wait(0.35)
         self.play(p_dot.animate.move_to(p_left), run_time=1.55, rate_func=smooth)
         self.wait(0.35)
+        self.play(p_dot.animate.move_to(explore_start), run_time=1.55, rate_func=smooth)
+        self.wait(0.35)
+
+        # Beat 04 explore_far_boundary: settled semantic step.
+        self.next_slide(loop=True)
         self.play(p_dot.animate.move_to(p_30), run_time=1.75, rate_func=smooth)
         self.wait(0.4)
         self.play(p_dot.animate.move_to(p_right), run_time=1.75, rate_func=smooth)
@@ -262,14 +267,14 @@ class Question9Slide(CarloSlide):
         self.play(p_dot.animate.move_to(explore_start), run_time=1.55, rate_func=smooth)
         self.wait(0.35)
 
-        # Beat 04 pose_locus_question: leave the visual question unanswered.
+        # Beat 05 pose_locus_question: settled semantic step.
         self.next_slide()
 
         locus_question = label("P 的全部範圍，會是什麼形狀？", 31, INK, "BOLD")
         locus_question.move_to([3.25, 1.05, 0])
         self.play(FadeTransform(explore_prompt, locus_question), run_time=0.7)
 
-        # Beat 05 reveal_locus_outline: reveal the boundary, not its calculation.
+        # Beat 06 reveal_locus_outline: settled semantic step.
         self.next_slide()
 
         outline_note = label("先看輪廓，不急著算面積", 30, REGION, "BOLD")
@@ -286,7 +291,7 @@ class Question9Slide(CarloSlide):
             run_time=1.6,
         )
 
-        # Beat 06 prove_reflection_symmetry: use one arbitrary reflected pair.
+        # Beat 07 prove_reflection_symmetry: settled semantic step.
         self.next_slide()
 
         sample_upper = point(-2.2, 2.8)
@@ -342,7 +347,7 @@ class Question9Slide(CarloSlide):
             run_time=0.9,
         )
 
-        # Beat 07 isolate_upper_half: dim the lower half and focus on one half.
+        # Beat 08 isolate_upper_half: settled semantic step.
         self.next_slide()
 
         half_note = label("先算上半部", 39, REGION, "BOLD")
@@ -368,7 +373,7 @@ class Question9Slide(CarloSlide):
             run_time=1.0,
         )
 
-        # Beat 08 boundary_90: the 90-degree boundary excludes the semicircle.
+        # Beat 09 boundary_90: settled semantic step.
         self.next_slide()
 
         upper_semicircle_points = [
@@ -426,7 +431,7 @@ class Question9Slide(CarloSlide):
         )
         self.play(FadeIn(boundary_90_fact, shift=UP * 0.08), run_time=0.6)
 
-        # Beat 09 boundary_30: the 30-degree boundary reveals a second circle.
+        # Beat 10 boundary_30: settled semantic step.
         self.next_slide()
 
         outer_circle_guide = Circle(
@@ -498,7 +503,7 @@ class Question9Slide(CarloSlide):
         )
         self.play(FadeIn(center_angle_fact, shift=UP * 0.08), run_time=0.6)
 
-        # Beat 10 derive_radius_sector: derive the radius and 300-degree sector.
+        # Beat 11 derive_radius_sector: settled semantic step.
         self.next_slide()
 
         center_triangle = Polygon(
@@ -541,7 +546,7 @@ class Question9Slide(CarloSlide):
         for moving_mobject in (ap_line, bp_line, p_angle, p_label):
             moving_mobject.clear_updaters()
 
-        # Beat 11 sector_area: calculate the 300-degree sector first.
+        # Beat 12 sector_area: settled semantic step.
         self.next_slide()
 
         major_sector = filled_shape(
@@ -590,7 +595,7 @@ class Question9Slide(CarloSlide):
             run_time=1.0,
         )
 
-        # Beat 12 triangle_area: add the equilateral center triangle.
+        # Beat 13 triangle_area: settled semantic step.
         self.next_slide()
 
         triangle_term = label(
@@ -609,7 +614,7 @@ class Question9Slide(CarloSlide):
             run_time=1.0,
         )
 
-        # Beat 13 subtract_semicircle: remove the forbidden semicircle.
+        # Beat 14 subtract_semicircle: settled semantic step.
         self.next_slide()
 
         semicircle_term = label(
@@ -633,7 +638,7 @@ class Question9Slide(CarloSlide):
             run_time=1.0,
         )
 
-        # Beat 14 upper_result: simplify only the upper-half result.
+        # Beat 15 upper_result: settled semantic step.
         self.next_slide()
 
         upper_expression = label(
@@ -667,7 +672,7 @@ class Question9Slide(CarloSlide):
             run_time=1.1,
         )
 
-        # Beat 15 reflect_and_double: reflect the half, then multiply by 2.
+        # Beat 16 reflect_and_double: settled semantic step.
         self.next_slide()
 
         total_relation = label("A總 = 2 × A上", 31, INK, "BOLD")
@@ -724,7 +729,7 @@ class Question9Slide(CarloSlide):
             run_time=1.0,
         )
 
-        # Restore P before the last slide so the final loop changes only P.
+        # Restore P before the final two slides so the loop changes only P.
         p_dot.move_to(explore_start).set_opacity(1)
         final_p_label = label("P", 25, POINT, "BOLD").set_z_index(7)
         final_p_label.add_updater(
@@ -755,6 +760,8 @@ class Question9Slide(CarloSlide):
                 stroke_width=4,
             ).set_z_index(5)
         )
+        # Beat 17 restore_moving_point: settled semantic step.
+        self.next_slide()
         self.play(
             FadeIn(p_dot),
             FadeIn(final_p_label),
@@ -764,7 +771,7 @@ class Question9Slide(CarloSlide):
             run_time=0.75,
         )
 
-        # Beat 16 consolidate: replay the question under the final conclusion.
+        # Beat 18 consolidate: settled semantic step.
         self.next_slide(loop=True)
 
         self.play(p_dot.animate.move_to(p_left), run_time=1.7, rate_func=smooth)

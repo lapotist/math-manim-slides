@@ -281,6 +281,8 @@ class CarloTcfs113MathQ11(CarloSlide):
         self.play(FadeIn(beat_title), run_time=0.45)
         self.play(LaggedStart(*(FadeIn(chunk) for chunk in chunks), lag_ratio=0.12), run_time=1.2)
         self.play(GrowFromCenter(cursor), FadeIn(index_label), FadeIn(one_indexed), run_time=0.65)
+
+        self.next_beat("read_short_tape_example")
         target_cursor = self.cursor_for(all_cells[4], POINT)
         target_index = MathTex("k", "=", "5", font_size=32, color=POINT)
         target_index.next_to(target_cursor, DOWN, buff=0.08)
@@ -392,6 +394,8 @@ class CarloTcfs113MathQ11(CarloSlide):
         self.play(FadeOut(prefix_81), FadeOut(block_4), FadeOut(target_range), FadeOut(boundary_pair_81), run_time=0.6)
         self.play(Write(offset_113), Write(decomposition_113), run_time=0.75)
         self.play(LaggedStart(*(FadeIn(slot) for slot in square_slots_113), lag_ratio=0.08), FadeIn(slot_numbers), run_time=1.0)
+
+        self.next_beat("identify_square_39")
         target_slot_frame = SurroundingRectangle(square_slots_113[-1], color=POINT, buff=0.08, stroke_width=4)
         self.play(square_slots_113[:-1].animate.set_opacity(0.28), Create(target_slot_frame), run_time=0.65)
         self.play(Write(root_39), run_time=0.65)
@@ -433,6 +437,8 @@ class CarloTcfs113MathQ11(CarloSlide):
         )
         self.play(Write(square_39), run_time=0.55)
         self.play(LaggedStart(*(FadeIn(cell) for cell in digits_39), lag_ratio=0.12), FadeIn(internal_39), run_time=0.9)
+
+        self.next_beat("select_fourth_digit_a")
         self.play(GrowFromCenter(cursor_113), FadeIn(cursor_113_label), run_time=0.55)
         self.play(digits_39[-1][0].animate.set_fill(POINT, opacity=0.22), TransformFromCopy(digits_39[-1][1], a_badge[2]), Write(VGroup(*a_badge[:2])), run_time=0.7)
         self.wait(0.4)
@@ -630,6 +636,8 @@ class CarloTcfs113MathQ11(CarloSlide):
             run_time=0.75,
         )
         self.play(Write(VGroup(ordered_pair[0], ordered_pair[1], ordered_pair[2], ordered_pair[4], ordered_pair[6])), run_time=0.55)
+
+        self.next_beat("reveal_ordered_pair_digits")
         self.play(
             TransformFromCopy(a_badge[2], ordered_pair[3]),
             TransformFromCopy(b_badge[2], ordered_pair[5]),

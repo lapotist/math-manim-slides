@@ -16,7 +16,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q04/deck.py"
 scene_class = "CarloTcfs115MathQ04"
 storyboard = "lessons/tcfs_115_math_gifted/q04/storyboard.md"
@@ -26,12 +26,29 @@ expected_answer = "100"
 independent_check = "The position is 1^2-2^2-3^2+4^2+...+97^2-98^2-99^2+100^2. Each four-term block n^2-(n+1)^2-(n+2)^2+(n+3)^2 equals 4 for n=1,5,...,97. There are 25 blocks, so the final coordinate is 100."
 tags = ["sequence", "number-line", "squares", "grouping", "finite-difference"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "一隻螞蟻從數線原點出發，第 n 次移動 n² 個單位；方向依「右、左、左、右」每四次循環一次。求完成第 100 次移動後的位置座標。"
+
 [[beats]]
 id = "start_at_one"
 loop = false
 
 [[beats]]
 id = "walk_first_block"
+loop = false
+
+[[beats]]
+id = "continue_first_block"
+loop = false
+
+[[beats]]
+id = "finish_first_block"
+loop = false
+
+[[beats]]
+id = "sum_first_block"
 loop = false
 
 [[beats]]
@@ -43,7 +60,15 @@ id = "pair_square_gaps"
 loop = false
 
 [[beats]]
+id = "compare_paired_gaps"
+loop = false
+
+[[beats]]
 id = "prove_generic_block"
+loop = false
+
+[[beats]]
+id = "state_generic_block_total"
 loop = false
 
 [[beats]]
@@ -55,5 +80,13 @@ id = "count_blocks"
 loop = false
 
 [[beats]]
+id = "sum_complete_blocks"
+loop = false
+
+[[beats]]
 id = "arrive_at_hundred"
+loop = false
+
+[[beats]]
+id = "reveal_hundredth_term"
 loop = false

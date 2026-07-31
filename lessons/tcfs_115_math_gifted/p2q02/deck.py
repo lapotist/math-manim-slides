@@ -257,11 +257,16 @@ class Tcfs115Part2Q02Slide(CarloSlide):
             FadeOut(collinear), FadeOut(arc_prompt),
             run_time=0.5,
         )
-        for triangle, candidate in zip(
-            (triangle_abd, triangle_aec, triangle_ced), candidates, strict=True
-        ):
-            self.play(FadeIn(triangle), FadeIn(candidate), run_time=0.45)
-            self.play(Indicate(triangle, color=triangle.get_color()), run_time=0.45)
+        self.play(FadeIn(triangle_abd), FadeIn(candidates[0]), run_time=0.45)
+        self.play(Indicate(triangle_abd, color=triangle_abd.get_color()), run_time=0.45)
+
+        self.next_beat("inspect_second_triangle")
+        self.play(FadeIn(triangle_aec), FadeIn(candidates[1]), run_time=0.45)
+        self.play(Indicate(triangle_aec, color=triangle_aec.get_color()), run_time=0.45)
+
+        self.next_beat("inspect_third_triangle")
+        self.play(FadeIn(triangle_ced), FadeIn(candidates[2]), run_time=0.45)
+        self.play(Indicate(triangle_ced, color=triangle_ced.get_color()), run_time=0.45)
         self.wait(0.30)
 
         # Beat 05: first AA proof, with chord AC highlighted before the angles.
@@ -313,6 +318,8 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         )
         self.play(Create(angle_cae), Write(first_angle_eq), run_time=0.7)
         self.play(Create(arc_ac), run_time=0.7)
+        # Smaller step: record_first_similarity_ratio.
+        self.next_beat("record_first_similarity_ratio")
         self.play(Create(angle_abd), Create(angle_aec), Write(second_angle_eq), run_time=0.8)
         self.play(Write(first_similarity), FadeIn(first_pairing), run_time=0.75)
         self.wait(0.30)
@@ -505,6 +512,8 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         )
         self.play(Indicate(line_ad, color=BLUE), Indicate(line_de, color=REGION), Write(split_equation))
         self.play(TransformFromCopy(receipt_one_small[1], expansion_one), run_time=0.7)
+        # Smaller step: combine_ae_parts.
+        self.next_beat("combine_ae_parts")
         self.play(Write(expansion_two), run_time=0.6)
         self.play(Write(expansion_three), Create(split_highlight), run_time=0.75)
         self.wait(0.30)

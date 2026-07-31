@@ -16,7 +16,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q02/deck.py"
 scene_class = "CarloTcfs115MathQ02"
 storyboard = "lessons/tcfs_115_math_gifted/q02/storyboard.md"
@@ -25,6 +25,11 @@ estimated_minutes = 7
 expected_answer = "180"
 independent_check = "Triangle OA2B1 is half of both the first and second rectangles because it shares each rectangle's base and full perpendicular height. Repeating with triangle OA3B2 makes all three rectangle areas equal to 5*12=60; total 180."
 tags = ["geometry", "rectangle", "area", "shared-triangle", "invariant"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "三個長方形依序為 R₁=OA₁A₂B₁、R₂=OA₂A₃B₂、R₃=OA₃A₄B₃，頂點均按周界順序命名；B₁ 位於 R₂ 的對邊 A₃B₂ 上，B₂ 位於 R₃ 的對邊 A₄B₃ 上。若 OA₁=5、OB₁=12，求三個長方形的面積總和。"
 
 [[beats]]
 id = "first_rectangle"
@@ -35,7 +40,15 @@ id = "shared_half"
 loop = false
 
 [[beats]]
+id = "compare_shared_region"
+loop = false
+
+[[beats]]
 id = "grow_second"
+loop = false
+
+[[beats]]
+id = "finish_second_rectangle"
 loop = false
 
 [[beats]]
@@ -47,7 +60,15 @@ id = "shift_shared_half"
 loop = false
 
 [[beats]]
+id = "align_third_overlap"
+loop = false
+
+[[beats]]
 id = "grow_third"
+loop = false
+
+[[beats]]
+id = "finish_third_rectangle"
 loop = false
 
 [[beats]]
@@ -56,4 +77,8 @@ loop = false
 
 [[beats]]
 id = "sum_areas"
+loop = false
+
+[[beats]]
+id = "reveal_total_area"
 loop = false

@@ -261,8 +261,12 @@ class CarloTcfs114MathQ03(CarloSlide):
             run_time=1.55,
         )
         self.play(FadeIn(pair_note), run_time=0.45)
+
+        self.next_beat("place_opposite_side_centers")
         self.play(FadeIn(base_dots[0]), FadeIn(base_dots[2]), run_time=0.7)
         self.play(FadeIn(base_dots[1]), FadeIn(base_dots[3]), run_time=0.7)
+
+        self.next_beat("complete_six_face_centers")
         self.play(FadeIn(top_dot), FadeIn(bottom_dot), run_time=0.7)
         self.play(FadeIn(count_note), run_time=0.55)
         self.wait(0.3)
@@ -284,6 +288,8 @@ class CarloTcfs114MathQ03(CarloSlide):
         )
         panel_title = connect_title
         self.play(FadeIn(base_fill), Create(base_edges), run_time=0.9)
+
+        self.next_beat("connect_upper_and_lower_apices")
         self.play(
             LaggedStart(*(Create(edge) for edge in upper_edges), lag_ratio=0.13),
             run_time=1.0,
@@ -292,6 +298,8 @@ class CarloTcfs114MathQ03(CarloSlide):
             LaggedStart(*(Create(edge) for edge in lower_edges), lag_ratio=0.13),
             run_time=1.0,
         )
+
+        self.next_beat("name_regular_octahedron")
         self.play(FadeIn(edge_note), FadeIn(solid_name), run_time=0.65)
         self.play(Indicate(VGroup(base_edges, upper_edges, lower_edges), color=POINT))
         self.wait(0.3)
@@ -351,6 +359,8 @@ class CarloTcfs114MathQ03(CarloSlide):
             run_time=0.75,
             rate_func=rate_functions.ease_in_out_sine,
         )
+
+        self.next_beat("confirm_scale_invariance")
         self.play(FadeIn(scale_rows), run_time=0.65)
         self.play(Write(unchanged), run_time=0.75)
 
@@ -542,6 +552,8 @@ class CarloTcfs114MathQ03(CarloSlide):
             FadeIn(side_d),
             run_time=0.8,
         )
+
+        self.next_beat("derive_square_base_area")
         self.play(Write(length_equation), run_time=0.75)
         self.play(
             ReplacementTransform(side_d, side_root),
@@ -625,6 +637,8 @@ class CarloTcfs114MathQ03(CarloSlide):
         half_equation[8].set_color(POINT)
 
         self.play(FadeIn(upper_faces), Create(upper_height), FadeIn(upper_height_one))
+
+        self.next_beat("calculate_upper_pyramid_volume")
         self.play(Write(half_equation[0:4]), run_time=0.55)
         self.play(
             TransformFromCopy(base_badge[2], half_equation[4]),
@@ -782,6 +796,8 @@ class CarloTcfs114MathQ03(CarloSlide):
         )
         panel_title = ratio_title
         self.play(Write(ratio[0:2]), run_time=0.45)
+
+        self.next_beat("substitute_visible_volumes")
         self.play(
             TransformFromCopy(octa_volume[6], ratio[2]),
             Write(ratio[3]),
@@ -789,6 +805,8 @@ class CarloTcfs114MathQ03(CarloSlide):
             run_time=0.75,
         )
         self.play(Write(ratio[5:7]), Create(answer_box), run_time=0.75)
+
+        self.next_beat("consolidate_volume_ratio")
         self.play(FadeIn(summary), run_time=0.55)
         self.play(
             Circumscribe(VGroup(base_edges, upper_edges, lower_edges), color=POINT),

@@ -54,13 +54,21 @@
 
 [NEXT]
 
-## 05 derive_nth_term｜用原式替猜想蓋章
+## 05 derive_nth_term｜展開原式並找共同項
 
 現在圖形停住，我們只比較第一項與第 `n` 項。
 
 交叉相乘後，左邊是 `a_1(a_n+2n)`，右邊是 `a_n(a_1+2)`。
 
-兩邊都有同一個 `a_1a_n`。把它消去，留下 `2na_1=2a_n`。
+兩邊都有同一個 `a_1a_n`。現在先把這兩項標記出來。
+
+[PAUSE]
+
+[NEXT]
+
+## 06 solve_scale_relation｜消去共同項
+
+把共同的 `a_1a_n` 消去，留下 `2na_1=2a_n`。
 
 再同除以 2，得到 `a_n=na_1`。
 
@@ -68,7 +76,7 @@
 
 [NEXT]
 
-## 06 build_sequence｜二十個未知數其實只有一個
+## 07 build_sequence｜二十個未知數其實只有一個
 
 於是第一項是 `a_1`，第二項是 `2a_1`，第三項是 `3a_1`。
 
@@ -78,7 +86,7 @@
 
 [NEXT]
 
-## 07 pose_sum_limit｜現在才請 2026 進場
+## 08 pose_sum_limit｜現在才請 2026 進場
 
 這時再把總和條件帶回來。
 
@@ -90,7 +98,7 @@
 
 [NEXT]
 
-## 08 pair_coefficients｜首尾配對看見 210
+## 09 pair_coefficients｜首尾配對看見 210
 
 把最前面的 1 和最後面的 20 配在一起，得到 21。
 
@@ -102,7 +110,7 @@
 
 [NEXT]
 
-## 09 sum_coefficients｜把可見的配對放進不等式
+## 10 sum_coefficients｜把可見的配對放進不等式
 
 十組 21 就是 210。
 
@@ -112,7 +120,7 @@
 
 [NEXT]
 
-## 10 bound_a1｜嚴格小於的整數位置
+## 11 bound_a1｜嚴格小於的整數位置
 
 兩邊同除以正數 210，得到 `a_1<2026/210`。
 
@@ -124,7 +132,7 @@
 
 [NEXT]
 
-## 11 test_neighboring_integers｜一個可行，一個越界
+## 12 test_neighboring_integers｜一個可行，一個越界
 
 先放入 9。`210x9=1890`，確實小於 2026，所以 9 可以做到。
 
@@ -134,7 +142,7 @@
 
 [NEXT]
 
-## 12 consolidate｜從比例回到答案
+## 13 consolidate｜從比例回到答案
 
 最後把路徑連起來。
 

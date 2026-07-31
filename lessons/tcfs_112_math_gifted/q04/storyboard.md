@@ -15,12 +15,13 @@
 處的角由 `GD∥AB` 相等，所以兩三角形相似。上方的 `GD:AB=2:3` 因而搬到
 側邊，成為 `DF:AF=2:3`。
 
-第 8 beat 只把側邊標成 `2k` 與 `3k`。第 9 beat 將這兩段排成二加三的五格
-長條，畫面仍只問 `AF/AD`，不顯示 `5k` 或 `3/5`。第 10 beat 才數完整條
+`transfer_two_to_three` 只把側邊標成 `2k` 與 `3k`。`build_five_unit_bar`
+與 `hold_before_fraction` 將這兩段排成二加三的五格長條，畫面仍只問
+`AF/AD`，不顯示 `5k` 或 `3/5`。`reveal_three_fifths` 才數完整條
 `AD`，逐步建立分數並揭露答案。這是實際的 pre-answer 停點，不是答案與問題
 同時出現的形式停頓。
 
-預估 8 分鐘。十個 beat 全部 `loop=false`；每個停點都落在靜止且可朗讀的
+預估 8 分鐘。17 個 beat 全部 `loop=false`；每個停點都落在靜止且可朗讀的
 構圖。
 
 ## Source and provenance
@@ -152,73 +153,128 @@ E=\left(\frac{d+u}{2},\frac h2\right).
   `F=AD∩BE` 在每個狀態都重新計算；不使用任意漫遊或永久軌跡。
 - 第一組全等必須依序顯示對頂角、平行線角、中點等長，再顯示全等與
   `GC=AB`。第二組相似也必須先顯示兩組角，不能先寫比例。
-- 第 9 beat 的五格條只表達 `2k+3k` 的結構，不顯示 `5k` 或任何已算出的
-  分數。答案只出現在第 10 beat。
+- `build_five_unit_bar` 與 `hold_before_fraction` 的五格條只表達
+  `2k+3k` 的結構，不顯示 `5k` 或任何已算出的分數。答案只出現在
+  `reveal_three_fifths`。
 - 所有中文使用 `label()`；`MathTex` 只放 ASCII 數學內容。攝影機固定，
   解析度固定為 1920x1080。
 
 ## Beat map
 
-### 01 build_given_trapezoid
+### 01 build_trapezoid_shape
 
-依序畫出梯形四邊、對角線 `AC`、直線 `BE` 與交點 `F`。中點刻痕和平行記號
-最後才出現。右側以三格對一格的長條呈現 `AB=3CD`，不問答案。
+先不算比例。我們只把題目給的物件依序放回圖上。
 
-### 02 vary_shape_watch_f
+動作目的：讓「先完成梯形與交點」在穩定畫面上單獨成立，再進入下一步。
 
-讓同一個梯形走過高而右斜、較低而左斜、最後一般位置三個狀態。每次變形後
-只短暫指出重新計算的 `F`，並保留「重新取中點、重新畫 BE」的文字。此動作
-提出不變性猜想，不作為證明。
+### 02 mark_trapezoid_givens
 
-### 03 pause_on_unknown_split
+`AB` 和 `CD` 是梯形的兩條平行底。下底 `AB` 有三份，上底 `CD` 只有一份，
+所以 `AB=3CD`。
 
-停止所有動態，突出 `AD` 與 `F`，只顯示 `AF/AD=?`。詢問傾斜是否影響答案，
-不顯示輔助點或比例數字。
+動作目的：讓「再標出平行與中點條件」在穩定畫面上單獨成立，再進入下一步。
 
-### 04 extend_lines_to_g
+### 03 test_tall_shape
 
-把上底所在直線向左延長，再把 `BE` 穿過 `F` 向左延長，兩線交於同一新點
-`G`。停點明示 `G,D,C` 與 `G,F,E,B` 各自共線。
+現在讓梯形換幾個樣子。
 
-### 05 earn_equal_long_segment
+動作目的：讓「先測試較高的梯形」在穩定畫面上單獨成立，再進入下一步。
 
-淡化其餘線條，並排突出 `△GEC` 與 `△BEA`。先標 `E` 處對頂角，再標由
-平行底產生的角，最後高亮 `EC=EA`。三項齊備後才寫全等，並推出 `GC=BA`。
+### 04 vary_shape_watch_f
 
-### 06 split_three_units
+第二個形狀往左斜。`F` 跟著整條側邊移動，但它在 `AD` 上的相對位置，看起來
+沒有亂跑。
 
-恢復完整圖。以雙箭頭顯示 `GC=AB=3u`，再指出 `CD=u`。沿著同一直線扣除
-一份，得到 `GD=2u`，最後停在 `GD:AB=2:3`。
+動作目的：讓「再測試相反傾斜並回到一般位置」在穩定畫面上單獨成立，再進入下一步。
 
-### 07 earn_second_similarity
+### 05 pause_on_unknown_split
 
-突出 `△GDF` 與 `△BAF`。先顯示 `F` 處對頂角，再顯示由 `GD∥AB` 產生的
-角，才寫 `△GDF∼△BAF` 與對應比例 `GD/AB=DF/AF`。
+現在所有東西都停止移動。
 
-### 08 transfer_two_to_three
+動作目的：讓「先停在真正的未知量」在穩定畫面上單獨成立，再進入下一步。
 
-把上方已知的 `2:3` 代入相似比例。側邊 `DF` 變成珊瑚色兩份，`AF` 變成
-黃色三份，停在 `DF=2k, AF=3k`，仍不計算題目分數。
+### 06 extend_lines_to_g
 
-### 09 hold_before_fraction
+先把上底 `CD` 所在的直線向左延長。
 
-把側邊比例轉成五個等寬格：前兩格屬於 `DF`，後三格屬於 `AF`。整條下方只
-標 `AD`，畫面再次問 `AF/AD` 並留出真實停頓。答案不可出現。
+動作目的：讓「讓兩條原有直線相遇」在穩定畫面上單獨成立，再進入下一步。
 
-### 10 reveal_three_fifths
+### 07 match_extension_angles
 
-先寫 `AD=2k+3k=5k`，再由可見分段建立
-`AF/AD=3k/(2k+3k)`，最後獨立揭示 `3/5`。恢復左側梯形並指出同一個 `F`，
-回扣第 2 beat 的形狀不變觀察。
+只看藍色的 `△GEC` 與綠色的 `△BEA`。
+
+動作目的：讓「先配出兩組相等角」在穩定畫面上單獨成立，再進入下一步。
+
+### 08 earn_equal_long_segment
+
+最後，中點條件已經告訴我們 `EC=EA`。
+
+動作目的：讓「由全等得到延長線等長」在穩定畫面上單獨成立，再進入下一步。
+
+### 09 measure_gc_and_dc
+
+把 `CD` 當作一個長度單位 `u`。
+
+動作目的：讓「先量出整段 GC 與一段 DC」在穩定畫面上單獨成立，再進入下一步。
+
+### 10 split_three_units
+
+因為 `GC` 已經包含右側的 `CD`，從三份中扣掉這一份，左側延長段 `GD` 就剩兩份：
+
+動作目的：讓「相減得到 GD 的兩個單位」在穩定畫面上單獨成立，再進入下一步。
+
+### 11 match_second_triangle_angles
+
+現在只看 `△GDF` 與 `△BAF`。
+
+動作目的：讓「在 F 點配出第二組相似角」在穩定畫面上單獨成立，再進入下一步。
+
+### 12 earn_second_similarity
+
+請注意對應順序：`G` 對 `B`，`D` 對 `A`，`F` 對 `F`。因此上方的
+`GD` 對應 `AB`，側邊的 `DF` 對應 `AF`：
+
+動作目的：讓「寫下相似與對應邊」在穩定畫面上單獨成立，再進入下一步。
+
+### 13 transfer_two_to_three
+
+上方已經知道 `GD:AB=2:3`。
+
+動作目的：讓「把上方比例搬到 AD」在穩定畫面上單獨成立，再進入下一步。
+
+### 14 build_five_unit_bar
+
+把側邊攤成五個一樣大的格子。
+
+動作目的：讓「把全長排成五個相同單位」在穩定畫面上單獨成立，再進入下一步。
+
+### 15 hold_before_fraction
+
+下方的大括號代表整條 `AD`。現在只問一件事：三格，占全部幾格？
+
+動作目的：讓「框出三個單位並停在比例前」在穩定畫面上單獨成立，再進入下一步。
+
+### 16 reveal_three_fifths
+
+整條 `AD` 是兩份加三份：
+
+動作目的：讓「把三格除以五格得到答案」在穩定畫面上單獨成立，再進入下一步。
+
+### 17 return_to_moving_point
+
+答案是五分之三。
+
+動作目的：讓「回到原圖確認不變的交點」在穩定畫面上單獨成立，再進入下一步。
 
 ## Build and QA constraints
 
-- 場景類別為 `CarloTcfs112MathQ04`；十個 beat 與 TOML、講者稿及 Slides
-  manifest 必須同序，全部不循環。講者稿應有 9 個 `[NEXT]`、0 個 `[LOOP]`。
+- 場景類別為 `CarloTcfs112MathQ04`；17 個 beat 與 TOML、講者稿及 Slides
+  manifest 必須同序，全部不循環。講者稿應有 16 個 `[NEXT]`、0 個 `[LOOP]`。
 - 匯入期精確檢查必須在任何 Manim 物件建立之前完成，而且不得引用畫面上的
   `F` 座標作為唯一數學驗證。
-- 第 3 與第 9 beat 都不得出現 `3/5`；第 9 beat 還不得出現 `5k`。第 10 beat
-  必須先形成整體長度，再揭示答案。
+- `pause_on_unknown_split` 與 `hold_before_fraction` 都不得出現 `3/5`；
+  `hold_before_fraction` 還不得出現 `5k`。`reveal_three_fifths` 必須先
+  形成整體長度，再揭示答案。
 - 必須先通過 Python compile/import、catalog 同步與靜態驗證，再以隔離媒體
   目錄透過 `manim-slides` wrapper 執行 1920x1080 高畫質渲染。
 - 視覺檢查涵蓋每個 segment endpoint、全片每秒取樣，以及下列加密轉場：三次

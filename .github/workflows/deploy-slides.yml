@@ -1,0 +1,88 @@
+name: Deploy math lesson library
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    container: registry.fedoraproject.org/fedora@sha256:590825dbaee41a97a162ecdffc3305264bd11cb3ff1e9cfd710d41ca5f936134
+    timeout-minutes: 360
+    env:
+      MATH_MANIM_DVISVGM_PACKAGE: texlive-dvisvgm-svn77830-111.fc44.x86_64
+      MATH_MANIM_AMSFONTS_PACKAGE: texlive-amsfonts-svn77682-11.fc44.noarch
+    steps:
+      - name: Install rendering system packages
+        run: |
+          dnf install --assumeyes \
+            bsdtar \
+            dnf-plugins-core \
+            git \
+            gzip \
+            google-noto-sans-cjk-vf-fonts-2.004-11.fc44.noarch \
+            tar
+
+      - name: Check out the repository
+        uses: actions/checkout@v6
+
+      - name: Install the locked Pixi environment
+        uses: prefix-dev/setup-pixi@v0.10.0
+        with:
+          pixi-version: v0.73.0
+          frozen: true
+          cache: true
+
+      - name: Validate sources and warm the TeX cache
+        run: |
+          pixi run test
+          pixi run check-slide-density
+          pixi run validate-catalog
+          pixi run check-sources
+          pixi run prepare-tex
+
+      - name: Render public lessons
+        run: pixi run lessons render --status draft_rendered,visual_verified,published --jobs 2 --quality h
+
+      - name: Check fresh slide media
+        run: |
+          pixi run qa-slides --status draft_rendered,visual_verified,published
+          pixi run validate-catalog
+
+      - name: Export standalone decks
+        run: pixi run lessons export --status draft_rendered,visual_verified,published --jobs 2
+
+      - name: Assemble the public lesson library
+        run: pixi run build-public-site --revision "$GITHUB_SHA"
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: build/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -17,7 +17,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The rendered solution introduces L and J only in its auxiliary diagram. This lesson defines L=PQ intersect extended FG and J=IR intersect extended CG before using them. The PDF text layer also misreads EQ as EG in one ratio."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q11/deck.py"
 scene_class = "Tcfs115Q11Slide"
 presenter_script = "lessons/tcfs_115_math_gifted/q11/presenter.zh-TW.md"
@@ -26,6 +26,11 @@ estimated_minutes = 11
 expected_answer = "FN/NB = 1/2"
 independent_check = "For A=(0,0,0), B=(a,0,0), C=(a,a,0), D=(0,a,0), E=(0,0,a), F=(a,0,a), G=(a,a,a), H=(0,a,a), the points are P=(a/2,0,a), Q=(0,2a/5,a), R=(0,a,a/2). Their plane is 4x+5y+6z=8a. On FB, x=a and y=0, so z=2a/3; hence FN=a/3, NB=2a/3, and FN/NB=1/2."
 tags = ["geometry", "cube", "plane-section", "similar-triangles", "spatial-reasoning"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "在正立方體 ABCD-EFGH 中，AE、BF、CG、DH 為四條對應稜。P、R 分別是 EF、HD 的中點，Q 位於 EH 上且 EQ:QH=2:3。平面 PQR 分別交 CD、FB 於 M、N，求 FN/NB。"
 
 [[beats]]
 id = "build_cube"
@@ -40,7 +45,15 @@ id = "trace_known_section"
 loop = false
 
 [[beats]]
+id = "mark_known_section"
+loop = false
+
+[[beats]]
 id = "extend_top_line"
+loop = false
+
+[[beats]]
+id = "land_top_extension"
 loop = false
 
 [[beats]]
@@ -48,7 +61,15 @@ id = "extend_right_line"
 loop = false
 
 [[beats]]
+id = "land_right_extension"
+loop = false
+
+[[beats]]
 id = "locate_n"
+loop = false
+
+[[beats]]
+id = "confirm_point_n"
 loop = false
 
 [[beats]]
@@ -60,7 +81,15 @@ id = "top_left_ratio"
 loop = false
 
 [[beats]]
+id = "record_top_left_ratio"
+loop = false
+
+[[beats]]
 id = "top_right_ratio"
+loop = false
+
+[[beats]]
+id = "record_top_right_ratio"
 loop = false
 
 [[beats]]
@@ -68,7 +97,15 @@ id = "right_face_ratio"
 loop = false
 
 [[beats]]
+id = "record_right_face_ratio"
+loop = false
+
+[[beats]]
 id = "front_face_ratio"
+loop = false
+
+[[beats]]
+id = "record_front_face_ratio"
 loop = false
 
 [[beats]]
@@ -76,5 +113,17 @@ id = "finish_ratio"
 loop = false
 
 [[beats]]
+id = "combine_face_ratios"
+loop = false
+
+[[beats]]
+id = "simplify_space_ratio"
+loop = false
+
+[[beats]]
 id = "consolidate"
+loop = false
+
+[[beats]]
+id = "reveal_space_ratio"
 loop = false

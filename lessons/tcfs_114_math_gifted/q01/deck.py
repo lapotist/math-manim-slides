@@ -247,12 +247,30 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.7,
         )
         beat_title = next_title
-        for value in range(2, 11):
+        for value in range(2, 4):
             self.play(
                 marker.animate.move_to(self.cell_center(*VALUE_COORDS[value])),
                 FadeIn(numbers[value], shift=UP * 0.04),
                 run_time=0.38,
             )
+
+        self.next_beat("follow_four_to_six")
+        for value in range(4, 7):
+            self.play(
+                marker.animate.move_to(self.cell_center(*VALUE_COORDS[value])),
+                FadeIn(numbers[value], shift=UP * 0.04),
+                run_time=0.38,
+            )
+
+        self.next_beat("follow_seven_to_ten")
+        for value in range(7, 11):
+            self.play(
+                marker.animate.move_to(self.cell_center(*VALUE_COORDS[value])),
+                FadeIn(numbers[value], shift=UP * 0.04),
+                run_time=0.38,
+            )
+
+        self.next_beat("ask_for_diagonal_groups")
         self.play(FadeIn(walk_prompt), run_time=0.45)
 
         # Beat 03 notice_diagonals: group the same numbers without a formula yet.
@@ -292,7 +310,7 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.6,
         )
         beat_title = next_title
-        for index, total in enumerate(range(2, 6)):
+        for index, total in enumerate(range(2, 4)):
             source_numbers = VGroup(
                 *(numbers[GRID_VALUES[coordinate]] for coordinate in self.diagonal_coordinates(total))
             )
@@ -301,6 +319,19 @@ class CarloTcfs114MathQ01(CarloSlide):
                 animations.append(Create(early_arrows[total]))
             animations.append(TransformFromCopy(source_numbers, grouped_values[2 * index]))
             self.play(*animations, run_time=0.7)
+
+        self.next_beat("group_longer_diagonals")
+        for index, total in enumerate(range(4, 6), start=2):
+            source_numbers = VGroup(
+                *(numbers[GRID_VALUES[coordinate]] for coordinate in self.diagonal_coordinates(total))
+            )
+            animations = [FadeIn(early_diagonals[total])]
+            if total in early_arrows:
+                animations.append(Create(early_arrows[total]))
+            animations.append(TransformFromCopy(source_numbers, grouped_values[2 * index]))
+            self.play(*animations, run_time=0.7)
+
+        self.next_beat("name_diagonal_direction")
         self.play(
             Write(VGroup(grouped_values[1], grouped_values[3], grouped_values[5])),
             FadeIn(diagonal_note),
@@ -437,7 +468,7 @@ class CarloTcfs114MathQ01(CarloSlide):
         )
         self.play(FadeIn(selected_bar_labels), FadeIn(profile_note), run_time=0.55)
 
-        # Beat 06 count_to_78: count the growing half before touching later bands.
+        # Beat 06 count_to_78: assemble the growing-half count.
         self.next_beat("count_to_78")
         next_title = label("先只算前 12 條斜線", 31, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -493,10 +524,13 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.55,
         )
         self.play(Write(count_formula), run_time=0.85)
+
+        # Beat 07 confirm_seventy_eight: attach the count to its final cell.
+        self.next_beat("confirm_seventy_eight")
         self.play(FadeIn(numbers[78]), FadeIn(count_note), run_time=0.6)
         self.play(Indicate(numbers[78], color=POINT), run_time=0.55)
 
-        # Beat 07 step_to_99: consume two complete shrinking diagonals.
+        # Beat 08 step_to_99: consume two complete shrinking diagonals.
         self.next_beat("step_to_99")
         next_title = label("再走完整的 11 格、10 格", 31, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -556,7 +590,7 @@ class CarloTcfs114MathQ01(CarloSlide):
         )
         self.play(FadeIn(ninety_nine_note), Indicate(numbers[99], color=POINT), run_time=0.65)
 
-        # Beat 08 find_the_band: locate the offset without revealing its cell.
+        # Beat 09 find_the_band: locate the offset without revealing its cell.
         self.next_beat("find_the_band")
         next_title = label("104 比 99 多走幾格？", 31, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -591,7 +625,7 @@ class CarloTcfs114MathQ01(CarloSlide):
         self.play(FadeIn(next_band), FadeIn(fifth_cell), run_time=0.6)
         self.play(FadeIn(marker), FadeIn(numbers[100]), FadeIn(start_card), run_time=0.7)
 
-        # Beat 09 walk_five_cells: count exact cells and reveal the answer only at five.
+        # Beat 10 walk_five_cells: count exact cells and reveal the answer only at five.
         self.next_beat("walk_five_cells")
         next_title = label("同一條斜線上，一上一右", 31, INK, "BOLD")
         next_title.move_to(beat_title)
@@ -632,7 +666,18 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.8,
         )
         beat_title = next_title
-        for index in range(1, 5):
+        for index in range(1, 3):
+            coordinate = walk_coordinates[index]
+            value = walk_values[index]
+            self.play(
+                marker.animate.move_to(self.cell_center(*coordinate)),
+                FadeIn(numbers[value]),
+                FadeIn(walk_rows[index], shift=UP * 0.05),
+                run_time=0.62,
+            )
+
+        self.next_beat("finish_five_cell_walk")
+        for index in range(3, 5):
             coordinate = walk_coordinates[index]
             value = walk_values[index]
             self.play(
@@ -647,8 +692,8 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.8,
         )
 
-        # Beat 10 return_and_check: restore all 144 entries and verify both counts.
-        self.next_beat("return_and_check")
+        # Beat 11 restore_full_grid: restore all 144 entries around the target.
+        self.next_beat("restore_full_grid")
         next_title = label("回到整張表，再檢查一次", 31, INK, "BOLD")
         next_title.move_to(beat_title)
         visible_values = {
@@ -726,6 +771,9 @@ class CarloTcfs114MathQ01(CarloSlide):
             ),
             run_time=1.6,
         )
+
+        # Beat 12 check_target_coordinates: verify the band and offset independently.
+        self.next_beat("check_target_coordinates")
         self.play(
             Create(horizontal_guide),
             Create(vertical_guide),
@@ -741,6 +789,9 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.75,
         )
         self.play(Write(count_check), run_time=0.75)
+
+        # Beat 13 consolidate_grid_location: reveal and hold the requested pair.
+        self.next_beat("consolidate_grid_location")
         self.play(Write(final_answer), Create(answer_box), FadeIn(final_note), run_time=0.9)
         self.play(
             Circumscribe(VGroup(marker, numbers[104]), color=POINT),

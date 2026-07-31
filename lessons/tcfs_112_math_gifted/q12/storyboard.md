@@ -136,95 +136,152 @@ decrease at every integer angle from 0 to 30 degrees, and the final value.
   read.
 - No source scan, frame, handwriting, audio, logo, or channel artwork appears.
 
-## Beat map and motion purposes
+## Beat map
 
 ### 01 meet_unit_hexagon
 
-Draw one fixed regular hexagon, mark its center, and isolate one side of length
-1. The motion establishes exactly which object and scale will remain fixed.
-Ask when the overlap with a rotating copy is smallest, without showing a copy
-or answer.
+先只看一個正六邊形。
 
-### 02 rotate_and_watch_overlap
+動作目的：讓「先固定一個邊長 1 的正六邊形」在穩定畫面上單獨成立，再進入下一步。
 
-Introduce one blue copy at the same position and rotate only it through 12, 30,
-48, and 60 degrees. Keep the green intersection attached to both polygons. The
-deliberate states show shrink, recovery, and a full return; they are evidence
-for a period, not decorative roaming.
+### 02 rotate_to_half_period
 
-### 03 reduce_one_period_by_reflection
+黃色六邊形完全不動。現在加入藍色六邊形，兩者一開始重合。
 
-State the 60-degree period only after the return has landed. Then show the
-18-degree overlap and its reflected 42-degree copy side by side. The explicit
-reflection preserves the fixed hexagon, rotation constraint, and area. Conclude
-that only 0 through 30 degrees must be checked.
+動作目的：讓「先觀察重疊縮到週期中點」在穩定畫面上單獨成立，再進入下一步。
 
-### 04 find_common_incircle
+### 03 rotate_and_watch_overlap
 
-Return to a generic 18-degree overlap. Draw the circle tangent to every side of
-both hexagons, then derive its radius from a visible half-side right triangle.
-This motion replaces a moving-boundary problem with one fixed distance `r`.
+繼續轉到 48 度，面積開始長回來。到了 60 度，藍色六邊形又和黃色六邊形完全重合。
 
-### 05 read_alternating_normal_gaps
+動作目的：讓「再觀察重疊長回完全重合」在穩定畫面上單獨成立，再進入下一步。
 
-Draw the twelve perpendicular radii to the active support lines. Highlight one
-short gap `theta` and the next long gap `60-theta`, then count six of each. The
-motion answers what actually changes during rotation.
+### 04 reflect_half_period
 
-### 06 balance_the_gaps
+正六邊形每轉 60 度就回到原來的形狀，所以面積以 60 度為一個週期。
 
-Transform the generic configuration to 30 degrees. The alternating radii become
-twelve equal 30-degree gaps and the overlap becomes a regular tangential
-12-gon. Pause on the question of minimality; do not write the area formula yet.
+動作目的：讓「先把後半週期鏡射到前半」在穩定畫面上單獨成立，再進入下一步。
 
-### 07 measure_one_tangent_corner
+### 05 reduce_one_period_by_reflection
 
-Remove the whole diagram and enlarge one pair of adjacent tangent lines. Draw
-the two perpendicular radii, angle bisector, right triangles, and tangent leg
-in that order. Derive `r^2 tan(delta/2)` from the visible quadrilateral.
+因此每一個後半週期的位置，都有一個面積相同的前半週期位置。我們只需證明
 
-### 08 assemble_overlap_area
+動作目的：讓「寫出反射關係與保留區間」在穩定畫面上單獨成立，再進入下一步。
 
-Return to the generic overlap and fill all twelve tangent-corner pieces. Copy
-the six yellow wedges into the first formula term and the six blue wedges into
-the second. Only after both contributions exist, combine them into `A(theta)`.
+### 06 construct_common_incircle
 
-### 09 prove_equal_gaps_minimize
+先停在一個普通的 18 度位置。
 
-Rename the two half-gaps `x,y`, visibly keep `x+y=30 degrees`, and show an
-unequal divider. Use the product identity for `2cos x cos y` to prove its
-maximum occurs at `x=y`; then move the divider to equality. The motion answers
-why the halfway picture is a global minimum rather than a guess.
+動作目的：讓「先作出共同內切圓與直角三角形」在穩定畫面上單獨成立，再進入下一步。
 
-### 10 substitute_half_period
+### 07 find_common_incircle
 
-Return to the equal-gap 12-gon. Reveal its twelve congruent wedges, substitute
-`r^2=3/4`, and reduce the area to `9 tan(15 degrees)`. Every symbol now points
-back to a visible radius, gap, or wedge count.
+由畢氏定理，`r` 的平方加上四分之一等於 1，所以
 
-### 11 calculate_tan_fifteen
+動作目的：讓「由直角三角形算出內切圓半徑」在穩定畫面上單獨成立，再進入下一步。
 
-Show 15 degrees as the visible difference between 45 and 30 degrees. Build the
-tangent subtraction identity one line at a time and obtain `2-sqrt(3)`.
+### 08 draw_alternating_normal_gaps
 
-### 12 hold_before_expansion
+從中心向每一條有效邊作垂線。黃色半徑對應固定六邊形，藍色半徑對應旋轉後的六邊形。
 
-Restore the two hexagons at 30 degrees beside the settled expression
-`A_min=9(2-sqrt(3))=?`. Stop before distributing 9. This is the genuine
-pre-answer frame.
+動作目的：讓「先畫出交替的短弧與長弧」在穩定畫面上單獨成立，再進入下一步。
 
-### 13 reveal_and_return_to_rotation
+### 09 read_alternating_normal_gaps
 
-Expand to the requested exact value, highlight the green overlap, and add the
-0-to-30-to-60 rotation route. The final composition reconnects the answer to
-the opening motion and remembers 30 degrees as the midpoint of every period.
+這兩種間隔交替出現：六個小間隔，六個大間隔。
+
+動作目的：讓「把十二個間隙壓成兩類」在穩定畫面上單獨成立，再進入下一步。
+
+### 10 balance_the_gaps
+
+讓藍色六邊形繼續轉到 30 度。
+
+動作目的：讓「把一大一小，調成一樣」在穩定畫面上單獨成立，再進入下一步。
+
+### 11 construct_tangent_corner
+
+把相鄰的兩條切線放大。它們和圓相切的兩點，到中心的距離都是 `r`，而且半徑都和切線垂直。
+
+動作目的：讓「先完成一個切線角落」在穩定畫面上單獨成立，再進入下一步。
+
+### 12 measure_one_tangent_corner
+
+左右兩個三角形的面積相加，二分之一和乘以二互相抵消，因此這一個角落的面積是
+
+動作目的：讓「把角落面積寫成正切公式」在穩定畫面上單獨成立，再進入下一步。
+
+### 13 collect_small_overlap_wedges
+
+回到 18 度的完整圖形。十二個角落剛好從中心鋪滿整個重疊區，沒有空隙，也沒有重複。
+
+動作目的：讓「先收集較小的一組角落」在穩定畫面上單獨成立，再進入下一步。
+
+### 14 assemble_overlap_area
+
+藍色的六個角落，間隔都是 `60 度減 theta`，得到第二項。
+
+動作目的：讓「加入另一組並合成重疊面積」在穩定畫面上單獨成立，再進入下一步。
+
+### 15 derive_equal_gap_bound
+
+把兩個半角分別叫作 `x` 和 `y`。不論怎麼旋轉，它們的總和永遠是 30 度。
+
+動作目的：讓「先推導固定和下的面積下界」在穩定畫面上單獨成立，再進入下一步。
+
+### 16 prove_equal_gaps_minimize
+
+第一項固定。第二項最大只能是 1，而且只有 `x 減 y等於 0` 時達到。
+
+動作目的：讓「讓兩個間隙相等並達到下界」在穩定畫面上單獨成立，再進入下一步。
+
+### 17 substitute_equal_half_period
+
+回到 30 度的位置。十二個角落現在完全相同，每個角落使用 15 度的半角。
+
+動作目的：讓「把相等間隙代入面積式」在穩定畫面上單獨成立，再進入下一步。
+
+### 18 substitute_half_period
+
+12 和四分之三相乘得到 9，所以整題只剩
+
+動作目的：讓「逐步化簡到正切十五度」在穩定畫面上單獨成立，再進入下一步。
+
+### 19 construct_fifteen_degree_difference
+
+十五度可以看成 45 度減 30 度。
+
+動作目的：讓「先用四十五減三十作出十五度」在穩定畫面上單獨成立，再進入下一步。
+
+### 20 calculate_tan_fifteen
+
+代入並整理，得到
+
+動作目的：讓「再推導正切十五度的精確值」在穩定畫面上單獨成立，再進入下一步。
+
+### 21 hold_before_expansion
+
+左邊是已經證明會取得最小值的 30 度位置。
+
+動作目的：讓「所有幾何都已經回到同一行」在穩定畫面上單獨成立，再進入下一步。
+
+### 22 reveal_minimum_overlap
+
+把 9 分配進去，得到
+
+動作目的：讓「先揭示最小重疊面積」在穩定畫面上單獨成立，再進入下一步。
+
+### 23 reveal_and_return_to_rotation
+
+最後把答案放回旋轉過程：0 度時完全重合；走到週期中點 30 度，兩種間隔完全平均，重疊面積最小；到了 60 度又完全重合。
+
+動作目的：讓「回到旋轉圖並收束路線」在穩定畫面上單獨成立，再進入下一步。
 
 ## Build constraints
 
 - Edit only `lessons/tcfs_112_math_gifted/q12/`; generated media remains under
   ignored `build/` paths.
 - Scene class: `CarloTcfs112MathQ12`.
-- Thirteen beats, all `loop=false`.
+- Twenty-three beats, all `loop=false`.
 - Traditional Chinese uses `label()`; every `MathTex` string is ASCII math.
 - Render through the lesson runner at low quality first and then quality high.
 - Inspect all endpoints, the complete fixed-cadence movie sweep, the dynamic

@@ -17,7 +17,7 @@
 (Q,P,B') 的次序正確。該頁停在 (QB'=8-(-24/5))，最後一頁才化簡成
 (64/5)。
 
-預估 9 分鐘。十一個 beat 全部不循環；每個停點只新增一個主要想法，並保留
+預估 9 分鐘。十七個 beat 全部不循環；每個停點只新增一個主要想法，並保留
 足夠時間讓講者慢速指認線段與等號條件。
 
 ## Source and verification
@@ -93,8 +93,8 @@ QB'=8-\left(-\frac{24}{5}\right)=\frac{64}{5}.
   紫色代表折線的第一段 (PQ)。
 - 鏡射時保留 (BB'\perp AC)、中點與等長記號，先讓 (PB=PB') 可見，再改寫
   路徑。三角不等式不可在鏡射身分之前出現。
-- 座標只在第 8 beat 之後出現；此前只靠移動、鏡射、共線與垂直來建立直覺。
-- 最終答案 (64/5) 在第 11 beat 前不得出現。第 10 beat 必須以
+- 座標只在第 10 beat 之後出現；此前只靠移動、鏡射、共線與垂直來建立直覺。
+- 最終答案 (64/5) 在第 16 beat 前不得出現。第 15 beat 必須以
   (QB'=8-(-24/5)) 作為完整的 pre-answer 停點。
 - 所有中文用 `label()`；`MathTex` 只放 ASCII 字元與數學符號。點標籤避開
   動線，尤其不能壓在線段 (QP) 或 (PB') 上。
@@ -103,65 +103,85 @@ QB'=8-\left(-\frac{24}{5}\right)=\frac{64}{5}.
 
 ### 01 meet_broken_path
 
-先畫長方形與對角線，再放入 (P)、(Q) 與折線 (Q\to P\to B)。只提出
-(PQ+PB) 要最小化，不顯示策略。
+先畫長方形與對角線，再放入 (P)、(Q) 與折線 (Q\to P\to B)。
 
-### 02 explore_two_movers
+### 02 state_path_objective
 
-讓 (P) 沿 (AC) 走過幾個位置，再讓 (Q) 沿 (AB) 移動。折線持續跟隨，
-使兩個自由度與長度變化可見，最後停在一個非最優的一般位置。
+在完整折線旁寫出 (PQ+PB) 要最小化以及兩個點的允許位置，不顯示策略。
 
-### 03 reflect_b_across_diagonal
+### 03 explore_two_movers
+
+讓 (P) 沿 (AC) 走過幾個位置，(Q) 暫時固定，使第一個自由度可見。
+
+### 04 move_q_along_top_edge
+
+再讓 (Q) 沿 (AB) 移動，折線持續跟隨，最後讓兩點停在非最優的一般位置。
+
+### 05 reflect_b_across_diagonal
 
 將 (B) 跨過 (AC) 鏡射到 (B')。顯示鏡射線 (BB')、中點 (H)、直角與
 (BH=HB')，但還不改寫目標。
 
-### 04 replace_equal_leg
+### 06 replace_equal_leg
 
 連結 (P) 與 (B')，以等長記號和 (P\in AC) 得到 (PB=PB')，再把
 (PQ+PB) 改寫為 (PQ+PB')。淡出原本的 (PB)，留下鏡射後折線。
 
-### 05 straighten_reflected_path
+### 07 straighten_reflected_path
 
-先畫直線段 (QB')，這時才寫三角不等式 (PQ+PB'\ge QB')。移動 (P)
-直到 (Q,P,B') 共線，展示等號發生時折線被拉直。
+先畫直線段 (QB')，這時才寫三角不等式 (PQ+PB'\ge QB')，再移動 (P) 尋找拉直位置。
 
-### 06 slide_q_along_top_edge
+### 08 attain_straight_path
+
+標出 (Q,P,B') 共線並寫出等號，展示兩段折線拼成整段 (QB')。
+
+### 09 slide_q_along_top_edge
 
 暫時隱去 (P) 與兩段折線，只保留 (QB')。讓 (Q) 沿 (AB) 左右滑動，觀察
 所有候選直線段，最後停在垂足位置。
 
-### 07 settle_perpendicular_foot
+### 10 settle_perpendicular_foot
 
 加上直角記號，指出從固定點到直線的最短距離垂直於該直線；視覺確認垂足
 落在 (AB) 這一段內。仍不使用座標。
 
-### 08 introduce_coordinates
+### 11 introduce_coordinates
 
 把四個頂點標成 (D=(0,0),C=(16,0),B=(16,8),A=(0,8))，由截距式得到
 (AC:x+2y=16)。
 
-### 09 compute_reflected_point
+### 12 compute_reflected_point
+
+先建立直線函數、法向量及代入 (B) 的數值，停在鏡射公式所需資料齊全的狀態。
+
+### 13 apply_reflection_formula
 
 使用直線法向量公式計算鏡射點，得到
 (B'=(48/5,-24/5))，並在圖上標出這個座標。
 
-### 10 verify_attainable_configuration
+### 14 verify_attainable_configuration
 
 算出垂足 (Q=(48/5,8)) 並用 (0<48/5<16) 確認它在線段上；再求
-(P=(48/5,16/5))，用高度次序確認 (Q,P,B') 共線且 (P\in AC)。停在
-(QB'=8-(-24/5))。
+(P=(48/5,16/5)) 並代回直線方程。
 
-### 11 reveal_minimum_length
+### 15 verify_collinear_order
 
-只做最後化簡，得到 (64/5)，並框住 (\min(PQ+PB)=64/5)。
+用高度次序確認 (Q,P,B') 共線且 (P\in AC)，停在 (QB'=8-(-24/5))。
+
+### 16 reveal_minimum_length
+
+只做高度差化簡，先得到數值 (64/5)。
+
+### 17 state_minimum_length
+
+將化簡結果寫成 (\min(PQ+PB)=64/5)，框住並重申等號可達。
 
 ## Build constraints
 
 - 只可在 `lessons/tcfs_113_math_gifted/q10/` 編輯來源檔；媒體輸出使用專屬
   ignored `build/media/carlo_tcfs_113_math_gifted_q10`。
-- 十一個 beat、TOML、講者稿與 Slides manifest 必須完全同序，全部
-  `loop=false`；講者稿必須有 10 個 `[NEXT]`、0 個 `[LOOP]`。
+- 十七個 beat、TOML、講者稿與 Slides manifest 必須完全同序，全部
+  `loop=false`；講者稿必須有 16 個 `[NEXT]`、0 個 `[LOOP]`。
 - 匯入期必須用有理數核對鏡射點、垂足、交點、線段包含關係與答案。
 - 必須以 1920x1080 原尺寸檢查鏡射直角／等長記號、移動標籤、座標推導、
   pre-answer 與答案畫面；另以固定頻率檢查完整影片，並加密抽查反射、拉直、

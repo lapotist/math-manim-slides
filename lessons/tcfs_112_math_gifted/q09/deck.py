@@ -318,7 +318,7 @@ class CarloTcfs112MathQ09(CarloSlide):
         )
         source.to_corner(DOWN + RIGHT, buff=0.22)
 
-        # Beat 01: construct the mirrored decimal object before using algebra.
+        # Beat 01 mirror_three_digits: construct the mirrored decimal object before using algebra.
         self.begin_beat("mirror_three_digits")
         stage_title = self.stage_title("五個位置，其實只有三個選擇")
         symbolic_row = self.palindrome_row(("a", "b", "c", "b", "a"))
@@ -354,8 +354,8 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(Write(n_formula), FadeIn(nonzero), run_time=0.85)
         self.wait(0.35)
 
-        # Beat 02: fold the five visible cards into their three contributions.
-        self.next_beat("fold_digit_sum")
+        # Beat 02 fold_outer_digit_pair: fold the five visible cards into their three contributions.
+        self.next_beat("fold_outer_digit_pair")
         next_title = self.stage_title("把鏡像位置成對相加")
         n_formula_target = n_formula.copy().move_to([-1.05, 1.82, 0])
         n_square = MathTex(r"n=q^2", font_size=34, color=PURPLE).move_to(
@@ -383,15 +383,21 @@ class CarloTcfs112MathQ09(CarloSlide):
         )
         self.play(Indicate(VGroup(symbolic_row[0], symbolic_row[4]), color=POINT), run_time=0.55)
         self.play(Write(sum_formula[0]), TransformFromCopy(symbolic_row[0][1], sum_formula[1]), run_time=0.55)
+
+        # Beat 03 fold_inner_digit_pairs: continue at a settled semantic boundary.
+        self.next_beat("fold_inner_digit_pairs")
         self.play(Indicate(VGroup(symbolic_row[1], symbolic_row[3]), color=BLUE), run_time=0.55)
         self.play(Write(sum_formula[2]), TransformFromCopy(symbolic_row[1][1], sum_formula[3]), run_time=0.55)
         self.play(Indicate(symbolic_row[2], color=REGION), run_time=0.5)
         self.play(Write(sum_formula[4]), TransformFromCopy(symbolic_row[2][1], sum_formula[5]), run_time=0.55)
+
+        # Beat 04 state_digit_sum_constraints: continue at a settled semantic boundary.
+        self.next_beat("state_digit_sum_constraints")
         self.play(LaggedStart(*(FadeIn(chip) for chip in constraints), lag_ratio=0.15), run_time=0.9)
         self.wait(0.30)
 
-        # Beat 03: exhaust the much smaller two-digit square search for m.
-        self.next_beat("find_the_digit_sum")
+        # Beat 05 list_digit_sum_squares: exhaust the much smaller two-digit square search for m.
+        self.next_beat("list_digit_sum_squares")
         next_title = self.stage_title("先決定小數字 m")
         range_line = NumberLine(
             x_range=[10, 45, 5],
@@ -424,13 +430,16 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(Create(range_line), Write(range_caption), FadeIn(square_dots), run_time=0.85)
         self.play(LaggedStart(*(FadeIn(card[0], card[1]) for card in audit_cards), lag_ratio=0.18), run_time=0.85)
         self.play(FadeIn(audit_cards[0][2]), Create(first_strike), run_time=0.55)
+
+        # Beat 06 find_the_digit_sum: continue at a settled semantic boundary.
+        self.next_beat("find_the_digit_sum")
         self.play(FadeIn(audit_cards[1][2]), Create(second_strike), run_time=0.55)
         self.play(FadeIn(audit_cards[2][2]), Circumscribe(audit_cards[2], color=REGION), run_time=0.7)
         self.play(TransformFromCopy(audit_cards[2][1], m_result), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 04: combine the terminal-square digit rule with the inner capacity.
-        self.next_beat("filter_outer_digit")
+        # Beat 07 list_terminal_square_digits: combine the terminal-square digit rule with the inner capacity.
+        self.next_beat("list_terminal_square_digits")
         next_title = self.stage_title("先限制最外面的 a")
         outer_row = self.palindrome_row(
             ("a", "b", "c", "b", "a"),
@@ -476,9 +485,15 @@ class CarloTcfs112MathQ09(CarloSlide):
             run_time=0.7,
         )
         self.play(LaggedStart(*(FadeIn(chip) for chip in a_chips), lag_ratio=0.10), run_time=0.75)
+
+        # Beat 08 derive_outer_digit_bound: continue at a settled semantic boundary.
+        self.next_beat("derive_outer_digit_bound")
         self.play(Create(zero_strike), run_time=0.35)
         self.play(FadeIn(inner_max), run_time=0.7)
         self.play(LaggedStart(*(Write(item) for item in bound_group), lag_ratio=0.20), run_time=1.0)
+
+        # Beat 09 retain_outer_digit_branches: continue at a settled semantic boundary.
+        self.next_beat("retain_outer_digit_branches")
         self.play(Create(low_strikes), run_time=0.5)
         self.play(
             *(Indicate(a_chips[index], color=REGION) for index in (3, 4, 5)),
@@ -486,8 +501,8 @@ class CarloTcfs112MathQ09(CarloSlide):
         )
         self.wait(0.30)
 
-        # Beat 05: enumerate every inner state for a=9 by compensating b and c.
-        self.next_beat("enumerate_a_nine")
+        # Beat 10 establish_a_nine_compensation: enumerate every inner state for a=9 by compensating b and c.
+        self.next_beat("establish_a_nine_compensation")
         next_title = self.stage_title("固定 a=9，只動 b 與 c")
         branch_equation = MathTex(r"a=9,\qquad 2b+c=18", font_size=42, color=INK).move_to(
             [0, 2.05, 0]
@@ -521,7 +536,38 @@ class CarloTcfs112MathQ09(CarloSlide):
         branch_nine_cards.append(first_card)
         self.play(Indicate(current_row, color=REGION), run_time=0.30)
         self.play(FadeIn(first_card, shift=DOWN * 0.12), run_time=0.38)
-        for position, (new_b, new_c) in zip(nine_positions[1:], states_nine[1:], strict=True):
+
+        # Beat 11 enumerate_a_nine: continue at a settled semantic boundary.
+        self.next_beat("enumerate_a_nine")
+        for position, (new_b, new_c) in zip(
+            (nine_positions[1], nine_positions[2]),
+            (states_nine[1], states_nine[2]),
+            strict=True,
+        ):
+            new_row = self.palindrome_row(
+                tuple(str(value) for value in (9, new_b, new_c, new_b, 9)),
+                card_width=0.88,
+                card_height=0.94,
+                font_size=36,
+            ).move_to(current_row)
+            new_pair = MathTex(
+                rf"(b,c)=({new_b},{new_c}),\quad 2\cdot{new_b}+{new_c}=18",
+                font_size=35,
+                color=INK,
+            ).move_to(pair_state)
+            candidate = self.candidate_card(
+                palindrome_value(9, new_b, new_c), width=2.05, font_size=29
+            ).move_to([position, -1.55, 0])
+            branch_nine_cards.append(candidate)
+            self.play(Transform(current_row, new_row), Transform(pair_state, new_pair), run_time=0.35)
+            self.play(FadeIn(candidate, shift=DOWN * 0.12), run_time=0.36)
+
+        self.next_beat("finish_a_nine_candidates")
+        for position, (new_b, new_c) in zip(
+            (nine_positions[3], nine_positions[4]),
+            (states_nine[3], states_nine[4]),
+            strict=True,
+        ):
             new_row = self.palindrome_row(
                 tuple(str(value) for value in (9, new_b, new_c, new_b, 9)),
                 card_width=0.88,
@@ -541,8 +587,8 @@ class CarloTcfs112MathQ09(CarloSlide):
             self.play(FadeIn(candidate, shift=DOWN * 0.12), run_time=0.36)
         self.wait(0.30)
 
-        # Beat 06: the a=6 branch has only two legal inner states.
-        self.next_beat("enumerate_a_six")
+        # Beat 12 set_up_a_six_branch: the a=6 branch has only two legal inner states.
+        self.next_beat("set_up_a_six_branch")
         next_title = self.stage_title("固定 a=6，只剩兩種中央配置")
         branch_nine_group = VGroup(*branch_nine_cards)
         branch_nine_label = MathTex(r"a=9", font_size=30, color=POINT)
@@ -581,28 +627,35 @@ class CarloTcfs112MathQ09(CarloSlide):
             Write(six_pair),
             run_time=0.75,
         )
-        branch_equation = branch_six_equation
-        for index, (new_b, new_c) in enumerate(states_six):
-            if index:
-                new_row = self.palindrome_row(
-                    tuple(str(value) for value in (6, new_b, new_c, new_b, 6)),
-                    card_width=0.72,
-                    card_height=0.78,
-                    font_size=31,
-                ).move_to(six_row)
-                new_pair = MathTex(
-                    rf"(b,c)=({new_b},{new_c})", font_size=32, color=INK
-                ).move_to(six_pair)
-                self.play(Transform(six_row, new_row), Transform(six_pair, new_pair), run_time=0.4)
-            candidate = self.candidate_card(
-                palindrome_value(6, new_b, new_c), width=2.25, font_size=31
-            ).move_to([-1.35 + index * 2.70, -1.85, 0])
-            branch_six_cards.append(candidate)
-            self.play(FadeIn(candidate, shift=DOWN * 0.12), run_time=0.38)
+
+        # Beat 13 enumerate_a_six: continue at a settled semantic boundary.
+        self.next_beat("enumerate_a_six")
+        first_six_candidate = self.candidate_card(
+            palindrome_value(6, *states_six[0]), width=2.25, font_size=31
+        ).move_to([-1.35, -1.85, 0])
+        branch_six_cards.append(first_six_candidate)
+        self.play(FadeIn(first_six_candidate, shift=DOWN * 0.12), run_time=0.38)
+
+        new_b, new_c = states_six[1]
+        new_row = self.palindrome_row(
+            tuple(str(value) for value in (6, new_b, new_c, new_b, 6)),
+            card_width=0.72,
+            card_height=0.78,
+            font_size=31,
+        ).move_to(six_row)
+        new_pair = MathTex(
+            rf"(b,c)=({new_b},{new_c})", font_size=32, color=INK
+        ).move_to(six_pair)
+        self.play(Transform(six_row, new_row), Transform(six_pair, new_pair), run_time=0.4)
+        second_six_candidate = self.candidate_card(
+            palindrome_value(6, new_b, new_c), width=2.25, font_size=31
+        ).move_to([1.35, -1.85, 0])
+        branch_six_cards.append(second_six_candidate)
+        self.play(FadeIn(second_six_candidate, shift=DOWN * 0.12), run_time=0.38)
         self.wait(0.30)
 
-        # Beat 07: finish a=5 and settle all eight candidates in one complete grid.
-        self.next_beat("enumerate_a_five")
+        # Beat 14 set_up_a_five_branch: finish a=5 and settle all eight candidates in one complete grid.
+        self.next_beat("set_up_a_five_branch")
         next_title = self.stage_title("最後一個分支，只有一個候選")
         branch_six_group = VGroup(*branch_six_cards)
         branch_six_label = MathTex(r"a=6", font_size=30, color=POINT)
@@ -626,7 +679,7 @@ class CarloTcfs112MathQ09(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(six_row, six_pair, branch_equation),
+            FadeOut(six_row, six_pair, branch_six_equation),
             run_time=0.45,
         )
         stage_title = next_title
@@ -644,9 +697,15 @@ class CarloTcfs112MathQ09(CarloSlide):
             Write(five_pair),
             run_time=0.7,
         )
+
+        # Beat 15 enumerate_a_five: continue at a settled semantic boundary.
+        self.next_beat("enumerate_a_five")
         branch_equation = branch_five_equation
         self.play(Indicate(five_row, color=REGION), run_time=0.30)
         self.play(FadeIn(five_card, shift=RIGHT * 0.12), run_time=0.38)
+
+        # Beat 16 assemble_eight_candidates: continue at a settled semantic boundary.
+        self.next_beat("assemble_eight_candidates")
         complete_title = self.stage_title("八個候選，沒有遺漏")
         count_formula = MathTex(r"1+2+5=8", font_size=39, color=POINT).move_to(
             [0, 2.12, 0]
@@ -684,8 +743,8 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(Write(count_formula), LaggedStart(*(FadeIn(card) for card in grid_group), lag_ratio=0.08), run_time=1.0)
         self.wait(0.35)
 
-        # Beat 08: prove the mod-4 rule, then attach an actual residue to every card.
-        self.next_beat("test_mod_four")
+        # Beat 17 prove_square_residues_mod_four: prove the mod-4 rule, then attach an actual residue to every card.
+        self.next_beat("prove_square_residues_mod_four")
         next_title = self.stage_title("先用除以 4 的餘數過濾")
         even_rule = MathTex(
             r"(2r)^2=4r^2\equiv0\pmod4", font_size=31, color=BLUE
@@ -718,6 +777,9 @@ class CarloTcfs112MathQ09(CarloSlide):
         )
         stage_title = next_title
         self.play(Write(even_rule), Write(odd_rule), run_time=0.8)
+
+        # Beat 18 test_mod_four: continue at a settled semantic boundary.
+        self.next_beat("test_mod_four")
         self.play(
             *(
                 Indicate(VGroup(card[1][-2], card[1][-1]), color=POINT, scale_factor=1.15)
@@ -743,7 +805,7 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(FadeIn(survivor_note), run_time=0.4)
         self.wait(0.30)
 
-        # Beat 09: isolate the three survivors and restore the original square test.
+        # Beat 19 isolate_three_survivors: isolate the three survivors and restore the original square test.
         self.next_beat("isolate_three_survivors")
         next_title = self.stage_title("必要條件通過後，還要真的驗平方")
         survivor_order = (96669, 69696, 98289)
@@ -791,8 +853,8 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(FadeIn(test_prompts), FadeIn(gate_note), run_time=0.65)
         self.wait(0.35)
 
-        # Beat 10: reject 96669 with an exact consecutive-square interval.
-        self.next_beat("bracket_first_false")
+        # Beat 20 place_first_square_bracket: reject 96669 with an exact consecutive-square interval.
+        self.next_beat("place_first_square_bracket")
         next_title = self.stage_title("96669 落在兩個相鄰平方之間")
         first_focus = self.candidate_card(96669, width=3.05, height=1.05, font_size=43).move_to(
             [0, 1.65, 0]
@@ -813,13 +875,16 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(FadeIn(first_focus), run_time=0.35)
         self.play(Create(first_interval[0]), FadeIn(first_interval[1], first_interval[2]), run_time=0.65)
         self.play(FadeIn(first_interval[3], first_interval[4]), run_time=0.55)
+
+        # Beat 21 bracket_first_false: continue at a settled semantic boundary.
+        self.next_beat("bracket_first_false")
         self.play(FadeIn(first_interval[5]), run_time=0.4)
         self.play(Write(first_interval[6]), run_time=0.55)
         self.play(Create(first_reject), FadeIn(not_square_one), run_time=0.65)
         self.wait(0.30)
 
-        # Beat 11: apply the same exact bracket to the other false survivor.
-        self.next_beat("bracket_second_false")
+        # Beat 22 place_second_square_bracket: apply the same exact bracket to the other false survivor.
+        self.next_beat("place_second_square_bracket")
         next_title = self.stage_title("98289 也被相鄰平方夾住")
         second_focus = self.candidate_card(98289, width=3.05, height=1.05, font_size=43).move_to(
             [0, 1.65, 0]
@@ -840,12 +905,15 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(FadeIn(second_focus), run_time=0.35)
         self.play(Create(second_interval[0]), FadeIn(second_interval[1], second_interval[2]), run_time=0.65)
         self.play(FadeIn(second_interval[3], second_interval[4]), run_time=0.55)
+
+        # Beat 23 bracket_second_false: continue at a settled semantic boundary.
+        self.next_beat("bracket_second_false")
         self.play(FadeIn(second_interval[5]), run_time=0.4)
         self.play(Write(second_interval[6]), run_time=0.55)
         self.play(Create(second_reject), FadeIn(not_square_two), run_time=0.65)
         self.wait(0.30)
 
-        # Beat 12: settle on the final unknown equality without declaring the pair.
+        # Beat 24 hold_middle_square_test: settle on the final unknown equality without declaring the pair.
         self.next_beat("hold_middle_square_test")
         next_title = self.stage_title("最後一張，等號先留白")
         hold_cards = {
@@ -880,8 +948,8 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(Write(preanswer), FadeIn(question_note), run_time=0.7)
         self.wait(0.55)
 
-        # Beat 13: verify the square, unfold it, and recheck every original condition.
-        self.next_beat("reveal_and_recheck_pair")
+        # Beat 25 reveal_square_equality: verify the square, unfold it, and recheck every original condition.
+        self.next_beat("reveal_square_equality")
         next_title = self.stage_title("平方成立，再回到原來四個條件")
         equality = MathTex(r"264^2", "=", "69696", font_size=44, color=INK).move_to(
             [3.10, 1.75, 0]
@@ -928,6 +996,9 @@ class CarloTcfs112MathQ09(CarloSlide):
             FadeOut(preanswer, *hold_cards.values()),
             run_time=0.40,
         )
+
+        # Beat 26 recheck_palindrome: continue at a settled semantic boundary.
+        self.next_beat("recheck_palindrome")
         self.play(
             FadeIn(equality),
             FadeIn(final_digits),
@@ -939,6 +1010,9 @@ class CarloTcfs112MathQ09(CarloSlide):
             Indicate(VGroup(final_digits[1], final_digits[3]), color=BLUE),
             run_time=0.65,
         )
+
+        # Beat 27 reveal_and_recheck_pair: continue at a settled semantic boundary.
+        self.next_beat("reveal_and_recheck_pair")
         self.play(Write(digit_sum_check), run_time=0.65)
         self.play(Write(second_sum_check), run_time=0.55)
         self.play(Write(final_answer), Create(answer_box), run_time=0.75)

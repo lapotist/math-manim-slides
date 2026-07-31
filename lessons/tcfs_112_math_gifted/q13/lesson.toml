@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "The PDF page states that MPSS has 685 members, every nonfounder entered through exactly one existing recommender, badge color is inherited from that recommender, founders have pairwise distinct colors, every member who recruits has a total of exactly 7, 14, 28, or 35 direct recruits, and nobody has left; its worked area is blank. The confirmed-public dedicated video visibly lets x count founders and groups recruiters by the four allowed direct-recruit totals, writes x+7y+14z+28w+35t=685, factors the recruited total by 7, divides 685 by 7 to obtain remainder 6, and records the conclusion (6,685). The complete written solution is clean through 00:02:55.00; blur and a device-control overlay begin by 00:02:55.05. The inspected 518x360 research stream is 175.775057 seconds long and has SHA-256 8f703609fa9da2c33f128211df9669958397c01dd32234d295e6348ef3729dfe. This lesson preserves that conclusion but independently supplies the two attainability arguments that a congruence alone does not provide: a temporally valid six-root forest built by 97 distinct seven-recruit steps, and the vacuous all-founder case with no recommendation edges. All diagrams, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_112_math_gifted/q13/deck.py"
 scene_class = "CarloTcfs112MathQ13"
 storyboard = "lessons/tcfs_112_math_gifted/q13/storyboard.md"
@@ -32,8 +32,21 @@ expected_answer = "(6,685)"
 independent_check = "Direct every recommendation edge from an existing recommender to the new member. Time order makes the graph acyclic; every nonfounder has indegree one and every founder has indegree zero, so it is a rooted forest. Recursive color inheritance makes each component monochromatic, while distinct founders have distinct colors; hence the color count equals the number r of roots. If d(v) is the total number of direct recruits of member v, then every nonroot is counted exactly once, so 685-r=sum_v d(v). Each d(v) is 0, 7, 14, 28, or 35, hence 685-r is divisible by 7 and r is congruent to 685, namely 6 modulo 7. Since r is positive, r>=6. Attainment is not inferred from the congruence: begin with six founders; for each of 97 sequential steps choose an existing member who has not recruited before, let that member recruit exactly seven new members, and choose one of those new members for the next step. This creates 6+97*7=685 members, exactly 97 vertices of outdegree 7, every other vertex of outdegree 0, and exactly six roots/colors, so p=6. For the other extreme, every color has a founder and founders are members, so the color count is at most 685. Taking all 685 members as initial founders gives 685 distinct colors and no edges; the conditional restriction on anyone who recruits is then vacuously satisfied. Therefore q=685 and (p,q)=(6,685)."
 tags = ["combinatorics", "rooted-forest", "invariant", "congruence", "extremal-construction", "vacuous-truth"]
 
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "某社群現有 685 名社員；除創社社員外，每人加入時都由恰好一位當時已在社群中的社員推薦，並繼承推薦人的認證顏色，而不同創社社員的顏色互異。每位曾推薦他人的社員，其累計直接推薦人數必為 7、14、28、35 之一，且目前無人退社。若認證顏色種數的最小值與最大值分別為 p、q，求 (p,q)。"
+
+[[beats]]
+id = "grow_first_seven_children"
+loop = false
+
 [[beats]]
 id = "grow_seven_branch"
+loop = false
+
+[[beats]]
+id = "grow_second_generation"
 loop = false
 
 [[beats]]
@@ -41,7 +54,15 @@ id = "pass_color_forward"
 loop = false
 
 [[beats]]
+id = "compare_two_colored_trees"
+loop = false
+
+[[beats]]
 id = "equate_colors_and_roots"
+loop = false
+
+[[beats]]
+id = "count_unique_incoming_edges"
 loop = false
 
 [[beats]]
@@ -50,6 +71,10 @@ loop = false
 
 [[beats]]
 id = "compress_recruitment_bundles"
+loop = false
+
+[[beats]]
+id = "write_recruitment_multiple"
 loop = false
 
 [[beats]]
@@ -65,7 +90,23 @@ id = "plant_six_founders"
 loop = false
 
 [[beats]]
+id = "activate_first_founder"
+loop = false
+
+[[beats]]
+id = "show_first_recruitment_step"
+loop = false
+
+[[beats]]
+id = "show_second_recruitment_step"
+loop = false
+
+[[beats]]
 id = "repeat_ninety_seven_steps"
+loop = false
+
+[[beats]]
+id = "compare_necessary_and_feasible"
 loop = false
 
 [[beats]]
@@ -73,11 +114,23 @@ id = "certify_minimum"
 loop = false
 
 [[beats]]
+id = "count_possible_root_colors"
+loop = false
+
+[[beats]]
 id = "bound_color_count"
 loop = false
 
 [[beats]]
+id = "show_all_founders"
+loop = false
+
+[[beats]]
 id = "realize_all_founders"
+loop = false
+
+[[beats]]
+id = "place_minimum_and_maximum_witnesses"
 loop = false
 
 [[beats]]

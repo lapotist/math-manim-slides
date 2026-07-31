@@ -12,63 +12,79 @@
 
 ## Beat plan
 
-## 01 original_seven_terms (0:40, loop=false)
+## 01 original_seven_terms (0:25, loop=false)
 
 - Settled visual: 顯示 `abc, ab, bc, ca, a, b, c` 七張積木牌，先不顯示等號右側與三角形條件。
 - Animation: 依三次、二次、一次分成三層，但不立即因式分解。
 - Prompt: 問「這七項像是哪一個乘積展開後留下來的？」
 - Boundary: 七項按結構排好，中間留一個明顯空位。
 
-## 02 missing_one (0:45, loop=false)
+## 02 missing_one (0:25, loop=false)
 
 - Visual construction: 三個二選一開關分別為 `{a,1}`、`{b,1}`、`{c,1}`，逐一產生八種乘積。
 - Animation: 七種選擇落到原式對應項；最後 `1x1x1` 指向唯一空位。
 - Discovery: 觀眾先說出缺少常數 1，再將洋紅色 `+1` 放入兩邊。
 - Pause: 在補入之前保留短暫靜止。
 
-## 03 complete_product (0:40, loop=false)
+## 03 identify_missing_side (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 04 complete_product (0:25, loop=false)
 
 - Animation: 八張積木牌依三個二選一開關收合成 `(a+1)(b+1)(c+1)`。
 - Right side: `479+1` 同時變為 `480`，不得先顯示完成式。
 - Result: `(a+1)(b+1)(c+1)=480`。
 - Boundary: 原七項縮成淡色參考，完成的乘積成為主體。
 
-## 04 shift_sides (0:45, loop=false)
+## 05 shift_sides (0:25, loop=false)
 
 - Animation: 在三條邊 `a>b>c>=1` 的數線標記上各向右平移 1，命名 `x=a+1, y=b+1, z=c+1`。
 - Preserve order: 視覺上顯示平移不改變先後，所以 `x>y>z>=2`。
 - Product: 將新符號帶入得到 `xyz=480`。
 - Boundary: 只留下新變數條件與一個小型回譯標籤。
 
-## 05 bound_z (0:45, loop=false)
+## 06 bound_z (0:25, loop=false)
 
 - Visual: 三個由小到大的長方柱以 `z<y<x` 排列；若三者都至少是 `z`，乘積就大於 `z^3`。
 - Algebra after visual: `z^3<xyz=480`，所以 `z<cube_root(480)<8`。
 - Teaching point: 最小因數只能在很小的範圍內，不需要盲目分解所有 480。
 - Boundary: 數線只亮出整數 2 到 7。
 
-## 06 candidate_divisors (0:40, loop=false)
+## 07 list_bounded_candidates (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 08 candidate_divisors (0:25, loop=false)
 
 - Animation: 逐一用 480 的因數檢查數線；2、3、4、5、6 保留，7 因不整除 480 而淡出。
 - Exact candidate set: `z in {2,3,4,5,6}`。
 - Source clarification: 必須明說 `z` 是 480 的因數；不能只由 `z^3<480` 直接跳到 2 至 6。
 - Boundary: 五張候選卡等距排列。
 
-## 07 pose_triangle_filter (0:45, loop=false)
+## 09 pose_triangle_filter (0:25, loop=false)
 
 - Visual: 固定最長邊 `a`，把 `b`、`c` 兩線段首尾相接向它靠攏。
 - Contrast: 一個剛好碰到的退化情況與一個能真正合攏的三角形。
 - Prompt: 問「乘積正確還不夠；哪個條件決定三邊能否合起來？」
 - Pause: 等觀眾提出 `b+c>a`。
 
-## 08 translate_triangle (0:45, loop=false)
+## 10 state_triangle_filter (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 11 translate_triangle (0:25, loop=false)
 
 - Animation: 從線段圖複製 `b+c>a`，再代入 `a=x-1, b=y-1, c=z-1`。
 - Staged simplification: `(y-1)+(z-1)>x-1`, then `x-y<z-1`。
 - Visual meaning: `x` 與 `y` 不能相差太遠；`z` 提供允許的差距。
 - Boundary: 每張候選卡旁出現自己的門檻 `x-y<z-1`。
 
-## 09 nearest_factor_pairs (1:10, loop=false)
+## 12 factor_triangle_condition (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 13 nearest_factor_pairs (0:25, loop=false)
 
 - Method reveal: 對固定 `z`，有 `xy=480/z`。以因數矩形向正方形靠近，說明最接近平方根的因數對使 `x-y` 最小。
 - Table built row by row:
@@ -80,33 +96,61 @@
 - Completeness: 若最接近的因數對都不符合差距，其他更不平均的因數對差距只會更大，因此不必列出每一對。
 - Boundary: 五列完整但只強調 gap 欄。
 
-## 10 select_valid_rows (0:55, loop=false)
+## 14 test_near_factor_pairs (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 15 test_far_factor_pairs (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 16 select_valid_rows (0:25, loop=false)
 
 - Animation: 對每列逐一套入嚴格門檻：`1<1` false、`6<2` false、`2<3` true、`4<4` false、`2<5` true。
 - Strictness: `z=5` 的等號邊界代表退化三角形，必須明確淘汰。
 - Survivors: 只保留 `(x,y,z)=(12,10,4)` 與 `(10,8,6)`，其他列留淡色痕跡以顯示完整檢查。
 - Boundary: 兩列通過標記落定。
 
-## 11 restore_sides (0:35, loop=false)
+## 17 test_candidate_rows (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 18 retain_valid_rows (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 19 restore_sides (0:25, loop=false)
 
 - Animation: 每個存活三元組的三個數都向左平移 1。
 - Results: `(12,10,4)->(11,9,3)`；`(10,8,6)->(9,7,5)`。
 - Object continuity: 使用數字複本轉換，不重打一份孤立答案。
 - Boundary: 兩個原變數序對並排。
 
-## 12 verify_triangles (0:50, loop=false)
+## 20 reconstruct_side_triples (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 21 verify_triangles (0:25, loop=false)
 
 - Verify order/positivity: 兩組都逐項顯示正整數且嚴格遞減。
 - Verify triangle: `9+3>11` 與 `7+5>9` 由線段真正合攏示範。
 - Verify equation: 將各組加 1 後的乘積分別顯示 `12x10x4=480`、`10x8x6=480`，所以原七項和為 479。
 - Boundary: 每組得到完整三個勾號。
 
-## 13 consolidate (0:40, loop=false)
+## 22 check_triangle_witnesses (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 23 consolidate (0:25, loop=false)
 
 - Recap path: 七項少 1 -> 完整乘積 -> 最小因數五個候選 -> 三角形差距篩選。
 - Final answer: `(a,b,c)=(11,9,3)` 與 `(9,7,5)`。
 - Source footer: `解題來源：正哥愛數學`，第壹部分第 6 題、PDF 第 3 頁。
 - End state: 兩個答案連回各自的因數列，不只留下結論。
+
+## 24 reveal_triangle_count (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
 
 ## Independent mathematics check
 

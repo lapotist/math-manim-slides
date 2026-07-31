@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame inspection confirms that Q9 is settled from 00:00 through 01:25 and Q10 is settled by 01:26. The source names the first term x and length m, applies the arithmetic-series bound for m=60,61,62,63, rejects m=64, and reports 4+3+2+1=10. This lesson preserves those mathematical claims but independently rebuilds the argument around an original shifting-row experiment, a delayed general formula, explicit length lanes, and a distinct-total audit. No source frames, handwriting, audio, or wording are incorporated."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q09/deck.py"
 scene_class = "CarloTcfs113MathQ09"
 storyboard = "lessons/tcfs_113_math_gifted/q09/storyboard.md"
@@ -31,6 +31,11 @@ estimated_minutes = 9
 expected_answer = "10"
 independent_check = "Exhaustively enumerate every length k>=60 and first term x>=1 using the literal Python sum of range(x,x+k), stopping a length once its minimum exceeds 2024 and stopping each row once its total exceeds 2024. The complete representation list is (1830,60,1), (1890,60,2), (1950,60,3), (2010,60,4), (1891,61,1), (1952,61,2), (2013,61,3), (1953,62,1), (2015,62,2), and (2016,63,1). Their ten totals are pairwise distinct. The minimum for k=64 is 1+...+64=2080>2024, and minima strictly increase with k, so no longer length is possible."
 tags = ["number-theory", "arithmetic-series", "consecutive-integers", "positive-integers", "exhaustive-bounds", "distinct-counting"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "正整數 n 不超過 2024，並且能寫成至少 60 個連續正整數的和。求符合條件的不同 n 共有多少個。"
 
 [[beats]]
 id = "meet_sixty_term_row"
@@ -45,11 +50,19 @@ id = "shift_by_sixty"
 loop = false
 
 [[beats]]
+id = "finish_sixty_term_shifts"
+loop = false
+
+[[beats]]
 id = "cross_2024_boundary"
 loop = false
 
 [[beats]]
 id = "name_general_sum"
+loop = false
+
+[[beats]]
+id = "state_general_sum_formula"
 loop = false
 
 [[beats]]
@@ -65,7 +78,19 @@ id = "stop_at_length_64"
 loop = false
 
 [[beats]]
+id = "exclude_longer_lengths"
+loop = false
+
+[[beats]]
 id = "verify_distinct_totals"
+loop = false
+
+[[beats]]
+id = "compare_adjacent_total_rows"
+loop = false
+
+[[beats]]
+id = "confirm_distinct_totals"
 loop = false
 
 [[beats]]

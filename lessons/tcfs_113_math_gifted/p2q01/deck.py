@@ -421,7 +421,26 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(intro_panel), FadeIn(counter5), GrowFromCenter(robot5), run_time=0.65)
-        for index, segment in enumerate(segments5, start=1):
+        for index, segment in enumerate((segments5[0], segments5[1]), start=1):
+            animations = [
+                Create(segment),
+                robot5.animate.move_to(points5[index]),
+                counter_number5.animate.set_value(index),
+            ]
+            if index < 5:
+                animations.extend(
+                    [FadeIn(waypoint_dots5[index - 1]), FadeIn(point_names5[index - 1])]
+                )
+            self.play(
+                *animations,
+                run_time=0.58,
+                rate_func=rate_functions.ease_in_out_sine,
+            )
+
+        self.next_beat("finish_five_step_walk")
+        for index, segment in enumerate(
+            (segments5[2], segments5[3], segments5[4]), start=3
+        ):
             animations = [
                 Create(segment),
                 robot5.animate.move_to(points5[index]),
@@ -480,6 +499,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         )
         self.play(Create(seed_triangle5), run_time=0.62)
         self.play(Indicate(VGroup(ticks5[0], ticks5[1]), color=POINT), Write(seed_equal), run_time=0.72)
+
+        self.next_beat("mark_first_equal_sides")
         self.play(
             TransformFromCopy(theta_mark5, seed_angle_b5),
             Write(seed_angle_line),
@@ -533,6 +554,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         )
         self.play(Create(forward_triangle5), Write(propagation_panel[0]), run_time=0.72)
         self.play(Create(angle_c5), Write(propagation_panel[1]), run_time=0.72)
+
+        self.next_beat("complete_five_step_propagation")
         self.play(Create(reverse_triangle5), Create(angle_b5), FadeIn(propagation_panel[2]), run_time=0.78)
         self.play(
             FadeOut(forward_triangle5),
@@ -570,6 +593,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             TransformFromCopy(VGroup(theta_mark5, angle_b5, angle_c5), equation5a),
             run_time=0.85,
         )
+
+        self.next_beat("solve_five_step_angle")
         self.play(Write(equation5b), run_time=0.60)
         self.play(Write(answer5), Create(answer5_box), run_time=0.72)
         self.play(Write(memory5), Circumscribe(answer5, color=REGION), run_time=0.78)
@@ -642,7 +667,42 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             GrowFromCenter(robot7),
             run_time=0.88,
         )
-        for index, segment in enumerate(segments7, start=1):
+        for index, segment in enumerate((segments7[0], segments7[1]), start=1):
+            animations = [
+                Create(segment),
+                robot7.animate.move_to(points7[index]),
+                counter_number7.animate.set_value(index),
+            ]
+            if index < 7:
+                animations.extend(
+                    [FadeIn(waypoint_dots7[index - 1]), FadeIn(point_names7[index - 1])]
+                )
+            self.play(
+                *animations,
+                run_time=0.50,
+                rate_func=rate_functions.ease_in_out_sine,
+            )
+
+        self.next_beat("continue_seven_step_walk")
+        for index, segment in enumerate(
+            (segments7[2], segments7[3], segments7[4]), start=3
+        ):
+            animations = [
+                Create(segment),
+                robot7.animate.move_to(points7[index]),
+                counter_number7.animate.set_value(index),
+            ]
+            animations.extend(
+                [FadeIn(waypoint_dots7[index - 1]), FadeIn(point_names7[index - 1])]
+            )
+            self.play(
+                *animations,
+                run_time=0.50,
+                rate_func=rate_functions.ease_in_out_sine,
+            )
+
+        self.next_beat("finish_seven_step_walk")
+        for index, segment in enumerate((segments7[5], segments7[6]), start=6):
             animations = [
                 Create(segment),
                 robot7.animate.move_to(points7[index]),
@@ -716,14 +776,24 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         active_triangle7 = layer_triangles7[0]
         active_angle7 = layer_angles7[0]
         self.play(Create(active_triangle7), Create(active_angle7), Write(ladder7[0]), run_time=0.78)
-        for index in (1, 2):
-            self.play(
-                Transform(active_triangle7, layer_triangles7[index]),
-                ReplacementTransform(active_angle7, layer_angles7[index]),
-                Write(ladder7[index]),
-                run_time=0.82,
-            )
-            active_angle7 = layer_angles7[index]
+        index = 1
+        self.play(
+            Transform(active_triangle7, layer_triangles7[index]),
+            ReplacementTransform(active_angle7, layer_angles7[index]),
+            Write(ladder7[index]),
+            run_time=0.82,
+        )
+        active_angle7 = layer_angles7[index]
+
+        self.next_beat("complete_three_layer_growth")
+        index = 2
+        self.play(
+            Transform(active_triangle7, layer_triangles7[index]),
+            ReplacementTransform(active_angle7, layer_angles7[index]),
+            Write(ladder7[index]),
+            run_time=0.82,
+        )
+        active_angle7 = layer_angles7[index]
         self.play(
             FadeOut(active_triangle7),
             Create(outer7),
@@ -759,6 +829,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             TransformFromCopy(VGroup(theta_mark7, active_angle7, reverse_angle7), equation7a),
             run_time=0.88,
         )
+
+        self.next_beat("solve_seven_step_angle")
         self.play(Write(equation7b), run_time=0.62)
         self.play(Write(answer7), Create(answer7_box), run_time=0.76)
         self.play(Circumscribe(answer7, color=REGION), run_time=0.70)
@@ -901,13 +973,24 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             run_time=0.80,
         )
         self.play(Write(recurrence_panel[1]), run_time=0.70)
-        for index in (1, 2, 3):
+
+        self.next_beat("propagate_general_angles")
+        for index in (1, 2):
             self.play(
                 Transform(active_triangle9, layer_triangles9[index]),
                 ReplacementTransform(active_angle9, layer_angles9[index]),
                 run_time=0.78,
             )
             active_angle9 = layer_angles9[index]
+
+        self.next_beat("complete_general_propagation")
+        index = 3
+        self.play(
+            Transform(active_triangle9, layer_triangles9[index]),
+            ReplacementTransform(active_angle9, layer_angles9[index]),
+            run_time=0.78,
+        )
+        active_angle9 = layer_angles9[index]
         self.play(Write(recurrence_panel[2]), run_time=0.62)
         self.play(Write(recurrence_panel[3]), FadeIn(recurrence_panel[4]), run_time=0.76)
         self.wait(0.42)
@@ -974,6 +1057,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             ),
             run_time=0.85,
         )
+
+        self.next_beat("state_scoped_product")
         self.play(Write(n_equation), run_time=0.62)
         self.play(Write(product_equation), Create(product_box), run_time=0.78)
         self.play(FadeIn(scoped_note), Indicate(scope, color=REGION), run_time=0.72)
@@ -1063,6 +1148,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             LaggedStart(*(FadeIn(dot) for dot in counter_dots), lag_ratio=0.13),
             run_time=1.10,
         )
+
+        self.next_beat("verify_full_line_counterexample")
         self.play(
             LaggedStart(*(Create(tick) for tick in counter_ticks), lag_ratio=0.10),
             Create(counter_angle),
@@ -1149,6 +1236,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             LaggedStart(*(Create(tick) for tick in final_ticks), lag_ratio=0.06),
             run_time=0.62,
         )
+
+        self.next_beat("restate_scoped_results")
         self.play(Write(result5), run_time=0.62)
         self.play(Write(result7), run_time=0.68)
         self.play(Write(result_general), Create(final_box), run_time=0.82)

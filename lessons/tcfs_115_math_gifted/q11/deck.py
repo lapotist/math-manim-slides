@@ -473,7 +473,6 @@ class Tcfs115Q11Slide(CarloSlide):
         cube = self.cube_diagram()
         coords = cube["coords"]
 
-        # Beat 01 build_cube: establish the cube before showing any section.
         cube_prompt = label("斜平面穿過一個正方形面，會留下什麼？", 30, INK, "BOLD")
         cube_prompt.move_to([3.55, 0.82, 0])
         intersection_fact = VGroup(
@@ -482,6 +481,7 @@ class Tcfs115Q11Slide(CarloSlide):
             label("一條直線", 29, SECTION, "BOLD"),
         ).arrange(RIGHT, buff=0.24).move_to([3.55, -0.32, 0])
 
+        # Beat 01 build_cube: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), FadeIn(cube["face_group"]), run_time=0.7)
         self.play(
             Create(cube["hidden_edges"]),
@@ -495,7 +495,7 @@ class Tcfs115Q11Slide(CarloSlide):
         )
         self.play(GrowArrow(intersection_fact[1]), FadeIn(intersection_fact[0]), FadeIn(intersection_fact[2]))
 
-        # Beat 02 place_pqr: place the three exact points that determine the plane.
+        # Beat 02 place_pqr: settled semantic step.
         self.next_slide()
 
         p_marker = self.marker(coords["P"], "P", POINT, LEFT + UP)
@@ -535,7 +535,7 @@ class Tcfs115Q11Slide(CarloSlide):
         self.play(Create(midpoint_ticks), LaggedStart(*(FadeIn(row) for row in point_data), lag_ratio=0.15))
         self.play(FadeIn(plane_note), run_time=0.55)
 
-        # Beat 03 trace_known_section: join pairs that already share one cube face.
+        # Beat 03 trace_known_section: settled semantic step.
         self.next_slide()
 
         pq = Line(coords["P"], coords["Q"], color=SECTION, stroke_width=6).set_z_index(3)
@@ -551,11 +551,13 @@ class Tcfs115Q11Slide(CarloSlide):
         self.play(FadeOut(point_data), FadeOut(plane_note), plane_patch.animate.set_opacity(0.04))
         self.play(cube["faces"]["top"].animate.set_fill(BLUE, opacity=0.16), FadeIn(trace_notes[0]))
         self.play(Create(pq), Write(trace_notes[1]), run_time=0.85)
+        # Beat 04 mark_known_section: settled semantic step.
+        self.next_slide()
         self.play(cube["faces"]["back"].animate.set_fill(BLUE, opacity=0.12), FadeIn(trace_notes[2]))
         self.play(Create(qr), Write(trace_notes[3]), run_time=0.85)
         self.play(FadeIn(trace_notes[4]), run_time=0.55)
 
-        # Beat 04 extend_top_line: extend PQ to the two bridge points L and I.
+        # Beat 05 extend_top_line: settled semantic step.
         self.next_slide()
 
         fg_extension = DashedLine(
@@ -585,10 +587,12 @@ class Tcfs115Q11Slide(CarloSlide):
         )
         self.play(Create(fg_extension), Create(gh_extension), FadeIn(top_definitions[0]), run_time=0.8)
         self.play(Create(lp_extension), GrowFromCenter(l_marker[0]), FadeIn(l_marker[1]), FadeIn(top_definitions[1]))
+        # Beat 06 land_top_extension: settled semantic step.
+        self.next_slide()
         self.play(Create(qi_extension), GrowFromCenter(i_marker[0]), FadeIn(i_marker[1]), FadeIn(top_definitions[2]))
         self.play(Write(top_definitions[3]), FadeIn(top_definitions[4]), run_time=0.75)
 
-        # Beat 05 extend_right_line: use I and R to carry the section onto CDHG.
+        # Beat 07 extend_right_line: settled semantic step.
         self.next_slide()
 
         ir_line = Line(coords["I"], coords["J"], color=SECTION, stroke_width=5).set_z_index(3)
@@ -615,11 +619,13 @@ class Tcfs115Q11Slide(CarloSlide):
         )
         self.play(FadeIn(right_definitions[0]), FadeIn(right_definitions[1]), Create(cg_extension))
         self.play(Create(ir_line), FadeIn(right_definitions[2]), run_time=0.9)
+        # Beat 08 land_right_extension: settled semantic step.
+        self.next_slide()
         self.play(GrowFromCenter(m_marker[0]), FadeIn(m_marker[1]), run_time=0.45)
         self.play(GrowFromCenter(j_marker[0]), FadeIn(j_marker[1]), FadeIn(right_definitions[3]))
         self.play(Write(right_definitions[4]), run_time=0.55)
 
-        # Beat 06 locate_n: use the two shared front-plane points L and J to find N.
+        # Beat 09 locate_n: settled semantic step.
         self.next_slide()
 
         lj_line = Line(coords["L"], coords["J"], color=SECTION, stroke_width=6).set_z_index(3)
@@ -644,11 +650,13 @@ class Tcfs115Q11Slide(CarloSlide):
         )
         self.play(FadeIn(front_definitions[1]), Indicate(l_marker[0]), Indicate(j_marker[0]))
         self.play(FadeIn(front_definitions[2]), run_time=0.55)
+        # Beat 10 confirm_point_n: settled semantic step.
+        self.next_slide()
         self.play(Create(lj_line), FadeIn(front_definitions[3]), run_time=0.95)
         self.play(GrowFromCenter(n_marker[0]), FadeIn(n_marker[1]), Write(front_definitions[4]))
         self.play(Create(fn_segment), FadeIn(front_definitions[5]), Circumscribe(n_marker, color=TARGET), run_time=0.9)
 
-        # Beat 07 unfold_three_faces: preserve the spatial map, then remove perspective.
+        # Beat 11 unfold_three_faces: settled semantic step.
         self.next_slide()
 
         top_flat = self.flat_face("top", np.array([-6.15, -2.0, 0.0]), 1.75, label_scale=0.88)
@@ -699,7 +707,7 @@ class Tcfs115Q11Slide(CarloSlide):
             run_time=1.25,
         )
 
-        # Beat 08 top_left_ratio: compare the two opposite triangles around P.
+        # Beat 12 top_left_ratio: settled semantic step.
         self.next_slide()
 
         top_large = self.flat_face("top", np.array([-5.25, -2.25, 0.0]), 2.7, label_scale=1.08)
@@ -750,11 +758,13 @@ class Tcfs115Q11Slide(CarloSlide):
         )
         self.play(FadeIn(tri_peq), FadeIn(tri_pfl), Create(angle_marks_8), run_time=0.85)
         self.play(Write(similarity_8), FadeIn(reason_8), run_time=0.8)
+        # Beat 13 record_top_left_ratio: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(pe_length_8), FadeIn(pf_length_8), Write(half_8))
         self.play(FadeIn(eq_length_8), Write(equal_8), run_time=0.65)
         self.play(TransformFromCopy(eq_length_8, lf_length_8), ReplacementTransform(equal_8, result_8), run_time=0.85)
 
-        # Beat 09 top_right_ratio: use the same small triangle to measure I and IG.
+        # Beat 14 top_right_ratio: settled semantic step.
         self.next_slide()
 
         title_9 = label("上表面｜再把 2:3 傳到 I", 29, INK, "BOLD").move_to(title_8)
@@ -795,10 +805,12 @@ class Tcfs115Q11Slide(CarloSlide):
         )
         self.play(Write(similarity_9), Write(ratio_9), run_time=0.85)
         self.play(Write(hi_result_9), FadeIn(hi_length_9), run_time=0.7)
+        # Beat 15 record_top_right_ratio: settled semantic step.
+        self.next_slide()
         self.play(Write(ig_build_9), FadeIn(hg_length_9), run_time=0.65)
         self.play(Create(ig_line_9), Write(ig_result_9), FadeIn(ig_length_9), run_time=0.9)
 
-        # Beat 10 right_face_ratio: transfer HI and IG through the right face to GJ.
+        # Beat 16 right_face_ratio: settled semantic step.
         self.next_slide()
 
         right_large = self.flat_face("right", np.array([-5.05, -1.95, 0.0]), 2.85, label_scale=1.08)
@@ -864,11 +876,13 @@ class Tcfs115Q11Slide(CarloSlide):
             FadeIn(hr_length_10),
             run_time=0.85,
         )
+        # Beat 17 record_right_face_ratio: settled semantic step.
+        self.next_slide()
         self.play(Write(proportion_10), run_time=0.6)
         self.play(Write(substitute_10), run_time=0.7)
         self.play(Write(gj_result_10), TransformFromCopy(gj_result_10, gj_length_10), run_time=0.8)
 
-        # Beat 11 front_face_ratio: use LF, LG, and GJ to obtain FN.
+        # Beat 18 front_face_ratio: settled semantic step.
         self.next_slide()
 
         front_large = self.flat_face("front", np.array([-5.35, -1.95, 0.0]), 3.0, label_scale=1.08)
@@ -928,11 +942,13 @@ class Tcfs115Q11Slide(CarloSlide):
         self.play(FadeOut(right_ratio_objects), FadeIn(front_large["group"]), FadeIn(title_11), run_time=0.9)
         self.play(FadeIn(tri_lfn), FadeIn(tri_lgj), Create(angle_marks_11), Write(similarity_11))
         self.play(FadeIn(lf_length_11), FadeIn(fg_length_11), Write(lg_build_11), run_time=0.85)
+        # Beat 19 record_front_face_ratio: settled semantic step.
+        self.next_slide()
         self.play(FadeIn(lg_length_11), Write(proportion_11), FadeIn(gj_length_11), run_time=0.75)
         self.play(Write(substitute_11), run_time=0.7)
         self.play(Write(fn_result_11), TransformFromCopy(fn_result_11, fn_length_11), run_time=0.8)
 
-        # Beat 12 finish_ratio: partition FB visibly before forming the ratio.
+        # Beat 20 finish_ratio: settled semantic step.
         self.next_slide()
 
         f_bar = np.array([-3.9, 2.35, 0.0])
@@ -992,12 +1008,16 @@ class Tcfs115Q11Slide(CarloSlide):
         self.play(FadeOut(front_ratio_objects), FadeIn(title_12), Create(fn_bar), run_time=0.8)
         self.play(FadeIn(bar_ticks[0]), FadeIn(bar_ticks[1]), FadeIn(bar_labels[0]), FadeIn(bar_labels[1]))
         self.play(TransformFromCopy(fn_result_11, bar_labels[3]), Write(known_fn_12), run_time=0.75)
+        # Beat 21 combine_face_ratios: settled semantic step.
+        self.next_slide()
         self.play(Create(nb_bar), FadeIn(bar_ticks[2]), FadeIn(bar_labels[2]), FadeIn(bar_labels[5]), Write(whole_12))
         self.play(Write(nb_build_12), FadeIn(bar_labels[4]), run_time=0.85)
+        # Beat 22 simplify_space_ratio: settled semantic step.
+        self.next_slide()
         self.play(Write(partition_12), run_time=0.65)
         self.play(Write(final_ratio_12), Create(final_box_12), run_time=0.8)
 
-        # Beat 13 consolidate: reconnect construction, face-to-face transfer, and answer.
+        # Beat 23 consolidate: settled semantic step.
         self.next_slide()
 
         recap_cube = mini_spatial.copy().scale(1.8).move_to([-5.35, -0.35, 0])
@@ -1037,6 +1057,8 @@ class Tcfs115Q11Slide(CarloSlide):
         self.play(FadeOut(VGroup(title_12, bar_group, ratio_panel_12)), FadeIn(recap_cube), FadeIn(recap_title), run_time=0.85)
         self.play(FadeIn(icons), FadeIn(icon_captions), run_time=0.75)
         self.play(LaggedStart(*(GrowArrow(arrow) for arrow in flow_arrows), lag_ratio=0.3), run_time=0.75)
+        # Beat 24 reveal_space_ratio: settled semantic step.
+        self.next_slide()
         self.play(LaggedStart(*(Write(value) for value in recap_values), lag_ratio=0.22), run_time=1.0)
         self.play(FadeIn(path_recap), Write(nb_recap), run_time=0.75)
         self.play(TransformFromCopy(final_ratio_12, final_recap), Create(final_recap_box), run_time=0.85)

@@ -37,9 +37,8 @@ from manim import (
     NumberLine,
     Polygon,
     Rectangle,
-    ReplacementTransform,
+    Succession,
     SurroundingRectangle,
-    Transform,
     TransformFromCopy,
     VGroup,
     ValueTracker,
@@ -220,7 +219,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         opening_hint = label("四個象限先保持安靜", 24, MUTED, "MEDIUM")
         opening_hint.move_to([3.35, -1.32, 0])
 
-        # Beat 01 meet_family: fix the axes and meet the k=0 family member.
+        # Beat 01 meet_family: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), FadeIn(quadrants), run_time=0.7)
         self.play(Create(axes), FadeIn(x_label), FadeIn(y_label), FadeIn(quadrant_labels))
         self.play(Create(curve), FadeIn(y_intercept), run_time=1.1)
@@ -262,90 +261,156 @@ class CarloTcfs115MathQ03(CarloSlide):
                 animations.append(roman.animate.set_opacity(label_opacity))
             return animations
 
-        # Beat 02 compare_quadrants: loop through four deliberate integer states.
+        # Beat 02 compare_quadrants: settled semantic step.
         self.next_slide(loop=True)
 
         self.wait(0.35)
+        next_state_note = notes[0].copy()
         self.play(
             *quadrant_animations({0, 1}),
-            Transform(state_note, notes[0]),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
             FadeOut(opening_hint),
             run_time=0.55,
         )
+        state_note = next_state_note
         self.wait(1.5)
-        for value, active in ((-2, {0, 1, 2, 3}), (-1, {0, 1, 3}), (3, {0, 1, 2})):
-            self.play(
-                k_tracker.animate.set_value(value),
-                Transform(k_display, k_badges[value]),
-                Transform(state_note, notes[value]),
-                *quadrant_animations(active),
-                run_time=1.4,
-                rate_func=rate_functions.ease_in_out_sine,
-            )
-            self.wait(1.5)
+        next_k_display = k_badges[3].copy()
+        next_state_note = notes[3].copy()
+        self.play(
+            k_tracker.animate.set_value(3),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
+            *quadrant_animations({0, 1, 2}),
+            run_time=1.4,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
+        k_display = next_k_display
+        state_note = next_state_note
+        self.wait(1.5)
+        next_k_display = k_badges[0].copy()
+        next_state_note = notes[0].copy()
         self.play(
             k_tracker.animate.set_value(0),
-            Transform(k_display, k_badges[0]),
-            Transform(state_note, notes[0]),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
             *quadrant_animations({0, 1}),
             run_time=1.4,
             rate_func=rate_functions.ease_in_out_sine,
         )
+        k_display = next_k_display
+        state_note = next_state_note
         self.wait(1.5)
+        next_state_note = label("先看曲線怎麼變", 29, INK, "BOLD").move_to(state_note)
         self.play(
             *quadrant_animations(set(), idle=0.03, idle_label=0.38),
-            Transform(state_note, label("先看曲線怎麼變", 29, INK, "BOLD").move_to(state_note)),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
             FadeIn(opening_hint),
             run_time=0.55,
         )
+        state_note = next_state_note
         self.wait(0.35)
 
-        # Beat 03 need_two_roots: freeze a three-quadrant case and expose its red arc.
+        # Beat 03 compare_negative_quadrants: settled semantic step.
+        self.next_slide(loop=True)
+        next_k_display = k_badges[-2].copy()
+        next_state_note = notes[-2].copy()
+        self.play(
+            k_tracker.animate.set_value(-2),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
+            *quadrant_animations({0, 1, 2, 3}),
+            FadeOut(opening_hint),
+            run_time=1.4,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
+        k_display = next_k_display
+        state_note = next_state_note
+        self.wait(1.5)
+        next_k_display = k_badges[-1].copy()
+        next_state_note = notes[-1].copy()
+        self.play(
+            k_tracker.animate.set_value(-1),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
+            *quadrant_animations({0, 1, 3}),
+            run_time=1.4,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
+        k_display = next_k_display
+        state_note = next_state_note
+        self.wait(1.5)
+        next_k_display = k_badges[0].copy()
+        next_state_note = notes[0].copy()
+        self.play(
+            k_tracker.animate.set_value(0),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
+            *quadrant_animations({0, 1}),
+            run_time=1.4,
+            rate_func=rate_functions.ease_in_out_sine,
+        )
+        k_display = next_k_display
+        state_note = next_state_note
+        self.wait(1.5)
+        next_state_note = label("先看曲線怎麼變", 29, INK, "BOLD").move_to(state_note)
+        self.play(
+            *quadrant_animations(set(), idle=0.03, idle_label=0.38),
+            Succession(FadeOut(state_note), FadeIn(next_state_note)),
+            FadeIn(opening_hint),
+            run_time=0.55,
+        )
+        state_note = next_state_note
+        self.wait(0.35)
+
+        # Beat 04 need_two_roots: settled semantic step.
         self.next_slide()
 
         three_quadrant_note = label("三象限例：紅弧真的進到 x 軸下方", 27, INK, "BOLD")
         three_quadrant_note.move_to([3.35, 1.42, 0])
         below_note = label("下方弧段需要兩個相異交點", 27, CORAL, "BOLD")
-        below_note.move_to([3.35, 0.55, 0])
+        below_note.move_to([3.35, -0.38, 0])
         delta_first = MathTex(
             r"\Delta=(2k)^2-4(k+1)",
             font_size=37,
             color=INK,
-        ).move_to([3.35, -0.32, 0])
+        ).move_to([3.35, -1.0, 0])
         delta_result = MathTex(
             r"\Delta=4(k^2-k-1)>0",
             font_size=39,
             color=REGION,
-        ).move_to([3.35, -1.2, 0])
+        ).move_to([3.35, -1.62, 0])
         tangent_note = label("Δ = 0 只相切，沒有下方弧段", 23, MUTED, "MEDIUM")
-        tangent_note.move_to([3.35, -2.05, 0])
+        tangent_note.move_to([3.35, -2.32, 0])
         focus_arc = self.negative_arc(axes, -1)
         focus_arc.set_stroke(CORAL, width=12)
 
+        next_k_display = k_badges[-1].copy()
         self.play(
             FadeOut(opening_hint),
             FadeOut(k_range),
             family.animate.scale(0.82).move_to([3.35, 2.36, 0]),
             k_tracker.animate.set_value(-1),
-            Transform(k_display, k_badges[-1]),
-            Transform(state_note, three_quadrant_note),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
+            Succession(FadeOut(state_note), FadeIn(three_quadrant_note)),
             *quadrant_animations({0, 1, 3}),
             run_time=1.25,
         )
+        k_display = next_k_display
+        state_note = three_quadrant_note
         self.play(Create(focus_arc), FadeIn(below_note), run_time=0.9)
         self.play(FadeOut(focus_arc), Write(delta_first), run_time=0.75)
         self.play(TransformFromCopy(delta_first, delta_result), FadeIn(tangent_note), run_time=0.8)
 
-        # Beat 04 guard_y_axis: move f(0) below the axis, then return to the boundary.
+        # Beat 05 guard_y_axis: settled semantic step.
         self.next_slide()
 
         warning = label("f(0) < 0：左右下方一起出現", 28, CORAL, "BOLD")
-        warning.move_to([3.35, 0.37, 0])
+        warning.move_to([3.35, -0.35, 0])
         warning_equation = MathTex(
             r"f(0)=k+1<0",
             font_size=39,
             color=CORAL,
-        ).move_to([3.35, -0.45, 0])
+        ).move_to([3.35, -1.18, 0])
         guard = MathTex(
             r"f(0)=k+1\ge0",
             font_size=41,
@@ -368,26 +433,34 @@ class CarloTcfs115MathQ03(CarloSlide):
             FadeIn(condition_one),
             run_time=0.7,
         )
+        next_k_display = k_badges[-2].copy()
         self.play(
             k_tracker.animate.set_value(-2),
-            Transform(k_display, k_badges[-2]),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
             *quadrant_animations({0, 1, 2, 3}),
             FadeIn(warning),
             FadeIn(warning_equation),
             run_time=1.3,
         )
+        k_display = next_k_display
         self.play(Indicate(y_intercept, color=BLUE), run_time=0.8)
+        # Beat 06 derive_y_axis_guard: settled semantic step.
+        self.next_slide()
+        next_k_display = k_badges[-1].copy()
         self.play(
             k_tracker.animate.set_value(-1),
-            Transform(k_display, k_badges[-1]),
+            Succession(FadeOut(k_display), FadeIn(next_k_display)),
             *quadrant_animations({0, 1, 3}),
-            FadeOut(warning),
-            ReplacementTransform(warning_equation, guard),
+            Succession(
+                FadeOut(VGroup(warning, warning_equation)),
+                FadeIn(guard),
+            ),
             run_time=1.25,
         )
+        k_display = next_k_display
         self.play(Write(guard_result), Indicate(y_intercept, color=BLUE), run_time=0.8)
 
-        # Beat 05 count_m: intersect the two filters on the eleven allowed integers.
+        # Beat 07 count_m: settled semantic step.
         self.next_slide()
 
         graph_group = VGroup(
@@ -464,6 +537,8 @@ class CarloTcfs115MathQ03(CarloSlide):
             ),
             run_time=0.9,
         )
+        # Beat 08 intersect_parameter_conditions: settled semantic step.
+        self.next_slide()
         self.play(Write(second_filter), run_time=0.55)
         self.play(
             *(
@@ -474,6 +549,8 @@ class CarloTcfs115MathQ03(CarloSlide):
             ),
             run_time=0.9,
         )
+        # Beat 09 count_valid_parameters: settled semantic step.
+        self.next_slide()
         self.play(
             LaggedStart(*(FadeIn(number) for number in count_labels), lag_ratio=0.16),
             Write(final_values),
@@ -481,7 +558,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         )
         self.play(Write(m_result), run_time=0.6)
 
-        # Beat 06 ask_integer_root: derive the roots and name the square-root integer s.
+        # Beat 10 ask_integer_root: settled semantic step.
         self.next_slide()
 
         count_group = VGroup(
@@ -522,10 +599,12 @@ class CarloTcfs115MathQ03(CarloSlide):
         self.play(FadeOut(count_group), FadeIn(second_question), run_time=0.65)
         self.play(Write(equation), run_time=0.7)
         self.play(TransformFromCopy(equation, formula_first), run_time=0.9)
+        # Beat 11 derive_root_formula: settled semantic step.
+        self.next_slide()
         self.play(TransformFromCopy(formula_first, formula_result), run_time=0.9)
         self.play(Write(square_condition), FadeIn(symbol_note), run_time=0.8)
 
-        # Beat 07 perfect_square_filter: compute one table and retain only square values.
+        # Beat 12 perfect_square_filter: settled semantic step.
         self.next_slide()
 
         derivation_group = VGroup(
@@ -592,9 +671,11 @@ class CarloTcfs115MathQ03(CarloSlide):
             run_time=0.65,
         )
         nonsquare_indices = (0, 1, 2, 3, 8, 9, 10)
+        # Beat 13 bound_square_candidates: settled semantic step.
+        self.next_slide()
         self.play(
             *(columns[index].animate.set_opacity(0.18) for index in nonsquare_indices),
-            ReplacementTransform(negative_note, square_note),
+            Succession(FadeOut(negative_note), FadeIn(square_note)),
             run_time=0.95,
         )
         self.play(
@@ -604,7 +685,7 @@ class CarloTcfs115MathQ03(CarloSlide):
             run_time=0.8,
         )
 
-        # Beat 08 test_candidates: graph and factor both remaining parameters.
+        # Beat 14 test_candidates: settled semantic step.
         self.next_slide()
 
         table_group = VGroup(
@@ -680,6 +761,8 @@ class CarloTcfs115MathQ03(CarloSlide):
         self.play(FadeOut(table_group), FadeIn(test_title), Create(divider), run_time=0.7)
         self.play(Create(left_axes), Create(right_axes), FadeIn(left_formula), FadeIn(right_formula))
         self.play(Create(left_curve), Create(right_curve), run_time=1.0)
+        # Beat 15 verify_integer_roots: settled semantic step.
+        self.next_slide()
         self.play(
             LaggedStart(*(GrowFromCenter(dot) for dot in left_roots), lag_ratio=0.2),
             LaggedStart(*(GrowFromCenter(dot) for dot in right_roots), lag_ratio=0.2),
@@ -688,7 +771,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         self.play(Write(left_result), Write(right_result), run_time=0.8)
         self.play(Write(n_result), run_time=0.55)
 
-        # Beat 09 final_pair: bring both filters back and combine m with n.
+        # Beat 16 final_pair: settled semantic step.
         self.next_slide()
 
         candidate_test_group = VGroup(
@@ -751,5 +834,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         self.play(FadeOut(candidate_test_group), FadeIn(final_title), run_time=0.7)
         self.play(FadeIn(left_caption), Write(left_values), FadeIn(right_caption))
         self.play(Write(left_count), FadeIn(right_candidates), Write(right_count), run_time=0.85)
+        # Beat 17 reveal_ordered_pair: settled semantic step.
+        self.next_slide()
         self.play(Create(arrows), run_time=0.55)
         self.play(Write(final_pair), Create(final_box), run_time=0.9)

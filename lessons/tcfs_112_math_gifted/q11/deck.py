@@ -238,7 +238,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         tracker = ValueTracker(1.0 / 3.0)
         p = p_from_parameter(tracker.get_value())
 
-        # Beat 01: establish only the square, the interior point, and three distances.
+        # Beat 01 meet_square_and_inner_point: establish only the square, the interior point, and three distances.
         self.begin_beat("meet_square_and_inner_point")
         title = self.stage_title("正方形裡的一個點")
         square = Polygon(a, b, c, d, color=INK, stroke_width=3.2)
@@ -270,7 +270,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(FadeIn(ap_name), FadeIn(bp_name), FadeIn(cp_name), FadeIn(no_diagonal_note))
         self.wait(0.45)
 
-        # Beat 02: move along an exact constraint-preserving arc, then return.
+        # Beat 02 test_two_valid_positions: move along an exact constraint-preserving arc, then return.
         self.next_beat("test_two_valid_positions")
         title = self.replace_title(self, title, "條件成立時，P 不只一個位置")
         condition = self.formula_card(
@@ -328,7 +328,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         p = p_from_parameter(1.0 / 3.0)
         self.wait(0.42)
 
-        # Beat 03: isolate the angle without assigning a value.
+        # Beat 03 ask_for_target_angle: isolate the angle without assigning a value.
         self.next_beat("ask_for_target_angle")
         title = self.replace_title(self, title, "三段平方距離，鎖定哪一個角？")
         target_angle = Angle(
@@ -354,8 +354,8 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(Indicate(target_name, color=CORAL), run_time=0.60)
         self.wait(0.65)
 
-        # Beat 04: rotate a full colored copy of triangle ABP about fixed B.
-        self.next_beat("rotate_point_about_b")
+        # Beat 04 demonstrate_quarter_turn: rotate a full colored copy of triangle ABP about fixed B.
+        self.next_beat("demonstrate_quarter_turn")
         title = self.replace_title(self, title, "讓正方形的直角搬動整個三角形")
         self.play(
             FadeOut(condition),
@@ -386,6 +386,9 @@ class CarloTcfs112MathQ11(CarloSlide):
         )
         self.play(FadeOut(ba_probe), run_time=0.30)
 
+        # Beat 05 rotate_point_about_b: continue at a settled semantic boundary.
+        self.next_beat("rotate_point_about_b")
+
         rot_ba = Line(b, a, color=MUTED, stroke_width=3.0)
         rot_ap = Line(a, p, color=BLUE, stroke_width=5.0)
         rot_pb = Line(p, b, color=POINT, stroke_width=5.0)
@@ -408,7 +411,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(FadeIn(e_name), FadeIn(rotation_caption), Write(mapping), run_time=0.72)
         self.wait(0.45)
 
-        # Beat 05: record the two preserved lengths and the preserved target angle.
+        # Beat 06 match_rotated_lengths: record the two preserved lengths and the preserved target angle.
         self.next_beat("match_rotated_lengths")
         title = self.replace_title(self, title, "旋轉保留長度，也保留角")
         ce = rot_ap
@@ -462,8 +465,8 @@ class CarloTcfs112MathQ11(CarloSlide):
         )
         self.wait(0.48)
 
-        # Beat 06: build PE and make the coefficient two visible.
-        self.next_beat("measure_the_new_diagonal")
+        # Beat 07 construct_rotated_diagonal: build PE and make the coefficient two visible.
+        self.next_beat("construct_rotated_diagonal")
         title = self.replace_title(self, title, "直角等腰三角形，把 2 變成一條邊")
         self.play(
             FadeOut(preserved_one),
@@ -507,6 +510,9 @@ class CarloTcfs112MathQ11(CarloSlide):
             formula.set_color_by_tex("BE", POINT)
         self.play(FadeIn(triangle_bpe), Create(right_b), run_time=0.65)
         self.play(Create(pe), FadeIn(pe_name), run_time=0.72)
+
+        # Beat 08 measure_the_new_diagonal: continue at a settled semantic boundary.
+        self.next_beat("measure_the_new_diagonal")
         self.play(
             Indicate(bp, color=POINT),
             Indicate(eb, color=POINT),
@@ -517,8 +523,8 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(Write(diagonal_steps[2]), Indicate(pe, color=REGION), run_time=0.75)
         self.wait(0.50)
 
-        # Beat 07: substitute the visible rotated lengths into the given equation.
-        self.next_beat("translate_the_condition")
+        # Beat 09 match_condition_lengths: substitute the visible rotated lengths into the given equation.
+        self.next_beat("match_condition_lengths")
         title = self.replace_title(self, title, "把題設完整搬進三角形 CEP")
         self.play(FadeOut(diagonal_steps[0]), FadeOut(diagonal_steps[1]), run_time=0.42)
         moved_condition = MathTex(
@@ -548,12 +554,15 @@ class CarloTcfs112MathQ11(CarloSlide):
             run_time=0.62,
         )
         self.play(Indicate(diagonal_steps[2], color=REGION), run_time=0.56)
+
+        # Beat 10 translate_the_condition: continue at a settled semantic boundary.
+        self.next_beat("translate_the_condition")
         self.play(FadeOut(diagonal_steps[2]), run_time=0.34)
         self.play(Write(final_condition), run_time=0.82)
         self.play(FadeIn(substitution_note), run_time=0.45)
         self.wait(0.48)
 
-        # Beat 08: use the converse of Pythagoras only after all three sides are visible.
+        # Beat 11 earn_the_right_angle: use the converse of Pythagoras only after all three sides are visible.
         self.next_beat("earn_the_right_angle")
         title = self.replace_title(self, title, "等式落定後，直角才有根據")
         triangle_cep = Polygon(
@@ -591,8 +600,8 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(Create(right_e), Write(right_statement), run_time=0.82)
         self.wait(0.52)
 
-        # Beat 09: assemble 90 and 45, but hold the sum behind a question mark.
-        self.next_beat("assemble_preanswer_angles")
+        # Beat 12 show_forty_five_and_ninety: assemble 90 and 45, but hold the sum behind a question mark.
+        self.next_beat("show_forty_five_and_ninety")
         title = self.replace_title(self, title, "兩塊角已經齊了，先停在最後加法")
         self.play(
             FadeOut(final_condition),
@@ -633,12 +642,15 @@ class CarloTcfs112MathQ11(CarloSlide):
         preanswer.move_to([3.42, 0.02, 0])
         self.play(Create(base_angle), FadeIn(base_value), run_time=0.65)
         self.play(FadeIn(right_value), Indicate(right_e, color=REGION), run_time=0.55)
+
+        # Beat 13 assemble_preanswer_angles: continue at a settled semantic boundary.
+        self.next_beat("assemble_preanswer_angles")
         self.play(Create(combined_angle), run_time=0.68)
         self.play(Write(preanswer[0]), Write(preanswer[1]), run_time=0.82)
         self.play(FadeIn(preanswer[2]), run_time=0.48)
         self.wait(1.15)
 
-        # Beat 10: reveal the number only now and reconnect it to the original P.
+        # Beat 14 reveal_the_angle: reveal the number only now and reconnect it to the original P.
         self.next_beat("reveal_the_angle")
         title = self.replace_title(self, title, "把旋轉後的合角送回原來的 P")
         answer = MathTex(r"\angle APB=135^\circ", font_size=61, color=CORAL)
@@ -658,13 +670,16 @@ class CarloTcfs112MathQ11(CarloSlide):
             Indicate(target_angle, color=CORAL),
             run_time=0.70,
         )
+
+        # Beat 15 name_quarter_turn_insight: continue at a settled semantic boundary.
+        self.next_beat("name_quarter_turn_insight")
         answer_note = label("四分之一圈保留了整個角", 23, MUTED, "MEDIUM")
         answer_note.move_to([3.42, -1.08, 0])
         self.play(FadeIn(answer_note), run_time=0.42)
         self.wait(0.66)
 
-        # Beat 11: independently verify the quadrant with coordinates and vectors.
-        self.next_beat("verify_with_interior_vectors")
+        # Beat 16 set_up_interior_vectors: independently verify the quadrant with coordinates and vectors.
+        self.next_beat("set_up_interior_vectors")
         title = self.replace_title(self, title, "用內部條件做一次獨立向量核對")
         old_stage = VGroup(
             square,
@@ -736,6 +751,9 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(Create(u_line), Create(v_line), FadeIn(u_name), FadeIn(v_name), Write(positive), run_time=0.78)
         self.play(GrowArrow(pa_arrow), GrowArrow(pb_arrow), run_time=0.76)
 
+        # Beat 17 derive_negative_dot_product: continue at a settled semantic boundary.
+        self.next_beat("derive_negative_dot_product")
+
         vector_steps = VGroup(
             MathTex(r"u^2+v^2=s(u-v)", font_size=37, color=INK),
             MathTex(
@@ -767,12 +785,15 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(Write(vector_steps[0]), run_time=0.58)
         self.play(Write(vector_steps[1]), run_time=0.70)
         self.play(Write(vector_steps[2]), FadeIn(quadrant_note), run_time=0.72)
+
+        # Beat 18 verify_with_interior_vectors: continue at a settled semantic boundary.
+        self.next_beat("verify_with_interior_vectors")
         self.play(Write(vector_steps[3]), run_time=0.68)
         self.play(Write(trig_check), run_time=0.78)
         self.play(Indicate(positive, color=POINT), Indicate(trig_check, color=CORAL), run_time=0.68)
         self.wait(0.58)
 
-        # Beat 12: return to the original object and consolidate the earned route.
+        # Beat 19 return_to_original_square: return to the original object and consolidate the earned route.
         self.next_beat("return_to_original_square")
         title = self.replace_title(self, title, "回到原圖：記住四分之一圈的用途")
         coordinate_stage = VGroup(
@@ -863,6 +884,9 @@ class CarloTcfs112MathQ11(CarloSlide):
             run_time=0.92,
         )
         self.play(Create(final_target), Write(final_answer), Create(final_frame), run_time=0.88)
+
+        # Beat 20 summarize_quarter_turn_route: continue at a settled semantic boundary.
+        self.next_beat("summarize_quarter_turn_route")
         self.play(LaggedStart(*(FadeIn(step) for step in summary_steps), lag_ratio=0.20), run_time=0.95)
         self.play(FadeIn(final_footer), run_time=0.42)
         self.wait(0.72)

@@ -24,7 +24,7 @@ rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 solution_scope_note = "The source's mn=180 generalization follows the displayed same-ray zigzag family. If signed positions on the full lines are allowed without that configuration restriction, additional closure angles exist; the lesson states the same-ray scope explicitly and does not present mn=180 as a universal theorem."
 source_note = "The public solution treats the displayed five-step and seven-step same-ray zigzags by propagating equal-step isosceles-triangle angles, then writes the odd-n generalization as theta + 2((n-1)/2)theta = 180 degrees. This lesson independently rebuilds that scoped argument and explicitly separates it from the unrestricted full-line problem. For example, n=5 and theta=72 degrees also closes with equal steps when negative signed radii on the opposite extensions are allowed, giving mn=360; that path is outside the displayed same-ray family. No PDF or video frames, handwriting, audio, or wording are incorporated."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/p2q01/deck.py"
 scene_class = "CarloTcfs113MathP2Q01"
 storyboard = "lessons/tcfs_113_math_gifted/p2q01/storyboard.md"
@@ -33,6 +33,11 @@ estimated_minutes = 11
 expected_answer = "36 degrees; 180/7 degrees; mn = 180 within the displayed same-ray first-closure zigzag family; not universal on unrestricted full lines"
 independent_check = "For odd n, let theta=180/n degrees and h=(n-1)/2. Consecutive unit edges form isosceles triangles whose outward-half base angles satisfy alpha_1=theta and alpha_{j+1}=alpha_j+theta, so alpha_h=h theta. The outer triangle has angles theta,h theta,h theta, hence theta+2h theta=n theta=180 degrees. In coordinates, set r_k=sin(k theta)/sin(theta), put odd k at (r_k,0) and even k at r_k(cos(theta),sin(theta)); every consecutive distance is 1, r_n=0, and r_k>0 for 1<=k<n. Exact degree arithmetic gives theta=36 for n=5 and theta=180/7 for n=7. Positivity is essential: with n=5 and theta=72 degrees the same coordinate recurrence closes and keeps unit steps, but r_3 and r_4 are negative, so the path uses the opposite line extensions and mn=360."
 tags = ["geometry", "angles", "isosceles-triangle", "recurrence", "invariant", "scope"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "從 O 出發，在夾角為 θ 的兩條指定射線上交替走相等步長，其餘落點都留在射線正向，並在最後一步首次回到 O。分別求五步與七步構形的 θ；再設奇數步數 n≥3 且 θ=m°，求 mn。"
 
 [[beats]]
 id = "meet_two_rays"
@@ -43,7 +48,15 @@ id = "walk_five_steps"
 loop = false
 
 [[beats]]
+id = "finish_five_step_walk"
+loop = false
+
+[[beats]]
 id = "seed_equal_angles"
+loop = false
+
+[[beats]]
+id = "mark_first_equal_sides"
 loop = false
 
 [[beats]]
@@ -51,7 +64,15 @@ id = "propagate_five_step_angles"
 loop = false
 
 [[beats]]
+id = "complete_five_step_propagation"
+loop = false
+
+[[beats]]
 id = "reveal_thirty_six"
+loop = false
+
+[[beats]]
+id = "solve_five_step_angle"
 loop = false
 
 [[beats]]
@@ -59,11 +80,27 @@ id = "walk_seven_steps"
 loop = false
 
 [[beats]]
+id = "continue_seven_step_walk"
+loop = false
+
+[[beats]]
+id = "finish_seven_step_walk"
+loop = false
+
+[[beats]]
 id = "grow_three_layers"
 loop = false
 
 [[beats]]
+id = "complete_three_layer_growth"
+loop = false
+
+[[beats]]
 id = "reveal_seven_step_angle"
+loop = false
+
+[[beats]]
+id = "solve_seven_step_angle"
 loop = false
 
 [[beats]]
@@ -75,7 +112,19 @@ id = "build_angle_recurrence"
 loop = false
 
 [[beats]]
+id = "propagate_general_angles"
+loop = false
+
+[[beats]]
+id = "complete_general_propagation"
+loop = false
+
+[[beats]]
 id = "close_outer_triangle"
+loop = false
+
+[[beats]]
+id = "state_scoped_product"
 loop = false
 
 [[beats]]
@@ -83,5 +132,13 @@ id = "mark_scope_boundary"
 loop = false
 
 [[beats]]
+id = "verify_full_line_counterexample"
+loop = false
+
+[[beats]]
 id = "consolidate_scoped_invariant"
+loop = false
+
+[[beats]]
+id = "restate_scoped_results"
 loop = false

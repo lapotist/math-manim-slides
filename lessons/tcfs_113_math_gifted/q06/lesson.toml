@@ -22,7 +22,7 @@ source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
 source_note = "Frame inspection places the Q5-to-Q6 transition near 01:29, with Q6 settled by 01:30 and continuing through the 03:35 endpoint. The source uses root sum/product signs, considers progression orderings, obtains ab=36 from the geometric middle, and reports roots 3 and 12 before p+q=51. This lesson independently delays coefficient comparison until the root pair is settled: it proves root positivity directly from the polynomial on x<=0, exhausts all three geometric-middle choices, derives the arithmetic gap relation, and finally audits all six numerical permutations. All visuals, motion, wording, and code are project-original."
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_113_math_gifted/q06/deck.py"
 scene_class = "CarloTcfs113MathQ06"
 storyboard = "lessons/tcfs_113_math_gifted/q06/storyboard.md"
@@ -31,6 +31,11 @@ estimated_minutes = 8
 expected_answer = "51"
 independent_check = "For x<=0 and positive p,q, every term of x^2-px+q is nonnegative and q is strictly positive, so the two real roots a,b are positive. In a three-term GP the middle square equals the product of the ends. A positive root cannot be the middle because the end product would be (-6) times the other positive root, which is negative. Therefore -6 is the middle and ab=(-6)^2=36. In an AP, -6 is the smallest term; after naming the smaller root a and larger root b, the only ascending order is -6,a,b, so a+6=b-a and b=2a+6. Combining with ab=36 gives a(2a+6)=36, or (a-3)(a+6)=0. Positivity leaves a=3 and b=12. The six permutations have exactly two AP orders, (-6,3,12) and its reverse, and exactly two GP orders, (3,-6,12) and its reverse; the remaining two satisfy neither. Finally p=a+b=15 and q=ab=36, hence p+q=51."
 tags = ["algebra", "quadratic-roots", "arithmetic-progression", "geometric-progression", "vieta", "case-analysis", "permutations"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "正整數 p、q 使方程 x²-px+q=0 有兩個實根 a、b。同一組數 a、b、-6 可分別重新排列成等差數列與等比數列，求 p+q。"
 
 [[beats]]
 id = "meet_three_cards"
@@ -41,7 +46,19 @@ id = "force_positive_roots"
 loop = false
 
 [[beats]]
+id = "exclude_nonpositive_roots"
+loop = false
+
+[[beats]]
 id = "test_gp_middle"
+loop = false
+
+[[beats]]
+id = "move_b_to_gp_middle"
+loop = false
+
+[[beats]]
+id = "reject_b_as_gp_middle"
 loop = false
 
 [[beats]]
@@ -61,6 +78,14 @@ id = "solve_root_pair"
 loop = false
 
 [[beats]]
+id = "choose_positive_root"
+loop = false
+
+[[beats]]
+id = "settle_root_pair"
+loop = false
+
+[[beats]]
 id = "verify_both_progressions"
 loop = false
 
@@ -70,4 +95,12 @@ loop = false
 
 [[beats]]
 id = "recover_p_q"
+loop = false
+
+[[beats]]
+id = "read_original_coefficients"
+loop = false
+
+[[beats]]
+id = "reveal_p_q_sum"
 loop = false

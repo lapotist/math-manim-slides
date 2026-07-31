@@ -12,90 +12,130 @@
 
 ## Beat plan
 
-## 01 given_product (0:35, loop=false)
+## 01 given_product (0:25, loop=false)
 
 - Settled visual: 顯示已知乘積 7；目標式放在右下但以問號遮住數值。
 - Animation: 只圈出兩個大括號，暫不展開四項。
 - Prompt: 問「我們不知道 `a,b`，為什麼目標仍可能被唯一決定？」
 - Boundary: 7 與目標問號同時可見。
 
-## 02 isolate_radical_pairs (0:45, loop=false)
+## 02 expand_given_product (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 03 isolate_radical_pairs (0:25, loop=false)
 
 - Definitions: 令 `A=sqrt(a^2+4)`、`B=sqrt(b^2+9)`，原式變成 `(A+a)(B+b)=7`。
 - Positivity guard: 以數線短示意顯示 `A>|a|`、`B>|b|`，因此 `A+/-a`、`B+/-b` 都是正數，後續矩形與除法合法。
 - Visual split: 將第一組 `A+a` 與尚未使用的夥伴 `A-a` 上下排列。
 - Boundary: 第一組成為畫面主角，第二組淡化。
 
-## 03 vary_first_pair (0:50, loop=true)
+## 04 vary_first_pair (0:25, loop=true)
 
 - Loop states: `a=-3/2,0,3/2`；相應 `A=5/2,2,5/2`，故 `(A+a,A-a)` 依序為 `(1,4),(2,2),(4,1)`。
 - Animation: 兩個數作為矩形邊長，矩形由瘦高變正方形、再變扁寬，最後回到起點。
 - Observation: 外形改變但面積一直是 4；畫面只顯示實例，尚未寫一般證明。
 - Boundary/loop: 循環必須回到 `(1,4)`，無跳格。
 
-## 04 discover_first_invariant (0:45, loop=false)
+## 05 discover_first_invariant (0:25, loop=false)
 
 - Prompt: 從三個實例問「為什麼面積總是 4？」
 - Algebra after observation: `(A+a)(A-a)=A^2-a^2=(a^2+4)-a^2=4`。
 - Naming: 此時才將兩因子標成一對根式夥伴；不需強迫使用術語。
 - Boundary: 固定面積 4 落在第一個矩形中央。
 
-## 05 mirror_second_pair (0:40, loop=false)
+## 06 compare_first_pair (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 07 state_first_invariant (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 08 mirror_second_pair (0:25, loop=false)
 
 - Animation: 將第一組的視覺結構複製到 `B+b`、`B-b`。
 - Derivation staged: `(B+b)(B-b)=B^2-b^2=(b^2+9)-b^2=9`。
 - Teaching point: 變數部分消失，留下根號內的固定常數。
 - Boundary: 面積 4 與 9 的兩矩形並列。
 
-## 06 combine_invariants (0:35, loop=false)
+## 09 state_second_invariant (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 10 combine_invariants (0:25, loop=false)
 
 - Animation: 兩個固定面積由物件複本相乘，得到四個因子的總乘積 36。
 - Equation: `(A+a)(A-a)(B+b)(B-b)=36`。
 - Preserve grouping: 亮色的兩個加號因子仍被括成已知的一組，淡色兩個減號因子括成未知的一組。
 - Boundary: 畫面像一個已知總量 36 被分成兩塊乘積。
 
-## 07 pose_target (0:35, loop=false)
+## 11 collect_invariant_sum (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 12 pose_target (0:25, loop=false)
 
 - Return: 目標 `aB+bA` 放大，對應到原乘積展開時會出現的兩個交叉位置。
 - Prompt: 問「若只展開已知的加號乘積，哪些項會和目標混在一起？」
 - Pause: 不立即展開，讓觀眾預期需要一個能消掉共通項的第二式。
 - Boundary: 目標洋紅色，其他位置灰色問號。
 
-## 08 build_shadow_product (0:45, loop=false)
+## 13 build_shadow_product (0:25, loop=false)
 
 - Animation: 從總乘積 36 中取出已知亮色乘積 7，剩下的淡色乘積由除法形成。
 - Equation: `(A-a)(B-b)=36/7`。
 - Object identity: 減號因子必須由先前夥伴複製過來，不可突然出現。
 - Boundary: `7` 與 `36/7` 上下對齊，準備比較。
 
-## 09 expand_known_product (0:45, loop=false)
+## 14 name_shadow_product (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 15 expand_known_product (0:25, loop=false)
 
 - Animation: 四個乘積格逐一展開 `(A+a)(B+b)`。
 - Grouping: `AB+ab` 收進灰色框；`aB+bA` 收進洋紅色框 `T`。
 - Result: `7=(AB+ab)+T`。
 - Boundary: 只完成上式，下式仍保持因式型態。
 
-## 10 expand_shadow_product (0:45, loop=false)
+## 16 collect_known_terms (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 17 expand_shadow_product (0:25, loop=false)
 
 - Animation: 以相同四格位置展開 `(A-a)(B-b)`，保持項的位置與上式一致。
 - Signs: 共通項仍為 `AB+ab`，兩個交叉項同時變號。
 - Result: `36/7=(AB+ab)-T`。
 - Boundary: 兩式垂直對齊，共通框與正負 `T` 一眼可比。
 
-## 11 subtract_to_isolate (0:45, loop=false)
+## 18 collect_shadow_terms (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 19 subtract_to_isolate (0:25, loop=false)
 
 - Animation: 上式減下式；灰色共通框成對消去，`T-(-T)` 合成 `2T`。
 - Equation earned from objects: `7-36/7=2T`。
 - Teaching point: 不求 `a`、`b`，因為兩個乘積的差已經只留下題目所求。
 - Boundary: `2T` 位於中央，原式淡作背景。
 
-## 12 final_value (0:35, loop=false)
+## 20 isolate_requested_product (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 21 final_value (0:25, loop=false)
 
 - Arithmetic staged: `7=49/7`，所以 `2T=(49-36)/7=13/7`；再除以 2。
 - Final: `T=13/14`，由洋紅色 `T` 轉回完整目標式。
 - Boundary: 完整等式 `a sqrt(b^2+9)+b sqrt(a^2+4)=13/14`。
 
-## 13 consolidate (0:40, loop=false)
+## 22 reveal_product_value (0:25, loop=false)
+
+- Boundary: 保留目前落定的構形，下一頁再加入新的關係。
+
+## 23 consolidate (0:25, loop=false)
 
 - Recap path: 可變矩形面積固定 4、9 -> 加號乘積 7 決定減號乘積 `36/7` -> 相減留下交叉項。
 - Source footer: `解題來源：正哥愛數學`，第壹部分第 7 題、PDF 第 4 頁。

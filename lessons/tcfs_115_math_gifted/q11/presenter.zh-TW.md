@@ -34,15 +34,23 @@
 
 `Q` 和 `R` 都在後表面，所以那一面的交痕沿著 `QR`。
 
+[NEXT]
+
+## 04 mark_known_section｜同一面上有兩點，就有一條線（下一步）
+
 每找到同一個面上的兩個點，就能把截線繼續傳到下一個面。
 
 [NEXT]
 
-## 04 extend_top_line｜先在上表面找兩個橋接點
+## 05 extend_top_line｜先在上表面找兩個橋接點
 
 延長上表面的 `PQ`。
 
 往 `FG` 這一側，它和 `FG` 的延長線交於 `L`。往另一側，它和 `GH` 的延長線交於 `I`。
+
+[NEXT]
+
+## 06 land_top_extension｜先在上表面找兩個橋接點（下一步）
 
 `L` 和 `I` 雖然落在正方形外，仍同時位於上表面所在平面與我們的截平面中。
 
@@ -50,11 +58,15 @@
 
 [NEXT]
 
-## 05 extend_right_line｜把截線送到右表面
+## 07 extend_right_line｜把截線送到右表面
 
 現在只看右表面 `CDHG`。
 
 `I` 位於 `GH` 的延長線，`R` 位於 `HD`，所以兩點都在這個面的延伸平面中。
+
+[NEXT]
+
+## 08 land_right_extension｜把截線送到右表面（下一步）
 
 連接並延長 `IR`。它交 `CD` 於題目中的 `M`，也交 `CG` 的延長線於 `J`。
 
@@ -62,7 +74,7 @@
 
 [NEXT]
 
-## 06 locate_n｜前表面的兩個共同點
+## 09 locate_n｜前表面的兩個共同點
 
 轉到前表面 `BCGF`。
 
@@ -70,13 +82,17 @@
 
 另一方面，它們也都是我們沿著截平面延伸得到的點。因此連線 `LJ` 正是截平面在前表面的交痕。
 
+[NEXT]
+
+## 10 confirm_point_n｜前表面的兩個共同點（下一步）
+
 `LJ` 與 `FB` 的交點，就是 `N`。
 
 我們已經畫出 `N`；接著才計算它把 `FB` 分成什麼比例。
 
 [NEXT]
 
-## 07 unfold_three_faces｜把空間問題攤平成三張圖
+## 11 unfold_three_faces｜把空間問題攤平成三張圖
 
 比例計算不需要在透視圖上硬看。
 
@@ -86,11 +102,15 @@
 
 [NEXT]
 
-## 08 top_left_ratio｜先在上表面量到 LF
+## 12 top_left_ratio｜先在上表面量到 LF
 
 看上表面左側的兩個小直角三角形 `PEQ` 與 `PFL`。
 
 它們有一對對頂角，也各有一個直角，所以相似。
+
+[NEXT]
+
+## 13 record_top_left_ratio｜先在上表面量到 LF（下一步）
 
 而 `P` 是 `EF` 中點，`PE=PF=a/2`。相似比等於 1，因此對應的另兩邊也相等。
 
@@ -98,11 +118,15 @@
 
 [NEXT]
 
-## 09 top_right_ratio｜同一條線量到 I 的位置
+## 14 top_right_ratio｜同一條線量到 I 的位置
 
 再看 `PEQ` 與右側的 `IHQ`。
 
 已知 `EQ:QH=2:3`，相似三角形同時給出 `PE:HI=2:3`。
+
+[NEXT]
+
+## 15 record_top_right_ratio｜同一條線量到 I 的位置（下一步）
 
 `PE=a/2`，所以 `HI=3a/4`。
 
@@ -110,7 +134,7 @@
 
 [NEXT]
 
-## 10 right_face_ratio｜把長度傳到 GJ
+## 16 right_face_ratio｜把長度傳到 GJ
 
 現在進入右表面。
 
@@ -118,17 +142,25 @@
 
 `R` 是 `HD` 中點，因此 `HR=a/2`。
 
+[NEXT]
+
+## 17 record_right_face_ratio｜把長度傳到 GJ（下一步）
+
 比例是 `HI/IG=HR/GJ`。代入 `3a/4`、`7a/4` 與 `a/2`，得到 `GJ=7a/6`。
 
 這段 `GJ` 會成為下一個面的已知長度。
 
 [NEXT]
 
-## 11 front_face_ratio｜最後傳到 FN
+## 18 front_face_ratio｜最後傳到 FN
 
 前表面中，三角形 `LFN` 與 `LGJ` 相似。
 
 先把整段 `LG` 算出來。它是 `LF+FG=2a/5+a=7a/5`。
+
+[NEXT]
+
+## 19 record_front_face_ratio｜最後傳到 FN（下一步）
 
 因此 `LF/LG=FN/GJ`。
 
@@ -136,25 +168,37 @@
 
 [NEXT]
 
-## 12 finish_ratio｜把整條 FB 分成兩段
+## 20 finish_ratio｜把整條 FB 分成兩段
 
 整條 `FB` 長為 `a`，上段 `FN` 已知是 `a/3`。
 
 所以剩下的 `NB=a-a/3=2a/3`。
 
+[NEXT]
+
+## 21 combine_face_ratios｜把整條 FB 分成兩段（下一步）
+
 兩段的比例是 `(a/3):(2a/3)=1:2`。
+
+[NEXT]
+
+## 22 simplify_space_ratio｜把整條 FB 分成兩段（下一步）
 
 因此 `FN/NB=1/2`。
 
 [NEXT]
 
-## 13 consolidate｜一條截線跨過三個面
+## 23 consolidate｜一條截線跨過三個面
 
 最後把空間路徑再走一次。
 
 上表面延長 `PQ` 找到 `L` 與 `I`；右表面延長 `IR` 找到 `J`；前表面連接 `LJ`，才找到 `N`。
 
 比例也沿同一方向傳遞：上表面量到 `LF` 與 `IG`，右表面量到 `GJ`，前表面量到 `FN=a/3`。
+
+[NEXT]
+
+## 24 reveal_space_ratio｜一條截線跨過三個面（下一步）
 
 所以 `N` 把 `FB` 分成 1 比 2，答案是 `1/2`。
 

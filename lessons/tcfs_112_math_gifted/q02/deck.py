@@ -247,8 +247,8 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(FadeIn(one_week[2]), run_time=0.45)
         self.wait(0.40)
 
-        # Beat 03 compare_same_remainder: full weeks can be removed from day counts.
-        self.next_beat("compare_same_remainder")
+        # Beat 03 compare_week_multiples: full weeks can be removed from day counts.
+        self.next_beat("compare_week_multiples")
         next_title = label("8 天和 15 天，都只多走 1 格", 33, INK, "BOLD")
         next_title.move_to(stage_title)
         examples = VGroup(
@@ -268,6 +268,9 @@ class CarloTcfs112MathQ02(CarloSlide):
         stage_title = next_title
         self.play(FadeOut(one_week), run_time=0.35)
         self.play(Write(examples[0]), Write(examples[1]), run_time=0.72)
+
+        # Beat 04 compare_same_remainder: continue at a settled semantic boundary.
+        self.next_beat("compare_same_remainder")
         self.play(
             MoveAlongPath(marker, one_step_path),
             run_time=1.00,
@@ -277,7 +280,7 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(FadeIn(examples[3]), Indicate(marker, color=POINT), run_time=0.58)
         self.wait(0.38)
 
-        # Beat 04 ask_for_remainder: replace impossible counting with one small question.
+        # Beat 05 ask_for_remainder: replace impossible counting with one small question.
         self.next_beat("ask_for_remainder")
         next_title = label("大數不用展開，只找除以 7 的餘數", 33, INK, "BOLD")
         next_title.move_to([0, 3.02, 0])
@@ -303,8 +306,8 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(FadeIn(remainder_question), run_time=0.48)
         self.wait(0.48)
 
-        # Beat 05 split_base_into_weeks: earn the base remainder from visible bundles.
-        self.next_beat("split_base_into_weeks")
+        # Beat 06 separate_full_week_bundles: earn the base remainder from visible bundles.
+        self.next_beat("separate_full_week_bundles")
         next_title = label("先把 2024 拆成完整星期，再多 1 天", 33, INK, "BOLD")
         next_title.move_to([4.25, 3.02, 0])
         bundles = VGroup(
@@ -334,14 +337,17 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(FadeOut(remainder_panel), Create(divider), run_time=0.50)
         self.play(LaggedStart(*(FadeIn(item) for item in bundles), lag_ratio=0.10), run_time=0.80)
         self.play(FadeIn(extra_day), run_time=0.48)
+
+        # Beat 07 split_base_into_weeks: continue at a settled semantic boundary.
+        self.next_beat("split_base_into_weeks")
         self.play(Write(split_formula), run_time=0.55)
         self.play(Write(weeks_formula), run_time=0.62)
         self.play(FadeIn(base_remainder), run_time=0.65)
         self.play(FadeIn(split_note), run_time=0.45)
         self.wait(0.38)
 
-        # Beat 06 multiply_remainders: see why every 2024 factor becomes one.
-        self.next_beat("multiply_remainders")
+        # Beat 08 reduce_each_factor_mod_seven: see why every 2024 factor becomes one.
+        self.next_beat("reduce_each_factor_mod_seven")
         next_title = label("相乘時，每個因數都只留下餘數 1", 33, INK, "BOLD")
         next_title.move_to(stage_title)
         factor_tiles = VGroup(
@@ -386,12 +392,15 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(FadeOut(bundles), FadeOut(extra_day), FadeOut(split_panel), run_time=0.42)
         self.play(FadeIn(factor_tiles), run_time=0.55)
         self.play(Create(down_arrows), FadeIn(remainder_tiles), run_time=0.78)
+
+        # Beat 09 multiply_remainders: continue at a settled semantic boundary.
+        self.next_beat("multiply_remainders")
         self.play(Write(power_two), run_time=0.62)
         self.play(Write(power_three), run_time=0.68)
         self.play(FadeIn(many_factors), run_time=0.62)
         self.wait(0.38)
 
-        # Beat 07 compress_modular_result: write the short modular statement after the visual.
+        # Beat 10 compress_modular_result: write the short modular statement after the visual.
         self.next_beat("compress_modular_result")
         next_title = label("112 個餘數 1 相乘，仍然只剩 1", 33, INK, "BOLD")
         next_title.move_to([0, 3.02, 0])
@@ -425,7 +434,7 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(GrowFromCenter(remainder_result), Circumscribe(remainder_result, color=POINT), run_time=0.78)
         self.wait(0.42)
 
-        # Beat 08 read_full_weeks_plus_one: translate the congruence back to days.
+        # Beat 11 read_full_weeks_plus_one: translate the congruence back to days.
         self.next_beat("read_full_weeks_plus_one")
         next_title = label("這代表很多個完整星期，再多 1 天", 33, INK, "BOLD")
         next_title.move_to(stage_title)
@@ -458,8 +467,8 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(FadeIn(extra_group), run_time=0.65)
         self.wait(0.40)
 
-        # Beat 09 land_on_unknown_day: return to the wheel and stop before naming the day.
-        self.next_beat("land_on_unknown_day")
+        # Beat 12 return_to_week_wheel: return to the wheel and stop before naming the day.
+        self.next_beat("return_to_week_wheel")
         next_title = label("完整星期回到星期三，再前進 1 格", 33, INK, "BOLD")
         next_title.move_to([4.25, 3.02, 0])
         full_week_count = VGroup(
@@ -500,6 +509,9 @@ class CarloTcfs112MathQ02(CarloSlide):
         )
         self.play(FadeIn(preanswer_panel[0]), FadeIn(preanswer_panel[1]), run_time=0.50)
         self.play(Circumscribe(wheel, color=REGION), run_time=0.72)
+
+        # Beat 13 land_on_unknown_day: continue at a settled semantic boundary.
+        self.next_beat("land_on_unknown_day")
         self.play(FadeIn(preanswer_panel[2]), run_time=0.38)
         self.play(
             MoveAlongPath(return_marker, one_step_path),
@@ -510,7 +522,7 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.play(Indicate(return_marker, color=POINT), run_time=0.52)
         self.wait(0.65)
 
-        # Beat 10 reveal_thursday: name the one-step landing only after the pause.
+        # Beat 14 reveal_thursday: name the one-step landing only after the pause.
         self.next_beat("reveal_thursday")
         next_title = label("星期三的下一格，就是星期四", 33, INK, "BOLD")
         next_title.move_to(stage_title)

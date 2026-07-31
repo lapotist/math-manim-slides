@@ -155,6 +155,8 @@ class CarloTcfs114MathQ13(CarloSlide):
             run_time=0.8,
         )
         self.play(FadeIn(neg_head, zero_head, pos_head), run_time=0.45)
+
+        self.next_beat("test_sign_cases")
         self.play(Write(neg_lhs), Write(neg_rhs), FadeIn(neg_no), run_time=0.7)
         self.play(Write(zero_eq), FadeIn(zero_note), run_time=0.55)
         self.play(Write(pos_lhs), Write(pos_rhs), Write(pos_no), run_time=0.7)
@@ -474,6 +476,10 @@ class CarloTcfs114MathQ13(CarloSlide):
             run_time=0.8,
         )
         self.play(Write(values), run_time=0.7)
+
+        self.next_beat("derive_corrected_parameter")
         self.play(Write(parameter), run_time=0.75)
         self.play(Write(boundary), run_time=0.65)
+
+        self.next_beat("separate_final_results")
         self.play(FadeIn(final_group), run_time=0.75)

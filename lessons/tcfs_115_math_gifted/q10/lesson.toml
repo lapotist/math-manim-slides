@@ -16,7 +16,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q10/deck.py"
 scene_class = "Tcfs115Q10Slide"
 presenter_script = "lessons/tcfs_115_math_gifted/q10/presenter.zh-TW.md"
@@ -25,6 +25,11 @@ estimated_minutes = 9
 expected_answer = "c > a > d > b"
 independent_check = "With k=a+b+c+d>0, the four inequalities give k/7<b<k/6, 5k/13<c<5k/12, 2k/11<d<2k/9, and 5k/21<a<5k/19. The separated endpoints k/6<2k/11, 2k/9<5k/21, and 5k/19<5k/13 prove b<d<a<c."
 tags = ["inequality", "bounds", "interval", "ordering", "normalization"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "正數 a、b、c、d 同時滿足 5b-c-d<a<6b-c-d、(7/5)c-a-d<b<(8/5)c-a-d、(7/2)d-a-b<c<(9/2)d-a-b，以及 (14/5)a-b-c<d<(16/5)a-b-c。請將 a、b、c、d 由大到小排列。"
 
 [[beats]]
 id = "meet_four_bounds"
@@ -35,7 +40,15 @@ id = "name_shared_total"
 loop = false
 
 [[beats]]
+id = "write_shared_total"
+loop = false
+
+[[beats]]
 id = "normalize_b"
+loop = false
+
+[[beats]]
+id = "finish_b_normalization"
 loop = false
 
 [[beats]]
@@ -43,7 +56,15 @@ id = "normalize_c"
 loop = false
 
 [[beats]]
+id = "finish_c_normalization"
+loop = false
+
+[[beats]]
 id = "normalize_d"
+loop = false
+
+[[beats]]
+id = "finish_d_normalization"
 loop = false
 
 [[beats]]
@@ -51,7 +72,15 @@ id = "normalize_a"
 loop = false
 
 [[beats]]
+id = "finish_a_normalization"
+loop = false
+
+[[beats]]
 id = "place_four_intervals"
+loop = false
+
+[[beats]]
+id = "finish_interval_bands"
 loop = false
 
 [[beats]]
@@ -64,6 +93,10 @@ loop = false
 
 [[beats]]
 id = "separate_a_c"
+loop = false
+
+[[beats]]
+id = "compare_a_and_c"
 loop = false
 
 [[beats]]

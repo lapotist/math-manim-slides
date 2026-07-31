@@ -16,7 +16,7 @@ content_license = "CC-BY-4.0"
 source_material_use = "independent_reexpression"
 rights_reference = "NOTICE.md"
 rights_reviewed_on = "2026-07-25"
-production_state = "visual_verified"
+production_state = "draft_rendered"
 scene_file = "lessons/tcfs_115_math_gifted/q09/deck.py"
 scene_class = "Question9Slide"
 storyboard = "lessons/tcfs_115_math_gifted/q09/storyboard.md"
@@ -25,6 +25,11 @@ estimated_minutes = 9
 expected_answer = "68*pi/3 + 8*sqrt(3)"
 independent_check = "300-degree radius-4 sector + side-4 equilateral triangle - radius-2 semicircle, then double"
 tags = ["geometry", "locus", "circle", "area", "symmetry"]
+
+[problem_display]
+kind = "project_restatement"
+locale = "zh-TW"
+text = "固定線段 AB，且 AB=4。平面上的動點 P 滿足 30°≤∠APB≤90°。求所有符合條件的 P 所形成區域的面積。"
 
 [[beats]]
 id = "fixed_segment"
@@ -36,6 +41,10 @@ loop = false
 
 [[beats]]
 id = "explore_p"
+loop = true
+
+[[beats]]
+id = "explore_far_boundary"
 loop = true
 
 [[beats]]
@@ -84,6 +93,10 @@ loop = false
 
 [[beats]]
 id = "reflect_and_double"
+loop = false
+
+[[beats]]
+id = "restore_moving_point"
 loop = false
 
 [[beats]]

@@ -37,75 +37,84 @@
 
 ## 03 explore_p
 
-P 在幾個刻意選擇的有效位置之間循環：一般上方位置、接近 90 度
-邊界、接近 30 度邊界、下方鏡像，再回到起點。角與連線連續更新，
-但不畫範圍。
+P 在一般上方位置與接近 90 度邊界的位置之間循環，再回到起點。
+角與連線連續更新，但不畫範圍。
 
-## 04 pose_locus_question
+## 04 explore_far_boundary
+
+從同一起點改往接近 30 度邊界及另一個一般位置移動，再回到起點。
+把兩個角度極端拆開，讓每次循環只回答一個邊界問題。
+
+## 05 pose_locus_question
 
 運動停下，只留下問題與固定線段。給觀眾真正猜測邊界形狀的時間。
 
-## 05 reveal_locus_outline
+## 06 reveal_locus_outline
 
 先描出內、外圓弧，再輕填可行區。此時只辨認範圍，不進入計算。
 
-## 06 prove_reflection_symmetry
+## 07 prove_reflection_symmetry
 
 取任意上方點 P，沿 AB 反射成 P'。顯示 A、B 固定，AP 與 BP 的
 長度分別不變，因此夾角條件不變。由一對任意點推廣到整個區域，
 而不是只說圖形看起來相同。
 
-## 07 isolate_upper_half
+## 08 isolate_upper_half
 
 下半部降到淡色，只保留上半部為主角。清楚說明現在求的是局部量，
 不預告乘以 2。
 
-## 08 boundary_90
+## 09 boundary_90
 
 在 90 度邊界放上直角記號，才顯示以 AB 為直徑的半圓；由 AB=4
 得到半徑 2。
 
-## 09 boundary_30
+## 10 boundary_30
 
 在 30 度外邊界選一點，建立通過 A、B 的圓，顯示圓心、半徑與
 等邊三角形關係。
 
-## 10 derive_radius_sector
+## 11 derive_radius_sector
 
 由弦長與 30 度圓周角推出小圓心角 60 度、半徑 4；上半部使用的
 是 300 度優扇形。每個數值都從剛建立的幾何複製到計算區。
 
-## 11 sector_area
+## 12 sector_area
 
 只亮外側 300 度優扇形，建立第一項 `100*pi/3`。
 
-## 12 triangle_area
+## 13 triangle_area
 
 亮起邊長 4 的正三角形並加入 `4*sqrt(3)`。保留前一項作為上下文。
 
-## 13 subtract_semicircle
+## 14 subtract_semicircle
 
 亮起內側半徑 2 半圓，以挖空動作表示扣除，加入 `-2*pi`。
 
-## 14 upper_result
+## 15 upper_result
 
 合併三項，得到上半部 `34*pi/3 + 4*sqrt(3)`。停在一個可閱讀的
 局部結論，不先顯示總面積。
 
-## 15 reflect_and_double
+## 16 reflect_and_double
 
 把已算好的上半區域鏡射到下方。只有鏡射完全落定後，才讓兩份
 上半部結果組成乘以 2，得到總面積。
 
-## 16 consolidate
+## 17 restore_moving_point
+
+答案與完整區域保持不動，原來的 P、AP、BP 與角記號重新出現。
+這個落定頁把答案揭示和最後的運動回顧分開。
+
+## 18 consolidate
 
 回到動點與完整範圍，依序回顧「探索、反射、只算一半、鏡射加倍」。
 畫面循環供提問使用，不增加新推導。
 
 ## Build constraints
 
-- Beat 03 與 16 的循環必須回到起始狀態，重播時不可跳動。
+- Beat 03、04 與 18 的循環必須回到起始狀態，重播時不可跳動。
 - Beat 06 必須保留任意點、反射線與不變資料，不能用左右相似代替證明。
 - Beat 07 到 14 不讓下半部重新搶回注意力。
-- Beat 15 的 `x2` 在反射區域落定前不可出現。
-- Slides manifest 必須恰有 16 段，只有 Beat 03 與 16 標記為 loop。
+- Beat 16 的 `x2` 在反射區域落定前不可出現。
+- Slides manifest 必須恰有 18 段，只有 Beat 03、04 與 18 標記為 loop。

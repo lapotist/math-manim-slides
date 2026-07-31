@@ -299,8 +299,8 @@ class CarloTcfs112MathQ13(CarloSlide):
         )
         source.to_corner(DOWN + RIGHT, buff=0.22)
 
-        # Beat 01 grow_seven_branch: grow one exact direct-recruit bundle.
-        self.begin_beat("grow_seven_branch")
+        # Beat 01 grow_first_seven_children: grow one exact direct-recruit bundle.
+        self.begin_beat("grow_first_seven_children")
         stage_title = self.stage_title("一位創社社員，先推薦恰好 7 個人")
         root = self.member(BLUE, 0.32, founder=True).move_to([-3.75, 1.45, 0])
         children_one = self.seven_row(BLUE, radius=0.16, buff=0.24)
@@ -352,6 +352,9 @@ class CarloTcfs112MathQ13(CarloSlide):
             ),
             run_time=1.02,
         )
+
+        # Beat 02 grow_seven_branch: continue at a settled semantic boundary.
+        self.next_beat("grow_seven_branch")
         self.play(
             Create(child_brace),
             FadeIn(child_count),
@@ -362,8 +365,8 @@ class CarloTcfs112MathQ13(CarloSlide):
         self.play(Create(seven_focus), run_time=0.40)
         self.wait(0.42)
 
-        # Beat 02 pass_color_forward: retain one child and pass blue downward.
-        self.next_beat("pass_color_forward")
+        # Beat 03 grow_second_generation: retain one child and pass blue downward.
+        self.next_beat("grow_second_generation")
         next_title = self.stage_title("同一種認證顏色，沿推薦邊傳到下一層")
         active_child = children_one[3]
         active_ring = Circle(
@@ -433,13 +436,16 @@ class CarloTcfs112MathQ13(CarloSlide):
             ),
             run_time=0.92,
         )
+
+        # Beat 04 pass_color_forward: continue at a settled semantic boundary.
+        self.next_beat("pass_color_forward")
         self.play(FadeIn(sender), FadeIn(sender_text), run_time=0.36)
         self.play(Create(pass_arrow), FadeIn(receiver), FadeIn(receiver_text), run_time=0.52)
         self.play(FadeIn(inheritance), FadeIn(branch_note), run_time=0.54)
         self.wait(0.42)
 
-        # Beat 03 equate_colors_and_roots: compare two exact rooted stars.
-        self.next_beat("equate_colors_and_roots")
+        # Beat 05 compare_two_colored_trees: compare two exact rooted stars.
+        self.next_beat("compare_two_colored_trees")
         next_title = self.stage_title("新顏色只從另一位創社社員開始")
         compact_blue = self.star_tree((-3.60, 1.25, 0), -0.20, BLUE, span=3.1)
         purple_tree = self.star_tree((3.60, 1.25, 0), -0.20, PURPLE, span=3.1)
@@ -481,12 +487,15 @@ class CarloTcfs112MathQ13(CarloSlide):
             FadeIn(purple_root_tag),
             run_time=0.90,
         )
+
+        # Beat 06 equate_colors_and_roots: continue at a settled semantic boundary.
+        self.next_beat("equate_colors_and_roots")
         self.play(FadeIn(purple_tree_tag), run_time=0.34)
         self.play(FadeIn(root_equivalence), Write(root_symbol), run_time=0.66)
         self.wait(0.46)
 
-        # Beat 04 count_each_nonroot: count unique parents before writing a sum.
-        self.next_beat("count_each_nonroot")
+        # Beat 07 count_unique_incoming_edges: count unique parents before writing a sum.
+        self.next_beat("count_unique_incoming_edges")
         next_title = self.stage_title("把 685 人拆成根與非根，再數所有推薦邊")
         mini_blue = self.star_tree((-5.05, 1.05, 0), -0.20, BLUE, span=2.1, root_radius=0.20, child_radius=0.095)
         mini_purple = self.star_tree((-2.35, 1.05, 0), -0.20, PURPLE, span=2.1, root_radius=0.20, child_radius=0.095)
@@ -546,11 +555,14 @@ class CarloTcfs112MathQ13(CarloSlide):
             run_time=1.18,
         )
         self.play(FadeIn(root_part), FadeIn(split_total), run_time=0.45)
+
+        # Beat 08 count_each_nonroot: continue at a settled semantic boundary.
+        self.next_beat("count_each_nonroot")
         self.play(FadeIn(nonroot_part), run_time=0.48)
         self.play(Write(degree_relation), FadeIn(degree_note), run_time=0.68)
         self.wait(0.44)
 
-        # Beat 05 compress_recruitment_bundles: display every allowed multiple.
+        # Beat 09 compress_recruitment_bundles: display every allowed multiple.
         self.next_beat("compress_recruitment_bundles")
         next_title = self.stage_title("四種推薦人數，都由完整的七人列組成")
         bundle_options = VGroup(
@@ -598,8 +610,8 @@ class CarloTcfs112MathQ13(CarloSlide):
         self.play(Write(allowed_formula), FadeIn(zero_note), run_time=0.72)
         self.wait(0.44)
 
-        # Beat 06 earn_mod_seven: derive the complete congruence candidate list.
-        self.next_beat("earn_mod_seven")
+        # Beat 10 write_recruitment_multiple: derive the complete congruence candidate list.
+        self.next_beat("write_recruitment_multiple")
         next_title = self.stage_title("所有非根社員的總數，必須是 7 的倍數")
         bundle_target = bundle_options.copy().scale(0.47)
         bundle_target.arrange(RIGHT, buff=0.22).move_to([0, 2.04, 0])
@@ -647,12 +659,15 @@ class CarloTcfs112MathQ13(CarloSlide):
         )
         stage_title = next_title
         self.play(FadeIn(multiple_note), Write(count_equation), run_time=0.62)
+
+        # Beat 11 earn_mod_seven: continue at a settled semantic boundary.
+        self.next_beat("earn_mod_seven")
         self.play(Write(division), run_time=0.58)
         self.play(Write(congruence), run_time=0.58)
         self.play(FadeIn(candidate_group), run_time=0.62)
         self.wait(0.50)
 
-        # Beat 07 pause_before_feasibility: hold six as a question, not an answer.
+        # Beat 12 pause_before_feasibility: hold six as a question, not an answer.
         self.next_beat("pause_before_feasibility")
         next_title = self.stage_title("先停住：餘數只給必要條件")
         six_question = MathTex("r", "=", "6", "?", font_size=76, color=INK)
@@ -688,7 +703,7 @@ class CarloTcfs112MathQ13(CarloSlide):
         self.play(FadeIn(timing_question), FadeIn(caution), run_time=0.60)
         self.wait(0.86)
 
-        # Beat 08 plant_six_founders: establish the exact initial witness state.
+        # Beat 13 plant_six_founders: establish the exact initial witness state.
         self.next_beat("plant_six_founders")
         next_title = self.stage_title("先放 6 位創社社員，六種顏色各有一個根")
         founders = VGroup(
@@ -732,12 +747,15 @@ class CarloTcfs112MathQ13(CarloSlide):
             ),
             run_time=1.02,
         )
+
+        # Beat 14 activate_first_founder: continue at a settled semantic boundary.
+        self.next_beat("activate_first_founder")
         self.play(FadeIn(initial_counts), run_time=0.50)
         self.play(Create(first_active), FadeIn(first_note), run_time=0.55)
         self.wait(0.44)
 
-        # Beat 09 repeat_ninety_seven_steps: show two temporal steps, then compress.
-        self.next_beat("repeat_ninety_seven_steps")
+        # Beat 15 show_first_recruitment_step: show two temporal steps, then compress.
+        self.next_beat("show_first_recruitment_step")
         next_title = self.stage_title("每次由一位既有新人接力，恰好再加入 7 人", 29)
         founders_target = founders.copy().scale(0.62).move_to([-3.60, 2.10, 0])
         active_target = Circle(
@@ -829,6 +847,9 @@ class CarloTcfs112MathQ13(CarloSlide):
             run_time=0.92,
         )
         self.play(FadeIn(timeline_one), Create(chosen_ring), run_time=0.52)
+
+        # Beat 16 show_second_recruitment_step: continue at a settled semantic boundary.
+        self.next_beat("show_second_recruitment_step")
         self.play(
             Create(second_edges),
             LaggedStart(
@@ -839,6 +860,9 @@ class CarloTcfs112MathQ13(CarloSlide):
         )
         self.play(FadeIn(timeline_two), FadeIn(relay_note), run_time=0.50)
         self.play(FadeIn(timeline_dots), run_time=0.34)
+
+        # Beat 17 repeat_ninety_seven_steps: continue at a settled semantic boundary.
+        self.next_beat("repeat_ninety_seven_steps")
         self.play(FadeIn(timeline_final), FadeIn(final_step_tag), run_time=0.60)
         self.play(Write(witness_equation), run_time=0.72)
         self.wait(0.52)
@@ -862,8 +886,8 @@ class CarloTcfs112MathQ13(CarloSlide):
             witness_equation,
         )
 
-        # Beat 10 certify_minimum: combine necessity with the explicit witness.
-        self.next_beat("certify_minimum")
+        # Beat 18 compare_necessary_and_feasible: combine necessity with the explicit witness.
+        self.next_beat("compare_necessary_and_feasible")
         next_title = self.stage_title("不能少於 6，而且六根森林確實做得到")
         divider = Line([0, -0.90, 0], [0, 2.05, 0], color=HAIRLINE, stroke_width=2.0)
         necessary_title = label("必要下界", 27, CORAL, "BOLD")
@@ -921,6 +945,9 @@ class CarloTcfs112MathQ13(CarloSlide):
         stage_title = next_title
         self.play(FadeIn(necessary_group), run_time=0.58)
         self.play(FadeIn(feasible_group), run_time=0.58)
+
+        # Beat 19 certify_minimum: continue at a settled semantic boundary.
+        self.next_beat("certify_minimum")
         self.play(Create(left_arrow), Create(right_arrow), run_time=0.50)
         self.play(Write(p_result), run_time=0.66)
         self.wait(0.48)
@@ -934,8 +961,8 @@ class CarloTcfs112MathQ13(CarloSlide):
             p_result,
         )
 
-        # Beat 11 bound_color_count: establish the separate upper bound.
-        self.next_beat("bound_color_count")
+        # Beat 20 count_possible_root_colors: establish the separate upper bound.
+        self.next_beat("count_possible_root_colors")
         next_title = self.stage_title("最大值另問：每種顏色都要占用一位根")
         sample_colors = tuple(ALL_FOUNDER_COLORS[index] for index in range(0, 603, 75))
         sample_roots = VGroup(
@@ -982,12 +1009,15 @@ class CarloTcfs112MathQ13(CarloSlide):
             run_time=0.88,
         )
         self.play(Create(root_brace), Write(root_symbol_bound), run_time=0.48)
+
+        # Beat 21 bound_color_count: continue at a settled semantic boundary.
+        self.next_beat("bound_color_count")
         self.play(FadeIn(subset_note), Write(root_bound), run_time=0.58)
         self.play(Write(q_bound), run_time=0.54)
         self.wait(0.46)
 
-        # Beat 12 realize_all_founders: render all 685 distinct roots and no edges.
-        self.next_beat("realize_all_founders")
+        # Beat 22 show_all_founders: render all 685 distinct roots and no edges.
+        self.next_beat("show_all_founders")
         next_title = self.stage_title("讓 685 人全都是創社社員：沒有任何推薦邊")
         all_founders = self.all_founder_grid()
         all_founder_caption = label("685 位，全部在一開始加入", 27, INK, "BOLD")
@@ -1011,6 +1041,9 @@ class CarloTcfs112MathQ13(CarloSlide):
         stage_title = next_title
         self.play(FadeIn(all_founders, shift=UP * 0.08), run_time=1.10)
         self.play(FadeIn(all_founder_caption), run_time=0.44)
+
+        # Beat 23 realize_all_founders: continue at a settled semantic boundary.
+        self.next_beat("realize_all_founders")
         self.play(FadeIn(edge_zero), FadeIn(vacuous_note), run_time=0.56)
         self.play(Write(q_result), run_time=0.62)
         self.wait(0.52)
@@ -1023,8 +1056,8 @@ class CarloTcfs112MathQ13(CarloSlide):
             q_result,
         )
 
-        # Beat 13 reveal_extreme_pair: settle both witnesses before the pair.
-        self.next_beat("reveal_extreme_pair")
+        # Beat 24 place_minimum_and_maximum_witnesses: settle both witnesses before the pair.
+        self.next_beat("place_minimum_and_maximum_witnesses")
         next_title = self.stage_title("兩個極端都完成構造，最後才合成數對")
         final_divider = Line([0, -1.18, 0], [0, 2.18, 0], color=HAIRLINE, stroke_width=2)
 
@@ -1123,6 +1156,9 @@ class CarloTcfs112MathQ13(CarloSlide):
         )
         self.play(FadeIn(min_repeat), Write(min_formula), Write(final_p), run_time=0.65)
         self.play(FadeIn(max_summary_dots), FadeIn(max_caption), run_time=0.62)
+
+        # Beat 25 reveal_extreme_pair: continue at a settled semantic boundary.
+        self.next_beat("reveal_extreme_pair")
         self.play(Write(final_q), run_time=0.48)
         self.play(Write(final_pair), Create(pair_frame), run_time=0.72)
         self.play(FadeIn(realization), run_time=0.52)

@@ -30,6 +30,16 @@ def load_update_sources_module():
 
 
 class CatalogMetadataChecks(unittest.TestCase):
+    def test_every_produced_lesson_has_a_public_problem_restatement(self) -> None:
+        lesson_paths = sorted(ROOT.glob("lessons/*/*/lesson.toml"))
+        self.assertEqual(len(lesson_paths), 46)
+        for path in lesson_paths:
+            lesson = load_toml(path)
+            display = lesson["problem_display"]
+            self.assertEqual(display["kind"], "project_restatement")
+            self.assertEqual(display["locale"], "zh-TW")
+            self.assertGreater(len(display["text"].strip()), 10)
+
     def test_collection_source_and_solution_rights_are_separate(self) -> None:
         collections = [
             load_toml(path)
@@ -110,6 +120,12 @@ class CatalogMetadataChecks(unittest.TestCase):
                 problem["math_review_state"],
                 expected_review[problem["production_state"]],
             )
+            if problem["production_state"] == "blocked":
+                self.assertIn(
+                    problem["blocker_category"],
+                    {"access", "content", "provenance", "rights"},
+                )
+                self.assertTrue(problem["blocker_reason"])
             if problem["duplicate_of"]:
                 self.assertIn(problem["duplicate_of"], ids)
                 self.assertNotEqual(problem["duplicate_of"], problem["id"])

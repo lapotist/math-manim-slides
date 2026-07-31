@@ -406,7 +406,7 @@ class CarloTcfs112MathQ10(CarloSlide):
         )
         source.to_corner(DOWN + RIGHT, buff=0.22)
 
-        # Beat 01: establish one concrete unit triangle.
+        # Beat 01 meet_one_unit_triangle: establish one concrete unit triangle.
         self.begin_beat("meet_one_unit_triangle")
         title = self.stage_title("先只看一個邊長為 1 的正三角形")
         origin_1 = np.array([-1.70, -1.45, 0.0])
@@ -431,8 +431,8 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(FadeIn(first_prompt), run_time=0.48)
         self.wait(0.40)
 
-        # Beat 02: physically translate the same triangle by half a side.
-        self.next_beat("slide_the_second_half_side")
+        # Beat 02 slide_second_triangle: physically translate the same triangle by half a side.
+        self.next_beat("slide_second_triangle")
         new_title = self.stage_title("第二個三角形只向右移動半個邊長")
         self.play(
             self.title_change(title, new_title),
@@ -473,12 +473,15 @@ class CarloTcfs112MathQ10(CarloSlide):
             FadeIn(shift_label),
             run_time=1.05,
         )
+
+        # Beat 03 slide_the_second_half_side: continue at a settled semantic boundary.
+        self.next_beat("slide_the_second_half_side")
         self.play(FadeIn(overlap_2), run_time=0.55)
         self.play(FadeIn(half_note), run_time=0.48)
         self.wait(0.42)
 
-        # Beat 03: repeat the same move once, then trace only the union boundary.
-        self.next_beat("add_the_third_and_trace")
+        # Beat 04 add_the_third_triangle: repeat the same move once, then trace only the union boundary.
+        self.next_beat("add_the_third_triangle")
         new_title = self.stage_title("第三個也移半格；最後描的是聯集的外輪廓")
         self.play(
             self.title_change(title, new_title),
@@ -503,6 +506,9 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(Create(first_three), Create(second_three), FadeIn(count_path[:2]), run_time=0.74)
         self.play(FadeIn(third_three), run_time=0.35)
         self.play(third_three.animate.shift(RIGHT * scale_3 / 2), FadeIn(count_path[2]), run_time=0.92)
+
+        # Beat 05 add_the_third_and_trace: continue at a settled semantic boundary.
+        self.next_beat("add_the_third_and_trace")
         self.play(
             first_three.animate.set_opacity(0.30),
             second_three.animate.set_opacity(0.30),
@@ -513,8 +519,8 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(FadeIn(boundary_note), run_time=0.48)
         self.wait(0.42)
 
-        # Beat 04: compare one addition and measure its net boundary change.
-        self.next_beat("measure_one_perimeter_increment")
+        # Beat 06 mark_replaced_boundary_side: compare one addition and measure its net boundary change.
+        self.next_beat("mark_replaced_boundary_side")
         new_title = self.stage_title("加一個三角形，底邊與斜邊分開看")
         self.play(
             self.title_change(title, new_title),
@@ -597,13 +603,16 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(FadeIn(old_union), FadeIn(old_name), run_time=0.58)
         self.play(FadeIn(new_union), FadeIn(new_name), run_time=0.58)
         self.play(Create(old_last_side), FadeIn(old_side_text), FadeIn(old_measure), run_time=0.58)
+
+        # Beat 07 measure_one_perimeter_increment: continue at a settled semantic boundary.
+        self.next_beat("measure_one_perimeter_increment")
         self.play(Create(replacement), FadeIn(new_measure), run_time=0.80)
         self.play(Create(bottom_extension), run_time=0.45)
         self.play(LaggedStart(*(FadeIn(item) for item in increment), lag_ratio=0.22), run_time=0.85)
         self.wait(0.42)
 
-        # Beat 05: count every exposed slanted and bottom piece for general n.
-        self.next_beat("generalize_the_perimeter")
+        # Beat 08 count_union_boundary_sides: count every exposed slanted and bottom piece for general n.
+        self.next_beat("count_union_boundary_sides")
         new_title = self.stage_title("把所有外露小段數完，得到一般周長")
         self.play(
             self.title_change(title, new_title),
@@ -685,13 +694,16 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(FadeIn(demo_triangles), run_time=0.50)
         self.play(Create(slants), FadeIn(diagram_key[0]), run_time=0.90)
         self.play(Create(bottom), FadeIn(diagram_key[1]), run_time=0.55)
+
+        # Beat 09 generalize_the_perimeter: continue at a settled semantic boundary.
+        self.next_beat("generalize_the_perimeter")
         self.play(Write(slant_formula), run_time=0.72)
         self.play(Write(base_formula), run_time=0.72)
         self.play(Write(perimeter_formula), run_time=0.82)
         self.wait(0.42)
 
-        # Beat 06: earn the area of one unit triangle from its altitude.
-        self.next_beat("measure_one_triangle_area")
+        # Beat 10 construct_unit_triangle_height: earn the area of one unit triangle from its altitude.
+        self.next_beat("construct_unit_triangle_height")
         new_title = self.stage_title("面積要重新開始：先量一個正三角形")
         self.play(
             self.title_change(title, new_title),
@@ -746,13 +758,16 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(Create(area_triangle), run_time=0.72)
         self.play(Create(altitude), FadeIn(right_angle), FadeIn(height_h), run_time=0.58)
         self.play(Create(half_brace), FadeIn(half_label), FadeIn(side_one), run_time=0.55)
+
+        # Beat 11 measure_one_triangle_area: continue at a settled semantic boundary.
+        self.next_beat("measure_one_triangle_area")
         self.play(Write(height_equation), run_time=0.68)
         self.play(Write(height_result), run_time=0.55)
         self.play(Write(one_area), run_time=0.78)
         self.wait(0.42)
 
-        # Beat 07: identify and measure exactly one adjacent overlap.
-        self.next_beat("measure_one_adjacent_overlap")
+        # Beat 12 construct_adjacent_overlap: identify and measure exactly one adjacent overlap.
+        self.next_beat("construct_adjacent_overlap")
         new_title = self.stage_title("相鄰兩個三角形，只重疊一個半邊長的小三角形")
         self.play(
             self.title_change(title, new_title),
@@ -807,13 +822,16 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(Create(overlap_triangles), run_time=0.72)
         self.play(FadeIn(overlap_region), FadeIn(overlap_name), run_time=0.58)
         self.play(Create(overlap_brace), FadeIn(overlap_half), run_time=0.48)
+
+        # Beat 13 measure_one_adjacent_overlap: continue at a settled semantic boundary.
+        self.next_beat("measure_one_adjacent_overlap")
         self.play(FadeIn(scaling_note), run_time=0.45)
         self.play(Write(overlap_area), run_time=0.72)
         self.play(Write(overlap_result), run_time=0.58)
         self.wait(0.42)
 
-        # Beat 08: show why inclusion-exclusion stops after adjacent pairs.
-        self.next_beat("rule_out_hidden_triple_overlap")
+        # Beat 14 show_three_triangle_contact: show why inclusion-exclusion stops after adjacent pairs.
+        self.next_beat("show_three_triangle_contact")
         new_title = self.stage_title("三個一起看：相隔兩格只碰到一個點")
         self.play(
             self.title_change(title, new_title),
@@ -862,13 +880,16 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(Create(first_8), Create(middle_8), Create(third_8), run_time=0.75)
         self.play(FadeIn(overlaps_8), run_time=0.58)
         self.play(GrowFromCenter(touch_dot), FadeIn(touch_label), run_time=0.52)
+
+        # Beat 15 rule_out_hidden_triple_overlap: continue at a settled semantic boundary.
+        self.next_beat("rule_out_hidden_triple_overlap")
         self.play(Write(separation), run_time=0.72)
         self.play(Write(triple_zero), run_time=0.58)
         self.play(FadeIn(consequence), run_time=0.48)
         self.wait(0.42)
 
-        # Beat 09: audit n=1,2,3 and then generalize the inclusion-exclusion count.
-        self.next_beat("audit_small_areas_and_generalize")
+        # Beat 16 audit_small_union_areas: audit n=1,2,3 and then generalize the inclusion-exclusion count.
+        self.next_beat("audit_small_union_areas")
         new_title = self.stage_title("先核對 1、2、3 個，再寫一般面積")
         self.play(
             self.title_change(title, new_title),
@@ -941,11 +962,14 @@ class CarloTcfs112MathQ10(CarloSlide):
             run_time=1.00,
         )
         self.play(LaggedStart(*(Write(item) for item in mini_areas), lag_ratio=0.18), run_time=1.05)
+
+        # Beat 17 audit_small_areas_and_generalize: continue at a settled semantic boundary.
+        self.next_beat("audit_small_areas_and_generalize")
         self.play(Write(area_general), run_time=0.78)
         self.play(Write(area_simplified), run_time=0.68)
         self.wait(0.42)
 
-        # Beat 10: a genuine pause with both requested values still hidden.
+        # Beat 18 hold_before_both_values: a genuine pause with both requested values still hidden.
         self.next_beat("hold_before_both_values")
         new_title = self.stage_title("現在代入 112，但先把兩個結果都留白")
         self.play(
@@ -972,8 +996,8 @@ class CarloTcfs112MathQ10(CarloSlide):
         self.play(FadeIn(hold_prompt), FadeIn(hold_silence), run_time=0.52)
         self.wait(0.85)
 
-        # Beat 11: trace the outline before revealing the perimeter value.
-        self.next_beat("reveal_the_perimeter")
+        # Beat 19 rebuild_perimeter_schematic: trace the outline before revealing the perimeter value.
+        self.next_beat("rebuild_perimeter_schematic")
         new_title = self.stage_title("先沿著外輪廓走一圈，落下周長")
         self.play(
             self.title_change(title, new_title),
@@ -1025,13 +1049,16 @@ class CarloTcfs112MathQ10(CarloSlide):
         )
         self.play(FadeIn(strip_triangles), run_time=0.52)
         self.play(Create(strip_outline), FadeIn(schematic), run_time=1.05)
+
+        # Beat 20 reveal_the_perimeter: continue at a settled semantic boundary.
+        self.next_beat("reveal_the_perimeter")
         self.play(Write(perimeter_substitute), run_time=0.78)
         self.play(Write(perimeter_answer), run_time=0.58)
         self.play(Indicate(perimeter_answer, color=CORAL), run_time=0.65)
         self.wait(0.42)
 
-        # Beat 12: fill the same union before revealing the area value.
-        self.next_beat("reveal_the_area")
+        # Beat 21 restore_union_area_terms: fill the same union before revealing the area value.
+        self.next_beat("restore_union_area_terms")
         new_title = self.stage_title("再把同一個聯集填滿，落下面積")
         self.play(
             self.title_change(title, new_title),
@@ -1065,13 +1092,16 @@ class CarloTcfs112MathQ10(CarloSlide):
         ).move_to([4.45, -0.75, 0])
         beat_12 = VGroup(area_fill, area_schematic, area_substitute, area_answer)
         self.play(FadeIn(area_fill), FadeIn(area_schematic), run_time=0.72)
+
+        # Beat 22 reveal_the_area: continue at a settled semantic boundary.
+        self.next_beat("reveal_the_area")
         self.play(Write(area_substitute), run_time=0.78)
         self.play(Write(area_answer), run_time=0.58)
         self.play(Indicate(area_answer, color=REGION), run_time=0.65)
         self.wait(0.42)
 
-        # Beat 13: reconnect both values to the original traced union.
-        self.next_beat("return_to_the_traced_union")
+        # Beat 23 return_to_traced_union: reconnect both values to the original traced union.
+        self.next_beat("return_to_traced_union")
         new_title = self.stage_title("回到原圖：輪廓給 r，填色給 s")
         self.play(
             self.title_change(title, new_title),
@@ -1125,6 +1155,9 @@ class CarloTcfs112MathQ10(CarloSlide):
         final_note.move_to([0, -3.63, 0])
         self.play(FadeIn(final_triangles), FadeIn(final_region), run_time=0.72)
         self.play(FadeIn(perimeter_tag), FadeIn(area_tag), run_time=0.52)
+
+        # Beat 24 return_to_the_traced_union: continue at a settled semantic boundary.
+        self.next_beat("return_to_the_traced_union")
         self.play(Write(final_pair), Create(final_frame), run_time=0.82)
         self.play(FadeIn(final_note), run_time=0.48)
         self.wait(0.62)

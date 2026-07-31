@@ -42,6 +42,10 @@ def load_lessons() -> dict[str, dict[str, Any]]:
         with collection_path.open("rb") as handle:
             collection = tomllib.load(handle)
         lesson["metadata_path"] = str(path.relative_to(ROOT))
+        lesson["collection_title"] = collection["title"]
+        lesson["collection_display_title"] = collection.get(
+            "display_title_zh_tw", collection["title"]
+        )
         lesson["collection_source_origin"] = collection["source_origin"]
         lesson["collection_source_context_url_role"] = collection.get(
             "source_context_url_role", "題目與解題資料頁"
@@ -66,7 +70,12 @@ def select_lessons(
     else:
         selected = list(lessons.values())
     if status:
-        selected = [item for item in selected if item["production_state"] == status]
+        statuses = {value.strip() for value in status.split(",") if value.strip()}
+        if not statuses:
+            raise ValueError("status filter is empty")
+        selected = [
+            item for item in selected if item["production_state"] in statuses
+        ]
     return sorted(selected, key=lambda item: item["id"])
 
 
@@ -341,7 +350,10 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=["list", "render", "present", "export"])
     parser.add_argument("ids", nargs="*")
-    parser.add_argument("--status")
+    parser.add_argument(
+        "--status",
+        help="Select one production state or a comma-separated set of states.",
+    )
     parser.add_argument("--quality", choices=["l", "m", "h", "p", "k"], default="l")
     parser.add_argument("--jobs", type=int, default=1)
     parser.add_argument("--dry-run", action="store_true")
