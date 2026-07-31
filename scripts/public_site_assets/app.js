@@ -254,11 +254,7 @@ function buildChapterControls(lesson) {
     name.textContent = segment.title;
     const meta = document.createElement("span");
     meta.className = "chapter-meta";
-    const parts = [];
-    if (segment.loop) parts.push("循環");
-    const duration = formatDuration(segment.duration);
-    if (duration) parts.push(duration);
-    meta.textContent = parts.join(" · ");
+    meta.textContent = formatDuration(segment.duration);
     button.append(number, name, meta);
     button.addEventListener("click", () => selectSegment(index));
     item.append(button);
