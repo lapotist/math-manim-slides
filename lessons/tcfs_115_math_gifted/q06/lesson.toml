@@ -21,7 +21,7 @@ scene_file = "lessons/tcfs_115_math_gifted/q06/deck.py"
 scene_class = "Tcfs115Q06Slide"
 presenter_script = "lessons/tcfs_115_math_gifted/q06/presenter.zh-TW.md"
 storyboard = "lessons/tcfs_115_math_gifted/q06/storyboard.md"
-estimated_minutes = 9
+estimated_minutes = 3
 expected_answer = "(11, 9, 3) and (9, 7, 5)"
 independent_check = "Adding 1 gives (a+1)(b+1)(c+1)=480. Enumerating ordered factor triples and applying b+c>a leaves only shifted triples (12,10,4) and (10,8,6)."
 tags = ["factorization", "integer", "triangle-inequality", "finite-cases"]
@@ -32,47 +32,7 @@ locale = "zh-TW"
 text = "正整數 a>b>c 是一個三角形的三邊，且 abc+ab+bc+ca+a+b+c=479。求所有可能的有序三元組 (a,b,c)。"
 
 [[beats]]
-id = "original_seven_terms"
-loop = false
-
-[[beats]]
-id = "missing_one"
-loop = false
-
-[[beats]]
-id = "identify_missing_side"
-loop = false
-
-[[beats]]
 id = "complete_product"
-loop = false
-
-[[beats]]
-id = "shift_sides"
-loop = false
-
-[[beats]]
-id = "bound_z"
-loop = false
-
-[[beats]]
-id = "list_bounded_candidates"
-loop = false
-
-[[beats]]
-id = "candidate_divisors"
-loop = false
-
-[[beats]]
-id = "pose_triangle_filter"
-loop = false
-
-[[beats]]
-id = "state_triangle_filter"
-loop = false
-
-[[beats]]
-id = "translate_triangle"
 loop = false
 
 [[beats]]
@@ -80,27 +40,11 @@ id = "factor_triangle_condition"
 loop = false
 
 [[beats]]
-id = "nearest_factor_pairs"
+id = "ordered_factor_triples"
 loop = false
 
 [[beats]]
-id = "test_near_factor_pairs"
-loop = false
-
-[[beats]]
-id = "test_far_factor_pairs"
-loop = false
-
-[[beats]]
-id = "select_valid_rows"
-loop = false
-
-[[beats]]
-id = "test_candidate_rows"
-loop = false
-
-[[beats]]
-id = "retain_valid_rows"
+id = "filter_triangles"
 loop = false
 
 [[beats]]
@@ -108,21 +52,5 @@ id = "restore_sides"
 loop = false
 
 [[beats]]
-id = "reconstruct_side_triples"
-loop = false
-
-[[beats]]
 id = "verify_triangles"
-loop = false
-
-[[beats]]
-id = "check_triangle_witnesses"
-loop = false
-
-[[beats]]
-id = "consolidate"
-loop = false
-
-[[beats]]
-id = "reveal_triangle_count"
 loop = false
