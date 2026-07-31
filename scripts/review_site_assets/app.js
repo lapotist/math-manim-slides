@@ -41,6 +41,8 @@ const ISSUE_TAG_LABELS = {
   script: "講稿",
 };
 
+const DRAFT_STORAGE_PREFIX = "math-manim-review-draft:";
+
 const state = {
   catalog: null,
   summaries: new Map(),
@@ -51,7 +53,12 @@ const state = {
   evidenceTab: "video",
   pendingSeek: null,
   saveTimer: null,
-  saveSequence: 0,
+  saveRevision: 0,
+  saveQueue: Promise.resolve(),
+  saveDirty: false,
+  saveFailed: false,
+  saveError: null,
+  loadRevision: 0,
 };
 
 const elements = Object.fromEntries(
@@ -111,6 +118,79 @@ function make(tagName, options = {}, children = []) {
 
 function clear(node) {
   node.replaceChildren();
+}
+
+function syncJSONState(target, source) {
+  for (const key of Object.keys(target)) {
+    if (!Object.hasOwn(source, key)) delete target[key];
+  }
+  for (const [key, value] of Object.entries(source)) {
+    const current = target[key];
+    if (
+      value !== null &&
+      typeof value === "object" &&
+      !Array.isArray(value) &&
+      current !== null &&
+      typeof current === "object" &&
+      !Array.isArray(current)
+    ) {
+      syncJSONState(current, value);
+    } else {
+      target[key] = Array.isArray(value) ? [...value] : value;
+    }
+  }
+  return target;
+}
+
+function draftStorageKey(lessonId) {
+  return `${DRAFT_STORAGE_PREFIX}${lessonId}`;
+}
+
+function persistLocalDraft() {
+  if (!state.saveDirty || !state.lesson || !state.review) return;
+  try {
+    localStorage.setItem(
+      draftStorageKey(state.lesson.id),
+      JSON.stringify({
+        schema_version: 1,
+        lesson_id: state.lesson.id,
+        artifact_digest: state.review.artifact_digest,
+        review: state.review,
+      })
+    );
+  } catch (_error) {
+    // The normal server save still runs when browser storage is unavailable.
+  }
+}
+
+function clearLocalDraft(lessonId) {
+  try {
+    localStorage.removeItem(draftStorageKey(lessonId));
+  } catch (_error) {
+    // A leftover validated draft is harmless and will be replayed on next load.
+  }
+}
+
+function readLocalDraftBody(lessonId, artifactDigest) {
+  try {
+    const raw = localStorage.getItem(draftStorageKey(lessonId));
+    if (!raw) return null;
+    const draft = JSON.parse(raw);
+    if (
+      draft?.schema_version !== 1 ||
+      draft?.lesson_id !== lessonId ||
+      draft?.artifact_digest !== artifactDigest ||
+      draft?.review === null ||
+      typeof draft?.review !== "object"
+    ) {
+      clearLocalDraft(lessonId);
+      return null;
+    }
+    return JSON.stringify(draft.review);
+  } catch (_error) {
+    clearLocalDraft(lessonId);
+    return null;
+  }
 }
 
 async function requestJSON(url, options = {}) {
@@ -313,14 +393,21 @@ function renderList() {
   renderBlocked();
 }
 
-function showList({ historyMode = "push" } = {}) {
-  if (state.saveTimer) {
-    clearTimeout(state.saveTimer);
-    state.saveTimer = null;
-    saveReview();
+async function showList({ historyMode = "push" } = {}) {
+  const loadRevision = ++state.loadRevision;
+  try {
+    if (!(await waitForStableSave(loadRevision))) return;
+  } catch (error) {
+    if (loadRevision !== state.loadRevision) return;
+    if (state.lesson) setReviewLocation({ replace: true });
+    window.alert(`目前的檢閱尚未儲存，畫面會保留：${error.message}`);
+    return;
   }
   state.lesson = null;
   state.review = null;
+  state.saveDirty = false;
+  state.saveFailed = false;
+  state.saveError = null;
   state.activeBeat = null;
   elements["list-view"].hidden = false;
   elements["review-view"].hidden = true;
@@ -341,17 +428,23 @@ function setReviewLocation({ replace = false } = {}) {
 }
 
 async function openLesson(lessonId, { beat = null, historyMode = "push" } = {}) {
+  const loadRevision = ++state.loadRevision;
   const lesson = state.catalog.lessons.find((item) => item.id === lessonId);
   if (!lesson) {
-    showList({ historyMode: "replace" });
+    await showList({ historyMode: "replace" });
     return;
   }
   elements["save-state"].textContent = "載入中";
   try {
-    const payload = await requestJSON(`/api/reviews/${encodeURIComponent(lessonId)}`);
+    const payload = await loadReviewAfterStableSave(lessonId, loadRevision);
+    if (!payload) return;
     state.lesson = lesson;
     state.review = payload.review;
     state.stale = Boolean(payload.stale);
+    state.saveDirty = false;
+    state.saveFailed = false;
+    state.saveError = null;
+    if (payload.summary) state.summaries.set(lessonId, payload.summary);
     state.activeBeat = lesson.segments.some((item) => item.beat_id === beat) ? beat : null;
     state.evidenceTab = "video";
     state.pendingSeek = null;
@@ -362,8 +455,10 @@ async function openLesson(lessonId, { beat = null, historyMode = "push" } = {}) 
     if (historyMode !== "none") setReviewLocation({ replace: historyMode === "replace" });
     renderReviewWorkspace();
   } catch (error) {
-    elements["save-state"].textContent = "載入失敗";
-    window.alert(`無法開啟檢閱：${error.message}`);
+    if (loadRevision !== state.loadRevision) return;
+    if (!state.saveFailed) elements["save-state"].textContent = "載入失敗";
+    const action = state.saveFailed ? "切換檢閱" : "開啟檢閱";
+    window.alert(`無法${action}：${error.message}`);
   }
 }
 
@@ -698,6 +793,12 @@ function notesArea(value, onInput, labelText) {
   });
   textarea.value = value;
   textarea.addEventListener("input", () => onInput(textarea.value));
+  textarea.addEventListener("blur", () => {
+    if (!state.saveTimer) return;
+    clearTimeout(state.saveTimer);
+    state.saveTimer = null;
+    saveReview();
+  });
   return make("div", { className: "review-section" }, [
     make("label", { className: "notes-label", text: labelText, attrs: { for: id } }),
     textarea,
@@ -768,36 +869,102 @@ function renderReviewWorkspace() {
 }
 
 function reviewChanged() {
+  state.saveRevision += 1;
+  state.saveDirty = true;
   state.review.ready = computeLocalSummary().ready;
   state.summaries.set(state.lesson.id, computeLocalSummary());
   elements["save-state"].textContent = "尚未儲存";
+  persistLocalDraft();
   if (state.saveTimer) clearTimeout(state.saveTimer);
   state.saveTimer = setTimeout(saveReview, 450);
 }
 
-async function saveReview() {
-  if (!state.lesson || !state.review) return;
-  state.saveTimer = null;
-  const sequence = ++state.saveSequence;
-  elements["save-state"].textContent = "儲存中";
-  try {
-    const payload = await requestJSON(`/api/reviews/${encodeURIComponent(state.lesson.id)}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(state.review),
-    });
-    if (sequence !== state.saveSequence || !state.lesson) return;
-    state.review = payload.review;
-    state.stale = false;
-    state.summaries.set(state.lesson.id, payload.summary);
-    elements["save-state"].textContent = "已儲存";
-    renderReviewHeader();
-    renderSegmentNav();
-    renderReadiness();
-  } catch (error) {
-    if (sequence !== state.saveSequence) return;
-    elements["save-state"].textContent = `儲存失敗：${error.message}`;
+function flushPendingSave() {
+  if (state.saveTimer) {
+    clearTimeout(state.saveTimer);
+    state.saveTimer = null;
+    return saveReview();
   }
+  if (state.saveFailed && state.lesson && state.review) return saveReview();
+  return state.saveQueue;
+}
+
+async function waitForStableSave(loadRevision) {
+  while (loadRevision === state.loadRevision) {
+    const saveRevision = state.saveRevision;
+    await flushPendingSave();
+    if (loadRevision !== state.loadRevision) return false;
+    if (state.saveFailed) {
+      throw state.saveError || new Error("unknown save error");
+    }
+    if (!state.saveTimer && saveRevision === state.saveRevision && !state.saveFailed) {
+      return true;
+    }
+  }
+  return false;
+}
+
+async function loadReviewAfterStableSave(lessonId, loadRevision) {
+  const endpoint = `/api/reviews/${encodeURIComponent(lessonId)}`;
+  while (loadRevision === state.loadRevision) {
+    if (!(await waitForStableSave(loadRevision))) return null;
+    const saveRevision = state.saveRevision;
+    let payload = await requestJSON(endpoint);
+    if (loadRevision !== state.loadRevision) return null;
+
+    const draftBody = readLocalDraftBody(lessonId, payload.review.artifact_digest);
+    if (draftBody) {
+      const saved = await requestJSON(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: draftBody,
+      });
+      clearLocalDraft(lessonId);
+      payload = { review: saved.review, summary: saved.summary, stale: false };
+    }
+
+    if (loadRevision !== state.loadRevision) return null;
+    if (!state.saveTimer && saveRevision === state.saveRevision) return payload;
+  }
+  return null;
+}
+
+function saveReview() {
+  if (!state.lesson || !state.review) return Promise.resolve();
+  state.saveTimer = null;
+  const lessonId = state.lesson.id;
+  const revision = state.saveRevision;
+  const reviewBody = JSON.stringify(state.review);
+  elements["save-state"].textContent = "儲存中";
+  const runSave = async () => {
+    try {
+      const payload = await requestJSON(`/api/reviews/${encodeURIComponent(lessonId)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: reviewBody,
+      });
+      if (revision !== state.saveRevision || state.lesson?.id !== lessonId) return;
+      syncJSONState(state.review, payload.review);
+      state.stale = false;
+      state.saveDirty = false;
+      state.saveFailed = false;
+      state.saveError = null;
+      clearLocalDraft(lessonId);
+      state.summaries.set(lessonId, payload.summary);
+      elements["save-state"].textContent = "已儲存";
+      renderReviewHeader();
+      renderSegmentNav();
+      renderReadiness();
+    } catch (error) {
+      if (revision === state.saveRevision && state.lesson?.id === lessonId) {
+        state.saveFailed = true;
+        state.saveError = error;
+        elements["save-state"].textContent = `儲存失敗：${error.message}`;
+      }
+    }
+  };
+  state.saveQueue = state.saveQueue.then(runSave, runSave);
+  return state.saveQueue;
 }
 
 function openLightbox(url, alt) {
@@ -820,7 +987,7 @@ async function routeFromLocation({ replace = false } = {}) {
       historyMode: replace ? "replace" : "none",
     });
   } else {
-    showList({ historyMode: replace ? "replace" : "none" });
+    await showList({ historyMode: replace ? "replace" : "none" });
   }
 }
 
@@ -851,11 +1018,12 @@ async function initialize() {
 elements["search-input"].addEventListener("input", renderLessonRows);
 elements["collection-filter"].addEventListener("change", renderLessonRows);
 elements["status-filter"].addEventListener("change", renderLessonRows);
-elements["back-button"].addEventListener("click", () => showList());
+elements["back-button"].addEventListener("click", () => void showList());
 elements["lightbox-close"].addEventListener("click", closeLightbox);
 elements.lightbox.addEventListener("click", (event) => {
   if (event.target === elements.lightbox) closeLightbox();
 });
 window.addEventListener("popstate", () => routeFromLocation());
+window.addEventListener("pagehide", persistLocalDraft);
 
 initialize();

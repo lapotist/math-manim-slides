@@ -249,6 +249,41 @@ class ReviewSiteBackendChecks(unittest.TestCase):
         self.assertNotIn("private segment note", serialized)
         self.assertNotIn("notes", feed["lessons"][0])
 
+    def test_notes_round_trip_through_stored_review(self) -> None:
+        record = self.fixture.load()
+        payload = review_site.blank_review(record)
+        payload["notes"] = "lesson note"
+        payload["segments"]["setup"]["notes"] = "segment note"
+
+        saved = review_site.normalize_review(payload, record)
+        review_site.write_review_state(saved, self.fixture.review_root)
+        reloaded = review_site.read_review_state(record, self.fixture.review_root)
+
+        self.assertFalse(reloaded["stale"])
+        self.assertEqual(reloaded["review"]["notes"], "lesson note")
+        self.assertEqual(
+            reloaded["review"]["segments"]["setup"]["notes"],
+            "segment note",
+        )
+
+    def test_frontend_preserves_controls_and_serializes_autosaves(self) -> None:
+        script = (review_site.STATIC_ROOT / "app.js").read_text(encoding="utf-8")
+        save_function = script.split("function saveReview()", 1)[1].split(
+            "function openLightbox", 1
+        )[0]
+
+        self.assertIn("saveQueue: Promise.resolve()", script)
+        self.assertIn("state.saveRevision += 1", script)
+        self.assertIn("state.saveQueue = state.saveQueue.then(runSave, runSave)", script)
+        self.assertIn("syncJSONState(state.review, payload.review)", save_function)
+        self.assertNotIn("state.review = payload.review", save_function)
+        self.assertIn('textarea.addEventListener("blur"', script)
+        self.assertIn("await waitForStableSave(loadRevision)", script)
+        self.assertIn("localStorage.setItem(", script)
+        self.assertIn('window.addEventListener("pagehide", persistLocalDraft)', script)
+        self.assertIn("state.saveFailed = true", save_function)
+        self.assertIn("throw state.saveError", script)
+
     def test_changed_hashed_artifact_is_rejected_and_blocked(self) -> None:
         record = self.fixture.load()
         media_path = self.root / "slides/files/FixtureSlide/setup.mp4"
