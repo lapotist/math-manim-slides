@@ -254,6 +254,7 @@ class SiteBuilderChecks(unittest.TestCase):
         self.assertIn('event.key === "ArrowRight"', script)
         self.assertIn('addEventListener("ended"', script)
         self.assertIn("selectSegment", script)
+        self.assertNotIn(".play()", script)
 
     def test_default_selection_keeps_published_lessons(self) -> None:
         with mock.patch("sys.argv", ["build_site.py"]):

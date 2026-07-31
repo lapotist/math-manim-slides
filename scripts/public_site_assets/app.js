@@ -182,7 +182,7 @@ function problemButton(lesson, lessonIndex) {
   segments.textContent = `${lesson.segment_count} 個片段`;
   copy.append(number, name, segments);
   button.append(thumbnail, copy);
-  button.addEventListener("click", () => selectLesson(lessonIndex, 0, true));
+  button.addEventListener("click", () => selectLesson(lessonIndex, 0));
   return button;
 }
 
@@ -239,7 +239,7 @@ function buildChapterControls(lesson) {
     trackButton.style.flexGrow = String(segment.duration || 1);
     trackButton.setAttribute("aria-label", `${index + 1}. ${segment.title}`);
     trackButton.title = segment.title;
-    trackButton.addEventListener("click", () => selectSegment(index, true));
+    trackButton.addEventListener("click", () => selectSegment(index));
     track.append(trackButton);
 
     const item = document.createElement("li");
@@ -260,7 +260,7 @@ function buildChapterControls(lesson) {
     if (duration) parts.push(duration);
     meta.textContent = parts.join(" · ");
     button.append(number, name, meta);
-    button.addEventListener("click", () => selectSegment(index, true));
+    button.addEventListener("click", () => selectSegment(index));
     item.append(button);
     list.append(item);
   }
@@ -288,7 +288,7 @@ function updateChapterSelection() {
   elements.next.disabled = state.segmentIndex === lesson.segments.length - 1;
 }
 
-function selectSegment(index, autoplay = false, replaceUrl = false) {
+function selectSegment(index, replaceUrl = false) {
   const lesson = currentLesson();
   if (!lesson || !lesson.segments.length) return;
   state.segmentIndex = Math.max(0, Math.min(index, lesson.segments.length - 1));
@@ -301,9 +301,6 @@ function selectSegment(index, autoplay = false, replaceUrl = false) {
   elements.video.load();
   updateChapterSelection();
   updateUrl(replaceUrl);
-  if (autoplay) {
-    elements.video.play().catch(() => {});
-  }
 }
 
 function renderLesson(lesson) {
@@ -321,11 +318,11 @@ function renderLesson(lesson) {
   renderStatus();
 }
 
-function selectLesson(index, segmentIndex = 0, autoplay = false, replaceUrl = false) {
+function selectLesson(index, segmentIndex = 0, replaceUrl = false) {
   if (index < 0 || index >= state.lessons.length) return;
   state.lessonIndex = index;
   renderLesson(currentLesson());
-  selectSegment(segmentIndex, autoplay, replaceUrl);
+  selectSegment(segmentIndex, replaceUrl);
   renderProblemList();
   setSidebar(false);
 }
@@ -341,7 +338,7 @@ function readLocation() {
   const segmentIndex = Number.isFinite(requestedSegment)
     ? Math.max(0, requestedSegment - 1)
     : 0;
-  selectLesson(lessonIndex, segmentIndex, false, true);
+  selectLesson(lessonIndex, segmentIndex, true);
 }
 
 async function fetchJson(url) {
@@ -397,16 +394,16 @@ function bindEvents() {
   elements.search.addEventListener("input", applyFilters);
   elements.collection.addEventListener("change", applyFilters);
   elements.previous.addEventListener("click", () => {
-    if (state.segmentIndex > 0) selectSegment(state.segmentIndex - 1, true);
+    if (state.segmentIndex > 0) selectSegment(state.segmentIndex - 1);
   });
   elements.next.addEventListener("click", () => {
     if (state.segmentIndex < currentLesson().segments.length - 1) {
-      selectSegment(state.segmentIndex + 1, true);
+      selectSegment(state.segmentIndex + 1);
     }
   });
   elements.video.addEventListener("ended", () => {
     if (!currentSegment()?.loop && state.segmentIndex < currentLesson().segments.length - 1) {
-      selectSegment(state.segmentIndex + 1, true);
+      selectSegment(state.segmentIndex + 1);
     }
   });
   elements.video.addEventListener("error", () => {
@@ -420,12 +417,12 @@ function bindEvents() {
     if (event.key === "ArrowRight") {
       if (state.segmentIndex < lesson.segments.length - 1) {
         event.preventDefault();
-        selectSegment(state.segmentIndex + 1, true);
+        selectSegment(state.segmentIndex + 1);
       }
     } else if (event.key === "ArrowLeft") {
       if (state.segmentIndex > 0) {
         event.preventDefault();
-        selectSegment(state.segmentIndex - 1, true);
+        selectSegment(state.segmentIndex - 1);
       }
     } else if (event.key === "Escape") {
       setSidebar(false);
