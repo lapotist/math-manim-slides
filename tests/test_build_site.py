@@ -255,6 +255,13 @@ class SiteBuilderChecks(unittest.TestCase):
         self.assertIn('addEventListener("ended"', script)
         self.assertIn("selectSegment", script)
         self.assertNotIn(".play()", script)
+        self.assertIn("elements.video.loop = false", script)
+        self.assertIn(
+            'elements.video.addEventListener("ended", () => {\n'
+            "    elements.video.pause();\n"
+            "  });",
+            script,
+        )
 
     def test_default_selection_keeps_published_lessons(self) -> None:
         with mock.patch("sys.argv", ["build_site.py"]):

@@ -295,7 +295,7 @@ function selectSegment(index, replaceUrl = false) {
   const segment = currentSegment();
   elements.videoMessage.hidden = true;
   elements.video.pause();
-  elements.video.loop = Boolean(segment.loop);
+  elements.video.loop = false;
   elements.video.src = segment.path;
   elements.video.poster = lesson.thumbnail_path || "";
   elements.video.load();
@@ -402,9 +402,7 @@ function bindEvents() {
     }
   });
   elements.video.addEventListener("ended", () => {
-    if (!currentSegment()?.loop && state.segmentIndex < currentLesson().segments.length - 1) {
-      selectSegment(state.segmentIndex + 1);
-    }
+    elements.video.pause();
   });
   elements.video.addEventListener("error", () => {
     elements.videoMessage.textContent = "這個動畫片段目前無法播放。";
