@@ -74,7 +74,7 @@ class CarloTcfs112MathQ01(CarloSlide):
         return Succession(FadeOut(old), FadeIn(new))
 
     @staticmethod
-    def base_number_line(*, y: float = 0.55, length: float = 10.8) -> VGroup:
+    def base_number_line(*, y: float = 0.65, length: float = 10.8) -> VGroup:
         line = NumberLine(
             x_range=[0, 10, 1],
             length=length,
@@ -89,7 +89,7 @@ class CarloTcfs112MathQ01(CarloSlide):
                 MathTex(str(value), font_size=25, color=MUTED).next_to(
                     line.n2p(value), DOWN, buff=0.20
                 )
-                for value in (0, 5, 10)
+                for value in (0, 10)
             )
         )
         return VGroup(line, anchors)
@@ -207,11 +207,13 @@ class CarloTcfs112MathQ01(CarloSlide):
         sum_line[2].set_color(POINT)
         sum_line[4].set_color(REGION)
         sum_line[6].set_color(POINT)
-        sum_line.move_to([0, -1.35, 0])
-        center_note = VGroup(
-            label("左右等距移動，中間仍是三數的平均", 27, MUTED, "MEDIUM"),
-            MathTex(r"15\div3=5", font_size=53, color=POINT),
-        ).arrange(DOWN, buff=0.22).move_to([0, -2.05, 0])
+        center_reason = label("左右等距移動，中間仍是三數的平均", 27, MUTED, "MEDIUM")
+        center_average = MathTex(r"15\div3=5", font_size=53, color=POINT)
+        VGroup(sum_line, center_reason, center_average).arrange(
+            DOWN,
+            buff=0.28,
+        ).move_to([0, -1.78, 0])
+        center_note = VGroup(center_reason, center_average)
 
         self.add(heading, source)
         self.play(FadeIn(beat_title), Create(number_line), FadeIn(number_line_group[1]), run_time=0.9)
