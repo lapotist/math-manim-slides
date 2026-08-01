@@ -11,6 +11,8 @@ slides/
 build/
 dist/
 *.html
+!scripts/public_site_assets/index.html
+!scripts/review_site_assets/index.html
 
 *.pdf
 *.ppt

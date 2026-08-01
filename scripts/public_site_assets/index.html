@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="可依題目與教學片段觀看的數學動畫題庫">
+  <title>數學動畫題庫</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="library-data.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-button sidebar-toggle" id="sidebar-toggle" type="button"
+      aria-label="開啟題目清單" aria-controls="problem-sidebar" aria-expanded="false"
+      title="題目清單">☰</button>
+    <a class="brand" href="./">數學動畫題庫</a>
+    <span class="library-count" id="library-count" aria-live="polite"></span>
+    <nav class="top-links" aria-label="專案連結">
+      <a href="site-manifest.json">資料清單</a>
+      <a href="legal/SOURCES.md">來源</a>
+      <a href="legal/NOTICE.md">權利範圍</a>
+    </nav>
+  </header>
+
+  <div class="app-shell">
+    <aside class="problem-sidebar" id="problem-sidebar" aria-label="題目清單">
+      <div class="sidebar-tools">
+        <label class="sr-only" for="problem-search">搜尋題目</label>
+        <input id="problem-search" type="search" placeholder="搜尋題目或主題">
+        <label class="sr-only" for="collection-filter">題目集合</label>
+        <select id="collection-filter">
+          <option value="">全部題目集合</option>
+        </select>
+        <p class="filter-count" id="filter-count"></p>
+      </div>
+      <nav class="problem-list" id="problem-list" aria-label="所有題目"></nav>
+    </aside>
+    <button class="sidebar-scrim" id="sidebar-scrim" type="button"
+      aria-label="關閉題目清單" tabindex="-1"></button>
+
+    <main class="lesson-main" id="lesson-main" tabindex="-1">
+      <div class="loading-state" id="loading-state" role="status">正在載入題庫...</div>
+      <div class="error-state" id="error-state" role="alert" hidden></div>
+
+      <article class="lesson-view" id="lesson-view" hidden>
+        <header class="lesson-heading">
+          <div class="heading-copy">
+            <p class="lesson-context" id="lesson-context"></p>
+            <h1 id="lesson-title"></h1>
+          </div>
+          <div class="status-wrap">
+            <span class="status-badge" id="lesson-status"></span>
+            <span class="status-time" id="status-time"></span>
+          </div>
+        </header>
+
+        <div class="lesson-layout">
+          <section class="player-column" aria-label="數學動畫">
+            <div class="video-frame">
+              <video id="lesson-video" controls playsinline preload="metadata"></video>
+              <div class="video-message" id="video-message" hidden></div>
+            </div>
+
+            <div class="segment-toolbar">
+              <button class="icon-button" id="previous-segment" type="button"
+                aria-label="上一個片段" title="上一個片段">←</button>
+              <div class="segment-now" aria-live="polite">
+                <span id="segment-position"></span>
+                <strong id="segment-title"></strong>
+              </div>
+              <button class="icon-button" id="next-segment" type="button"
+                aria-label="下一個片段" title="下一個片段">→</button>
+            </div>
+
+            <div class="chapter-track" id="chapter-track" role="tablist"
+              aria-label="教學片段"></div>
+            <ol class="chapter-list" id="chapter-list"></ol>
+          </section>
+
+          <aside class="problem-panel" aria-labelledby="problem-heading">
+            <div class="panel-heading">
+              <p class="panel-label">專案重述</p>
+              <h2 id="problem-heading">題目</h2>
+            </div>
+            <p class="problem-text" id="problem-text"></p>
+            <dl class="source-details">
+              <div>
+                <dt>來源檔案</dt>
+                <dd id="source-asset"></dd>
+              </div>
+              <div>
+                <dt>精確位置</dt>
+                <dd id="source-locator"></dd>
+              </div>
+            </dl>
+            <div class="source-actions" id="source-actions"></div>
+          </aside>
+        </div>
+
+        <footer class="lesson-footer">
+          <a id="qa-link" href="#">QA 紀錄</a>
+          <a id="metadata-link" href="#" target="_blank" rel="noopener">題目資料</a>
+          <span id="lesson-id"></span>
+        </footer>
+      </article>
+    </main>
+  </div>
+
+  <noscript>此題庫需要 JavaScript 才能切換動畫片段。</noscript>
+</body>
+</html>

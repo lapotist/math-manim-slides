@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>本機投影片檢閱</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button id="back-button" class="icon-command" type="button" hidden aria-label="返回課程清單" title="返回課程清單">&#8592;</button>
+      <a class="brand" href="/">本機投影片檢閱</a>
+      <span class="local-badge">127.0.0.1</span>
+      <div class="topbar-spacer"></div>
+      <span id="save-state" class="save-state" aria-live="polite"></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="list-view" aria-labelledby="list-title">
+      <div class="page-heading">
+        <div>
+          <h1 id="list-title">投影片驗證佇列</h1>
+          <p id="generated-at" class="subtle"></p>
+        </div>
+      </div>
+
+      <div id="metrics" class="metrics" aria-label="檢閱摘要"></div>
+
+      <div class="toolbar" role="search">
+        <input id="search-input" type="search" placeholder="搜尋題目、編號或主題" aria-label="搜尋課程">
+        <select id="collection-filter" aria-label="依題目集合篩選"></select>
+        <select id="status-filter" aria-label="依檢閱狀態篩選">
+          <option value="">全部檢閱狀態</option>
+          <option value="not_started">尚未檢閱</option>
+          <option value="in_progress">檢閱中</option>
+          <option value="issue">有待修正</option>
+          <option value="ready">全部通過</option>
+          <option value="stale">檢閱已失效</option>
+        </select>
+      </div>
+
+      <p id="result-count" class="result-count" aria-live="polite"></p>
+      <div class="lesson-table-wrap">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>狀態</th>
+              <th>題目集合</th>
+              <th>課程</th>
+              <th>片段</th>
+              <th>QA</th>
+              <th><span class="sr-only">開啟</span></th>
+            </tr>
+          </thead>
+          <tbody id="lesson-rows"></tbody>
+        </table>
+        <div id="empty-state" class="empty-state" hidden>沒有符合條件的課程。</div>
+      </div>
+
+      <details id="blocked-panel" class="blocked-panel" hidden>
+        <summary id="blocked-summary"></summary>
+        <div id="blocked-list" class="blocked-list"></div>
+      </details>
+    </section>
+
+    <section id="review-view" hidden aria-labelledby="review-title">
+      <div class="review-heading">
+        <div>
+          <p id="review-collection" class="eyebrow"></p>
+          <h1 id="review-title"></h1>
+          <p id="review-id" class="lesson-id"></p>
+        </div>
+        <div id="review-summary" class="review-summary"></div>
+      </div>
+
+      <div class="review-workspace">
+        <nav class="segment-nav" aria-label="教學片段">
+          <button id="overview-button" class="segment-item" type="button">整體檢閱</button>
+          <div id="segment-list"></div>
+        </nav>
+
+        <section class="evidence-pane" aria-label="視覺證據">
+          <div id="segment-heading" class="segment-heading"></div>
+          <div id="evidence-tabs" class="tabs" role="tablist" aria-label="證據類型"></div>
+          <div id="evidence-stage" class="evidence-stage"></div>
+          <div id="evidence-meta" class="evidence-meta"></div>
+          <div id="script-panel" class="script-panel"></div>
+          <div id="segment-actions" class="segment-actions"></div>
+        </section>
+
+        <aside id="review-panel" class="review-panel" aria-label="檢閱判定"></aside>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="lightbox" class="lightbox">
+    <button id="lightbox-close" class="lightbox-close" type="button" aria-label="關閉大圖" title="關閉大圖">&#215;</button>
+    <img id="lightbox-image" alt="">
+  </dialog>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
