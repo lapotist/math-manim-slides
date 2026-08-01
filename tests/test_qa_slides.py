@@ -5,6 +5,7 @@ from __future__ import annotations
 import importlib.util
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,6 +60,21 @@ class SlideQaSelectionChecks(unittest.TestCase):
             self.module.sweep_sample_times(0)
         with self.assertRaisesRegex(ValueError, "cadence"):
             self.module.sweep_sample_times(1, cadence=0)
+
+    def test_missing_commands_reports_every_qa_dependency(self) -> None:
+        available = {"ffmpeg", "ffprobe"}
+        with patch.object(
+            self.module.shutil,
+            "which",
+            side_effect=lambda command: command if command in available else None,
+        ):
+            self.assertEqual(self.module.missing_commands(), ["montage"])
+
+    def test_deployment_installs_contact_sheet_dependency(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "deploy-slides.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("ImageMagick", workflow)
 
 
 if __name__ == "__main__":

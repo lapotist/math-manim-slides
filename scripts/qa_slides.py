@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SWEEP_CADENCE_SECONDS = 0.5
 QA_SCHEMA_VERSION = 2
 RENDER_BOUND_ROLES = {"scene_file", "shared_python"}
+REQUIRED_COMMANDS = ("ffmpeg", "ffprobe", "montage")
 
 
 def load_lessons() -> dict[str, dict[str, Any]]:
@@ -90,6 +91,10 @@ def select_lessons(
     if not selected:
         raise ValueError("no lessons matched the QA selection")
     return sorted(selected, key=lambda lesson: lesson["id"])
+
+
+def missing_commands() -> list[str]:
+    return [command for command in REQUIRED_COMMANDS if shutil.which(command) is None]
 
 
 def probe(path: Path) -> dict[str, Any]:
@@ -413,6 +418,14 @@ def main() -> int:
         selected = select_lessons(lessons, args.ids, args.status)
     except ValueError as error:
         print(f"ERROR: {error}", file=sys.stderr)
+        return 2
+
+    missing = missing_commands()
+    if missing:
+        print(
+            "ERROR: slide QA requires these commands: " + ", ".join(missing),
+            file=sys.stderr,
+        )
         return 2
 
     report_dir = ROOT / "build" / "qa"

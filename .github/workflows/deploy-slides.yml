@@ -26,6 +26,7 @@ jobs:
       - name: Install rendering system packages
         run: |
           dnf install --assumeyes \
+            ImageMagick \
             bsdtar \
             dnf-plugins-core \
             git \
