@@ -29,11 +29,9 @@ from manim import (
     MathTex,
     NumberLine,
     Rectangle,
-    ReplacementTransform,
     SurroundingRectangle,
-    TransformFromCopy,
+    Succession,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -75,8 +73,8 @@ class CarloTcfs114MathQ13(CarloSlide):
         ).move_to([0, -0.35, 0])
         question = label("先檢查『存在』，再談『求值』", 30, MUTED, "BOLD")
         question.move_to([0, -1.65, 0])
-        self.play(FadeIn(title), Write(equation), run_time=1.0)
-        self.play(Write(total), run_time=0.8)
+        self.play(FadeIn(title), FadeIn(equation), run_time=1.0)
+        self.play(FadeIn(total), run_time=0.8)
         self.play(FadeIn(question), run_time=0.6)
 
         # Beat 02 split_number: Give floor and fractional part a concrete picture.
@@ -106,14 +104,16 @@ class CarloTcfs114MathQ13(CarloSlide):
         strip_formula = MathTex(r"n\le x<n+1", font_size=43, color=REGION)
         strip_formula.move_to([0, -2.0, 0])
         self.play(
-            ReplacementTransform(title, split_title),
-            FadeOut(equation, total, question),
-            FadeIn(number_line),
+            Succession(FadeOut(title), FadeIn(split_title)),
+            Succession(
+                FadeOut(VGroup(equation, total, question)),
+                FadeIn(number_line),
+            ),
             run_time=0.8,
         )
         self.play(Create(integer_span), FadeIn(n_dot, n_tag), run_time=0.65)
         self.play(Create(remainder_span), FadeIn(x_dot, x_tag), run_time=0.65)
-        self.play(Write(split_formula), FadeIn(strip_formula), run_time=0.75)
+        self.play(FadeIn(split_formula), FadeIn(strip_formula), run_time=0.75)
 
         # Beat 03 sign_filter: Keep zero but remove every other nonpositive case.
         self.next_beat("sign_filter")
@@ -138,28 +138,31 @@ class CarloTcfs114MathQ13(CarloSlide):
         pos_no = MathTex(r"\Rightarrow n\ge1", font_size=39, color=REGION)
         pos_no.move_to([5.2, -1.55, 0])
         self.play(
-            ReplacementTransform(split_title, sign_title),
-            FadeOut(
-                number_line,
-                n_dot,
-                x_dot,
-                n_tag,
-                x_tag,
-                integer_span,
-                remainder_span,
-                split_formula,
-                strip_formula,
+            Succession(FadeOut(split_title), FadeIn(sign_title)),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        number_line,
+                        n_dot,
+                        x_dot,
+                        n_tag,
+                        x_tag,
+                        integer_span,
+                        remainder_span,
+                        split_formula,
+                        strip_formula,
+                    )
+                ),
+                Create(VGroup(left_divider, right_divider)),
             ),
-            Create(left_divider),
-            Create(right_divider),
             run_time=0.8,
         )
         self.play(FadeIn(neg_head, zero_head, pos_head), run_time=0.45)
 
         self.next_beat("test_sign_cases")
-        self.play(Write(neg_lhs), Write(neg_rhs), FadeIn(neg_no), run_time=0.7)
-        self.play(Write(zero_eq), FadeIn(zero_note), run_time=0.55)
-        self.play(Write(pos_lhs), Write(pos_rhs), Write(pos_no), run_time=0.7)
+        self.play(FadeIn(neg_lhs), FadeIn(neg_rhs), FadeIn(neg_no), run_time=0.7)
+        self.play(FadeIn(zero_eq), FadeIn(zero_note), run_time=0.55)
+        self.play(FadeIn(pos_lhs), FadeIn(pos_rhs), FadeIn(pos_no), run_time=0.7)
 
         # Beat 04 normalize_strip: Compress every integer strip into y(1-y).
         self.next_beat("normalize_strip")
@@ -175,28 +178,32 @@ class CarloTcfs114MathQ13(CarloSlide):
         line_three = MathTex(r"y=\frac nx\quad\Longrightarrow\quad a=y(1-y)", font_size=52, color=POINT)
         line_three.move_to([0, -1.65, 0])
         self.play(
-            ReplacementTransform(sign_title, norm_title),
-            FadeOut(
-                left_divider,
-                right_divider,
-                neg_head,
-                neg_lhs,
-                neg_rhs,
-                neg_no,
-                zero_head,
-                zero_eq,
-                zero_note,
-                pos_head,
-                pos_lhs,
-                pos_rhs,
-                pos_no,
+            Succession(FadeOut(sign_title), FadeIn(norm_title)),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        left_divider,
+                        right_divider,
+                        neg_head,
+                        neg_lhs,
+                        neg_rhs,
+                        neg_no,
+                        zero_head,
+                        zero_eq,
+                        zero_note,
+                        pos_head,
+                        pos_lhs,
+                        pos_rhs,
+                        pos_no,
+                    )
+                ),
+                FadeIn(strip),
             ),
-            FadeIn(strip),
             run_time=0.8,
         )
-        self.play(Write(line_one), run_time=0.6)
-        self.play(TransformFromCopy(line_one, line_two), run_time=0.75)
-        self.play(TransformFromCopy(line_two, line_three), run_time=0.75)
+        self.play(FadeIn(line_one), run_time=0.6)
+        self.play(FadeIn(line_two), run_time=0.75)
+        self.play(FadeIn(line_three), run_time=0.75)
 
         # Beat 05 choose_branch: Reject the symmetric root that leaves its strip.
         self.next_beat("choose_branch")
@@ -236,15 +243,17 @@ class CarloTcfs114MathQ13(CarloSlide):
         ).move_to([3.85, -0.95, 0])
         c_note = MathTex(r"c=\frac1{1-t}>1", font_size=37, color=POINT).move_to([3.85, -1.70, 0])
         self.play(
-            ReplacementTransform(norm_title, branch_title),
-            FadeOut(strip, line_one, line_two, line_three),
-            FadeIn(axes, graph_label),
-            Create(curve),
+            Succession(FadeOut(norm_title), FadeIn(branch_title)),
+            Succession(
+                FadeOut(VGroup(strip, line_one, line_two, line_three)),
+                FadeIn(VGroup(axes, graph_label)),
+                Create(curve),
+            ),
             run_time=0.9,
         )
         self.play(Create(horizontal), FadeIn(t_dot, other_dot, t_label, other_label), run_time=0.7)
-        self.play(Write(bad), FadeIn(bad_note), run_time=0.75)
-        self.play(Write(good), Write(c_note), run_time=0.8)
+        self.play(FadeIn(bad), FadeIn(bad_note), run_time=0.75)
+        self.play(FadeIn(good), FadeIn(c_note), run_time=0.8)
 
         # Beat 06 march_candidates: Show why valid indices form one initial block.
         self.next_beat("march_candidates")
@@ -286,26 +295,30 @@ class CarloTcfs114MathQ13(CarloSlide):
         monotone = label("一旦碰到右端點，後面的格子都不再可行", 29, POINT, "BOLD")
         monotone.move_to([0, -2.20, 0])
         self.play(
-            ReplacementTransform(branch_title, march_title),
-            FadeOut(
-                axes,
-                curve,
-                horizontal,
-                t_dot,
-                other_dot,
-                t_label,
-                other_label,
-                graph_label,
-                bad,
-                bad_note,
-                good,
-                c_note,
+            Succession(FadeOut(branch_title), FadeIn(march_title)),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        axes,
+                        curve,
+                        horizontal,
+                        t_dot,
+                        other_dot,
+                        t_label,
+                        other_label,
+                        graph_label,
+                        bad,
+                        bad_note,
+                        good,
+                        c_note,
+                    )
+                ),
+                FadeIn(VGroup(march_line, example_note, integer_ticks)),
             ),
-            FadeIn(march_line, example_note, integer_ticks),
             run_time=0.9,
         )
         self.play(Create(arrows), FadeIn(candidate_dots), run_time=1.1)
-        self.play(Write(offset), FadeIn(monotone), run_time=0.8)
+        self.play(FadeIn(offset), FadeIn(monotone), run_time=0.8)
 
         # Beat 07 sum_candidates: Translate the visible arithmetic progression.
         self.next_beat("sum_candidates")
@@ -335,14 +348,26 @@ class CarloTcfs114MathQ13(CarloSlide):
             color=POINT,
         ).move_to([0, -2.05, 0])
         self.play(
-            ReplacementTransform(march_title, sum_title),
-            FadeOut(march_line, example_note, integer_ticks, candidate_dots, arrows, offset, monotone),
-            FadeIn(sequence),
+            Succession(FadeOut(march_title), FadeIn(sum_title)),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        march_line,
+                        example_note,
+                        integer_ticks,
+                        candidate_dots,
+                        arrows,
+                        offset,
+                        monotone,
+                    )
+                ),
+                FadeIn(sequence),
+            ),
             run_time=0.75,
         )
-        self.play(Write(sum_one), run_time=0.75)
-        self.play(TransformFromCopy(sum_one, sum_two), run_time=0.7)
-        self.play(TransformFromCopy(sum_two, solve_c), run_time=0.65)
+        self.play(FadeIn(sum_one), run_time=0.75)
+        self.play(FadeIn(sum_two), run_time=0.7)
+        self.play(FadeIn(solve_c), run_time=0.65)
 
         # Beat 08 build_two_bounds: Let the same N pass two necessary gates.
         self.next_beat("build_two_bounds")
@@ -358,15 +383,17 @@ class CarloTcfs114MathQ13(CarloSlide):
         right_c = MathTex(r"\Longrightarrow690<(N+1)^2", font_size=43, color=CORAL)
         right_c.move_to([4.0, -1.55, 0])
         self.play(
-            ReplacementTransform(sum_title, bounds_title),
-            FadeOut(sequence, sum_one, sum_two, solve_c),
-            Create(middle),
-            FadeIn(left_head, right_head),
+            Succession(FadeOut(sum_title), FadeIn(bounds_title)),
+            Succession(
+                FadeOut(VGroup(sequence, sum_one, sum_two, solve_c)),
+                Create(middle),
+                FadeIn(VGroup(left_head, right_head)),
+            ),
             run_time=0.75,
         )
-        self.play(Write(left_a), Write(right_a), run_time=0.65)
-        self.play(Write(left_b), Write(right_b), run_time=0.7)
-        self.play(Write(left_c), Write(right_c), run_time=0.7)
+        self.play(FadeIn(left_a), FadeIn(right_a), run_time=0.65)
+        self.play(FadeIn(left_b), FadeIn(right_b), run_time=0.7)
+        self.play(FadeIn(left_c), FadeIn(right_c), run_time=0.7)
 
         # Beat 09 meet_contradiction: Make the incompatible numerical bounds collide.
         self.next_beat("meet_contradiction")
@@ -388,22 +415,26 @@ class CarloTcfs114MathQ13(CarloSlide):
         conclusion = label("原題 345：不存在正的 a", 38, POINT, "BOLD")
         conclusion.move_to([0, -1.75, 0])
         self.play(
-            ReplacementTransform(bounds_title, contradiction_title),
-            FadeOut(
-                middle,
-                left_head,
-                left_a,
-                left_b,
-                left_c,
-                right_head,
-                right_a,
-                right_b,
-                right_c,
+            Succession(FadeOut(bounds_title), FadeIn(contradiction_title)),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        middle,
+                        left_head,
+                        left_a,
+                        left_b,
+                        left_c,
+                        right_head,
+                        right_a,
+                        right_b,
+                        right_c,
+                    )
+                ),
+                FadeIn(implication),
             ),
-            Write(implication),
             run_time=0.8,
         )
-        self.play(Write(impossible), Create(cross_box), run_time=0.8)
+        self.play(FadeIn(impossible), Create(cross_box), run_time=0.8)
         self.play(FadeIn(conclusion), Indicate(conclusion, color=POINT), run_time=0.8)
 
         # Beat 10 separate_correction: Keep the source's corrected variant distinct.
@@ -419,14 +450,16 @@ class CarloTcfs114MathQ13(CarloSlide):
         source_note = label("公開影片先指出矛盾，再切換到更正版", 24, MUTED, "MEDIUM")
         source_note.move_to([0, -2.25, 0])
         self.play(
-            ReplacementTransform(contradiction_title, correction_title),
-            FadeOut(implication, impossible, cross_box, conclusion),
-            Create(split),
-            FadeIn(original_head, corrected_head),
+            Succession(FadeOut(contradiction_title), FadeIn(correction_title)),
+            Succession(
+                FadeOut(VGroup(implication, impossible, cross_box, conclusion)),
+                Create(split),
+                FadeIn(VGroup(original_head, corrected_head)),
+            ),
             run_time=0.75,
         )
-        self.play(Write(original_sum), FadeIn(original_result), run_time=0.6)
-        self.play(Write(corrected_sum), FadeIn(corrected_prompt), run_time=0.6)
+        self.play(FadeIn(original_sum), FadeIn(original_result), run_time=0.6)
+        self.play(FadeIn(corrected_sum), FadeIn(corrected_prompt), run_time=0.6)
         self.play(FadeIn(source_note), run_time=0.45)
 
         # Beat 11 solve_corrected: Close the corrected case and verify its boundary.
@@ -461,25 +494,29 @@ class CarloTcfs114MathQ13(CarloSlide):
             VGroup(corrected_box, corrected_final),
         ).arrange(RIGHT, buff=1.20).move_to([0, -2.20, 0])
         self.play(
-            ReplacementTransform(correction_title, solved_title),
-            FadeOut(
-                split,
-                original_head,
-                original_sum,
-                original_result,
-                corrected_head,
-                corrected_sum,
-                corrected_prompt,
-                source_note,
+            Succession(FadeOut(correction_title), FadeIn(solved_title)),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        split,
+                        original_head,
+                        original_sum,
+                        original_result,
+                        corrected_head,
+                        corrected_sum,
+                        corrected_prompt,
+                        source_note,
+                    )
+                ),
+                FadeIn(bracket),
             ),
-            Write(bracket),
             run_time=0.8,
         )
-        self.play(Write(values), run_time=0.7)
+        self.play(FadeIn(values), run_time=0.7)
 
         self.next_beat("derive_corrected_parameter")
-        self.play(Write(parameter), run_time=0.75)
-        self.play(Write(boundary), run_time=0.65)
+        self.play(FadeIn(parameter), run_time=0.75)
+        self.play(FadeIn(boundary), run_time=0.65)
 
         self.next_beat("separate_final_results")
         self.play(FadeIn(final_group), run_time=0.75)

@@ -31,9 +31,7 @@ from manim import (
     Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -242,10 +240,10 @@ class CarloTcfs112MathQ03(CarloSlide):
         ).arrange(RIGHT, buff=0.16).move_to([3.18, -2.10, 0])
 
         self.add(heading, source)
-        self.play(FadeIn(beat_title), Create(pool), Write(pool_label), run_time=0.9)
+        self.play(FadeIn(beat_title), Create(pool), FadeIn(pool_label), run_time=0.9)
         self.play(LaggedStart(*(FadeIn(token) for token in roster), lag_ratio=0.15), run_time=0.9)
         self.play(FadeIn(unknowns), run_time=0.5)
-        self.play(TransformFromCopy(roster[2], known_c), TransformFromCopy(roster[3], ask_d), run_time=0.75)
+        self.play(FadeIn(known_c), FadeIn(ask_d), run_time=0.75)
         self.wait(0.35)
 
         # Beat 02 reveal_first_pair_clues: reveal the three overlapping pair clues one at a time.
@@ -305,8 +303,8 @@ class CarloTcfs112MathQ03(CarloSlide):
 
         # Beat 05 count_repeated_shares: continue at a settled semantic boundary.
         self.next_beat("count_repeated_shares")
-        self.play(FadeIn(occurrence_note), Write(rhs_sum), run_time=0.65)
-        self.play(Write(aggregate), run_time=0.9)
+        self.play(FadeIn(occurrence_note), FadeIn(rhs_sum), run_time=0.65)
+        self.play(FadeIn(aggregate), run_time=0.9)
         self.play(Indicate(aggregate[0], color=POINT), Indicate(aggregate[8], color=CORAL), run_time=0.65)
         self.wait(0.35)
 
@@ -338,8 +336,8 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(self.title_change(beat_title, next_title), run_time=0.55)
         beat_title = next_title
         self.play(FadeOut(pair_rows), FadeOut(rhs_sum), FadeOut(occurrence_note), FadeOut(aggregate), run_time=0.55)
-        self.play(FadeIn(counted_tokens), Write(counted_total), run_time=0.65)
-        self.play(FadeIn(whole_tokens), Write(minus), Write(whole_total), Create(subtract_line), run_time=0.7)
+        self.play(FadeIn(counted_tokens), FadeIn(counted_total), run_time=0.65)
+        self.play(FadeIn(whole_tokens), FadeIn(minus), FadeIn(whole_total), Create(subtract_line), run_time=0.7)
 
         # Beat 07 remove_one_whole_pool: continue at a settled semantic boundary.
         self.next_beat("remove_one_whole_pool")
@@ -355,7 +353,7 @@ class CarloTcfs112MathQ03(CarloSlide):
             run_time=1.0,
         )
         remaining_a = VGroup(counted_tokens[0], counted_tokens[1])
-        self.play(Write(result_equation), run_time=0.65)
+        self.play(FadeIn(result_equation), run_time=0.65)
         self.wait(0.35)
 
         # Beat 08 split_fifty_between_two_a: split the remaining 50 percent equally between two a tokens.
@@ -392,8 +390,8 @@ class CarloTcfs112MathQ03(CarloSlide):
 
         # Beat 09 solve_a_share: continue at a settled semantic boundary.
         self.next_beat("solve_a_share")
-        self.play(Write(half_labels), run_time=0.55)
-        self.play(Write(a_result), run_time=0.6)
+        self.play(FadeIn(half_labels), run_time=0.55)
+        self.play(FadeIn(a_result), run_time=0.6)
         self.wait(0.35)
 
         # Beat 10 recover_first_two_shares: recover and check all four positive shares.
@@ -439,7 +437,7 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(FadeIn(share_cards[2]), run_time=0.45)
         self.play(FadeIn(share_cards[3]), run_time=0.45)
         self.play(LaggedStart(*(FadeIn(segment) for segment in segments), lag_ratio=0.14), run_time=0.85)
-        self.play(Write(sum_check), run_time=0.7)
+        self.play(FadeIn(sum_check), run_time=0.7)
         self.wait(0.35)
 
         # Beat 12 anchor_known_money: anchor the percentage scale to the known 315 dollars.
@@ -454,7 +452,7 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(self.title_change(beat_title, next_title), run_time=0.55)
         beat_title = next_title
         self.play(FadeOut(share_cards), FadeOut(sum_check), run_time=0.45)
-        self.play(TransformFromCopy(segments[2], c_strip), TransformFromCopy(segments[3], d_strip), FadeOut(segments), run_time=0.85)
+        self.play(Succession(FadeOut(segments), FadeIn(VGroup(c_strip, d_strip))), run_time=0.85)
 
         # Beat 13 compare_known_and_unknown_strips: continue at a settled semantic boundary.
         self.next_beat("compare_known_and_unknown_strips")
@@ -486,7 +484,7 @@ class CarloTcfs112MathQ03(CarloSlide):
         # Beat 15 group_into_five_percent_units: continue at a settled semantic boundary.
         self.next_beat("group_into_five_percent_units")
         self.play(LaggedStart(*(FadeIn(unit) for unit in d_units), lag_ratio=0.10), run_time=0.7)
-        self.play(Write(unit_equations), run_time=0.75)
+        self.play(FadeIn(unit_equations), run_time=0.75)
         self.wait(0.35)
 
         # Beat 16 price_five_percent_unit: find one unit, then settle five equal values without multiplying.
@@ -505,13 +503,15 @@ class CarloTcfs112MathQ03(CarloSlide):
         self.play(self.title_change(beat_title, next_title), run_time=0.55)
         beat_title = next_title
         self.play(FadeOut(unit_equations), run_time=0.4)
-        self.play(Write(unit_value), run_time=0.65)
-        self.play(Transform(c_units, c_units_money), run_time=0.8)
+        self.play(FadeIn(unit_value), run_time=0.65)
+        self.play(Succession(FadeOut(c_units), FadeIn(c_units_money)), run_time=0.8)
+        c_units = c_units_money
 
         # Beat 17 settle_unit_value_preanswer: continue at a settled semantic boundary.
         self.next_beat("settle_unit_value_preanswer")
-        self.play(Transform(d_units, d_units_money), FadeOut(d_unknown), run_time=0.8)
-        self.play(Write(preanswer), run_time=0.55)
+        self.play(Succession(FadeOut(d_units), FadeIn(d_units_money)), FadeOut(d_unknown), run_time=0.8)
+        d_units = d_units_money
+        self.play(FadeIn(preanswer), run_time=0.55)
         self.play(Indicate(d_units, color=PURPLE), run_time=0.55)
         self.wait(0.45)
 
@@ -545,10 +545,10 @@ class CarloTcfs112MathQ03(CarloSlide):
             run_time=0.55,
         )
         self.play(Transform(d_units, final_units), run_time=0.9)
-        self.play(Create(final_frame), FadeIn(final_label), run_time=0.55)
+        self.play(FadeIn(final_frame), FadeIn(final_label), run_time=0.55)
 
         # Beat 19 reveal_xiaopu_award: continue at a settled semantic boundary.
         self.next_beat("reveal_xiaopu_award")
-        self.play(Write(answer), run_time=0.7)
-        self.play(Write(check), Circumscribe(answer[4], color=CORAL), run_time=0.75)
+        self.play(FadeIn(answer), run_time=0.7)
+        self.play(FadeIn(check), Circumscribe(answer[4], color=CORAL), run_time=0.75)
         self.wait(0.45)

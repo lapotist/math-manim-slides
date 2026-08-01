@@ -38,7 +38,6 @@ from manim import (
     Succession,
     SurroundingRectangle,
     VGroup,
-    Write,
     rate_functions,
 )
 from manim.constants import DOWN, LEFT, RIGHT, TAU, UP
@@ -237,7 +236,10 @@ class CarloTcfs112MathQ02(CarloSlide):
         )
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
-        self.play(FadeOut(opening_panel), FadeIn(one_week[0]), run_time=0.45)
+        self.play(
+            Succession(FadeOut(opening_panel), FadeIn(one_week[0])),
+            run_time=0.45,
+        )
         self.play(
             MoveAlongPath(marker, full_path),
             run_time=2.25,
@@ -267,7 +269,7 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(one_week), run_time=0.35)
-        self.play(Write(examples[0]), Write(examples[1]), run_time=0.72)
+        self.play(FadeIn(examples[0]), FadeIn(examples[1]), run_time=0.72)
 
         # Beat 04 compare_same_remainder: continue at a settled semantic boundary.
         self.next_beat("compare_same_remainder")
@@ -276,7 +278,7 @@ class CarloTcfs112MathQ02(CarloSlide):
             run_time=1.00,
             rate_func=rate_functions.ease_in_out_sine,
         )
-        self.play(Write(examples[2]), run_time=0.62)
+        self.play(FadeIn(examples[2]), run_time=0.62)
         self.play(FadeIn(examples[3]), Indicate(marker, color=POINT), run_time=0.58)
         self.wait(0.38)
 
@@ -301,8 +303,8 @@ class CarloTcfs112MathQ02(CarloSlide):
             FadeOut(divider),
             run_time=0.60,
         )
-        self.play(Write(target), run_time=0.58)
-        self.play(Write(division_form), FadeIn(remainder_range), run_time=0.62)
+        self.play(FadeIn(target), run_time=0.58)
+        self.play(FadeIn(division_form), FadeIn(remainder_range), run_time=0.62)
         self.play(FadeIn(remainder_question), run_time=0.48)
         self.wait(0.48)
 
@@ -334,14 +336,14 @@ class CarloTcfs112MathQ02(CarloSlide):
         divider = Line([0.70, -3.52, 0], [0.70, 3.40, 0], color=HAIRLINE, stroke_width=1.5)
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
-        self.play(FadeOut(remainder_panel), Create(divider), run_time=0.50)
+        self.play(Succession(FadeOut(remainder_panel), Create(divider)), run_time=0.50)
         self.play(LaggedStart(*(FadeIn(item) for item in bundles), lag_ratio=0.10), run_time=0.80)
         self.play(FadeIn(extra_day), run_time=0.48)
 
         # Beat 07 split_base_into_weeks: continue at a settled semantic boundary.
         self.next_beat("split_base_into_weeks")
-        self.play(Write(split_formula), run_time=0.55)
-        self.play(Write(weeks_formula), run_time=0.62)
+        self.play(FadeIn(split_formula), run_time=0.55)
+        self.play(FadeIn(weeks_formula), run_time=0.62)
         self.play(FadeIn(base_remainder), run_time=0.65)
         self.play(FadeIn(split_note), run_time=0.45)
         self.wait(0.38)
@@ -395,8 +397,8 @@ class CarloTcfs112MathQ02(CarloSlide):
 
         # Beat 09 multiply_remainders: continue at a settled semantic boundary.
         self.next_beat("multiply_remainders")
-        self.play(Write(power_two), run_time=0.62)
-        self.play(Write(power_three), run_time=0.68)
+        self.play(FadeIn(power_two), run_time=0.62)
+        self.play(FadeIn(power_three), run_time=0.68)
         self.play(FadeIn(many_factors), run_time=0.62)
         self.wait(0.38)
 
@@ -429,9 +431,9 @@ class CarloTcfs112MathQ02(CarloSlide):
             FadeOut(divider),
             run_time=0.48,
         )
-        self.play(Write(base_mod), run_time=0.55)
-        self.play(Write(power_mod), run_time=0.82)
-        self.play(GrowFromCenter(remainder_result), Circumscribe(remainder_result, color=POINT), run_time=0.78)
+        self.play(FadeIn(base_mod), run_time=0.55)
+        self.play(FadeIn(power_mod), run_time=0.82)
+        self.play(FadeIn(remainder_result), Circumscribe(remainder_result, color=POINT), run_time=0.78)
         self.wait(0.42)
 
         # Beat 11 read_full_weeks_plus_one: translate the congruence back to days.
@@ -462,7 +464,7 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(modular_panel), run_time=0.38)
-        self.play(Write(decomposition), FadeIn(k_integer), run_time=0.72)
+        self.play(FadeIn(decomposition), FadeIn(k_integer), run_time=0.72)
         self.play(FadeIn(week_band), FadeIn(week_band_label), run_time=0.58)
         self.play(FadeIn(extra_group), run_time=0.65)
         self.wait(0.40)
@@ -500,11 +502,10 @@ class CarloTcfs112MathQ02(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(
-            FadeOut(decomposition_group),
-            FadeOut(whole_visual),
-            FadeIn(divider),
-            FadeIn(wheel_context),
-            FadeIn(return_marker),
+            Succession(
+                FadeOut(VGroup(decomposition_group, whole_visual)),
+                FadeIn(VGroup(divider, wheel_context, return_marker)),
+            ),
             run_time=0.72,
         )
         self.play(FadeIn(preanswer_panel[0]), FadeIn(preanswer_panel[1]), run_time=0.50)

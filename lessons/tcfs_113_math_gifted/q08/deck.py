@@ -33,14 +33,12 @@ from manim import (
     Line,
     MathTex,
     Polygon,
-    ReplacementTransform,
     RoundedRectangle,
+    Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
     ValueTracker,
-    Write,
     always_redraw,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
@@ -356,8 +354,8 @@ class CarloTcfs113MathQ08(CarloSlide):
             FadeIn(side_label),
             run_time=0.8,
         )
-        self.play(Write(ratio), run_time=0.65)
-        self.play(TransformFromCopy(ratio, whole_side), run_time=0.55)
+        self.play(FadeIn(ratio), run_time=0.65)
+        self.play(FadeIn(whole_side), run_time=0.55)
 
         self.next_beat("state_right_side_lengths")
         self.play(FadeIn(partition_values), run_time=0.7)
@@ -410,8 +408,8 @@ class CarloTcfs113MathQ08(CarloSlide):
             run_time=0.7,
         )
         self.play(Create(df_segment), FadeIn(df_tag), Create(lower_outline), run_time=0.75)
-        self.play(Write(trapezoid_area), run_time=0.75)
-        self.play(TransformFromCopy(trapezoid_area[0], half_square[0]), Write(VGroup(*half_square[1:])), run_time=0.7)
+        self.play(FadeIn(trapezoid_area), run_time=0.75)
+        self.play(FadeIn(half_square), run_time=0.7)
         self.wait(0.4)
 
         # Beat 05: convert half-area into the missing left height.
@@ -445,9 +443,15 @@ class CarloTcfs113MathQ08(CarloSlide):
 
         self.replace_title(self, beat_title, next_title)
         beat_title = next_title
-        self.play(FadeOut(trapezoid_area), FadeOut(half_square), FadeIn(average_height), run_time=0.75)
-        self.play(TransformFromCopy(average_height, height_sum), run_time=0.65)
-        self.play(TransformFromCopy(height_sum, df_value), run_time=0.75)
+        self.play(
+            Succession(
+                FadeOut(VGroup(trapezoid_area, half_square)),
+                FadeIn(average_height),
+            ),
+            run_time=0.75,
+        )
+        self.play(FadeIn(height_sum), run_time=0.65)
+        self.play(FadeIn(df_value), run_time=0.75)
         self.play(Indicate(df_segment, color=POINT), Indicate(ce_segment, color=POINT), run_time=0.65)
         self.wait(0.4)
 
@@ -512,7 +516,7 @@ class CarloTcfs113MathQ08(CarloSlide):
         )
         self.play(Create(big_triangle), Create(small_triangle), run_time=0.8)
         self.play(Create(right_at_d), Create(right_at_c), Create(shared_angle), run_time=0.65)
-        self.play(FadeIn(similarity_note), Write(similarity), run_time=0.7)
+        self.play(FadeIn(similarity_note), FadeIn(similarity), run_time=0.7)
         self.wait(0.4)
 
         # Beat 07: transfer the height ratio to OD and the square side.
@@ -564,12 +568,12 @@ class CarloTcfs113MathQ08(CarloSlide):
             Transform(similarity, sim_corner),
             run_time=0.55,
         )
-        self.play(Write(proportion), run_time=0.8)
-        self.play(TransformFromCopy(proportion, cross_multiply), run_time=0.7)
+        self.play(FadeIn(proportion), run_time=0.8)
+        self.play(FadeIn(cross_multiply), run_time=0.7)
 
         self.next_beat("reduce_base_ratio")
-        self.play(Transform(cross_multiply, reduced), run_time=0.6)
-        self.play(TransformFromCopy(reduced, final_ratio), run_time=0.7)
+        self.play(Succession(FadeOut(cross_multiply), FadeIn(reduced)), run_time=0.6)
+        self.play(FadeIn(final_ratio), run_time=0.7)
         self.play(Circumscribe(final_ratio, color=POINT), run_time=0.55)
         self.wait(0.4)
 
@@ -631,13 +635,14 @@ class CarloTcfs113MathQ08(CarloSlide):
             similarity,
             proportion,
             cross_multiply,
+            reduced,
             final_ratio,
         )
 
         self.replace_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(core_geometry), FadeOut(triangle_evidence), run_time=0.7)
-        self.play(FadeIn(coprime), Write(scale_rule), run_time=0.75)
+        self.play(FadeIn(coprime), FadeIn(scale_rule), run_time=0.75)
         self.play(LaggedStart(*(FadeIn(card) for card in pair_cards), lag_ratio=0.16), run_time=1.0)
         self.play(FadeIn(scale_question), run_time=0.55)
         self.wait(0.45)
@@ -695,7 +700,7 @@ class CarloTcfs113MathQ08(CarloSlide):
         checks = VGroup(integer_check, ratio_check, half_check).arrange(DOWN, buff=0.48)
         checks.move_to([4.62, -0.08, 0])
         check_note = label("整數、線段比、平分面積都成立", 23, POINT, "BOLD")
-        check_note.move_to([4.62, -1.78, 0])
+        check_note.move_to([4.62, -2.28, 0])
 
         self.play(
             FadeOut(coprime),
@@ -706,7 +711,13 @@ class CarloTcfs113MathQ08(CarloSlide):
             FadeIn(core_geometry),
             run_time=0.8,
         )
-        self.play(GrowFromCenter(od_brace), FadeIn(od_label), Transform(side_label, numeric_side), run_time=0.7)
+        self.play(
+            GrowFromCenter(od_brace),
+            FadeIn(od_label),
+            Succession(FadeOut(side_label), FadeIn(numeric_side)),
+            run_time=0.7,
+        )
+        side_label = numeric_side
 
         self.next_beat("recheck_ratio_and_area")
         self.play(LaggedStart(*(FadeIn(check) for check in checks), lag_ratio=0.18), run_time=1.0)
@@ -755,11 +766,9 @@ class CarloTcfs113MathQ08(CarloSlide):
         self.replace_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(checks), FadeOut(check_note), FadeIn(final_fill), run_time=0.65)
-        self.play(Write(area_name), run_time=0.6)
+        self.play(FadeIn(area_name), run_time=0.6)
         self.play(
-            Write(area_value[0]),
-            TransformFromCopy(side_label, area_value[1]),
-            Write(VGroup(*area_value[2:])),
+            FadeIn(area_value),
             run_time=0.8,
         )
 

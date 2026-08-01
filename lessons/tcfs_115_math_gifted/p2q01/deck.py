@@ -28,9 +28,8 @@ from manim import (
     MathTex,
     Rectangle,
     SurroundingRectangle,
-    TransformFromCopy,
+    Succession,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -239,12 +238,12 @@ class Tcfs115Part2Q01Slide(CarloSlide):
         body_2 = VGroup(
             title_2, row_21, row_22, y_marks, z_marks, swap, swap_note, prompt_2
         )
-        self.play(FadeOut(body), FadeIn(title_2), run_time=0.65)
+        self.play(Succession(FadeOut(body), FadeIn(title_2)), run_time=0.65)
         self.play(FadeIn(row_21), FadeIn(row_22), run_time=0.75)
         self.play(Create(y_marks), Create(z_marks), run_time=0.9)
         # Smaller step: align_twin_equations.
         self.next_beat("align_twin_equations")
-        self.play(Write(swap), FadeIn(swap_note), run_time=0.75)
+        self.play(FadeIn(swap), FadeIn(swap_note), run_time=0.75)
         self.play(FadeIn(prompt_2), run_time=0.45)
         self.wait(0.35)
         body = body_2
@@ -292,16 +291,18 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             factorization,
             factor_frame,
         )
-        self.play(FadeOut(body), FadeIn(title_3), FadeIn(row_31), FadeIn(row_32))
         self.play(
-            TransformFromCopy(VGroup(row_31[2], row_32[2]), difference_1),
-            run_time=1.05,
+            Succession(
+                FadeOut(body),
+                FadeIn(VGroup(title_3, row_31, row_32)),
+            )
         )
-        self.play(Write(difference_2), run_time=0.8)
+        self.play(FadeIn(difference_1), run_time=1.05)
+        self.play(FadeIn(difference_2), run_time=0.8)
         # Smaller step: isolate_first_difference.
         self.next_beat("isolate_first_difference")
-        self.play(Write(difference_3), run_time=0.8)
-        self.play(Write(factorization), Create(factor_frame), run_time=0.9)
+        self.play(FadeIn(difference_3), run_time=0.8)
+        self.play(FadeIn(factorization), Create(factor_frame), run_time=0.9)
         self.wait(0.35)
         body = body_3
 
@@ -347,7 +348,10 @@ class Tcfs115Part2Q01Slide(CarloSlide):
         body_4 = VGroup(
             title_4, trunk, left_card, right_card, left_arrow, right_arrow, union_note
         )
-        self.play(FadeOut(body), FadeIn(title_4), FadeIn(trunk), run_time=0.7)
+        self.play(
+            Succession(FadeOut(body), FadeIn(VGroup(title_4, trunk))),
+            run_time=0.7,
+        )
         self.play(GrowArrow(left_arrow), FadeIn(left_card), run_time=0.85)
         self.play(GrowArrow(right_arrow), FadeIn(right_card), run_time=0.85)
         self.play(FadeIn(union_note), run_time=0.5)
@@ -385,13 +389,16 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             polynomial_frame_5,
             note_5,
         )
-        self.play(FadeOut(body), FadeIn(title_5), FadeIn(ribbon_5), run_time=0.7)
+        self.play(
+            Succession(FadeOut(body), FadeIn(VGroup(title_5, ribbon_5))),
+            run_time=0.7,
+        )
         self.play(FadeIn(row_53), run_time=0.6)
-        self.play(Write(substitution_5), run_time=0.9)
+        self.play(FadeIn(substitution_5), run_time=0.9)
         # Smaller step: compare_equal_branch.
         self.next_beat("compare_equal_branch")
-        self.play(Write(collected_5), run_time=0.65)
-        self.play(Write(polynomial_5), Create(polynomial_frame_5), FadeIn(note_5), run_time=0.85)
+        self.play(FadeIn(collected_5), run_time=0.65)
+        self.play(FadeIn(polynomial_5), Create(polynomial_frame_5), FadeIn(note_5), run_time=0.85)
         self.wait(0.35)
         body = body_5
 
@@ -431,17 +438,22 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             answer_6,
             answer_frame_6,
         )
-        self.play(FadeOut(body), FadeIn(title_6), FadeIn(ribbon_6), FadeIn(polynomial_6))
-        self.play(Write(coefficients_6), run_time=0.65)
-        self.play(Write(b_step_6), run_time=0.65)
+        self.play(
+            Succession(
+                FadeOut(body),
+                FadeIn(VGroup(title_6, ribbon_6, polynomial_6)),
+            )
+        )
+        self.play(FadeIn(coefficients_6), run_time=0.65)
+        self.play(FadeIn(b_step_6), run_time=0.65)
         # Smaller step: derive_equal_branch_sum.
         self.next_beat("derive_equal_branch_sum")
         self.play(Indicate(b_step_6, color=POINT), run_time=0.55)
-        self.play(Write(formula_6), run_time=0.75)
+        self.play(FadeIn(formula_6), run_time=0.75)
         # Smaller step: test_equal_branch_values.
         self.next_beat("test_equal_branch_values")
-        self.play(Write(substitute_6), run_time=0.75)
-        self.play(Write(answer_6), Create(answer_frame_6), run_time=0.85)
+        self.play(FadeIn(substitute_6), run_time=0.75)
+        self.play(FadeIn(answer_6), Create(answer_frame_6), run_time=0.85)
         self.wait(0.35)
         body = body_6
 
@@ -501,7 +513,10 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             row_73,
             prompt_7,
         )
-        self.play(FadeOut(body), FadeIn(title_7), FadeIn(ribbon_7), run_time=0.7)
+        self.play(
+            Succession(FadeOut(body), FadeIn(VGroup(title_7, ribbon_7))),
+            run_time=0.7,
+        )
         self.play(FadeIn(left_memory_group), FadeIn(sum_model), run_time=0.8)
         self.play(FadeIn(row_72), FadeIn(row_73), run_time=0.75)
         self.play(FadeIn(prompt_7), run_time=0.5)
@@ -562,19 +577,22 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             equation_83,
             result_frame_8,
         )
-        self.play(FadeOut(body), FadeIn(title_8), FadeIn(branch_tag_8), run_time=0.7)
+        self.play(
+            Succession(FadeOut(body), FadeIn(VGroup(title_8, branch_tag_8))),
+            run_time=0.7,
+        )
         self.play(FadeIn(left_heading_8), FadeIn(right_heading_8), Create(divider_8))
-        self.play(Write(left_81), Write(right_81), run_time=0.75)
+        self.play(FadeIn(left_81), FadeIn(right_81), run_time=0.75)
         # Smaller step: factor_x_one_relation.
         self.next_beat("factor_x_one_relation")
-        self.play(Write(left_82), Write(right_82), run_time=0.8)
-        self.play(Write(left_83), run_time=0.65)
-        self.play(Write(substitutions_8), run_time=0.65)
+        self.play(FadeIn(left_82), FadeIn(right_82), run_time=0.8)
+        self.play(FadeIn(left_83), run_time=0.65)
+        self.play(FadeIn(substitutions_8), run_time=0.65)
         # Smaller step: solve_x_one_relation.
         self.next_beat("solve_x_one_relation")
-        self.play(Write(equation_81), run_time=0.75)
-        self.play(Write(equation_82), run_time=0.7)
-        self.play(Write(equation_83), Create(result_frame_8), run_time=0.9)
+        self.play(FadeIn(equation_81), run_time=0.75)
+        self.play(FadeIn(equation_82), run_time=0.7)
+        self.play(FadeIn(equation_83), Create(result_frame_8), run_time=0.9)
         self.wait(0.35)
         body = body_8
 
@@ -627,13 +645,16 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             left_pair_arrow,
             right_pair_arrow,
         )
-        self.play(FadeOut(body), FadeIn(title_9), FadeIn(tag_9), run_time=0.7)
-        self.play(Write(substitution_91), run_time=0.7)
-        self.play(Write(polynomial_9), run_time=0.65)
+        self.play(
+            Succession(FadeOut(body), FadeIn(VGroup(title_9, tag_9))),
+            run_time=0.7,
+        )
+        self.play(FadeIn(substitution_91), run_time=0.7)
+        self.play(FadeIn(polynomial_9), run_time=0.65)
         # Smaller step: derive_sum_branch_values.
         self.next_beat("derive_sum_branch_values")
-        self.play(Write(square_9), run_time=0.6)
-        self.play(Write(roots_9), run_time=0.7)
+        self.play(FadeIn(square_9), run_time=0.6)
+        self.play(FadeIn(roots_9), run_time=0.7)
         self.play(
             GrowArrow(left_pair_arrow), GrowArrow(right_pair_arrow),
             FadeIn(pair_left_9), FadeIn(pair_right_9),
@@ -715,20 +736,23 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             right_badge_10,
             right_badge_frame_10,
         )
-        self.play(FadeOut(body), FadeIn(title_10), Create(divider_10), run_time=0.7)
+        self.play(
+            Succession(FadeOut(body), FadeIn(VGroup(title_10, divider_10))),
+            run_time=0.7,
+        )
         self.play(FadeIn(left_heading_10), FadeIn(right_heading_10), run_time=0.5)
-        self.play(Write(left_values_10), Write(right_invariants_10), run_time=0.7)
+        self.play(FadeIn(left_values_10), FadeIn(right_invariants_10), run_time=0.7)
         # Smaller step: test_first_candidates.
         self.next_beat("test_first_candidates")
-        self.play(Write(left_x_equation_10), Write(right_root_rule_10), run_time=0.75)
-        self.play(Write(left_delta_101), Write(right_check_1210), run_time=0.75)
+        self.play(FadeIn(left_x_equation_10), FadeIn(right_root_rule_10), run_time=0.75)
+        self.play(FadeIn(left_delta_101), FadeIn(right_check_1210), run_time=0.75)
         self.play(
-            Write(left_delta_102), FadeIn(right_check_12_note),
-            Write(right_check_310), Write(right_rhs_310), run_time=0.9,
+            FadeIn(left_delta_102), FadeIn(right_check_12_note),
+            FadeIn(right_check_310), FadeIn(right_rhs_310), run_time=0.9,
         )
         # Smaller step: test_remaining_candidates.
         self.next_beat("test_remaining_candidates")
-        self.play(Write(left_minimum_10), run_time=0.6)
+        self.play(FadeIn(left_minimum_10), run_time=0.6)
         self.play(
             FadeIn(left_badge_10), Create(left_badge_frame_10),
             FadeIn(right_badge_10), Create(right_badge_frame_10),
@@ -791,17 +815,20 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             minus_note_11,
             resolution_11,
         )
-        self.play(FadeOut(body), FadeIn(title_11), Write(polynomial_11), run_time=0.75)
+        self.play(
+            Succession(FadeOut(body), FadeIn(VGroup(title_11, polynomial_11))),
+            run_time=0.75,
+        )
         self.play(FadeIn(source_note_11), run_time=0.55)
-        self.play(Write(root_sum_11), run_time=0.75)
+        self.play(FadeIn(root_sum_11), run_time=0.75)
         # Smaller step: state_corrected_sign.
         self.next_beat("state_corrected_sign")
         self.play(
-            Write(plus_check_11), Create(plus_frame_11), FadeIn(plus_note_11),
+            FadeIn(plus_check_11), Create(plus_frame_11), FadeIn(plus_note_11),
             run_time=0.9,
         )
         self.play(
-            Write(minus_check_11), Create(minus_frame_11), FadeIn(minus_note_11),
+            FadeIn(minus_check_11), Create(minus_frame_11), FadeIn(minus_note_11),
             run_time=0.9,
         )
         self.play(FadeIn(resolution_11), run_time=0.6)
@@ -879,12 +906,17 @@ class Tcfs115Part2Q01Slide(CarloSlide):
             final_frame_12,
             correction_12,
         )
-        self.play(FadeOut(body), FadeIn(title_12), Write(trunk_12), Create(trunk_frame_12))
+        self.play(
+            Succession(
+                FadeOut(body),
+                FadeIn(VGroup(title_12, trunk_12, trunk_frame_12)),
+            )
+        )
         self.play(
             GrowArrow(left_arrow_12), GrowArrow(right_arrow_12),
             FadeIn(left_card_12), FadeIn(right_card_12),
             run_time=1.0,
         )
-        self.play(Write(final_answer_12), Create(final_frame_12), run_time=0.9)
+        self.play(FadeIn(final_answer_12), Create(final_frame_12), run_time=0.9)
         self.play(FadeIn(correction_12), run_time=0.45)
         self.wait(0.45)

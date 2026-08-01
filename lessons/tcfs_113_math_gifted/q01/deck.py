@@ -30,9 +30,7 @@ from manim import (
     Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -200,7 +198,7 @@ class CarloTcfs113MathQ01(CarloSlide):
         opening_question.move_to([4.42, -1.72, 0])
 
         self.add(heading, source, divider)
-        self.play(FadeIn(beat_title), Write(original_equation), run_time=1.15)
+        self.play(FadeIn(beat_title), FadeIn(original_equation), run_time=1.15)
         self.play(FadeIn(positive_note), run_time=0.7)
         self.play(FadeIn(order_note), FadeIn(opening_question), run_time=0.65)
         self.wait(0.3)
@@ -239,14 +237,15 @@ class CarloTcfs113MathQ01(CarloSlide):
 
         self.play(
             self.title_change(beat_title, next_title),
-            Transform(original_equation, expanded_equation),
+            Succession(FadeOut(original_equation), FadeIn(expanded_equation)),
             FadeOut(positive_note),
             FadeOut(order_note),
             FadeOut(opening_question),
             run_time=1.0,
         )
+        original_equation = expanded_equation
         beat_title = next_title
-        self.play(Write(conversions), run_time=0.9)
+        self.play(FadeIn(conversions), run_time=0.9)
         self.play(FadeIn(base_note), run_time=0.55)
         self.wait(0.3)
 
@@ -409,9 +408,10 @@ class CarloTcfs113MathQ01(CarloSlide):
             dot = Dot(axes.c2p(y, x), radius=0.09, color=POINT).set_z_index(6)
             self.play(
                 Transform(baseline_tiles, self.configuration(x, y, 1)),
-                Transform(config_readout, next_readout),
+                Succession(FadeOut(config_readout), FadeIn(next_readout)),
                 run_time=0.75,
             )
+            config_readout = next_readout
             self.play(GrowFromCenter(dot), run_time=0.38)
             z_one_dots.add(dot)
         self.wait(0.3)
@@ -444,15 +444,16 @@ class CarloTcfs113MathQ01(CarloSlide):
             self.title_change(beat_title, next_title),
             FadeOut(change_note),
             Transform(baseline_tiles, self.configuration(0, 4, 1)),
-            Transform(config_readout, zero_readout),
+            Succession(FadeOut(config_readout), FadeIn(zero_readout)),
             GrowFromCenter(invalid_dot),
             run_time=0.9,
         )
+        config_readout = zero_readout
         beat_title = next_title
         self.play(FadeIn(positive_guard), run_time=0.55)
         self.play(
             Circumscribe(z_one_dots, color=POINT, fade_out=True),
-            Write(slice_one_count),
+            FadeIn(slice_one_count),
             run_time=0.85,
         )
         self.wait(0.3)
@@ -487,13 +488,15 @@ class CarloTcfs113MathQ01(CarloSlide):
             FadeOut(positive_guard),
             FadeOut(slice_one_count),
             FadeOut(invalid_dot),
-            Transform(z_one_equations, z_two_equations),
+            Succession(FadeOut(z_one_equations), FadeIn(z_two_equations)),
             Transform(slice_line, line_two),
             Transform(baseline_tiles, self.configuration(3, 1, 2)),
-            Transform(config_readout, first_two_readout),
+            Succession(FadeOut(config_readout), FadeIn(first_two_readout)),
             z_one_dots.animate.set_opacity(0.25),
             run_time=1.05,
         )
+        z_one_equations = z_two_equations
+        config_readout = first_two_readout
         beat_title = next_title
         fourth_dot = Dot(axes.c2p(1, 3), radius=0.09, color=POINT).set_z_index(6)
         z_two_dots.add(fourth_dot)
@@ -504,14 +507,15 @@ class CarloTcfs113MathQ01(CarloSlide):
         fifth_dot = Dot(axes.c2p(2, 1), radius=0.09, color=POINT).set_z_index(6)
         self.play(
             Transform(baseline_tiles, self.configuration(1, 2, 2)),
-            Transform(config_readout, second_two_readout),
+            Succession(FadeOut(config_readout), FadeIn(second_two_readout)),
             run_time=0.75,
         )
+        config_readout = second_two_readout
         self.play(GrowFromCenter(fifth_dot), FadeIn(slice_two_note), run_time=0.5)
         z_two_dots.add(fifth_dot)
         self.play(
             Circumscribe(z_two_dots, color=POINT, fade_out=True),
-            Write(slice_two_count),
+            FadeIn(slice_two_count),
             run_time=0.8,
         )
         self.wait(0.3)
@@ -576,8 +580,8 @@ class CarloTcfs113MathQ01(CarloSlide):
             run_time=1.15,
         )
         beat_title = next_title
-        self.play(Write(overflow_equation), run_time=0.75)
-        self.play(Write(no_later_slices), Indicate(overflow_frame), run_time=0.75)
+        self.play(FadeIn(overflow_equation), run_time=0.75)
+        self.play(FadeIn(no_later_slices), Indicate(overflow_frame), run_time=0.75)
         self.wait(0.3)
 
         # Beat 08: only now combine the two surviving slice counts.
@@ -654,11 +658,11 @@ class CarloTcfs113MathQ01(CarloSlide):
             run_time=1.0,
         )
         beat_title = next_title
-        self.play(Write(final_sum[0:5]), run_time=0.65)
+        self.play(FadeIn(final_sum[0:5]), run_time=0.65)
         self.wait(0.35)
 
         self.next_beat("reveal_slice_total")
-        self.play(Write(final_sum[5:7]), Create(result_box), run_time=0.7)
+        self.play(FadeIn(final_sum[5:7]), Create(result_box), run_time=0.7)
         self.play(FadeIn(result_note), run_time=0.45)
         self.wait(0.3)
 
@@ -730,6 +734,6 @@ class CarloTcfs113MathQ01(CarloSlide):
             self.play(Indicate(point, color=POINT), FadeIn(tuple_object), run_time=0.38)
 
         self.next_beat("verify_solution_total")
-        self.play(Write(verification), run_time=0.65)
+        self.play(FadeIn(verification), run_time=0.65)
         self.play(FadeIn(final_note), Circumscribe(result_box, color=POINT), run_time=0.7)
         self.wait(0.4)

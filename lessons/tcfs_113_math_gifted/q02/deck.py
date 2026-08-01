@@ -27,13 +27,11 @@ from manim import (
     Line,
     MathTex,
     Rectangle,
-    ReplacementTransform,
+    Succession,
     SurroundingRectangle,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
-from manim.constants import DOWN, LEFT, PI, RIGHT, UP
+from manim.constants import DOWN, LEFT, RIGHT, UP
 
 
 def enumerate_balanced_words() -> dict[int, tuple[str, ...]]:
@@ -276,36 +274,22 @@ class CarloTcfs113MathQ02(CarloSlide):
             "BOLD",
         ).move_to([0, -2.28, 0])
 
-        target_positions = {
-            0: target_teams[0][0].get_center(),
-            2: target_teams[0][1].get_center(),
-            4: target_teams[0][2].get_center(),
-            1: target_teams[1][0].get_center(),
-            3: target_teams[1][1].get_center(),
-            5: target_teams[1][2].get_center(),
-        }
-        self.play(FadeOut(beat_title), run_time=0.22)
+        self.play(
+            FadeOut(VGroup(beat_title, fixed, opening_prompt, linear)),
+            run_time=0.34,
+        )
         self.play(
             FadeIn(next_title),
-            FadeOut(fixed),
-            FadeOut(opening_prompt),
-            linear[0].animate.move_to(target_positions[0]),
-            linear[1].animate(path_arc=-PI / 2).move_to(target_positions[1]),
-            linear[2].animate.move_to(target_positions[2]),
-            linear[3].animate.move_to(target_positions[3]),
-            linear[4].animate(path_arc=PI / 2).move_to(target_positions[4]),
-            linear[5].animate.move_to(target_positions[5]),
-            run_time=1.35,
+            LaggedStart(
+                FadeIn(target_teams[0]),
+                FadeIn(target_teams[1]),
+                lag_ratio=0.24,
+            ),
+            run_time=0.82,
         )
         beat_title = next_title
-        teams = VGroup(
-            VGroup(linear[0], linear[2], linear[4]),
-            VGroup(linear[1], linear[3], linear[5]),
-            target_teams[2],
-        )
-        self.remove(linear)
-        self.add(teams)
-        self.play(FadeIn(team_titles), Write(balance), run_time=0.9)
+        teams = target_teams
+        self.play(FadeIn(team_titles), FadeIn(teams[2]), FadeIn(balance), run_time=0.9)
         self.play(FadeIn(balance_note), run_time=0.5)
         self.wait(0.35)
 
@@ -387,7 +371,7 @@ class CarloTcfs113MathQ02(CarloSlide):
         self.play(FadeOut(beat_title), run_time=0.22)
         self.play(
             FadeIn(next_title),
-            ReplacementTransform(teams, case_zero_teams),
+            Succession(FadeOut(teams), FadeIn(case_zero_teams)),
             FadeOut(k_definition),
             FadeOut(right_need),
             FadeOut(case_markers),
@@ -440,7 +424,7 @@ class CarloTcfs113MathQ02(CarloSlide):
         self.play(FadeOut(beat_title), run_time=0.22)
         self.play(
             FadeIn(next_title),
-            ReplacementTransform(teams, case_one_teams),
+            Succession(FadeOut(teams), FadeIn(case_one_teams)),
             FadeOut(case_zero_math),
             FadeOut(case_zero_words),
             FadeOut(case_zero_count),
@@ -456,7 +440,7 @@ class CarloTcfs113MathQ02(CarloSlide):
             LaggedStart(*(GrowFromCenter(choice) for choice in pair_choices), lag_ratio=0.28),
             run_time=0.95,
         )
-        self.play(FadeIn(case_one_prompt), Write(partial_product), run_time=0.7)
+        self.play(FadeIn(case_one_prompt), FadeIn(partial_product), run_time=0.7)
 
         # Beat 06 own_case_one: display the complete two-by-three Cartesian product.
         self.next_beat("own_case_one")
@@ -615,7 +599,7 @@ class CarloTcfs113MathQ02(CarloSlide):
             ),
             run_time=1.35,
         )
-        self.play(Write(total_question), run_time=0.65)
+        self.play(FadeIn(total_question), run_time=0.65)
 
         # Beat 09 compress_with_binomials: name the choices only after seeing them.
         self.next_beat("compress_with_binomials")
@@ -688,7 +672,7 @@ class CarloTcfs113MathQ02(CarloSlide):
             ),
             run_time=1.25,
         )
-        self.play(Write(formula_question), run_time=0.55)
+        self.play(FadeIn(formula_question), run_time=0.55)
 
         # Beat 10 reveal_total: reunite the original slots, then add disjoint cases.
         self.next_beat("reveal_total")
@@ -752,12 +736,12 @@ class CarloTcfs113MathQ02(CarloSlide):
         self.next_beat("sum_disjoint_cases")
         self.play(FadeIn(completeness), run_time=0.45)
         self.play(
-            TransformFromCopy(case_counts[0][1], final_sum[0]),
-            Write(final_sum[1]),
-            TransformFromCopy(case_counts[1][1], final_sum[2]),
-            Write(final_sum[3]),
-            TransformFromCopy(case_counts[2][1], final_sum[4]),
-            Write(final_sum[5]),
+            FadeIn(final_sum[0]),
+            FadeIn(final_sum[1]),
+            FadeIn(final_sum[2]),
+            FadeIn(final_sum[3]),
+            FadeIn(final_sum[4]),
+            FadeIn(final_sum[5]),
             run_time=1.0,
         )
 

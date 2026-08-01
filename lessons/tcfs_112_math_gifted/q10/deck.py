@@ -39,9 +39,7 @@ from manim import (
     RoundedRectangle,
     Succession,
     SurroundingRectangle,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -697,9 +695,9 @@ class CarloTcfs112MathQ10(CarloSlide):
 
         # Beat 09 generalize_the_perimeter: continue at a settled semantic boundary.
         self.next_beat("generalize_the_perimeter")
-        self.play(Write(slant_formula), run_time=0.72)
-        self.play(Write(base_formula), run_time=0.72)
-        self.play(Write(perimeter_formula), run_time=0.82)
+        self.play(FadeIn(slant_formula), run_time=0.72)
+        self.play(FadeIn(base_formula), run_time=0.72)
+        self.play(FadeIn(perimeter_formula), run_time=0.82)
         self.wait(0.42)
 
         # Beat 10 construct_unit_triangle_height: earn the area of one unit triangle from its altitude.
@@ -761,9 +759,9 @@ class CarloTcfs112MathQ10(CarloSlide):
 
         # Beat 11 measure_one_triangle_area: continue at a settled semantic boundary.
         self.next_beat("measure_one_triangle_area")
-        self.play(Write(height_equation), run_time=0.68)
-        self.play(Write(height_result), run_time=0.55)
-        self.play(Write(one_area), run_time=0.78)
+        self.play(FadeIn(height_equation), run_time=0.68)
+        self.play(FadeIn(height_result), run_time=0.55)
+        self.play(FadeIn(one_area), run_time=0.78)
         self.wait(0.42)
 
         # Beat 12 construct_adjacent_overlap: identify and measure exactly one adjacent overlap.
@@ -826,8 +824,8 @@ class CarloTcfs112MathQ10(CarloSlide):
         # Beat 13 measure_one_adjacent_overlap: continue at a settled semantic boundary.
         self.next_beat("measure_one_adjacent_overlap")
         self.play(FadeIn(scaling_note), run_time=0.45)
-        self.play(Write(overlap_area), run_time=0.72)
-        self.play(Write(overlap_result), run_time=0.58)
+        self.play(FadeIn(overlap_area), run_time=0.72)
+        self.play(FadeIn(overlap_result), run_time=0.58)
         self.wait(0.42)
 
         # Beat 14 show_three_triangle_contact: show why inclusion-exclusion stops after adjacent pairs.
@@ -883,8 +881,8 @@ class CarloTcfs112MathQ10(CarloSlide):
 
         # Beat 15 rule_out_hidden_triple_overlap: continue at a settled semantic boundary.
         self.next_beat("rule_out_hidden_triple_overlap")
-        self.play(Write(separation), run_time=0.72)
-        self.play(Write(triple_zero), run_time=0.58)
+        self.play(FadeIn(separation), run_time=0.72)
+        self.play(FadeIn(triple_zero), run_time=0.58)
         self.play(FadeIn(consequence), run_time=0.48)
         self.wait(0.42)
 
@@ -961,12 +959,12 @@ class CarloTcfs112MathQ10(CarloSlide):
             ),
             run_time=1.00,
         )
-        self.play(LaggedStart(*(Write(item) for item in mini_areas), lag_ratio=0.18), run_time=1.05)
+        self.play(LaggedStart(*(FadeIn(item) for item in mini_areas), lag_ratio=0.18), run_time=1.05)
 
         # Beat 17 audit_small_areas_and_generalize: continue at a settled semantic boundary.
         self.next_beat("audit_small_areas_and_generalize")
-        self.play(Write(area_general), run_time=0.78)
-        self.play(Write(area_simplified), run_time=0.68)
+        self.play(FadeIn(area_general), run_time=0.78)
+        self.play(FadeIn(area_simplified), run_time=0.68)
         self.wait(0.42)
 
         # Beat 18 hold_before_both_values: a genuine pause with both requested values still hidden.
@@ -1052,8 +1050,8 @@ class CarloTcfs112MathQ10(CarloSlide):
 
         # Beat 20 reveal_the_perimeter: continue at a settled semantic boundary.
         self.next_beat("reveal_the_perimeter")
-        self.play(Write(perimeter_substitute), run_time=0.78)
-        self.play(Write(perimeter_answer), run_time=0.58)
+        self.play(FadeIn(perimeter_substitute), run_time=0.78)
+        self.play(FadeIn(perimeter_answer), run_time=0.58)
         self.play(Indicate(perimeter_answer, color=CORAL), run_time=0.65)
         self.wait(0.42)
 
@@ -1095,8 +1093,8 @@ class CarloTcfs112MathQ10(CarloSlide):
 
         # Beat 22 reveal_the_area: continue at a settled semantic boundary.
         self.next_beat("reveal_the_area")
-        self.play(Write(area_substitute), run_time=0.78)
-        self.play(Write(area_answer), run_time=0.58)
+        self.play(FadeIn(area_substitute), run_time=0.78)
+        self.play(FadeIn(area_answer), run_time=0.58)
         self.play(Indicate(area_answer, color=REGION), run_time=0.65)
         self.wait(0.42)
 
@@ -1158,7 +1156,7 @@ class CarloTcfs112MathQ10(CarloSlide):
 
         # Beat 24 return_to_the_traced_union: continue at a settled semantic boundary.
         self.next_beat("return_to_the_traced_union")
-        self.play(Write(final_pair), Create(final_frame), run_time=0.82)
+        self.play(FadeIn(final_pair), Create(final_frame), run_time=0.82)
         self.play(FadeIn(final_note), run_time=0.48)
         self.wait(0.62)
 

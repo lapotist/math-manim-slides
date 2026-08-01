@@ -32,9 +32,7 @@ from manim import (
     MathTex,
     Succession,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -243,11 +241,11 @@ class CarloTcfs113MathQ07(CarloSlide):
         self.play(FadeIn(stage_title), Create(axes), FadeIn(axis_labels), run_time=0.85)
         self.play(Create(parabola), FadeIn(curve_formula), run_time=1.25)
         self.play(Create(floor), GrowFromCenter(vertex), FadeIn(vertex_label), run_time=0.75)
-        self.play(Write(square_nonnegative), run_time=0.55)
+        self.play(FadeIn(square_nonnegative), run_time=0.55)
 
         # The global floor is a complete observation before the interval task appears.
         self.next_beat("introduce_interval_goal")
-        self.play(TransformFromCopy(square_nonnegative, global_floor), run_time=0.65)
+        self.play(FadeIn(global_floor), run_time=0.55)
         self.play(
             LaggedStart(
                 FadeIn(interval_note),
@@ -295,7 +293,7 @@ class CarloTcfs113MathQ07(CarloSlide):
 
         # Pause on the geometric case before deriving its contradiction.
         self.next_beat("reject_left_interval")
-        self.play(Write(left_minimum), run_time=0.75)
+        self.play(FadeIn(left_minimum), run_time=0.75)
         self.play(FadeIn(left_failure), Circumscribe(left_failure, color=CORAL), run_time=0.75)
         self.wait(0.35)
 
@@ -326,7 +324,7 @@ class CarloTcfs113MathQ07(CarloSlide):
         )
         stage_title = next_title
         self.play(Indicate(vertex, color=REGION, scale_factor=1.7), FadeIn(straddle_motion), run_time=0.75)
-        self.play(Write(straddle_minimum), run_time=0.75)
+        self.play(FadeIn(straddle_minimum), run_time=0.75)
         self.play(
             FadeIn(straddle_failure),
             Circumscribe(straddle_failure, color=CORAL),
@@ -367,7 +365,7 @@ class CarloTcfs113MathQ07(CarloSlide):
             ),
             run_time=0.9,
         )
-        self.play(TransformFromCopy(survivor, necessary), run_time=0.65)
+        self.play(FadeIn(necessary), run_time=0.55)
         self.play(Circumscribe(necessary, color=REGION), run_time=0.75)
         self.wait(0.35)
 
@@ -410,10 +408,8 @@ class CarloTcfs113MathQ07(CarloSlide):
         self.play(FadeIn(fa_label), FadeIn(fb_label), run_time=0.55)
         self.play(Create(rise_arrow), FadeIn(rise_note), run_time=0.7)
         self.play(
-            TransformFromCopy(fa_label, actual_min[0]),
-            TransformFromCopy(fb_label, actual_max[0]),
-            FadeIn(actual_min[1]),
-            FadeIn(actual_max[1]),
+            FadeIn(actual_min),
+            FadeIn(actual_max),
             run_time=0.85,
         )
         self.wait(0.35)
@@ -449,15 +445,11 @@ class CarloTcfs113MathQ07(CarloSlide):
         )
         stage_title = next_title
         self.play(
-            TransformFromCopy(fa_label, min_equation[0]),
-            TransformFromCopy(given_a, min_equation[2]),
-            FadeIn(min_equation[1]),
+            FadeIn(min_equation),
             run_time=0.75,
         )
         self.play(
-            TransformFromCopy(fb_label, max_equation[0]),
-            TransformFromCopy(given_b, max_equation[2]),
-            FadeIn(max_equation[1]),
+            FadeIn(max_equation),
             run_time=0.75,
         )
         self.play(Circumscribe(fixed_equations, color=REGION), run_time=0.8)
@@ -506,7 +498,7 @@ class CarloTcfs113MathQ07(CarloSlide):
             run_time=0.75,
         )
         stage_title = next_title
-        self.play(Write(fixed_prompt), FadeIn(prompt_note), run_time=0.65)
+        self.play(FadeIn(fixed_prompt), FadeIn(prompt_note), run_time=0.65)
         self.play(Create(identity_line), FadeIn(identity_label), run_time=0.9)
         self.play(
             LaggedStart(*(GrowFromCenter(ring) for ring in intersection_rings), lag_ratio=0.24),
@@ -548,14 +540,14 @@ class CarloTcfs113MathQ07(CarloSlide):
             run_time=0.65,
         )
         stage_title = next_title
-        self.play(Write(equation_zero), run_time=0.45)
-        self.play(Write(equation_one), run_time=0.65)
-        self.play(Write(equation_two), run_time=0.65)
+        self.play(FadeIn(equation_zero), run_time=0.45)
+        self.play(FadeIn(equation_one), run_time=0.65)
+        self.play(FadeIn(equation_two), run_time=0.65)
 
         # The standard-form equation is settled; factor it on the next step.
         self.next_beat("factor_fixed_point_equation")
-        self.play(Write(equation_three), run_time=0.65)
-        self.play(Write(equation_four), run_time=0.55)
+        self.play(FadeIn(equation_three), run_time=0.65)
+        self.play(FadeIn(equation_four), run_time=0.55)
         self.play(
             Succession(FadeOut(question_marks[0]), FadeIn(root_labels[0])),
             Succession(FadeOut(question_marks[1]), FadeIn(root_labels[1])),
@@ -619,13 +611,13 @@ class CarloTcfs113MathQ07(CarloSlide):
         self.play(
             Create(arrow_a),
             Create(arrow_b),
-            TransformFromCopy(three_chip[1], assign_a),
-            TransformFromCopy(four_chip[1], assign_b),
+            FadeIn(assign_a),
+            FadeIn(assign_b),
             run_time=0.85,
         )
 
         self.next_beat("state_ordered_pair")
-        self.play(Write(ordered_pair), run_time=0.65)
+        self.play(FadeIn(ordered_pair), run_time=0.65)
         self.play(Circumscribe(ordered_pair, color=REGION), run_time=0.8)
         self.wait(0.35)
 
@@ -677,15 +669,15 @@ class CarloTcfs113MathQ07(CarloSlide):
         )
         self.play(FadeIn(exact_interval), run_time=0.65)
         self.play(FadeIn(f3_label), FadeIn(f4_label), run_time=0.55)
-        self.play(Write(check_zero), run_time=0.45)
+        self.play(FadeIn(check_zero), run_time=0.45)
 
         self.next_beat("propagate_interval_bounds")
-        self.play(Write(check_one), run_time=0.55)
-        self.play(Write(check_two), run_time=0.60)
-        self.play(Write(check_three), run_time=0.55)
+        self.play(FadeIn(check_one), run_time=0.55)
+        self.play(FadeIn(check_two), run_time=0.60)
+        self.play(FadeIn(check_three), run_time=0.55)
         self.play(FadeIn(extrema_check), run_time=0.55)
 
         self.next_beat("confirm_preserved_interval")
-        self.play(Write(final_answer), run_time=0.7)
+        self.play(FadeIn(final_answer), run_time=0.7)
         self.play(Circumscribe(final_answer, color=REGION), run_time=0.8)
         self.wait(0.45)

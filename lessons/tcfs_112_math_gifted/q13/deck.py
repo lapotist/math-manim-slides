@@ -36,7 +36,6 @@ from manim import (
     SurroundingRectangle,
     Transform,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -491,7 +490,7 @@ class CarloTcfs112MathQ13(CarloSlide):
         # Beat 06 equate_colors_and_roots: continue at a settled semantic boundary.
         self.next_beat("equate_colors_and_roots")
         self.play(FadeIn(purple_tree_tag), run_time=0.34)
-        self.play(FadeIn(root_equivalence), Write(root_symbol), run_time=0.66)
+        self.play(FadeIn(root_equivalence), FadeIn(root_symbol), run_time=0.66)
         self.wait(0.46)
 
         # Beat 07 count_unique_incoming_edges: count unique parents before writing a sum.
@@ -559,7 +558,7 @@ class CarloTcfs112MathQ13(CarloSlide):
         # Beat 08 count_each_nonroot: continue at a settled semantic boundary.
         self.next_beat("count_each_nonroot")
         self.play(FadeIn(nonroot_part), run_time=0.48)
-        self.play(Write(degree_relation), FadeIn(degree_note), run_time=0.68)
+        self.play(FadeIn(degree_relation), FadeIn(degree_note), run_time=0.68)
         self.wait(0.44)
 
         # Beat 09 compress_recruitment_bundles: display every allowed multiple.
@@ -607,7 +606,7 @@ class CarloTcfs112MathQ13(CarloSlide):
             ),
             run_time=1.12,
         )
-        self.play(Write(allowed_formula), FadeIn(zero_note), run_time=0.72)
+        self.play(FadeIn(allowed_formula), FadeIn(zero_note), run_time=0.72)
         self.wait(0.44)
 
         # Beat 10 write_recruitment_multiple: derive the complete congruence candidate list.
@@ -658,12 +657,12 @@ class CarloTcfs112MathQ13(CarloSlide):
             run_time=0.72,
         )
         stage_title = next_title
-        self.play(FadeIn(multiple_note), Write(count_equation), run_time=0.62)
+        self.play(FadeIn(multiple_note), FadeIn(count_equation), run_time=0.62)
 
         # Beat 11 earn_mod_seven: continue at a settled semantic boundary.
         self.next_beat("earn_mod_seven")
-        self.play(Write(division), run_time=0.58)
-        self.play(Write(congruence), run_time=0.58)
+        self.play(FadeIn(division), run_time=0.58)
+        self.play(FadeIn(congruence), run_time=0.58)
         self.play(FadeIn(candidate_group), run_time=0.62)
         self.wait(0.50)
 
@@ -864,7 +863,7 @@ class CarloTcfs112MathQ13(CarloSlide):
         # Beat 17 repeat_ninety_seven_steps: continue at a settled semantic boundary.
         self.next_beat("repeat_ninety_seven_steps")
         self.play(FadeIn(timeline_final), FadeIn(final_step_tag), run_time=0.60)
-        self.play(Write(witness_equation), run_time=0.72)
+        self.play(FadeIn(witness_equation), run_time=0.72)
         self.wait(0.52)
 
         witness_visual = VGroup(
@@ -938,8 +937,7 @@ class CarloTcfs112MathQ13(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(witness_visual),
-            FadeIn(divider),
+            Succession(FadeOut(witness_visual), FadeIn(divider)),
             run_time=0.68,
         )
         stage_title = next_title
@@ -949,7 +947,7 @@ class CarloTcfs112MathQ13(CarloSlide):
         # Beat 19 certify_minimum: continue at a settled semantic boundary.
         self.next_beat("certify_minimum")
         self.play(Create(left_arrow), Create(right_arrow), run_time=0.50)
-        self.play(Write(p_result), run_time=0.66)
+        self.play(FadeIn(p_result), run_time=0.66)
         self.wait(0.48)
 
         minimum_certificate = VGroup(
@@ -1008,12 +1006,12 @@ class CarloTcfs112MathQ13(CarloSlide):
             ),
             run_time=0.88,
         )
-        self.play(Create(root_brace), Write(root_symbol_bound), run_time=0.48)
+        self.play(Create(root_brace), FadeIn(root_symbol_bound), run_time=0.48)
 
         # Beat 21 bound_color_count: continue at a settled semantic boundary.
         self.next_beat("bound_color_count")
-        self.play(FadeIn(subset_note), Write(root_bound), run_time=0.58)
-        self.play(Write(q_bound), run_time=0.54)
+        self.play(FadeIn(subset_note), FadeIn(root_bound), run_time=0.58)
+        self.play(FadeIn(q_bound), run_time=0.54)
         self.wait(0.46)
 
         # Beat 22 show_all_founders: render all 685 distinct roots and no edges.
@@ -1045,7 +1043,7 @@ class CarloTcfs112MathQ13(CarloSlide):
         # Beat 23 realize_all_founders: continue at a settled semantic boundary.
         self.next_beat("realize_all_founders")
         self.play(FadeIn(edge_zero), FadeIn(vacuous_note), run_time=0.56)
-        self.play(Write(q_result), run_time=0.62)
+        self.play(FadeIn(q_result), run_time=0.62)
         self.wait(0.52)
 
         maximum_witness = VGroup(
@@ -1144,8 +1142,7 @@ class CarloTcfs112MathQ13(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(maximum_witness),
-            FadeIn(final_divider),
+            Succession(FadeOut(maximum_witness), FadeIn(final_divider)),
             run_time=0.66,
         )
         self.play(
@@ -1154,12 +1151,12 @@ class CarloTcfs112MathQ13(CarloSlide):
             FadeIn(mini_seven),
             run_time=0.66,
         )
-        self.play(FadeIn(min_repeat), Write(min_formula), Write(final_p), run_time=0.65)
+        self.play(FadeIn(min_repeat), FadeIn(min_formula), FadeIn(final_p), run_time=0.65)
         self.play(FadeIn(max_summary_dots), FadeIn(max_caption), run_time=0.62)
 
         # Beat 25 reveal_extreme_pair: continue at a settled semantic boundary.
         self.next_beat("reveal_extreme_pair")
-        self.play(Write(final_q), run_time=0.48)
-        self.play(Write(final_pair), Create(pair_frame), run_time=0.72)
+        self.play(FadeIn(final_q), run_time=0.48)
+        self.play(FadeIn(final_pair), Create(pair_frame), run_time=0.72)
         self.play(FadeIn(realization), run_time=0.52)
         self.wait(0.72)

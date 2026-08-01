@@ -33,6 +33,7 @@ from manim import (
     NumberLine,
     Rectangle,
     ReplacementTransform,
+    Succession,
     SurroundingRectangle,
     Transform,
     TransformFromCopy,
@@ -341,7 +342,10 @@ class Tcfs115Q08Slide(CarloSlide):
         )
         # Beat 06 name_first_collision: settled semantic step.
         self.next_slide()
-        self.play(ReplacementTransform(collision_title, collision_count), run_time=0.65)
+        self.play(
+            Succession(FadeOut(collision_title), FadeIn(collision_count)),
+            run_time=0.65,
+        )
         self.play(Circumscribe(collision_rings[1], color=PURPLE), run_time=0.8)
         self.wait(0.3)
 
@@ -466,11 +470,11 @@ class Tcfs115Q08Slide(CarloSlide):
         right_formula.next_to(left_formula, DOWN, buff=0.34)
         index_note = MathTex(r"j=0,1,\ldots,50", font_size=29, color=MUTED)
         index_note.next_to(right_formula, RIGHT, buff=0.45)
-        self.play(FadeIn(definition_title), Write(curve_equation), run_time=0.75)
-        self.play(TransformFromCopy(curve_equation, distance_equation), run_time=0.9)
+        self.play(FadeIn(definition_title), FadeIn(curve_equation), run_time=0.75)
+        self.play(FadeIn(distance_equation), run_time=0.9)
         self.play(
-            TransformFromCopy(row_labels[0], left_formula),
-            TransformFromCopy(row_labels[1], right_formula),
+            FadeIn(left_formula),
+            FadeIn(right_formula),
             FadeIn(index_note),
             run_time=1.15,
         )
@@ -507,7 +511,7 @@ class Tcfs115Q08Slide(CarloSlide):
             "BOLD",
             t2c={"t": POINT, "重疊": PURPLE},
         ).next_to(deficit_note, DOWN, buff=0.62)
-        self.play(Write(deficit), run_time=0.9)
+        self.play(FadeIn(deficit), run_time=0.9)
         self.play(FadeIn(deficit_note), FadeIn(overlap_question), run_time=0.75)
 
         # Beat 10 derive_collision_condition: settled semantic step.
@@ -587,11 +591,11 @@ class Tcfs115Q08Slide(CarloSlide):
             Create(arrows),
             run_time=1.0,
         )
-        self.play(Write(derivation[0]), run_time=0.65)
+        self.play(FadeIn(derivation[0]), run_time=0.65)
         # Beat 11 solve_collision_congruence: settled semantic step.
         self.next_slide()
-        self.play(Write(derivation[1]), run_time=0.55)
-        self.play(Write(derivation[2]), run_time=0.7)
+        self.play(FadeIn(derivation[1]), run_time=0.55)
+        self.play(FadeIn(derivation[2]), run_time=0.7)
         # Beat 12 state_collision_period: settled semantic step.
         self.next_slide()
         self.play(FadeIn(noninteger_note), Create(integer_line), FadeIn(integer_labels))
@@ -628,8 +632,8 @@ class Tcfs115Q08Slide(CarloSlide):
             ).move_to(UP * 1.65),
         )
         row_count_labels = VGroup(
-            label("51 點", 22, BLUE, "BOLD").move_to([5.55, dense_top_y, 0]),
-            label("51 點", 22, REGION, "BOLD").move_to([5.55, dense_bottom_y, 0]),
+            label("51 點", 22, BLUE, "BOLD").move_to([6.05, dense_top_y, 0]),
+            label("51 點", 22, REGION, "BOLD").move_to([6.05, dense_bottom_y, 0]),
         )
         shift_arrow = Arrow(
             [dense_start, -1.35, 0],
@@ -678,7 +682,7 @@ class Tcfs115Q08Slide(CarloSlide):
             FadeIn(row_count_labels),
             run_time=1.0,
         )
-        self.play(Write(union_formula), run_time=1.05)
+        self.play(FadeIn(union_formula), run_time=1.05)
 
         # Beat 15 solve_offset: settled semantic step.
         self.next_slide()
@@ -714,12 +718,13 @@ class Tcfs115Q08Slide(CarloSlide):
             FadeOut(demonstration_connectors),
             FadeOut(shift_arrow),
             FadeOut(shift_label),
-            Transform(overlap_span, solved_span),
+            Succession(FadeOut(overlap_span), FadeIn(solved_span)),
             dense_right.animate.shift(RIGHT * (solved_t - demonstration_t) * dense_step),
-            ReplacementTransform(union_formula, solve_equation),
+            Succession(FadeOut(union_formula), FadeIn(solve_equation)),
             run_time=1.6,
             rate_func=rate_functions.ease_in_out_sine,
         )
+        overlap_span = solved_span
         self.play(
             LaggedStart(*(Create(line) for line in solved_connectors), lag_ratio=0.018),
             FadeIn(distance_note),
@@ -793,14 +798,14 @@ class Tcfs115Q08Slide(CarloSlide):
         self.play(Create(height_line), FadeIn(height_points), FadeIn(offset_labels), run_time=0.8)
         # Beat 17 substitute_overlap_count: settled semantic step.
         self.next_slide()
-        self.play(FadeIn(curve_name), FadeIn(height_name), Write(recovery[0]), run_time=0.65)
-        self.play(Write(recovery[1]), run_time=0.55)
-        self.play(Write(recovery[2]), run_time=0.55)
+        self.play(FadeIn(curve_name), FadeIn(height_name), FadeIn(recovery[0]), run_time=0.65)
+        self.play(FadeIn(recovery[1]), run_time=0.55)
+        self.play(FadeIn(recovery[2]), run_time=0.55)
         # Beat 18 solve_for_k: settled semantic step.
         self.next_slide()
-        self.play(Write(recovery[3]), run_time=0.65)
+        self.play(FadeIn(recovery[3]), run_time=0.65)
         self.play(
-            ReplacementTransform(height_name, solved_height_name),
+            Succession(FadeOut(height_name), FadeIn(solved_height_name)),
             run_time=0.55,
         )
         height_scene = VGroup(
@@ -854,6 +859,16 @@ class Tcfs115Q08Slide(CarloSlide):
             MUTED,
             "MEDIUM",
         ).move_to([-3.55, -2.05, 0])
+        count_verification = VGroup(
+            exact_rows_text,
+            exact_left,
+            exact_right,
+            exact_connectors,
+            overlap_check,
+            exact_count,
+            edge_note,
+        )
+        count_verification.shift(RIGHT * 3.55)
 
         verify_axes = Axes(
             x_range=[-5, 55, 10],
@@ -905,10 +920,11 @@ class Tcfs115Q08Slide(CarloSlide):
             Create(exact_connectors),
             run_time=1.0,
         )
-        self.play(Write(overlap_check), Write(exact_count), FadeIn(edge_note), run_time=0.95)
+        self.play(FadeIn(overlap_check), FadeIn(exact_count), FadeIn(edge_note), run_time=0.95)
         # Beat 20 recheck_union_count: settled semantic step.
         self.next_slide()
         self.play(
+            count_verification.animate.shift(LEFT * 3.55),
             Create(verify_axes),
             Create(first_parabola),
             Create(second_parabola),
@@ -925,13 +941,7 @@ class Tcfs115Q08Slide(CarloSlide):
         self.wait(0.3)
         verification_scene = VGroup(
             verification_title,
-            exact_rows_text,
-            exact_left,
-            exact_right,
-            exact_connectors,
-            overlap_check,
-            exact_count,
-            edge_note,
+            count_verification,
             verify_axes,
             first_parabola,
             second_parabola,
@@ -1024,7 +1034,7 @@ class Tcfs115Q08Slide(CarloSlide):
         self.next_slide()
         self.play(Create(flow_arrows[1]), run_time=0.45)
         self.play(
-            LaggedStart(*(Write(line) for line in final_chain), lag_ratio=0.2),
+            LaggedStart(*(FadeIn(line) for line in final_chain), lag_ratio=0.2),
             run_time=1.35,
         )
         self.play(Create(final_box), FadeIn(final_answer), run_time=0.7)

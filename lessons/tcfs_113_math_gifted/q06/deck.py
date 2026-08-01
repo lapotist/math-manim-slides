@@ -32,9 +32,7 @@ from manim import (
     Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -259,7 +257,7 @@ class CarloTcfs113MathQ06(CarloSlide):
         ).arrange(RIGHT, buff=0.48).move_to([0, -1.72, 0])
 
         self.add(heading, source)
-        self.play(FadeIn(beat_title), Write(polynomial), run_time=0.95)
+        self.play(FadeIn(beat_title), FadeIn(polynomial), run_time=0.95)
         self.play(FadeIn(givens), FadeIn(card_a), FadeIn(card_b), FadeIn(card_neg), run_time=0.85)
         self.play(FadeIn(two_modes), run_time=0.55)
         self.wait(0.35)
@@ -306,10 +304,10 @@ class CarloTcfs113MathQ06(CarloSlide):
         beat_title = next_title
         self.play(FadeOut(givens), FadeOut(two_modes), polynomial.animate.scale(0.78).move_to([0, 2.2, 0]), run_time=0.65)
         self.play(Create(sign_line), Create(negative_half), FadeIn(zero_tick), FadeIn(zero_label), FadeIn(side_labels), run_time=0.75)
-        self.play(Write(sign_terms), run_time=0.85)
+        self.play(FadeIn(sign_terms), run_time=0.85)
 
         self.next_beat("exclude_nonpositive_roots")
-        self.play(Write(no_negative_root), run_time=0.75)
+        self.play(FadeIn(no_negative_root), run_time=0.75)
         self.play(
             card_neg.animate.move_to([-4.5, 0.42, 0]),
             card_a.animate.move_to([2.0, 0.42, 0]),
@@ -353,7 +351,7 @@ class CarloTcfs113MathQ06(CarloSlide):
         a_signs[0].set_color(BLUE)
         a_signs[2].set_color(CORAL)
         a_signs.move_to([0, -1.92, 0])
-        self.play(Write(a_requirement), FadeIn(a_signs), run_time=0.75)
+        self.play(FadeIn(a_requirement), FadeIn(a_signs), run_time=0.75)
         a_cross = Cross(a_requirement, stroke_color=CORAL, stroke_width=5)
         self.play(Create(a_cross), run_time=0.45)
         a_record = VGroup(a_requirement, a_signs, a_cross)
@@ -386,7 +384,7 @@ class CarloTcfs113MathQ06(CarloSlide):
         b_signs[0].set_color(REGION)
         b_signs[2].set_color(CORAL)
         b_signs.move_to([2.25, -2.08, 0])
-        self.play(Write(b_requirement), FadeIn(b_signs), run_time=0.75)
+        self.play(FadeIn(b_requirement), FadeIn(b_signs), run_time=0.75)
         b_cross = Cross(b_requirement, stroke_color=CORAL, stroke_width=5)
         self.play(Create(b_cross), run_time=0.45)
         self.wait(0.35)
@@ -417,7 +415,7 @@ class CarloTcfs113MathQ06(CarloSlide):
             (self.MAIN_X[2], 0.42, 0),
             (self.MAIN_X[1], 0.42, 0),
         )
-        self.play(Write(gp_equation), FadeIn(middle_note), run_time=0.75)
+        self.play(FadeIn(gp_equation), FadeIn(middle_note), run_time=0.75)
         product_badge = MathTex("ab", "=", "36", font_size=49, color=INK)
         product_badge[0].set_color(BLUE)
         product_badge[2].set_color(REGION)
@@ -486,9 +484,7 @@ class CarloTcfs113MathQ06(CarloSlide):
         self.replace_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(
-            TransformFromCopy(gap_left[3], ap_equation[0]),
-            Write(ap_equation[1]),
-            TransformFromCopy(gap_right[3], ap_equation[2]),
+            FadeIn(ap_equation),
             run_time=0.85,
         )
         self.play(FadeIn(linear_relation), run_time=0.8)
@@ -616,14 +612,15 @@ class CarloTcfs113MathQ06(CarloSlide):
         )
         self.play(FadeIn(gp_line), FadeIn(gp_ticks), FadeIn(gp_tag), run_time=0.5)
         self.play(
-            Succession(
-                TransformFromCopy(card_a, gp_card_a),
-                TransformFromCopy(card_neg, gp_card_neg),
-                TransformFromCopy(card_b, gp_card_b),
-                run_time=1.8,
+            LaggedStart(
+                FadeIn(gp_card_a),
+                FadeIn(gp_card_neg),
+                FadeIn(gp_card_b),
+                lag_ratio=0.24,
+                run_time=1.2,
             )
         )
-        self.play(Write(ap_check), Write(gp_check), run_time=0.8)
+        self.play(FadeIn(ap_check), FadeIn(gp_check), run_time=0.8)
         self.wait(0.4)
 
         # Beat 09: enumerate all six orders after the structure is understood.
@@ -734,14 +731,14 @@ class CarloTcfs113MathQ06(CarloSlide):
         beat_title = next_title
         self.play(FadeOut(order_count), FadeOut(panels), run_time=0.55)
         self.play(FadeIn(roots_note), FadeIn(neg_note), FadeIn(card_a), FadeIn(card_b), FadeIn(card_neg), run_time=0.7)
-        self.play(Write(root_equation), run_time=0.85)
-        self.play(TransformFromCopy(root_equation[-1], expansion[0]), Write(VGroup(*expansion[1:])), run_time=0.85)
+        self.play(FadeIn(root_equation), run_time=0.85)
+        self.play(FadeIn(expansion), run_time=0.75)
 
         self.next_beat("read_original_coefficients")
         self.play(FadeIn(coefficients), run_time=0.65)
         self.wait(0.35)
 
         self.next_beat("reveal_p_q_sum")
-        self.play(Write(final_sum), run_time=0.8)
+        self.play(FadeIn(final_sum), run_time=0.8)
         self.play(Circumscribe(final_sum[-1], color=POINT), run_time=0.65)
         self.wait(0.5)

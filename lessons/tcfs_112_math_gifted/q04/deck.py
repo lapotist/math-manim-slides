@@ -37,7 +37,6 @@ from manim import (
     SurroundingRectangle,
     Transform,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -415,8 +414,8 @@ class CarloTcfs112MathQ04(CarloSlide):
 
         # Beat 02 mark_trapezoid_givens: continue at a settled semantic boundary.
         self.next_beat("mark_trapezoid_givens")
-        self.play(FadeIn(given_title), Write(parallel), Write(base_ratio), run_time=0.75)
-        self.play(FadeIn(strip), Write(midpoint), run_time=0.7)
+        self.play(FadeIn(given_title), FadeIn(parallel), FadeIn(base_ratio), run_time=0.75)
+        self.play(FadeIn(strip), FadeIn(midpoint), run_time=0.7)
         self.wait(0.30)
 
         # Beat 03 test_tall_shape: test one deliberately tall trapezoid first.
@@ -450,12 +449,15 @@ class CarloTcfs112MathQ04(CarloSlide):
         prompt.next_to(ratio_question, DOWN, buff=0.45)
         self.play(
             self.title_change(beat_title, next_title),
-            FadeOut(given_panel), FadeOut(observation),
-            Create(ad_focus), FadeIn(f_focus),
+            Succession(
+                FadeOut(VGroup(given_panel, observation)),
+                FadeIn(f_focus),
+            ),
+            Create(ad_focus),
             run_time=0.75,
         )
         beat_title = next_title
-        self.play(Write(ratio_question), FadeIn(prompt), run_time=0.65)
+        self.play(FadeIn(ratio_question), FadeIn(prompt), run_time=0.65)
         self.wait(0.45)
 
         # Beat 06 extend_lines_to_g: extend the two already-visible lines until they meet at G.
@@ -479,7 +481,7 @@ class CarloTcfs112MathQ04(CarloSlide):
         )
         beat_title = next_title
         self.play(Create(top_extension), Create(be_extension), run_time=0.9)
-        self.play(FadeIn(dot_g), FadeIn(name_g), Write(construction_note), FadeIn(collinear_note), run_time=0.7)
+        self.play(FadeIn(dot_g), FadeIn(name_g), FadeIn(construction_note), FadeIn(collinear_note), run_time=0.7)
         self.wait(0.30)
 
         # Beat 07 match_extension_angles: earn GC = AB from midpoint, vertical angles, and parallel bases.
@@ -507,22 +509,24 @@ class CarloTcfs112MathQ04(CarloSlide):
         first_panel.arrange(DOWN, buff=0.30).move_to([4.18, -0.02, 0])
         self.play(
             self.title_change(beat_title, next_title),
-            FadeOut(construction_note), FadeOut(collinear_note),
+            Succession(
+                FadeOut(VGroup(construction_note, collinear_note)),
+                FadeIn(VGroup(triangle_gec, triangle_bea)),
+            ),
             *self.model_focus(model, 0.20, 0.012),
             top_extension.animate.set_opacity(0.25),
             be_extension.animate.set_opacity(0.25),
-            FadeIn(triangle_gec), FadeIn(triangle_bea),
             run_time=0.75,
         )
         beat_title = next_title
-        self.play(Create(vertical_gec), Create(vertical_bea), Write(first_angle), run_time=0.70)
-        self.play(Create(parallel_gce), Create(parallel_bae), Write(second_angle), run_time=0.70)
+        self.play(Create(vertical_gec), Create(vertical_bea), FadeIn(first_angle), run_time=0.70)
+        self.play(Create(parallel_gce), Create(parallel_bae), FadeIn(second_angle), run_time=0.70)
 
         # Beat 08 earn_equal_long_segment: continue at a settled semantic boundary.
         self.next_beat("earn_equal_long_segment")
-        self.play(Create(equal_ae), Create(equal_ec), Write(equal_half), run_time=0.65)
-        self.play(Write(congruent), run_time=0.65)
-        self.play(Write(equal_long), run_time=0.65)
+        self.play(Create(equal_ae), Create(equal_ec), FadeIn(equal_half), run_time=0.65)
+        self.play(FadeIn(congruent), run_time=0.65)
+        self.play(FadeIn(equal_long), run_time=0.65)
         self.wait(0.30)
 
         # Beat 09 measure_gc_and_dc: turn the given three units into the visible two-plus-one split.
@@ -560,13 +564,13 @@ class CarloTcfs112MathQ04(CarloSlide):
             run_time=0.75,
         )
         beat_title = next_title
-        self.play(Create(whole_gc), FadeIn(whole_gc_label), Write(gc_equals), run_time=0.70)
-        self.play(Create(dc_segment), FadeIn(dc_label), Write(cd_unit), run_time=0.60)
+        self.play(Create(whole_gc), FadeIn(whole_gc_label), FadeIn(gc_equals), run_time=0.70)
+        self.play(Create(dc_segment), FadeIn(dc_label), FadeIn(cd_unit), run_time=0.60)
 
         # Beat 10 split_three_units: continue at a settled semantic boundary.
         self.next_beat("split_three_units")
-        self.play(Create(gd_segment), FadeIn(gd_label), Write(subtract), run_time=0.65)
-        self.play(Write(base_split), run_time=0.60)
+        self.play(Create(gd_segment), FadeIn(gd_label), FadeIn(subtract), run_time=0.65)
+        self.play(FadeIn(base_split), run_time=0.60)
         self.wait(0.30)
 
         # Beat 11 match_second_triangle_angles: use the same two intersecting lines to earn a second similarity.
@@ -607,13 +611,13 @@ class CarloTcfs112MathQ04(CarloSlide):
             run_time=0.80,
         )
         beat_title = next_title
-        self.play(Create(vertical_gfd), Create(vertical_bfa), Write(f_angles), run_time=0.70)
-        self.play(Create(parallel_gdf), Create(parallel_baf), Write(base_angles), run_time=0.70)
+        self.play(Create(vertical_gfd), Create(vertical_bfa), FadeIn(f_angles), run_time=0.70)
+        self.play(Create(parallel_gdf), Create(parallel_baf), FadeIn(base_angles), run_time=0.70)
 
         # Beat 12 earn_second_similarity: continue at a settled semantic boundary.
         self.next_beat("earn_second_similarity")
-        self.play(Write(similar), run_time=0.65)
-        self.play(Write(correspondence), run_time=0.65)
+        self.play(FadeIn(similar), run_time=0.65)
+        self.play(FadeIn(correspondence), run_time=0.65)
         self.wait(0.30)
 
         # Beat 13 transfer_two_to_three: transfer the visible base ratio onto side AD.
@@ -645,9 +649,9 @@ class CarloTcfs112MathQ04(CarloSlide):
             run_time=0.80,
         )
         beat_title = next_title
-        self.play(Write(known_ratio), run_time=0.50)
-        self.play(Write(transfer_arrow), Write(side_ratio), run_time=0.65)
-        self.play(FadeIn(df_label), FadeIn(af_label), Write(side_lengths), run_time=0.65)
+        self.play(FadeIn(known_ratio), run_time=0.50)
+        self.play(FadeIn(transfer_arrow), FadeIn(side_ratio), run_time=0.65)
+        self.play(FadeIn(df_label), FadeIn(af_label), FadeIn(side_lengths), run_time=0.65)
         self.wait(0.30)
 
         # Beat 14 build_five_unit_bar: hold on a two-plus-three bar with no evaluated answer visible.
@@ -677,7 +681,7 @@ class CarloTcfs112MathQ04(CarloSlide):
         # Beat 15 hold_before_fraction: continue at a settled semantic boundary.
         self.next_beat("hold_before_fraction")
         self.play(Create(lower_brace[0]), FadeIn(VGroup(*lower_brace[1:])), run_time=0.65)
-        self.play(Write(final_question), FadeIn(pause_note), run_time=0.55)
+        self.play(FadeIn(final_question), FadeIn(pause_note), run_time=0.55)
         self.wait(0.55)
 
         # Beat 16 reveal_three_fifths: count the whole only after the reflected partition has settled.
@@ -704,8 +708,8 @@ class CarloTcfs112MathQ04(CarloSlide):
         )
         beat_title = next_title
         self.play(FadeIn(whole_length), run_time=0.65)
-        self.play(Write(fraction_build), run_time=0.80)
-        self.play(Write(final_equals), Create(answer_frame), run_time=0.70)
+        self.play(FadeIn(fraction_build), run_time=0.80)
+        self.play(FadeIn(final_equals), FadeIn(answer_frame), run_time=0.70)
 
         # Beat 17 return_to_moving_point: continue at a settled semantic boundary.
         self.next_beat("return_to_moving_point")

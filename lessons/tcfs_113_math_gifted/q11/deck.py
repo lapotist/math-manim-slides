@@ -27,11 +27,10 @@ from manim import (
     Line,
     MathTex,
     RoundedRectangle,
+    Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -288,12 +287,13 @@ class CarloTcfs113MathQ11(CarloSlide):
         target_index.next_to(target_cursor, DOWN, buff=0.08)
         self.play(
             Transform(cursor, target_cursor),
-            Transform(index_label, target_index),
+            Succession(FadeOut(index_label), FadeIn(target_index)),
             all_cells[0][0].animate.set_fill(BG, opacity=0.97),
             all_cells[4][0].animate.set_fill(POINT, opacity=0.22),
             run_time=1.15,
         )
-        self.play(TransformFromCopy(all_cells[4][1], example[2]), Write(VGroup(*example[:2])), run_time=0.65)
+        index_label = target_index
+        self.play(FadeIn(example), run_time=0.65)
         self.wait(0.4)
 
         # Beat 02: group only the first three widths and earn cumulative 81.
@@ -327,7 +327,7 @@ class CarloTcfs113MathQ11(CarloSlide):
         beat_title = next_title
         self.play(FadeOut(chunks), FadeOut(cursor), FadeOut(index_label), FadeOut(one_indexed), FadeOut(example), run_time=0.6)
         self.play(LaggedStart(*(FadeIn(card) for card in width_cards), lag_ratio=0.20), run_time=1.1)
-        self.play(Write(cumulative_line), FadeIn(boundary_note), run_time=0.75)
+        self.play(FadeIn(cumulative_line), FadeIn(boundary_note), run_time=0.75)
         self.wait(0.4)
 
         # Beat 03: add the four-digit block and test the 81/82 boundary.
@@ -357,7 +357,7 @@ class CarloTcfs113MathQ11(CarloSlide):
             run_time=0.45,
         )
         self.play(FadeIn(prefix_81), FadeIn(block_4), run_time=0.65)
-        self.play(Write(target_range), run_time=0.6)
+        self.play(FadeIn(target_range), run_time=0.6)
         self.play(LaggedStart(FadeIn(boundary_81), FadeIn(boundary_82), lag_ratio=0.22), run_time=0.9)
         self.wait(0.4)
 
@@ -392,13 +392,13 @@ class CarloTcfs113MathQ11(CarloSlide):
         self.replace_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(prefix_81), FadeOut(block_4), FadeOut(target_range), FadeOut(boundary_pair_81), run_time=0.6)
-        self.play(Write(offset_113), Write(decomposition_113), run_time=0.75)
+        self.play(FadeIn(offset_113), FadeIn(decomposition_113), run_time=0.75)
         self.play(LaggedStart(*(FadeIn(slot) for slot in square_slots_113), lag_ratio=0.08), FadeIn(slot_numbers), run_time=1.0)
 
         self.next_beat("identify_square_39")
         target_slot_frame = SurroundingRectangle(square_slots_113[-1], color=POINT, buff=0.08, stroke_width=4)
         self.play(square_slots_113[:-1].animate.set_opacity(0.28), Create(target_slot_frame), run_time=0.65)
-        self.play(Write(root_39), run_time=0.65)
+        self.play(FadeIn(root_39), run_time=0.65)
         self.wait(0.4)
 
         # Beat 05: expand 39^2 and read its fourth digit.
@@ -435,12 +435,16 @@ class CarloTcfs113MathQ11(CarloSlide):
             FadeOut(root_39),
             run_time=0.50,
         )
-        self.play(Write(square_39), run_time=0.55)
+        self.play(FadeIn(square_39), run_time=0.55)
         self.play(LaggedStart(*(FadeIn(cell) for cell in digits_39), lag_ratio=0.12), FadeIn(internal_39), run_time=0.9)
 
         self.next_beat("select_fourth_digit_a")
         self.play(GrowFromCenter(cursor_113), FadeIn(cursor_113_label), run_time=0.55)
-        self.play(digits_39[-1][0].animate.set_fill(POINT, opacity=0.22), TransformFromCopy(digits_39[-1][1], a_badge[2]), Write(VGroup(*a_badge[:2])), run_time=0.7)
+        self.play(
+            digits_39[-1][0].animate.set_fill(POINT, opacity=0.22),
+            FadeIn(a_badge),
+            run_time=0.7,
+        )
         self.wait(0.4)
 
         # Beat 06: extend the cumulative tape only through the six-digit entrance.
@@ -478,7 +482,7 @@ class CarloTcfs113MathQ11(CarloSlide):
             run_time=0.65,
         )
         self.play(LaggedStart(*(FadeIn(card) for card in milestones), lag_ratio=0.13), run_time=1.0)
-        self.play(Write(five_math), Write(after_boundary), run_time=0.75)
+        self.play(FadeIn(five_math), FadeIn(after_boundary), run_time=0.75)
         self.wait(0.4)
 
         # Beat 07: test the 1438/1439 boundary before subtracting.
@@ -501,7 +505,7 @@ class CarloTcfs113MathQ11(CarloSlide):
         beat_title = next_title
         self.play(FadeOut(milestones), FadeOut(five_math), FadeOut(after_boundary), run_time=0.6)
         self.play(LaggedStart(FadeIn(boundary_1438), FadeIn(boundary_1439), lag_ratio=0.22), run_time=0.9)
-        self.play(Write(offset_2024), FadeIn(boundary_note_1438), run_time=0.7)
+        self.play(FadeIn(offset_2024), FadeIn(boundary_note_1438), run_time=0.7)
         self.wait(0.4)
 
         # Beat 08: resolve offset 586 into 97 complete squares and digit four.
@@ -536,9 +540,9 @@ class CarloTcfs113MathQ11(CarloSlide):
         self.replace_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(boundary_pair_1438), FadeOut(offset_2024), FadeOut(boundary_note_1438), run_time=0.6)
-        self.play(Write(decomposition_2024), run_time=0.65)
+        self.play(FadeIn(decomposition_2024), run_time=0.65)
         self.play(FadeIn(local_tape_2024), Create(complete_frame), FadeIn(complete_caption), run_time=0.85)
-        self.play(Create(target_414_frame), Write(root_414), run_time=0.7)
+        self.play(Create(target_414_frame), FadeIn(root_414), run_time=0.7)
         self.wait(0.4)
 
         # Beat 09: expand 414^2 and hold both results without the ordered pair.
@@ -579,15 +583,14 @@ class CarloTcfs113MathQ11(CarloSlide):
             FadeOut(complete_caption),
             FadeOut(target_414_frame),
             FadeOut(root_414),
-            Write(square_414),
+            FadeIn(square_414),
             run_time=0.7,
         )
         self.play(LaggedStart(*(FadeIn(cell) for cell in digits_414), lag_ratio=0.10), FadeIn(internal_414), run_time=0.9)
         self.play(GrowFromCenter(cursor_2024), FadeIn(cursor_2024_label), run_time=0.55)
         self.play(
             digits_414[3][0].animate.set_fill(REGION, opacity=0.22),
-            TransformFromCopy(digits_414[3][1], b_badge[2]),
-            Write(VGroup(*b_badge[:2])),
+            FadeIn(b_badge),
             FadeIn(index_checks),
             FadeIn(preanswer_note),
             run_time=0.8,
@@ -635,12 +638,12 @@ class CarloTcfs113MathQ11(CarloSlide):
             b_badge.animate.move_to([4.72, 0.02, 0]),
             run_time=0.75,
         )
-        self.play(Write(VGroup(ordered_pair[0], ordered_pair[1], ordered_pair[2], ordered_pair[4], ordered_pair[6])), run_time=0.55)
+        self.play(FadeIn(VGroup(ordered_pair[0], ordered_pair[1], ordered_pair[2], ordered_pair[4], ordered_pair[6])), run_time=0.55)
 
         self.next_beat("reveal_ordered_pair_digits")
         self.play(
-            TransformFromCopy(a_badge[2], ordered_pair[3]),
-            TransformFromCopy(b_badge[2], ordered_pair[5]),
+            FadeIn(ordered_pair[3]),
+            FadeIn(ordered_pair[5]),
             run_time=0.7,
         )
         self.play(Create(final_frame), FadeIn(reminder), run_time=0.65)

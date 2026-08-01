@@ -224,7 +224,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         self.play(Create(axes), FadeIn(x_label), FadeIn(y_label), FadeIn(quadrant_labels))
         self.play(Create(curve), FadeIn(y_intercept), run_time=1.1)
         self.play(
-            Write(family),
+            FadeIn(family),
             FadeIn(k_range),
             FadeIn(k_display),
             FadeIn(state_note),
@@ -398,8 +398,8 @@ class CarloTcfs115MathQ03(CarloSlide):
         k_display = next_k_display
         state_note = three_quadrant_note
         self.play(Create(focus_arc), FadeIn(below_note), run_time=0.9)
-        self.play(FadeOut(focus_arc), Write(delta_first), run_time=0.75)
-        self.play(TransformFromCopy(delta_first, delta_result), FadeIn(tangent_note), run_time=0.8)
+        self.play(FadeOut(focus_arc), FadeIn(delta_first), run_time=0.75)
+        self.play(FadeIn(delta_result), FadeIn(tangent_note), run_time=0.8)
 
         # Beat 05 guard_y_axis: settled semantic step.
         self.next_slide()
@@ -458,7 +458,7 @@ class CarloTcfs115MathQ03(CarloSlide):
             run_time=1.25,
         )
         k_display = next_k_display
-        self.play(Write(guard_result), Indicate(y_intercept, color=BLUE), run_time=0.8)
+        self.play(FadeIn(guard_result), Indicate(y_intercept, color=BLUE), run_time=0.8)
 
         # Beat 07 count_m: settled semantic step.
         self.next_slide()
@@ -527,7 +527,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         for dynamic_mobject in (curve, negative_curve, roots, y_intercept):
             dynamic_mobject.clear_updaters()
         self.play(FadeOut(graph_group), Create(number_line), FadeIn(integer_labels))
-        self.play(FadeIn(integer_dots), Write(first_filter), run_time=0.9)
+        self.play(FadeIn(integer_dots), FadeIn(first_filter), run_time=0.9)
         self.play(
             *(
                 dot.animate.set_color(BLUE).set_opacity(1)
@@ -539,7 +539,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         )
         # Beat 08 intersect_parameter_conditions: settled semantic step.
         self.next_slide()
-        self.play(Write(second_filter), run_time=0.55)
+        self.play(FadeIn(second_filter), run_time=0.55)
         self.play(
             *(
                 dot.animate.set_color(REGION).set_opacity(1)
@@ -553,10 +553,10 @@ class CarloTcfs115MathQ03(CarloSlide):
         self.next_slide()
         self.play(
             LaggedStart(*(FadeIn(number) for number in count_labels), lag_ratio=0.16),
-            Write(final_values),
+            FadeIn(final_values),
             run_time=1.0,
         )
-        self.play(Write(m_result), run_time=0.6)
+        self.play(FadeIn(m_result), run_time=0.6)
 
         # Beat 10 ask_integer_root: settled semantic step.
         self.next_slide()
@@ -597,12 +597,12 @@ class CarloTcfs115MathQ03(CarloSlide):
         symbol_note.move_to(DOWN * 2.75)
 
         self.play(FadeOut(count_group), FadeIn(second_question), run_time=0.65)
-        self.play(Write(equation), run_time=0.7)
-        self.play(TransformFromCopy(equation, formula_first), run_time=0.9)
+        self.play(FadeIn(equation), run_time=0.7)
+        self.play(FadeIn(formula_first), run_time=0.9)
         # Beat 11 derive_root_formula: settled semantic step.
         self.next_slide()
-        self.play(TransformFromCopy(formula_first, formula_result), run_time=0.9)
-        self.play(Write(square_condition), FadeIn(symbol_note), run_time=0.8)
+        self.play(FadeIn(formula_result), run_time=0.9)
+        self.play(FadeIn(square_condition), FadeIn(symbol_note), run_time=0.8)
 
         # Beat 12 perfect_square_filter: settled semantic step.
         self.next_slide()
@@ -681,7 +681,7 @@ class CarloTcfs115MathQ03(CarloSlide):
         self.play(
             Create(survivor_boxes),
             FadeIn(candidate_labels),
-            Write(candidate_result),
+            FadeIn(candidate_result),
             run_time=0.8,
         )
 
@@ -768,8 +768,8 @@ class CarloTcfs115MathQ03(CarloSlide):
             LaggedStart(*(GrowFromCenter(dot) for dot in right_roots), lag_ratio=0.2),
             run_time=0.75,
         )
-        self.play(Write(left_result), Write(right_result), run_time=0.8)
-        self.play(Write(n_result), run_time=0.55)
+        self.play(FadeIn(left_result), FadeIn(right_result), run_time=0.8)
+        self.play(FadeIn(n_result), run_time=0.55)
 
         # Beat 16 final_pair: settled semantic step.
         self.next_slide()
@@ -832,9 +832,9 @@ class CarloTcfs115MathQ03(CarloSlide):
         )
 
         self.play(FadeOut(candidate_test_group), FadeIn(final_title), run_time=0.7)
-        self.play(FadeIn(left_caption), Write(left_values), FadeIn(right_caption))
-        self.play(Write(left_count), FadeIn(right_candidates), Write(right_count), run_time=0.85)
+        self.play(FadeIn(left_caption), FadeIn(left_values), FadeIn(right_caption))
+        self.play(FadeIn(left_count), FadeIn(right_candidates), FadeIn(right_count), run_time=0.85)
         # Beat 17 reveal_ordered_pair: settled semantic step.
         self.next_slide()
         self.play(Create(arrows), run_time=0.55)
-        self.play(Write(final_pair), Create(final_box), run_time=0.9)
+        self.play(FadeIn(final_pair), Create(final_box), run_time=0.9)

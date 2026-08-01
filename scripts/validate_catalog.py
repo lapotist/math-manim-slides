@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from slide_density import MAX_PLAY_CALLS_PER_SEGMENT, segment_play_counts
+from slide_transitions import transition_issues
 from update_sources import render_lesson_index, update_document
 
 
@@ -884,6 +885,11 @@ def validate_lessons(
                     errors.append(
                         f"{lesson_id}: MathTex contains non-ASCII text at "
                         f"{scene_path}:{line_number}; use label/Text for CJK"
+                    )
+                for line_number, message in transition_issues(source):
+                    errors.append(
+                        f"{lesson_id}: unstable transition at "
+                        f"{scene_path}:{line_number}: {message}"
                     )
             beat_call_ids = BEAT_CALL_RE.findall(source)
             source_ids = beat_call_ids or SOURCE_BEAT_RE.findall(source)

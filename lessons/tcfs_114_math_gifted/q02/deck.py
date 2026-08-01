@@ -34,13 +34,10 @@ from manim import (
     MathTex,
     NumberLine,
     Polygon,
-    ReplacementTransform,
     SurroundingRectangle,
-    Transform,
-    TransformFromCopy,
+    Succession,
     VGroup,
     ValueTracker,
-    Write,
     always_redraw,
     rate_functions,
 )
@@ -262,7 +259,7 @@ class CarloTcfs114MathQ02(CarloSlide):
 
         # Name the family only after its common upward-opening shape is visible.
         self.next_beat("identify_fixed_quadrants")
-        self.play(Write(family), FadeIn(a_display), FadeIn(state_note), run_time=0.85)
+        self.play(FadeIn(family), FadeIn(a_display), FadeIn(state_note), run_time=0.85)
         self.play(*quadrant_animations({0, 1}), FadeIn(opening_hint), run_time=0.65)
 
         # Beat 02 explore_parameter: compare four states and return exactly to a=0.
@@ -273,28 +270,32 @@ class CarloTcfs114MathQ02(CarloSlide):
             (-2.5, {0, 1, 3}),
             (7, {0, 1, 2}),
         ):
+            next_display = badges[value]
+            next_note = notes[value]
             self.play(
                 a_tracker.animate.set_value(value),
-                Transform(a_display, badges[value]),
-                Transform(state_note, notes[value]),
+                Succession(FadeOut(a_display), FadeIn(next_display)),
+                Succession(FadeOut(state_note), FadeIn(next_note)),
                 *quadrant_animations(active),
                 run_time=1.35,
                 rate_func=rate_functions.ease_in_out_sine,
             )
+            a_display = next_display
+            state_note = next_note
             self.wait(1.35)
+        next_display = badges[0]
+        next_note = label("兩端向上：I、II 一定出現", 28, INK, "BOLD")
+        next_note.move_to(state_note)
         self.play(
             a_tracker.animate.set_value(0),
-            Transform(a_display, badges[0]),
-            Transform(
-                state_note,
-                label("兩端向上：I、II 一定出現", 28, INK, "BOLD").move_to(
-                    state_note
-                ),
-            ),
+            Succession(FadeOut(a_display), FadeIn(next_display)),
+            Succession(FadeOut(state_note), FadeIn(next_note)),
             *quadrant_animations({0, 1}),
             run_time=1.35,
             rate_func=rate_functions.ease_in_out_sine,
         )
+        a_display = next_display
+        state_note = next_note
         self.wait(0.4)
 
         # Beat 03 pose_three_quadrants: isolate what the lower arc must accomplish.
@@ -307,19 +308,23 @@ class CarloTcfs114MathQ02(CarloSlide):
         stay_one_side.move_to([3.45, -1.5, 0])
         focus_arc = self.negative_arc(axes, -2.5).set_stroke(CORAL, width=13)
 
+        next_display = badges[-2.5].copy().move_to([3.45, 1.15, 0])
         self.play(
             a_tracker.animate.set_value(-2.5),
-            Transform(
-                a_display,
-                badges[-2.5].copy().move_to([3.45, 1.15, 0]),
-            ),
+            Succession(FadeOut(a_display), FadeIn(next_display)),
             *quadrant_animations({0, 1, 3}),
             FadeOut(state_note),
             FadeOut(opening_hint),
             run_time=1.2,
         )
+        a_display = next_display
         self.play(Create(focus_arc), FadeIn(question), run_time=0.8)
-        self.play(FadeOut(focus_arc), FadeIn(need_below), FadeIn(stay_one_side))
+        self.play(
+            Succession(
+                FadeOut(focus_arc),
+                FadeIn(VGroup(need_below, stay_one_side)),
+            )
+        )
 
         # Beat 04 require_negative_arc: distinguish two crossings from tangency.
         self.next_beat("require_negative_arc")
@@ -345,40 +350,42 @@ class CarloTcfs114MathQ02(CarloSlide):
         )
 
         self.play(
-            FadeOut(question),
-            FadeOut(need_below),
-            FadeOut(stay_one_side),
-            FadeIn(root_prompt),
+            Succession(
+                FadeOut(VGroup(question, need_below, stay_one_side)),
+                FadeIn(root_prompt),
+            ),
             run_time=0.65,
         )
         self.play(Create(root_rings), run_time=0.7)
 
         # Test the equality boundary before turning the picture into a condition.
         self.next_beat("test_tangent_boundary")
+        next_display = badges[-2]
         self.play(
             a_tracker.animate.set_value(-2),
-            Transform(a_display, badges[-2]),
+            Succession(FadeOut(a_display), FadeIn(next_display)),
             *quadrant_animations({0, 1}),
             FadeOut(root_rings),
             FadeOut(root_prompt),
             run_time=1.1,
         )
+        a_display = next_display
         self.play(GrowFromCenter(tangent_dot), FadeIn(tangent_note), run_time=0.6)
 
         self.next_beat("state_discriminant_condition")
+        next_display = badges[-2.5].copy().move_to([3.45, 1.15, 0])
         self.play(
             a_tracker.animate.set_value(-2.5),
-            Transform(
-                a_display,
-                badges[-2.5].copy().move_to([3.45, 1.15, 0]),
-            ),
+            Succession(FadeOut(a_display), FadeIn(next_display)),
             *quadrant_animations({0, 1, 3}),
-            FadeOut(tangent_dot),
-            FadeOut(tangent_note),
-            FadeIn(root_prompt),
+            Succession(
+                FadeOut(VGroup(tangent_dot, tangent_note)),
+                FadeIn(root_prompt),
+            ),
             run_time=1.1,
         )
-        self.play(Write(delta_condition), run_time=0.65)
+        a_display = next_display
+        self.play(FadeIn(delta_condition), run_time=0.65)
 
         # Beat 05 guard_y_axis: lower f(0), expose both lower quadrants, and return.
         self.next_beat("guard_y_axis")
@@ -402,30 +409,35 @@ class CarloTcfs114MathQ02(CarloSlide):
         self.play(
             FadeOut(family),
             FadeOut(root_prompt),
-            Transform(delta_condition, condition_one),
+            Succession(FadeOut(delta_condition), FadeIn(condition_one)),
             a_display.animate.move_to([3.45, 0.88, 0]),
             run_time=0.65,
         )
+        delta_condition = condition_one
+        next_display = badges[-4]
         self.play(
             a_tracker.animate.set_value(-4),
-            Transform(a_display, badges[-4]),
+            Succession(FadeOut(a_display), FadeIn(next_display)),
             *quadrant_animations({0, 1, 2, 3}),
             FadeIn(warning),
             FadeIn(warning_equation),
             run_time=1.2,
         )
+        a_display = next_display
         self.play(Indicate(y_intercept, color=BLUE), FadeIn(near_points), run_time=0.7)
 
         self.next_beat("state_axis_guard")
+        next_display = badges[-2.5]
         self.play(
             a_tracker.animate.set_value(-2.5),
-            Transform(a_display, badges[-2.5]),
+            Succession(FadeOut(a_display), FadeIn(next_display)),
             *quadrant_animations({0, 1, 3}),
             FadeOut(warning),
             FadeOut(near_points),
-            ReplacementTransform(warning_equation, guard),
+            Succession(FadeOut(warning_equation), FadeIn(guard)),
             run_time=1.2,
         )
+        a_display = next_display
         self.play(FadeIn(guard_note), Indicate(y_intercept, color=BLUE), run_time=0.7)
 
         # Beat 06 explain_root_sides: turn the red-arc observation into a proof.
@@ -480,12 +492,10 @@ class CarloTcfs114MathQ02(CarloSlide):
         ).arrange(RIGHT, buff=0.18).move_to([4.15, -2.38, 0])
 
         self.play(
-            FadeOut(a_display),
-            FadeOut(delta_condition),
-            FadeOut(guard),
-            FadeOut(guard_note),
-            FadeIn(vieta),
-            FadeIn(interval_note),
+            Succession(
+                FadeOut(VGroup(a_display, delta_condition, guard, guard_note)),
+                FadeIn(VGroup(vieta, interval_note)),
+            ),
             run_time=0.7,
         )
         self.play(
@@ -526,7 +536,7 @@ class CarloTcfs114MathQ02(CarloSlide):
             *quadrant_animations({0, 1, 3}),
             run_time=1.2,
         )
-        self.play(LaggedStart(*(Write(line) for line in endpoint_formula), lag_ratio=0.22))
+        self.play(LaggedStart(*(FadeIn(line) for line in endpoint_formula), lag_ratio=0.22))
         self.play(FadeIn(endpoint_verdict), Create(endpoint_root_rings), run_time=0.8)
         self.play(FadeIn(correction_note), run_time=0.55)
 
@@ -562,13 +572,18 @@ class CarloTcfs114MathQ02(CarloSlide):
             MathTex(r"a>6", font_size=48, color=POINT),
         ).arrange(RIGHT, buff=0.55).move_to(DOWN * 1.92)
 
-        self.play(FadeOut(graph_group), FadeOut(endpoint_group), FadeIn(algebra_title))
-        self.play(Write(delta_1), run_time=0.8)
-        self.play(TransformFromCopy(delta_1, delta_2), run_time=0.75)
+        self.play(
+            Succession(
+                FadeOut(VGroup(graph_group, endpoint_group)),
+                FadeIn(algebra_title),
+            )
+        )
+        self.play(FadeIn(delta_1), run_time=0.8)
+        self.play(FadeIn(delta_2), run_time=0.75)
 
         self.next_beat("factor_discriminant")
-        self.play(TransformFromCopy(delta_2, delta_3), run_time=0.75)
-        self.play(Write(delta_solution), run_time=0.75)
+        self.play(FadeIn(delta_3), run_time=0.75)
+        self.play(FadeIn(delta_solution), run_time=0.75)
 
         # Beat 09 intersect_ranges: intersect both continuous parameter filters.
         self.next_beat("intersect_ranges")
@@ -659,7 +674,13 @@ class CarloTcfs114MathQ02(CarloSlide):
             color=REGION,
         ).move_to(DOWN * 2.62)
 
-        self.play(FadeOut(algebra_group), FadeIn(lines), FadeIn(line_labels), run_time=0.7)
+        self.play(
+            Succession(
+                FadeOut(algebra_group),
+                FadeIn(VGroup(lines, line_labels)),
+            ),
+            run_time=0.7,
+        )
         self.play(Create(delta_rays), run_time=0.9)
         self.play(Create(guard_ray), run_time=0.8)
 
@@ -670,7 +691,7 @@ class CarloTcfs114MathQ02(CarloSlide):
             FadeIn(endpoint_checked),
             run_time=0.9,
         )
-        self.play(Write(domain_result), run_time=0.7)
+        self.play(FadeIn(domain_result), run_time=0.7)
 
         # Beat 10 introduce_target: show the objective only after the domain is known.
         self.next_beat("introduce_target")
@@ -702,12 +723,13 @@ class CarloTcfs114MathQ02(CarloSlide):
         minimum_question.move_to(DOWN * 1.95)
 
         self.play(
-            FadeOut(range_visuals),
-            ReplacementTransform(domain_result, domain_chip),
-            FadeIn(objective_title),
+            Succession(
+                FadeOut(VGroup(range_visuals, domain_result)),
+                FadeIn(VGroup(domain_chip, objective_title)),
+            ),
             run_time=0.75,
         )
-        self.play(Write(objective), run_time=0.9)
+        self.play(FadeIn(objective), run_time=0.9)
         self.play(FadeIn(repeat_note), FadeIn(minimum_question), run_time=0.65)
 
         # Beat 11 complete_square: preserve the repeated block and expose the vertex.
@@ -726,19 +748,19 @@ class CarloTcfs114MathQ02(CarloSlide):
         square_3.move_to(DOWN * 2.62)
 
         self.play(
-            FadeOut(objective_title),
-            FadeOut(repeat_note),
-            FadeOut(minimum_question),
+            Succession(
+                FadeOut(VGroup(objective_title, repeat_note, minimum_question)),
+                FadeIn(t_definition),
+            ),
             objective.animate.scale(0.75).move_to(UP * 2.03),
-            FadeIn(t_definition),
             run_time=0.7,
         )
-        self.play(TransformFromCopy(objective, square_0), run_time=0.75)
-        self.play(TransformFromCopy(square_0, square_1), FadeIn(half_note), run_time=0.8)
+        self.play(FadeIn(square_0), run_time=0.75)
+        self.play(FadeIn(square_1), FadeIn(half_note), run_time=0.8)
 
         self.next_beat("return_to_parameter")
-        self.play(TransformFromCopy(square_1, square_2), run_time=0.75)
-        self.play(TransformFromCopy(square_2, square_3), run_time=0.85)
+        self.play(FadeIn(square_2), run_time=0.75)
+        self.play(FadeIn(square_3), run_time=0.85)
 
         # Beat 12 locate_vertex: plot in u=a-2021 and verify the equality point.
         self.next_beat("locate_vertex")
@@ -792,8 +814,14 @@ class CarloTcfs114MathQ02(CarloSlide):
         minimum = MathTex(r"\min E=-10", font_size=56, color=CORAL)
         minimum.move_to([3.5, -2.55, 0])
 
-        self.play(FadeOut(algebra_min_group), Create(opt_axes), FadeIn(opt_x), FadeIn(opt_y))
-        self.play(Create(opt_curve), Write(u_definition), Write(u_formula), run_time=1.0)
+        self.play(
+            Succession(
+                FadeOut(algebra_min_group),
+                Create(opt_axes),
+                FadeIn(VGroup(opt_x, opt_y)),
+            )
+        )
+        self.play(Create(opt_curve), FadeIn(u_definition), FadeIn(u_formula), run_time=1.0)
         self.play(
             Create(vertex_guide),
             GrowFromCenter(vertex),
@@ -802,13 +830,13 @@ class CarloTcfs114MathQ02(CarloSlide):
         )
 
         self.next_beat("translate_vertex_parameter")
-        self.play(Write(equality), run_time=0.7)
+        self.play(FadeIn(equality), run_time=0.7)
 
         self.next_beat("verify_vertex_is_admissible")
-        self.play(Write(admissible), FadeIn(admissible_note), run_time=0.7)
+        self.play(FadeIn(admissible), FadeIn(admissible_note), run_time=0.7)
 
         self.next_beat("reveal_minimum")
-        self.play(Write(minimum), Circumscribe(vertex, color=CORAL), run_time=0.8)
+        self.play(FadeIn(minimum), Circumscribe(vertex, color=CORAL), run_time=0.8)
 
         # Beat 13 consolidate: retain the correction and the attained minimum together.
         self.next_beat("consolidate")
@@ -857,16 +885,19 @@ class CarloTcfs114MathQ02(CarloSlide):
             "MEDIUM",
         ).move_to([0, -3.0, 0])
 
-        self.play(FadeOut(optimization_group), Create(divider), run_time=0.7)
+        self.play(
+            Succession(FadeOut(optimization_group), Create(divider)),
+            run_time=0.7,
+        )
         self.play(
             FadeIn(left_title),
             FadeIn(right_title),
-            LaggedStart(*(Write(item) for item in left_conditions), lag_ratio=0.22),
+            LaggedStart(*(FadeIn(item) for item in left_conditions), lag_ratio=0.22),
             run_time=1.15,
         )
-        self.play(FadeIn(left_note), LaggedStart(*(Write(item) for item in right_steps)))
+        self.play(FadeIn(left_note), LaggedStart(*(FadeIn(item) for item in right_steps)))
 
         self.next_beat("close_with_source_correction")
-        self.play(Write(final_answer), Create(final_box), run_time=0.85)
+        self.play(FadeIn(final_answer), Create(final_box), run_time=0.85)
         self.play(FadeIn(correction_recap), run_time=0.55)
         self.wait(0.3)

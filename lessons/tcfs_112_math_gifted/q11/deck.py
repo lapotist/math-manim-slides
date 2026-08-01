@@ -37,11 +37,10 @@ from manim import (
     RightAngle,
     Rotate,
     RoundedRectangle,
+    Succession,
     SurroundingRectangle,
-    TransformMatchingTex,
     VGroup,
     ValueTracker,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -319,7 +318,13 @@ class CarloTcfs112MathQ11(CarloSlide):
                 + np.array([0.26, -0.08, 0])
             )
         )
-        self.play(FadeOut(interior_note), FadeOut(no_diagonal_note), FadeIn(condition), run_time=0.66)
+        self.play(
+            Succession(
+                FadeOut(VGroup(interior_note, no_diagonal_note)),
+                FadeIn(condition),
+            ),
+            run_time=0.66,
+        )
         self.play(FadeIn(valid_note), tracker.animate.set_value(0.5), run_time=1.45)
         self.play(tracker.animate.set_value(1.0 / 3.0), run_time=1.45)
         self.play(Indicate(condition[1], color=REGION), run_time=0.65)
@@ -350,7 +355,7 @@ class CarloTcfs112MathQ11(CarloSlide):
             square.animate.set_stroke(opacity=0.48),
             run_time=0.55,
         )
-        self.play(Create(target_angle), FadeIn(target_question), Write(target_name), run_time=0.78)
+        self.play(Create(target_angle), FadeIn(target_question), FadeIn(target_name), run_time=0.78)
         self.play(Indicate(target_name, color=CORAL), run_time=0.60)
         self.wait(0.65)
 
@@ -408,7 +413,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         rotation_caption.move_to([3.35, 0.82, 0])
         mapping = MathTex(r"A\mapsto C,\qquad P\mapsto E", font_size=42, color=INK)
         mapping.move_to([3.35, -0.02, 0])
-        self.play(FadeIn(e_name), FadeIn(rotation_caption), Write(mapping), run_time=0.72)
+        self.play(FadeIn(e_name), FadeIn(rotation_caption), FadeIn(mapping), run_time=0.72)
         self.wait(0.45)
 
         # Beat 06 match_rotated_lengths: record the two preserved lengths and the preserved target angle.
@@ -443,7 +448,7 @@ class CarloTcfs112MathQ11(CarloSlide):
             LaggedStart(
                 FadeIn(ap_ticks),
                 FadeIn(ce_ticks),
-                Write(preserved_one),
+                FadeIn(preserved_one),
                 lag_ratio=0.22,
             ),
             run_time=0.92,
@@ -452,14 +457,14 @@ class CarloTcfs112MathQ11(CarloSlide):
             LaggedStart(
                 FadeIn(bp_ticks),
                 FadeIn(eb_ticks),
-                Write(preserved_two),
+                FadeIn(preserved_two),
                 lag_ratio=0.22,
             ),
             run_time=0.92,
         )
         self.play(
             Create(angle_e),
-            Write(preserved_angle),
+            FadeIn(preserved_angle),
             target_angle.animate.set_stroke(opacity=1.0),
             run_time=0.85,
         )
@@ -516,11 +521,11 @@ class CarloTcfs112MathQ11(CarloSlide):
         self.play(
             Indicate(bp, color=POINT),
             Indicate(eb, color=POINT),
-            Write(diagonal_steps[0]),
+            FadeIn(diagonal_steps[0]),
             run_time=0.78,
         )
-        self.play(Write(diagonal_steps[1]), run_time=0.64)
-        self.play(Write(diagonal_steps[2]), Indicate(pe, color=REGION), run_time=0.75)
+        self.play(FadeIn(diagonal_steps[1]), run_time=0.64)
+        self.play(FadeIn(diagonal_steps[2]), Indicate(pe, color=REGION), run_time=0.75)
         self.wait(0.50)
 
         # Beat 09 match_condition_lengths: substitute the visible rotated lengths into the given equation.
@@ -547,7 +552,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         final_condition.move_to([3.40, -0.25, 0])
         substitution_note = label("旋轉像與新斜邊，逐項換回圖上", 22, MUTED, "MEDIUM")
         substitution_note.move_to([3.40, -1.30, 0])
-        self.play(Write(moved_condition), run_time=0.70)
+        self.play(FadeIn(moved_condition), run_time=0.70)
         self.play(
             Indicate(ap, color=BLUE),
             Indicate(ce, color=BLUE),
@@ -558,7 +563,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         # Beat 10 translate_the_condition: continue at a settled semantic boundary.
         self.next_beat("translate_the_condition")
         self.play(FadeOut(diagonal_steps[2]), run_time=0.34)
-        self.play(Write(final_condition), run_time=0.82)
+        self.play(FadeIn(final_condition), run_time=0.82)
         self.play(FadeIn(substitution_note), run_time=0.45)
         self.wait(0.48)
 
@@ -597,7 +602,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         converse_note = label("CP 的平方等於另外兩邊平方和", 23, MUTED, "MEDIUM")
         converse_note.move_to([3.40, 1.03, 0])
         self.play(FadeIn(converse_note), run_time=0.42)
-        self.play(Create(right_e), Write(right_statement), run_time=0.82)
+        self.play(Create(right_e), FadeIn(right_statement), run_time=0.82)
         self.wait(0.52)
 
         # Beat 12 show_forty_five_and_ninety: assemble 90 and 45, but hold the sum behind a question mark.
@@ -646,7 +651,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         # Beat 13 assemble_preanswer_angles: continue at a settled semantic boundary.
         self.next_beat("assemble_preanswer_angles")
         self.play(Create(combined_angle), run_time=0.68)
-        self.play(Write(preanswer[0]), Write(preanswer[1]), run_time=0.82)
+        self.play(FadeIn(preanswer[0]), FadeIn(preanswer[1]), run_time=0.82)
         self.play(FadeIn(preanswer[2]), run_time=0.48)
         self.wait(1.15)
 
@@ -663,7 +668,7 @@ class CarloTcfs112MathQ11(CarloSlide):
             corner_radius=0.07,
         )
         self.play(FadeOut(preanswer), run_time=0.36)
-        self.play(Write(answer), run_time=0.72)
+        self.play(FadeIn(answer), run_time=0.72)
         self.play(Create(answer_frame), Indicate(combined_angle, color=CORAL), run_time=0.72)
         self.play(
             target_angle.animate.set_stroke(opacity=1.0),
@@ -748,7 +753,7 @@ class CarloTcfs112MathQ11(CarloSlide):
         positive.set_color_by_tex("v", REGION)
         positive.move_to([-4.30, -2.88, 0])
         self.play(Create(square2), FadeIn(coordinate_labels), FadeIn(point2), FadeIn(point2_name))
-        self.play(Create(u_line), Create(v_line), FadeIn(u_name), FadeIn(v_name), Write(positive), run_time=0.78)
+        self.play(Create(u_line), Create(v_line), FadeIn(u_name), FadeIn(v_name), FadeIn(positive), run_time=0.78)
         self.play(GrowArrow(pa_arrow), GrowArrow(pb_arrow), run_time=0.76)
 
         # Beat 17 derive_negative_dot_product: continue at a settled semantic boundary.
@@ -782,14 +787,14 @@ class CarloTcfs112MathQ11(CarloSlide):
         )
         trig_check.set_color_by_tex("135", CORAL)
         trig_check.move_to([3.30, -2.25, 0])
-        self.play(Write(vector_steps[0]), run_time=0.58)
-        self.play(Write(vector_steps[1]), run_time=0.70)
-        self.play(Write(vector_steps[2]), FadeIn(quadrant_note), run_time=0.72)
+        self.play(FadeIn(vector_steps[0]), run_time=0.58)
+        self.play(FadeIn(vector_steps[1]), run_time=0.70)
+        self.play(FadeIn(vector_steps[2]), FadeIn(quadrant_note), run_time=0.72)
 
         # Beat 18 verify_with_interior_vectors: continue at a settled semantic boundary.
         self.next_beat("verify_with_interior_vectors")
-        self.play(Write(vector_steps[3]), run_time=0.68)
-        self.play(Write(trig_check), run_time=0.78)
+        self.play(FadeIn(vector_steps[3]), run_time=0.68)
+        self.play(FadeIn(trig_check), run_time=0.78)
         self.play(Indicate(positive, color=POINT), Indicate(trig_check, color=CORAL), run_time=0.68)
         self.wait(0.58)
 
@@ -883,7 +888,7 @@ class CarloTcfs112MathQ11(CarloSlide):
             LaggedStart(Create(final_ap), Create(final_bp), Create(final_cp), lag_ratio=0.18),
             run_time=0.92,
         )
-        self.play(Create(final_target), Write(final_answer), Create(final_frame), run_time=0.88)
+        self.play(Create(final_target), FadeIn(final_answer), Create(final_frame), run_time=0.88)
 
         # Beat 20 summarize_quarter_turn_route: continue at a settled semantic boundary.
         self.next_beat("summarize_quarter_turn_route")

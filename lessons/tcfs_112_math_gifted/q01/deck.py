@@ -33,7 +33,6 @@ from manim import (
     SurroundingRectangle,
     Transform,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -218,8 +217,9 @@ class CarloTcfs112MathQ01(CarloSlide):
         self.play(FadeIn(beat_title), Create(number_line), FadeIn(number_line_group[1]), run_time=0.9)
         self.play(
             LaggedStart(FadeIn(left_marker), FadeIn(middle_marker), FadeIn(right_marker), lag_ratio=0.18),
-            Create(guides),
-            Write(sum_line),
+            Create(VGroup(guides[0], guides[1])),
+            FadeIn(VGroup(guides[2], guides[3])),
+            FadeIn(sum_line),
             run_time=0.9,
         )
         target_left = self.term_marker(number_line, 3, "3", BLUE)
@@ -293,9 +293,9 @@ class CarloTcfs112MathQ01(CarloSlide):
             run_time=0.65,
         )
         beat_title = next_title
-        self.play(FadeIn(distance_note), Write(product_line), run_time=0.75)
-        self.play(LaggedStart(Write(divide_line), Write(square_line), lag_ratio=0.45), run_time=1.1)
-        self.play(Write(distance_result), run_time=0.65)
+        self.play(FadeIn(distance_note), FadeIn(product_line), run_time=0.75)
+        self.play(LaggedStart(FadeIn(divide_line), FadeIn(square_line), lag_ratio=0.45), run_time=1.1)
+        self.play(FadeIn(distance_result), run_time=0.65)
         self.wait(0.35)
 
         # Beat 03: substitute once and check the original conditions.
@@ -338,17 +338,18 @@ class CarloTcfs112MathQ01(CarloSlide):
         ordering[0].set_color(REGION)
         ordering[2].set_color(POINT)
         ordering[4].set_color(BLUE)
-        ordering.move_to([0, 1.54, 0])
+        ordering.move_to([0, 1.70, 0])
 
         self.play(self.title_change(beat_title, next_title), FadeOut(checks), run_time=0.6)
         beat_title = next_title
-        self.play(LaggedStart(*(FadeIn(place) for place in places), lag_ratio=0.15), Write(ordering), run_time=0.8)
+        self.play(FadeIn(ordering), run_time=0.45)
         self.play(
-            cards[2].animate.move_to(hundreds[0]),
+            cards[2].animate(path_arc=0.85).move_to(hundreds[0]),
             cards[1].animate.move_to(tens[0]),
-            cards[0].animate.move_to(ones[0]),
+            cards[0].animate(path_arc=0.85).move_to(ones[0]),
             run_time=1.0,
         )
+        self.play(LaggedStart(*(FadeIn(place) for place in places), lag_ratio=0.15), run_time=0.65)
         self.wait(0.4)
 
         # Beat 05: join the already ordered cards and state the answer.
@@ -381,7 +382,7 @@ class CarloTcfs112MathQ01(CarloSlide):
         closing = label("先找中間與距離，再由大到小排列", 27, MUTED, "MEDIUM")
         closing.move_to([0, -2.42, 0])
 
-        self.play(Create(answer_frame), FadeIn(answer_label), run_time=0.55)
+        self.play(FadeIn(answer_frame), FadeIn(answer_label), run_time=0.55)
         self.play(FadeIn(place_expansion), run_time=0.75)
         self.play(FadeIn(closing), Circumscribe(place_expansion[8], color=POINT), run_time=0.7)
         self.wait(0.45)

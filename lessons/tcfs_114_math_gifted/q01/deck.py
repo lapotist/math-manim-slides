@@ -28,12 +28,10 @@ from manim import (
     Line,
     MathTex,
     Rectangle,
-    ReplacementTransform,
     Square,
     SurroundingRectangle,
-    TransformFromCopy,
+    Succession,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -241,9 +239,8 @@ class CarloTcfs114MathQ01(CarloSlide):
         walk_prompt.move_to([3.15, -1.70, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            FadeOut(grid_facts),
-            FadeIn(marker),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(FadeOut(grid_facts), FadeIn(marker)),
             run_time=0.7,
         )
         beat_title = next_title
@@ -304,36 +301,30 @@ class CarloTcfs114MathQ01(CarloSlide):
         diagonal_note.move_to([3.15, -0.45, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(walk_prompt),
             FadeOut(marker),
             run_time=0.6,
         )
         beat_title = next_title
         for index, total in enumerate(range(2, 4)):
-            source_numbers = VGroup(
-                *(numbers[GRID_VALUES[coordinate]] for coordinate in self.diagonal_coordinates(total))
-            )
             animations = [FadeIn(early_diagonals[total])]
             if total in early_arrows:
                 animations.append(Create(early_arrows[total]))
-            animations.append(TransformFromCopy(source_numbers, grouped_values[2 * index]))
+            animations.append(FadeIn(grouped_values[2 * index]))
             self.play(*animations, run_time=0.7)
 
         self.next_beat("group_longer_diagonals")
         for index, total in enumerate(range(4, 6), start=2):
-            source_numbers = VGroup(
-                *(numbers[GRID_VALUES[coordinate]] for coordinate in self.diagonal_coordinates(total))
-            )
             animations = [FadeIn(early_diagonals[total])]
             if total in early_arrows:
                 animations.append(Create(early_arrows[total]))
-            animations.append(TransformFromCopy(source_numbers, grouped_values[2 * index]))
+            animations.append(FadeIn(grouped_values[2 * index]))
             self.play(*animations, run_time=0.7)
 
         self.next_beat("name_diagonal_direction")
         self.play(
-            Write(VGroup(grouped_values[1], grouped_values[3], grouped_values[5])),
+            FadeIn(VGroup(grouped_values[1], grouped_values[3], grouped_values[5])),
             FadeIn(diagonal_note),
             run_time=0.65,
         )
@@ -367,18 +358,25 @@ class CarloTcfs114MathQ01(CarloSlide):
         invariant.move_to([3.15, -1.20, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            FadeOut(VGroup(*early_diagonals.values(), *early_arrows.values())),
-            FadeOut(grouped_values),
-            FadeOut(diagonal_note),
-            FadeIn(focus_diagonal),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        *early_diagonals.values(),
+                        *early_arrows.values(),
+                        grouped_values,
+                        diagonal_note,
+                    )
+                ),
+                FadeIn(focus_diagonal),
+            ),
             dim_numbers.animate.set_opacity(0.22),
             run_time=0.85,
         )
         beat_title = next_title
         self.play(FadeIn(coordinate_row), run_time=0.55)
-        self.play(Write(sum_row), run_time=0.8)
-        self.play(TransformFromCopy(sum_row, invariant), run_time=0.7)
+        self.play(FadeIn(sum_row), run_time=0.8)
+        self.play(FadeIn(invariant), run_time=0.7)
 
         # Beat 05 grow_then_shrink: make the square boundary change the counts.
         self.next_beat("grow_then_shrink")
@@ -438,13 +436,12 @@ class CarloTcfs114MathQ01(CarloSlide):
         profile_note.move_to([3.15, -1.58, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            FadeOut(focus_diagonal),
-            FadeOut(coordinate_row),
-            FadeOut(sum_row),
-            FadeOut(invariant),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(
+                FadeOut(VGroup(focus_diagonal, coordinate_row, sum_row, invariant)),
+                Create(profile_base),
+            ),
             dim_numbers.animate.set_opacity(0.72),
-            Create(profile_base),
             run_time=0.75,
         )
         beat_title = next_title
@@ -506,14 +503,13 @@ class CarloTcfs114MathQ01(CarloSlide):
         numbers[78].set_color(POINT)
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            FadeIn(first_half),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(FadeOut(profile_note), FadeIn(first_half)),
             VGroup(*bars[:12]).animate.set_opacity(0.95),
             VGroup(*bars[12:]).animate.set_opacity(0.16),
             boundary_diagonals[14].animate.set_fill(opacity=0.045),
             boundary_diagonals[15].animate.set_fill(opacity=0.045),
             boundary_diagonals[16].animate.set_fill(opacity=0.045),
-            FadeOut(profile_note),
             run_time=0.85,
         )
         beat_title = next_title
@@ -523,7 +519,7 @@ class CarloTcfs114MathQ01(CarloSlide):
             Indicate(bars[11], color=BLUE, scale_factor=1.08),
             run_time=0.55,
         )
-        self.play(Write(count_formula), run_time=0.85)
+        self.play(FadeIn(count_formula), run_time=0.85)
 
         # Beat 07 confirm_seventy_eight: attach the count to its final cell.
         self.next_beat("confirm_seventy_eight")
@@ -563,7 +559,7 @@ class CarloTcfs114MathQ01(CarloSlide):
             numbers[value].set_color(CORAL if value == 90 else POINT)
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(VGroup(*bars, profile_base, selected_bar_labels)),
             FadeOut(count_formula),
             FadeOut(count_note),
@@ -577,7 +573,7 @@ class CarloTcfs114MathQ01(CarloSlide):
             FadeIn(note_14),
             FadeIn(numbers[79]),
             FadeIn(numbers[89]),
-            Write(stage_one),
+            FadeIn(stage_one),
             run_time=0.85,
         )
         self.play(
@@ -585,7 +581,7 @@ class CarloTcfs114MathQ01(CarloSlide):
             FadeIn(note_15),
             FadeIn(numbers[90]),
             FadeIn(numbers[99]),
-            ReplacementTransform(stage_one, stage_two),
+            Succession(FadeOut(stage_one), FadeIn(stage_two)),
             run_time=0.9,
         )
         self.play(FadeIn(ninety_nine_note), Indicate(numbers[99], color=POINT), run_time=0.65)
@@ -610,7 +606,7 @@ class CarloTcfs114MathQ01(CarloSlide):
         marker.move_to(self.cell_center(12, 4))
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(note_14),
             FadeOut(note_15),
             FadeOut(stage_two),
@@ -621,7 +617,7 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.85,
         )
         beat_title = next_title
-        self.play(Write(offset), run_time=0.7)
+        self.play(FadeIn(offset), run_time=0.7)
         self.play(FadeIn(next_band), FadeIn(fifth_cell), run_time=0.6)
         self.play(FadeIn(marker), FadeIn(numbers[100]), FadeIn(start_card), run_time=0.7)
 
@@ -657,12 +653,11 @@ class CarloTcfs114MathQ01(CarloSlide):
         numbers[104].set_color(POINT)
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            FadeOut(offset),
-            FadeOut(next_band),
-            FadeOut(fifth_cell),
-            FadeIn(walk_rule),
-            ReplacementTransform(start_card, walk_rows[0]),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(
+                FadeOut(VGroup(offset, next_band, fifth_cell, start_card)),
+                FadeIn(VGroup(walk_rule, walk_rows[0])),
+            ),
             run_time=0.8,
         )
         beat_title = next_title
@@ -756,7 +751,7 @@ class CarloTcfs114MathQ01(CarloSlide):
         final_note.move_to([3.15, -2.18, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(walk_rule),
             FadeOut(walk_rows),
             FadeOut(VGroup(*boundary_diagonals.values())),
@@ -784,15 +779,14 @@ class CarloTcfs114MathQ01(CarloSlide):
             run_time=0.8,
         )
         self.play(
-            TransformFromCopy(VGroup(row_ticks[7], column_ticks[7]), invariant_check[0]),
-            Write(VGroup(invariant_check[1], invariant_check[2])),
+            FadeIn(invariant_check),
             run_time=0.75,
         )
-        self.play(Write(count_check), run_time=0.75)
+        self.play(FadeIn(count_check), run_time=0.75)
 
         # Beat 13 consolidate_grid_location: reveal and hold the requested pair.
         self.next_beat("consolidate_grid_location")
-        self.play(Write(final_answer), Create(answer_box), FadeIn(final_note), run_time=0.9)
+        self.play(FadeIn(final_answer), Create(answer_box), FadeIn(final_note), run_time=0.9)
         self.play(
             Circumscribe(VGroup(marker, numbers[104]), color=POINT),
             Indicate(final_answer, color=POINT),

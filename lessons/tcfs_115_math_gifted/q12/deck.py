@@ -35,14 +35,11 @@ from manim import (
     MathTex,
     Polygon,
     Rectangle,
-    ReplacementTransform,
     RightAngle,
     Rotate,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
     always_redraw,
     rate_functions,
 )
@@ -192,7 +189,7 @@ class Tcfs115Q12Slide(CarloSlide):
             LaggedStart(Create(ap_line), Create(bp_line), Create(cp_line), lag_ratio=0.18),
             run_time=1.15,
         )
-        self.play(FadeIn(objective_caption), Write(objective), run_time=0.90)
+        self.play(FadeIn(objective_caption), FadeIn(objective), run_time=0.90)
 
         bar_starts = (
             np.array([2.15, 0.10, 0.0]),
@@ -392,8 +389,8 @@ class Tcfs115Q12Slide(CarloSlide):
         )
         self.play(FadeIn(rotation_angle_label), run_time=0.45)
         self.play(
-            TransformFromCopy(rotating_copy[3], rotation_facts[0]),
-            TransformFromCopy(rotating_copy[5], rotation_facts[1]),
+            FadeIn(rotation_facts[0]),
+            FadeIn(rotation_facts[1]),
             FadeIn(rotation_facts[2]),
             run_time=1.00,
         )
@@ -442,12 +439,15 @@ class Tcfs115Q12Slide(CarloSlide):
 
         # Beat 09 derive_weighted_segment: settled semantic step.
         self.next_slide()
-        self.play(TransformFromCopy(VGroup(ap_line, rotating_copy[3]), pythagoras), run_time=0.90)
-        self.play(Write(pythagoras_two), run_time=0.70)
-        self.play(Write(pp_relation), run_time=0.70)
-        self.play(TransformFromCopy(pp_line, objective[0]), run_time=0.65)
+        self.play(FadeIn(pythagoras), run_time=0.90)
+        self.play(FadeIn(pythagoras_two), run_time=0.70)
+        self.play(FadeIn(pp_relation), run_time=0.70)
+        self.play(
+            Indicate(pp_line, color=PURPLE),
+            Circumscribe(objective[0], color=BLUE),
+            run_time=0.65,
+        )
 
-        compact_relation = pp_relation.copy().scale(0.78).move_to([3.50, 2.54, 0])
         path_bp = Line(point_b, point_p_generic, color=POINT, stroke_width=6.0).set_z_index(7)
         path_pp = Line(point_p_generic, rotated_point_p, color=PURPLE, stroke_width=6.0).set_z_index(7)
         path_pc_prime = Line(rotated_point_p, point_c_prime, color=REGION, stroke_width=6.0).set_z_index(7)
@@ -478,18 +478,18 @@ class Tcfs115Q12Slide(CarloSlide):
         self.play(
             FadeOut(pythagoras),
             FadeOut(pythagoras_two),
-            ReplacementTransform(pp_relation, compact_relation),
+            pp_relation.animate.scale(0.78).move_to([3.50, 2.54, 0]),
             objective.animate.set_opacity(0.28),
             triangle_edges.animate.set_opacity(0.42),
             congruence_ticks.animate.set_opacity(0.25),
             run_time=0.65,
         )
-        self.play(Create(path_bp), TransformFromCopy(path_bp, path_equation[2]), run_time=0.60)
-        self.play(Create(path_pp), TransformFromCopy(path_pp, path_equation[4]), run_time=0.60)
+        self.play(Create(path_bp), FadeIn(path_equation[2]), run_time=0.60)
+        self.play(Create(path_pp), FadeIn(path_equation[4]), run_time=0.60)
 
         # Beat 11 complete_broken_path: settled semantic step.
         self.next_slide()
-        self.play(Create(path_pc_prime), TransformFromCopy(path_pc_prime, path_equation[6]), run_time=0.65)
+        self.play(Create(path_pc_prime), FadeIn(path_equation[6]), run_time=0.65)
         self.play(FadeIn(path_equation[0:2]), FadeIn(path_equation[3]), FadeIn(path_equation[5]), run_time=0.55)
         self.play(FadeIn(path_caption), run_time=0.45)
 
@@ -530,7 +530,7 @@ class Tcfs115Q12Slide(CarloSlide):
             FadeOut(path_equation),
             FadeOut(rotation_arrow),
             Create(direct_line),
-            Write(lower_bound),
+            FadeIn(lower_bound),
             run_time=0.90,
         )
         self.play(FadeIn(equality_note), run_time=0.45)
@@ -547,7 +547,7 @@ class Tcfs115Q12Slide(CarloSlide):
             rate_func=rate_functions.ease_in_out_sine,
         )
         self.play(FadeIn(attainable_note), run_time=0.55)
-        self.play(Write(minimum_line), run_time=0.55)
+        self.play(FadeIn(minimum_line), run_time=0.55)
 
         point_d = model_point(-math.sqrt(3), 3)
         measure_c_prime_dot = Dot(point_c_prime, radius=0.075, color=PURPLE).set_z_index(7)
@@ -632,7 +632,7 @@ class Tcfs115Q12Slide(CarloSlide):
         self.next_slide()
         self.play(
             FadeOut(objective),
-            FadeOut(compact_relation),
+            FadeOut(pp_relation),
             FadeOut(lower_bound),
             FadeOut(equality_note),
             FadeOut(attainable_note),
@@ -737,17 +737,17 @@ class Tcfs115Q12Slide(CarloSlide):
             FadeOut(angle_facts),
             FadeOut(special_triangle_facts),
             FadeOut(point_order),
-            TransformFromCopy(VGroup(extended_bd, cd_line), bc_square),
+            FadeIn(bc_square),
             run_time=0.90,
         )
-        self.play(Write(bc_substitution), run_time=0.70)
-        self.play(Write(bc_expanded), run_time=0.60)
+        self.play(FadeIn(bc_substitution), run_time=0.70)
+        self.play(FadeIn(bc_expanded), run_time=0.60)
 
         # Beat 18 recognize_positive_radical: settled semantic step.
         self.next_slide()
-        self.play(Write(candidate_square), run_time=0.75)
-        self.play(Write(candidate_match), run_time=0.55)
-        self.play(Write(minimum_result), FadeIn(positive_note), run_time=0.75)
+        self.play(FadeIn(candidate_square), run_time=0.75)
+        self.play(FadeIn(candidate_match), run_time=0.55)
+        self.play(FadeIn(minimum_result), FadeIn(positive_note), run_time=0.75)
 
         equality_p = Dot(point_p_equal, radius=0.085, color=BLUE).set_z_index(8)
         equality_p_label = label("P", 22, BLUE, "BOLD").next_to(
@@ -759,7 +759,7 @@ class Tcfs115Q12Slide(CarloSlide):
         )
         ell_line = direct_line.copy().set_color(INK).set_stroke(width=4.0)
         ell_label = MathTex(r"\ell=BC'", font_size=28, color=INK).move_to(
-            [-4.15, 0.88, 0]
+            [-4.75, 0.88, 0]
         )
         equality_path = VGroup(
             Line(point_b, point_p_equal, color=POINT, stroke_width=6.0),
@@ -1015,6 +1015,6 @@ class Tcfs115Q12Slide(CarloSlide):
             LaggedStart(*(FadeIn(item, shift=UP * 0.07) for item in recap), lag_ratio=0.22),
             run_time=1.15,
         )
-        self.play(Write(final_answer), Create(final_box), run_time=0.90)
+        self.play(FadeIn(final_answer), Create(final_box), run_time=0.90)
         self.play(Circumscribe(equality_p, color=BLUE), run_time=0.70)
         self.wait(0.35)

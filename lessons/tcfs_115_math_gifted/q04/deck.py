@@ -32,6 +32,7 @@ from manim import (
     Rectangle,
     ReplacementTransform,
     Square,
+    Succession,
     SurroundingRectangle,
     TransformFromCopy,
     VGroup,
@@ -304,7 +305,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         self.play(
             FadeOut(move_captions[-1]),
             FadeIn(net_move),
-            Write(first_identity),
+            FadeIn(first_identity),
             run_time=0.8,
         )
 
@@ -351,10 +352,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         )
         self.play(
             LaggedStart(
-                *(
-                    TransformFromCopy(move_labels[index], group_one[0][index])
-                    for index in range(4)
-                ),
+                *(FadeIn(group_one[0][index]) for index in range(4)),
                 lag_ratio=0.14,
             ),
             FadeIn(group_one[1]),
@@ -397,9 +395,9 @@ class CarloTcfs115MathQ04(CarloSlide):
             FadeOut(group_two),
             FadeOut(ellipsis_one),
             FadeOut(group_last),
-            ReplacementTransform(group_one, pair_equation[0]),
+            Succession(FadeOut(group_one), FadeIn(pair_equation[0])),
             FadeIn(pair_title),
-            Write(VGroup(*pair_equation[1:])),
+            FadeIn(VGroup(*pair_equation[1:])),
             run_time=1.2,
         )
         self.play(
@@ -419,8 +417,8 @@ class CarloTcfs115MathQ04(CarloSlide):
         self.play(FadeIn(gap_large[0]), FadeIn(gap_small[0]), run_time=0.75)
         # Beat 08 compare_paired_gaps: settled semantic step.
         self.next_slide()
-        self.play(Write(large_value), Write(small_value), run_time=0.8)
-        self.play(Write(gap_result), Create(result_box), run_time=0.65)
+        self.play(FadeIn(large_value), FadeIn(small_value), run_time=0.8)
+        self.play(FadeIn(gap_result), Create(result_box), run_time=0.65)
 
         # Beat 09 prove_generic_block: settled semantic step.
         self.next_slide()
@@ -471,17 +469,17 @@ class CarloTcfs115MathQ04(CarloSlide):
             result_box,
             band_note,
         )
-        self.play(FadeOut(old_pair), FadeIn(generic_title), Write(generic), FadeIn(n_note), run_time=1.0)
-        self.play(Write(paired), run_time=1.1)
-        self.play(Write(gaps), run_time=0.85)
+        self.play(FadeOut(old_pair), FadeIn(generic_title), FadeIn(generic), FadeIn(n_note), run_time=1.0)
+        self.play(FadeIn(paired), run_time=1.1)
+        self.play(FadeIn(gaps), run_time=0.85)
         # Beat 10 state_generic_block_total: settled semantic step.
         self.next_slide()
         self.play(
             Circumscribe(gaps, color=BLUE, fade_out=True),
-            ReplacementTransform(gaps, cancellation),
+            Succession(FadeOut(gaps), FadeIn(cancellation)),
             run_time=1.2,
         )
-        self.play(Write(always_four), Create(four_box), run_time=0.7)
+        self.play(FadeIn(always_four), Create(four_box), run_time=0.7)
 
         # Beat 11 align_last_move: settled semantic step.
         self.next_slide()
@@ -544,7 +542,7 @@ class CarloTcfs115MathQ04(CarloSlide):
             ),
             run_time=1.3,
         )
-        self.play(Write(n_values), run_time=0.7)
+        self.play(FadeIn(n_values), run_time=0.7)
         self.play(Create(last_highlight), FadeIn(closing_note), run_time=0.8)
 
         # Beat 12 count_blocks: settled semantic step.
@@ -576,18 +574,18 @@ class CarloTcfs115MathQ04(CarloSlide):
         )
         self.play(FadeOut(overview_misc), FadeIn(count_title), run_time=0.6)
         self.play(
-            ReplacementTransform(overview_one, bricks[0]),
-            ReplacementTransform(overview_two, bricks[1]),
+            Succession(FadeOut(overview_one), FadeIn(bricks[0])),
+            Succession(FadeOut(overview_two), FadeIn(bricks[1])),
             run_time=0.9,
         )
         self.play(
             LaggedStart(*(FadeIn(brick, shift=UP * 0.08) for brick in bricks[2:]), lag_ratio=0.035),
+            FadeIn(group_count),
             run_time=1.8,
         )
         # Beat 13 sum_complete_blocks: settled semantic step.
         self.next_slide()
-        self.play(Write(group_count), run_time=0.75)
-        self.play(Write(total_move), Create(total_box), run_time=0.75)
+        self.play(FadeIn(total_move), Create(total_box), run_time=0.75)
 
         # Beat 14 arrive_at_hundred: settled semantic step.
         self.next_slide()
@@ -644,7 +642,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         self.play(
             LaggedStart(
                 *(
-                    ReplacementTransform(brick, segment)
+                    Succession(FadeOut(brick), FadeIn(segment))
                     for brick, segment in zip(bricks, strip_segments, strict=True)
                 ),
                 lag_ratio=0.035,
@@ -662,7 +660,7 @@ class CarloTcfs115MathQ04(CarloSlide):
         )
         self.play(
             FadeIn(final_answer),
-            Write(answer_value),
+            FadeIn(answer_value),
             Create(answer_box),
             FadeIn(answer_reason),
             run_time=0.9,

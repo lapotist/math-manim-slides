@@ -32,13 +32,11 @@ from manim import (
     Line,
     MathTex,
     Polygon,
-    ReplacementTransform,
     RightAngle,
+    Succession,
     SurroundingRectangle,
-    Transform,
     TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -550,11 +548,11 @@ class Tcfs115Q11Slide(CarloSlide):
 
         self.play(FadeOut(point_data), FadeOut(plane_note), plane_patch.animate.set_opacity(0.04))
         self.play(cube["faces"]["top"].animate.set_fill(BLUE, opacity=0.16), FadeIn(trace_notes[0]))
-        self.play(Create(pq), Write(trace_notes[1]), run_time=0.85)
+        self.play(Create(pq), FadeIn(trace_notes[1]), run_time=0.85)
         # Beat 04 mark_known_section: settled semantic step.
         self.next_slide()
         self.play(cube["faces"]["back"].animate.set_fill(BLUE, opacity=0.12), FadeIn(trace_notes[2]))
-        self.play(Create(qr), Write(trace_notes[3]), run_time=0.85)
+        self.play(Create(qr), FadeIn(trace_notes[3]), run_time=0.85)
         self.play(FadeIn(trace_notes[4]), run_time=0.55)
 
         # Beat 05 extend_top_line: settled semantic step.
@@ -590,7 +588,7 @@ class Tcfs115Q11Slide(CarloSlide):
         # Beat 06 land_top_extension: settled semantic step.
         self.next_slide()
         self.play(Create(qi_extension), GrowFromCenter(i_marker[0]), FadeIn(i_marker[1]), FadeIn(top_definitions[2]))
-        self.play(Write(top_definitions[3]), FadeIn(top_definitions[4]), run_time=0.75)
+        self.play(FadeIn(top_definitions[3]), FadeIn(top_definitions[4]), run_time=0.75)
 
         # Beat 07 extend_right_line: settled semantic step.
         self.next_slide()
@@ -623,7 +621,7 @@ class Tcfs115Q11Slide(CarloSlide):
         self.next_slide()
         self.play(GrowFromCenter(m_marker[0]), FadeIn(m_marker[1]), run_time=0.45)
         self.play(GrowFromCenter(j_marker[0]), FadeIn(j_marker[1]), FadeIn(right_definitions[3]))
-        self.play(Write(right_definitions[4]), run_time=0.55)
+        self.play(FadeIn(right_definitions[4]), run_time=0.55)
 
         # Beat 09 locate_n: settled semantic step.
         self.next_slide()
@@ -645,15 +643,15 @@ class Tcfs115Q11Slide(CarloSlide):
             cube["faces"]["right"].animate.set_fill(PURPLE, opacity=0.03),
             cube["faces"]["front"].animate.set_fill(REGION, opacity=0.16),
             ir_line.animate.set_opacity(0.32),
-            FadeIn(front_definitions[0]),
             run_time=0.7,
         )
+        self.play(FadeIn(front_definitions[0]), run_time=0.35)
         self.play(FadeIn(front_definitions[1]), Indicate(l_marker[0]), Indicate(j_marker[0]))
         self.play(FadeIn(front_definitions[2]), run_time=0.55)
         # Beat 10 confirm_point_n: settled semantic step.
         self.next_slide()
         self.play(Create(lj_line), FadeIn(front_definitions[3]), run_time=0.95)
-        self.play(GrowFromCenter(n_marker[0]), FadeIn(n_marker[1]), Write(front_definitions[4]))
+        self.play(GrowFromCenter(n_marker[0]), FadeIn(n_marker[1]), FadeIn(front_definitions[4]))
         self.play(Create(fn_segment), FadeIn(front_definitions[5]), Circumscribe(n_marker, color=TARGET), run_time=0.9)
 
         # Beat 11 unfold_three_faces: settled semantic step.
@@ -698,7 +696,7 @@ class Tcfs115Q11Slide(CarloSlide):
             run_time=1.15,
         )
         self.play(
-            ReplacementTransform(spatial_geometry, mini_spatial),
+            Succession(FadeOut(spatial_geometry), FadeIn(mini_spatial)),
             FadeIn(top_flat["details"]),
             FadeIn(right_flat["details"]),
             FadeIn(front_flat["details"]),
@@ -752,17 +750,21 @@ class Tcfs115Q11Slide(CarloSlide):
             FadeOut(face_captions),
             FadeOut(unfold_prompt),
             FadeOut(mini_spatial),
-            ReplacementTransform(top_flat["group"], top_large["group"]),
+            Succession(FadeOut(top_flat["group"]), FadeIn(top_large["group"])),
             FadeIn(title_8),
             run_time=1.0,
         )
         self.play(FadeIn(tri_peq), FadeIn(tri_pfl), Create(angle_marks_8), run_time=0.85)
-        self.play(Write(similarity_8), FadeIn(reason_8), run_time=0.8)
+        self.play(FadeIn(similarity_8), FadeIn(reason_8), run_time=0.8)
         # Beat 13 record_top_left_ratio: settled semantic step.
         self.next_slide()
-        self.play(FadeIn(pe_length_8), FadeIn(pf_length_8), Write(half_8))
-        self.play(FadeIn(eq_length_8), Write(equal_8), run_time=0.65)
-        self.play(TransformFromCopy(eq_length_8, lf_length_8), ReplacementTransform(equal_8, result_8), run_time=0.85)
+        self.play(FadeIn(pe_length_8), FadeIn(pf_length_8), FadeIn(half_8))
+        self.play(FadeIn(eq_length_8), FadeIn(equal_8), run_time=0.65)
+        self.play(
+            FadeIn(lf_length_8),
+            Succession(FadeOut(equal_8), FadeIn(result_8)),
+            run_time=0.85,
+        )
 
         # Beat 14 top_right_ratio: settled semantic step.
         self.next_slide()
@@ -796,19 +798,19 @@ class Tcfs115Q11Slide(CarloSlide):
         )
 
         self.play(
-            Transform(title_8, title_9),
+            Succession(FadeOut(title_8), FadeIn(title_9)),
             FadeOut(VGroup(tri_pfl, angle_marks_8, similarity_8, reason_8, half_8, result_8)),
             FadeOut(VGroup(pe_length_8, pf_length_8, lf_length_8)),
             FadeIn(tri_ihq),
             Create(angle_marks_9),
             run_time=0.85,
         )
-        self.play(Write(similarity_9), Write(ratio_9), run_time=0.85)
-        self.play(Write(hi_result_9), FadeIn(hi_length_9), run_time=0.7)
+        self.play(FadeIn(similarity_9), FadeIn(ratio_9), run_time=0.85)
+        self.play(FadeIn(hi_result_9), FadeIn(hi_length_9), run_time=0.7)
         # Beat 15 record_top_right_ratio: settled semantic step.
         self.next_slide()
-        self.play(Write(ig_build_9), FadeIn(hg_length_9), run_time=0.65)
-        self.play(Create(ig_line_9), Write(ig_result_9), FadeIn(ig_length_9), run_time=0.9)
+        self.play(FadeIn(ig_build_9), FadeIn(hg_length_9), run_time=0.65)
+        self.play(Create(ig_line_9), FadeIn(ig_result_9), FadeIn(ig_length_9), run_time=0.9)
 
         # Beat 16 right_face_ratio: settled semantic step.
         self.next_slide()
@@ -865,12 +867,12 @@ class Tcfs115Q11Slide(CarloSlide):
             hg_length_9,
             ig_line_9,
             ig_length_9,
-            title_8,
+            title_9,
         )
         self.play(FadeOut(top_ratio_objects), FadeIn(right_large["group"]), FadeIn(title_10), run_time=0.9)
-        self.play(FadeIn(tri_ihr), FadeIn(tri_igj), Create(angle_marks_10), Write(similarity_10))
+        self.play(FadeIn(tri_ihr), FadeIn(tri_igj), Create(angle_marks_10), FadeIn(similarity_10))
         self.play(
-            TransformFromCopy(hi_result_9, known_10),
+            FadeIn(known_10),
             FadeIn(hi_length_10),
             FadeIn(ig_length_10),
             FadeIn(hr_length_10),
@@ -878,9 +880,9 @@ class Tcfs115Q11Slide(CarloSlide):
         )
         # Beat 17 record_right_face_ratio: settled semantic step.
         self.next_slide()
-        self.play(Write(proportion_10), run_time=0.6)
-        self.play(Write(substitute_10), run_time=0.7)
-        self.play(Write(gj_result_10), TransformFromCopy(gj_result_10, gj_length_10), run_time=0.8)
+        self.play(FadeIn(proportion_10), run_time=0.6)
+        self.play(FadeIn(substitute_10), run_time=0.7)
+        self.play(FadeIn(gj_result_10), FadeIn(gj_length_10), run_time=0.8)
 
         # Beat 18 front_face_ratio: settled semantic step.
         self.next_slide()
@@ -940,13 +942,13 @@ class Tcfs115Q11Slide(CarloSlide):
             title_10,
         )
         self.play(FadeOut(right_ratio_objects), FadeIn(front_large["group"]), FadeIn(title_11), run_time=0.9)
-        self.play(FadeIn(tri_lfn), FadeIn(tri_lgj), Create(angle_marks_11), Write(similarity_11))
-        self.play(FadeIn(lf_length_11), FadeIn(fg_length_11), Write(lg_build_11), run_time=0.85)
+        self.play(FadeIn(tri_lfn), FadeIn(tri_lgj), Create(angle_marks_11), FadeIn(similarity_11))
+        self.play(FadeIn(lf_length_11), FadeIn(fg_length_11), FadeIn(lg_build_11), run_time=0.85)
         # Beat 19 record_front_face_ratio: settled semantic step.
         self.next_slide()
-        self.play(FadeIn(lg_length_11), Write(proportion_11), FadeIn(gj_length_11), run_time=0.75)
-        self.play(Write(substitute_11), run_time=0.7)
-        self.play(Write(fn_result_11), TransformFromCopy(fn_result_11, fn_length_11), run_time=0.8)
+        self.play(FadeIn(lg_length_11), FadeIn(proportion_11), FadeIn(gj_length_11), run_time=0.75)
+        self.play(FadeIn(substitute_11), run_time=0.7)
+        self.play(FadeIn(fn_result_11), FadeIn(fn_length_11), run_time=0.8)
 
         # Beat 20 finish_ratio: settled semantic step.
         self.next_slide()
@@ -1006,16 +1008,28 @@ class Tcfs115Q11Slide(CarloSlide):
             title_11,
         )
         self.play(FadeOut(front_ratio_objects), FadeIn(title_12), Create(fn_bar), run_time=0.8)
-        self.play(FadeIn(bar_ticks[0]), FadeIn(bar_ticks[1]), FadeIn(bar_labels[0]), FadeIn(bar_labels[1]))
-        self.play(TransformFromCopy(fn_result_11, bar_labels[3]), Write(known_fn_12), run_time=0.75)
+        self.play(
+            FadeIn(bar_ticks[0]),
+            FadeIn(bar_ticks[1]),
+            FadeIn(bar_labels[0]),
+            FadeIn(bar_labels[1]),
+            FadeIn(bar_labels[3]),
+            FadeIn(known_fn_12),
+        )
+        self.play(
+            Create(nb_bar),
+            FadeIn(bar_ticks[2]),
+            FadeIn(bar_labels[2]),
+            FadeIn(bar_labels[5]),
+            FadeIn(whole_12),
+        )
+        self.play(FadeIn(nb_build_12), FadeIn(bar_labels[4]), run_time=0.85)
         # Beat 21 combine_face_ratios: settled semantic step.
         self.next_slide()
-        self.play(Create(nb_bar), FadeIn(bar_ticks[2]), FadeIn(bar_labels[2]), FadeIn(bar_labels[5]), Write(whole_12))
-        self.play(Write(nb_build_12), FadeIn(bar_labels[4]), run_time=0.85)
+        self.play(FadeIn(partition_12), run_time=0.65)
         # Beat 22 simplify_space_ratio: settled semantic step.
         self.next_slide()
-        self.play(Write(partition_12), run_time=0.65)
-        self.play(Write(final_ratio_12), Create(final_box_12), run_time=0.8)
+        self.play(FadeIn(final_ratio_12), Create(final_box_12), run_time=0.8)
 
         # Beat 23 consolidate: settled semantic step.
         self.next_slide()
@@ -1059,6 +1073,6 @@ class Tcfs115Q11Slide(CarloSlide):
         self.play(LaggedStart(*(GrowArrow(arrow) for arrow in flow_arrows), lag_ratio=0.3), run_time=0.75)
         # Beat 24 reveal_space_ratio: settled semantic step.
         self.next_slide()
-        self.play(LaggedStart(*(Write(value) for value in recap_values), lag_ratio=0.22), run_time=1.0)
-        self.play(FadeIn(path_recap), Write(nb_recap), run_time=0.75)
-        self.play(TransformFromCopy(final_ratio_12, final_recap), Create(final_recap_box), run_time=0.85)
+        self.play(LaggedStart(*(FadeIn(value) for value in recap_values), lag_ratio=0.22), run_time=1.0)
+        self.play(FadeIn(path_recap), FadeIn(nb_recap), run_time=0.75)
+        self.play(FadeIn(final_recap), Create(final_recap_box), run_time=0.85)

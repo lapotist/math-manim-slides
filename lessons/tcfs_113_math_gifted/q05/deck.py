@@ -29,9 +29,7 @@ from manim import (
     MathTex,
     Rectangle,
     SurroundingRectangle,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -321,7 +319,7 @@ class CarloTcfs113MathQ05(CarloSlide):
 
         self.next_beat("build_thirteen_to_twelve")
         self.play(Create(marker_eight), run_time=0.55)
-        self.play(Create(marker_four), Write(partial_sum), run_time=0.75)
+        self.play(Create(marker_four), FadeIn(partial_sum), run_time=0.75)
 
         self.next_beat("ask_about_weight_two")
         self.play(FadeIn(remainder), FadeIn(two_question), run_time=0.55)
@@ -356,7 +354,7 @@ class CarloTcfs113MathQ05(CarloSlide):
         self.next_beat("finish_thirteen_subset")
         self.play(Create(marker_skip_two), run_time=0.55)
         self.play(Create(marker_one), run_time=0.55)
-        self.play(Write(small_result), run_time=0.75)
+        self.play(FadeIn(small_result), run_time=0.75)
         self.wait(0.35)
 
         # Beat 05 start_target_113: make only the first two large-place decisions.
@@ -396,8 +394,8 @@ class CarloTcfs113MathQ05(CarloSlide):
         beat_title = next_title
 
         self.next_beat("choose_largest_target_weights")
-        self.play(Create(marker_sixty_four), Write(first_remainder), run_time=0.75)
-        self.play(Create(marker_thirty_two), Write(second_remainder), run_time=0.75)
+        self.play(Create(marker_sixty_four), FadeIn(first_remainder), run_time=0.75)
+        self.play(Create(marker_thirty_two), FadeIn(second_remainder), run_time=0.75)
         self.wait(0.25)
 
         # Beat 06 complete_target_113: settle all remaining switches, but not scalars.
@@ -446,29 +444,29 @@ class CarloTcfs113MathQ05(CarloSlide):
 
         self.next_beat("assemble_target_sum")
         self.play(
-            TransformFromCopy(VGroup(*target_tiles[6][4][0][1:]), target_sum[0]),
+            FadeIn(target_sum[0]),
             run_time=0.40,
         )
         self.play(
-            Write(target_sum[1]),
-            TransformFromCopy(VGroup(*target_tiles[5][4][0][1:]), target_sum[2]),
+            FadeIn(target_sum[1]),
+            FadeIn(target_sum[2]),
             run_time=0.40,
         )
         self.play(
-            Write(target_sum[3]),
-            TransformFromCopy(VGroup(*target_tiles[4][4][0][1:]), target_sum[4]),
+            FadeIn(target_sum[3]),
+            FadeIn(target_sum[4]),
             run_time=0.40,
         )
 
         self.next_beat("finish_target_sum")
         self.play(
-            Write(target_sum[5]),
-            TransformFromCopy(VGroup(*target_tiles[0][4][0][1:]), target_sum[6]),
+            FadeIn(target_sum[5]),
+            FadeIn(target_sum[6]),
             run_time=0.40,
         )
         self.play(
-            Write(target_sum[7]),
-            Write(target_sum[8]),
+            FadeIn(target_sum[7]),
+            FadeIn(target_sum[8]),
             run_time=0.45,
         )
         self.wait(0.25)
@@ -557,25 +555,25 @@ class CarloTcfs113MathQ05(CarloSlide):
         self.play(Create(small_bracket_line), Create(small_ticks), run_time=0.55)
 
         self.next_beat("sum_first_smaller_places")
-        self.play(TransformFromCopy(smaller_chips[0][1], all_smaller_sum[0]), run_time=0.28)
+        self.play(FadeIn(all_smaller_sum[0]), run_time=0.28)
         for index in (1, 2):
             self.play(
-                Write(all_smaller_sum[2 * index - 1]),
-                TransformFromCopy(smaller_chips[index][1], all_smaller_sum[2 * index]),
+                FadeIn(all_smaller_sum[2 * index - 1]),
+                FadeIn(all_smaller_sum[2 * index]),
                 run_time=0.28,
             )
 
         self.next_beat("sum_remaining_smaller_places")
         for index in (3, 4, 5):
             self.play(
-                Write(all_smaller_sum[2 * index - 1]),
-                TransformFromCopy(smaller_chips[index][1], all_smaller_sum[2 * index]),
+                FadeIn(all_smaller_sum[2 * index - 1]),
+                FadeIn(all_smaller_sum[2 * index]),
                 run_time=0.28,
             )
-        self.play(Write(all_smaller_sum[11]), Write(all_smaller_sum[12]), run_time=0.38)
+        self.play(FadeIn(all_smaller_sum[11]), FadeIn(all_smaller_sum[12]), run_time=0.38)
 
         self.next_beat("compare_smaller_sum")
-        self.play(Write(comparison), FadeIn(forced_note), run_time=0.7)
+        self.play(FadeIn(comparison), FadeIn(forced_note), run_time=0.7)
         self.wait(0.25)
 
         # Beat 08 force_binary_digits: repeat the forcing argument down every place.
@@ -722,13 +720,13 @@ class CarloTcfs113MathQ05(CarloSlide):
             run_time=0.95,
         )
         self.play(
-            TransformFromCopy(coefficient_badges[0][1], multiplier_parts[0]),
-            Write(multiplier_parts[1]),
-            TransformFromCopy(coefficient_badges[1][1], multiplier_parts[2]),
-            Write(multiplier_parts[3]),
-            TransformFromCopy(coefficient_badges[2][1], multiplier_parts[4]),
-            Write(multiplier_parts[5]),
-            TransformFromCopy(coefficient_badges[3][1], multiplier_parts[6]),
+            FadeIn(multiplier_parts[0]),
+            FadeIn(multiplier_parts[1]),
+            FadeIn(multiplier_parts[2]),
+            FadeIn(multiplier_parts[3]),
+            FadeIn(multiplier_parts[4]),
+            FadeIn(multiplier_parts[5]),
+            FadeIn(multiplier_parts[6]),
             run_time=1.0,
         )
         self.play(FadeIn(hold_result), run_time=0.4)
@@ -792,7 +790,7 @@ class CarloTcfs113MathQ05(CarloSlide):
         beat_title = next_title
 
         self.next_beat("separate_product_roles")
-        self.play(TransformFromCopy(term_product, separated_product), run_time=0.85)
+        self.play(FadeIn(separated_product), run_time=0.7)
         self.play(FadeIn(exponent_check), run_time=0.55)
         self.play(FadeIn(scalar_check), run_time=0.55)
 

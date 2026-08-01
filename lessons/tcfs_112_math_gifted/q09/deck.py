@@ -31,14 +31,11 @@ from manim import (
     MathTex,
     NumberLine,
     Rectangle,
-    ReplacementTransform,
     RoundedRectangle,
     Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DL, DOWN, LEFT, RIGHT, UP, UR
 
@@ -346,12 +343,8 @@ class CarloTcfs112MathQ09(CarloSlide):
             Create(mirror_axis),
             run_time=1.0,
         )
-        self.play(
-            TransformFromCopy(symbolic_row[1], symbolic_row[3]),
-            TransformFromCopy(symbolic_row[0], symbolic_row[4]),
-            run_time=0.9,
-        )
-        self.play(Write(n_formula), FadeIn(nonzero), run_time=0.85)
+        self.play(FadeIn(symbolic_row[3]), FadeIn(symbolic_row[4]), run_time=0.55)
+        self.play(FadeIn(n_formula), FadeIn(nonzero), run_time=0.85)
         self.wait(0.35)
 
         # Beat 02 fold_outer_digit_pair: fold the five visible cards into their three contributions.
@@ -377,19 +370,18 @@ class CarloTcfs112MathQ09(CarloSlide):
         stage_title = next_title
         self.play(
             Transform(n_formula, n_formula_target),
-            FadeIn(n_square),
-            FadeOut(nonzero),
+            Succession(FadeOut(nonzero), FadeIn(n_square)),
             run_time=0.55,
         )
         self.play(Indicate(VGroup(symbolic_row[0], symbolic_row[4]), color=POINT), run_time=0.55)
-        self.play(Write(sum_formula[0]), TransformFromCopy(symbolic_row[0][1], sum_formula[1]), run_time=0.55)
+        self.play(FadeIn(sum_formula[0]), FadeIn(sum_formula[1]), run_time=0.45)
 
         # Beat 03 fold_inner_digit_pairs: continue at a settled semantic boundary.
         self.next_beat("fold_inner_digit_pairs")
         self.play(Indicate(VGroup(symbolic_row[1], symbolic_row[3]), color=BLUE), run_time=0.55)
-        self.play(Write(sum_formula[2]), TransformFromCopy(symbolic_row[1][1], sum_formula[3]), run_time=0.55)
+        self.play(FadeIn(sum_formula[2]), FadeIn(sum_formula[3]), run_time=0.45)
         self.play(Indicate(symbolic_row[2], color=REGION), run_time=0.5)
-        self.play(Write(sum_formula[4]), TransformFromCopy(symbolic_row[2][1], sum_formula[5]), run_time=0.55)
+        self.play(FadeIn(sum_formula[4]), FadeIn(sum_formula[5]), run_time=0.45)
 
         # Beat 04 state_digit_sum_constraints: continue at a settled semantic boundary.
         self.next_beat("state_digit_sum_constraints")
@@ -427,7 +419,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             run_time=0.65,
         )
         stage_title = next_title
-        self.play(Create(range_line), Write(range_caption), FadeIn(square_dots), run_time=0.85)
+        self.play(Create(range_line), FadeIn(range_caption), FadeIn(square_dots), run_time=0.85)
         self.play(LaggedStart(*(FadeIn(card[0], card[1]) for card in audit_cards), lag_ratio=0.18), run_time=0.85)
         self.play(FadeIn(audit_cards[0][2]), Create(first_strike), run_time=0.55)
 
@@ -435,7 +427,7 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.next_beat("find_the_digit_sum")
         self.play(FadeIn(audit_cards[1][2]), Create(second_strike), run_time=0.55)
         self.play(FadeIn(audit_cards[2][2]), Circumscribe(audit_cards[2], color=REGION), run_time=0.7)
-        self.play(TransformFromCopy(audit_cards[2][1], m_result), run_time=0.65)
+        self.play(FadeIn(m_result), run_time=0.45)
         self.wait(0.35)
 
         # Beat 07 list_terminal_square_digits: combine the terminal-square digit rule with the inner capacity.
@@ -481,7 +473,7 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(FadeIn(outer_row), run_time=0.55)
         self.play(
             Indicate(VGroup(outer_row[0], outer_row[4]), color=POINT),
-            Write(terminal_rule),
+            FadeIn(terminal_rule),
             run_time=0.7,
         )
         self.play(LaggedStart(*(FadeIn(chip) for chip in a_chips), lag_ratio=0.10), run_time=0.75)
@@ -490,7 +482,7 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.next_beat("derive_outer_digit_bound")
         self.play(Create(zero_strike), run_time=0.35)
         self.play(FadeIn(inner_max), run_time=0.7)
-        self.play(LaggedStart(*(Write(item) for item in bound_group), lag_ratio=0.20), run_time=1.0)
+        self.play(LaggedStart(*(FadeIn(item) for item in bound_group), lag_ratio=0.20), run_time=1.0)
 
         # Beat 09 retain_outer_digit_branches: continue at a settled semantic boundary.
         self.next_beat("retain_outer_digit_branches")
@@ -530,7 +522,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             run_time=0.65,
         )
         stage_title = next_title
-        self.play(Write(branch_equation), FadeIn(current_row), Write(pair_state), run_time=0.8)
+        self.play(FadeIn(branch_equation), FadeIn(current_row), FadeIn(pair_state), run_time=0.8)
         first_card = self.candidate_card(palindrome_value(9, current_b, current_c), width=2.05, font_size=29)
         first_card.move_to([nine_positions[0], -1.55, 0])
         branch_nine_cards.append(first_card)
@@ -559,7 +551,13 @@ class CarloTcfs112MathQ09(CarloSlide):
                 palindrome_value(9, new_b, new_c), width=2.05, font_size=29
             ).move_to([position, -1.55, 0])
             branch_nine_cards.append(candidate)
-            self.play(Transform(current_row, new_row), Transform(pair_state, new_pair), run_time=0.35)
+            self.play(
+                Succession(FadeOut(current_row), FadeIn(new_row)),
+                Succession(FadeOut(pair_state), FadeIn(new_pair)),
+                run_time=0.35,
+            )
+            current_row = new_row
+            pair_state = new_pair
             self.play(FadeIn(candidate, shift=DOWN * 0.12), run_time=0.36)
 
         self.next_beat("finish_a_nine_candidates")
@@ -583,7 +581,13 @@ class CarloTcfs112MathQ09(CarloSlide):
                 palindrome_value(9, new_b, new_c), width=2.05, font_size=29
             ).move_to([position, -1.55, 0])
             branch_nine_cards.append(candidate)
-            self.play(Transform(current_row, new_row), Transform(pair_state, new_pair), run_time=0.35)
+            self.play(
+                Succession(FadeOut(current_row), FadeIn(new_row)),
+                Succession(FadeOut(pair_state), FadeIn(new_pair)),
+                run_time=0.35,
+            )
+            current_row = new_row
+            pair_state = new_pair
             self.play(FadeIn(candidate, shift=DOWN * 0.12), run_time=0.36)
         self.wait(0.30)
 
@@ -624,7 +628,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             FadeIn(branch_six_equation),
             FadeIn(branch_nine_label),
             FadeIn(six_row),
-            Write(six_pair),
+            FadeIn(six_pair),
             run_time=0.75,
         )
 
@@ -646,7 +650,13 @@ class CarloTcfs112MathQ09(CarloSlide):
         new_pair = MathTex(
             rf"(b,c)=({new_b},{new_c})", font_size=32, color=INK
         ).move_to(six_pair)
-        self.play(Transform(six_row, new_row), Transform(six_pair, new_pair), run_time=0.4)
+        self.play(
+            Succession(FadeOut(six_row), FadeIn(new_row)),
+            Succession(FadeOut(six_pair), FadeIn(new_pair)),
+            run_time=0.4,
+        )
+        six_row = new_row
+        six_pair = new_pair
         second_six_candidate = self.candidate_card(
             palindrome_value(6, new_b, new_c), width=2.25, font_size=31
         ).move_to([1.35, -1.85, 0])
@@ -694,7 +704,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             FadeIn(branch_five_equation),
             FadeIn(branch_six_label),
             FadeIn(five_row),
-            Write(five_pair),
+            FadeIn(five_pair),
             run_time=0.7,
         )
 
@@ -740,7 +750,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             run_time=0.55,
         )
         stage_title = complete_title
-        self.play(Write(count_formula), LaggedStart(*(FadeIn(card) for card in grid_group), lag_ratio=0.08), run_time=1.0)
+        self.play(FadeIn(count_formula), LaggedStart(*(FadeIn(card) for card in grid_group), lag_ratio=0.08), run_time=1.0)
         self.wait(0.35)
 
         # Beat 17 prove_square_residues_mod_four: prove the mod-4 rule, then attach an actual residue to every card.
@@ -776,7 +786,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             run_time=0.45,
         )
         stage_title = next_title
-        self.play(Write(even_rule), Write(odd_rule), run_time=0.8)
+        self.play(FadeIn(even_rule), FadeIn(odd_rule), run_time=0.8)
 
         # Beat 18 test_mod_four: continue at a settled semantic boundary.
         self.next_beat("test_mod_four")
@@ -845,7 +855,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             run_time=0.65,
         )
         stage_title = next_title
-        self.play(Write(square_condition), run_time=0.45)
+        self.play(FadeIn(square_condition), run_time=0.45)
         self.play(
             LaggedStart(*(FadeIn(survivor_cards[value]) for value in survivor_order), lag_ratio=0.15),
             run_time=0.8,
@@ -879,7 +889,7 @@ class CarloTcfs112MathQ09(CarloSlide):
         # Beat 21 bracket_first_false: continue at a settled semantic boundary.
         self.next_beat("bracket_first_false")
         self.play(FadeIn(first_interval[5]), run_time=0.4)
-        self.play(Write(first_interval[6]), run_time=0.55)
+        self.play(FadeIn(first_interval[6]), run_time=0.55)
         self.play(Create(first_reject), FadeIn(not_square_one), run_time=0.65)
         self.wait(0.30)
 
@@ -909,7 +919,7 @@ class CarloTcfs112MathQ09(CarloSlide):
         # Beat 23 bracket_second_false: continue at a settled semantic boundary.
         self.next_beat("bracket_second_false")
         self.play(FadeIn(second_interval[5]), run_time=0.4)
-        self.play(Write(second_interval[6]), run_time=0.55)
+        self.play(FadeIn(second_interval[6]), run_time=0.55)
         self.play(Create(second_reject), FadeIn(not_square_two), run_time=0.65)
         self.wait(0.30)
 
@@ -945,7 +955,7 @@ class CarloTcfs112MathQ09(CarloSlide):
             run_time=0.7,
         )
         self.play(Create(hold_strikes), run_time=0.55)
-        self.play(Write(preanswer), FadeIn(question_note), run_time=0.7)
+        self.play(FadeIn(preanswer), FadeIn(question_note), run_time=0.7)
         self.wait(0.55)
 
         # Beat 25 reveal_square_equality: verify the square, unfold it, and recheck every original condition.
@@ -987,10 +997,11 @@ class CarloTcfs112MathQ09(CarloSlide):
         self.play(
             self.title_change(stage_title, next_title),
             FadeOut(question_note, hold_strikes),
-            Transform(preanswer, equality_hold),
+            Succession(FadeOut(preanswer), FadeIn(equality_hold)),
             run_time=0.7,
         )
         stage_title = next_title
+        preanswer = equality_hold
         self.play(Circumscribe(preanswer, color=POINT), run_time=0.65)
         self.play(
             FadeOut(preanswer, *hold_cards.values()),
@@ -1013,7 +1024,7 @@ class CarloTcfs112MathQ09(CarloSlide):
 
         # Beat 27 reveal_and_recheck_pair: continue at a settled semantic boundary.
         self.next_beat("reveal_and_recheck_pair")
-        self.play(Write(digit_sum_check), run_time=0.65)
-        self.play(Write(second_sum_check), run_time=0.55)
-        self.play(Write(final_answer), Create(answer_box), run_time=0.75)
+        self.play(FadeIn(digit_sum_check), run_time=0.65)
+        self.play(FadeIn(second_sum_check), run_time=0.55)
+        self.play(FadeIn(final_answer), Create(answer_box), run_time=0.75)
         self.wait(0.65)

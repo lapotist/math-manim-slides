@@ -40,10 +40,8 @@ from manim import (
     Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
     ValueTracker,
-    Write,
     always_redraw,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
@@ -451,8 +449,10 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.add(frozen_dynamic)
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(fixed_hex, center_dot, center_name, frozen_dynamic, overlap_note),
-            FadeIn(period_formula),
+            Succession(
+                FadeOut(VGroup(fixed_hex, center_dot, center_name, frozen_dynamic, overlap_note)),
+                FadeIn(period_formula),
+            ),
             run_time=0.65,
         )
         stage_title = next_title
@@ -465,8 +465,8 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         # Beat 05 reduce_one_period_by_reflection: continue at a settled semantic boundary.
         self.next_beat("reduce_one_period_by_reflection")
-        self.play(Write(reflection_formula), run_time=0.60)
-        self.play(TransformFromCopy(reflection_formula, reduced_domain), run_time=0.65)
+        self.play(FadeIn(reflection_formula), run_time=0.60)
+        self.play(FadeIn(reduced_domain), run_time=0.65)
         self.wait(0.35)
 
         # Beat 06 construct_common_incircle: reveal the common incircle and earn the apothem.
@@ -505,17 +505,21 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(
-                left_diagram,
-                right_diagram,
-                left_angle,
-                right_angle,
-                period_formula,
-                reflection_formula,
-                reduced_domain,
-                mirror_axis,
+            Succession(
+                FadeOut(
+                    VGroup(
+                        left_diagram,
+                        right_diagram,
+                        left_angle,
+                        right_angle,
+                        period_formula,
+                        reflection_formula,
+                        reduced_domain,
+                        mirror_axis,
+                    )
+                ),
+                FadeIn(VGroup(generic_overlap, generic_fixed, generic_moving)),
             ),
-            FadeIn(generic_overlap, generic_fixed, generic_moving),
             run_time=0.70,
         )
         stage_title = next_title
@@ -525,8 +529,8 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         # Beat 07 find_common_incircle: continue at a settled semantic boundary.
         self.next_beat("find_common_incircle")
-        self.play(Write(r_derivation[0]), run_time=0.55)
-        self.play(TransformFromCopy(r_derivation[0], r_derivation[1]), run_time=0.60)
+        self.play(FadeIn(r_derivation[0]), run_time=0.55)
+        self.play(FadeIn(r_derivation[1]), run_time=0.60)
         self.wait(0.35)
 
         # Beat 08 draw_alternating_normal_gaps: expose the alternating normal gaps that define the overlap.
@@ -577,7 +581,7 @@ class CarloTcfs112MathQ12(CarloSlide):
         # Beat 09 read_alternating_normal_gaps: continue at a settled semantic boundary.
         self.next_beat("read_alternating_normal_gaps")
         self.play(LaggedStart(*(FadeIn(chip) for chip in gap_chips), lag_ratio=0.18), run_time=0.70)
-        self.play(Write(gap_formula), run_time=0.75)
+        self.play(FadeIn(gap_formula), run_time=0.75)
         self.wait(0.30)
 
         # Beat 10 balance_the_gaps: visually balance the two gap types at the half-period.
@@ -607,7 +611,7 @@ class CarloTcfs112MathQ12(CarloSlide):
         stage_title = next_title
         generic_overlap = balanced_overlap
         spokes = balanced_spokes
-        self.play(Write(equal_statement), run_time=0.65)
+        self.play(FadeIn(equal_statement), run_time=0.65)
         self.play(FadeIn(equal_chips), run_time=0.65)
         self.wait(0.40)
 
@@ -703,9 +707,9 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         # Beat 12 measure_one_tangent_corner: continue at a settled semantic boundary.
         self.next_beat("measure_one_tangent_corner")
-        self.play(FadeIn(tangent_mark), Write(wedge_formula[0]), run_time=0.65)
-        self.play(Write(wedge_formula[1]), Write(wedge_formula[2]), run_time=0.75)
-        self.play(TransformFromCopy(wedge_formula[2], wedge_formula[3]), run_time=0.65)
+        self.play(FadeIn(tangent_mark), FadeIn(wedge_formula[0]), run_time=0.65)
+        self.play(FadeIn(wedge_formula[1]), FadeIn(wedge_formula[2]), run_time=0.75)
+        self.play(FadeIn(wedge_formula[3]), run_time=0.65)
         self.wait(0.35)
 
         # Beat 13 collect_small_overlap_wedges: tile the overlap with six corners of each gap type.
@@ -731,22 +735,26 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(
-                corner_fill,
-                radius_first,
-                radius_second,
-                tangent_first,
-                tangent_second,
-                bisector,
-                delta_arc,
-                delta_label,
-                radius_mark,
-                tangent_mark,
-                right_angle,
-                wedge_point_labels,
-                wedge_formula,
+            Succession(
+                FadeOut(
+                    VGroup(
+                        corner_fill,
+                        radius_first,
+                        radius_second,
+                        tangent_first,
+                        tangent_second,
+                        bisector,
+                        delta_arc,
+                        delta_label,
+                        radius_mark,
+                        tangent_mark,
+                        right_angle,
+                        wedge_point_labels,
+                        wedge_formula,
+                    )
+                ),
+                FadeIn(VGroup(generic_overlap, generic_fixed, generic_moving)),
             ),
-            FadeIn(generic_overlap, generic_fixed, generic_moving),
             run_time=0.70,
         )
         stage_title = next_title
@@ -764,13 +772,15 @@ class CarloTcfs112MathQ12(CarloSlide):
             run_time=0.45,
         )
         self.play(
-            Write(plus_sign),
+            FadeIn(plus_sign),
             FadeIn(area_term_large, shift=RIGHT * 0.10),
             run_time=0.55,
         )
         self.play(
-            FadeOut(area_term_small, plus_sign, area_term_large),
-            FadeIn(area_formula, shift=UP * 0.10),
+            Succession(
+                FadeOut(VGroup(area_term_small, plus_sign, area_term_large)),
+                FadeIn(area_formula, shift=UP * 0.10),
+            ),
             run_time=0.65,
         )
         self.wait(0.35)
@@ -861,15 +871,17 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(generic_overlap, generic_fixed, generic_moving, wedges),
+            Succession(
+                FadeOut(VGroup(generic_overlap, generic_fixed, generic_moving, wedges)),
+                FadeIn(VGroup(start_ray, split_ray, end_ray, x_arc, y_arc, x_label, y_label, fixed_sum)),
+            ),
             area_formula.animate.scale(0.73).move_to([3.30, 2.22, 0]),
-            FadeIn(start_ray, split_ray, end_ray, x_arc, y_arc, x_label, y_label, fixed_sum),
             run_time=0.75,
         )
         stage_title = next_title
-        self.play(Write(proof_lines[0]), run_time=0.72)
-        self.play(Write(proof_lines[1]), run_time=0.65)
-        self.play(Write(proof_lines[2]), FadeIn(minimum_note), run_time=0.70)
+        self.play(FadeIn(proof_lines[0]), run_time=0.72)
+        self.play(FadeIn(proof_lines[1]), run_time=0.65)
+        self.play(FadeIn(proof_lines[2]), FadeIn(minimum_note), run_time=0.70)
 
         # Beat 16 prove_equal_gaps_minimize: continue at a settled semantic boundary.
         self.next_beat("prove_equal_gaps_minimize")
@@ -899,27 +911,31 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(
-                area_formula,
-                start_ray,
-                split_ray,
-                end_ray,
-                fixed_sum,
-                proof_lines,
-                minimum_note,
+            Succession(
+                FadeOut(
+                    VGroup(
+                        area_formula,
+                        start_ray,
+                        split_ray,
+                        end_ray,
+                        fixed_sum,
+                        proof_lines,
+                        minimum_note,
+                    )
+                ),
+                FadeIn(VGroup(min_overlap, min_fixed, min_moving)),
             ),
-            FadeIn(min_overlap, min_fixed, min_moving),
             run_time=0.65,
         )
         stage_title = next_title
         self.play(LaggedStart(*(FadeIn(wedge) for wedge in min_wedges), lag_ratio=0.04), run_time=0.85)
-        self.play(Write(substitution[0]), run_time=0.55)
-        self.play(Write(substitution[1]), run_time=0.65)
+        self.play(FadeIn(substitution[0]), run_time=0.55)
+        self.play(FadeIn(substitution[1]), run_time=0.65)
 
         # Beat 18 substitute_half_period: continue at a settled semantic boundary.
         self.next_beat("substitute_half_period")
-        self.play(TransformFromCopy(substitution[1], substitution[2]), run_time=0.60)
-        self.play(TransformFromCopy(substitution[2], substitution[3]), run_time=0.55)
+        self.play(FadeIn(substitution[2]), run_time=0.60)
+        self.play(FadeIn(substitution[3]), run_time=0.55)
         self.wait(0.35)
 
         # Beat 19 construct_fifteen_degree_difference: calculate tan(15 degrees) only after the angle is visible.
@@ -987,10 +1003,10 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         # Beat 20 calculate_tan_fifteen: continue at a settled semantic boundary.
         self.next_beat("calculate_tan_fifteen")
-        self.play(Write(tangent_derivation[0]), run_time=0.45)
-        self.play(Write(tangent_derivation[1]), run_time=0.70)
-        self.play(Write(tangent_derivation[2]), run_time=0.55)
-        self.play(TransformFromCopy(tangent_derivation[2], tangent_derivation[3]), run_time=0.60)
+        self.play(FadeIn(tangent_derivation[0]), run_time=0.45)
+        self.play(FadeIn(tangent_derivation[1]), run_time=0.70)
+        self.play(FadeIn(tangent_derivation[2]), run_time=0.55)
+        self.play(FadeIn(tangent_derivation[3]), run_time=0.60)
         self.wait(0.35)
 
         # Beat 21 hold_before_expansion: settle immediately before expanding the exact answer.
@@ -1017,21 +1033,25 @@ class CarloTcfs112MathQ12(CarloSlide):
 
         self.play(
             self.title_change(stage_title, next_title),
-            FadeOut(
-                substitution[3],
-                base_ray,
-                ray_30,
-                ray_45,
-                arc_30,
-                arc_15,
-                angle_labels,
-                tangent_derivation,
+            Succession(
+                FadeOut(
+                    VGroup(
+                        substitution[3],
+                        base_ray,
+                        ray_30,
+                        ray_45,
+                        arc_30,
+                        arc_15,
+                        angle_labels,
+                        tangent_derivation,
+                    )
+                ),
+                FadeIn(VGroup(hold_overlap, hold_fixed, hold_moving, theta_tag)),
             ),
-            FadeIn(hold_overlap, hold_fixed, hold_moving, theta_tag),
             run_time=0.65,
         )
         stage_title = next_title
-        self.play(Write(hold_formula), Create(hold_box), run_time=0.85)
+        self.play(FadeIn(hold_formula), Create(hold_box), run_time=0.85)
         self.wait(0.80)
 
         # Beat 22 reveal_minimum_overlap: expand the answer and reconnect it to the rotation.
@@ -1059,7 +1079,7 @@ class CarloTcfs112MathQ12(CarloSlide):
         self.play(self.title_change(stage_title, next_title), run_time=0.45)
         stage_title = next_title
         self.play(FadeOut(hold_formula, hold_box), run_time=0.28)
-        self.play(Write(final_formula), Create(final_box), run_time=0.82)
+        self.play(FadeIn(final_formula), Create(final_box), run_time=0.82)
 
         # Beat 23 reveal_and_return_to_rotation: continue at a settled semantic boundary.
         self.next_beat("reveal_and_return_to_rotation")

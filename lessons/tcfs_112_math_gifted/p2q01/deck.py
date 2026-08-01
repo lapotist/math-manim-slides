@@ -38,7 +38,6 @@ from manim import (
     SurroundingRectangle,
     TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -259,9 +258,9 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         self.play(FadeIn(label_4), FadeIn(label_3), FadeIn(label_5), run_time=0.48)
         self.play(
             LaggedStart(
-                Write(notation_title),
+                FadeIn(notation_title),
                 FadeIn(notation_text),
-                Write(area_symbol),
+                FadeIn(area_symbol),
                 FadeIn(area_text),
                 lag_ratio=0.18,
             ),
@@ -270,7 +269,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
 
         # Beat 02 meet_area_notation: continue at a settled semantic boundary.
         self.next_beat("meet_area_notation")
-        self.play(Write(question_1), run_time=0.64)
+        self.play(FadeIn(question_1), run_time=0.64)
         self.wait(0.72)
 
         # Beat 03 derive_three_four_five_area: recognize the right angle, then reveal the first answer.
@@ -293,14 +292,14 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         answer_1 = MathTex(r"\Delta(3,4,5)=6", font_size=57, color=CORAL)
         answer_1.move_to([3.25, -1.55, 0])
         answer_1_frame = self.answer_frame(answer_1)
-        self.play(Write(pythagoras), Create(right_345), run_time=0.78)
+        self.play(FadeIn(pythagoras), Create(right_345), run_time=0.78)
         self.play(Indicate(side_4, color=POINT), Indicate(side_3, color=BLUE), run_time=0.62)
-        self.play(Write(area_setup), run_time=0.76)
+        self.play(FadeIn(area_setup), run_time=0.76)
         self.wait(0.48)
 
         # Beat 04 earn_three_four_five: continue at a settled semantic boundary.
         self.next_beat("earn_three_four_five")
-        self.play(FadeOut(question_1), Write(answer_1), run_time=0.66)
+        self.play(Succession(FadeOut(question_1), FadeIn(answer_1)), run_time=0.66)
         self.play(Create(answer_1_frame), run_time=0.46)
         self.wait(0.72)
 
@@ -345,14 +344,14 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         k_question.move_to([0, -2.78, 0])
         scale_stage = VGroup(small_tri, large_tri, small_height, large_height, small_labels, large_labels, scale_arrow)
         self.play(FadeIn(small_tri), Create(small_height), FadeIn(small_labels), run_time=0.72)
-        self.play(TransformFromCopy(small_tri, large_tri), Write(scale_arrow), run_time=0.95)
+        self.play(TransformFromCopy(small_tri, large_tri), FadeIn(scale_arrow), run_time=0.95)
         self.play(Create(large_height), FadeIn(large_labels), run_time=0.68)
 
         # Beat 06 double_one_triangle: continue at a settled semantic boundary.
         self.next_beat("double_one_triangle")
         self.play(Indicate(small_labels[0], color=POINT), Indicate(large_labels[0], color=POINT), run_time=0.56)
         self.play(Indicate(small_height, color=REGION), Indicate(large_height, color=REGION), run_time=0.56)
-        self.play(Write(k_question), run_time=0.68)
+        self.play(FadeIn(k_question), run_time=0.68)
         self.wait(0.72)
 
         # Beat 07 earn_scale_factor: earn the factor from the two independent dimensions.
@@ -371,10 +370,10 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         two_factors.move_to([0, -0.48, 0])
         answer_2 = MathTex(r"k=4", font_size=68, color=CORAL).move_to([0, -1.75, 0])
         answer_2_frame = self.answer_frame(answer_2)
-        self.play(Write(doubled_area), run_time=0.86)
-        self.play(Write(two_factors), run_time=0.62)
+        self.play(FadeIn(doubled_area), run_time=0.86)
+        self.play(FadeIn(two_factors), run_time=0.62)
         self.wait(0.45)
-        self.play(Write(answer_2), Create(answer_2_frame), run_time=0.72)
+        self.play(FadeIn(answer_2), Create(answer_2_frame), run_time=0.72)
         self.wait(0.70)
 
         # Beat 08 introduce_medians: construct all three medians on one asymmetric triangle.
@@ -424,11 +423,11 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         self.play(
             LaggedStart(
                 Create(median_a),
-                Write(median_definition[0]),
+                FadeIn(median_definition[0]),
                 Create(median_b),
-                Write(median_definition[1]),
+                FadeIn(median_definition[1]),
                 Create(median_c),
-                Write(median_definition[2]),
+                FadeIn(median_definition[2]),
                 lag_ratio=0.16,
             ),
             run_time=1.48,
@@ -486,16 +485,16 @@ class CarloTcfs112MathP2Q01(CarloSlide):
             MathTex(r"6\times\frac K6=K", font_size=40, color=REGION),
         ).arrange(DOWN, buff=0.25)
         wedge_summary.move_to([3.35, 0.02, 0])
-        self.play(FadeIn(g_dot), FadeIn(g_name), FadeIn(mc_name), Write(wedge_summary[0]), run_time=0.55)
+        self.play(FadeIn(g_dot), FadeIn(g_name), FadeIn(mc_name), FadeIn(wedge_summary[0]), run_time=0.55)
         self.play(
             Create(height_c_to_ab),
             Create(height_g_to_ab),
-            Write(wedge_summary[1]),
-            Write(wedge_summary[2]),
+            FadeIn(wedge_summary[1]),
+            FadeIn(wedge_summary[2]),
             run_time=0.88,
         )
         agb_region = Polygon(a, g, b, color=POINT, stroke_width=3.0, fill_color=POINT, fill_opacity=0.10)
-        self.play(FadeIn(agb_region), Write(wedge_summary[3]), run_time=0.66)
+        self.play(FadeIn(agb_region), FadeIn(wedge_summary[3]), run_time=0.66)
 
         # Beat 10 split_six_equal_wedges: continue at a settled semantic boundary.
         self.next_beat("split_six_equal_wedges")
@@ -504,7 +503,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
             FadeIn(wedges[3]),
             FadeIn(wedge_labels[0]),
             FadeIn(wedge_labels[3]),
-            Write(wedge_summary[4]),
+            FadeIn(wedge_summary[4]),
             run_time=0.82,
         )
         remaining_wedges = (wedges[1], wedges[2], wedges[4], wedges[5])
@@ -512,7 +511,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         self.play(
             LaggedStart(*(FadeIn(wedge) for wedge in remaining_wedges), lag_ratio=0.12),
             LaggedStart(*(FadeIn(item) for item in remaining_labels), lag_ratio=0.10),
-            Write(wedge_summary[5]),
+            FadeIn(wedge_summary[5]),
             run_time=1.00,
         )
         self.wait(0.62)
@@ -568,7 +567,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
             target_height_label,
         )
         self.play(LaggedStart(*(GrowArrow(item) for item in source_vectors), lag_ratio=0.16), run_time=0.86)
-        self.play(Write(closure_formula), run_time=0.58)
+        self.play(FadeIn(closure_formula), run_time=0.58)
         self.play(TransformFromCopy(source_ga, target_ga), run_time=0.72)
 
         # Beat 12 translate_centroid_vectors: continue at a settled semantic boundary.
@@ -581,7 +580,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
             Create(target_perpendicular),
             FadeIn(source_height_label),
             FadeIn(target_height_label),
-            Write(vector_area),
+            FadeIn(vector_area),
             run_time=0.76,
         )
         self.wait(0.65)
@@ -611,7 +610,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         )
         self.play(
             FadeIn(ratio_note),
-            LaggedStart(*(Write(item) for item in centroid_ratio), lag_ratio=0.16),
+            LaggedStart(*(FadeIn(item) for item in centroid_ratio), lag_ratio=0.16),
             run_time=0.78,
         )
         median_triangle = vector_triangle.copy().scale(1.5).set_color(REGION)
@@ -639,8 +638,8 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         median_area_formula.move_to([-3.25, -1.35, 0])
         median_rule = MathTex(r"K\longmapsto\frac34K", font_size=54, color=CORAL)
         median_rule.move_to([-3.25, -2.35, 0])
-        self.play(Write(median_area_formula), run_time=0.82)
-        self.play(Write(median_rule), Indicate(median_triangle, color=REGION), run_time=0.72)
+        self.play(FadeIn(median_area_formula), run_time=0.82)
+        self.play(FadeIn(median_rule), Indicate(median_triangle, color=REGION), run_time=0.72)
         self.wait(0.68)
 
         # Beat 15 set_up_first_median_step: apply the median factor once to area 16.
@@ -666,15 +665,18 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         factor_1 = MathTex(r"\times\frac34", font_size=39, color=POINT).move_to([-2.12, 0.78, 0])
         first_calculation = MathTex(r"16\times\frac34=12", font_size=51, color=INK).move_to([-2.12, -2.15, 0])
         flow_stage = VGroup(icon_0, icon_1, label_0, label_1, area_0, arrow_1, factor_1)
-        self.play(FadeIn(icon_0), FadeIn(label_0), Write(area_0), run_time=0.58)
-        self.play(GrowArrow(arrow_1), Write(factor_1), run_time=0.58)
+        self.play(FadeIn(icon_0), FadeIn(label_0), FadeIn(area_0), run_time=0.58)
+        self.play(GrowArrow(arrow_1), FadeIn(factor_1), run_time=0.58)
         self.play(FadeIn(icon_1), FadeIn(label_1), FadeIn(area_1_question), run_time=0.58)
 
         # Beat 16 apply_first_median_step: continue at a settled semantic boundary.
         self.next_beat("apply_first_median_step")
-        self.play(Write(first_calculation), run_time=0.74)
+        self.play(FadeIn(first_calculation), run_time=0.74)
         area_1 = MathTex("12", font_size=58, color=REGION).move_to(area_1_question)
-        self.play(FadeOut(area_1_question), Write(area_1), run_time=0.52)
+        self.play(
+            Succession(FadeOut(area_1_question), FadeIn(area_1)),
+            run_time=0.52,
+        )
         self.play(Indicate(area_1, color=REGION), run_time=0.50)
         self.wait(0.62)
 
@@ -693,16 +695,20 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         factor_2 = MathTex(r"\times\frac34", font_size=39, color=POINT).move_to([1.95, 0.78, 0])
         area_2_question = MathTex("?", font_size=61, color=CORAL).move_to([4.05, 0.28, 0])
         second_calculation = MathTex(r"12\times\frac34", font_size=50, color=INK).move_to([2.05, -2.15, 0])
-        self.play(GrowArrow(arrow_2), Write(factor_2), run_time=0.58)
+        self.play(GrowArrow(arrow_2), FadeIn(factor_2), run_time=0.58)
         self.play(FadeIn(icon_2), FadeIn(label_2), FadeIn(area_2_question), run_time=0.58)
-        self.play(Write(second_calculation), run_time=0.62)
+        self.play(FadeIn(second_calculation), run_time=0.62)
         self.wait(1.05)
 
         # Beat 18 reveal_second_median_step: continue at a settled semantic boundary.
         self.next_beat("reveal_second_median_step")
         area_2 = MathTex("9", font_size=64, color=CORAL).move_to(area_2_question)
         answer_3 = MathTex(r"12\times\frac34=9", font_size=54, color=CORAL).move_to([2.05, -2.15, 0])
-        self.play(FadeOut(area_2_question), Write(area_2), FadeOut(second_calculation), Write(answer_3), run_time=0.76)
+        self.play(
+            Succession(FadeOut(area_2_question), FadeIn(area_2)),
+            Succession(FadeOut(second_calculation), FadeIn(answer_3)),
+            run_time=0.76,
+        )
         answer_3_frame = self.answer_frame(answer_3)
         self.play(Create(answer_3_frame), Indicate(icon_2, color=PURPLE), run_time=0.56)
         self.wait(0.68)
@@ -748,8 +754,8 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         # Beat 20 introduce_altitude_triangle: continue at a settled semantic boundary.
         self.next_beat("introduce_altitude_triangle")
         self.play(FadeIn(side_b_name), FadeIn(side_c_name), run_time=0.36)
-        self.play(Write(k_formula), run_time=0.72)
-        self.play(Write(cyclic_formula), run_time=0.62)
+        self.play(FadeIn(k_formula), run_time=0.72)
+        self.play(FadeIn(cyclic_formula), run_time=0.62)
         self.wait(0.65)
 
         # Beat 21 construct_second_altitude: place the altitude-side triangle beside the original one.
@@ -790,9 +796,9 @@ class CarloTcfs112MathP2Q01(CarloSlide):
 
         # Beat 22 compare_two_area_units: continue at a settled semantic boundary.
         self.next_beat("compare_two_area_units")
-        self.play(Write(k_badge), Write(h_badge), run_time=0.62)
+        self.play(FadeIn(k_badge), FadeIn(h_badge), run_time=0.62)
         altitude_question = MathTex(r"\Delta(h'_a,h'_b,h'_c)=?", font_size=43, color=CORAL).move_to([3.15, 2.35, 0])
-        self.play(Write(altitude_question), run_time=0.58)
+        self.play(FadeIn(altitude_question), run_time=0.58)
         self.wait(0.70)
 
         # Beat 23 derive_one_second_altitude: divide the paired base-height formulas.
@@ -823,13 +829,13 @@ class CarloTcfs112MathP2Q01(CarloSlide):
             MathTex(r"h'_c=\frac23c", font_size=42, color=PURPLE),
         ).arrange(DOWN, buff=0.38)
         cyclic_altitudes.move_to([2.55, -0.78, 0])
-        self.play(Write(paired_formulas[0]), Write(paired_formulas[1]), run_time=0.90)
+        self.play(FadeIn(paired_formulas[0]), FadeIn(paired_formulas[1]), run_time=0.90)
         self.play(Indicate(paired_formulas[0], color=REGION), Indicate(paired_formulas[1], color=REGION), run_time=0.58)
-        self.play(Write(ratio_a), run_time=0.82)
+        self.play(FadeIn(ratio_a), run_time=0.82)
 
         # Beat 24 derive_second_altitudes: continue at a settled semantic boundary.
         self.next_beat("derive_second_altitudes")
-        self.play(LaggedStart(*(Write(item) for item in cyclic_altitudes), lag_ratio=0.18), run_time=0.95)
+        self.play(LaggedStart(*(FadeIn(item) for item in cyclic_altitudes), lag_ratio=0.18), run_time=0.95)
         self.wait(0.70)
 
         # Beat 25 build_second_altitude_similarity: show the 2/3 similarity and hold the area behind a question.
@@ -866,13 +872,13 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         preanswer_4.set_color_by_tex("?", CORAL)
         preanswer_4.move_to([0, -2.38, 0])
         similarity_stage = VGroup(sim_left, sim_right, sim_left_labels, sim_right_labels, similarity_arrow, original_area_label)
-        self.play(FadeIn(sim_left), FadeIn(sim_left_labels), Write(original_area_label), run_time=0.58)
-        self.play(TransformFromCopy(sim_left, sim_right), Write(similarity_arrow), run_time=0.86)
+        self.play(FadeIn(sim_left), FadeIn(sim_left_labels), FadeIn(original_area_label), run_time=0.58)
+        self.play(TransformFromCopy(sim_left, sim_right), FadeIn(similarity_arrow), run_time=0.86)
         self.play(FadeIn(sim_right_labels), FadeIn(new_area_question), run_time=0.52)
 
         # Beat 26 hold_altitude_area_preanswer: continue at a settled semantic boundary.
         self.next_beat("hold_altitude_area_preanswer")
-        self.play(Write(preanswer_4), run_time=0.78)
+        self.play(FadeIn(preanswer_4), run_time=0.78)
         self.wait(0.92)
 
         # Beat 27 reveal_altitude_area: reveal the fourth answer only after the squared factor settles.
@@ -887,7 +893,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
             color=CORAL,
         ).move_to([0, -2.38, 0])
         self.play(FadeOut(new_area_question), FadeOut(preanswer_4), run_time=0.42)
-        self.play(Write(answer_4_number), Write(answer_4), run_time=0.68)
+        self.play(FadeIn(answer_4_number), FadeIn(answer_4), run_time=0.68)
         answer_4_frame = self.answer_frame(answer_4)
         self.play(Create(answer_4_frame), Indicate(sim_right, color=PURPLE), run_time=0.60)
         self.wait(0.72)
@@ -921,7 +927,7 @@ class CarloTcfs112MathP2Q01(CarloSlide):
         footer = label("解題來源：正哥愛數學｜原創重繪與獨立核對", 20, MUTED, "MEDIUM")
         footer.move_to([0, -3.38, 0])
         self.play(LaggedStart(*(FadeIn(card) for card in cards), lag_ratio=0.16), run_time=1.08)
-        self.play(Write(final_tuple), Create(final_frame), run_time=0.76)
+        self.play(FadeIn(final_tuple), Create(final_frame), run_time=0.76)
 
         # Beat 29 consolidate_four_results: continue at a settled semantic boundary.
         self.next_beat("consolidate_four_results")

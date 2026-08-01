@@ -262,6 +262,16 @@ class SiteBuilderChecks(unittest.TestCase):
             "  });",
             script,
         )
+        self.assertIn('window.addEventListener("focus"', script)
+        self.assertIn("isLoopbackPreview() ? 2000 : 30000", script)
+        self.assertIn(
+            "generatedAt > existing.generatedAt",
+            script,
+        )
+        self.assertIn(
+            'if (!isLoopbackPreview() && state.manifest.review_status_url)',
+            script,
+        )
 
     def test_default_selection_keeps_published_lessons(self) -> None:
         with mock.patch("sys.argv", ["build_site.py"]):

@@ -32,14 +32,11 @@ from manim import (
     MathTex,
     NumberLine,
     Polygon,
-    ReplacementTransform,
     Square,
     Succession,
     SurroundingRectangle,
-    TransformFromCopy,
     VGroup,
     ValueTracker,
-    Write,
     always_redraw,
     rate_functions,
 )
@@ -258,9 +255,9 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.play(GrowFromCenter(g_dot), FadeIn(g_label), run_time=0.6)
 
         self.next_beat("compute_centroid_coordinates")
-        self.play(Write(centroid_x), run_time=0.8)
-        self.play(Write(centroid_y), run_time=0.8)
-        self.play(TransformFromCopy(VGroup(centroid_x, centroid_y), centroid_result), run_time=0.75)
+        self.play(FadeIn(centroid_x), run_time=0.8)
+        self.play(FadeIn(centroid_y), run_time=0.8)
+        self.play(FadeIn(centroid_result), run_time=0.65)
         self.play(Circumscribe(g_dot, color=REGION), run_time=0.7)
         self.wait(0.35)
 
@@ -301,7 +298,7 @@ class CarloTcfs113MathQ12(CarloSlide):
             ).arrange(RIGHT, buff=0.12).move_to([4.30, -0.45, 0])
         )
         moving_equation = MathTex("ax+by=9", font_size=49, color=INK)
-        moving_equation.move_to([4.30, 1.35, 0])
+        moving_equation.move_to([4.30, 1.72, 0])
         fixed_point_note = VGroup(
             label("每一個方向", 25, MUTED, "MEDIUM"),
             label("都穿過同一個 G", 29, REGION, "BOLD"),
@@ -354,17 +351,17 @@ class CarloTcfs113MathQ12(CarloSlide):
             solved_b,
             constraint_note,
         ).arrange(DOWN, buff=0.38)
-        constraint_panel.move_to([4.30, -0.18, 0])
+        constraint_panel.move_to([4.30, -0.50, 0])
 
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(VGroup(a_readout, b_readout, fixed_point_note)), run_time=0.45)
         self.play(FadeIn(constraint_panel[0]), run_time=0.4)
-        self.play(TransformFromCopy(VGroup(moving_equation, constraint_panel[0]), substitution), run_time=0.8)
+        self.play(FadeIn(substitution), run_time=0.65)
 
         self.next_beat("solve_coefficient_constraint")
-        self.play(FadeOut(moving_equation), Write(coefficient_constraint), run_time=0.7)
-        self.play(ReplacementTransform(coefficient_constraint.copy(), solved_b), run_time=0.75)
+        self.play(FadeOut(moving_equation), FadeIn(coefficient_constraint), run_time=0.7)
+        self.play(FadeIn(solved_b), run_time=0.65)
         self.play(FadeIn(constraint_note), run_time=0.45)
         self.wait(0.35)
 
@@ -473,14 +470,14 @@ class CarloTcfs113MathQ12(CarloSlide):
             FadeIn(coefficient_labels),
             run_time=0.9,
         )
-        self.play(Create(coefficient_line), Write(allowed_panel[0]), run_time=0.75)
-        self.play(Create(boundary_a), Write(a_bound), run_time=0.65)
-        self.play(Create(boundary_b), Write(b_bound), run_time=0.65)
+        self.play(Create(coefficient_line), FadeIn(allowed_panel[0]), run_time=0.75)
+        self.play(Create(boundary_a), FadeIn(a_bound), run_time=0.65)
+        self.play(Create(boundary_b), FadeIn(b_bound), run_time=0.65)
 
         self.next_beat("form_allowed_interval")
-        self.play(Write(derived_bound), run_time=0.8)
+        self.play(FadeIn(derived_bound), run_time=0.8)
         self.play(Create(valid_segment), FadeIn(endpoint_dots), FadeIn(endpoint_labels), run_time=0.85)
-        self.play(Write(allowed_interval), Circumscribe(valid_segment, color=REGION), run_time=0.8)
+        self.play(FadeIn(allowed_interval), Circumscribe(valid_segment, color=REGION), run_time=0.8)
         self.wait(0.35)
 
         # Beat 06 watch_weighted_squares: compare two growing a-squares with one shrinking b-square.
@@ -635,12 +632,12 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(VGroup(square_panel, number_dot)), run_time=0.45)
-        self.play(TransformFromCopy(VGroup(first_small_square, second_small_square, large_square), formula_one), run_time=0.9)
-        self.play(Write(formula_two), run_time=0.8)
+        self.play(FadeIn(formula_one), run_time=0.75)
+        self.play(FadeIn(formula_two), run_time=0.8)
 
         self.next_beat("finish_objective_compression")
-        self.play(Write(formula_three), run_time=0.75)
-        self.play(Write(formula_four), run_time=0.85)
+        self.play(FadeIn(formula_three), run_time=0.75)
+        self.play(FadeIn(formula_four), run_time=0.85)
         self.play(FadeIn(algebra_note), Circumscribe(formula_four, color=REGION), run_time=0.8)
         self.wait(0.35)
 
@@ -814,12 +811,12 @@ class CarloTcfs113MathQ12(CarloSlide):
             FadeIn(endpoint_reason),
             run_time=0.8,
         )
-        self.play(FadeIn(left_caption), Write(left_state), run_time=0.6)
-        self.play(Write(left_calculation), run_time=0.75)
+        self.play(FadeIn(left_caption), FadeIn(left_state), run_time=0.6)
+        self.play(FadeIn(left_calculation), run_time=0.75)
 
         self.next_beat("evaluate_right_endpoint")
-        self.play(FadeIn(right_caption), Write(right_state), run_time=0.6)
-        self.play(Write(right_calculation), run_time=0.75)
+        self.play(FadeIn(right_caption), FadeIn(right_state), run_time=0.6)
+        self.play(FadeIn(right_calculation), run_time=0.75)
         self.wait(0.4)
 
         # Beat 10 hold_ordered_pair: assign maximum and minimum but withhold the ordered pair.
@@ -840,9 +837,9 @@ class CarloTcfs113MathQ12(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(VGroup(middle_rule, endpoint_reason, left_endpoint_panel, right_endpoint_panel)), run_time=0.65)
-        self.play(TransformFromCopy(left_calculation[4], max_value), run_time=0.6)
-        self.play(TransformFromCopy(right_calculation[4], min_value), run_time=0.6)
-        self.play(Write(ordered_pair_question), FadeIn(order_note), run_time=0.7)
+        self.play(FadeIn(max_value), run_time=0.55)
+        self.play(FadeIn(min_value), run_time=0.55)
+        self.play(FadeIn(ordered_pair_question), FadeIn(order_note), run_time=0.7)
         self.wait(0.55)
 
         # Beat 11 reveal_ordered_pair: reveal the ordered answer and reconnect both boundary lines.
@@ -893,6 +890,9 @@ class CarloTcfs113MathQ12(CarloSlide):
             run_time=0.85,
         )
         self.play(Create(final_max_line), Create(final_min_line), FadeIn(final_line_labels), run_time=0.85)
-        self.play(ReplacementTransform(ordered_pair_question, final_answer), Create(final_box), run_time=0.8)
-        self.play(FadeIn(final_note), Indicate(g_dot, color=REGION), run_time=0.7)
+        self.play(
+            Succession(FadeOut(ordered_pair_question), FadeIn(final_answer)),
+            run_time=0.7,
+        )
+        self.play(Create(final_box), FadeIn(final_note), Indicate(g_dot, color=REGION), run_time=0.7)
         self.wait(0.55)

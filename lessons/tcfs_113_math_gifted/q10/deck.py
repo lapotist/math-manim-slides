@@ -37,7 +37,6 @@ from manim import (
     TransformFromCopy,
     VGroup,
     ValueTracker,
-    Write,
     always_redraw,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
@@ -393,8 +392,8 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.transition_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(reflection_name), TransformFromCopy(pb_leg, pb_prime_leg), run_time=0.8)
-        self.play(FadeIn(pb_equal_tick), FadeIn(pb_prime_equal_tick), Write(mirror_identity), run_time=0.8)
-        self.play(Write(path_rewrite), FadeIn(rewrite_note), run_time=0.8)
+        self.play(FadeIn(pb_equal_tick), FadeIn(pb_prime_equal_tick), FadeIn(mirror_identity), run_time=0.8)
+        self.play(FadeIn(path_rewrite), FadeIn(rewrite_note), run_time=0.8)
         self.play(FadeOut(pb_leg), FadeOut(pb_equal_tick), FadeOut(pb_prime_equal_tick), run_time=0.5)
         self.wait(0.4)
 
@@ -424,12 +423,12 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.transition_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(rewrite_panel), Create(direct_qb_prime), run_time=0.75)
-        self.play(Write(triangle_bound), run_time=0.75)
+        self.play(FadeIn(triangle_bound), run_time=0.75)
         self.play(p_tracker.animate.set_value(56 / 135), run_time=1.25)
 
         self.next_beat("attain_straight_path")
         self.play(FadeIn(equality_condition), run_time=0.55)
-        self.play(Write(equality_equation), Circumscribe(equality_equation, color=REGION), run_time=0.85)
+        self.play(FadeIn(equality_equation), Circumscribe(equality_equation, color=REGION), run_time=0.85)
         self.wait(0.4)
 
         # Beat 06: with P chosen to straighten, only Q remains free.
@@ -487,7 +486,7 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.transition_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(one_freedom), Create(perpendicular_mark), run_time=0.65)
-        self.play(Write(perpendicular_rule), run_time=0.6)
+        self.play(FadeIn(perpendicular_rule), run_time=0.6)
         self.play(Indicate(q_dot, color=REGION, scale_factor=1.55), FadeIn(foot_note), run_time=0.7)
         self.play(FadeIn(shortest_note), Circumscribe(direct_qb_prime, color=BLUE), run_time=0.8)
         self.wait(0.4)
@@ -521,8 +520,8 @@ class CarloTcfs113MathQ10(CarloSlide):
             FadeIn(coordinate_labels),
             run_time=0.75,
         )
-        self.play(Write(intercept_form), run_time=0.7)
-        self.play(Write(diagonal_equation), Circumscribe(diagonal_equation, color=BLUE), run_time=0.85)
+        self.play(FadeIn(intercept_form), run_time=0.7)
+        self.play(FadeIn(diagonal_equation), Circumscribe(diagonal_equation, color=BLUE), run_time=0.85)
         self.wait(0.4)
 
         # Beat 09: calculate the reflection with the line normal.
@@ -572,14 +571,14 @@ class CarloTcfs113MathQ10(CarloSlide):
         self.transition_title(self, beat_title, next_title)
         beat_title = next_title
         self.play(FadeOut(coordinate_panel), Create(normal_arrow), FadeIn(normal_label), run_time=0.65)
-        self.play(Write(line_function), Write(normal_data), run_time=0.7)
-        self.play(Write(at_b), run_time=0.45)
+        self.play(FadeIn(line_function), FadeIn(normal_data), run_time=0.7)
+        self.play(FadeIn(at_b), run_time=0.45)
 
         self.next_beat("apply_reflection_formula")
-        self.play(Write(reflect_formula), run_time=0.7)
-        self.play(Write(substitution), run_time=0.65)
+        self.play(FadeIn(reflect_formula), run_time=0.7)
+        self.play(FadeIn(substitution), run_time=0.65)
         self.play(
-            Write(reflected_coordinate),
+            FadeIn(reflected_coordinate),
             FadeOut(b_prime_label),
             FadeIn(graph_b_prime_coordinate),
             run_time=0.75,
@@ -633,12 +632,12 @@ class CarloTcfs113MathQ10(CarloSlide):
             FadeIn(final_p_label),
             run_time=0.85,
         )
-        self.play(Write(q_coordinate), Write(q_inside), run_time=0.7)
-        self.play(Write(p_coordinate), Write(p_on_line), run_time=0.75)
+        self.play(FadeIn(q_coordinate), FadeIn(q_inside), run_time=0.7)
+        self.play(FadeIn(p_coordinate), FadeIn(p_on_line), run_time=0.75)
 
         self.next_beat("verify_collinear_order")
-        self.play(Write(vertical_order), run_time=0.55)
-        self.play(Write(unsimplified_distance), run_time=0.7)
+        self.play(FadeIn(vertical_order), run_time=0.55)
+        self.play(FadeIn(unsimplified_distance), run_time=0.7)
         self.play(Circumscribe(unsimplified_distance, color=POINT), run_time=0.8)
         self.wait(0.65)
 
@@ -669,11 +668,11 @@ class CarloTcfs113MathQ10(CarloSlide):
 
         self.transition_title(self, beat_title, next_title)
         self.play(FadeOut(feasibility_panel), run_time=0.45)
-        self.play(Write(arithmetic_one), run_time=0.75)
-        self.play(Write(arithmetic_two), run_time=0.55)
+        self.play(FadeIn(arithmetic_one), run_time=0.75)
+        self.play(FadeIn(arithmetic_two), run_time=0.55)
 
         self.next_beat("state_minimum_length")
-        self.play(Write(final_answer), Create(final_box), run_time=0.85)
+        self.play(FadeIn(final_answer), Create(final_box), run_time=0.85)
         self.play(
             Indicate(final_qp, color=PURPLE),
             Indicate(final_pb_prime, color=REGION),

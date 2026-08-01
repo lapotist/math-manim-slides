@@ -35,9 +35,7 @@ from manim import (
     Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -254,7 +252,7 @@ class CarloTcfs112MathQ06(CarloSlide):
 
         # Beat 02 meet_highest_point: continue at a settled semantic boundary.
         self.next_beat("meet_highest_point")
-        self.play(Write(f_formula), run_time=0.75)
+        self.play(FadeIn(f_formula), run_time=0.75)
         self.play(LaggedStart(*(FadeIn(item) for item in opening_panel), lag_ratio=0.16), run_time=0.9)
         self.wait(0.35)
 
@@ -278,16 +276,18 @@ class CarloTcfs112MathQ06(CarloSlide):
             label("向下開口，才有有限最高值", 27, POINT, "BOLD"),
         ).arrange(DOWN, buff=0.30).move_to([3.58, -0.25, 0])
         nonzero_guard = VGroup(
-            MathTex("a\ne0", font_size=35, color=MUTED),
+            MathTex(r"a\ne0", font_size=35, color=MUTED),
             label("題式中的分母也要求這一點", 22, MUTED, "MEDIUM"),
         ).arrange(RIGHT, buff=0.20).move_to([3.58, -1.60, 0])
 
         self.play(self.title_change(stage_title, next_title), FadeOut(opening_panel), run_time=0.6)
         stage_title = next_title
         self.play(
-            FadeOut(ceiling, y_two, highest_note),
+            Succession(
+                FadeOut(VGroup(ceiling, y_two, highest_note)),
+                FadeIn(VGroup(positive_test, minimum_note)),
+            ),
             Transform(f_curve, upward_trial),
-            FadeIn(positive_test, minimum_note),
             run_time=0.95,
         )
         self.wait(0.20)
@@ -331,12 +331,13 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(self.title_change(stage_title, next_title), run_time=0.55)
         stage_title = next_title
         self.play(
-            FadeOut(negative_result, nonzero_guard, highest_note),
-            FadeOut(f_formula),
-            Write(square_identity_f),
+            Succession(
+                FadeOut(VGroup(negative_result, nonzero_guard, highest_note, f_formula)),
+                FadeIn(square_identity_f),
+            ),
             run_time=0.7,
         )
-        self.play(TransformFromCopy(square_identity_f, completed_f), run_time=0.8)
+        self.play(FadeIn(completed_f), run_time=0.8)
 
         # Beat 05 locate_f_axis: continue at a settled semantic boundary.
         self.next_beat("locate_f_axis")
@@ -363,13 +364,12 @@ class CarloTcfs112MathQ06(CarloSlide):
 
         self.play(self.title_change(stage_title, next_title), FadeOut(square_identity_f, axis_note), run_time=0.55)
         stage_title = next_title
-        self.play(TransformFromCopy(x_one, zero_at_one), run_time=0.65)
+        self.play(FadeIn(zero_at_one), run_time=0.65)
         self.play(
-            TransformFromCopy(completed_f, height_equation),
-            Transform(f_vertex_unknown, f_vertex_known),
+            FadeIn(height_equation),
+            Succession(FadeOut(f_vertex_unknown), FadeIn(f_vertex_known)),
             run_time=0.85,
         )
-        f_vertex_known = f_vertex_unknown
         self.play(Indicate(y_two, color=POINT), Indicate(height_equation, color=POINT), run_time=0.65)
         self.wait(0.35)
 
@@ -404,15 +404,17 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(self.title_change(stage_title, next_title), run_time=0.55)
         stage_title = next_title
         self.play(
-            FadeOut(zero_at_one, completed_f),
+            Succession(
+                FadeOut(VGroup(zero_at_one, completed_f)),
+                FadeIn(multiply_guard),
+            ),
             Transform(height_equation, height_equation_top),
             f_curve.animate.set_stroke(opacity=0.30),
             f_context.animate.set_opacity(0.30),
-            FadeIn(multiply_guard),
             run_time=0.65,
         )
-        self.play(TransformFromCopy(height_equation, parameter_polynomial), run_time=0.75)
-        self.play(TransformFromCopy(parameter_polynomial, parameter_factor), run_time=0.7)
+        self.play(FadeIn(parameter_polynomial), run_time=0.75)
+        self.play(FadeIn(parameter_factor), run_time=0.7)
 
         # Beat 08 solve_parameter_candidates: continue at a settled semantic boundary.
         self.next_beat("solve_parameter_candidates")
@@ -473,10 +475,10 @@ class CarloTcfs112MathQ06(CarloSlide):
             Transform(f_curve, f_curve_target),
             Indicate(negative_card, color=POINT),
             FadeIn(negative_equation, choice_note),
-            Create(chosen_box),
+            FadeIn(chosen_box),
             run_time=0.95,
         )
-        self.play(Write(chosen_parameter), run_time=0.65)
+        self.play(FadeIn(chosen_parameter), run_time=0.65)
         self.wait(0.35)
 
         # Beat 11 verify_f_algebraically: translate the selected square form back into visible graph facts.
@@ -533,15 +535,15 @@ class CarloTcfs112MathQ06(CarloSlide):
             chosen_parameter.animate.move_to([3.58, 2.02, 0]),
             run_time=0.60,
         )
-        self.play(TransformFromCopy(chosen_parameter, f_exact), run_time=0.75)
-        self.play(Write(f_bound), Write(f_equality), run_time=0.85)
+        self.play(FadeIn(f_exact), run_time=0.75)
+        self.play(FadeIn(f_bound), FadeIn(f_equality), run_time=0.85)
 
         # Beat 12 verify_f_in_picture: continue at a settled semantic boundary.
         self.next_beat("verify_f_in_picture")
         self.play(
             FadeIn(symmetric_dots, symmetric_labels),
             Create(symmetric_join),
-            Write(sample_readout),
+            FadeIn(sample_readout),
             run_time=0.75,
         )
         self.play(Circumscribe(f_vertex_dot, color=POINT), run_time=0.6)
@@ -593,16 +595,15 @@ class CarloTcfs112MathQ06(CarloSlide):
             f_graph_context.animate.set_opacity(0.16),
             run_time=0.55,
         )
-        self.play(Write(g_formula), run_time=0.65)
+        self.play(FadeIn(g_formula), run_time=0.65)
 
         # Beat 14 transfer_parameter_to_g: continue at a settled semantic boundary.
         self.next_beat("transfer_parameter_to_g")
         self.play(
-            FadeOut(chosen_parameter),
-            FadeIn(copied_parameter),
+            Succession(FadeOut(chosen_parameter), FadeIn(copied_parameter)),
             run_time=0.60,
         )
-        self.play(TransformFromCopy(copied_parameter, leading_sign), run_time=0.65)
+        self.play(FadeIn(leading_sign), run_time=0.65)
         self.play(Create(g_curve), FadeIn(g_tag, g_vertex_dot, g_vertex_question, g_prompt), run_time=1.0)
         self.wait(0.35)
 
@@ -641,22 +642,23 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(self.title_change(stage_title, next_title), run_time=0.55)
         stage_title = next_title
         self.play(
-            FadeOut(copied_parameter, leading_sign, g_prompt, g_formula),
-            Write(square_identity_g),
+            Succession(
+                FadeOut(VGroup(copied_parameter, leading_sign, g_prompt, g_formula)),
+                FadeIn(square_identity_g),
+            ),
             run_time=0.65,
         )
-        self.play(Write(completed_g), run_time=0.8)
+        self.play(FadeIn(completed_g), run_time=0.8)
 
         # Beat 16 locate_g_axis: continue at a settled semantic boundary.
         self.next_beat("locate_g_axis")
         self.play(
             Create(g_axis),
             FadeIn(x_two),
-            FadeOut(g_vertex_question),
-            FadeIn(g_vertex_unknown),
+            Succession(FadeOut(g_vertex_question), FadeIn(g_vertex_unknown)),
             run_time=0.75,
         )
-        self.play(Write(minimum_rule), Circumscribe(g_vertex_dot, color=REGION), run_time=0.7)
+        self.play(FadeIn(minimum_rule), Circumscribe(g_vertex_dot, color=REGION), run_time=0.7)
         self.wait(0.35)
 
         # Beat 17 substitute_g_vertex: settle on two traceable contributions without summing them.
@@ -685,13 +687,13 @@ class CarloTcfs112MathQ06(CarloSlide):
             FadeOut(square_identity_g, minimum_rule, completed_g),
             run_time=0.45,
         )
-        self.play(Write(at_vertex), run_time=0.70)
-        self.play(Write(substitution), run_time=0.75)
+        self.play(FadeIn(at_vertex), run_time=0.70)
+        self.play(FadeIn(substitution), run_time=0.75)
 
         # Beat 18 settle_minimum_preanswer: continue at a settled semantic boundary.
         self.next_beat("settle_minimum_preanswer")
         self.play(FadeIn(negative_term), FadeIn(positive_term), run_time=0.65)
-        self.play(Write(unsummed), run_time=0.65)
+        self.play(FadeIn(unsummed), run_time=0.65)
         self.play(Indicate(negative_term, color=BLUE), Indicate(positive_term, color=REGION), run_time=0.6)
         self.wait(0.45)
 
@@ -741,8 +743,10 @@ class CarloTcfs112MathQ06(CarloSlide):
         self.play(self.title_change(stage_title, next_title), run_time=0.55)
         stage_title = next_title
         self.play(
-            FadeOut(at_vertex, substitution, negative_term, positive_term),
-            FadeIn(value_line, start_dot, start_label),
+            Succession(
+                FadeOut(VGroup(at_vertex, substitution, negative_term, positive_term)),
+                FadeIn(VGroup(value_line, start_dot, start_label)),
+            ),
             run_time=0.65,
         )
         self.play(Create(five_step), FadeIn(five_label), run_time=0.85)
@@ -751,12 +755,11 @@ class CarloTcfs112MathQ06(CarloSlide):
         # Beat 20 reveal_minimum: continue at a settled semantic boundary.
         self.next_beat("reveal_minimum")
         self.play(
-            FadeOut(unsummed),
-            Write(sum_result),
-            Transform(g_vertex_unknown, g_vertex_exact),
+            Succession(FadeOut(unsummed), FadeIn(sum_result)),
+            Succession(FadeOut(g_vertex_unknown), FadeIn(g_vertex_exact)),
             run_time=0.75,
         )
-        self.play(Write(g_exact), run_time=0.75)
-        self.play(Write(final_answer), Create(answer_box), run_time=0.75)
+        self.play(FadeIn(g_exact), run_time=0.75)
+        self.play(FadeIn(final_answer), FadeIn(answer_box), run_time=0.75)
         self.play(Circumscribe(g_vertex_dot, color=POINT), run_time=0.65)
         self.wait(0.45)

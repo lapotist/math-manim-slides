@@ -346,33 +346,50 @@ async function fetchJson(url) {
   return response.json();
 }
 
+function isLoopbackPreview() {
+  return ["127.0.0.1", "localhost", "::1"].includes(window.location.hostname);
+}
+
+function statusFeedCandidates() {
+  const candidates = ["review-status.json"];
+  if (!isLoopbackPreview() && state.manifest.review_status_url) {
+    candidates.push(state.manifest.review_status_url);
+  }
+  return candidates.filter(
+    (value, index, values) => values.indexOf(value) === index,
+  );
+}
+
 async function refreshStatuses() {
   if (!state.manifest) return;
-  const candidates = ["review-status.json", state.manifest.review_status_url]
-    .filter(Boolean)
-    .filter((value, index, values) => values.indexOf(value) === index);
+  const candidates = statusFeedCandidates();
   const merged = new Map();
   for (const url of candidates) {
     try {
       const feed = await fetchJson(url);
       if (feed.schema_version !== 1 || !Array.isArray(feed.lessons)) continue;
+      const parsedGeneratedAt = Date.parse(feed.generated_at);
+      const generatedAt = Number.isFinite(parsedGeneratedAt) ? parsedGeneratedAt : 0;
       for (const entry of feed.lessons) {
         const lesson = state.lessons.find((item) => item.id === entry?.lesson_id);
         if (
           lesson &&
           entry.review_binding_digest === lesson.review_binding_digest
         ) {
-          merged.set(entry.lesson_id, entry);
+          const existing = merged.get(entry.lesson_id);
+          if (!existing || generatedAt > existing.generatedAt) {
+            merged.set(entry.lesson_id, { entry, generatedAt });
+          }
         }
       }
     } catch (_) {
       // The bundled feed remains the fallback when the repository feed is absent.
     }
   }
-  if (merged.size) {
-    state.statusByLesson = merged;
-    renderStatus();
-  }
+  state.statusByLesson = new Map(
+    [...merged].map(([lessonId, item]) => [lessonId, item.entry]),
+  );
+  renderStatus();
 }
 
 function isTypingTarget(target) {
@@ -423,6 +440,7 @@ function bindEvents() {
     }
   });
   window.addEventListener("popstate", readLocation);
+  window.addEventListener("focus", () => void refreshStatuses());
 }
 
 async function start() {
@@ -454,7 +472,10 @@ async function start() {
     elements.view.hidden = false;
     readLocation();
     await refreshStatuses();
-    state.statusTimer = window.setInterval(refreshStatuses, 30000);
+    state.statusTimer = window.setInterval(
+      refreshStatuses,
+      isLoopbackPreview() ? 2000 : 30000,
+    );
   } catch (error) {
     elements.loading.hidden = true;
     elements.error.hidden = false;

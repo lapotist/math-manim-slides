@@ -36,7 +36,6 @@ from manim import (
     Succession,
     SurroundingRectangle,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -230,8 +229,8 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.add(heading, source)
         self.play(FadeIn(stage_title), run_time=0.52)
         self.play(FadeIn(definitions), run_time=0.62)
-        self.play(Create(alpha_row[1]), GrowFromCenter(alpha_row[0]), FadeIn(alpha_row[2:]), run_time=0.75)
-        self.play(Create(beta_row[1]), GrowFromCenter(beta_row[0]), FadeIn(beta_row[2:]), run_time=0.75)
+        self.play(Create(alpha_row[1]), FadeIn(alpha_row[0]), FadeIn(alpha_row[2:]), run_time=0.75)
+        self.play(Create(beta_row[1]), FadeIn(beta_row[0]), FadeIn(beta_row[2:]), run_time=0.75)
 
         # Beat 02 meet_two_integer_hits: continue at a settled semantic boundary.
         self.next_beat("meet_two_integer_hits")
@@ -283,9 +282,9 @@ class CarloTcfs112MathQ05(CarloSlide):
             FadeOut(bottom_prompt),
             run_time=0.50,
         )
-        self.play(Write(difference), run_time=0.58)
-        self.play(Write(alpha_zero), run_time=0.68)
-        self.play(Write(beta_zero), run_time=0.68)
+        self.play(FadeIn(difference), run_time=0.58)
+        self.play(FadeIn(alpha_zero), run_time=0.68)
+        self.play(FadeIn(beta_zero), run_time=0.68)
 
         # Beat 04 place_two_positive_roots: continue at a settled semantic boundary.
         self.next_beat("place_two_positive_roots")
@@ -344,14 +343,14 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(difference), FadeOut(zero_rows), FadeOut(zero_picture), run_time=0.48)
-        self.play(Write(factorization), run_time=0.82)
-        self.play(Create(number_line), Create(positive_segment), FadeIn(domain_label), run_time=0.68)
-        self.play(GrowFromCenter(minus_one), Write(rejected[0]), run_time=0.52)
+        self.play(FadeIn(factorization), run_time=0.82)
+        self.play(FadeIn(number_line), Create(positive_segment), FadeIn(domain_label), run_time=0.68)
+        self.play(GrowFromCenter(minus_one), FadeIn(rejected[0]), run_time=0.52)
 
         # Beat 06 discard_common_root: continue at a settled semantic boundary.
         self.next_beat("discard_common_root")
-        self.play(Write(rejected[1]), Create(invalid_cross), FadeIn(rejected[2]), run_time=0.60)
-        self.play(Write(surviving_quadratic), run_time=0.70)
+        self.play(FadeIn(rejected[1]), Create(invalid_cross), FadeIn(rejected[2]), run_time=0.60)
+        self.play(FadeIn(surviving_quadratic), run_time=0.70)
         self.wait(0.42)
 
         # Beat 07 see_remaining_quadratic: turn the algebra back into two roots.
@@ -391,15 +390,21 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(
-            FadeOut(factorization),
-            FadeOut(number_line),
-            FadeOut(positive_segment),
-            FadeOut(minus_one),
-            FadeOut(invalid_cross),
-            FadeOut(domain_label),
-            FadeOut(rejected),
-            FadeOut(surviving_quadratic),
-            Create(divider),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        factorization,
+                        number_line,
+                        positive_segment,
+                        minus_one,
+                        invalid_cross,
+                        domain_label,
+                        rejected,
+                        surviving_quadratic,
+                    )
+                ),
+                Create(divider),
+            ),
             run_time=0.55,
         )
         self.play(Create(axes), Create(curve), run_time=1.00)
@@ -408,8 +413,8 @@ class CarloTcfs112MathQ05(CarloSlide):
 
         # Beat 08 write_two_quadratic_forms: continue at a settled semantic boundary.
         self.next_beat("write_two_quadratic_forms")
-        self.play(Write(quadratic_panel[0]), run_time=0.62)
-        self.play(Write(quadratic_panel[1]), run_time=0.66)
+        self.play(FadeIn(quadratic_panel[0]), run_time=0.62)
+        self.play(FadeIn(quadratic_panel[1]), run_time=0.66)
         self.play(FadeIn(quadratic_panel[2]), FadeIn(quadratic_panel[3]), run_time=0.54)
         self.wait(0.42)
 
@@ -470,8 +475,8 @@ class CarloTcfs112MathQ05(CarloSlide):
 
         # Beat 10 read_sum_and_product: continue at a settled semantic boundary.
         self.next_beat("read_sum_and_product")
-        self.play(Write(coefficient_panel[0]), run_time=0.54)
-        self.play(Write(coefficient_panel[1]), run_time=0.74)
+        self.play(FadeIn(coefficient_panel[0]), run_time=0.54)
+        self.play(FadeIn(coefficient_panel[1]), run_time=0.74)
         self.play(FadeIn(coefficient_panel[2]), Indicate(sum_visual, color=BLUE), run_time=0.62)
         self.play(FadeIn(coefficient_panel[3]), Indicate(product_visual, color=PURPLE), run_time=0.62)
         self.wait(0.42)
@@ -510,13 +515,13 @@ class CarloTcfs112MathQ05(CarloSlide):
             FadeOut(divider),
             run_time=0.48,
         )
-        self.play(GrowFromCenter(p_token), Create(replacement_arrow), GrowFromCenter(replacement_token), run_time=0.68)
-        self.play(Write(eliminate_steps[0]), run_time=0.58)
-        self.play(Write(eliminate_steps[1]), Indicate(replacement_token, color=POINT), run_time=0.72)
+        self.play(FadeIn(p_token), Create(replacement_arrow), FadeIn(replacement_token), run_time=0.68)
+        self.play(FadeIn(eliminate_steps[0]), run_time=0.58)
+        self.play(FadeIn(eliminate_steps[1]), Indicate(replacement_token, color=POINT), run_time=0.72)
 
         # Beat 12 remove_parameter_p: continue at a settled semantic boundary.
         self.next_beat("remove_parameter_p")
-        self.play(Write(eliminate_steps[2]), run_time=0.72)
+        self.play(FadeIn(eliminate_steps[2]), run_time=0.72)
         self.play(FadeIn(elimination_note), run_time=0.45)
         self.wait(0.42)
 
@@ -599,7 +604,13 @@ class CarloTcfs112MathQ05(CarloSlide):
 
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
-        self.play(FadeOut(substitution_visual), FadeOut(eliminate_steps), FadeOut(elimination_note), Create(divider), run_time=0.52)
+        self.play(
+            Succession(
+                FadeOut(VGroup(substitution_visual, eliminate_steps, elimination_note)),
+                Create(divider),
+            ),
+            run_time=0.52,
+        )
         self.play(Create(big_rect), FadeIn(full_width), FadeIn(full_height), run_time=0.62)
         self.play(FadeIn(vertical_strip), FadeIn(strip_width), run_time=0.50)
         self.play(FadeIn(horizontal_strip), FadeIn(strip_height), run_time=0.50)
@@ -611,9 +622,9 @@ class CarloTcfs112MathQ05(CarloSlide):
 
         # Beat 15 complete_factor_rectangle: continue at a settled semantic boundary.
         self.next_beat("complete_factor_rectangle")
-        self.play(Write(factor_steps[0]), run_time=0.66)
-        self.play(Write(factor_steps[1]), FadeIn(factor_steps[3]), run_time=0.72)
-        self.play(Write(factor_steps[2]), Indicate(remainder_rect, color=REGION), run_time=0.72)
+        self.play(FadeIn(factor_steps[0]), run_time=0.66)
+        self.play(FadeIn(factor_steps[1]), FadeIn(factor_steps[3]), run_time=0.72)
+        self.play(FadeIn(factor_steps[2]), Indicate(remainder_rect, color=REGION), run_time=0.72)
         self.wait(0.42)
 
         # Beat 16 close_negative_factor_case: close the sign edge case, then exhaust divisors.
@@ -665,7 +676,7 @@ class CarloTcfs112MathQ05(CarloSlide):
 
         # Beat 17 test_first_factor_pair: continue at a settled semantic boundary.
         self.next_beat("test_first_factor_pair")
-        self.play(Write(prime_factorization), FadeIn(residue_gate), run_time=0.68)
+        self.play(FadeIn(prime_factorization), FadeIn(residue_gate), run_time=0.68)
         self.play(FadeIn(first_pair), run_time=0.48)
         self.play(FadeIn(rejected_one), run_time=0.35)
 
@@ -677,7 +688,7 @@ class CarloTcfs112MathQ05(CarloSlide):
         # Beat 19 accept_third_factor_pair: continue at a settled semantic boundary.
         self.next_beat("accept_third_factor_pair")
         self.play(FadeIn(third_pair), run_time=0.48)
-        self.play(Create(accepted_box), FadeIn(accepted), run_time=0.60)
+        self.play(FadeIn(accepted_box), FadeIn(accepted), run_time=0.60)
         self.wait(0.48)
 
         # Beat 20 decode_surviving_pair: settle every value except the final sum.
@@ -728,13 +739,13 @@ class CarloTcfs112MathQ05(CarloSlide):
             run_time=0.48,
         )
         self.play(FadeIn(surviving_pair), run_time=0.52)
-        self.play(Write(alpha_decode), run_time=0.68)
-        self.play(Write(beta_decode), run_time=0.68)
+        self.play(FadeIn(alpha_decode), run_time=0.68)
+        self.play(FadeIn(beta_decode), run_time=0.68)
 
         # Beat 21 hold_parameter_sum: continue at a settled semantic boundary.
         self.next_beat("hold_parameter_sum")
         self.play(FadeIn(preanswer[0]), run_time=0.42)
-        self.play(Write(preanswer[1]), run_time=0.55)
+        self.play(FadeIn(preanswer[1]), run_time=0.55)
         self.play(FadeIn(preanswer[2]), run_time=0.42)
         self.wait(0.72)
 
@@ -766,13 +777,13 @@ class CarloTcfs112MathQ05(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(surviving_pair), FadeOut(decode_rows), FadeOut(preanswer), run_time=0.42)
-        self.play(GrowFromCenter(answer), Create(answer_box), Create(final_divider), run_time=0.70)
-        self.play(Write(exact_factorization), FadeIn(root_check), run_time=0.70)
+        self.play(FadeIn(answer), FadeIn(answer_box), Create(final_divider), run_time=0.70)
+        self.play(FadeIn(exact_factorization), FadeIn(root_check), run_time=0.70)
 
         # Beat 23 verify_parameter_in_original_equations: continue at a settled semantic boundary.
         self.next_beat("verify_parameter_in_original_equations")
-        self.play(Write(direct_checks[0]), run_time=0.58)
-        self.play(Write(direct_checks[1]), run_time=0.58)
+        self.play(FadeIn(direct_checks[0]), run_time=0.58)
+        self.play(FadeIn(direct_checks[1]), run_time=0.58)
         self.play(FadeIn(direct_checks[2]), run_time=0.40)
-        self.play(FadeIn(final_answer), Create(final_answer_box), run_time=0.70)
+        self.play(FadeIn(final_answer), FadeIn(final_answer_box), run_time=0.70)
         self.wait(0.48)

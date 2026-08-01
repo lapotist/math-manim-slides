@@ -31,11 +31,9 @@ from manim import (
     MathTex,
     Polygon,
     Rectangle,
-    ReplacementTransform,
     SurroundingRectangle,
-    TransformFromCopy,
+    Succession,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -199,14 +197,14 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         target_note.move_to([3.30, -0.75, 0])
 
         self.play(
-            ReplacementTransform(opening, bisector_title),
+            Succession(FadeOut(opening), FadeIn(bisector_title)),
             FadeOut(question),
             Create(line_ad),
             FadeIn(dot_d), FadeIn(name_d), FadeIn(ad_tag),
             run_time=0.9,
         )
         self.play(Create(angle_bad), Create(angle_dac), run_time=0.7)
-        self.play(Write(equal_angles), FadeIn(target_note), run_time=0.7)
+        self.play(FadeIn(equal_angles), FadeIn(target_note), run_time=0.7)
         self.wait(0.30)
 
         # Beat 03: the circle creates a second intersection on the same ray.
@@ -221,7 +219,7 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         arc_prompt.move_to([3.30, -1.25, 0])
 
         self.play(
-            ReplacementTransform(bisector_title, circle_title),
+            Succession(FadeOut(bisector_title), FadeIn(circle_title)),
             FadeOut(equal_angles), FadeOut(target_note),
             Create(circumcircle),
             run_time=1.0,
@@ -253,7 +251,7 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         hidden_title.move_to(circle_title)
 
         self.play(
-            ReplacementTransform(circle_title, hidden_title),
+            Succession(FadeOut(circle_title), FadeIn(hidden_title)),
             FadeOut(collinear), FadeOut(arc_prompt),
             run_time=0.5,
         )
@@ -311,17 +309,17 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         first_pairing.next_to(first_proof, DOWN, buff=0.28)
 
         self.play(
-            ReplacementTransform(hidden_title, first_proof_title),
+            Succession(FadeOut(hidden_title), FadeIn(first_proof_title)),
             FadeOut(candidates),
             triangle_ced.animate.set_opacity(0.15),
             run_time=0.6,
         )
-        self.play(Create(angle_cae), Write(first_angle_eq), run_time=0.7)
+        self.play(Create(angle_cae), FadeIn(first_angle_eq), run_time=0.7)
         self.play(Create(arc_ac), run_time=0.7)
         # Smaller step: record_first_similarity_ratio.
         self.next_beat("record_first_similarity_ratio")
-        self.play(Create(angle_abd), Create(angle_aec), Write(second_angle_eq), run_time=0.8)
-        self.play(Write(first_similarity), FadeIn(first_pairing), run_time=0.75)
+        self.play(Create(angle_abd), Create(angle_aec), FadeIn(second_angle_eq), run_time=0.8)
+        self.play(FadeIn(first_similarity), FadeIn(first_pairing), run_time=0.75)
         self.wait(0.30)
 
         # Beat 06: second AA proof uses arc BE and the vertical angles at D.
@@ -366,16 +364,16 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         second_pairing.next_to(second_proof, DOWN, buff=0.28)
 
         self.play(
-            ReplacementTransform(first_proof_title, second_proof_title),
+            Succession(FadeOut(first_proof_title), FadeIn(second_proof_title)),
             FadeOut(first_proof), FadeOut(first_pairing),
             FadeOut(arc_ac), FadeOut(angle_cae), FadeOut(angle_abd), FadeOut(angle_aec),
             triangle_ced.animate.set_stroke(opacity=1).set_fill(opacity=0.10),
             triangle_aec.animate.set_opacity(0.15),
             run_time=0.75,
         )
-        self.play(Create(arc_be), Create(angle_bce), Write(second_angle_one), run_time=0.8)
-        self.play(Create(angle_adb), Create(angle_cde), Write(second_angle_two), run_time=0.8)
-        self.play(Write(second_similarity), FadeIn(second_pairing), run_time=0.7)
+        self.play(Create(arc_be), Create(angle_bce), FadeIn(second_angle_one), run_time=0.8)
+        self.play(Create(angle_adb), Create(angle_cde), FadeIn(second_angle_two), run_time=0.8)
+        self.play(FadeIn(second_similarity), FadeIn(second_pairing), run_time=0.7)
         self.wait(0.30)
 
         # Beat 07: redraw the three similar shapes in one common orientation.
@@ -399,19 +397,18 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         )
 
         self.play(
-            TransformFromCopy(triangle_abd, mini_abd[0]),
-            TransformFromCopy(triangle_ced, mini_ced[0]),
-            TransformFromCopy(triangle_aec, mini_aec[0]),
-            run_time=1.0,
-        )
-        self.play(
-            FadeIn(VGroup(*mini_abd[1:])),
-            FadeIn(VGroup(*mini_ced[1:])),
-            FadeIn(VGroup(*mini_aec[1:])),
-            Write(similarity_chain),
-            FadeOut(geometry_group),
-            FadeOut(second_proof_title), FadeOut(second_proof), FadeOut(second_pairing),
-            run_time=1.0,
+            Succession(
+                FadeOut(
+                    VGroup(
+                        geometry_group,
+                        second_proof_title,
+                        second_proof,
+                        second_pairing,
+                    )
+                ),
+                FadeIn(VGroup(mini_abd, mini_ced, mini_aec, similarity_chain)),
+            ),
+            run_time=1.2,
         )
         self.play(FadeIn(product_prompt), run_time=0.5)
         self.wait(0.30)
@@ -437,8 +434,8 @@ class Tcfs115Part2Q02Slide(CarloSlide):
             Indicate(mini_abd, color=POINT), Indicate(mini_aec, color=BLUE),
             run_time=0.8,
         )
-        self.play(Write(first_ratio), run_time=0.65)
-        self.play(TransformFromCopy(first_ratio, first_receipt), FadeIn(receipt_one_note), run_time=0.8)
+        self.play(FadeIn(first_ratio), run_time=0.65)
+        self.play(FadeIn(first_receipt), FadeIn(receipt_one_note), run_time=0.8)
         self.wait(0.30)
 
         # Beat 09: the second correspondence yields BD*DC.
@@ -464,8 +461,8 @@ class Tcfs115Part2Q02Slide(CarloSlide):
             Indicate(mini_abd, color=POINT), Indicate(mini_ced, color=REGION),
             run_time=0.8,
         )
-        self.play(Write(second_ratio), run_time=0.65)
-        self.play(TransformFromCopy(second_ratio, second_receipt), FadeIn(receipt_two_note), run_time=0.8)
+        self.play(FadeIn(second_ratio), run_time=0.65)
+        self.play(FadeIn(second_receipt), FadeIn(receipt_two_note), run_time=0.8)
         self.wait(0.30)
 
         # Beat 10: the collinear order is the bridge between both receipts.
@@ -504,18 +501,20 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         self.play(
             FadeOut(VGroup(mini_abd, mini_ced, mini_aec, similarity_chain)),
             FadeOut(second_ratio), FadeOut(receipt_two_note),
-            ReplacementTransform(first_receipt, receipt_one_small),
-            ReplacementTransform(second_receipt, receipt_two_small),
+            Succession(
+                FadeOut(VGroup(first_receipt, second_receipt)),
+                FadeIn(VGroup(receipt_one_small, receipt_two_small)),
+            ),
             FadeIn(geometry_group),
             FadeIn(split_title),
             run_time=0.9,
         )
-        self.play(Indicate(line_ad, color=BLUE), Indicate(line_de, color=REGION), Write(split_equation))
-        self.play(TransformFromCopy(receipt_one_small[1], expansion_one), run_time=0.7)
+        self.play(Indicate(line_ad, color=BLUE), Indicate(line_de, color=REGION), FadeIn(split_equation))
+        self.play(FadeIn(expansion_one), run_time=0.7)
         # Smaller step: combine_ae_parts.
         self.next_beat("combine_ae_parts")
-        self.play(Write(expansion_two), run_time=0.6)
-        self.play(Write(expansion_three), Create(split_highlight), run_time=0.75)
+        self.play(FadeIn(expansion_two), run_time=0.6)
+        self.play(FadeIn(expansion_three), Create(split_highlight), run_time=0.75)
         self.wait(0.30)
 
         # Beat 11: substitute the second receipt, then move the same product.
@@ -535,14 +534,24 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         squared.set_color_by_tex(r"BD\cdot DC", REGION)
 
         self.play(
-            FadeOut(split_title), FadeOut(split_equation),
-            FadeOut(expansion_one), FadeOut(expansion_two),
-            FadeOut(expansion_three), FadeOut(split_highlight),
-            TransformFromCopy(receipt_two_small[1], substituted),
-            FadeOut(receipt_one_small), FadeOut(receipt_two_small),
+            Succession(
+                FadeOut(
+                    VGroup(
+                        split_title,
+                        split_equation,
+                        expansion_one,
+                        expansion_two,
+                        expansion_three,
+                        split_highlight,
+                        receipt_one_small,
+                        receipt_two_small,
+                    )
+                ),
+                FadeIn(substituted),
+            ),
             run_time=0.9,
         )
-        self.play(Write(squared), run_time=0.8)
+        self.play(FadeIn(squared), run_time=0.8)
         self.wait(0.30)
 
         # Beat 12: length positivity selects one root.
@@ -566,10 +575,10 @@ class Tcfs115Part2Q02Slide(CarloSlide):
 
         self.play(
             FadeOut(substituted),
-            ReplacementTransform(ad_tag, positive),
+            Succession(FadeOut(ad_tag), FadeIn(positive)),
             Indicate(line_ad, color=BLUE),
         )
-        self.play(ReplacementTransform(squared, final_formula), run_time=0.85)
+        self.play(Succession(FadeOut(squared), FadeIn(final_formula)), run_time=0.85)
         self.play(Create(formula_frame), FadeIn(root_note), run_time=0.65)
         self.wait(0.30)
 
@@ -600,9 +609,10 @@ class Tcfs115Part2Q02Slide(CarloSlide):
         )
 
         self.play(
-            FadeOut(final_formula), FadeOut(formula_frame), FadeOut(root_note),
-            FadeOut(positive),
-            FadeIn(recap_one), FadeIn(recap_two),
+            Succession(
+                FadeOut(VGroup(final_formula, formula_frame, root_note, positive)),
+                FadeIn(VGroup(recap_one, recap_two)),
+            ),
             run_time=0.8,
         )
         self.play(FadeIn(recap_bridge), Create(recap_arrows), run_time=0.65)

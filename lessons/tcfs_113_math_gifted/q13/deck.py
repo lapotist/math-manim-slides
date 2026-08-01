@@ -32,7 +32,6 @@ from manim import (
     Succession,
     SurroundingRectangle,
     VGroup,
-    Write,
     rate_functions,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
@@ -251,8 +250,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         gap_note.move_to([-3.27, -1.70, 0])
 
         self.add(heading, source, divider)
-        self.play(FadeIn(stage_title), Write(definition), run_time=0.85)
-        self.play(Write(target), FadeIn(domain), run_time=0.75)
+        self.play(FadeIn(stage_title), FadeIn(definition), run_time=0.85)
+        self.play(FadeIn(target), FadeIn(domain), run_time=0.75)
         self.play(FadeIn(sample_caption), Create(rail), run_time=0.70)
 
         self.next_beat("place_sample_value")
@@ -341,13 +340,13 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.transition_title(self, stage_title, next_title)
         stage_title = next_title
         self.play(FadeOut(corridor_note), run_time=0.32)
-        self.play(Write(first_line), run_time=0.55)
-        self.play(Write(first_expand), run_time=0.55)
-        self.play(Write(first_positive), run_time=0.65)
+        self.play(FadeIn(first_line), run_time=0.55)
+        self.play(FadeIn(first_expand), run_time=0.55)
+        self.play(FadeIn(first_positive), run_time=0.65)
 
         self.next_beat("state_first_floor_bound")
         self.play(
-            Write(first_bound),
+            FadeIn(first_bound),
             value_dot.animate.move_to([-4.18, self.RAIL_Y, 0]),
             symbolic_value.animate.move_to([-4.18, self.RAIL_Y + 0.72, 0]),
             run_time=0.72,
@@ -419,8 +418,8 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.play(FadeIn(zero_open), GrowFromCenter(seventeen_dot), FadeIn(sign_labels), run_time=0.65)
 
         self.next_beat("classify_switch_ranges")
-        self.play(Write(middle_identity), run_time=0.75)
-        self.play(LaggedStart(*(Write(row) for row in middle_cases), lag_ratio=0.22), run_time=1.10)
+        self.play(FadeIn(middle_identity), run_time=0.75)
+        self.play(LaggedStart(*(FadeIn(row) for row in middle_cases), lag_ratio=0.22), run_time=1.10)
         self.play(FadeIn(domain_note), Indicate(zero_open, color=CORAL), run_time=0.65)
         self.wait(0.40)
 
@@ -465,8 +464,8 @@ class CarloTcfs113MathQ13(CarloSlide):
             FadeIn(symbolic_value),
             run_time=0.82,
         )
-        self.play(Write(left_case), run_time=0.45)
-        self.play(Write(left_trap), Create(left_gap), run_time=0.72)
+        self.play(FadeIn(left_case), run_time=0.45)
+        self.play(FadeIn(left_trap), Create(left_gap), run_time=0.72)
         self.play(FadeIn(left_impossible), Indicate(value_dot, color=CORAL), run_time=0.68)
         self.wait(0.38)
 
@@ -510,11 +509,11 @@ class CarloTcfs113MathQ13(CarloSlide):
             run_time=0.42,
         )
         self.play(LaggedStart(*(FadeIn(item) for item in positive_tiles), lag_ratio=0.12), run_time=0.85)
-        self.play(FadeIn(positive_caption), Write(upper_identity), run_time=0.70)
+        self.play(FadeIn(positive_caption), FadeIn(upper_identity), run_time=0.70)
 
         self.next_beat("state_third_ceiling")
-        self.play(Write(upper_positive), run_time=0.55)
-        self.play(Write(upper_bound), run_time=0.55)
+        self.play(FadeIn(upper_positive), run_time=0.55)
+        self.play(FadeIn(upper_bound), run_time=0.55)
         self.wait(0.38)
 
         # Beat 08 exclude_right_range: trap every a above 17 in the next cube gap.
@@ -551,10 +550,10 @@ class CarloTcfs113MathQ13(CarloSlide):
             FadeIn(symbolic_value),
             run_time=0.65,
         )
-        self.play(Write(right_case), run_time=0.45)
+        self.play(FadeIn(right_case), run_time=0.45)
 
         self.next_beat("trap_right_range")
-        self.play(Write(right_trap), Create(right_gap), run_time=0.72)
+        self.play(FadeIn(right_trap), Create(right_gap), run_time=0.72)
         self.play(FadeIn(right_impossible), Indicate(value_dot, color=CORAL), run_time=0.65)
         self.wait(0.38)
 
@@ -638,13 +637,13 @@ class CarloTcfs113MathQ13(CarloSlide):
             FadeOut(case_rows),
             run_time=0.42,
         )
-        self.play(Write(boundary_a), run_time=0.42)
-        self.play(Write(difference_zero), run_time=0.72)
-        self.play(Write(exact_cube), run_time=0.60)
+        self.play(FadeIn(boundary_a), run_time=0.42)
+        self.play(FadeIn(difference_zero), run_time=0.72)
+        self.play(FadeIn(exact_cube), run_time=0.60)
 
         self.next_beat("match_cube_root")
-        self.play(Write(equation_match), run_time=0.60)
-        self.play(Write(root_match), run_time=0.52)
+        self.play(FadeIn(equation_match), run_time=0.60)
+        self.play(FadeIn(root_match), run_time=0.52)
         self.play(FadeIn(last_question), run_time=0.52)
         self.wait(0.60)
 
@@ -677,7 +676,7 @@ class CarloTcfs113MathQ13(CarloSlide):
         self.play(FadeIn(landing_note), Indicate(final_dot, color=POINT), run_time=0.62)
 
         self.next_beat("reveal_ordered_pair")
-        self.play(Write(b_result), run_time=0.45)
-        self.play(FadeIn(answer_box), Write(final_answer), run_time=0.72)
+        self.play(FadeIn(b_result), run_time=0.45)
+        self.play(FadeIn(answer_box), FadeIn(final_answer), run_time=0.72)
         self.play(FadeIn(uniqueness), Circumscribe(final_answer, color=POINT), run_time=0.72)
         self.wait(0.45)

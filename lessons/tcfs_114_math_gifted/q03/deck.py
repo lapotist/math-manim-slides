@@ -31,14 +31,12 @@ from manim import (
     Line,
     MathTex,
     Polygon,
-    ReplacementTransform,
     RightAngle,
     Succession,
     SurroundingRectangle,
     TransformFromCopy,
     VGroup,
     ValueTracker,
-    Write,
     rate_functions,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
@@ -362,7 +360,7 @@ class CarloTcfs114MathQ03(CarloSlide):
 
         self.next_beat("confirm_scale_invariance")
         self.play(FadeIn(scale_rows), run_time=0.65)
-        self.play(Write(unchanged), run_time=0.75)
+        self.play(FadeIn(unchanged), run_time=0.75)
 
         dimension_start = project((-1.0, -1.0, -1.0)) + DOWN * 0.23
         dimension_end = project((1.0, -1.0, -1.0)) + DOWN * 0.23
@@ -554,13 +552,13 @@ class CarloTcfs114MathQ03(CarloSlide):
         )
 
         self.next_beat("derive_square_base_area")
-        self.play(Write(length_equation), run_time=0.75)
+        self.play(FadeIn(length_equation), run_time=0.75)
         self.play(
-            ReplacementTransform(side_d, side_root),
-            Write(side_equation),
+            Succession(FadeOut(side_d), FadeIn(side_root)),
+            FadeIn(side_equation),
             run_time=0.65,
         )
-        self.play(Write(area_equation), Create(area_box), run_time=0.8)
+        self.play(FadeIn(area_equation), Create(area_box), run_time=0.8)
         self.wait(0.3)
 
         # Beat 07: return to 3D and calculate only the upper pyramid.
@@ -574,7 +572,7 @@ class CarloTcfs114MathQ03(CarloSlide):
 
         self.play(
             Succession(FadeOut(panel_title), FadeIn(one_title)),
-            ReplacementTransform(area_equation, base_badge),
+            Succession(FadeOut(area_equation), FadeIn(base_badge)),
             FadeOut(area_box),
             FadeOut(length_equation),
             FadeOut(side_equation),
@@ -639,14 +637,14 @@ class CarloTcfs114MathQ03(CarloSlide):
         self.play(FadeIn(upper_faces), Create(upper_height), FadeIn(upper_height_one))
 
         self.next_beat("calculate_upper_pyramid_volume")
-        self.play(Write(half_equation[0:4]), run_time=0.55)
+        self.play(FadeIn(half_equation[0:4]), run_time=0.55)
         self.play(
-            TransformFromCopy(base_badge[2], half_equation[4]),
-            Write(half_equation[5]),
-            TransformFromCopy(upper_height_one, half_equation[6]),
+            FadeIn(half_equation[4]),
+            FadeIn(half_equation[5]),
+            FadeIn(half_equation[6]),
             run_time=0.7,
         )
-        self.play(Write(half_equation[7:9]), run_time=0.55)
+        self.play(FadeIn(half_equation[7:9]), run_time=0.55)
         self.wait(0.3)
 
         # Beat 08: reflect the first pyramid before multiplying by two.
@@ -697,14 +695,14 @@ class CarloTcfs114MathQ03(CarloSlide):
         self.play(
             TransformFromCopy(upper_faces, lower_faces),
             TransformFromCopy(upper_height, lower_height),
-            TransformFromCopy(upper_height_one, lower_height_one),
+            FadeIn(lower_height_one),
             lower_edges.animate.set_opacity(1.0),
             bottom_dot.animate.set_opacity(1.0),
             run_time=1.45,
             rate_func=rate_functions.ease_in_out_sine,
         )
-        self.play(Write(equal_halves), run_time=0.65)
-        self.play(Write(octa_volume), run_time=0.75)
+        self.play(FadeIn(equal_halves), run_time=0.65)
+        self.play(FadeIn(octa_volume), run_time=0.75)
         self.wait(0.3)
 
         # Beat 09: restore the outer cube and compute its volume separately.
@@ -751,9 +749,9 @@ class CarloTcfs114MathQ03(CarloSlide):
         panel_title = cube_title
         self.play(Create(cube_dimension), FadeIn(cube_side_two), run_time=0.65)
         self.play(
-            Write(cube_volume[0:2]),
-            TransformFromCopy(cube_side_two, cube_volume[2]),
-            Write(cube_volume[3:5]),
+            FadeIn(cube_volume[0:2]),
+            FadeIn(cube_volume[2]),
+            FadeIn(cube_volume[3:5]),
             run_time=0.8,
         )
         self.play(FadeIn(ready_note), run_time=0.45)
@@ -795,16 +793,16 @@ class CarloTcfs114MathQ03(CarloSlide):
             run_time=0.55,
         )
         panel_title = ratio_title
-        self.play(Write(ratio[0:2]), run_time=0.45)
+        self.play(FadeIn(ratio[0:2]), run_time=0.45)
 
         self.next_beat("substitute_visible_volumes")
         self.play(
-            TransformFromCopy(octa_volume[6], ratio[2]),
-            Write(ratio[3]),
-            TransformFromCopy(cube_volume[4], ratio[4]),
+            FadeIn(ratio[2]),
+            FadeIn(ratio[3]),
+            FadeIn(ratio[4]),
             run_time=0.75,
         )
-        self.play(Write(ratio[5:7]), Create(answer_box), run_time=0.75)
+        self.play(FadeIn(ratio[5:7]), Create(answer_box), run_time=0.75)
 
         self.next_beat("consolidate_volume_ratio")
         self.play(FadeIn(summary), run_time=0.55)

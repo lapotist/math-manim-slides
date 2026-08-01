@@ -30,11 +30,9 @@ from manim import (
     Line,
     MathTex,
     Rectangle,
-    ReplacementTransform,
+    Succession,
     SurroundingRectangle,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -314,7 +312,7 @@ class Tcfs115Q10Slide(CarloSlide):
         ).next_to(added_row, DOWN, buff=0.28)
 
         self.play(
-            ReplacementTransform(title_1, title_2),
+            Succession(FadeOut(title_1), FadeIn(title_2)),
             FadeOut(VGroup(other_rows, prompt_1)),
             first_row.animate.move_to(DOWN * 0.05),
             first_number.animate.next_to(first_row.copy().move_to(DOWN * 0.05), LEFT, buff=0.42),
@@ -322,7 +320,7 @@ class Tcfs115Q10Slide(CarloSlide):
             FadeIn(model_note),
             run_time=0.9,
         )
-        self.play(Write(total_formula), FadeIn(positive), run_time=0.8)
+        self.play(FadeIn(total_formula), FadeIn(positive), run_time=0.8)
         for term, x_position in zip(add_terms, (-3.45, 0.0, 3.45), strict=True):
             term.move_to([x_position, -0.68, 0])
         add_chips = VGroup(
@@ -366,7 +364,7 @@ class Tcfs115Q10Slide(CarloSlide):
         # Beat 03 write_shared_total: settled semantic step.
         self.next_slide()
         self.play(
-            TransformFromCopy(VGroup(first_row, add_terms, total_formula[0]), added_row),
+            FadeIn(added_row),
             run_time=1.1,
         )
         self.play(Create(k_box), FadeIn(completion_note), run_time=0.65)
@@ -415,7 +413,7 @@ class Tcfs115Q10Slide(CarloSlide):
             completion_note,
         )
         self.play(
-            ReplacementTransform(title_2, title_3),
+            Succession(FadeOut(title_2), FadeIn(title_3)),
             FadeOut(beat_2_context),
             added_row.animate.scale(0.78).move_to([2.45, 1.78, 0]),
             FadeIn(summary_header),
@@ -423,12 +421,16 @@ class Tcfs115Q10Slide(CarloSlide):
             FadeIn(k_guard),
             run_time=0.85,
         )
-        self.play(FadeIn(simplify_note), ReplacementTransform(added_row, coefficient_b), run_time=0.9)
+        self.play(
+            FadeIn(simplify_note),
+            Succession(FadeOut(added_row), FadeIn(coefficient_b)),
+            run_time=0.9,
+        )
         self.play(FadeIn(divide_note_b), run_time=0.45)
         # Beat 05 finish_b_normalization: settled semantic step.
         self.next_slide()
-        self.play(Write(normalized_b), run_time=0.9)
-        self.play(TransformFromCopy(normalized_b, b_summary), run_time=0.65)
+        self.play(FadeIn(normalized_b), run_time=0.9)
+        self.play(FadeIn(b_summary), run_time=0.65)
         self.play(
             FadeOut(VGroup(simplify_note, coefficient_b, divide_note_b, normalized_b)),
             FadeIn(b_mini),
@@ -473,18 +475,18 @@ class Tcfs115Q10Slide(CarloSlide):
         )
 
         self.play(
-            ReplacementTransform(title_3, title_4),
+            Succession(FadeOut(title_3), FadeIn(title_4)),
             FadeOut(VGroup(b_mini, open_note)),
             b_summary.animate.set_opacity(0.38),
             FadeIn(raw_c),
             run_time=0.7,
         )
         self.play(FadeIn(action_c), run_time=0.55)
-        self.play(Write(coefficient_c), run_time=0.85)
+        self.play(FadeIn(coefficient_c), run_time=0.85)
         # Beat 07 finish_c_normalization: settled semantic step.
         self.next_slide()
-        self.play(Write(normalized_c), run_time=0.85)
-        self.play(TransformFromCopy(normalized_c, c_summary), run_time=0.65)
+        self.play(FadeIn(normalized_c), run_time=0.85)
+        self.play(FadeIn(c_summary), run_time=0.65)
         self.play(
             FadeOut(VGroup(raw_c, action_c, coefficient_c, normalized_c)),
             FadeIn(c_mini),
@@ -529,18 +531,18 @@ class Tcfs115Q10Slide(CarloSlide):
         )
 
         self.play(
-            ReplacementTransform(title_4, title_5),
+            Succession(FadeOut(title_4), FadeIn(title_5)),
             FadeOut(c_mini),
             VGroup(b_summary, c_summary).animate.set_opacity(0.38),
             FadeIn(raw_d),
             run_time=0.7,
         )
         self.play(FadeIn(action_d), run_time=0.55)
-        self.play(Write(coefficient_d), run_time=0.85)
+        self.play(FadeIn(coefficient_d), run_time=0.85)
         # Beat 09 finish_d_normalization: settled semantic step.
         self.next_slide()
-        self.play(Write(normalized_d), run_time=0.85)
-        self.play(TransformFromCopy(normalized_d, d_summary), run_time=0.65)
+        self.play(FadeIn(normalized_d), run_time=0.85)
+        self.play(FadeIn(d_summary), run_time=0.65)
         self.play(
             FadeOut(VGroup(raw_d, action_d, coefficient_d, normalized_d)),
             FadeIn(d_mini),
@@ -591,18 +593,18 @@ class Tcfs115Q10Slide(CarloSlide):
         )
 
         self.play(
-            ReplacementTransform(title_5, title_6),
+            Succession(FadeOut(title_5), FadeIn(title_6)),
             FadeOut(d_mini),
             VGroup(b_summary, c_summary, d_summary).animate.set_opacity(0.38),
             FadeIn(raw_a),
             run_time=0.7,
         )
         self.play(FadeIn(action_a), run_time=0.55)
-        self.play(Write(coefficient_a), run_time=0.85)
+        self.play(FadeIn(coefficient_a), run_time=0.85)
         # Beat 11 finish_a_normalization: settled semantic step.
         self.next_slide()
-        self.play(Write(normalized_a), run_time=0.85)
-        self.play(TransformFromCopy(normalized_a, a_summary), run_time=0.65)
+        self.play(FadeIn(normalized_a), run_time=0.85)
+        self.play(FadeIn(a_summary), run_time=0.65)
         self.play(
             FadeOut(VGroup(raw_a, action_a, coefficient_a, normalized_a)),
             FadeIn(a_mini),
@@ -666,7 +668,7 @@ class Tcfs115Q10Slide(CarloSlide):
         ).move_to(DOWN * 2.64)
 
         self.play(
-            ReplacementTransform(title_6, title_7),
+            Succession(FadeOut(title_6), FadeIn(title_7)),
             FadeOut(VGroup(summary_header, divider, k_guard, a_mini)),
             summaries.animate.arrange(RIGHT, buff=0.48).scale(0.72).move_to(UP * 2.05),
             run_time=0.85,
@@ -677,8 +679,7 @@ class Tcfs115Q10Slide(CarloSlide):
                 *(
                     AnimationGroup(
                         FadeIn(VGroup(*band[0:5], band[7])),
-                        TransformFromCopy(band[3], band[5]),
-                        TransformFromCopy(band[4], band[6]),
+                        FadeIn(VGroup(band[5], band[6])),
                     )
                     for band in bands[:2]
                 ),
@@ -694,8 +695,7 @@ class Tcfs115Q10Slide(CarloSlide):
                 *(
                     AnimationGroup(
                         FadeIn(VGroup(*band[0:5], band[7])),
-                        TransformFromCopy(band[3], band[5]),
-                        TransformFromCopy(band[4], band[6]),
+                        FadeIn(VGroup(band[5], band[6])),
                     )
                     for band in bands[2:]
                 ),
@@ -751,7 +751,7 @@ class Tcfs115Q10Slide(CarloSlide):
         chain_8[4:7].set_color(D_COLOR)
 
         self.play(
-            ReplacementTransform(title_7, title_8),
+            Succession(FadeOut(title_7), FadeIn(title_8)),
             FadeOut(VGroup(coordinate_note, prompt_7)),
             a_band.animate.set_opacity(0.13),
             c_band.animate.set_opacity(0.13),
@@ -762,8 +762,8 @@ class Tcfs115Q10Slide(CarloSlide):
             Indicate(VGroup(d_band[3], d_band[5]), color=D_COLOR),
             run_time=0.75,
         )
-        self.play(Write(compare_8), FadeIn(gap_8), FadeIn(gap_label_8), run_time=0.9)
-        self.play(Write(chain_8), run_time=0.85)
+        self.play(FadeIn(compare_8), FadeIn(gap_8), FadeIn(gap_label_8), run_time=0.9)
+        self.play(FadeIn(chain_8), run_time=0.85)
         self.wait(0.3)
 
         # Beat 15 separate_d_a: settled semantic step.
@@ -814,7 +814,7 @@ class Tcfs115Q10Slide(CarloSlide):
         chain_9[6:9].set_color(A_COLOR)
 
         self.play(
-            ReplacementTransform(title_8, title_9),
+            Succession(FadeOut(title_8), FadeIn(title_9)),
             FadeOut(VGroup(compare_8, chain_8)),
             b_band.animate.set_opacity(0.13),
             d_band.animate.set_opacity(1),
@@ -828,8 +828,8 @@ class Tcfs115Q10Slide(CarloSlide):
             Indicate(VGroup(a_band[3], a_band[5]), color=A_COLOR),
             run_time=0.75,
         )
-        self.play(Write(compare_9), FadeIn(gap_9), FadeIn(gap_label_9), run_time=0.9)
-        self.play(Write(chain_9), run_time=0.85)
+        self.play(FadeIn(compare_9), FadeIn(gap_9), FadeIn(gap_label_9), run_time=0.9)
+        self.play(FadeIn(chain_9), run_time=0.85)
         self.wait(0.3)
 
         # Beat 16 separate_a_c: settled semantic step.
@@ -890,7 +890,7 @@ class Tcfs115Q10Slide(CarloSlide):
         ascending[6].set_color(C_COLOR)
 
         self.play(
-            ReplacementTransform(title_9, title_10),
+            Succession(FadeOut(title_9), FadeIn(title_10)),
             FadeOut(VGroup(compare_9, chain_9)),
             d_band.animate.set_opacity(0.13),
             a_band.animate.set_opacity(1),
@@ -904,12 +904,12 @@ class Tcfs115Q10Slide(CarloSlide):
             Indicate(VGroup(c_band[3], c_band[5]), color=C_COLOR),
             run_time=0.75,
         )
-        self.play(Write(compare_10), FadeIn(gap_10), FadeIn(gap_label_10), run_time=0.9)
+        self.play(FadeIn(compare_10), FadeIn(gap_10), FadeIn(gap_label_10), run_time=0.9)
         # Beat 17 compare_a_and_c: settled semantic step.
         self.next_slide()
-        self.play(Write(chain_10), run_time=0.8)
+        self.play(FadeIn(chain_10), run_time=0.8)
         self.play(
-            ReplacementTransform(chain_10, ascending),
+            Succession(FadeOut(chain_10), FadeIn(ascending)),
             bands.animate.set_opacity(1),
             run_time=0.75,
         )
@@ -945,22 +945,13 @@ class Tcfs115Q10Slide(CarloSlide):
         final_box = SurroundingRectangle(final_answer, color=POINT, buff=0.22, stroke_width=3)
 
         self.play(
-            ReplacementTransform(title_10, title_11),
+            Succession(FadeOut(title_10), FadeIn(title_11)),
             FadeOut(compare_10),
             FadeOut(VGroup(gap_label_8, gap_label_9, gap_label_10)),
             ascending.animate.move_to(DOWN * 2.30),
             FadeIn(direction_note),
             run_time=0.7,
         )
-        self.play(
-            TransformFromCopy(ascending[6], final_answer[0]),
-            FadeIn(final_answer[1]),
-            TransformFromCopy(ascending[4], final_answer[2]),
-            FadeIn(final_answer[3]),
-            TransformFromCopy(ascending[2], final_answer[4]),
-            FadeIn(final_answer[5]),
-            TransformFromCopy(ascending[0], final_answer[6]),
-            run_time=1.2,
-        )
+        self.play(FadeIn(final_answer), run_time=1.0)
         self.play(Create(final_box), FadeIn(recap), Circumscribe(final_answer, color=POINT), run_time=0.9)
         self.wait(0.4)

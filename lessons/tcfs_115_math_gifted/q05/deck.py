@@ -27,6 +27,7 @@ from manim import (
     NumberLine,
     Rectangle,
     ReplacementTransform,
+    Succession,
     SurroundingRectangle,
     Transform,
     TransformFromCopy,
@@ -181,7 +182,7 @@ class Tcfs115Q05Slide(CarloSlide):
             FadeOut(invariant),
             FadeOut(ratio_items),
             FadeIn(model_title),
-            TransformFromCopy(ratio_items[0], first_ratio),
+            FadeIn(first_ratio),
             run_time=0.9,
         )
         self.play(FadeIn(bar_model), Create(ratio_brace), FadeIn(model_note), run_time=0.9)
@@ -195,20 +196,21 @@ class Tcfs115Q05Slide(CarloSlide):
         model_one_again = self.scale_bar(1, "a₁", "2")
         self.wait(0.40)
         self.play(
-            Transform(bar_model, model_two),
+            Succession(FadeOut(bar_model), FadeIn(model_two)),
             rate_func=rate_functions.ease_in_out_sine,
             run_time=1.15,
         )
         self.play(
-            Transform(bar_model, model_three),
+            Succession(FadeOut(model_two), FadeIn(model_three)),
             rate_func=rate_functions.ease_in_out_sine,
             run_time=1.15,
         )
         self.play(
-            Transform(bar_model, model_one_again),
+            Succession(FadeOut(model_three), FadeIn(model_one_again)),
             rate_func=rate_functions.ease_in_out_sine,
             run_time=1.15,
         )
+        bar_model = model_one_again
         self.wait(0.40)
 
         # Beat 04: place the first and nth ratios together, leaving a real gap.
@@ -235,13 +237,14 @@ class Tcfs115Q05Slide(CarloSlide):
         pending.move_to([4.35, -1.40, 0])
 
         self.play(
-            ReplacementTransform(model_title, pose_title),
+            Succession(FadeOut(model_title), FadeIn(pose_title)),
             FadeOut(first_ratio),
             FadeOut(ratio_brace),
-            Transform(bar_model, first_bar),
+            Succession(FadeOut(bar_model), FadeIn(first_bar)),
             FadeOut(model_note),
             run_time=0.8,
         )
+        bar_model = first_bar
         self.play(
             FadeIn(nth_bar, shift=DOWN * 0.15),
             FadeIn(first_tag),
@@ -249,9 +252,9 @@ class Tcfs115Q05Slide(CarloSlide):
             FadeIn(same_ratio),
             run_time=0.9,
         )
-        self.play(Write(question[0:2]), run_time=0.55)
+        self.play(FadeIn(question[0:2]), run_time=0.55)
         self.wait(0.35)
-        self.play(Write(question[2]), FadeIn(pending), run_time=0.65)
+        self.play(FadeIn(question[2]), FadeIn(pending), run_time=0.65)
         self.wait(0.30)
 
         # Beat 05: prove the scale relation without assuming signs.
@@ -314,14 +317,14 @@ class Tcfs115Q05Slide(CarloSlide):
             FadeIn(given),
             run_time=0.85,
         )
-        self.play(TransformFromCopy(given, cross), run_time=0.9)
-        self.play(Write(expanded), run_time=0.9)
+        self.play(FadeIn(cross), run_time=0.9)
+        self.play(FadeIn(expanded), run_time=0.9)
         self.play(Create(cancel_left), Create(cancel_right), run_time=0.6)
 
         # Beat 06: finish the cancellation only after the shared term is visible.
         self.next_beat("solve_scale_relation")
-        self.play(TransformFromCopy(expanded, reduced), run_time=0.75)
-        self.play(TransformFromCopy(reduced, nth_result), FadeIn(rigorous_note), run_time=0.8)
+        self.play(FadeIn(reduced), run_time=0.75)
+        self.play(FadeIn(nth_result), FadeIn(rigorous_note), run_time=0.8)
         self.wait(0.30)
 
         # Beat 06: collapse twenty variables to one free parameter.
@@ -353,7 +356,7 @@ class Tcfs115Q05Slide(CarloSlide):
         )
 
         self.play(FadeOut(algebra_context), FadeIn(sequence_title), run_time=0.7)
-        self.play(TransformFromCopy(nth_result, sequence_formula), run_time=0.8)
+        self.play(FadeIn(sequence_formula), run_time=0.8)
         self.play(
             LaggedStart(*(FadeIn(chip, shift=UP * 0.12) for chip in chips), lag_ratio=0.15),
             run_time=1.2,
@@ -384,7 +387,7 @@ class Tcfs115Q05Slide(CarloSlide):
             FadeIn(given_sum),
             run_time=0.7,
         )
-        self.play(TransformFromCopy(chips, coefficient_bound), run_time=0.9)
+        self.play(FadeIn(coefficient_bound), run_time=0.9)
         self.play(FadeOut(chips), FadeIn(sum_prompt), run_time=0.55)
         self.wait(0.30)
 
@@ -432,15 +435,15 @@ class Tcfs115Q05Slide(CarloSlide):
         self.play(
             LaggedStart(
                 *(
-                    TransformFromCopy(pair[-1], mini_twenty_ones[index])
+                    FadeIn(mini_twenty_ones[index])
                     for index, pair in enumerate(pairs)
                 ),
                 lag_ratio=0.07,
             ),
             run_time=1.25,
         )
-        self.play(TransformFromCopy(mini_twenty_ones, ten_twenty_one), run_time=0.8)
-        self.play(TransformFromCopy(ten_twenty_one, final_bound), FadeOut(pairs), run_time=0.8)
+        self.play(FadeIn(ten_twenty_one), run_time=0.8)
+        self.play(FadeIn(final_bound), FadeOut(pairs), run_time=0.8)
         self.wait(0.30)
 
         # Beat 10: preserve the strict inequality on a number line.
@@ -469,7 +472,7 @@ class Tcfs115Q05Slide(CarloSlide):
         self.play(
             FadeOut(ten_twenty_one),
             FadeOut(mini_twenty_ones),
-            ReplacementTransform(final_bound, divided_bound),
+            Succession(FadeOut(final_bound), FadeIn(divided_bound)),
             Create(number_line),
             run_time=1.0,
         )
@@ -514,8 +517,8 @@ class Tcfs115Q05Slide(CarloSlide):
             FadeIn(boundary_title),
             run_time=0.75,
         )
-        self.play(Write(test_nine), FadeIn(pass_label), run_time=0.75)
-        self.play(Write(test_ten), FadeIn(fail_label), Create(ten_strike), run_time=0.85)
+        self.play(FadeIn(test_nine), FadeIn(pass_label), run_time=0.75)
+        self.play(FadeIn(test_ten), FadeIn(fail_label), Create(ten_strike), run_time=0.85)
         self.wait(0.30)
 
         # Beat 12: reconnect every conclusion to its reason before the answer.

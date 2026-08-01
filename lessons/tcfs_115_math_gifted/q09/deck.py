@@ -29,16 +29,15 @@ from manim import (
     Dot,
     FadeIn,
     FadeOut,
-    FadeTransform,
     GrowFromCenter,
     Indicate,
     LaggedStart,
     Line,
     Polygon,
+    Succession,
     Transform,
     TransformFromCopy,
     VGroup,
-    Write,
     always_redraw,
     linear,
     smooth,
@@ -189,13 +188,12 @@ class Question9Slide(CarloSlide):
         explore_prompt = label("先別算，看看 P 怎麼動", 31, INK, "MEDIUM")
         explore_prompt.move_to([3.25, 1.05, 0])
 
+        self.play(FadeOut(VGroup(label_a, label_b, length_label)), run_time=0.3)
         self.play(
             Transform(segment_ab, final_segment),
             Transform(dot_a, final_dot_a),
             Transform(dot_b, final_dot_b),
-            Transform(label_a, final_label_a),
-            Transform(label_b, final_label_b),
-            Transform(length_label, final_length_label),
+            FadeIn(VGroup(final_label_a, final_label_b, final_length_label)),
             FadeIn(heading, shift=DOWN * 0.08),
             FadeIn(condition, shift=DOWN * 0.08),
             run_time=1.15,
@@ -272,7 +270,10 @@ class Question9Slide(CarloSlide):
 
         locus_question = label("P 的全部範圍，會是什麼形狀？", 31, INK, "BOLD")
         locus_question.move_to([3.25, 1.05, 0])
-        self.play(FadeTransform(explore_prompt, locus_question), run_time=0.7)
+        self.play(
+            Succession(FadeOut(explore_prompt), FadeIn(locus_question)),
+            run_time=0.7,
+        )
 
         # Beat 06 reveal_locus_outline: settled semantic step.
         self.next_slide()
@@ -280,7 +281,7 @@ class Question9Slide(CarloSlide):
         outline_note = label("先看輪廓，不急著算面積", 30, REGION, "BOLD")
         outline_note.move_to([3.25, 1.05, 0])
         self.play(
-            FadeTransform(locus_question, outline_note),
+            Succession(FadeOut(locus_question), FadeIn(outline_note)),
             LaggedStart(
                 Create(upper_outer_arc),
                 Create(upper_inner_arc),
@@ -342,7 +343,7 @@ class Question9Slide(CarloSlide):
         self.play(
             FadeIn(upper_region),
             FadeIn(lower_region),
-            FadeTransform(outline_note, equality),
+            Succession(FadeOut(outline_note), FadeIn(equality)),
             FadeIn(symmetry_note, shift=UP * 0.08),
             run_time=0.9,
         )
@@ -364,7 +365,7 @@ class Question9Slide(CarloSlide):
                 reflection_guide,
                 symmetry_note,
             ),
-            FadeTransform(equality, half_note),
+            Succession(FadeOut(equality), FadeIn(half_note)),
             FadeIn(half_subnote, shift=UP * 0.08),
             upper_region.animate.set_fill(REGION, opacity=0.40),
             lower_region.animate.set_fill(REGION_DARK, opacity=0.035),
@@ -417,7 +418,7 @@ class Question9Slide(CarloSlide):
 
         self.play(
             FadeOut(half_subnote),
-            FadeTransform(half_note, boundary_90_title),
+            Succession(FadeOut(half_note), FadeIn(boundary_90_title)),
             p_dot.animate.move_to(p_90),
             run_time=1.05,
             rate_func=smooth,
@@ -481,7 +482,7 @@ class Question9Slide(CarloSlide):
 
         self.play(
             FadeOut(angle_90, angle_90_text, boundary_90_fact),
-            FadeTransform(boundary_90_title, boundary_30_title),
+            Succession(FadeOut(boundary_90_title), FadeIn(boundary_30_title)),
             excluded_semicircle.animate.set_fill(opacity=0.18),
             thales_arc.animate.set_stroke(opacity=0.45),
             p_dot.animate.move_to(p_30),
@@ -534,11 +535,11 @@ class Question9Slide(CarloSlide):
 
         self.play(FadeIn(center_triangle), run_time=0.65)
         self.play(
-            TransformFromCopy(center_triangle, radius_fact),
+            FadeIn(radius_fact),
             run_time=0.8,
         )
         self.play(
-            TransformFromCopy(outer_focus_arc, sector_fact),
+            FadeIn(sector_fact),
             run_time=0.8,
         )
 
@@ -591,7 +592,7 @@ class Question9Slide(CarloSlide):
         )
         self.play(
             Indicate(outer_focus_arc, color=BLUE, scale_factor=1.02),
-            TransformFromCopy(outer_focus_arc, sector_term),
+            FadeIn(sector_term),
             run_time=1.0,
         )
 
@@ -610,7 +611,7 @@ class Question9Slide(CarloSlide):
         )
         self.play(
             Indicate(center_triangle, color=POINT, scale_factor=1.03),
-            TransformFromCopy(center_triangle, triangle_term),
+            FadeIn(triangle_term),
             run_time=1.0,
         )
 
@@ -634,7 +635,7 @@ class Question9Slide(CarloSlide):
         )
         self.play(
             Indicate(thales_arc, color=CORAL, scale_factor=1.03),
-            TransformFromCopy(thales_arc, semicircle_term),
+            FadeIn(semicircle_term),
             run_time=1.0,
         )
 
@@ -656,14 +657,11 @@ class Question9Slide(CarloSlide):
             "BOLD",
         ).move_to([3.2, -1.15, 0])
 
+        self.play(FadeIn(upper_expression), run_time=1.0)
         self.play(
-            TransformFromCopy(
-                VGroup(sector_term, triangle_term, semicircle_term),
-                upper_expression,
-            ),
-            run_time=1.0,
+            Succession(FadeOut(upper_expression), FadeIn(upper_result)),
+            run_time=0.8,
         )
-        self.play(Transform(upper_expression, upper_result), run_time=0.8)
         self.play(
             FadeOut(major_sector, excluded_semicircle),
             center_triangle.animate.set_fill(opacity=0.08),
@@ -704,7 +702,7 @@ class Question9Slide(CarloSlide):
                 thales_arc,
             ),
             lower_region.animate.set_fill(opacity=0),
-            upper_expression.animate.move_to([3.2, 0.20, 0]),
+            upper_result.animate.move_to([3.2, 0.20, 0]),
             run_time=0.85,
         )
 
@@ -716,11 +714,11 @@ class Question9Slide(CarloSlide):
             rate_func=smooth,
         )
         self.play(
-            TransformFromCopy(upper_expression, total_relation),
+            FadeIn(total_relation),
             run_time=0.7,
         )
         self.play(
-            FadeTransform(total_relation, final_answer),
+            Succession(FadeOut(total_relation), FadeIn(final_answer)),
             Circumscribe(
                 VGroup(upper_region, reflected_half),
                 color=REGION,

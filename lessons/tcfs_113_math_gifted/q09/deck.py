@@ -26,12 +26,10 @@ from manim import (
     LaggedStart,
     Line,
     MathTex,
-    ReplacementTransform,
     RoundedRectangle,
+    Succession,
     SurroundingRectangle,
-    Transform,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -363,7 +361,7 @@ class CarloTcfs113MathQ09(CarloSlide):
 
         self.add(heading, source)
         self.play(FadeIn(beat_title), run_time=0.45)
-        self.play(Write(row), run_time=1.0)
+        self.play(FadeIn(row), run_time=1.0)
         self.play(Create(row_brace), FadeIn(length_tag), FadeIn(first_info), run_time=0.75)
         self.play(FadeIn(opening_question), run_time=0.45)
         self.wait(0.45)
@@ -403,12 +401,12 @@ class CarloTcfs113MathQ09(CarloSlide):
         sum_equation[4].set_color(REGION)
 
         self.play(
-            LaggedStart(*(Write(pair) for pair in pair_rows), lag_ratio=0.25),
+            LaggedStart(*(FadeIn(pair) for pair in pair_rows), lag_ratio=0.25),
             FadeIn(pair_dots),
             run_time=1.15,
         )
         self.play(FadeIn(pair_count), run_time=0.45)
-        self.play(Write(sum_equation), run_time=0.8)
+        self.play(FadeIn(sum_equation), run_time=0.8)
         self.wait(0.45)
 
         # Beat 03 shift_by_sixty: move the same row through all valid starts.
@@ -455,12 +453,14 @@ class CarloTcfs113MathQ09(CarloSlide):
             ).move_to(first_value)
             card_index = next_first - 1
             self.play(
-                Transform(row, target_row),
-                Transform(first_value, target_first),
+                Succession(FadeOut(row), FadeIn(target_row)),
+                Succession(FadeOut(first_value), FadeIn(target_first)),
                 FadeIn(connectors[card_index - 1]),
                 FadeIn(cards[card_index]),
                 run_time=0.85,
             )
+            row = target_row
+            first_value = target_first
 
         self.next_beat("finish_sixty_term_shifts")
         next_first = 4
@@ -470,12 +470,14 @@ class CarloTcfs113MathQ09(CarloSlide):
         ).move_to(first_value)
         card_index = next_first - 1
         self.play(
-            Transform(row, target_row),
-            Transform(first_value, target_first),
+            Succession(FadeOut(row), FadeIn(target_row)),
+            Succession(FadeOut(first_value), FadeIn(target_first)),
             FadeIn(connectors[card_index - 1]),
             FadeIn(cards[card_index]),
             run_time=0.85,
         )
+        row = target_row
+        first_value = target_first
         self.wait(0.45)
 
         # Beat 04 cross_2024_boundary: make the first invalid shift explicit.
@@ -488,7 +490,13 @@ class CarloTcfs113MathQ09(CarloSlide):
 
         target_row = self.sequence_expression(5, 60).move_to(row)
         target_first = MathTex("x", "=", "5", font_size=29, color=BLUE).move_to(first_value)
-        self.play(Transform(row, target_row), Transform(first_value, target_first), run_time=0.85)
+        self.play(
+            Succession(FadeOut(row), FadeIn(target_row)),
+            Succession(FadeOut(first_value), FadeIn(target_first)),
+            run_time=0.85,
+        )
+        row = target_row
+        first_value = target_first
         boundary_equation = MathTex(
             "2010",
             "+",
@@ -525,7 +533,7 @@ class CarloTcfs113MathQ09(CarloSlide):
             label("個", 24, MUTED, "MEDIUM"),
         ).arrange(RIGHT, buff=0.15).move_to([0, -2.28, 0])
 
-        self.play(Write(boundary_equation), run_time=0.75)
+        self.play(FadeIn(boundary_equation), run_time=0.75)
         self.play(FadeIn(valid_starts), FadeIn(count_sixty), run_time=0.6)
         self.wait(0.45)
 
@@ -583,14 +591,14 @@ class CarloTcfs113MathQ09(CarloSlide):
         shift_formula[0].set_color(REGION)
         shift_formula[2].set_color(POINT)
 
-        self.play(Write(generic_row), FadeIn(first_marker), FadeIn(last_marker), run_time=0.8)
+        self.play(FadeIn(generic_row), FadeIn(first_marker), FadeIn(last_marker), run_time=0.8)
         self.play(Create(generic_brace), FadeIn(generic_length), run_time=0.5)
         self.play(Indicate(generic_row[0]), Indicate(generic_row[-1]), run_time=0.6)
 
         self.next_beat("state_general_sum_formula")
-        self.play(FadeIn(average_caption), Write(average_expression), run_time=0.7)
-        self.play(Write(formula), run_time=0.7)
-        self.play(Write(shift_formula), run_time=0.65)
+        self.play(FadeIn(average_caption), FadeIn(average_expression), run_time=0.7)
+        self.play(FadeIn(formula), run_time=0.7)
+        self.play(FadeIn(shift_formula), run_time=0.65)
         self.wait(0.45)
 
         formula_scene = VGroup(
@@ -632,7 +640,7 @@ class CarloTcfs113MathQ09(CarloSlide):
         lane_61 = self.length_lane(61, LENGTH_TOTALS[61], -1.20)
 
         self.play(FadeIn(lane_60), run_time=0.65)
-        self.play(Write(minimum_61), run_time=0.7)
+        self.play(FadeIn(minimum_61), run_time=0.7)
         self.play(FadeIn(lane_61), run_time=0.7)
         self.wait(0.45)
 
@@ -676,8 +684,8 @@ class CarloTcfs113MathQ09(CarloSlide):
         )
 
         self.play(FadeIn(full_lanes[0]), FadeIn(full_lanes[1]), run_time=0.6)
-        self.play(Write(minimum_62), FadeIn(full_lanes[2]), run_time=0.7)
-        self.play(Write(minimum_63), FadeIn(full_lanes[3]), run_time=0.7)
+        self.play(FadeIn(minimum_62), FadeIn(full_lanes[2]), run_time=0.7)
+        self.play(FadeIn(minimum_63), FadeIn(full_lanes[3]), run_time=0.7)
         self.wait(0.5)
 
         # Beat 08 stop_at_length_64: reject the first longer case by its minimum.
@@ -725,9 +733,9 @@ class CarloTcfs113MathQ09(CarloSlide):
             label("全部不可能", 24, CORAL, "BOLD"),
         ).arrange(RIGHT, buff=0.25).move_to([0, -2.66, 0])
 
-        self.play(Write(row_64), Create(brace_64), FadeIn(tag_64), run_time=0.85)
-        self.play(Write(pair_64), run_time=0.7)
-        self.play(Write(boundary_64), run_time=0.6)
+        self.play(FadeIn(row_64), Create(brace_64), FadeIn(tag_64), run_time=0.85)
+        self.play(FadeIn(pair_64), run_time=0.7)
+        self.play(FadeIn(boundary_64), run_time=0.6)
 
         self.next_beat("exclude_longer_lengths")
         self.play(FadeIn(growth_statement), FadeIn(stop_statement), run_time=0.65)
@@ -813,15 +821,15 @@ class CarloTcfs113MathQ09(CarloSlide):
         self.play(FadeIn(sorted_caption), run_time=0.4)
         self.play(
             LaggedStart(*(FadeIn(card) for card in top_cards), lag_ratio=0.10),
-            Write(top_relations),
+            FadeIn(top_relations),
             run_time=0.95,
         )
 
         self.next_beat("compare_adjacent_total_rows")
-        self.play(Write(bridge), run_time=0.45)
+        self.play(FadeIn(bridge), run_time=0.45)
         self.play(
             LaggedStart(*(FadeIn(card) for card in bottom_cards), lag_ratio=0.10),
-            Write(bottom_relations),
+            FadeIn(bottom_relations),
             run_time=0.95,
         )
 
@@ -876,7 +884,7 @@ class CarloTcfs113MathQ09(CarloSlide):
         hold_prompt.move_to([0, -2.35, 0])
 
         self.play(FadeIn(count_caption), FadeIn(count_panels), run_time=0.75)
-        self.play(Write(count_expression), run_time=0.8)
+        self.play(FadeIn(count_expression), run_time=0.8)
         self.play(FadeIn(hold_prompt), run_time=0.4)
         self.wait(0.9)
 
@@ -890,7 +898,7 @@ class CarloTcfs113MathQ09(CarloSlide):
 
         question_mark = count_expression[8]
         answer = MathTex("10", font_size=62, color=REGION).move_to(question_mark)
-        self.play(ReplacementTransform(question_mark, answer), run_time=0.7)
+        self.play(Succession(FadeOut(question_mark), FadeIn(answer)), run_time=0.7)
         completed_expression = VGroup(*count_expression[:8], answer)
         answer_box = SurroundingRectangle(
             completed_expression,

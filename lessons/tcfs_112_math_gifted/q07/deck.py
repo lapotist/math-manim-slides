@@ -34,7 +34,6 @@ from manim import (
     SurroundingRectangle,
     TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -403,8 +402,8 @@ class CarloTcfs112MathQ07(CarloSlide):
 
         # Beat 04 earn_plus_555: continue at a settled semantic boundary.
         self.next_beat("earn_plus_555")
-        self.play(Write(position_sum), run_time=0.65)
-        self.play(Write(shift_equation), run_time=0.62)
+        self.play(FadeIn(position_sum), run_time=0.65)
+        self.play(FadeIn(shift_equation), run_time=0.62)
         self.play(FadeIn(domain_note), run_time=0.58)
         self.wait(0.38)
 
@@ -438,8 +437,8 @@ class CarloTcfs112MathQ07(CarloSlide):
         prompt = label("兩個平方的差，怎麼變成可以完整列完的選項？", 25, CORAL, "BOLD")
         prompt.move_to([0, -3.18, 0])
         self.play(FadeIn(square_name), FadeIn(root_range), run_time=0.62)
-        self.play(Write(substituted), run_time=0.75)
-        self.play(Write(difference), run_time=0.72)
+        self.play(FadeIn(substituted), run_time=0.75)
+        self.play(FadeIn(difference), run_time=0.72)
 
         # Beat 06 order_the_square_roots: continue at a settled semantic boundary.
         self.next_beat("order_the_square_roots")
@@ -539,7 +538,7 @@ class CarloTcfs112MathQ07(CarloSlide):
         # Beat 08 rearrange_the_square_gap: continue at a settled semantic boundary.
         self.next_beat("rearrange_the_square_gap")
         self.play(Create(width_brace), FadeIn(width_label), Create(height_brace), FadeIn(height_label), run_time=0.65)
-        self.play(Write(factorization), run_time=0.70)
+        self.play(FadeIn(factorization), run_time=0.70)
         self.play(FadeIn(useful_note), run_time=0.48)
         self.wait(0.38)
 
@@ -583,13 +582,13 @@ class CarloTcfs112MathQ07(CarloSlide):
         ).arrange(RIGHT, buff=0.28).move_to([0, -2.30, 0])
         list_rule = label("因此只列正因數對，而且每一組都要保留", 25, CORAL, "BOLD")
         list_rule.move_to([0, -3.05, 0])
-        self.play(FadeIn(x_token), FadeIn(y_token), Write(product), run_time=0.68)
-        self.play(Write(positive_rule), FadeIn(inverse), run_time=0.70)
+        self.play(FadeIn(x_token), FadeIn(y_token), FadeIn(product), run_time=0.68)
+        self.play(FadeIn(positive_rule), FadeIn(inverse), run_time=0.70)
         self.play(FadeIn(parity_rule), run_time=0.48)
 
         # Beat 10 set_factor_pair_rules: continue at a settled semantic boundary.
         self.next_beat("set_factor_pair_rules")
-        self.play(Write(odd_factorization), run_time=0.70)
+        self.play(FadeIn(odd_factorization), run_time=0.70)
         self.play(FadeIn(list_rule), run_time=0.46)
         self.wait(0.38)
 
@@ -629,7 +628,7 @@ class CarloTcfs112MathQ07(CarloSlide):
         )
         complete_note = label("小因數超過 23 後，只會把同一組倒過來", 23, MUTED, "MEDIUM")
         complete_note.move_to([0, -2.95, 0])
-        self.play(FadeIn(divisor_note), Write(divisors), run_time=0.68)
+        self.play(FadeIn(divisor_note), FadeIn(divisors), run_time=0.68)
 
         # Beat 12 enumerate_every_factor_pair: continue at a settled semantic boundary.
         self.next_beat("enumerate_every_factor_pair")
@@ -826,6 +825,6 @@ class CarloTcfs112MathQ07(CarloSlide):
         # Beat 19 reveal_the_unique_pair: continue at a settled semantic boundary.
         self.next_beat("reveal_the_unique_pair")
         self.play(FadeIn(b_value), Circumscribe(output_frames, color=REGION), run_time=0.65)
-        self.play(Write(answer), Create(answer_frame), run_time=0.75)
+        self.play(FadeIn(answer), Create(answer_frame), run_time=0.75)
         self.play(FadeIn(conclusion), run_time=0.48)
         self.wait(0.68)

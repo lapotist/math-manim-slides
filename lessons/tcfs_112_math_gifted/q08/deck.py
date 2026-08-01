@@ -37,9 +37,7 @@ from manim import (
     RoundedRectangle,
     Succession,
     SurroundingRectangle,
-    Transform,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -331,7 +329,13 @@ class CarloTcfs112MathQ08(CarloSlide):
 
         # Beat 04 show_new_mean_gauges: continue at a settled semantic boundary.
         self.next_beat("show_new_mean_gauges")
-        self.play(FadeOut(count_note), FadeIn(gauge_a[0:2], gauge_b[0:2]), run_time=0.48)
+        self.play(
+            Succession(
+                FadeOut(count_note),
+                FadeIn(gauge_a[0:2], gauge_b[0:2]),
+            ),
+            run_time=0.48,
+        )
         self.play(Create(gauge_a[3]), FadeIn(gauge_a[2], gauge_a[4:]), Create(gauge_b[3]), FadeIn(gauge_b[2], gauge_b[4:]), run_time=0.70)
         self.play(FadeIn(surprise), FadeIn(domain_note), run_time=0.52)
         self.wait(0.48)
@@ -371,7 +375,7 @@ class CarloTcfs112MathQ08(CarloSlide):
         # Beat 06 balance_a_mean_change: continue at a settled semantic boundary.
         self.next_beat("balance_a_mean_change")
         self.play(LaggedStart(*(FadeIn(item) for item in quarter_a[0]), lag_ratio=0.12), Create(quarter_a[1]), FadeIn(quarter_a[2]), run_time=0.78)
-        self.play(Write(a_balance), FadeIn(a_reason), run_time=0.72)
+        self.play(FadeIn(a_balance), FadeIn(a_reason), run_time=0.72)
         self.wait(0.45)
 
         # Beat 07 derive_a_mean: reconstruct the old A mean from the visible gap.
@@ -417,8 +421,8 @@ class CarloTcfs112MathQ08(CarloSlide):
         )
         stage_title = next_title
         self.play(Create(divider), FadeIn(a_mean_bar), Create(a_bar_brace), FadeIn(a_bar_name), run_time=0.70)
-        self.play(Write(a_steps[0]), run_time=0.68)
-        self.play(Write(a_steps[1]), Indicate(a_mean_visual, color=BLUE), run_time=0.72)
+        self.play(FadeIn(a_steps[0]), run_time=0.68)
+        self.play(FadeIn(a_steps[1]), Indicate(a_mean_visual, color=BLUE), run_time=0.72)
 
         # Beat 08 solve_a_mean: continue at a settled semantic boundary.
         self.next_beat("solve_a_mean")
@@ -455,7 +459,7 @@ class CarloTcfs112MathQ08(CarloSlide):
         # Beat 10 balance_b_mean_change: continue at a settled semantic boundary.
         self.next_beat("balance_b_mean_change")
         self.play(LaggedStart(*(FadeIn(item) for item in quarter_b[0]), lag_ratio=0.12), Create(quarter_b[1]), FadeIn(quarter_b[2]), run_time=0.78)
-        self.play(Write(b_balance), FadeIn(b_reason), run_time=0.72)
+        self.play(FadeIn(b_balance), FadeIn(b_reason), run_time=0.72)
         self.wait(0.45)
 
         # Beat 11 place_old_means_on_axis: solve B and notice a fixed separation.
@@ -496,9 +500,9 @@ class CarloTcfs112MathQ08(CarloSlide):
 
         # Beat 12 compare_old_means: continue at a settled semantic boundary.
         self.next_beat("compare_old_means")
-        self.play(Write(mean_steps[0]), run_time=0.62)
-        self.play(Write(mean_steps[1]), run_time=0.62)
-        self.play(Create(gap_brace), FadeIn(gap_label), Write(mean_steps[2]), run_time=0.74)
+        self.play(FadeIn(mean_steps[0]), run_time=0.62)
+        self.play(FadeIn(mean_steps[1]), run_time=0.62)
+        self.play(Create(gap_brace), FadeIn(gap_label), FadeIn(mean_steps[2]), run_time=0.74)
         self.play(FadeIn(mean_steps[3]), run_time=0.42)
         self.wait(0.45)
 
@@ -528,7 +532,7 @@ class CarloTcfs112MathQ08(CarloSlide):
 
         # Beat 14 earn_total_325: continue at a settled semantic boundary.
         self.next_beat("earn_total_325")
-        self.play(Write(total_formula), run_time=0.76)
+        self.play(FadeIn(total_formula), run_time=0.76)
         self.play(FadeIn(total_note), run_time=0.40)
         self.wait(0.45)
 
@@ -586,7 +590,7 @@ class CarloTcfs112MathQ08(CarloSlide):
         # Beat 16 merge_basket_totals: continue at a settled semantic boundary.
         self.next_beat("merge_basket_totals")
         self.play(Create(merge_left), Create(merge_right), GrowFromCenter(total_325), run_time=0.62)
-        self.play(Write(basket_equation), run_time=0.72)
+        self.play(FadeIn(basket_equation), run_time=0.72)
         self.wait(0.45)
 
         # Beat 17 build_b_baseline: visualize the cancellation before algebra.
@@ -634,8 +638,8 @@ class CarloTcfs112MathQ08(CarloSlide):
 
         # Beat 18 regroup_on_b_baseline: continue at a settled semantic boundary.
         self.next_beat("regroup_on_b_baseline")
-        self.play(Write(regroup_formula), run_time=0.72)
-        self.play(Write(known_gap), Indicate(extra, color=REGION), run_time=0.68)
+        self.play(FadeIn(regroup_formula), run_time=0.72)
+        self.play(FadeIn(known_gap), Indicate(extra, color=REGION), run_time=0.68)
         self.wait(0.45)
 
         # Beat 19 derive_last_division: settle one step before the answer.
@@ -663,13 +667,13 @@ class CarloTcfs112MathQ08(CarloSlide):
             run_time=0.56,
         )
         stage_title = next_title
-        self.play(Write(solve_steps[0]), run_time=0.66)
-        self.play(Write(solve_steps[1]), run_time=0.60)
-        self.play(Write(solve_steps[2]), run_time=0.56)
+        self.play(FadeIn(solve_steps[0]), run_time=0.66)
+        self.play(FadeIn(solve_steps[1]), run_time=0.60)
+        self.play(FadeIn(solve_steps[2]), run_time=0.56)
 
         # Beat 20 hold_last_division: continue at a settled semantic boundary.
         self.next_beat("hold_last_division")
-        self.play(Write(solve_steps[3]), run_time=0.62)
+        self.play(FadeIn(solve_steps[3]), run_time=0.62)
         self.play(FadeIn(solve_steps[4]), run_time=0.42)
         self.wait(0.72)
 
@@ -733,12 +737,18 @@ class CarloTcfs112MathQ08(CarloSlide):
         self.play(self.title_change(stage_title, next_title), FadeOut(answer_group), FadeOut(original_counts), FadeOut(reveal_note), run_time=0.55)
         stage_title = next_title
         self.play(FadeIn(a_partition_label), LaggedStart(*(GrowFromCenter(ball) for ball in a_partition_balls), lag_ratio=0.07), run_time=0.92)
-        self.play(Write(b_partition), FadeIn(b_plus), Create(b_target), run_time=0.58)
+        self.play(FadeIn(b_partition), FadeIn(b_plus), Create(b_target), run_time=0.58)
         self.play(Create(stats_divider), FadeIn(a_stats[0:2]), FadeIn(b_stats[0:2]), run_time=0.62)
 
         # Beat 23 verify_real_partition: continue at a settled semantic boundary.
         self.next_beat("verify_real_partition")
         self.play(MoveAlongPath(moving_verify_ball, verify_path), run_time=1.00)
-        self.play(FadeOut(b_target), FadeOut(b_plus), FadeIn(a_stats[2:]), FadeIn(b_stats[2:]), run_time=0.78)
+        self.play(
+            Succession(
+                FadeOut(b_target, b_plus),
+                FadeIn(a_stats[2:], b_stats[2:]),
+            ),
+            run_time=0.78,
+        )
         self.play(FadeIn(verified), run_time=0.50)
         self.wait(0.50)

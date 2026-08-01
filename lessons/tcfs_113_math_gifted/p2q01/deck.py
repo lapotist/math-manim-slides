@@ -35,13 +35,10 @@ from manim import (
     Line,
     MathTex,
     Polygon,
-    ReplacementTransform,
     Succession,
     SurroundingRectangle,
     Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
     rate_functions,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
@@ -384,7 +381,12 @@ class CarloTcfs113MathP2Q01(CarloSlide):
 
         self.add(heading, source, divider)
         self.play(FadeIn(stage_title), Create(rays5), run_time=0.85)
-        self.play(FadeIn(origin_mark5), Create(theta_mark5), run_time=0.60)
+        self.play(
+            FadeIn(origin_mark5),
+            Create(theta_mark5[0]),
+            FadeIn(theta_mark5[1]),
+            run_time=0.60,
+        )
         self.play(FadeIn(scope), run_time=0.55)
         self.play(
             LaggedStart(*(FadeIn(item) for item in intro_panel), lag_ratio=0.18),
@@ -498,12 +500,13 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             run_time=0.62,
         )
         self.play(Create(seed_triangle5), run_time=0.62)
-        self.play(Indicate(VGroup(ticks5[0], ticks5[1]), color=POINT), Write(seed_equal), run_time=0.72)
+        self.play(Indicate(VGroup(ticks5[0], ticks5[1]), color=POINT), FadeIn(seed_equal), run_time=0.72)
 
         self.next_beat("mark_first_equal_sides")
         self.play(
-            TransformFromCopy(theta_mark5, seed_angle_b5),
-            Write(seed_angle_line),
+            Create(seed_angle_b5[0]),
+            FadeIn(seed_angle_b5[1]),
+            FadeIn(seed_angle_line),
             run_time=0.80,
         )
         self.play(FadeIn(seed_note), run_time=0.42)
@@ -552,16 +555,22 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             point_names5[2:].animate.set_opacity(1.0),
             run_time=0.62,
         )
-        self.play(Create(forward_triangle5), Write(propagation_panel[0]), run_time=0.72)
-        self.play(Create(angle_c5), Write(propagation_panel[1]), run_time=0.72)
+        self.play(Create(forward_triangle5), FadeIn(propagation_panel[0]), run_time=0.72)
+        self.play(Create(angle_c5[0]), FadeIn(angle_c5[1]), FadeIn(propagation_panel[1]), run_time=0.72)
 
         self.next_beat("complete_five_step_propagation")
-        self.play(Create(reverse_triangle5), Create(angle_b5), FadeIn(propagation_panel[2]), run_time=0.78)
+        self.play(
+            Create(reverse_triangle5),
+            Create(angle_b5[0]),
+            FadeIn(angle_b5[1]),
+            FadeIn(propagation_panel[2]),
+            run_time=0.78,
+        )
         self.play(
             FadeOut(forward_triangle5),
             FadeOut(reverse_triangle5),
             Create(outer5),
-            Write(propagation_panel[3]),
+            FadeIn(propagation_panel[3]),
             run_time=0.75,
         )
         self.wait(0.40)
@@ -590,14 +599,14 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         stage_title = next_title
         self.play(FadeOut(propagation_panel), run_time=0.35)
         self.play(
-            TransformFromCopy(VGroup(theta_mark5, angle_b5, angle_c5), equation5a),
+            FadeIn(equation5a),
             run_time=0.85,
         )
 
         self.next_beat("solve_five_step_angle")
-        self.play(Write(equation5b), run_time=0.60)
-        self.play(Write(answer5), Create(answer5_box), run_time=0.72)
-        self.play(Write(memory5), Circumscribe(answer5, color=REGION), run_time=0.78)
+        self.play(FadeIn(equation5b), run_time=0.60)
+        self.play(FadeIn(answer5), Create(answer5_box), run_time=0.72)
+        self.play(FadeIn(memory5), Circumscribe(answer5, color=REGION), run_time=0.78)
         self.wait(0.45)
 
         # Beat 06 walk_seven_steps: add one layer while preserving the same-ray rule.
@@ -662,7 +671,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             ),
             Create(rays7),
             FadeIn(origin_mark7),
-            Create(theta_mark7),
+            Create(theta_mark7[0]),
+            FadeIn(theta_mark7[1]),
             FadeIn(counter7),
             GrowFromCenter(robot7),
             run_time=0.88,
@@ -775,29 +785,38 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         )
         active_triangle7 = layer_triangles7[0]
         active_angle7 = layer_angles7[0]
-        self.play(Create(active_triangle7), Create(active_angle7), Write(ladder7[0]), run_time=0.78)
+        self.play(
+            Create(active_triangle7),
+            Create(active_angle7[0]),
+            FadeIn(active_angle7[1]),
+            FadeIn(ladder7[0]),
+            run_time=0.78,
+        )
         index = 1
         self.play(
             Transform(active_triangle7, layer_triangles7[index]),
-            ReplacementTransform(active_angle7, layer_angles7[index]),
-            Write(ladder7[index]),
+            Transform(active_angle7[0], layer_angles7[index][0]),
+            Succession(FadeOut(active_angle7[1]), FadeIn(layer_angles7[index][1])),
+            FadeIn(ladder7[index]),
             run_time=0.82,
         )
-        active_angle7 = layer_angles7[index]
+        active_angle7 = VGroup(active_angle7[0], layer_angles7[index][1])
 
         self.next_beat("complete_three_layer_growth")
         index = 2
         self.play(
             Transform(active_triangle7, layer_triangles7[index]),
-            ReplacementTransform(active_angle7, layer_angles7[index]),
-            Write(ladder7[index]),
+            Transform(active_angle7[0], layer_angles7[index][0]),
+            Succession(FadeOut(active_angle7[1]), FadeIn(layer_angles7[index][1])),
+            FadeIn(ladder7[index]),
             run_time=0.82,
         )
-        active_angle7 = layer_angles7[index]
+        active_angle7 = VGroup(active_angle7[0], layer_angles7[index][1])
         self.play(
             FadeOut(active_triangle7),
             Create(outer7),
-            Create(reverse_angle7),
+            Create(reverse_angle7[0]),
+            FadeIn(reverse_angle7[1]),
             FadeIn(reverse_note7),
             run_time=0.78,
         )
@@ -826,13 +845,13 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         stage_title = next_title
         self.play(FadeOut(ladder7), FadeOut(reverse_note7), run_time=0.38)
         self.play(
-            TransformFromCopy(VGroup(theta_mark7, active_angle7, reverse_angle7), equation7a),
+            FadeIn(equation7a),
             run_time=0.88,
         )
 
         self.next_beat("solve_seven_step_angle")
-        self.play(Write(equation7b), run_time=0.62)
-        self.play(Write(answer7), Create(answer7_box), run_time=0.76)
+        self.play(FadeIn(equation7b), run_time=0.62)
+        self.play(FadeIn(answer7), Create(answer7_box), run_time=0.76)
         self.play(Circumscribe(answer7, color=REGION), run_time=0.70)
         self.wait(0.42)
 
@@ -896,7 +915,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             ),
             Create(rays9),
             FadeIn(origin_mark9),
-            Create(theta_mark9),
+            Create(theta_mark9[0]),
+            FadeIn(theta_mark9[1]),
             run_time=0.85,
         )
         self.play(
@@ -968,31 +988,34 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         active_angle9 = layer_angles9[0]
         self.play(
             Create(active_triangle9),
-            Create(active_angle9),
-            Write(recurrence_panel[0]),
+            Create(active_angle9[0]),
+            FadeIn(active_angle9[1]),
+            FadeIn(recurrence_panel[0]),
             run_time=0.80,
         )
-        self.play(Write(recurrence_panel[1]), run_time=0.70)
+        self.play(FadeIn(recurrence_panel[1]), run_time=0.70)
 
         self.next_beat("propagate_general_angles")
         for index in (1, 2):
             self.play(
                 Transform(active_triangle9, layer_triangles9[index]),
-                ReplacementTransform(active_angle9, layer_angles9[index]),
+                Transform(active_angle9[0], layer_angles9[index][0]),
+                Succession(FadeOut(active_angle9[1]), FadeIn(layer_angles9[index][1])),
                 run_time=0.78,
             )
-            active_angle9 = layer_angles9[index]
+            active_angle9 = VGroup(active_angle9[0], layer_angles9[index][1])
 
         self.next_beat("complete_general_propagation")
         index = 3
         self.play(
             Transform(active_triangle9, layer_triangles9[index]),
-            ReplacementTransform(active_angle9, layer_angles9[index]),
+            Transform(active_angle9[0], layer_angles9[index][0]),
+            Succession(FadeOut(active_angle9[1]), FadeIn(layer_angles9[index][1])),
             run_time=0.78,
         )
-        active_angle9 = layer_angles9[index]
-        self.play(Write(recurrence_panel[2]), run_time=0.62)
-        self.play(Write(recurrence_panel[3]), FadeIn(recurrence_panel[4]), run_time=0.76)
+        active_angle9 = VGroup(active_angle9[0], layer_angles9[index][1])
+        self.play(FadeIn(recurrence_panel[2]), run_time=0.62)
+        self.play(FadeIn(recurrence_panel[3]), FadeIn(recurrence_panel[4]), run_time=0.76)
         self.wait(0.42)
 
         # Beat 11 close_outer_triangle: derive mn=180 only inside the visible scope.
@@ -1050,17 +1073,21 @@ class CarloTcfs113MathP2Q01(CarloSlide):
             Create(outer9),
             run_time=0.72,
         )
-        self.play(Create(forward_h_angle9), Create(reverse_h_angle9), run_time=0.66)
         self.play(
-            TransformFromCopy(
-                VGroup(theta_mark9, forward_h_angle9, reverse_h_angle9), outer_equation
-            ),
+            Create(forward_h_angle9[0]),
+            FadeIn(forward_h_angle9[1]),
+            Create(reverse_h_angle9[0]),
+            FadeIn(reverse_h_angle9[1]),
+            run_time=0.66,
+        )
+        self.play(
+            FadeIn(outer_equation),
             run_time=0.85,
         )
 
         self.next_beat("state_scoped_product")
-        self.play(Write(n_equation), run_time=0.62)
-        self.play(Write(product_equation), Create(product_box), run_time=0.78)
+        self.play(FadeIn(n_equation), run_time=0.62)
+        self.play(FadeIn(product_equation), Create(product_box), run_time=0.78)
         self.play(FadeIn(scoped_note), Indicate(scope, color=REGION), run_time=0.72)
         self.wait(0.45)
 
@@ -1152,7 +1179,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         self.next_beat("verify_full_line_counterexample")
         self.play(
             LaggedStart(*(Create(tick) for tick in counter_ticks), lag_ratio=0.10),
-            Create(counter_angle),
+            Create(counter_angle[0]),
+            FadeIn(counter_angle[1]),
             FadeIn(negative_labels),
             run_time=0.82,
         )
@@ -1238,8 +1266,8 @@ class CarloTcfs113MathP2Q01(CarloSlide):
         )
 
         self.next_beat("restate_scoped_results")
-        self.play(Write(result5), run_time=0.62)
-        self.play(Write(result7), run_time=0.68)
-        self.play(Write(result_general), Create(final_box), run_time=0.82)
+        self.play(FadeIn(result5), run_time=0.62)
+        self.play(FadeIn(result7), run_time=0.68)
+        self.play(FadeIn(result_general), Create(final_box), run_time=0.82)
         self.play(FadeIn(final_note), Indicate(final_scope, color=REGION), run_time=0.72)
         self.wait(0.60)

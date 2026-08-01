@@ -32,6 +32,7 @@ from manim import (
     Rectangle,
     ReplacementTransform,
     Square,
+    Succession,
     SurroundingRectangle,
     Transform,
     TransformFromCopy,
@@ -215,11 +216,11 @@ class Tcfs115Q07Slide(CarloSlide):
 
         # Beat 01 given_product: settled semantic step.
         self.play(FadeIn(heading), FadeIn(source), FadeIn(opening_prompt), run_time=0.8)
-        self.play(Write(given), run_time=1.25)
+        self.play(FadeIn(given), run_time=1.25)
         self.play(Create(first_factor_box), Create(second_factor_box), run_time=0.65)
         # Beat 02 expand_given_product: settled semantic step.
         self.next_slide()
-        self.play(FadeIn(target_caption), Write(original_target), run_time=1.0)
+        self.play(FadeIn(target_caption), FadeIn(original_target), run_time=1.0)
         self.play(Circumscribe(original_target[0:3], color=PURPLE), run_time=0.8)
 
         # Beat 03 isolate_radical_pairs: settled semantic step.
@@ -261,7 +262,7 @@ class Tcfs115Q07Slide(CarloSlide):
             target_caption,
             original_target,
         )
-        self.play(FadeOut(opening_group), FadeIn(definitions), Write(short_given), run_time=1.0)
+        self.play(FadeOut(opening_group), FadeIn(definitions), FadeIn(short_given), run_time=1.0)
         self.play(
             LaggedStart(Create(guard_a), Create(guard_b), lag_ratio=0.18),
             run_time=1.45,
@@ -316,22 +317,23 @@ class Tcfs115Q07Slide(CarloSlide):
         return_state.shift(DOWN * 0.22 - return_state[0].get_center())
 
         self.play(
-            Transform(first_pair, square_state),
+            Succession(FadeOut(first_pair), FadeIn(square_state)),
             run_time=1.5,
             rate_func=rate_functions.ease_in_out_sine,
         )
         self.wait(0.45)
         self.play(
-            Transform(first_pair, wide_state),
+            Succession(FadeOut(square_state), FadeIn(wide_state)),
             run_time=1.5,
             rate_func=rate_functions.ease_in_out_sine,
         )
         self.wait(0.45)
         self.play(
-            Transform(first_pair, return_state),
+            Succession(FadeOut(wide_state), FadeIn(return_state)),
             run_time=1.5,
             rate_func=rate_functions.ease_in_out_sine,
         )
+        first_pair = return_state
 
         # Beat 05 discover_first_invariant: settled semantic step.
         self.next_slide()
@@ -364,21 +366,21 @@ class Tcfs115Q07Slide(CarloSlide):
         a_equation[2].set_color(POINT)
         a_equation.next_to(a_square, DOWN, buff=0.32)
 
-        self.play(ReplacementTransform(loop_prompt, proof_title), run_time=0.55)
+        self.play(Succession(FadeOut(loop_prompt), FadeIn(proof_title)), run_time=0.55)
         self.play(
-            ReplacementTransform(first_pair[0], a_square),
+            Succession(FadeOut(first_pair[0]), FadeIn(a_square)),
             FadeOut(VGroup(*first_pair[1:])),
             run_time=1.0,
         )
-        self.play(FadeIn(area_four), Write(proof_lines[0]), run_time=0.7)
+        self.play(FadeIn(area_four), FadeIn(proof_lines[0]), run_time=0.7)
         # Beat 06 compare_first_pair: settled semantic step.
         self.next_slide()
-        self.play(Write(proof_lines[1]), run_time=0.65)
-        self.play(Write(proof_lines[2]), run_time=0.75)
+        self.play(FadeIn(proof_lines[1]), run_time=0.65)
+        self.play(FadeIn(proof_lines[2]), run_time=0.75)
         # Beat 07 state_first_invariant: settled semantic step.
         self.next_slide()
-        self.play(Write(proof_lines[3]), Circumscribe(area_four, color=POINT), run_time=0.75)
-        self.play(TransformFromCopy(proof_lines[0], a_equation[0]), FadeIn(a_equation[1:]), run_time=0.7)
+        self.play(FadeIn(proof_lines[3]), Circumscribe(area_four, color=POINT), run_time=0.75)
+        self.play(FadeIn(a_equation), run_time=0.7)
 
         # Beat 08 mirror_second_pair: settled semantic step.
         self.next_slide()
@@ -418,19 +420,19 @@ class Tcfs115Q07Slide(CarloSlide):
         b_equation.next_to(b_square, DOWN, buff=0.32)
 
         self.play(
-            ReplacementTransform(proof_title, mirror_title),
+            Succession(FadeOut(proof_title), FadeIn(mirror_title)),
             FadeOut(proof_lines),
             run_time=0.65,
         )
-        self.play(TransformFromCopy(a_square, b_square), run_time=0.85)
+        self.play(FadeIn(b_square), run_time=0.85)
         self.play(
-            LaggedStart(*(Write(part) for part in b_derivation), lag_ratio=0.12),
+            LaggedStart(*(FadeIn(part) for part in b_derivation), lag_ratio=0.12),
             run_time=1.5,
         )
         # Beat 09 state_second_invariant: settled semantic step.
         self.next_slide()
         self.play(FadeIn(area_nine), Circumscribe(b_derivation[6], color=POINT), run_time=0.7)
-        self.play(TransformFromCopy(b_derivation[0], b_equation[0]), FadeIn(b_equation[1:]), run_time=0.65)
+        self.play(FadeIn(b_equation), run_time=0.65)
 
         # Beat 10 combine_invariants: settled semantic step.
         self.next_slide()
@@ -467,15 +469,15 @@ class Tcfs115Q07Slide(CarloSlide):
         plus_box = SurroundingRectangle(
             VGroup(combined[0], combined[1]),
             color=POINT,
-            buff=0.16,
+            buff=0.06,
             stroke_width=3,
-        )
+        ).shift(LEFT * 0.065)
         minus_box = SurroundingRectangle(
             VGroup(combined[2], combined[3]),
             color=MUTED,
-            buff=0.16,
+            buff=0.06,
             stroke_width=2.5,
-        )
+        ).shift(RIGHT * 0.065)
         known_value = MathTex(r"=7", font_size=35, color=POINT)
         known_value.next_to(plus_box, DOWN, buff=0.2)
         shadow_question = MathTex(r"=?", font_size=35, color=MUTED)
@@ -493,22 +495,22 @@ class Tcfs115Q07Slide(CarloSlide):
             b_derivation,
         )
         self.play(
-            ReplacementTransform(mirror_title, combine_title),
+            Succession(FadeOut(mirror_title), FadeIn(combine_title)),
             FadeOut(b_derivation),
             run_time=0.55,
         )
         self.play(
-            TransformFromCopy(a_equation[2], area_product[0]),
+            FadeIn(area_product[0]),
             FadeIn(area_product[1]),
-            TransformFromCopy(b_equation[2], area_product[2]),
+            FadeIn(area_product[2]),
             FadeIn(area_product[3]),
             run_time=0.8,
         )
-        self.play(Write(area_product[4]), run_time=0.5)
+        self.play(FadeIn(area_product[4]), run_time=0.5)
         # Beat 11 collect_invariant_sum: settled semantic step.
         self.next_slide()
         self.play(
-            LaggedStart(*(Write(part) for part in combined), lag_ratio=0.1),
+            LaggedStart(*(FadeIn(part) for part in combined), lag_ratio=0.1),
             FadeOut(VGroup(*invariant_context[:6])),
             run_time=1.45,
         )
@@ -582,12 +584,12 @@ class Tcfs115Q07Slide(CarloSlide):
         grid = VGroup(cells, column_headers, row_headers, cell_contents)
 
         self.play(
-            ReplacementTransform(combine_title, target_title),
+            Succession(FadeOut(combine_title), FadeIn(target_title)),
             FadeOut(area_product),
             combined_context.animate.scale(0.72).move_to([0, 2.12, 0]),
             run_time=0.8,
         )
-        self.play(Write(target_t), run_time=0.7)
+        self.play(FadeIn(target_t), run_time=0.7)
         self.play(Create(cells), FadeIn(column_headers), FadeIn(row_headers), run_time=0.85)
         self.play(
             LaggedStart(*(FadeIn(item) for item in cell_contents), lag_ratio=0.15),
@@ -637,24 +639,24 @@ class Tcfs115Q07Slide(CarloSlide):
         ).next_to(shadow_box, DOWN, buff=0.2)
 
         self.play(
-            ReplacementTransform(target_title, shadow_title),
+            Succession(FadeOut(target_title), FadeIn(shadow_title)),
             FadeOut(VGroup(target_t, grid, pose_prompt)),
             run_time=0.65,
         )
         self.play(
-            TransformFromCopy(combined[5], division[0]),
+            FadeIn(division[0]),
             FadeIn(division[1]),
-            TransformFromCopy(known_value, division[2]),
+            FadeIn(division[2]),
             FadeIn(division[3]),
             run_time=0.85,
         )
-        self.play(Write(division[4]), run_time=0.55)
+        self.play(FadeIn(division[4]), run_time=0.55)
         # Beat 14 name_shadow_product: settled semantic step.
         self.next_slide()
         self.play(
-            TransformFromCopy(VGroup(combined[2], combined[3]), shadow_equation[0:2]),
+            FadeIn(shadow_equation[0:2]),
             FadeIn(shadow_equation[2]),
-            TransformFromCopy(division[4], shadow_equation[3]),
+            FadeIn(shadow_equation[3]),
             run_time=1.0,
         )
         self.play(Create(shadow_box), FadeIn(shadow_note), run_time=0.6)
@@ -698,14 +700,14 @@ class Tcfs115Q07Slide(CarloSlide):
 
         shadow_bundle = VGroup(shadow_equation, shadow_box, shadow_note)
         self.play(
-            ReplacementTransform(shadow_title, known_title),
+            Succession(FadeOut(shadow_title), FadeIn(known_title)),
             FadeOut(VGroup(division, combined_context)),
             shadow_bundle.animate.scale(0.76).move_to([0, -1.35, 0]),
             run_time=0.8,
         )
         self.play(FadeIn(known_factor), run_time=0.5)
         self.play(
-            LaggedStart(*(Write(part) for part in known_expanded), lag_ratio=0.09),
+            LaggedStart(*(FadeIn(part) for part in known_expanded), lag_ratio=0.09),
             run_time=1.4,
         )
         # Beat 16 collect_known_terms: settled semantic step.
@@ -716,11 +718,11 @@ class Tcfs115Q07Slide(CarloSlide):
             run_time=0.8,
         )
         self.play(
-            TransformFromCopy(known_expanded[0], known_row[0]),
+            FadeIn(known_row[0]),
             FadeIn(known_row[1]),
-            TransformFromCopy(VGroup(known_expanded[2], known_expanded[8]), known_row[2]),
+            FadeIn(known_row[2]),
             FadeIn(known_row[3]),
-            TransformFromCopy(VGroup(known_expanded[4], known_expanded[6]), known_row[4]),
+            FadeIn(known_row[4]),
             FadeIn(known_row[5:]),
             FadeIn(common_caption),
             FadeIn(target_caption_grouped),
@@ -763,7 +765,7 @@ class Tcfs115Q07Slide(CarloSlide):
         row_captions = VGroup(common_caption, target_caption_grouped)
 
         self.play(
-            ReplacementTransform(known_title, shadow_expand_title),
+            Succession(FadeOut(known_title), FadeIn(shadow_expand_title)),
             FadeOut(shadow_bundle),
             known_row.animate.shift(UP * 0.66),
             row_captions.animate.shift(UP * 0.66),
@@ -771,17 +773,17 @@ class Tcfs115Q07Slide(CarloSlide):
         )
         self.play(FadeIn(shadow_factor), run_time=0.5)
         self.play(
-            LaggedStart(*(Write(part) for part in shadow_expanded), lag_ratio=0.09),
+            LaggedStart(*(FadeIn(part) for part in shadow_expanded), lag_ratio=0.09),
             run_time=1.4,
         )
         # Beat 18 collect_shadow_terms: settled semantic step.
         self.next_slide()
         self.play(
-            TransformFromCopy(shadow_expanded[0], shadow_row[0]),
+            FadeIn(shadow_row[0]),
             FadeIn(shadow_row[1]),
-            TransformFromCopy(VGroup(shadow_expanded[2], shadow_expanded[8]), shadow_row[2]),
+            FadeIn(shadow_row[2]),
             FadeIn(shadow_row[3]),
-            TransformFromCopy(VGroup(shadow_expanded[4], shadow_expanded[6]), shadow_row[4]),
+            FadeIn(shadow_row[4]),
             FadeIn(shadow_row[5:]),
             run_time=1.05,
         )
@@ -824,7 +826,7 @@ class Tcfs115Q07Slide(CarloSlide):
         ).next_to(isolation, DOWN, buff=0.25)
 
         self.play(
-            ReplacementTransform(shadow_expand_title, subtract_title),
+            Succession(FadeOut(shadow_expand_title), FadeIn(subtract_title)),
             FadeOut(row_captions),
             FadeIn(subtract_sign),
             Create(subtract_line),
@@ -839,11 +841,11 @@ class Tcfs115Q07Slide(CarloSlide):
         # Beat 20 isolate_requested_product: settled semantic step.
         self.next_slide()
         self.play(
-            TransformFromCopy(known_row[0], isolation[0]),
+            FadeIn(isolation[0]),
             FadeIn(isolation[1]),
-            TransformFromCopy(shadow_row[0], isolation[2]),
+            FadeIn(isolation[2]),
             FadeIn(isolation[3]),
-            TransformFromCopy(VGroup(known_row[4], shadow_row[4]), isolation[4]),
+            FadeIn(isolation[4]),
             run_time=1.0,
         )
         self.play(
@@ -904,17 +906,17 @@ class Tcfs115Q07Slide(CarloSlide):
             no_variables,
         )
         self.play(
-            ReplacementTransform(subtract_title, final_title),
+            Succession(FadeOut(subtract_title), FadeIn(final_title)),
             FadeOut(subtraction_context),
-            ReplacementTransform(isolation, step_one),
+            Succession(FadeOut(isolation), FadeIn(step_one)),
             run_time=0.85,
         )
-        self.play(TransformMatchingTex(step_one, step_two), run_time=0.9)
-        self.play(TransformMatchingTex(step_two, step_three), run_time=0.8)
+        self.play(Succession(FadeOut(step_one), FadeIn(step_two)), run_time=0.9)
+        self.play(Succession(FadeOut(step_two), FadeIn(step_three)), run_time=0.8)
         # Beat 22 reveal_product_value: settled semantic step.
         self.next_slide()
-        self.play(TransformFromCopy(step_three, target_value), run_time=0.75)
-        self.play(TransformFromCopy(target_value, full_target), run_time=1.0)
+        self.play(FadeIn(target_value), run_time=0.75)
+        self.play(FadeIn(full_target), run_time=1.0)
         self.play(Create(answer_box), Circumscribe(full_target[0], color=PURPLE), run_time=0.75)
 
         # Beat 23 consolidate: settled semantic step.
@@ -992,9 +994,9 @@ class Tcfs115Q07Slide(CarloSlide):
         )
 
         self.play(
-            ReplacementTransform(final_title, recap_title),
+            Succession(FadeOut(final_title), FadeIn(recap_title)),
             FadeOut(VGroup(step_three, target_value, answer_box)),
-            ReplacementTransform(full_target, recap_target),
+            Succession(FadeOut(full_target), FadeIn(recap_target)),
             run_time=0.85,
         )
         self.play(

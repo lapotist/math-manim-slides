@@ -30,9 +30,8 @@ from manim import (
     Polygon,
     ReplacementTransform,
     SurroundingRectangle,
-    TransformFromCopy,
+    Succession,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -167,7 +166,7 @@ class CarloTcfs115MathQ02(CarloSlide):
             FadeIn(label_a2),
             run_time=0.95,
         )
-        self.play(FadeIn(first_title), Write(area_r1), run_time=0.85)
+        self.play(FadeIn(first_title), FadeIn(area_r1), run_time=0.85)
 
         # Beat 02: preserve one yellow half rather than replacing it later.
         self.next_beat("shared_half")
@@ -205,7 +204,7 @@ class CarloTcfs115MathQ02(CarloSlide):
         half_r1[2].set_color(BLUE)
 
         self.play(
-            ReplacementTransform(first_title, half_title),
+            Succession(FadeOut(first_title), FadeIn(half_title)),
             Create(diagonal_one),
             run_time=0.8,
         )
@@ -214,7 +213,7 @@ class CarloTcfs115MathQ02(CarloSlide):
         # Smaller step: compare_shared_region.
         self.next_beat("compare_shared_region")
         self.play(Indicate(shared_triangle, color=POINT), run_time=0.65)
-        self.play(FadeOut(other_half_one), Write(half_r1), run_time=0.75)
+        self.play(FadeOut(other_half_one), FadeIn(half_r1), run_time=0.75)
 
         # Beat 03: grow R2 around the same unmoving yellow triangle.
         self.next_beat("grow_second")
@@ -224,7 +223,7 @@ class CarloTcfs115MathQ02(CarloSlide):
         b1_note = label("B₁ 正好在 R₂ 的對邊上", 29, CORAL, "BOLD")
         b1_note.move_to([3.25, -1.65, 0])
 
-        self.play(ReplacementTransform(half_title, second_title), run_time=0.45)
+        self.play(Succession(FadeOut(half_title), FadeIn(second_title)), run_time=0.45)
         self.play(
             FadeIn(r2_fill),
             LaggedStart(*(Create(edge) for edge in r2_edges), lag_ratio=0.14),
@@ -277,17 +276,16 @@ class CarloTcfs115MathQ02(CarloSlide):
         equality_12.set_color_by_tex("R_2", CORAL)
 
         self.play(
-            FadeOut(second_title),
+            Succession(FadeOut(second_title), FadeIn(base_height_note)),
             FadeOut(b1_note),
             FadeOut(half_r1),
-            FadeIn(base_height_note),
             Create(base_one),
             Create(height_one),
             run_time=0.9,
         )
-        self.play(TransformFromCopy(shared_triangle, bridge_one[2]), run_time=0.7)
-        self.play(Write(bridge_one[0:2]), Write(bridge_one[3:5]), run_time=0.8)
-        self.play(Write(equality_12), run_time=0.7)
+        self.play(FadeIn(bridge_one[2]), run_time=0.7)
+        self.play(FadeIn(bridge_one[0:2]), FadeIn(bridge_one[3:5]), run_time=0.8)
+        self.play(FadeIn(equality_12), run_time=0.7)
 
         # Beat 05: move the same argument one rectangle to the left.
         self.next_beat("shift_shared_half")
@@ -327,7 +325,7 @@ class CarloTcfs115MathQ02(CarloSlide):
             FadeOut(height_one),
             FadeOut(bridge_one),
             FadeOut(equality_12),
-            ReplacementTransform(base_height_note, shift_title),
+            Succession(FadeOut(base_height_note), FadeIn(shift_title)),
             Create(diagonal_two),
             run_time=0.9,
         )
@@ -341,7 +339,7 @@ class CarloTcfs115MathQ02(CarloSlide):
         # Smaller step: align_third_overlap.
         self.next_beat("align_third_overlap")
         self.play(Indicate(shared_triangle, color=POINT), run_time=0.55)
-        self.play(FadeOut(companion_two), Write(half_r2), run_time=0.7)
+        self.play(FadeOut(companion_two), FadeIn(half_r2), run_time=0.7)
 
         # Beat 06: grow R3 so B2 lies on its opposite edge.
         self.next_beat("grow_third")
@@ -380,18 +378,18 @@ class CarloTcfs115MathQ02(CarloSlide):
         equality_23.set_color_by_tex("R_3", REGION)
 
         self.play(
-            ReplacementTransform(shift_title, third_title),
+            Succession(FadeOut(shift_title), FadeIn(third_title)),
             FadeOut(half_r2),
             FadeIn(r3_fill),
             LaggedStart(*(Create(edge) for edge in r3_edges), lag_ratio=0.14),
             run_time=1.4,
         )
         self.play(Create(base_two), Create(height_two), Indicate(dot_b2, color=POINT))
-        self.play(TransformFromCopy(shared_triangle, bridge_two[2]), run_time=0.7)
+        self.play(FadeIn(bridge_two[2]), run_time=0.7)
         # Smaller step: finish_third_rectangle.
         self.next_beat("finish_third_rectangle")
-        self.play(Write(bridge_two[0:2]), Write(bridge_two[3:5]), run_time=0.8)
-        self.play(Write(equality_23), run_time=0.6)
+        self.play(FadeIn(bridge_two[0:2]), FadeIn(bridge_two[3:5]), run_time=0.8)
+        self.play(FadeIn(equality_23), run_time=0.6)
 
         # Beat 07: return to all three rectangles and transfer the known 60.
         self.next_beat("three_equal_areas")
@@ -430,12 +428,12 @@ class CarloTcfs115MathQ02(CarloSlide):
             FadeOut(equality_23),
             FadeOut(length_five),
             FadeOut(length_twelve),
-            ReplacementTransform(third_title, equal_title),
+            Succession(FadeOut(third_title), FadeIn(equal_title)),
             run_time=0.95,
         )
         self.play(
             LaggedStart(*(FadeIn(item) for item in area_labels), lag_ratio=0.25),
-            Write(all_equal),
+            FadeIn(all_equal),
             run_time=1.1,
         )
 
@@ -477,13 +475,12 @@ class CarloTcfs115MathQ02(CarloSlide):
             fill_opacity=0.22,
         )
 
-        self.play(ReplacementTransform(equal_title, sum_title), FadeOut(all_equal))
         self.play(
-            *(
-                TransformFromCopy(area_labels[index], total[2 * index])
-                for index in range(3)
-            ),
-            Write(VGroup(total[1], total[3], total[5], total[6])),
+            Succession(FadeOut(equal_title), FadeIn(sum_title)),
+            FadeOut(all_equal),
+        )
+        self.play(
+            FadeIn(total),
             run_time=1.1,
         )
         self.play(Create(answer_box), Circumscribe(total[6], color=POINT), run_time=0.8)

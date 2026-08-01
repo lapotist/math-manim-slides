@@ -34,13 +34,10 @@ from manim import (
     NumberLine,
     Polygon,
     Rectangle,
-    ReplacementTransform,
     Square,
+    Succession,
     SurroundingRectangle,
-    Transform,
-    TransformFromCopy,
     VGroup,
-    Write,
 )
 from manim.constants import DOWN, LEFT, RIGHT, UP
 
@@ -369,7 +366,7 @@ class CarloTcfs113MathQ04(CarloSlide):
             run_time=1.35,
         )
         self.play(LaggedStart(*(FadeIn(item) for item in triangle[4:]), lag_ratio=0.18), run_time=0.8)
-        self.play(TransformFromCopy(VGroup(*triangle[4:]), triplet), FadeIn(growth_note), run_time=0.8)
+        self.play(FadeIn(triplet), FadeIn(growth_note), run_time=0.8)
 
         self.next_beat("ask_family_question")
         self.play(FadeIn(family), FadeIn(opening_question), run_time=0.65)
@@ -390,7 +387,7 @@ class CarloTcfs113MathQ04(CarloSlide):
         collapse_note.move_to([3.78, -2.10, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(growth_note),
             FadeOut(family),
             FadeOut(opening_question),
@@ -404,11 +401,14 @@ class CarloTcfs113MathQ04(CarloSlide):
             target_n = MathTex(rf"n={n}", font_size=44, color=CORAL if n == 2 else POINT)
             target_n.move_to(n_label)
             self.play(
-                Transform(triangle, target_triangle),
-                Transform(triplet, target_triplet),
-                Transform(n_label, target_n),
+                Succession(FadeOut(triangle), FadeIn(target_triangle)),
+                Succession(FadeOut(triplet), FadeIn(target_triplet)),
+                Succession(FadeOut(n_label), FadeIn(target_n)),
                 run_time=0.85,
             )
+            triangle = target_triangle
+            triplet = target_triplet
+            n_label = target_n
 
         self.next_beat("collapse_to_degenerate_triangle")
         n = 2
@@ -417,12 +417,15 @@ class CarloTcfs113MathQ04(CarloSlide):
         target_n = MathTex(rf"n={n}", font_size=44, color=CORAL)
         target_n.move_to(n_label)
         self.play(
-            Transform(triangle, target_triangle),
-            Transform(triplet, target_triplet),
-            Transform(n_label, target_n),
+            Succession(FadeOut(triangle), FadeIn(target_triangle)),
+            Succession(FadeOut(triplet), FadeIn(target_triplet)),
+            Succession(FadeOut(n_label), FadeIn(target_n)),
             run_time=0.85,
         )
-        self.play(Write(collapse_equation), FadeIn(collapse_note), run_time=0.7)
+        triangle = target_triangle
+        triplet = target_triplet
+        n_label = target_n
+        self.play(FadeIn(collapse_equation), FadeIn(collapse_note), run_time=0.7)
         self.play(Circumscribe(triangle, color=CORAL), run_time=0.8)
         self.wait(0.35)
 
@@ -455,7 +458,7 @@ class CarloTcfs113MathQ04(CarloSlide):
         existence_note.move_to([4.05, -2.13, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(triangle),
             FadeOut(triplet),
             FadeOut(n_label),
@@ -469,9 +472,9 @@ class CarloTcfs113MathQ04(CarloSlide):
         self.play(FadeIn(panel_three), Create(separator), run_time=0.75)
 
         self.next_beat("derive_triangle_existence")
-        self.play(Write(general_inequality), run_time=0.8)
-        self.play(Write(simplify_existence), run_time=0.45)
-        self.play(Write(integer_existence), FadeIn(existence_note), run_time=0.75)
+        self.play(FadeIn(general_inequality), run_time=0.8)
+        self.play(FadeIn(simplify_existence), run_time=0.45)
+        self.play(FadeIn(integer_existence), FadeIn(existence_note), run_time=0.75)
         self.wait(0.35)
 
         # Beat 04: copy the three side roles into a square-area comparison.
@@ -500,7 +503,7 @@ class CarloTcfs113MathQ04(CarloSlide):
         square_prompt.move_to([3.46, 2.32, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(panel_two),
             FadeOut(panel_three),
             FadeOut(separator),
@@ -525,7 +528,7 @@ class CarloTcfs113MathQ04(CarloSlide):
             ),
             run_time=1.3,
         )
-        self.play(Write(square_formula), FadeIn(square_prompt), run_time=0.7)
+        self.play(FadeIn(square_formula), FadeIn(square_prompt), run_time=0.7)
 
         # Beat 05: equality of areas makes n=4 the right-angle boundary.
         self.next_beat("test_right_boundary")
@@ -544,15 +547,19 @@ class CarloTcfs113MathQ04(CarloSlide):
         boundary_note.move_to([3.46, 2.32, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            Transform(symbolic_triangle, triangle_four),
-            Transform(symbolic_angle, angle_four),
-            Transform(square_test, squares_four),
-            Transform(square_formula, formula_four),
-            ReplacementTransform(square_prompt, boundary_note),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(FadeOut(symbolic_triangle), FadeIn(triangle_four)),
+            Succession(FadeOut(symbolic_angle), FadeIn(angle_four)),
+            Succession(FadeOut(square_test), FadeIn(squares_four)),
+            Succession(FadeOut(square_formula), FadeIn(formula_four)),
+            Succession(FadeOut(square_prompt), FadeIn(boundary_note)),
             FadeOut(largest_note),
             run_time=1.15,
         )
+        symbolic_triangle = triangle_four
+        symbolic_angle = angle_four
+        square_test = squares_four
+        square_formula = formula_four
         beat_title = next_title
         self.play(Indicate(square_formula, color=CORAL), run_time=0.8)
         self.play(Circumscribe(symbolic_angle, color=CORAL), run_time=0.8)
@@ -586,14 +593,18 @@ class CarloTcfs113MathQ04(CarloSlide):
         acute_note.move_to([3.46, 2.32, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            Transform(symbolic_triangle, triangle_five),
-            Transform(symbolic_angle, angle_five),
-            Transform(square_test, squares_five),
-            Transform(square_formula, formula_five),
-            ReplacementTransform(boundary_note, acute_note),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(FadeOut(symbolic_triangle), FadeIn(triangle_five)),
+            Succession(FadeOut(symbolic_angle), FadeIn(angle_five)),
+            Succession(FadeOut(square_test), FadeIn(squares_five)),
+            Succession(FadeOut(square_formula), FadeIn(formula_five)),
+            Succession(FadeOut(boundary_note), FadeIn(acute_note)),
             run_time=1.15,
         )
+        symbolic_triangle = triangle_five
+        symbolic_angle = angle_five
+        square_test = squares_five
+        square_formula = formula_five
         beat_title = next_title
         self.play(Indicate(VGroup(square_formula[0], square_formula[2], square_formula[4]), color=POINT), run_time=0.8)
         self.play(Indicate(VGroup(square_formula[5], square_formula[6]), color=REGION), run_time=0.8)
@@ -642,23 +653,22 @@ class CarloTcfs113MathQ04(CarloSlide):
         acute_box = SurroundingRectangle(final_acute[2], color=POINT, buff=0.15, stroke_width=3)
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(square_test),
             FadeOut(square_formula),
             FadeOut(acute_note),
-            Transform(symbolic_angle, self.vertex_angle(5, r"<90^\circ", REGION)),
             FadeIn(anchor_formula),
             run_time=0.8,
         )
         beat_title = next_title
-        self.play(Write(generic_acute), run_time=0.8)
-        self.play(Write(expanded_acute), run_time=0.65)
-        self.play(Write(factored_acute), run_time=0.65)
+        self.play(FadeIn(generic_acute), run_time=0.8)
+        self.play(FadeIn(expanded_acute), run_time=0.65)
+        self.play(FadeIn(factored_acute), run_time=0.65)
 
         self.next_beat("apply_positive_integer_domain")
         self.play(FadeIn(branches), run_time=0.55)
         self.play(Create(negative_cross), Indicate(positive_branch, color=POINT), run_time=0.8)
-        self.play(Write(final_acute), Create(acute_box), run_time=0.75)
+        self.play(FadeIn(final_acute), Create(acute_box), run_time=0.75)
         self.wait(0.35)
 
         # Beat 08: add the independent perimeter ceiling and test both sides.
@@ -721,10 +731,10 @@ class CarloTcfs113MathQ04(CarloSlide):
         perimeter_box = SurroundingRectangle(final_perimeter, color=BLUE, buff=0.16, stroke_width=3)
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
-            Transform(symbolic_triangle, perimeter_triangle),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
+            Succession(FadeOut(symbolic_triangle), FadeIn(perimeter_triangle)),
             FadeOut(symbolic_angle),
-            FadeOut(anchor_formula),
+            Succession(FadeOut(anchor_formula), FadeIn(acute_badge)),
             FadeOut(generic_acute),
             FadeOut(expanded_acute),
             FadeOut(factored_acute),
@@ -732,18 +742,18 @@ class CarloTcfs113MathQ04(CarloSlide):
             FadeOut(negative_cross),
             FadeOut(final_acute),
             FadeOut(acute_box),
-            FadeIn(acute_badge),
             run_time=0.8,
         )
+        symbolic_triangle = perimeter_triangle
         beat_title = next_title
-        self.play(Write(perimeter_sum), run_time=0.85)
-        self.play(Write(perimeter_limit), run_time=0.6)
+        self.play(FadeIn(perimeter_sum), run_time=0.85)
+        self.play(FadeIn(perimeter_limit), run_time=0.6)
 
         self.next_beat("test_perimeter_boundary")
         self.play(Create(perimeter_axis), Create(cap_line), FadeIn(cap_label), run_time=0.9)
-        self.play(FadeIn(dot_111), Write(test_37), run_time=0.65)
-        self.play(FadeIn(dot_114), Write(test_38), run_time=0.65)
-        self.play(Write(final_perimeter), Create(perimeter_box), run_time=0.75)
+        self.play(FadeIn(dot_111), FadeIn(test_37), run_time=0.65)
+        self.play(FadeIn(dot_114), FadeIn(test_38), run_time=0.65)
+        self.play(FadeIn(final_perimeter), Create(perimeter_box), run_time=0.75)
         self.wait(0.35)
 
         # Beat 09: align the two live ranges and make their intersection literal.
@@ -777,7 +787,7 @@ class CarloTcfs113MathQ04(CarloSlide):
         range_question.move_to([0, -3.05, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(symbolic_triangle),
             FadeOut(acute_badge),
             FadeOut(perimeter_sum),
@@ -800,8 +810,8 @@ class CarloTcfs113MathQ04(CarloSlide):
         self.play(FadeIn(perimeter_row), run_time=0.75)
 
         self.next_beat("form_range_intersection")
-        self.play(TransformFromCopy(VGroup(acute_row[3], perimeter_row[3]), intersection_row), run_time=0.9)
-        self.play(FadeIn(boundary_numbers), Write(intersection_formula), run_time=0.75)
+        self.play(FadeIn(intersection_row), run_time=0.75)
+        self.play(FadeIn(boundary_numbers), FadeIn(intersection_formula), run_time=0.75)
         self.play(FadeIn(range_question), run_time=0.45)
         self.wait(0.45)
 
@@ -844,7 +854,7 @@ class CarloTcfs113MathQ04(CarloSlide):
         final_note.move_to([2.30, -2.78, 0])
 
         self.play(
-            ReplacementTransform(beat_title, next_title),
+            Succession(FadeOut(beat_title), FadeIn(next_title)),
             FadeOut(existence_reminder),
             FadeOut(acute_row),
             FadeOut(perimeter_row),
@@ -863,10 +873,10 @@ class CarloTcfs113MathQ04(CarloSlide):
             run_time=0.75,
         )
         self.play(FadeIn(mini_triangle), FadeIn(mini_caption), FadeIn(inclusive_note), run_time=0.8)
-        self.play(Write(partial_count), run_time=0.8)
+        self.play(FadeIn(partial_count), run_time=0.8)
         self.wait(0.65)
 
         self.next_beat("reveal_surviving_count")
-        self.play(Write(final_tail), Create(answer_box), run_time=0.7)
+        self.play(FadeIn(final_tail), Create(answer_box), run_time=0.7)
         self.play(FadeIn(final_note), Indicate(final_tail[1], color=POINT), run_time=0.8)
         self.wait(0.65)
