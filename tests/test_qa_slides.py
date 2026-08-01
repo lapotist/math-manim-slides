@@ -76,6 +76,15 @@ class SlideQaSelectionChecks(unittest.TestCase):
         )
         self.assertIn("ImageMagick", workflow)
 
+    def test_deployment_configures_pages_before_rendering(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "deploy-slides.yml").read_text(
+            encoding="utf-8"
+        )
+        self.assertLess(
+            workflow.index("Configure GitHub Pages"),
+            workflow.index("Render public lessons"),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -44,6 +44,9 @@ jobs:
           frozen: true
           cache: true
 
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: Validate sources and warm the TeX cache
         run: |
           pixi run test
@@ -65,9 +68,6 @@ jobs:
 
       - name: Assemble the public lesson library
         run: pixi run build-public-site --revision "$GITHUB_SHA"
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload the Pages artifact
         uses: actions/upload-pages-artifact@v4
