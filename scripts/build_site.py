@@ -7,17 +7,23 @@ import argparse
 import base64
 import binascii
 import hashlib
+import html
 import json
 import os
+import posixpath
 import re
 import shutil
 import subprocess
 import sys
+import unicodedata
 from datetime import UTC, datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote, urlsplit, urlunsplit
 
+from markdown_it import MarkdownIt
+from markdown_it.token import Token
 from PIL import Image, UnidentifiedImageError
 
 try:
@@ -47,6 +53,20 @@ QA_ROOT = ROOT / "qa"
 DRAFT_QA_ROOT = ROOT / "build" / "qa"
 DEPLOYABLE_STATES = {"draft_rendered", "visual_verified", "published"}
 LEGAL_FILES = ("LICENSE", "LICENSE-CONTENT", "NOTICE.md", "SOURCES.md")
+LEGAL_MARKDOWN_PAGES = {
+    "SOURCES.md": {
+        "output": "SOURCES.html",
+        "label": "來源",
+        "title": "來源與出處",
+        "wide": True,
+    },
+    "NOTICE.md": {
+        "output": "NOTICE.html",
+        "label": "權利範圍",
+        "title": "權利範圍",
+        "wide": False,
+    },
+}
 SITE_SCHEMA_VERSION = 2
 REVIEW_STATUS_SCHEMA_VERSION = 1
 DEFAULT_MAX_SITE_BYTES = 950 * 1024 * 1024
@@ -827,14 +847,318 @@ def reset_site_root(site_root: Path) -> None:
     site_root.mkdir(parents=True)
 
 
-def copy_legal_files(site_root: Path, repository_root: Path = ROOT) -> None:
+def document_slug(text: str, fallback: str, used: set[str]) -> str:
+    normalized = unicodedata.normalize("NFKD", text)
+    ascii_text = normalized.encode("ascii", "ignore").decode("ascii").lower()
+    base = re.sub(r"[^a-z0-9]+", "-", ascii_text).strip("-") or fallback
+    candidate = base
+    suffix = 2
+    while candidate in used:
+        candidate = f"{base}-{suffix}"
+        suffix += 1
+    used.add(candidate)
+    return candidate
+
+
+def inline_token_text(token: Token) -> str:
+    if token.children is None:
+        return token.content
+    return "".join(
+        child.content
+        for child in token.children
+        if child.type in {"text", "code_inline"}
+    )
+
+
+def annotate_document_tokens(tokens: list[Token]) -> None:
+    used_heading_ids: set[str] = set()
+    heading_count = 0
+    table_count = 0
+    table_headers: list[str] = []
+    in_table_head = False
+    in_table_body = False
+    column_index = 0
+    row_open: Token | None = None
+
+    for index, token in enumerate(tokens):
+        next_token = tokens[index + 1] if index + 1 < len(tokens) else None
+        if token.type == "heading_open" and next_token is not None:
+            heading_count += 1
+            token.attrSet(
+                "id",
+                document_slug(
+                    inline_token_text(next_token),
+                    f"section-{heading_count}",
+                    used_heading_ids,
+                ),
+            )
+        elif token.type == "table_open":
+            table_count += 1
+            token.meta["document_table_number"] = table_count
+            table_headers = []
+        elif token.type == "thead_open":
+            in_table_head = True
+        elif token.type == "thead_close":
+            in_table_head = False
+        elif token.type == "tbody_open":
+            in_table_body = True
+        elif token.type == "tbody_close":
+            in_table_body = False
+        elif token.type == "tr_open":
+            column_index = 0
+            row_open = token if in_table_body else None
+        elif token.type == "tr_close":
+            row_open = None
+        elif token.type == "th_open" and in_table_head:
+            label = inline_token_text(next_token) if next_token is not None else ""
+            table_headers.append(label.strip())
+            token.attrSet("scope", "col")
+        elif token.type == "td_open" and in_table_body:
+            label = (
+                table_headers[column_index]
+                if column_index < len(table_headers)
+                else f"Column {column_index + 1}"
+            )
+            token.attrSet("data-label", label)
+            if "SHA-256" in label:
+                token.attrJoin("class", "document-hash-cell")
+            if column_index == 0 and next_token is not None and row_open is not None:
+                identifier = inline_token_text(next_token).strip()
+                if LESSON_ID_RE.fullmatch(identifier) is not None:
+                    row_open.attrSet("id", f"source-{identifier}")
+            column_index += 1
+
+
+def repository_blob_url(
+    repository_url: str,
+    revision: str,
+    relative_path: str,
+    query: str = "",
+    fragment: str = "",
+) -> str:
+    path = (
+        f"{urlsplit(repository_url.rstrip('/')).path.rstrip('/')}"
+        f"/blob/{quote(revision, safe='')}/{quote(relative_path, safe='/')}"
+    )
+    repository = urlsplit(repository_url)
+    return urlunsplit((repository.scheme, repository.netloc, path, query, fragment))
+
+
+def document_link_target(
+    href: str,
+    *,
+    repository_url: str,
+    revision: str,
+) -> tuple[str, bool]:
+    parsed = urlsplit(href)
+    if parsed.scheme or parsed.netloc:
+        return href, parsed.scheme in {"http", "https"}
+    if not parsed.path or parsed.path.startswith("/"):
+        return href, False
+    if "\\" in parsed.path:
+        raise ValueError(f"unsafe Markdown link path: {href}")
+    target = posixpath.normpath(parsed.path)
+    if target == ".." or target.startswith("../"):
+        raise ValueError(f"Markdown link leaves repository root: {href}")
+    if target in LEGAL_MARKDOWN_PAGES:
+        output = str(LEGAL_MARKDOWN_PAGES[target]["output"])
+        return urlunsplit(("", "", output, parsed.query, parsed.fragment)), False
+    if target in LEGAL_FILES:
+        return urlunsplit(("", "", target, parsed.query, parsed.fragment)), False
+    return (
+        repository_blob_url(
+            repository_url,
+            revision,
+            target,
+            parsed.query,
+            parsed.fragment,
+        ),
+        True,
+    )
+
+
+def rewrite_document_links(
+    tokens: list[Token],
+    *,
+    repository_url: str,
+    revision: str,
+) -> None:
+    for token in tokens:
+        for child in token.children or []:
+            if child.type != "link_open":
+                continue
+            href = child.attrGet("href")
+            if href is None:
+                continue
+            target, external = document_link_target(
+                href,
+                repository_url=repository_url,
+                revision=revision,
+            )
+            child.attrSet("href", target)
+            if external:
+                child.attrSet("target", "_blank")
+                child.attrSet("rel", "noopener noreferrer")
+
+
+def render_safe_markdown_html(
+    _renderer: object,
+    tokens: list[Token],
+    index: int,
+    _options: dict[str, Any],
+    _env: dict[str, Any],
+) -> str:
+    content = tokens[index].content
+    stripped = content.strip()
+    if stripped.startswith("<!--") and stripped.endswith("-->"):
+        return ""
+    if tokens[index].type == "html_inline" and re.fullmatch(
+        r"<br\s*/?>", stripped, re.IGNORECASE
+    ):
+        return "<br>"
+    return html.escape(content)
+
+
+def render_document_table_open(
+    _renderer: object,
+    tokens: list[Token],
+    index: int,
+    _options: dict[str, Any],
+    _env: dict[str, Any],
+) -> str:
+    number = int(tokens[index].meta.get("document_table_number", 1))
+    return (
+        '<div class="document-table" role="region" '
+        f'aria-label="資料表 {number}" tabindex="0">\n'
+        '<table class="document-data-table">\n'
+    )
+
+
+def render_document_table_close(
+    _renderer: object,
+    _tokens: list[Token],
+    _index: int,
+    _options: dict[str, Any],
+    _env: dict[str, Any],
+) -> str:
+    return "</table>\n</div>\n"
+
+
+def render_document_cell_open(
+    renderer: Any,
+    tokens: list[Token],
+    index: int,
+    options: dict[str, Any],
+    env: dict[str, Any],
+) -> str:
+    return (
+        renderer.renderToken(tokens, index, options, env)
+        + '<span class="document-cell-value">'
+    )
+
+
+def render_document_cell_close(
+    renderer: Any,
+    tokens: list[Token],
+    index: int,
+    options: dict[str, Any],
+    env: dict[str, Any],
+) -> str:
+    return "</span>" + renderer.renderToken(tokens, index, options, env)
+
+
+def render_legal_document(
+    source_name: str,
+    markdown_source: str,
+    *,
+    repository_url: str,
+    revision: str,
+) -> str:
+    page = LEGAL_MARKDOWN_PAGES.get(source_name)
+    if page is None:
+        raise ValueError(f"unsupported legal Markdown page: {source_name}")
+    markdown = MarkdownIt("commonmark", {"html": True}).enable("table")
+    markdown.add_render_rule("html_inline", render_safe_markdown_html)
+    markdown.add_render_rule("html_block", render_safe_markdown_html)
+    markdown.add_render_rule("table_open", render_document_table_open)
+    markdown.add_render_rule("table_close", render_document_table_close)
+    markdown.add_render_rule("td_open", render_document_cell_open)
+    markdown.add_render_rule("td_close", render_document_cell_close)
+    tokens = markdown.parse(markdown_source)
+    annotate_document_tokens(tokens)
+    rewrite_document_links(
+        tokens,
+        repository_url=repository_url,
+        revision=revision,
+    )
+    body = markdown.renderer.render(tokens, markdown.options, {})
+    nav_links = []
+    for name, candidate in LEGAL_MARKDOWN_PAGES.items():
+        current = ' aria-current="page"' if name == source_name else ""
+        nav_links.append(
+            f'<a href="{candidate["output"]}"{current}>{candidate["label"]}</a>'
+        )
+    main_class = "document-main document-main-wide" if page["wide"] else "document-main"
+    title = html.escape(str(page["title"]))
+    return f"""<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="{title}：Math Manim Slides 專案文件">
+  <title>{title}｜數學動畫題庫</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="document-page">
+  <header class="topbar document-topbar">
+    <a class="brand" href="../">數學動畫題庫</a>
+    <nav class="top-links" aria-label="專案文件">
+      <a href="../site-manifest.json">資料清單</a>
+      {''.join(nav_links)}
+    </nav>
+  </header>
+  <main class="{main_class}">
+    <article class="document-body">
+{body}
+    </article>
+    <footer class="document-footer">
+      <a href="{html.escape(source_name, quote=True)}">檢視原始 Markdown</a>
+    </footer>
+  </main>
+</body>
+</html>
+"""
+
+
+def copy_legal_files(
+    site_root: Path,
+    repository_root: Path = ROOT,
+    *,
+    revision: str = "main",
+    repository_url: str = PROJECT_URL,
+) -> None:
     legal_root = site_root / "legal"
     legal_root.mkdir()
+    markdown_sources: dict[str, str] = {}
     for filename in LEGAL_FILES:
         source = repository_root / filename
         if not source.is_file():
             raise ValueError(f"missing required legal file: {filename}")
         shutil.copy2(source, legal_root / filename)
+        if filename in LEGAL_MARKDOWN_PAGES:
+            markdown_sources[filename] = source.read_text(encoding="utf-8")
+    for filename, markdown_source in markdown_sources.items():
+        output = str(LEGAL_MARKDOWN_PAGES[filename]["output"])
+        (legal_root / output).write_text(
+            render_legal_document(
+                filename,
+                markdown_source,
+                repository_url=repository_url,
+                revision=revision,
+            ),
+            encoding="utf-8",
+        )
 
 
 def copy_static_assets(site_root: Path) -> None:
@@ -949,7 +1273,12 @@ def assemble_site(
     repository_url = repository_url or repository_url_from_environment()
     reset_site_root(site_root)
     copy_static_assets(site_root)
-    copy_legal_files(site_root, repository_root)
+    copy_legal_files(
+        site_root,
+        repository_root,
+        revision=revision,
+        repository_url=repository_url,
+    )
     (site_root / "qa").mkdir()
     source_asset_urls = load_source_asset_urls(repository_root)
 

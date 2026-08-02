@@ -251,6 +251,10 @@ class SiteBuilderChecks(unittest.TestCase):
         self.assertIn('id="problem-list"', html_source)
         self.assertIn('id="lesson-video"', html_source)
         self.assertIn('id="problem-text"', html_source)
+        self.assertIn('href="legal/SOURCES.html"', html_source)
+        self.assertIn('href="legal/NOTICE.html"', html_source)
+        self.assertNotIn('href="legal/SOURCES.md"', html_source)
+        self.assertNotIn('href="legal/NOTICE.md"', html_source)
         self.assertIn('event.key === "ArrowRight"', script)
         self.assertIn('addEventListener("ended"', script)
         self.assertIn("selectSegment", script)
@@ -294,6 +298,92 @@ class SiteBuilderChecks(unittest.TestCase):
     def test_lesson_id_cannot_escape_the_site_root(self) -> None:
         with self.assertRaisesRegex(ValueError, "unsafe lesson ID"):
             build_site.deck_relative_path("../outside")
+
+    def test_legal_markdown_is_rendered_without_replacing_raw_files(self) -> None:
+        sources = b"""# Sources
+
+<!-- lesson-source-index:start -->
+| ID | Rights status | Source SHA-256 |
+| --- | --- | --- |
+| `source.collection.q01` | [rights](NOTICE.md#scope)<br>[permission](docs/provenance/PERMISSION.md) | `abc123` |
+<!-- lesson-source-index:end -->
+
+[external](https://example.test/source?a=1#record)
+[unsafe](javascript:alert(1))
+<script>alert("unsafe")</script>
+<img src=x onerror=alert(1)>
+"""
+        notice = b"""# Rights
+
+## Scope
+
+Return to the [source ledger](SOURCES.md#sources).
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site_root = root / "site"
+            site_root.mkdir()
+            fixtures = {
+                "LICENSE": b"software license\n",
+                "LICENSE-CONTENT": b"content license\n",
+                "NOTICE.md": notice,
+                "SOURCES.md": sources,
+            }
+            for filename, content in fixtures.items():
+                write_repository_file(root, filename, content)
+
+            build_site.copy_legal_files(
+                site_root,
+                root,
+                revision="abc123",
+                repository_url="https://github.example/acme/slides",
+            )
+            rendered_sources = (
+                site_root / "legal" / "SOURCES.html"
+            ).read_text(encoding="utf-8")
+            rendered_notice = (
+                site_root / "legal" / "NOTICE.html"
+            ).read_text(encoding="utf-8")
+            copied_sources = (site_root / "legal" / "SOURCES.md").read_bytes()
+            copied_notice = (site_root / "legal" / "NOTICE.md").read_bytes()
+
+        self.assertEqual(copied_sources, sources)
+        self.assertEqual(copied_notice, notice)
+        self.assertIn('<h1 id="sources">Sources</h1>', rendered_sources)
+        self.assertIn('<div class="document-table"', rendered_sources)
+        self.assertIn('<table class="document-data-table">', rendered_sources)
+        self.assertIn('data-label="Rights status"', rendered_sources)
+        self.assertIn('<span class="document-cell-value">', rendered_sources)
+        self.assertIn('id="source-source.collection.q01"', rendered_sources)
+        self.assertIn('href="NOTICE.html#scope"', rendered_sources)
+        self.assertIn(
+            'href="https://github.example/acme/slides/blob/abc123/'
+            'docs/provenance/PERMISSION.md"',
+            rendered_sources,
+        )
+        self.assertIn(
+            'href="https://example.test/source?a=1#record"',
+            rendered_sources,
+        )
+        self.assertIn('target="_blank" rel="noopener noreferrer"', rendered_sources)
+        self.assertIn("<br>", rendered_sources)
+        self.assertNotIn("lesson-source-index", rendered_sources)
+        self.assertNotIn("<script>", rendered_sources)
+        self.assertNotIn("<img src=x", rendered_sources)
+        self.assertIn("&lt;script&gt;", rendered_sources)
+        self.assertIn("&lt;img src=x onerror=alert(1)&gt;", rendered_sources)
+        self.assertNotIn('href="javascript:', rendered_sources)
+        self.assertIn('href="SOURCES.html#sources"', rendered_notice)
+        self.assertIn('aria-current="page">權利範圍</a>', rendered_notice)
+        self.assertIn('href="NOTICE.md">檢視原始 Markdown</a>', rendered_notice)
+
+    def test_legal_markdown_link_cannot_leave_repository_root(self) -> None:
+        with self.assertRaisesRegex(ValueError, "leaves repository root"):
+            build_site.document_link_target(
+                "../private.md",
+                repository_url="https://github.example/acme/slides",
+                revision="abc123",
+            )
 
     @mock.patch("scripts.build_site.subprocess.run")
     def test_thumbnail_accepts_a_small_valid_webp(self, run: mock.Mock) -> None:
