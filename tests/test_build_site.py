@@ -250,6 +250,8 @@ class SiteBuilderChecks(unittest.TestCase):
 
         self.assertIn('id="problem-list"', html_source)
         self.assertIn('id="lesson-video"', html_source)
+        self.assertIn('aria-labelledby="problem-heading"', html_source)
+        self.assertIn('id="problem-heading"', html_source)
         self.assertIn('id="problem-text"', html_source)
         self.assertIn('href="legal/SOURCES.html"', html_source)
         self.assertIn('href="legal/NOTICE.html"', html_source)
