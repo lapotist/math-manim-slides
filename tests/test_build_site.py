@@ -11,8 +11,6 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest import mock
 
-from PIL import Image
-
 from scripts import build_site
 
 
@@ -260,7 +258,9 @@ class SiteBuilderChecks(unittest.TestCase):
         self.assertIn('event.key === "ArrowRight"', script)
         self.assertIn('addEventListener("ended"', script)
         self.assertIn("selectSegment", script)
-        self.assertNotIn(".play()", script)
+        self.assertIn("selectSegment(index, { play: true })", script)
+        self.assertIn("elements.video.play().catch", script)
+        self.assertIn("selectSegment(segmentIndex, { replaceUrl })", script)
         self.assertIn("elements.video.loop = false", script)
         self.assertIn(
             'elements.video.addEventListener("ended", () => {\n'
@@ -389,6 +389,11 @@ Return to the [source ledger](SOURCES.md#sources).
 
     @mock.patch("scripts.build_site.subprocess.run")
     def test_thumbnail_accepts_a_small_valid_webp(self, run: mock.Mock) -> None:
+        try:
+            from PIL import Image
+        except ModuleNotFoundError:
+            self.skipTest("Pillow is only installed in the render environment")
+
         def write_thumbnail(command: list[str], **_: object) -> SimpleNamespace:
             destination = Path(command[-1])
             Image.new("RGB", (480, 270), "#101214").save(destination, "WEBP")

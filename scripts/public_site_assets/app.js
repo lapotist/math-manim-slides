@@ -284,7 +284,7 @@ function updateChapterSelection() {
   elements.next.disabled = state.segmentIndex === lesson.segments.length - 1;
 }
 
-function selectSegment(index, replaceUrl = false) {
+function selectSegment(index, { replaceUrl = false, play = false } = {}) {
   const lesson = currentLesson();
   if (!lesson || !lesson.segments.length) return;
   state.segmentIndex = Math.max(0, Math.min(index, lesson.segments.length - 1));
@@ -297,6 +297,11 @@ function selectSegment(index, replaceUrl = false) {
   elements.video.load();
   updateChapterSelection();
   updateUrl(replaceUrl);
+  if (play) {
+    void elements.video.play().catch(() => {
+      // Browser policy can still reject playback; native controls remain available.
+    });
+  }
 }
 
 function renderLesson(lesson) {
@@ -318,9 +323,17 @@ function selectLesson(index, segmentIndex = 0, replaceUrl = false) {
   if (index < 0 || index >= state.lessons.length) return;
   state.lessonIndex = index;
   renderLesson(currentLesson());
-  selectSegment(segmentIndex, replaceUrl);
+  selectSegment(segmentIndex, { replaceUrl });
   renderProblemList();
   setSidebar(false);
+}
+
+function navigateSegment(offset) {
+  const lesson = currentLesson();
+  if (!lesson) return;
+  const index = state.segmentIndex + offset;
+  if (index < 0 || index >= lesson.segments.length) return;
+  selectSegment(index, { play: true });
 }
 
 function readLocation() {
@@ -406,14 +419,8 @@ function bindEvents() {
   elements.sidebarScrim.addEventListener("click", () => setSidebar(false));
   elements.search.addEventListener("input", applyFilters);
   elements.collection.addEventListener("change", applyFilters);
-  elements.previous.addEventListener("click", () => {
-    if (state.segmentIndex > 0) selectSegment(state.segmentIndex - 1);
-  });
-  elements.next.addEventListener("click", () => {
-    if (state.segmentIndex < currentLesson().segments.length - 1) {
-      selectSegment(state.segmentIndex + 1);
-    }
-  });
+  elements.previous.addEventListener("click", () => navigateSegment(-1));
+  elements.next.addEventListener("click", () => navigateSegment(1));
   elements.video.addEventListener("ended", () => {
     elements.video.pause();
   });
@@ -428,12 +435,12 @@ function bindEvents() {
     if (event.key === "ArrowRight") {
       if (state.segmentIndex < lesson.segments.length - 1) {
         event.preventDefault();
-        selectSegment(state.segmentIndex + 1);
+        navigateSegment(1);
       }
     } else if (event.key === "ArrowLeft") {
       if (state.segmentIndex > 0) {
         event.preventDefault();
-        selectSegment(state.segmentIndex - 1);
+        navigateSegment(-1);
       }
     } else if (event.key === "Escape") {
       setSidebar(false);

@@ -136,12 +136,28 @@ pixi run gh workflow run deploy-slides.yml --ref main
 pixi run gh run list --workflow deploy-slides.yml --limit 1
 ```
 
-The workflow renders and exports from the selected commit; it does not publish
-ignored files from a maintainer's working directory. `draft_rendered` lessons
-must pass fresh 1920x1080 mechanical QA and appear with a clearly distinct
-review-progress badge. Only `visual_verified` and `published` lessons may use
-the verified badge backed by committed source-bound QA. A render, catalog,
-rights, export, QA, or 950 MiB site-budget failure stops the deployment.
+The normal workflow reuses the last successful Pages artifact. It does no
+render, TeX, media-QA, export, or thumbnail work for a site-only change. When a
+lesson changes, it renders and exports only the exact lesson IDs selected by the
+deployment plan, then merges their fresh hash-bound assets into a clean site.
+Shared rendering inputs deliberately select every deployable lesson. Changes
+that affect neither the public site nor lessons skip deployment completely.
+
+The baseline is accepted only from a successful deployment on the repository's
+default branch, must be an ancestor of the selected commit, and must contain one
+complete, unexpired Pages artifact. Missing or invalid baselines fail closed.
+Creating a baseline again is an explicit recovery operation:
+
+```bash
+pixi run gh workflow run deploy-slides.yml --ref main -f full_rebuild=true
+```
+
+The workflow does not publish ignored files from a maintainer's working
+directory. `draft_rendered` lessons must pass fresh 1920x1080 mechanical QA and
+appear with a clearly distinct review-progress badge. Only `visual_verified`
+and `published` lessons may use the verified badge backed by committed
+source-bound QA. A render, catalog, rights, export, QA, reuse-integrity, or 950
+MiB site-budget failure stops the deployment.
 The rendering container, CJK font, and TeX converter packages are pinned to the
 versions used by the current attestations. After the `deploy` job succeeds, use
 the `github-pages` environment URL shown in the workflow run to check the problem

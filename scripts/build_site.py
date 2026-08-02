@@ -24,7 +24,6 @@ from urllib.parse import quote, urlsplit, urlunsplit
 
 from markdown_it import MarkdownIt
 from markdown_it.token import Token
-from PIL import Image, UnidentifiedImageError
 
 try:
     from scripts.build_lessons import (
@@ -70,6 +69,9 @@ LEGAL_MARKDOWN_PAGES = {
 SITE_SCHEMA_VERSION = 2
 REVIEW_STATUS_SCHEMA_VERSION = 1
 DEFAULT_MAX_SITE_BYTES = 950 * 1024 * 1024
+LESSON_ARTIFACT_SCHEMA_VERSION = 1
+RENDER_CONTRACT_PATH = ROOT / "scripts" / "render-contract.json"
+RENDER_CONTRACT = json.loads(RENDER_CONTRACT_PATH.read_text(encoding="ascii"))
 LESSON_ID_RE = re.compile(
     r"[a-z0-9][a-z0-9_-]*(?:\.[a-z0-9][a-z0-9_-]*)*"
 )
@@ -135,6 +137,67 @@ def digest_json(value: object) -> str:
         value, ensure_ascii=True, sort_keys=True, separators=(",", ":")
     ).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
+
+
+def lesson_artifact_fingerprint(
+    lesson: dict[str, Any], repository_root: Path = ROOT
+) -> str:
+    """Bind a published lesson artifact to every render and export input."""
+    metadata_path = repository_file(
+        repository_root,
+        lesson.get("metadata_path"),
+        f"{lesson['id']}: lesson metadata",
+    )
+    problem_root = metadata_path.parent
+    candidates = [
+        repository_root / "pixi.toml",
+        repository_root / "pixi.lock",
+        repository_root / "pyproject.toml",
+        repository_root / "scripts" / "build_lessons.py",
+        repository_root / "scripts" / "qa_slides.py",
+        repository_root / "scripts" / "prepare_tex.py",
+        repository_root / "scripts" / "activate.sh",
+        repository_root / "scripts" / "render-contract.json",
+        repository_root / "tools" / "bin" / "xelatex",
+        repository_root / "tools" / "bin" / "dvisvgm",
+        repository_root / "LICENSES" / "Manim-Slides-5.6.0.txt",
+        repository_root / "LICENSES" / "Reveal.js-6.0.1.txt",
+    ]
+    candidates.extend(
+        path
+        for path in sorted(problem_root.rglob("*"))
+        if path.is_file()
+        and "__pycache__" not in path.parts
+        and path.suffix != ".pyc"
+    )
+    source_root = repository_root / "src"
+    if source_root.is_dir():
+        candidates.extend(sorted(source_root.rglob("*.py")))
+    records = []
+    seen: set[Path] = set()
+    for candidate in candidates:
+        if not candidate.is_file():
+            continue
+        resolved = candidate.resolve()
+        if resolved in seen:
+            continue
+        if not resolved.is_relative_to(repository_root.resolve()):
+            raise ValueError(f"artifact input leaves repository: {candidate}")
+        seen.add(resolved)
+        records.append(
+            {
+                "path": resolved.relative_to(repository_root.resolve()).as_posix(),
+                "sha256": sha256(resolved),
+            }
+        )
+    records.sort(key=lambda record: record["path"])
+    return digest_json(
+        {
+            "schema_version": LESSON_ARTIFACT_SCHEMA_VERSION,
+            "render_contract": RENDER_CONTRACT,
+            "inputs": records,
+        }
+    )
 
 
 def live_report_binding_digest(report: dict[str, Any]) -> str:
@@ -586,6 +649,8 @@ def validate_lesson(lesson: dict[str, Any]) -> None:
 
 
 def make_thumbnail(segment_path: Path, destination: Path) -> None:
+    from PIL import Image, UnidentifiedImageError
+
     destination.parent.mkdir(parents=True, exist_ok=True)
     command = [
         "ffmpeg",
@@ -777,24 +842,15 @@ def copy_segment_assets(
     return packaged
 
 
-def make_record(
+def lesson_record_metadata(
     lesson: dict[str, Any],
-    evidence: dict[str, Any],
-    qa_path: Path,
-    export_path: Path,
     revision: str,
     repository_url: str,
-    thumbnail_path: str | None,
-    segments: list[dict[str, Any]],
     source_asset_urls: dict[str, str],
+    repository_root: Path = ROOT,
 ) -> dict[str, Any]:
     beats = lesson.get("beats", [])
-    render = evidence.get("render", {})
     metadata_path = str(lesson["metadata_path"])
-    review_state = evidence.get("review", {}).get("visual")
-    binding_digest = evidence.get("review_binding_digest")
-    if not isinstance(binding_digest, str):
-        binding_digest = committed_binding_digest(evidence)
     source_asset_url = original_source_url(lesson, source_asset_urls)
     return {
         "id": lesson["id"],
@@ -813,10 +869,6 @@ def make_record(
         "estimated_minutes": lesson.get("estimated_minutes"),
         "beat_count": len(beats),
         "loop_count": sum(bool(beat.get("loop")) for beat in beats),
-        "segment_count": render.get("segment_count"),
-        "verified_at": evidence.get("verified_at"),
-        "review_state": review_state,
-        "review_binding_digest": binding_digest,
         "tags": lesson.get("tags", []),
         "problem_display": problem_display(lesson),
         "source_asset": lesson.get("source_asset", ""),
@@ -831,13 +883,50 @@ def make_record(
             if source_asset_url
             else "locator_only"
         ),
+        "artifact_fingerprint": lesson_artifact_fingerprint(
+            lesson, repository_root
+        ),
+        "source_revision": revision,
+        "metadata_url": f"{repository_url}/blob/{revision}/{metadata_path}",
+    }
+
+
+def make_record(
+    lesson: dict[str, Any],
+    evidence: dict[str, Any],
+    qa_path: Path,
+    export_path: Path,
+    revision: str,
+    repository_url: str,
+    thumbnail_path: str | None,
+    thumbnail_sha256: str | None,
+    segments: list[dict[str, Any]],
+    source_asset_urls: dict[str, str],
+    repository_root: Path = ROOT,
+) -> dict[str, Any]:
+    render = evidence.get("render", {})
+    review_state = evidence.get("review", {}).get("visual")
+    binding_digest = evidence.get("review_binding_digest")
+    if not isinstance(binding_digest, str):
+        binding_digest = committed_binding_digest(evidence)
+    return {
+        **lesson_record_metadata(
+            lesson,
+            revision,
+            repository_url,
+            source_asset_urls,
+            repository_root,
+        ),
+        "segment_count": render.get("segment_count"),
+        "verified_at": evidence.get("verified_at"),
+        "review_state": review_state,
+        "review_binding_digest": binding_digest,
         "export_sha256": sha256(export_path),
         "qa_path": f"qa/{qa_path.name}",
         "qa_sha256": sha256(qa_path),
         "thumbnail_path": thumbnail_path,
+        "thumbnail_sha256": thumbnail_sha256,
         "segments": segments,
-        "source_revision": revision,
-        "metadata_url": f"{repository_url}/blob/{revision}/{metadata_path}",
     }
 
 
@@ -1254,6 +1343,85 @@ def directory_size(directory: Path, exclude: Path | None = None) -> int:
     )
 
 
+def write_site_outputs(
+    site_root: Path,
+    records: list[dict[str, Any]],
+    *,
+    selected_count: int,
+    missing: list[str],
+    repository_root: Path,
+    revision: str,
+    repository_url: str,
+    max_site_bytes: int | None,
+) -> None:
+    if not records:
+        raise ValueError("site has no deployable lesson exports")
+    records.sort(
+        key=lambda record: (
+            record["collection_id"],
+            record["part"],
+            record["question"],
+            record["id"],
+        )
+    )
+    generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
+    status_url = review_status_feed_url(repository_url)
+    manifest = {
+        "schema_version": SITE_SCHEMA_VERSION,
+        "project": PROJECT_TITLE,
+        "project_url": repository_url,
+        "generated_at": generated_at,
+        "source_revision": revision,
+        "review_status_url": status_url,
+        "summary": {
+            "selected": selected_count,
+            "deployed": len(records),
+            "missing": len(missing),
+            "site_bytes": 0,
+        },
+        "missing_lesson_ids": sorted(missing),
+        "lessons": records,
+    }
+    library_data = {
+        "schema_version": SITE_SCHEMA_VERSION,
+        "review_status_url": status_url,
+        "lessons": records,
+    }
+    (site_root / "library-data.js").write_text(
+        "window.__MATH_LESSON_LIBRARY__ = "
+        + json.dumps(library_data, ensure_ascii=False, separators=(",", ":"))
+        + ";\n",
+        encoding="utf-8",
+    )
+    status_feed = initial_review_status(
+        records, repository_root / "qa" / "review-status.json"
+    )
+    (site_root / "review-status.json").write_text(
+        json.dumps(status_feed, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    (site_root / ".nojekyll").write_text("", encoding="ascii")
+    manifest_path = site_root / "site-manifest.json"
+    other_bytes = directory_size(site_root, exclude=manifest_path)
+    manifest_bytes = b""
+    for _ in range(8):
+        manifest_bytes = (
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+        ).encode("utf-8")
+        site_bytes = other_bytes + len(manifest_bytes)
+        if manifest["summary"]["site_bytes"] == site_bytes:
+            break
+        manifest["summary"]["site_bytes"] = site_bytes
+    manifest_path.write_bytes(manifest_bytes)
+    site_bytes = directory_size(site_root)
+    if max_site_bytes is not None and site_bytes > max_site_bytes:
+        raise ValueError(
+            "site is "
+            f"{site_bytes / (1024 * 1024):.1f} MiB; configured limit is "
+            f"{max_site_bytes / (1024 * 1024):.1f} MiB"
+        )
+
+
 def assemble_site(
     lessons: list[dict[str, Any]],
     *,
@@ -1310,6 +1478,7 @@ def assemble_site(
             )
 
             thumbnail_relative: str | None = None
+            thumbnail_hash: str | None = None
             if generate_thumbnails:
                 thumbnail_relative = (
                     Path("assets") / "thumbnails" / f"{safe_id(lesson['id'])}.webp"
@@ -1318,6 +1487,7 @@ def assemble_site(
                     thumbnail_source(evidence, repository_root),
                     site_root / thumbnail_relative,
                 )
+                thumbnail_hash = sha256(site_root / thumbnail_relative)
             records.append(
                 make_record(
                     lesson,
@@ -1327,8 +1497,10 @@ def assemble_site(
                     revision,
                     repository_url,
                     thumbnail_relative,
+                    thumbnail_hash,
                     segment_records,
                     source_asset_urls,
+                    repository_root,
                 )
             )
         except (OSError, ValueError) as error:
@@ -1336,73 +1508,16 @@ def assemble_site(
 
     if errors:
         raise ValueError("\n".join(errors))
-    if not records:
-        raise ValueError("site has no deployable lesson exports")
-
-    records.sort(
-        key=lambda record: (
-            record["collection_id"],
-            record["part"],
-            record["question"],
-            record["id"],
-        )
+    write_site_outputs(
+        site_root,
+        records,
+        selected_count=len(lessons),
+        missing=missing,
+        repository_root=repository_root,
+        revision=revision,
+        repository_url=repository_url,
+        max_site_bytes=max_site_bytes,
     )
-    generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
-    status_url = review_status_feed_url(repository_url)
-    manifest = {
-        "schema_version": SITE_SCHEMA_VERSION,
-        "project": PROJECT_TITLE,
-        "project_url": repository_url,
-        "generated_at": generated_at,
-        "source_revision": revision,
-        "review_status_url": status_url,
-        "summary": {
-            "selected": len(lessons),
-            "deployed": len(records),
-            "missing": len(missing),
-            "site_bytes": 0,
-        },
-        "missing_lesson_ids": sorted(missing),
-        "lessons": records,
-    }
-    library_data = {
-        "schema_version": SITE_SCHEMA_VERSION,
-        "review_status_url": status_url,
-        "lessons": records,
-    }
-    (site_root / "library-data.js").write_text(
-        "window.__MATH_LESSON_LIBRARY__ = "
-        + json.dumps(library_data, ensure_ascii=False, separators=(",", ":"))
-        + ";\n",
-        encoding="utf-8",
-    )
-    status_feed = initial_review_status(
-        records, repository_root / "qa" / "review-status.json"
-    )
-    (site_root / "review-status.json").write_text(
-        json.dumps(status_feed, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-    (site_root / ".nojekyll").write_text("", encoding="ascii")
-    manifest_path = site_root / "site-manifest.json"
-    other_bytes = directory_size(site_root, exclude=manifest_path)
-    manifest_bytes = b""
-    for _ in range(8):
-        manifest_bytes = (
-            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
-        ).encode("utf-8")
-        site_bytes = other_bytes + len(manifest_bytes)
-        if manifest["summary"]["site_bytes"] == site_bytes:
-            break
-        manifest["summary"]["site_bytes"] = site_bytes
-    manifest_path.write_bytes(manifest_bytes)
-    site_bytes = directory_size(site_root)
-    if max_site_bytes is not None and site_bytes > max_site_bytes:
-        raise ValueError(
-            "site is "
-            f"{site_bytes / (1024 * 1024):.1f} MiB; configured limit is "
-            f"{max_site_bytes / (1024 * 1024):.1f} MiB"
-        )
     return records, missing
 
 

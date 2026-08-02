@@ -384,11 +384,19 @@ pixi run build-public-site --allow-missing
 The manual **Deploy math lesson library** workflow in
 `.github/workflows/deploy-slides.yml` creates the complete GitHub Pages site.
 Configure the repository's Pages source as **GitHub Actions** once, then run the
-workflow from the Actions tab. It installs the locked environment, renders all
-`draft_rendered`, `visual_verified`, and `published` lessons at 1920x1080,
-reconciles fresh QA, exports the offline decks as an integrity gate, and deploys
-the chapter player in `build/site`. The builder records the final byte count in
-`site-manifest.json` and fails above 950 MiB, leaving room below
+workflow from the Actions tab. A normal run compares the selected commit with
+the last successful Pages artifact. Site-only changes reuse every hash-bound
+lesson asset without installing the rendering system; lesson changes render,
+QA, and export only the affected lesson IDs. Shared render-input changes rebuild
+the complete set, while documentation- or test-only changes are a true no-op.
+The pipeline fails closed when its baseline is unavailable or unrelated. Use
+the explicit `full_rebuild` workflow input only to create a new baseline.
+
+Every deployed artifact is still assembled from a clean directory. Reused QA,
+segments, and thumbnails are checked against their recorded hashes, deleted
+lessons are omitted, and new lessons cannot appear without fresh render and QA
+evidence. The builder records the final byte count in `site-manifest.json` and
+fails above 950 MiB, leaving room below
 [GitHub Pages' 1 GB published-site limit](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
 See [GitHub's custom workflow guide](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 for the repository setting and deployment permissions.

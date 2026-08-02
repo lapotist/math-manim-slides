@@ -2,18 +2,223 @@ name: Deploy math lesson library
 
 on:
   workflow_dispatch:
+    inputs:
+      full_rebuild:
+        description: Rebuild every lesson when no reusable baseline is available
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  build:
+  plan:
     runs-on: ubuntu-latest
     permissions:
+      actions: write
+      contents: read
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+      changed_count: ${{ steps.plan.outputs.changed_count }}
+      base_run_id: ${{ steps.plan.outputs.base_run_id }}
+      base_revision: ${{ steps.plan.outputs.base_revision }}
+    steps:
+      - name: Check out the repository history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Find the latest successful Pages baseline
+        id: baseline
+        uses: actions/github-script@v8
+        with:
+          result-encoding: json
+          script: |
+            const repository = await github.rest.repos.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            const defaultBranch = repository.data.default_branch;
+            if (context.ref !== `refs/heads/${defaultBranch}`) {
+              core.setFailed(`Deployments must run from ${defaultBranch}.`);
+              return {run_id: "", revision: "", artifact_id: ""};
+            }
+            const pages = github.paginate.iterator(
+              github.rest.actions.listWorkflowRuns,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: "deploy-slides.yml",
+                branch: defaultBranch,
+                status: "success",
+                per_page: 100,
+              },
+            );
+            for await (const page of pages) {
+              const runs = page.data.workflow_runs ?? page.data;
+              for (const run of runs) {
+                if (run.id === context.runId) continue;
+                const response = await github.rest.actions.listWorkflowRunArtifacts({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: run.id,
+                  per_page: 100,
+                });
+                const artifacts = response.data.artifacts.filter(
+                  item => item.name === "github-pages" && !item.expired,
+                );
+                if (
+                  artifacts.length === 1 &&
+                  artifacts[0].workflow_run?.head_sha === run.head_sha
+                ) {
+                  const selected = artifacts[0];
+                  try {
+                    const stored = await github.paginate(
+                      github.rest.actions.listArtifactsForRepo,
+                      {
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        name: "github-pages",
+                        per_page: 100,
+                      },
+                    );
+                    for (const artifact of stored) {
+                      if (artifact.id === selected.id) continue;
+                      try {
+                        await github.rest.actions.deleteArtifact({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          artifact_id: artifact.id,
+                        });
+                      } catch (error) {
+                        core.warning(
+                          `Could not remove artifact ${artifact.id}: ${error.message}`,
+                        );
+                      }
+                    }
+                  } catch (error) {
+                    core.warning(`Could not list stale artifacts: ${error.message}`);
+                  }
+                  return {
+                    run_id: String(run.id),
+                    revision: run.head_sha,
+                    artifact_id: String(selected.id),
+                  };
+                }
+              }
+            }
+            return {run_id: "", revision: "", artifact_id: ""};
+
+      - name: Plan the incremental deployment
+        id: plan
+        env:
+          BASE_RUN_ID: ${{ fromJSON(steps.baseline.outputs.result).run_id }}
+          BASE_REVISION: ${{ fromJSON(steps.baseline.outputs.result).revision }}
+        run: |
+          python3 scripts/incremental_deploy.py plan \
+            --base-run-id "$BASE_RUN_ID" \
+            --base-revision "$BASE_REVISION" \
+            --head-revision "$GITHUB_SHA" \
+            --full-rebuild "${{ inputs.full_rebuild }}" \
+            --output build/deploy/plan.json \
+            --github-output "$GITHUB_OUTPUT"
+          python3 -m json.tool build/deploy/plan.json
+
+      - name: Report a no-op deployment
+        if: steps.plan.outputs.mode == 'noop'
+        run: echo "No public site or lesson output changed; deployment skipped."
+
+  site:
+    needs: plan
+    if: needs.plan.outputs.mode == 'site'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Check out the repository history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Download the successful Pages baseline
+        uses: actions/download-artifact@v5
+        with:
+          name: github-pages
+          path: build/base-artifact
+          run-id: ${{ needs.plan.outputs.base_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up the lightweight site environment
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: scripts/site-requirements.txt
+
+      - name: Install the site-only Markdown parser
+        run: >-
+          python3 -m pip install
+          --disable-pip-version-check
+          --requirement scripts/site-requirements.txt
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Validate site inputs
+        run: |
+          python3 -m py_compile scripts/build_site.py scripts/incremental_deploy.py
+          node --check scripts/public_site_assets/app.js
+          python3 -m unittest \
+            tests.test_incremental_deploy.IncrementalPlanChecks \
+            tests.test_incremental_deploy.IncrementalWorkflowChecks \
+            tests.test_build_site.SiteBuilderChecks
+          python3 scripts/slide_density.py
+          python3 scripts/validate_catalog.py
+          python3 scripts/update_sources.py --check
+
+      - name: Recreate and verify the deployment plan
+        run: |
+          python3 scripts/incremental_deploy.py plan \
+            --base-run-id "${{ needs.plan.outputs.base_run_id }}" \
+            --base-revision "${{ needs.plan.outputs.base_revision }}" \
+            --head-revision "$GITHUB_SHA" \
+            --full-rebuild "${{ inputs.full_rebuild }}" \
+            --output build/deploy/plan.json
+
+      - name: Extract and validate the baseline site
+        run: |
+          python3 scripts/incremental_deploy.py extract \
+            --archive build/base-artifact/artifact.tar \
+            --site-root build/base-site
+
+      - name: Assemble the site without rendering lessons
+        run: |
+          python3 scripts/incremental_deploy.py assemble \
+            --plan build/deploy/plan.json \
+            --base-site build/base-site \
+            --site-root build/site \
+            --revision "$GITHUB_SHA"
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: build/site
+          retention-days: 90
+
+  render:
+    needs: plan
+    if: needs.plan.outputs.mode == 'lessons' || needs.plan.outputs.mode == 'full'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
       contents: read
       pages: write
       id-token: write
@@ -34,8 +239,19 @@ jobs:
             google-noto-sans-cjk-vf-fonts-2.004-11.fc44.noarch \
             tar
 
-      - name: Check out the repository
+      - name: Check out the repository history
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Download the successful Pages baseline
+        if: needs.plan.outputs.mode == 'lessons'
+        uses: actions/download-artifact@v5
+        with:
+          name: github-pages
+          path: build/base-artifact
+          run-id: ${{ needs.plan.outputs.base_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install the locked Pixi environment
         uses: prefix-dev/setup-pixi@v0.10.0
@@ -47,35 +263,76 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Validate sources and warm the TeX cache
+      - name: Validate repository inputs
         run: |
           pixi run test
           pixi run check-slide-density
           pixi run validate-catalog
           pixi run check-sources
-          pixi run prepare-tex
 
-      - name: Render public lessons
-        run: pixi run lessons render --status draft_rendered,visual_verified,published --jobs 2 --quality h
-
-      - name: Check fresh slide media
+      - name: Recreate and verify the deployment plan
         run: |
-          pixi run qa-slides --status draft_rendered,visual_verified,published
+          pixi run python scripts/incremental_deploy.py plan \
+            --base-run-id "${{ needs.plan.outputs.base_run_id }}" \
+            --base-revision "${{ needs.plan.outputs.base_revision }}" \
+            --head-revision "$GITHUB_SHA" \
+            --full-rebuild "${{ inputs.full_rebuild }}" \
+            --output build/deploy/plan.json
+
+      - name: Extract the baseline site
+        if: needs.plan.outputs.mode == 'lessons'
+        run: |
+          pixi run python scripts/incremental_deploy.py extract \
+            --archive build/base-artifact/artifact.tar \
+            --site-root build/base-site
+
+      - name: Warm the TeX cache
+        run: pixi run prepare-tex
+
+      - name: Render public lessons (changed only)
+        run: |
+          pixi run python scripts/incremental_deploy.py execute render \
+            --plan build/deploy/plan.json \
+            --jobs 2
+
+      - name: Check fresh changed slide media
+        run: |
+          pixi run python scripts/incremental_deploy.py execute qa \
+            --plan build/deploy/plan.json
           pixi run validate-catalog
 
-      - name: Export standalone decks
-        run: pixi run lessons export --status draft_rendered,visual_verified,published --jobs 2
+      - name: Export changed standalone decks
+        run: |
+          pixi run python scripts/incremental_deploy.py execute export \
+            --plan build/deploy/plan.json \
+            --jobs 2
 
-      - name: Assemble the public lesson library
+      - name: Assemble the incremental public lesson library
+        if: needs.plan.outputs.mode == 'lessons'
+        run: |
+          pixi run python scripts/incremental_deploy.py assemble \
+            --plan build/deploy/plan.json \
+            --base-site build/base-site \
+            --site-root build/site \
+            --revision "$GITHUB_SHA"
+
+      - name: Assemble a full public lesson library
+        if: needs.plan.outputs.mode == 'full'
         run: pixi run build-public-site --revision "$GITHUB_SHA"
 
       - name: Upload the Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: build/site
+          retention-days: 90
 
   deploy:
-    needs: build
+    needs: [plan, site, render]
+    if: >-
+      always() &&
+      needs.plan.result == 'success' &&
+      needs.plan.outputs.mode != 'noop' &&
+      (needs.site.result == 'success' || needs.render.result == 'success')
     runs-on: ubuntu-latest
     permissions:
       pages: write
